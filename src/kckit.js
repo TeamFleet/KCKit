@@ -6,7 +6,9 @@
     } else {
         root[name] = factory();
     }
-})( this , 'KC' , function() {
+})( window , 'KC' , function() {
+
+    "use strict";
 
     let KCKit = {
         lang: 	'zh_cn',

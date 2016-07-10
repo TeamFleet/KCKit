@@ -20,7 +20,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     } else {
         root[name] = factory();
     }
-})(undefined, 'KC', function () {
+})(window, 'KC', function () {
+
+    "use strict";
 
     var KCKit = {
         lang: 'zh_cn',
