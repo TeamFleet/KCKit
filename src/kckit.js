@@ -424,6 +424,44 @@
 /**
  * KC Database
  */
+    KCKit.dbLoad = function( type, callback_beforeProcess, callback_success, callback_complete ){
+        return $.ajax({
+            'url':		KCKit.path.db + '/' + type + '.json',
+            'dataType':	'text',
+            'success': function(data){
+                let arr = [];
+                if( callback_beforeProcess )
+                    arr = callback_beforeProcess( data )
+                if( typeof KCKit.db[type] == 'undefined' )
+                    KCKit.db[type] = {}
+                arr.forEach(function(str){
+                    if( str ){
+                        let doc = JSON.parse(str)
+                        switch( type ){
+                            case 'ships':
+                                KCKit.db[type][doc['id']] = new Ship(doc)
+                                break;
+                            case 'items':
+                                KCKit.db[type][doc['id']] = new Equipment(doc)
+                                break;
+                            case 'entities':
+                                KCKit.db[type][doc['id']] = new Entity(doc)
+                                break;
+                            default:
+                                KCKit.db[type][doc['id']] = doc
+                                break;
+                        }
+                    }
+                })
+                if( callback_success )
+                    callback_success( data )
+            },
+            'complete': function(jqXHR, textStatus){
+                if( callback_complete )
+                    callback_complete( jqXHR, textStatus )
+            }
+        })
+    };
 
 
 
@@ -497,7 +535,7 @@
         calcByShip: {},
         calc: {}
     };
-    formula.calculate = calculate: function( type, ship, equipments_by_slot, star_by_slot, rank_by_slot, options ){
+    formula.calculate = function( type, ship, equipments_by_slot, star_by_slot, rank_by_slot, options ){
         /**
          * 计算
          * @param {string} type - 计算类型
