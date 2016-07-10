@@ -502,12 +502,15 @@
 			LargeSonar:			28,		// 大型声纳
 			AAGun:				29,		// 对空机枪
 			AAGunConcentrated:	30,		// 对空机枪（集中配备）
+            AAFireDirector:     31,     // 高射装置
+            LandingCraft:       38,     // 登陆艇
 			Searchlight:		39,		// 探照灯
 			LargeFlyingBoat:	45,		// 大型水上飞艇
 			SearchlightLarge:	46,		// 大型探照灯
 			SuparRadar:			47,		// 超大型雷达
 			CarrierRecon2:		50,		// 舰侦II / 舰载侦察机II
 			SeaplaneFighter:	51,		// 水战 / 水上战斗机
+            AmphibiousCraft:    52,     // 特型内火艇
 			LandBasedAttacker:	53,		// 陆攻 / 陆上攻击机
 			Interceptor:		54		// 局战 / 局地战斗机
 		},	
@@ -572,18 +575,14 @@
 								result+= (equipments_by_slot[index].type == formula.equipmentType.TorpedoBomber && !options.isNight)
 											? 0
 											: (equipments_by_slot[index].stat.torpedo || 0)
-									
-								// 改修加成
-									if( star_by_slot[index] ){
-										let multipler = 0
-										// 鱼雷
-											if( $.inArray( equipments_by_slot[index].type, formula.equipmentType.Torpedos ) > -1 )
-												multipler = options.isNight ? 1 : 1.2
-										// 机枪
-											if( $.inArray( equipments_by_slot[index].type, formula.equipmentType.AAGuns ) > -1 )
-												multipler = options.isNight ? 1 : 1.2
-										result+= Math.sqrt(star_by_slot[index]) * multipler
-									}
+
+                                // 改修加成
+                                    if( star_by_slot[index] && !options.isNight ){
+                                        result+= Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                                                equipments_by_slot[index].type,
+                                                'torpedo'
+                                            )
+                                    }
 							}
 						})
 						return result
@@ -702,6 +701,25 @@
 									isNight: true
 								})
 							+ powerTorpedo({isNight: true, returnZero: true})
+                    // 改修加成
+                    ship.slot.map(function(carry, index){
+                        if( equipments_by_slot[index] ){
+                            if( star_by_slot[index] ){
+                                result+= Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                                        equipments_by_slot[index].type,
+                                        'night'
+                                    )
+                            }
+                        }
+                    })
+                    /*
+                    console.log(
+                        '夜',
+                        formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {isNight: true}),
+                        powerTorpedo({isNight: true, returnZero: true}),
+                        result
+                    )
+                    */
 					if( count.torpedo >= 2 ){
 						return '雷击CI ' + Math.floor( result * 1.5 ) + ' x 2'
 					}else if( count.main >= 3 ){
@@ -770,6 +788,16 @@
                 formula.equipmentType.SuperCaliber
             ];
 
+        formula.equipmentType.SmallCalibers = [
+                formula.equipmentType.SmallCaliber,
+                formula.equipmentType.SmallCaliberHigh,
+                formula.equipmentType.SmallCaliberAA
+            ];
+
+        formula.equipmentType.MediumCalibers = [
+                formula.equipmentType.MediumCaliber
+            ];
+
         formula.equipmentType.LargeCalibers = [
                 formula.equipmentType.LargeCaliber,
                 formula.equipmentType.SuperCaliber
@@ -779,6 +807,10 @@
                 formula.equipmentType.SecondaryGun,
                 formula.equipmentType.SecondaryGunHigh,
                 formula.equipmentType.SecondaryGunAA
+            ];
+
+        formula.equipmentType.APShells = [
+                formula.equipmentType.APShell
             ];
 
         formula.equipmentType.Torpedos = [
@@ -821,6 +853,10 @@
         formula.equipmentType.SeaplaneBombers = [
                 formula.equipmentType.SeaplaneBomber,
                 formula.equipmentType.SeaplaneFighter
+            ];
+
+        formula.equipmentType.CarrierFighters = [
+                formula.equipmentType.CarrierFighter
             ];
 
         formula.equipmentType.CarrierRecons = [
@@ -890,15 +926,108 @@
                 formula.equipmentType.LargeSonar
             ];
 
+        formula.equipmentType.DepthCharges = [
+                formula.equipmentType.DepthCharge
+            ];
+
+        formula.equipmentType.Sonars = [
+                formula.equipmentType.Sonar,
+                formula.equipmentType.LargeSonar
+            ];
+
         formula.equipmentType.AAGuns = [
                 formula.equipmentType.AAGun,
                 formula.equipmentType.AAGunConcentrated
+            ];
+
+        formula.equipmentType.AAFireDirectors = [
+                formula.equipmentType.AAFireDirector
             ];
 
         formula.equipmentType.Searchlights = [
                 formula.equipmentType.Searchlight,
                 formula.equipmentType.SearchlightLarge
             ];
+
+        formula.equipmentType.LandingCrafts = [
+                formula.equipmentType.LandingCraft,
+                formula.equipmentType.AmphibiousCraft
+            ];
+
+        formula.equipmentType.AmphibiousCrafts = [
+                formula.equipmentType.AmphibiousCraft
+            ];
+    // 改修收益系数
+        formula.starMultiper = {
+            SmallCalibers: {
+                shelling: 1,
+                night: 1
+            },
+            MediumCalibers: {
+                shelling: 1,
+                night: 1
+            },
+            LargeCalibers: {
+                shelling: 1.5,
+                night: 1
+            },
+            SecondaryGuns: {
+                shelling: 1,
+                night: 1
+            },
+            APShells: {
+                shelling: 1,
+                night: 1
+            },
+            AAFireDirectors: {
+                shelling: 1,
+                night: 1
+            },
+            Searchlights: {
+                shelling: 1,
+                night: 1
+            },
+            AAGuns: {
+                shelling: 1,
+                torpedo: 1.2
+            },
+            Torpedos: {
+                torpedo: 1.2,
+                night: 1
+            },
+            DepthCharges: {
+                shelling: 0.75,
+                antisub: 1
+            },
+            Sonars: {
+                shelling: 0.75,
+                antisub: 1
+            },
+            Radars: {
+            },
+            Seaplanes: {
+            },
+            CarrierFighters: {
+                fighter: 0.2
+            },
+            LandingCrafts: {
+                shelling: 1,
+                night: 1
+            }
+        };
+        formula.getStarMultiper = function( equipmentType, type ){
+            if( !formula.starMultiper._init ){
+                for( let i in formula.starMultiper ){
+                    if( formula.equipmentType[i] && formula.equipmentType[i].forEach ){
+                        formula.equipmentType[i].forEach(function( tid ){
+                            formula.starMultiper[tid] = formula.starMultiper[i]
+                        })
+                    }
+                }
+                formula.starMultiper._init = true
+            }
+            return formula.starMultiper[equipmentType] ? (formula.starMultiper[equipmentType][type] || 0) : 0
+        };
     // 计算快捷方式
         formula.shellingDamage = function(ship, equipments_by_slot, star_by_slot, rank_by_slot){
             return this.calculate( 'shellingDamage', ship, equipments_by_slot, star_by_slot, rank_by_slot )
@@ -1246,7 +1375,7 @@
             
             return result
         };        
-        formula.calc.fighterPower = function( equipment, carry, rank ){
+        formula.calc.fighterPower = function( equipment, carry, rank, star ){
             if( !equipment )
                 return [0, 0]
 
@@ -1298,7 +1427,12 @@
                 && carry
             ){
                 // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
-                let statAA = (equipment.stat.aa || 0) + ( equipment.type == formula.equipmentType.Interceptor ? equipment.stat.evasion * 1.5 : 0 )
+                /*if( star )
+                    console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
+                */
+                let statAA = (equipment.stat.aa || 0)
+                                + ( equipment.type == formula.equipmentType.Interceptor ? equipment.stat.evasion * 1.5 : 0 )
+                                + (star * formula.getStarMultiper( equipment.type, 'fighter' ))
                     ,base = Math.sqrt(carry) * statAA
                     ,_rankInternal = rankInternal[rank]
                     ,_typeValue = 0
@@ -1386,18 +1520,26 @@
                             }
                         
                         // 改修加成
-                            if( star_by_slot[index] ){
-                                // 忽略装备类型: 鱼雷、雷达
-                                if( $.inArray( equipments_by_slot[index].type, formula.equipmentType.Torpedos.concat(formula.equipmentType.Radars) ) < 0 ){
-                                    let multipler = 1
-                                    // 对潜装备
-                                        if( $.inArray( equipments_by_slot[index].type, formula.equipmentType.AntiSubmarines ) > -1 )
-                                            multipler = options.isNight ? 0 : 0.75
-                                    // 大口径主炮
-                                        if( $.inArray( equipments_by_slot[index].type, formula.equipmentType.LargeCalibers ) > -1 )
-                                            multipler = options.isNight ? 1 : 1.5
-                                    result+= Math.sqrt(star_by_slot[index]) * multipler
-                                }
+                            if( star_by_slot[index] && !options.isNight ){
+                                /*
+                                console.log(
+                                    equipments_by_slot[index]._name,
+                                    '★+' + star_by_slot[index],
+                                    formula.getStarMultiper(
+                                        equipments_by_slot[index].type,
+                                        options.isNight ? 'night' : 'shelling'
+                                    ),
+                                    Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                                        equipments_by_slot[index].type,
+                                        options.isNight ? 'night' : 'shelling'
+                                    ),
+                                    options.isNight ? '夜战' : '昼战'
+                                )
+                                */
+                                result+= Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                                        equipments_by_slot[index].type,
+                                        'shelling'
+                                    )
                             }
                     }
                 })
@@ -1409,7 +1551,7 @@
             let results = [0, 0]
         
             ship.slot.map(function(carry, index){
-                let r = formula.calc.fighterPower( equipments_by_slot[index], carry, rank_by_slot[index] || 0 )
+                let r = formula.calc.fighterPower( equipments_by_slot[index], carry, rank_by_slot[index] || 0, star_by_slot[index] || 0 )
                 results[0]+= r[0]
                 results[1]+= r[1]
             })

@@ -40,7 +40,7 @@ gulp.task('KCKit-js', function(){
 
 gulp.task('KCKit-watch', function(){
 	gulp.watch(
-			'./source/*.js',
+			'./src/*.js',
 			['KCKit-js']
 		)
 })
