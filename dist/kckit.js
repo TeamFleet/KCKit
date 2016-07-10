@@ -1279,6 +1279,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         equipment = _instanceof(equipment, Equipment) ? equipment : KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment];
         carry = carry || 0;
         rank = rank || 0;
+        star = star || 0;
 
         // http://bbs.ngacn.cc/read.php?tid=8680767
         // http://ja.kancolle.wikia.com/wiki/%E8%89%A6%E8%BC%89%E6%A9%9F%E7%86%9F%E7%B7%B4%E5%BA%A6
