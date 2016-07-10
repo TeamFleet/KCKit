@@ -597,7 +597,7 @@
 					return null
 				if( equipment instanceof Equipment )
 					return equipment
-				return KCKit.db.equipments[equipment]
+				return KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment]
 			}) || []
 		star_by_slot = star_by_slot || []
 		rank_by_slot = rank_by_slot || []
@@ -1250,7 +1250,9 @@
             if( !equipment )
                 return [0, 0]
 
-            equipment = equipment instanceof Equipment ? equipment : KCKit.db.equipments[equipment]
+            equipment = equipment instanceof Equipment
+                        ? equipment
+                        : (KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment])
             carry = carry || 0
             rank = rank || 0
             

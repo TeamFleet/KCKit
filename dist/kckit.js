@@ -636,7 +636,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         equipments_by_slot = equipments_by_slot.map(function (equipment) {
             if (!equipment) return null;
             if (_instanceof(equipment, Equipment)) return equipment;
-            return KCKit.db.equipments[equipment];
+            return KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment];
         }) || [];
         star_by_slot = star_by_slot || [];
         rank_by_slot = rank_by_slot || [];
@@ -1169,7 +1169,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     formula.calc.fighterPower = function (equipment, carry, rank) {
         if (!equipment) return [0, 0];
 
-        equipment = _instanceof(equipment, Equipment) ? equipment : KCKit.db.equipments[equipment];
+        equipment = _instanceof(equipment, Equipment) ? equipment : KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment];
         carry = carry || 0;
         rank = rank || 0;
 
