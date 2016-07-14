@@ -11,8 +11,9 @@
     "use strict";
 
     let KC = {
-        lang: 	'zh_cn',
-        joint: 	'・',
+        lang: 	    'zh_cn',
+        joint: 	    '・',
+        maxShipLv:  155,
         db: {},
         path: {
             db: '/kcdb/',
@@ -56,7 +57,10 @@
  */
     // Base class
     class ItemBase {
-        constructor() {
+        constructor( data ) {
+            for( let i in data ){
+                this[i] = data[i]
+            }
         }
 
         getName(language){
@@ -73,15 +77,12 @@
     // Class for Entity (Person/Group, such as CVs, illustrators)
     class Entity extends ItemBase{
         constructor(data) {
-            super()
-            $.extend(true, this, data)
+            super(data);
         }
     }
-    KC.Entity = Entity;
     class Equipment extends ItemBase{
         constructor(data) {
-            super()
-            $.extend(true, this, data)
+            super(data);
         }
         
         getName(small_brackets, language){
@@ -135,11 +136,9 @@
             */
         }
     }
-    KC.Equipment = Equipment;
     class Ship extends ItemBase{
         constructor(data){
-            super()
-            $.extend(true, this, data)
+            super(data);
         }
         /**
          * @param {string} joint - OPTIONAL - 连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串
@@ -416,8 +415,7 @@
             return this.getIllustrator()
         }
     }
-    Ship.lvlMax = 155;
-    KC.Ship = Ship;
+    Ship.lvlMax = KC.maxShipLv;
 
 
 
@@ -426,7 +424,8 @@
 /**
  * KC Database
  */
-    KC.dbLoad = function( type, callback_beforeProcess, callback_success, callback_complete ){
+    KC.dbLoad = function( settings ){
+    //KC.dbLoad = function( type, callback_beforeProcess, callback_success, callback_complete ){
         return $.ajax({
             'url':		KC.path.db + '/' + type + '.json',
             'dataType':	'text',
@@ -1063,25 +1062,22 @@
             // http://biikame.hatenablog.com/entry/2014/11/14/224925
 
             var calc = function (x) {
-                x = $.extend({'(Intercept)': 1}, x);
+                if( typeof x['(Intercept)'] == 'undefined' )
+                    x['(Intercept)'] = 1
                 x['hqLv'] = (Math.ceil(x['hqLv'] / 5) * 5);
                 var x_estimate = {};
                 var y_estimate = 0;
-                $.each(keys, function () {
-                    var estimate = x[this] * estimate_coefficients[this];
-                    x_estimate[this] = estimate;
-                    y_estimate += estimate;
-                });
                 var x_std_error = {};
-                $.each(keys, function () {
-                    x_std_error[this] = x[this] * std_error_coefficients[this];
-                });
                 var y_std_error = 0;
-                $.each(keys, function () {
-                    var key1 = this;
-                    $.each(keys, function () {
-                        var key2 = this;
-                        y_std_error += x_std_error[key1] * x_std_error[key2] * correlation[key1][key2];
+                keys.forEach(function(key){
+                    var estimate = x[key] * estimate_coefficients[key];
+                    x_estimate[key] = estimate;
+                    y_estimate += estimate;
+                    x_std_error[key] = x[key] * std_error_coefficients[key];
+                });
+                keys.forEach(function(key){
+                    keys.forEach(function(key2){
+                        y_std_error += x_std_error[key] * x_std_error[key2] * correlation[key][key2];
                     });
                 });
                 return {
@@ -1614,84 +1610,92 @@
             })
             console.log(data)
             return formula.calc.TP(data)
-        }
-    KC.formula = formula;
+        };
 
 
 
 
 /**
- * ES functions/features polyfill
+ * ES/JS Functions/Features
  */
-    // Production steps of ECMA-262, Edition 5, 15.4.4.14
-    // Reference: http://es5.github.io/#x15.4.4.14
-    if (!Array.prototype.indexOf) {
-        Array.prototype.indexOf = function(searchElement, fromIndex) {
+    // Array.prototype.indexOf()
+        // Production steps of ECMA-262, Edition 5, 15.4.4.14
+        // Reference: http://es5.github.io/#x15.4.4.14
+        if (!Array.prototype.indexOf) {
+            Array.prototype.indexOf = function(searchElement, fromIndex) {
 
-            var k;
+                var k;
 
-            // 1. Let o be the result of calling ToObject passing
-            //    the this value as the argument.
-            if (this == null) {
-                throw new TypeError('"this" is null or not defined');
-            }
-
-            var o = Object(this);
-
-            // 2. Let lenValue be the result of calling the Get
-            //    internal method of o with the argument "length".
-            // 3. Let len be ToUint32(lenValue).
-            var len = o.length >>> 0;
-
-            // 4. If len is 0, return -1.
-            if (len === 0) {
-                return -1;
-            }
-
-            // 5. If argument fromIndex was passed let n be
-            //    ToInteger(fromIndex); else let n be 0.
-            var n = +fromIndex || 0;
-
-            if (Math.abs(n) === Infinity) {
-                n = 0;
-            }
-
-            // 6. If n >= len, return -1.
-            if (n >= len) {
-                return -1;
-            }
-
-            // 7. If n >= 0, then Let k be n.
-            // 8. Else, n<0, Let k be len - abs(n).
-            //    If k is less than 0, then let k be 0.
-            k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
-
-            // 9. Repeat, while k < len
-            while (k < len) {
-                // a. Let Pk be ToString(k).
-                //   This is implicit for LHS operands of the in operator
-                // b. Let kPresent be the result of calling the
-                //    HasProperty internal method of o with argument Pk.
-                //   This step can be combined with c
-                // c. If kPresent is true, then
-                //    i.  Let elementK be the result of calling the Get
-                //        internal method of o with the argument ToString(k).
-                //   ii.  Let same be the result of applying the
-                //        Strict Equality Comparison Algorithm to
-                //        searchElement and elementK.
-                //  iii.  If same is true, return k.
-                if (k in o && o[k] === searchElement) {
-                    return k;
+                // 1. Let o be the result of calling ToObject passing
+                //    the this value as the argument.
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
                 }
-                k++;
-            }
-            return -1;
-        };
-    }
+
+                var o = Object(this);
+
+                // 2. Let lenValue be the result of calling the Get
+                //    internal method of o with the argument "length".
+                // 3. Let len be ToUint32(lenValue).
+                var len = o.length >>> 0;
+
+                // 4. If len is 0, return -1.
+                if (len === 0) {
+                    return -1;
+                }
+
+                // 5. If argument fromIndex was passed let n be
+                //    ToInteger(fromIndex); else let n be 0.
+                var n = +fromIndex || 0;
+
+                if (Math.abs(n) === Infinity) {
+                    n = 0;
+                }
+
+                // 6. If n >= len, return -1.
+                if (n >= len) {
+                    return -1;
+                }
+
+                // 7. If n >= 0, then Let k be n.
+                // 8. Else, n<0, Let k be len - abs(n).
+                //    If k is less than 0, then let k be 0.
+                k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+                // 9. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ToString(k).
+                    //   This is implicit for LHS operands of the in operator
+                    // b. Let kPresent be the result of calling the
+                    //    HasProperty internal method of o with argument Pk.
+                    //   This step can be combined with c
+                    // c. If kPresent is true, then
+                    //    i.  Let elementK be the result of calling the Get
+                    //        internal method of o with the argument ToString(k).
+                    //   ii.  Let same be the result of applying the
+                    //        Strict Equality Comparison Algorithm to
+                    //        searchElement and elementK.
+                    //  iii.  If same is true, return k.
+                    if (k in o && o[k] === searchElement) {
+                        return k;
+                    }
+                    k++;
+                }
+                return -1;
+            };
+        }
 
 
 
 
+
+/**
+ * 
+ */
+    KC.Entity = Entity;
+    KC.Equipment = Equipment;
+    KC.Ship = Ship;
+    KC.formula = formula;
 
     return KC;
 });
