@@ -1,16 +1,16 @@
-(function( root , name , factory ) {
+(function( name , factory ) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else if ( typeof module === 'object' && module.exports ) {
         module.exports = factory()
     } else {
-        root[name] = factory();
+        window[name] = factory();
     }
-})( window , 'KC' , function() {
+})( 'KC' , function() {
 
     "use strict";
 
-    let KCKit = {
+    let KC = {
         lang: 	'zh_cn',
         joint: 	'・',
         db: {},
@@ -60,7 +60,7 @@
         }
 
         getName(language){
-            language = language || KCKit.lang
+            language = language || KC.lang
             return this['name']
                     ? (this['name'][language] || this['name'])
                     : null
@@ -77,7 +77,7 @@
             $.extend(true, this, data)
         }
     }
-    KCKit.Entity = Entity;
+    KC.Entity = Entity;
     class Equipment extends ItemBase{
         constructor(data) {
             super()
@@ -85,7 +85,7 @@
         }
         
         getName(small_brackets, language){
-            language = language || KCKit.lang
+            language = language || KC.lang
             var result = ItemBase.prototype.getName.call(this, language)
                 //,result = super.getName(language)
                 ,small_brackets_tag = small_brackets && !small_brackets === true ? small_brackets : 'small'
@@ -95,14 +95,14 @@
         }
         
         getType(language){
-            language = language || KCKit.lang
+            language = language || KC.lang
             return this['type']
                     ? _g['data']['item_types'][this['type']]['name'][language]
                     : null
         }
 
         getIconId(){
-            return KCKit.db.item_types[this['type']]['icon']
+            return KC.db.item_types[this['type']]['icon']
         }
         get _icon(){
             return 'assets/images/itemicon/' + this.getIconId() + '.png'
@@ -117,7 +117,7 @@
         
         getPower(){
             return this.stat[
-                KCKit.db['item_types'][this['type']]['main_attribute'] || 'fire'
+                KC.db['item_types'][this['type']]['main_attribute'] || 'fire'
             ]
             /*
             switch( this['type'] ){
@@ -135,7 +135,7 @@
             */
         }
     }
-    KCKit.Equipment = Equipment;
+    KC.Equipment = Equipment;
     class Ship extends ItemBase{
         constructor(data){
             super()
@@ -151,12 +151,12 @@
          */
         getName(joint, language){
             joint = joint || ''
-            language = language || KCKit.lang
+            language = language || KC.lang
             let suffix = this.getSuffix(language)
             return (
                     this['name'][language] || this['name']['ja_jp']
                     ) + ( suffix ? (
-                            (joint === true ? KCKit.joint : joint)
+                            (joint === true ? KC.joint : joint)
                             + suffix
                         ) : ''
                     )
@@ -164,27 +164,27 @@
         /*	获取舰名，不包括后缀
             变量
                 language	[OPTIONAL]
-                    String		语言代码，默认为 KCKit.lang
+                    String		语言代码，默认为 KC.lang
             返回值
                 String		舰名，不包括后缀
         */
         getNameNoSuffix(language){
-            language = language || KCKit.lang
+            language = language || KC.lang
             return this['name'][language] || this['name']['ja_jp']
         }
         /*	获取后缀名
             变量
                 language	[OPTIONAL]
-                    String		语言代码，默认为 KCKit.lang
+                    String		语言代码，默认为 KC.lang
             返回值
                 String		后缀名
         */
         getSuffix(language){
-            language = language || KCKit.lang
+            language = language || KC.lang
             return this['name'].suffix
                         ? (
-                            KCKit.db['ship_namesuffix'][this['name'].suffix][language]
-                            || KCKit.db['ship_namesuffix'][this['name'].suffix]['ja_jp']
+                            KC.db['ship_namesuffix'][this['name'].suffix][language]
+                            || KC.db['ship_namesuffix'][this['name'].suffix]['ja_jp']
                             || ''
                         )
                         : ''
@@ -192,14 +192,14 @@
         /*	获取舰种
             变量
                 language	[OPTIONAL]
-                    String		语言代码，默认为 KCKit.lang
+                    String		语言代码，默认为 KC.lang
             返回值
                 String		舰种
             快捷方式
                 ship._type	默认语言
         */
         getType(language){
-            language = language || KCKit.lang
+            language = language || KC.lang
             return this['type']
                     ? _g['data']['ship_types'][this['type']]['full_zh']
                     : null
@@ -232,10 +232,10 @@
             picId = parseInt(picId || 0)
             
             let getURI = function(i, p){
-                if( typeof node != 'undefined' && node && node.path && KCKit.path.pics.ships )
-                    return node.path.join(KCKit.path.pics.ships, i + '/' +p+ '.webp')
-                if( KCKit.path.pics.ships )
-                    return KCKit.path.pics.ships + i + '/' + p + '.png'
+                if( typeof node != 'undefined' && node && node.path && KC.path.pics.ships )
+                    return node.path.join(KC.path.pics.ships, i + '/' +p+ '.webp')
+                if( KC.path.pics.ships )
+                    return KC.path.pics.ships + i + '/' + p + '.png'
                 return '/' + i + '/' + p + '.png'
             }
             
@@ -272,23 +272,23 @@
         }
         
         getSpeed(language){
-            language = language || KCKit.lang
-            return KCKit.statSpeed[parseInt(this.stat.speed)]
+            language = language || KC.lang
+            return KC.statSpeed[parseInt(this.stat.speed)]
         }
         get _speed(){
             return this.getSpeed()
         }
         
         getRange(language){
-            language = language || KCKit.lang
-            return KCKit.statRange[parseInt(this.stat.range)]
+            language = language || KC.lang
+            return KC.statRange[parseInt(this.stat.range)]
         }
         get _range(){
             return this.getRange()
         }
         
         getEquipmentTypes(){
-            return KCKit.db.ship_types[this['type']].equipable.concat( ( this.additional_item_types || [] ) ).sort(function(a, b){
+            return KC.db.ship_types[this['type']].equipable.concat( ( this.additional_item_types || [] ) ).sort(function(a, b){
                 return a-b
             })
         }
@@ -326,10 +326,10 @@
                     return value
                     break;
                 case 'speed':
-                    return KCKit.getStatSpeed( this['stat']['speed'] )
+                    return KC.getStatSpeed( this['stat']['speed'] )
                     break;
                 case 'range':
-                    return KCKit.getStatRange( this['stat']['range'] )
+                    return KC.getStatRange( this['stat']['range'] )
                     break;
                 case 'luck':
                     if( lvl > 99 )
@@ -364,14 +364,14 @@
         getRel( relation ){
             if( relation ){
                 if( !this.rels[relation] && this.remodel && this.remodel.prev ){
-                    let prev = KCKit.db.ships[this.remodel.prev]
+                    let prev = KC.db.ships[this.remodel.prev]
                     while( prev ){
                         if( prev.rels && prev.rels[relation] )
                             return prev.rels[relation]
                         if( !prev.remodel || !prev.remodel.prev )
                             prev = null
                         else
-                            prev = KCKit.db.ships[prev.remodel.prev]
+                            prev = KC.db.ships[prev.remodel.prev]
                     }
                 }
                 return this.rels[relation]
@@ -382,7 +382,7 @@
         /*	获取声优
             变量
                 language	[OPTIONAL]
-                    String		语言代码，默认为 KCKit.lang
+                    String		语言代码，默认为 KC.lang
             返回值
                 String		声优名
             快捷方式
@@ -391,7 +391,7 @@
         getCV(language){
             let entity = this.getRel('cv')
             if( entity )
-                return KCKit.db.entities[entity].getName(language || KCKit.lang)
+                return KC.db.entities[entity].getName(language || KC.lang)
             return
         }
         get _cv(){
@@ -400,7 +400,7 @@
         /*	获取画师
             变量
                 language	[OPTIONAL]
-                    String		语言代码，默认为 KCKit.lang
+                    String		语言代码，默认为 KC.lang
             返回值
                 String		画师名
             快捷方式
@@ -409,7 +409,7 @@
         getIllustrator(language){
             let entity = this.getRel('illustrator')
             if( entity )
-                return KCKit.db.entities[entity].getName(language || KCKit.lang)
+                return KC.db.entities[entity].getName(language || KC.lang)
             return
         }
         get _illustrator(){
@@ -417,7 +417,7 @@
         }
     }
     Ship.lvlMax = 155;
-    KCKit.Ship = Ship;
+    KC.Ship = Ship;
 
 
 
@@ -426,31 +426,31 @@
 /**
  * KC Database
  */
-    KCKit.dbLoad = function( type, callback_beforeProcess, callback_success, callback_complete ){
+    KC.dbLoad = function( type, callback_beforeProcess, callback_success, callback_complete ){
         return $.ajax({
-            'url':		KCKit.path.db + '/' + type + '.json',
+            'url':		KC.path.db + '/' + type + '.json',
             'dataType':	'text',
             'success': function(data){
                 let arr = [];
                 if( callback_beforeProcess )
                     arr = callback_beforeProcess( data )
-                if( typeof KCKit.db[type] == 'undefined' )
-                    KCKit.db[type] = {}
+                if( typeof KC.db[type] == 'undefined' )
+                    KC.db[type] = {}
                 arr.forEach(function(str){
                     if( str ){
                         let doc = JSON.parse(str)
                         switch( type ){
                             case 'ships':
-                                KCKit.db[type][doc['id']] = new Ship(doc)
+                                KC.db[type][doc['id']] = new Ship(doc)
                                 break;
                             case 'items':
-                                KCKit.db[type][doc['id']] = new Equipment(doc)
+                                KC.db[type][doc['id']] = new Equipment(doc)
                                 break;
                             case 'entities':
-                                KCKit.db[type][doc['id']] = new Entity(doc)
+                                KC.db[type][doc['id']] = new Entity(doc)
                                 break;
                             default:
-                                KCKit.db[type][doc['id']] = doc
+                                KC.db[type][doc['id']] = doc
                                 break;
                         }
                     }
@@ -554,7 +554,7 @@
 			return 0
 		
 		if( !(ship instanceof Ship) )
-			ship = KCKit.db.ships[ship]
+			ship = KC.db.ships[ship]
 		
 		let result = 0
 			,count = {
@@ -598,7 +598,7 @@
 					return null
 				if( equipment instanceof Equipment )
 					return equipment
-				return KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment]
+				return KC.db.equipments ? KC.db.equipments[equipment] : KC.db.items[equipment]
 			}) || []
 		star_by_slot = star_by_slot || []
 		rank_by_slot = rank_by_slot || []
@@ -615,7 +615,7 @@
 				count.torpedo+= 1
 			else if( $.inArray( equipment.type, formula.equipmentType.Seaplanes ) > -1 )
 				count.seaplane+= 1
-			else if( equipment.type == formula.equipmentType.APShell )
+			else if( $.inArray( equipment.type, formula.equipmentType.APShells ) > -1 )
 				count.apshell+= 1
 			else if( $.inArray( equipment.type, formula.equipmentType.Radars ) > -1 )
 				count.radar+= 1
@@ -1383,7 +1383,7 @@
 
             equipment = equipment instanceof Equipment
                         ? equipment
-                        : (KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment])
+                        : (KC.db.equipments ? KC.db.equipments[equipment] : KC.db.items[equipment])
             carry = carry || 0
             rank = rank || 0
             star = star || 0
@@ -1615,11 +1615,83 @@
             console.log(data)
             return formula.calc.TP(data)
         }
-    KCKit.formula = formula;
+    KC.formula = formula;
+
+
+
+
+/**
+ * ES functions/features polyfill
+ */
+    // Production steps of ECMA-262, Edition 5, 15.4.4.14
+    // Reference: http://es5.github.io/#x15.4.4.14
+    if (!Array.prototype.indexOf) {
+        Array.prototype.indexOf = function(searchElement, fromIndex) {
+
+            var k;
+
+            // 1. Let o be the result of calling ToObject passing
+            //    the this value as the argument.
+            if (this == null) {
+                throw new TypeError('"this" is null or not defined');
+            }
+
+            var o = Object(this);
+
+            // 2. Let lenValue be the result of calling the Get
+            //    internal method of o with the argument "length".
+            // 3. Let len be ToUint32(lenValue).
+            var len = o.length >>> 0;
+
+            // 4. If len is 0, return -1.
+            if (len === 0) {
+                return -1;
+            }
+
+            // 5. If argument fromIndex was passed let n be
+            //    ToInteger(fromIndex); else let n be 0.
+            var n = +fromIndex || 0;
+
+            if (Math.abs(n) === Infinity) {
+                n = 0;
+            }
+
+            // 6. If n >= len, return -1.
+            if (n >= len) {
+                return -1;
+            }
+
+            // 7. If n >= 0, then Let k be n.
+            // 8. Else, n<0, Let k be len - abs(n).
+            //    If k is less than 0, then let k be 0.
+            k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+            // 9. Repeat, while k < len
+            while (k < len) {
+                // a. Let Pk be ToString(k).
+                //   This is implicit for LHS operands of the in operator
+                // b. Let kPresent be the result of calling the
+                //    HasProperty internal method of o with argument Pk.
+                //   This step can be combined with c
+                // c. If kPresent is true, then
+                //    i.  Let elementK be the result of calling the Get
+                //        internal method of o with the argument ToString(k).
+                //   ii.  Let same be the result of applying the
+                //        Strict Equality Comparison Algorithm to
+                //        searchElement and elementK.
+                //  iii.  If same is true, return k.
+                if (k in o && o[k] === searchElement) {
+                    return k;
+                }
+                k++;
+            }
+            return -1;
+        };
+    }
 
 
 
 
 
-    return KCKit;
-})
+    return KC;
+});
