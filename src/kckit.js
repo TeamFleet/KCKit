@@ -424,42 +424,47 @@
 /**
  * KC Database
  */
-    KC.dbLoad = function( settings ){
-    //KC.dbLoad = function( type, callback_beforeProcess, callback_success, callback_complete ){
+    KC.dbLoad = function( o ){
+        if( typeof o == 'string' )
+            return KC.dbLoad({type: o});
+
+        if( !o.type && !o.url )
+            return null;
+
         return $.ajax({
-            'url':		KC.path.db + '/' + type + '.json',
+            'url':		o.url || (KC.path.db + '/' + o.type + '.json'),
             'dataType':	'text',
             'success': function(data){
                 let arr = [];
-                if( callback_beforeProcess )
-                    arr = callback_beforeProcess( data )
-                if( typeof KC.db[type] == 'undefined' )
-                    KC.db[type] = {}
+                if( o.beforeProcess )
+                    arr = o.beforeProcess( data );
+                if( typeof KC.db[o.type] == 'undefined' )
+                    KC.db[o.type] = {};
                 arr.forEach(function(str){
                     if( str ){
-                        let doc = JSON.parse(str)
-                        switch( type ){
+                        let doc = JSON.parse(str);
+                        switch( o.type ){
                             case 'ships':
-                                KC.db[type][doc['id']] = new Ship(doc)
+                                KC.db[o.type][doc['id']] = new Ship(doc);
                                 break;
                             case 'items':
-                                KC.db[type][doc['id']] = new Equipment(doc)
+                                KC.db[o.type][doc['id']] = new Equipment(doc);
                                 break;
                             case 'entities':
-                                KC.db[type][doc['id']] = new Entity(doc)
+                                KC.db[o.type][doc['id']] = new Entity(doc);
                                 break;
                             default:
-                                KC.db[type][doc['id']] = doc
+                                KC.db[o.type][doc['id']] = doc;
                                 break;
                         }
                     }
-                })
-                if( callback_success )
-                    callback_success( data )
+                });
+                if( o.success )
+                    o.success( data )
             },
             'complete': function(jqXHR, textStatus){
-                if( callback_complete )
-                    callback_complete( jqXHR, textStatus )
+                if( o.complete )
+                    o.complete( jqXHR, textStatus )
             }
         })
     };

@@ -12,21 +12,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-(function (root, name, factory) {
+(function (name, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
         module.exports = factory();
     } else {
-        root[name] = factory();
+        window[name] = factory();
     }
-})(window, 'KC', function () {
+})('KC', function () {
 
     "use strict";
 
-    var KCKit = {
+    var KC = {
         lang: 'zh_cn',
         joint: '・',
+        maxShipLv: 155,
         db: {},
         path: {
             db: '/kcdb/',
@@ -67,14 +68,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     // Base class
 
     var ItemBase = function () {
-        function ItemBase() {
+        function ItemBase(data) {
             _classCallCheck(this, ItemBase);
+
+            for (var i in data) {
+                this[i] = data[i];
+            }
         }
 
         _createClass(ItemBase, [{
             key: 'getName',
             value: function getName(language) {
-                language = language || KCKit.lang;
+                language = language || KC.lang;
                 return this['name'] ? this['name'][language] || this['name'] : null;
             }
         }, {
@@ -95,16 +100,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function Entity(data) {
             _classCallCheck(this, Entity);
 
-            var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Entity).call(this));
-
-            $.extend(!0, _this, data);
-            return _this;
+            return _possibleConstructorReturn(this, Object.getPrototypeOf(Entity).call(this, data));
         }
 
         return Entity;
     }(ItemBase);
-
-    KCKit.Entity = Entity;
 
     var Equipment = function (_ItemBase2) {
         _inherits(Equipment, _ItemBase2);
@@ -112,16 +112,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function Equipment(data) {
             _classCallCheck(this, Equipment);
 
-            var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Equipment).call(this));
-
-            $.extend(!0, _this2, data);
-            return _this2;
+            return _possibleConstructorReturn(this, Object.getPrototypeOf(Equipment).call(this, data));
         }
 
         _createClass(Equipment, [{
             key: 'getName',
             value: function getName(small_brackets, language) {
-                language = language || KCKit.lang;
+                language = language || KC.lang;
                 var result = ItemBase.prototype.getName.call(this, language)
                 //,result = super.getName(language)
                 ,
@@ -131,13 +128,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'getType',
             value: function getType(language) {
-                language = language || KCKit.lang;
+                language = language || KC.lang;
                 return this['type'] ? _g['data']['item_types'][this['type']]['name'][language] : null;
             }
         }, {
             key: 'getIconId',
             value: function getIconId() {
-                return KCKit.db.item_types[this['type']]['icon'];
+                return KC.db.item_types[this['type']]['icon'];
             }
         }, {
             key: 'getCaliber',
@@ -150,7 +147,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'getPower',
             value: function getPower() {
-                return this.stat[KCKit.db['item_types'][this['type']]['main_attribute'] || 'fire'];
+                return this.stat[KC.db['item_types'][this['type']]['main_attribute'] || 'fire'];
                 /*
                 switch( this['type'] ){
                     // Guns
@@ -176,18 +173,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return Equipment;
     }(ItemBase);
 
-    KCKit.Equipment = Equipment;
-
     var Ship = function (_ItemBase3) {
         _inherits(Ship, _ItemBase3);
 
         function Ship(data) {
             _classCallCheck(this, Ship);
 
-            var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Ship).call(this));
-
-            $.extend(!0, _this3, data);
-            return _this3;
+            return _possibleConstructorReturn(this, Object.getPrototypeOf(Ship).call(this, data));
         }
         /**
          * @param {string} joint - OPTIONAL - 连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串
@@ -203,14 +195,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: 'getName',
             value: function getName(joint, language) {
                 joint = joint || '';
-                language = language || KCKit.lang;
+                language = language || KC.lang;
                 var suffix = this.getSuffix(language);
-                return (this['name'][language] || this['name']['ja_jp']) + (suffix ? (joint === !0 ? KCKit.joint : joint) + suffix : '');
+                return (this['name'][language] || this['name']['ja_jp']) + (suffix ? (joint === !0 ? KC.joint : joint) + suffix : '');
             }
             /*	获取舰名，不包括后缀
                 变量
                     language	[OPTIONAL]
-                        String		语言代码，默认为 KCKit.lang
+                        String		语言代码，默认为 KC.lang
                 返回值
                     String		舰名，不包括后缀
             */
@@ -218,13 +210,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'getNameNoSuffix',
             value: function getNameNoSuffix(language) {
-                language = language || KCKit.lang;
+                language = language || KC.lang;
                 return this['name'][language] || this['name']['ja_jp'];
             }
             /*	获取后缀名
                 变量
                     language	[OPTIONAL]
-                        String		语言代码，默认为 KCKit.lang
+                        String		语言代码，默认为 KC.lang
                 返回值
                     String		后缀名
             */
@@ -232,13 +224,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'getSuffix',
             value: function getSuffix(language) {
-                language = language || KCKit.lang;
-                return this['name'].suffix ? KCKit.db['ship_namesuffix'][this['name'].suffix][language] || KCKit.db['ship_namesuffix'][this['name'].suffix]['ja_jp'] || '' : '';
+                language = language || KC.lang;
+                return this['name'].suffix ? KC.db['ship_namesuffix'][this['name'].suffix][language] || KC.db['ship_namesuffix'][this['name'].suffix]['ja_jp'] || '' : '';
             }
             /*	获取舰种
                 变量
                     language	[OPTIONAL]
-                        String		语言代码，默认为 KCKit.lang
+                        String		语言代码，默认为 KC.lang
                 返回值
                     String		舰种
                 快捷方式
@@ -248,7 +240,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'getType',
             value: function getType(language) {
-                language = language || KCKit.lang;
+                language = language || KC.lang;
                 return this['type'] ? _g['data']['ship_types'][this['type']]['full_zh'] : null;
             }
         }, {
@@ -280,8 +272,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 picId = parseInt(picId || 0);
 
                 var getURI = function getURI(i, p) {
-                    if (typeof node != 'undefined' && node && node.path && KCKit.path.pics.ships) return node.path.join(KCKit.path.pics.ships, i + '/' + p + '.webp');
-                    if (KCKit.path.pics.ships) return KCKit.path.pics.ships + i + '/' + p + '.png';
+                    if (typeof node != 'undefined' && node && node.path && KC.path.pics.ships) return node.path.join(KC.path.pics.ships, i + '/' + p + '.webp');
+                    if (KC.path.pics.ships) return KC.path.pics.ships + i + '/' + p + '.png';
                     return '/' + i + '/' + p + '.png';
                 };
 
@@ -312,19 +304,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'getSpeed',
             value: function getSpeed(language) {
-                language = language || KCKit.lang;
-                return KCKit.statSpeed[parseInt(this.stat.speed)];
+                language = language || KC.lang;
+                return KC.statSpeed[parseInt(this.stat.speed)];
             }
         }, {
             key: 'getRange',
             value: function getRange(language) {
-                language = language || KCKit.lang;
-                return KCKit.statRange[parseInt(this.stat.range)];
+                language = language || KC.lang;
+                return KC.statRange[parseInt(this.stat.range)];
             }
         }, {
             key: 'getEquipmentTypes',
             value: function getEquipmentTypes() {
-                return KCKit.db.ship_types[this['type']].equipable.concat(this.additional_item_types || []).sort(function (a, b) {
+                return KC.db.ship_types[this['type']].equipable.concat(this.additional_item_types || []).sort(function (a, b) {
                     return a - b;
                 });
             }
@@ -355,10 +347,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         return value;
                         break;
                     case 'speed':
-                        return KCKit.getStatSpeed(this['stat']['speed']);
+                        return KC.getStatSpeed(this['stat']['speed']);
                         break;
                     case 'range':
-                        return KCKit.getStatRange(this['stat']['range']);
+                        return KC.getStatRange(this['stat']['range']);
                         break;
                     case 'luck':
                         if (lvl > 99) return this['stat']['luck'] + 3;
@@ -394,10 +386,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             value: function getRel(relation) {
                 if (relation) {
                     if (!this.rels[relation] && this.remodel && this.remodel.prev) {
-                        var prev = KCKit.db.ships[this.remodel.prev];
+                        var prev = KC.db.ships[this.remodel.prev];
                         while (prev) {
                             if (prev.rels && prev.rels[relation]) return prev.rels[relation];
-                            if (!prev.remodel || !prev.remodel.prev) prev = null;else prev = KCKit.db.ships[prev.remodel.prev];
+                            if (!prev.remodel || !prev.remodel.prev) prev = null;else prev = KC.db.ships[prev.remodel.prev];
                         }
                     }
                     return this.rels[relation];
@@ -408,7 +400,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             /*	获取声优
                 变量
                     language	[OPTIONAL]
-                        String		语言代码，默认为 KCKit.lang
+                        String		语言代码，默认为 KC.lang
                 返回值
                     String		声优名
                 快捷方式
@@ -419,7 +411,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: 'getCV',
             value: function getCV(language) {
                 var entity = this.getRel('cv');
-                if (entity) return KCKit.db.entities[entity].getName(language || KCKit.lang);
+                if (entity) return KC.db.entities[entity].getName(language || KC.lang);
                 return;
             }
         }, {
@@ -428,7 +420,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             /*	获取画师
                 变量
                     language	[OPTIONAL]
-                        String		语言代码，默认为 KCKit.lang
+                        String		语言代码，默认为 KC.lang
                 返回值
                     String		画师名
                 快捷方式
@@ -436,7 +428,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             */
             value: function getIllustrator(language) {
                 var entity = this.getRel('illustrator');
-                if (entity) return KCKit.db.entities[entity].getName(language || KCKit.lang);
+                if (entity) return KC.db.entities[entity].getName(language || KC.lang);
                 return;
             }
         }, {
@@ -478,43 +470,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return Ship;
     }(ItemBase);
 
-    Ship.lvlMax = 155;
-    KCKit.Ship = Ship;
+    Ship.lvlMax = KC.maxShipLv;
 
     /**
      * KC Database
      */
-    KCKit.dbLoad = function (type, callback_beforeProcess, callback_success, callback_complete) {
+    KC.dbLoad = function (o) {
+        if (typeof o == 'string') return KC.dbLoad({ type: o });
+
+        if (!o.type && !o.url) return null;
+
         return $.ajax({
-            'url': KCKit.path.db + '/' + type + '.json',
+            'url': o.url || KC.path.db + '/' + o.type + '.json',
             'dataType': 'text',
             'success': function success(data) {
                 var arr = [];
-                if (callback_beforeProcess) arr = callback_beforeProcess(data);
-                if (typeof KCKit.db[type] == 'undefined') KCKit.db[type] = {};
+                if (o.beforeProcess) arr = o.beforeProcess(data);
+                if (typeof KC.db[o.type] == 'undefined') KC.db[o.type] = {};
                 arr.forEach(function (str) {
                     if (str) {
                         var doc = JSON.parse(str);
-                        switch (type) {
+                        switch (o.type) {
                             case 'ships':
-                                KCKit.db[type][doc['id']] = new Ship(doc);
+                                KC.db[o.type][doc['id']] = new Ship(doc);
                                 break;
                             case 'items':
-                                KCKit.db[type][doc['id']] = new Equipment(doc);
+                                KC.db[o.type][doc['id']] = new Equipment(doc);
                                 break;
                             case 'entities':
-                                KCKit.db[type][doc['id']] = new Entity(doc);
+                                KC.db[o.type][doc['id']] = new Entity(doc);
                                 break;
                             default:
-                                KCKit.db[type][doc['id']] = doc;
+                                KC.db[o.type][doc['id']] = doc;
                                 break;
                         }
                     }
                 });
-                if (callback_success) callback_success(data);
+                if (o.success) o.success(data);
             },
             'complete': function complete(jqXHR, textStatus) {
-                if (callback_complete) callback_complete(jqXHR, textStatus);
+                if (o.complete) o.complete(jqXHR, textStatus);
             }
         });
     };
@@ -599,7 +594,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
          */
         if (!type || !ship) return 0;
 
-        if (!_instanceof(ship, Ship)) ship = KCKit.db.ships[ship];
+        if (!_instanceof(ship, Ship)) ship = KC.db.ships[ship];
 
         var result = 0,
             count = {
@@ -613,7 +608,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             powerTorpedo = function powerTorpedo(options) {
             options = options || {};
             var result = 0;
-            if ($.inArray(ship.type, formula.shipType.Carriers) > -1 && !options.isNight) {
+            if (formula.shipType.Carriers.indexOf(ship.type) > -1 && !options.isNight) {
                 return options.returnZero ? 0 : -1;
             } else {
                 result = ship.stat.torpedo_max || 0;
@@ -636,7 +631,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         equipments_by_slot = equipments_by_slot.map(function (equipment) {
             if (!equipment) return null;
             if (_instanceof(equipment, Equipment)) return equipment;
-            return KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment];
+            return KC.db.equipments ? KC.db.equipments[equipment] : KC.db.items[equipment];
         }) || [];
         star_by_slot = star_by_slot || [];
         rank_by_slot = rank_by_slot || [];
@@ -644,7 +639,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         equipments_by_slot.forEach(function (equipment) {
             if (!equipment) return;
-            if ($.inArray(equipment.type, formula.equipmentType.MainGuns) > -1) count.main += 1;else if ($.inArray(equipment.type, formula.equipmentType.SecondaryGuns) > -1) count.secondary += 1;else if ($.inArray(equipment.type, formula.equipmentType.Torpedos) > -1) count.torpedo += 1;else if ($.inArray(equipment.type, formula.equipmentType.Seaplanes) > -1) count.seaplane += 1;else if (equipment.type == formula.equipmentType.APShell) count.apshell += 1;else if ($.inArray(equipment.type, formula.equipmentType.Radars) > -1) count.radar += 1;
+            if (formula.equipmentType.MainGuns.indexOf(equipment.type) > -1) count.main += 1;else if (formula.equipmentType.SecondaryGuns.indexOf(equipment.type) > -1) count.secondary += 1;else if (formula.equipmentType.Torpedos.indexOf(equipment.type) > -1) count.torpedo += 1;else if (formula.equipmentType.Seaplanes.indexOf(equipment.type) > -1) count.seaplane += 1;else if (formula.equipmentType.APShells.indexOf(equipment.type) > -1) count.apshell += 1;else if (formula.equipmentType.Radars.indexOf(equipment.type) > -1) count.radar += 1;
         });
 
         switch (type) {
@@ -653,7 +648,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             case 'fighterPower':
                 value = 0;
                 ship.slot.map(function (carry, index) {
-                    if (equipments_by_slot[index] && $.inArray(equipments_by_slot[index].type, formula.equipmentType.Fighters) > -1 && carry) {
+                    if (equipments_by_slot[index] && formula.equipmentType.Fighters.indexOf(equipments_by_slot[index].type) > -1 && carry) {
                         value = Math.sqrt(carry) * (equipments_by_slot[index].stat.aa || 0);
                         if (equipments_by_slot[index].type == formula.equipmentType.CarrierFighter) {
                             switch (rank_by_slot[index]) {
@@ -672,7 +667,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                 case 7:case '7':
                                     value += 25;break;
                             }
-                        } else if ($.inArray(equipments_by_slot[index].type, formula.equipmentType.Recons) == -1) {
+                        } else if (formula.equipmentType.Recons.indexOf(equipments_by_slot[index].type) == -1) {
                             var max_per_slot = equipments_by_slot[index].type == formula.equipmentType.SeaplaneBomber ? 9 : 3;
                             value += rank_by_slot[index] == 1 ? 1 : max_per_slot / 6 * (rank_by_slot[index] - 1);
                         }
@@ -692,7 +687,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 炮击威力，除潜艇外
             case 'shelling':
             case 'shellingDamage':
-                if ($.inArray(ship.type, formula.shipType.Submarines) > -1) {
+                if (formula.shipType.Submarines.indexOf(ship.type) > -1) {
                     return '-';
                 } else {
                     result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot);
@@ -711,7 +706,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             // 夜战模式 & 伤害力
             case 'nightBattle':
-                if (!ship.additional_night_shelling && $.inArray(ship.type, formula.shipType.Carriers) > -1) {
+                if (!ship.additional_night_shelling && formula.shipType.Carriers.indexOf(ship.type) > -1) {
                     // 航母没有夜战
                     return '-';
                 } else {
@@ -961,25 +956,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         // http://biikame.hatenablog.com/entry/2014/11/14/224925
 
         var calc = function calc(x) {
-            x = $.extend({ '(Intercept)': 1 }, x);
+            if (typeof x['(Intercept)'] == 'undefined') x['(Intercept)'] = 1;
             x['hqLv'] = Math.ceil(x['hqLv'] / 5) * 5;
             var x_estimate = {};
             var y_estimate = 0;
-            $.each(keys, function () {
-                var estimate = x[this] * estimate_coefficients[this];
-                x_estimate[this] = estimate;
-                y_estimate += estimate;
-            });
             var x_std_error = {};
-            $.each(keys, function () {
-                x_std_error[this] = x[this] * std_error_coefficients[this];
-            });
             var y_std_error = 0;
-            $.each(keys, function () {
-                var key1 = this;
-                $.each(keys, function () {
-                    var key2 = this;
-                    y_std_error += x_std_error[key1] * x_std_error[key2] * correlation[key1][key2];
+            keys.forEach(function (key) {
+                var estimate = x[key] * estimate_coefficients[key];
+                x_estimate[key] = estimate;
+                y_estimate += estimate;
+                x_std_error[key] = x[key] * std_error_coefficients[key];
+            });
+            keys.forEach(function (key) {
+                keys.forEach(function (key2) {
+                    y_std_error += x_std_error[key] * x_std_error[key2] * correlation[key][key2];
                 });
             });
             return {
@@ -1276,7 +1267,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     formula.calc.fighterPower = function (equipment, carry, rank, star) {
         if (!equipment) return [0, 0];
 
-        equipment = _instanceof(equipment, Equipment) ? equipment : KCKit.db.equipments ? KCKit.db.equipments[equipment] : KCKit.db.items[equipment];
+        equipment = _instanceof(equipment, Equipment) ? equipment : KC.db.equipments ? KC.db.equipments[equipment] : KC.db.items[equipment];
         carry = carry || 0;
         rank = rank || 0;
         star = star || 0;
@@ -1301,7 +1292,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         typeValue.SeaplaneBomber = [0, 0, 1, 1, 1, 3, 3, 6];
 
-        if ($.inArray(equipment.type, formula.equipmentType.Fighters) > -1 && carry) {
+        if (formula.equipmentType.Fighters.indexOf(equipment.type) > -1 && carry) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
             /*if( star )
                 console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
@@ -1327,15 +1318,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             isCV = !1;
 
         // 检查是否为航母攻击模式
-        if ($.inArray(ship.type, formula.shipType.Carriers) > -1) {
+        if (formula.shipType.Carriers.indexOf(ship.type) > -1) {
             isCV = !0;
         } else {
             //equipments_by_slot.forEach(function(equipment){
-            //	if( equipment && !isCV && $.inArray(equipment.type, formula.equipmentType.CarrierBased) > -1 )
+            //	if( equipment && !isCV && formula.equipmentType.CarrierBased.indexOf( equipment.type ) > -1 )
             //		isCV = true
             //})
             equipments_by_slot.some(function (equipment) {
-                if (equipment && !isCV && $.inArray(equipment.type, formula.equipmentType.CarrierBased) > -1) {
+                if (equipment && !isCV && formula.equipmentType.CarrierBased.indexOf(equipment.type) > -1) {
                     isCV = !0;
                     return !0;
                 }
@@ -1355,7 +1346,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     //if( equipments_by_slot[index].type == formula.equipmentType.DiveBomber )
                     bombDamage += equipments_by_slot[index].stat.bomb || 0;
 
-                    if ($.inArray(equipments_by_slot[index].type, formula.equipmentType.SecondaryGuns) > -1) result += Math.sqrt((star_by_slot[index] || 0) * 1.5);
+                    if (formula.equipmentType.SecondaryGuns.indexOf(equipments_by_slot[index].type) > -1) result += Math.sqrt((star_by_slot[index] || 0) * 1.5);
                 }
             });
             if (!torpedoDamage && !bombDamage) return -1;else result += Math.floor((Math.floor(bombDamage * 1.3) + torpedoDamage + ship.stat.fire_max) * 1.5) + 50;
@@ -1370,7 +1361,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     result += equipments_by_slot[index].stat.fire || 0;
 
                     // 轻巡系主炮加成
-                    if ($.inArray(ship.type, formula.shipType.LightCruisers) > -1) {
+                    if (formula.shipType.LightCruisers.indexOf(ship.type) > -1) {
                         // 4	14cm单装炮
                         // 65	15.2cm连装炮
                         // 119	14cm连装炮
@@ -1462,7 +1453,84 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         console.log(data);
         return formula.calc.TP(data);
     };
-    KCKit.formula = formula;
 
-    return KCKit;
+    /**
+     * ES/JS Functions/Features
+     */
+    // Array.prototype.indexOf()
+    // Production steps of ECMA-262, Edition 5, 15.4.4.14
+    // Reference: http://es5.github.io/#x15.4.4.14
+    if (!Array.prototype.indexOf) {
+        Array.prototype.indexOf = function (searchElement, fromIndex) {
+
+            var k;
+
+            // 1. Let o be the result of calling ToObject passing
+            //    the this value as the argument.
+            if (this == null) {
+                throw new TypeError('"this" is null or not defined');
+            }
+
+            var o = Object(this);
+
+            // 2. Let lenValue be the result of calling the Get
+            //    internal method of o with the argument "length".
+            // 3. Let len be ToUint32(lenValue).
+            var len = o.length >>> 0;
+
+            // 4. If len is 0, return -1.
+            if (len === 0) {
+                return -1;
+            }
+
+            // 5. If argument fromIndex was passed let n be
+            //    ToInteger(fromIndex); else let n be 0.
+            var n = +fromIndex || 0;
+
+            if (Math.abs(n) === Infinity) {
+                n = 0;
+            }
+
+            // 6. If n >= len, return -1.
+            if (n >= len) {
+                return -1;
+            }
+
+            // 7. If n >= 0, then Let k be n.
+            // 8. Else, n<0, Let k be len - abs(n).
+            //    If k is less than 0, then let k be 0.
+            k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+            // 9. Repeat, while k < len
+            while (k < len) {
+                // a. Let Pk be ToString(k).
+                //   This is implicit for LHS operands of the in operator
+                // b. Let kPresent be the result of calling the
+                //    HasProperty internal method of o with argument Pk.
+                //   This step can be combined with c
+                // c. If kPresent is true, then
+                //    i.  Let elementK be the result of calling the Get
+                //        internal method of o with the argument ToString(k).
+                //   ii.  Let same be the result of applying the
+                //        Strict Equality Comparison Algorithm to
+                //        searchElement and elementK.
+                //  iii.  If same is true, return k.
+                if (k in o && o[k] === searchElement) {
+                    return k;
+                }
+                k++;
+            }
+            return -1;
+        };
+    }
+
+    /**
+     * 
+     */
+    KC.Entity = Entity;
+    KC.Equipment = Equipment;
+    KC.Ship = Ship;
+    KC.formula = formula;
+
+    return KC;
 });
