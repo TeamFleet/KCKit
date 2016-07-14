@@ -568,7 +568,7 @@
 			,powerTorpedo = function( options ){
 					options = options || {}
 					let result = 0
-					if( $.inArray(ship.type, formula.shipType.Carriers) > -1 && !options.isNight ){
+					if( formula.shipType.Carriers.indexOf( ship.type ) > -1 && !options.isNight ){
 						return options.returnZero ? 0 : -1
 					}else{
 						result = ship.stat.torpedo_max || 0
@@ -607,17 +607,17 @@
 		equipments_by_slot.forEach(function(equipment){
 			if( !equipment )
 				return
-			if( $.inArray( equipment.type, formula.equipmentType.MainGuns ) > -1 )
+			if( formula.equipmentType.MainGuns.indexOf( equipment.type ) > -1 )
 				count.main+= 1
-			else if( $.inArray( equipment.type, formula.equipmentType.SecondaryGuns ) > -1 )
+			else if( formula.equipmentType.SecondaryGuns.indexOf( equipment.type ) > -1 )
 				count.secondary+= 1
-			else if( $.inArray( equipment.type, formula.equipmentType.Torpedos ) > -1 )
+			else if( formula.equipmentType.Torpedos.indexOf( equipment.type ) > -1 )
 				count.torpedo+= 1
-			else if( $.inArray( equipment.type, formula.equipmentType.Seaplanes ) > -1 )
+			else if( formula.equipmentType.Seaplanes.indexOf( equipment.type ) > -1 )
 				count.seaplane+= 1
-			else if( $.inArray( equipment.type, formula.equipmentType.APShells ) > -1 )
+			else if( formula.equipmentType.APShells.indexOf( equipment.type ) > -1 )
 				count.apshell+= 1
-			else if( $.inArray( equipment.type, formula.equipmentType.Radars ) > -1 )
+			else if( formula.equipmentType.Radars.indexOf( equipment.type ) > -1 )
 				count.radar+= 1
 		})
 		
@@ -628,7 +628,7 @@
 				value = 0
 				ship.slot.map(function(carry, index){
 					if( equipments_by_slot[index]
-						&& $.inArray( equipments_by_slot[index].type, formula.equipmentType.Fighters ) > -1
+						&& formula.equipmentType.Fighters.indexOf( equipments_by_slot[index].type ) > -1
 						&& carry
 					){
 						value = Math.sqrt(carry) * (equipments_by_slot[index].stat.aa || 0)
@@ -649,7 +649,7 @@
 								case 7: case '7':
 									value+= 25; break;
 							}
-						}else if( $.inArray( equipments_by_slot[index].type, formula.equipmentType.Recons ) == -1 ){
+						}else if( formula.equipmentType.Recons.indexOf( equipments_by_slot[index].type ) == -1 ){
 							let max_per_slot = equipments_by_slot[index].type == formula.equipmentType.SeaplaneBomber
 												? 9
 												: 3
@@ -673,7 +673,7 @@
 			// 炮击威力，除潜艇外
 			case 'shelling':
 			case 'shellingDamage':
-				if( $.inArray(ship.type, formula.shipType.Submarines) > -1 ){
+				if( formula.shipType.Submarines.indexOf( ship.type ) > -1 ){
 					return '-'
 				}else{
 					result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot)
@@ -694,7 +694,7 @@
 			
 			// 夜战模式 & 伤害力
 			case 'nightBattle':
-				if( !ship.additional_night_shelling && $.inArray(ship.type, formula.shipType.Carriers) > -1 ){
+				if( !ship.additional_night_shelling && formula.shipType.Carriers.indexOf( ship.type ) > -1 ){
 					// 航母没有夜战
 					return '-'
 				}else{
@@ -1426,7 +1426,7 @@
                 6
             ]
             
-            if( $.inArray( equipment.type, formula.equipmentType.Fighters ) > -1
+            if( formula.equipmentType.Fighters.indexOf( equipment.type ) > -1
                 && carry
             ){
                 // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
@@ -1463,15 +1463,15 @@
                 ,isCV = false
             
             // 检查是否为航母攻击模式
-                if( $.inArray(ship.type, formula.shipType.Carriers) > -1 ){
+                if( formula.shipType.Carriers.indexOf( ship.type ) > -1 ){
                     isCV = true
                 }else{
                     //equipments_by_slot.forEach(function(equipment){
-                    //	if( equipment && !isCV && $.inArray(equipment.type, formula.equipmentType.CarrierBased) > -1 )
+                    //	if( equipment && !isCV && formula.equipmentType.CarrierBased.indexOf( equipment.type ) > -1 )
                     //		isCV = true
                     //})
                     equipments_by_slot.some(function(equipment){
-                        if( equipment && !isCV && $.inArray(equipment.type, formula.equipmentType.CarrierBased) > -1 ){
+                        if( equipment && !isCV && formula.equipmentType.CarrierBased.indexOf( equipment.type ) > -1 ){
                             isCV = true
                             return true
                         }
@@ -1492,7 +1492,7 @@
                         //if( equipments_by_slot[index].type == formula.equipmentType.DiveBomber )
                             bombDamage+= equipments_by_slot[index].stat.bomb || 0
                         
-                        if( $.inArray( equipments_by_slot[index].type, formula.equipmentType.SecondaryGuns ) > -1 )
+                        if( formula.equipmentType.SecondaryGuns.indexOf( equipments_by_slot[index].type ) > -1 )
                             result+= Math.sqrt((star_by_slot[index] || 0) * 1.5)
                     }
                 })
@@ -1511,7 +1511,7 @@
                         result+= equipments_by_slot[index].stat.fire || 0
                         
                         // 轻巡系主炮加成
-                            if( $.inArray(ship.type, formula.shipType.LightCruisers) > -1 ){
+                            if( formula.shipType.LightCruisers.indexOf( ship.type ) > -1 ){
                                 // 4	14cm单装炮
                                 // 65	15.2cm连装炮
                                 // 119	14cm连装炮
