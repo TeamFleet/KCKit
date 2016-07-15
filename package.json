@@ -1,6 +1,6 @@
 {
   "name": "kckit",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Javascript library for KanColle",
   "main": "dist/kc.js",
   "author": "diablohu",
@@ -12,6 +12,7 @@
   "devDependencies": {
     "babel-core": "^6.0.12",
     "babel-plugin-transform-minify-booleans": "^6.1.18",
+    "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.1.18",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.0.0",
