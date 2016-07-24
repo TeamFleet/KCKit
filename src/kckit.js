@@ -777,6 +777,9 @@
         CarrierFighters: {
             fighter: 0.2
         },
+        DiveBombers: {
+            fighter: 0.25
+        },
         LandingCrafts: {
             shelling: 1,
             night: 1
