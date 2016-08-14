@@ -1192,6 +1192,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         * 		equipment: {
         * 			68	// landing craft
         * 			75  // canister
+        * 			166  // landing craft (force)
         * 		}
         * }
         */
@@ -1259,6 +1260,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 case 75:
                 case '75':
                     _multiper = 5;break;
+                // landing craft (force)
+                case 166:
+                case '166':
+                    _multiper = 10.5;break;
             }
             result += _multiper * _count;
         }

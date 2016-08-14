@@ -1318,6 +1318,7 @@
         * 		equipment: {
         * 			68	// landing craft
         * 			75  // canister
+        * 			166  // landing craft (force)
         * 		}
         * }
         */
@@ -1375,6 +1376,9 @@
                 // canister
                 case 75:
                 case '75':		multiper = 5;	break;
+                // landing craft (force)
+                case 166:
+                case '166':		multiper = 10.5;	break;
             }
             result+= multiper * count
         }
