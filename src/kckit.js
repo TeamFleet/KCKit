@@ -812,7 +812,7 @@
         return formula.starMultiper[equipmentType] ? (formula.starMultiper[equipmentType][type] || 0) : 0
     };
     // 飞行器熟练度对制空战力的加成
-    formula.getFighterPowerRankMultiper = ( equipment, rank ) => {
+    formula.getFighterPowerRankMultiper = ( equipment, rank, options ) => {
         equipment = _equipment(equipment)
 
         let rankInternal = []
@@ -860,6 +860,13 @@
                 break;
             case _equipmentType.SeaplaneBomber:
                 _typeValue = typeValue.SeaplaneBomber[rank]
+                break;
+            case _equipmentType.CarrierRecon:
+            case _equipmentType.CarrierRecon2:
+            case _equipmentType.ReconSeaplane:
+            case _equipmentType.ReconSeaplaneNight:
+                if( options.isAA )
+                    _typeValue = typeValue.SeaplaneBomber[rank]
                 break;
         }
 
@@ -1503,19 +1510,15 @@
     
         let results = [0, 0]
         
-        if( _equipmentType.Fighters.indexOf( equipment.type ) > -1
-            && carry
-        ){
-            // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
-            /*if( star )
-                console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
-            */
+        if( carry ){
             let statAA = (equipment.stat.aa || 0)
                             + ( equipment.type == _equipmentType.Interceptor ? equipment.stat.evasion : 0 )
                             + ( equipment.type == _equipmentType.Interceptor ? equipment.stat.hit * 2 : 0 )
                             + (star * formula.getStarMultiper( equipment.type, 'fighter' ))
                 ,base = statAA * Math.sqrt(carry)
-                ,rankBonus = formula.getFighterPowerRankMultiper( equipment, rank )
+                ,rankBonus = formula.getFighterPowerRankMultiper( equipment, rank, {
+                    isAA: true
+                } )
 
             results[0]+= Math.floor(base + rankBonus.min)
             results[1]+= Math.floor(base + rankBonus.max)
