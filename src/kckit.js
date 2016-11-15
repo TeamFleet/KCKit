@@ -861,13 +861,6 @@
             case _equipmentType.SeaplaneBomber:
                 _typeValue = typeValue.SeaplaneBomber[rank]
                 break;
-            case _equipmentType.CarrierRecon:
-            case _equipmentType.CarrierRecon2:
-            case _equipmentType.ReconSeaplane:
-            case _equipmentType.ReconSeaplaneNight:
-                if( options.isAA )
-                    _typeValue = typeValue.SeaplaneBomber[rank]
-                break;
         }
 
         return {
