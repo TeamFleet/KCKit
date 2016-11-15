@@ -549,8 +549,11 @@
                 13,		// 潜艇
                 14		// 航母潜艇
             ]
-        },	
+        },
+        // 根据舰娘与其装备计算
         calcByShip: {},
+        // 根据航空队机场与其飞行器配置计算
+        calcByField: {},
         calc: {}
     };
     let _equipmentType = formula.equipmentType;
