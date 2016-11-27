@@ -1665,7 +1665,11 @@
         
         return formula.calc.losPower(x);
     };        
-    formula.calcByShip.TP = function(ship, equipments_by_slot, star_by_slot, rank_by_slot, options){
+    formula.calcByShip.TP = function(ship, equipments_by_slot){
+        if( !ship || !equipments_by_slot || !equipments_by_slot.length )
+            return 0;
+
+        ship = _ship(ship);
         var count = {
             ship: {},
             equipment: {}
@@ -1673,9 +1677,10 @@
         count.ship[ship.type] = 1
         equipments_by_slot.forEach(function(equipment){
             if( equipment ){
-                if( !count.equipment[equipment.id] )
-                    count.equipment[equipment.id] = 0
-                count.equipment[equipment.id]++
+                let id = typeof equipment == 'number' ? equipment : _equipment(equipment)['id']
+                if( !count.equipment[id] )
+                    count.equipment[id] = 0
+                count.equipment[id]++
             }
         })
         return formula.calc.TP(count)
