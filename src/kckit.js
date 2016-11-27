@@ -1407,6 +1407,8 @@
                 case 'dd':		multiper = 5;		break;
                 case 2:
                 case '2':
+                case 28:
+                case '28':
                 case 'cl':		multiper = 2;		break;
                 case 5:
                 case '5':
@@ -1666,7 +1668,7 @@
         return formula.calc.losPower(x);
     };        
     formula.calcByShip.TP = function(ship, equipments_by_slot){
-        if( !ship || !equipments_by_slot || !equipments_by_slot.length )
+        if( !ship || !equipments_by_slot || !equipments_by_slot.push )
             return 0;
 
         ship = _ship(ship);
