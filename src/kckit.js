@@ -558,246 +558,246 @@
     };
     let _equipmentType = formula.equipmentType;
     // 装备类型集合
-    _equipmentType.MainGuns = [
-        _equipmentType.SmallCaliber,
-        _equipmentType.SmallCaliberHigh,
-        _equipmentType.SmallCaliberAA,
-        _equipmentType.MediumCaliber,
-        _equipmentType.LargeCaliber,
-        _equipmentType.SuperCaliber
-    ];
+        _equipmentType.MainGuns = [
+            _equipmentType.SmallCaliber,
+            _equipmentType.SmallCaliberHigh,
+            _equipmentType.SmallCaliberAA,
+            _equipmentType.MediumCaliber,
+            _equipmentType.LargeCaliber,
+            _equipmentType.SuperCaliber
+        ];
 
-    _equipmentType.SmallCalibers = [
-        _equipmentType.SmallCaliber,
-        _equipmentType.SmallCaliberHigh,
-        _equipmentType.SmallCaliberAA
-    ];
+        _equipmentType.SmallCalibers = [
+            _equipmentType.SmallCaliber,
+            _equipmentType.SmallCaliberHigh,
+            _equipmentType.SmallCaliberAA
+        ];
 
-    _equipmentType.MediumCalibers = [
-        _equipmentType.MediumCaliber
-    ];
+        _equipmentType.MediumCalibers = [
+            _equipmentType.MediumCaliber
+        ];
 
-    _equipmentType.LargeCalibers = [
-        _equipmentType.LargeCaliber,
-        _equipmentType.SuperCaliber
-    ];
+        _equipmentType.LargeCalibers = [
+            _equipmentType.LargeCaliber,
+            _equipmentType.SuperCaliber
+        ];
 
-    _equipmentType.SecondaryGuns = [
-        _equipmentType.SecondaryGun,
-        _equipmentType.SecondaryGunHigh,
-        _equipmentType.SecondaryGunAA
-    ];
+        _equipmentType.SecondaryGuns = [
+            _equipmentType.SecondaryGun,
+            _equipmentType.SecondaryGunHigh,
+            _equipmentType.SecondaryGunAA
+        ];
 
-    _equipmentType.APShells = [
-        _equipmentType.APShell
-    ];
+        _equipmentType.APShells = [
+            _equipmentType.APShell
+        ];
 
-    _equipmentType.Torpedos = [
-        _equipmentType.Torpedo,
-        _equipmentType.SubmarineTorpedo
-    ];
+        _equipmentType.Torpedos = [
+            _equipmentType.Torpedo,
+            _equipmentType.SubmarineTorpedo
+        ];
 
-    _equipmentType.Seaplanes = [
-        _equipmentType.ReconSeaplane,
-        _equipmentType.ReconSeaplaneNight,
-        _equipmentType.SeaplaneBomber,
-        _equipmentType.SeaplaneFighter
-    ];
+        _equipmentType.Seaplanes = [
+            _equipmentType.ReconSeaplane,
+            _equipmentType.ReconSeaplaneNight,
+            _equipmentType.SeaplaneBomber,
+            _equipmentType.SeaplaneFighter
+        ];
 
-    _equipmentType.Fighters = [
-        _equipmentType.SeaplaneBomber,
-        _equipmentType.CarrierFighter,
-        _equipmentType.TorpedoBomber,
-        _equipmentType.DiveBomber,
-        _equipmentType.SeaplaneFighter,
-        _equipmentType.LandBasedAttacker,
-        _equipmentType.Interceptor/*,
-        _equipmentType.CarrierRecon*/
-    ];
+        _equipmentType.Fighters = [
+            _equipmentType.SeaplaneBomber,
+            _equipmentType.CarrierFighter,
+            _equipmentType.TorpedoBomber,
+            _equipmentType.DiveBomber,
+            _equipmentType.SeaplaneFighter,
+            _equipmentType.LandBasedAttacker,
+            _equipmentType.Interceptor/*,
+            _equipmentType.CarrierRecon*/
+        ];
 
-    _equipmentType.Recons = [
-        _equipmentType.ReconSeaplane,
-        _equipmentType.ReconSeaplaneNight,
-        _equipmentType.CarrierRecon,
-        _equipmentType.CarrierRecon2,
-        _equipmentType.LargeFlyingBoat
-    ];
+        _equipmentType.Recons = [
+            _equipmentType.ReconSeaplane,
+            _equipmentType.ReconSeaplaneNight,
+            _equipmentType.CarrierRecon,
+            _equipmentType.CarrierRecon2,
+            _equipmentType.LargeFlyingBoat
+        ];
 
-    _equipmentType.SeaplaneRecons = [
-        _equipmentType.ReconSeaplane,
-        _equipmentType.ReconSeaplaneNight,
-        _equipmentType.LargeFlyingBoat
-    ];
+        _equipmentType.SeaplaneRecons = [
+            _equipmentType.ReconSeaplane,
+            _equipmentType.ReconSeaplaneNight,
+            _equipmentType.LargeFlyingBoat
+        ];
 
-    _equipmentType.SeaplaneBombers = [
-        _equipmentType.SeaplaneBomber,
-        _equipmentType.SeaplaneFighter
-    ];
+        _equipmentType.SeaplaneBombers = [
+            _equipmentType.SeaplaneBomber,
+            _equipmentType.SeaplaneFighter
+        ];
 
-    _equipmentType.CarrierFighters = [
-        _equipmentType.CarrierFighter
-    ];
+        _equipmentType.CarrierFighters = [
+            _equipmentType.CarrierFighter
+        ];
 
-    _equipmentType.CarrierRecons = [
-        _equipmentType.CarrierRecon,
-        _equipmentType.CarrierRecon2
-    ];
+        _equipmentType.CarrierRecons = [
+            _equipmentType.CarrierRecon,
+            _equipmentType.CarrierRecon2
+        ];
 
-    _equipmentType.CarrierBased = [
-        _equipmentType.CarrierFighter,
-        _equipmentType.TorpedoBomber,
-        _equipmentType.DiveBomber,
-        _equipmentType.CarrierRecon,
-        _equipmentType.CarrierRecon2
-    ];
+        _equipmentType.CarrierBased = [
+            _equipmentType.CarrierFighter,
+            _equipmentType.TorpedoBomber,
+            _equipmentType.DiveBomber,
+            _equipmentType.CarrierRecon,
+            _equipmentType.CarrierRecon2
+        ];
 
-    _equipmentType.LandBased = [
-        _equipmentType.LandBasedAttacker,
-        _equipmentType.Interceptor
-    ];
+        _equipmentType.LandBased = [
+            _equipmentType.LandBasedAttacker,
+            _equipmentType.Interceptor
+        ];
 
-    _equipmentType.TorpedoBombers = [
-        _equipmentType.TorpedoBomber
-    ];
+        _equipmentType.TorpedoBombers = [
+            _equipmentType.TorpedoBomber
+        ];
 
-    _equipmentType.DiveBombers = [
-        _equipmentType.DiveBomber
-    ];
+        _equipmentType.DiveBombers = [
+            _equipmentType.DiveBomber
+        ];
 
-    _equipmentType.Autogyros = [
-        _equipmentType.Autogyro
-    ];
+        _equipmentType.Autogyros = [
+            _equipmentType.Autogyro
+        ];
 
-    _equipmentType.AntiSubPatrols = [
-        _equipmentType.AntiSubPatrol
-    ];
+        _equipmentType.AntiSubPatrols = [
+            _equipmentType.AntiSubPatrol
+        ];
 
-    _equipmentType.Aircrafts = [];
-    [].concat(_equipmentType.Seaplanes)
-        .concat(_equipmentType.Recons)
-        .concat(_equipmentType.CarrierBased)
-        .concat(_equipmentType.Autogyros)
-        .concat(_equipmentType.AntiSubPatrols)
-        .concat(_equipmentType.LandBased)
-        .forEach(function(v){
-            if( _equipmentType.Aircrafts.indexOf(v) < 0 )
-                _equipmentType.Aircrafts.push(v)
-        });
+        _equipmentType.Aircrafts = [];
+        [].concat(_equipmentType.Seaplanes)
+            .concat(_equipmentType.Recons)
+            .concat(_equipmentType.CarrierBased)
+            .concat(_equipmentType.Autogyros)
+            .concat(_equipmentType.AntiSubPatrols)
+            .concat(_equipmentType.LandBased)
+            .forEach(function(v){
+                if( _equipmentType.Aircrafts.indexOf(v) < 0 )
+                    _equipmentType.Aircrafts.push(v)
+            });
 
-    _equipmentType.Radars = [
-        _equipmentType.SmallRadar,
-        _equipmentType.LargeRadar,
-        _equipmentType.SuparRadar
-    ];
+        _equipmentType.Radars = [
+            _equipmentType.SmallRadar,
+            _equipmentType.LargeRadar,
+            _equipmentType.SuparRadar
+        ];
 
-    _equipmentType.SmallRadars = [
-        _equipmentType.SmallRadar
-    ];
+        _equipmentType.SmallRadars = [
+            _equipmentType.SmallRadar
+        ];
 
-    _equipmentType.LargeRadars = [
-        _equipmentType.LargeRadar,
-        _equipmentType.SuparRadar
-    ];
+        _equipmentType.LargeRadars = [
+            _equipmentType.LargeRadar,
+            _equipmentType.SuparRadar
+        ];
 
-    _equipmentType.AntiSubmarines = [
-        _equipmentType.DepthCharge,
-        _equipmentType.Sonar,
-        _equipmentType.LargeSonar
-    ];
+        _equipmentType.AntiSubmarines = [
+            _equipmentType.DepthCharge,
+            _equipmentType.Sonar,
+            _equipmentType.LargeSonar
+        ];
 
-    _equipmentType.DepthCharges = [
-        _equipmentType.DepthCharge
-    ];
+        _equipmentType.DepthCharges = [
+            _equipmentType.DepthCharge
+        ];
 
-    _equipmentType.Sonars = [
-        _equipmentType.Sonar,
-        _equipmentType.LargeSonar
-    ];
+        _equipmentType.Sonars = [
+            _equipmentType.Sonar,
+            _equipmentType.LargeSonar
+        ];
 
-    _equipmentType.AAGuns = [
-        _equipmentType.AAGun,
-        _equipmentType.AAGunConcentrated
-    ];
+        _equipmentType.AAGuns = [
+            _equipmentType.AAGun,
+            _equipmentType.AAGunConcentrated
+        ];
 
-    _equipmentType.AAFireDirectors = [
-        _equipmentType.AAFireDirector
-    ];
+        _equipmentType.AAFireDirectors = [
+            _equipmentType.AAFireDirector
+        ];
 
-    _equipmentType.Searchlights = [
-        _equipmentType.Searchlight,
-        _equipmentType.SearchlightLarge
-    ];
+        _equipmentType.Searchlights = [
+            _equipmentType.Searchlight,
+            _equipmentType.SearchlightLarge
+        ];
 
-    _equipmentType.LandingCrafts = [
-        _equipmentType.LandingCraft,
-        _equipmentType.AmphibiousCraft
-    ];
+        _equipmentType.LandingCrafts = [
+            _equipmentType.LandingCraft,
+            _equipmentType.AmphibiousCraft
+        ];
 
-    _equipmentType.AmphibiousCrafts = [
-        _equipmentType.AmphibiousCraft
-    ];
+        _equipmentType.AmphibiousCrafts = [
+            _equipmentType.AmphibiousCraft
+        ];
 
     // 改修收益系数
-    formula.starMultiper = {
-        SmallCalibers: {
-            shelling: 1,
-            night: 1
-        },
-        MediumCalibers: {
-            shelling: 1,
-            night: 1
-        },
-        LargeCalibers: {
-            shelling: 1.5,
-            night: 1
-        },
-        SecondaryGuns: {
-            shelling: 1,
-            night: 1
-        },
-        APShells: {
-            shelling: 1,
-            night: 1
-        },
-        AAFireDirectors: {
-            shelling: 1,
-            night: 1
-        },
-        Searchlights: {
-            shelling: 1,
-            night: 1
-        },
-        AAGuns: {
-            shelling: 1,
-            torpedo: 1.2
-        },
-        Torpedos: {
-            torpedo: 1.2,
-            night: 1
-        },
-        DepthCharges: {
-            shelling: 0.75,
-            antisub: 1
-        },
-        Sonars: {
-            shelling: 0.75,
-            antisub: 1
-        },
-        Radars: {
-        },
-        Seaplanes: {
-        },
-        CarrierFighters: {
-            fighter: 0.2
-        },
-        DiveBombers: {
-            fighter: 0.25
-        },
-        LandingCrafts: {
-            shelling: 1,
-            night: 1
-        }
-    };
+        formula.starMultiper = {
+            SmallCalibers: {
+                shelling: 1,
+                night: 1
+            },
+            MediumCalibers: {
+                shelling: 1,
+                night: 1
+            },
+            LargeCalibers: {
+                shelling: 1.5,
+                night: 1
+            },
+            SecondaryGuns: {
+                shelling: 1,
+                night: 1
+            },
+            APShells: {
+                shelling: 1,
+                night: 1
+            },
+            AAFireDirectors: {
+                shelling: 1,
+                night: 1
+            },
+            Searchlights: {
+                shelling: 1,
+                night: 1
+            },
+            AAGuns: {
+                shelling: 1,
+                torpedo: 1.2
+            },
+            Torpedos: {
+                torpedo: 1.2,
+                night: 1
+            },
+            DepthCharges: {
+                shelling: 0.75,
+                antisub: 1
+            },
+            Sonars: {
+                shelling: 0.75,
+                antisub: 1
+            },
+            Radars: {
+            },
+            Seaplanes: {
+            },
+            CarrierFighters: {
+                fighter: 0.2
+            },
+            DiveBombers: {
+                fighter: 0.25
+            },
+            LandingCrafts: {
+                shelling: 1,
+                night: 1
+            }
+        };
     formula.getStarMultiper = function( equipmentType, type ){
         if( !formula.starMultiper._init ){
             for( let i in formula.starMultiper ){
@@ -1371,8 +1371,8 @@
         //var result = calc(x);
         //var score = result.y_estimate.toFixed(1) + ' ± ' + result.y_std_error.toFixed(1);
     };        
-    formula.calc.TP = function( data ){
-        /* data
+    formula.calc.TP = function( count ){
+        /* count
         * {
         * 		ship: {
         * 			dd
@@ -1392,14 +1392,13 @@
         * 		}
         * }
         */
-        data = data || {}
+        count = count || {}
         var result = 0
-            ,ship = data.ship || {}
-            ,equipment = data.equipment || {}
+            ,ship = count.ship || {}
+            ,equipment = count.equipment || {}
 
         for(let i in ship){
-            let count = parseInt(ship[i]) || 0
-                ,multiper = 0
+            let multiper = 0
             switch(i){
                 case 1:
                 case '1':
@@ -1433,24 +1432,27 @@
                 case '21':
                 case 'ct':		multiper = 6;		break;
             }
-            result+= multiper * count
+            result+= multiper * (parseInt(ship[i]) || 0)
         }
 
         for(let i in equipment){
-            let count = parseInt(equipment[i]) || 0
-                ,multiper = 0
-            switch(i){
-                // landing craft
-                case 68:
-                case '68':		multiper = 8;	break;
+            let multiper = 0
+                ,id = parseInt(i)
+            switch(id){
                 // canister
-                case 75:
-                case '75':		multiper = 5;	break;
+                case 75:    multiper = 5;   break;
+                // landing craft
+                case 68:    multiper = 8;   break;
                 // landing craft (force)
-                case 166:
-                case '166':		multiper = 10.5;	break;
+                case 166:   multiper = 8;   break;
+                // 特二式内火艇
+                case 167:   multiper = 8;   break;
+                // 戦闘糧食
+                case 145:   multiper = 1;   break;
+                // 秋刀魚の缶詰
+                case 150:   multiper = 1;   break;
             }
-            result+= multiper * count
+            result+= multiper * (parseInt(equipment[i]) || 0)
         }
         
         return result
@@ -1664,20 +1666,19 @@
         return formula.calc.losPower(x);
     };        
     formula.calcByShip.TP = function(ship, equipments_by_slot, star_by_slot, rank_by_slot, options){
-        var data = {
+        var count = {
             ship: {},
             equipment: {}
         }
-        data.ship[ship.type] = 1
+        count.ship[ship.type] = 1
         equipments_by_slot.forEach(function(equipment){
             if( equipment ){
-                if( !data.equipment[equipment.id] )
-                    data.equipment[equipment.id] = 0
-                data.equipment[equipment.id]++
+                if( !count.equipment[equipment.id] )
+                    count.equipment[equipment.id] = 0
+                count.equipment[equipment.id]++
             }
         })
-        //console.log(data)
-        return formula.calc.TP(data)
+        return formula.calc.TP(count)
     };
     formula.calcByField.fighterPowerAA = ( data ) => {
         /*
