@@ -1260,6 +1260,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     multiper = 5;break;
                 case 2:
                 case '2':
+                case 28:
+                case '28':
                 case 'cl':
                     multiper = 2;break;
                 case 5:
@@ -1505,7 +1507,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return formula.calc.losPower(x);
     };
     formula.calcByShip.TP = function (ship, equipments_by_slot) {
-        if (!ship || !equipments_by_slot || !equipments_by_slot.length) return 0;
+        if (!ship || !equipments_by_slot || !equipments_by_slot.push) return 0;
 
         ship = _ship(ship);
         var count = {
