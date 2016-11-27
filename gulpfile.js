@@ -1,51 +1,47 @@
 // Include gulp
-var gulp = require('gulp'); 
+const gulp = require('gulp');
 
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
 // Include Plugins
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var babel = require('gulp-babel');
-var rename = require('gulp-rename');
-var replace = require('gulp-replace');
+const uglify = require('gulp-uglify');
+const babel = require('gulp-babel');
+const rename = require('gulp-rename');
 
 
 
 
-
-gulp.task('KCKit-js', function(){
-	return gulp.src([
-			'./src/kckit.js'
-		])
-		.pipe(babel({
-			'highlightCode':	false,
-			'comments':			true,
-			'compact':			false,
-			'ast':				false,
-			"presets": 			[
-					"es2015",
-					"stage-0"
-				],
-			"plugins":			[
-					"transform-minify-booleans"
-				]
-		}))
-		.pipe(gulp.dest('./dist'))
-		.pipe(uglify())
-		.pipe(rename({ extname: '.min.js' }))
-		.pipe(gulp.dest('./dist'));
+gulp.task('KCKit-js', function () {
+    return gulp.src([
+        './src/kckit.js'
+    ])
+        .pipe(babel({
+            'highlightCode': false,
+            'comments': true,
+            'compact': false,
+            'ast': false,
+            "presets": [
+                "latest"
+            ],
+            "plugins": [
+                "transform-minify-booleans"
+            ]
+        }))
+        .pipe(gulp.dest('./dist'))
+        .pipe(uglify())
+        .pipe(rename({ extname: '.min.js' }))
+        .pipe(gulp.dest('./dist'));
 })
 
-gulp.task('KCKit-watch', function(){
-	gulp.watch(
-			'./src/*.js',
-			['KCKit-js']
-		)
+gulp.task('KCKit-watch', function () {
+    gulp.watch(
+        './src/*.js',
+        ['KCKit-js']
+    )
 })
 
-gulp.task('default',[
-	'KCKit-js',
-	'KCKit-watch'
+gulp.task('default', [
+    'KCKit-js',
+    'KCKit-watch'
 ])
