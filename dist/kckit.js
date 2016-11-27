@@ -2,7 +2,7 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || !1; descriptor.configurable = !0; if ("value" in descriptor) descriptor.writable = !0; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -98,7 +98,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function Entity(data) {
             _classCallCheck(this, Entity);
 
-            return _possibleConstructorReturn(this, Object.getPrototypeOf(Entity).call(this, data));
+            return _possibleConstructorReturn(this, (Entity.__proto__ || Object.getPrototypeOf(Entity)).call(this, data));
         }
 
         return Entity;
@@ -110,7 +110,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function Equipment(data) {
             _classCallCheck(this, Equipment);
 
-            return _possibleConstructorReturn(this, Object.getPrototypeOf(Equipment).call(this, data));
+            return _possibleConstructorReturn(this, (Equipment.__proto__ || Object.getPrototypeOf(Equipment)).call(this, data));
         }
 
         _createClass(Equipment, [{
@@ -175,7 +175,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function Ship(data) {
             _classCallCheck(this, Ship);
 
-            return _possibleConstructorReturn(this, Object.getPrototypeOf(Ship).call(this, data));
+            return _possibleConstructorReturn(this, (Ship.__proto__ || Object.getPrototypeOf(Ship)).call(this, data));
         }
         /**
          * @param {string} joint - OPTIONAL - 连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串
@@ -1223,8 +1223,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         //var result = calc(x);
         //var score = result.y_estimate.toFixed(1) + ' ± ' + result.y_std_error.toFixed(1);
     };
-    formula.calc.TP = function (data) {
-        /* data
+    formula.calc.TP = function (count) {
+        /* count
         * {
         * 		ship: {
         * 			dd
@@ -1244,14 +1244,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         * 		}
         * }
         */
-        data = data || {};
+        count = count || {};
         var result = 0,
-            ship = data.ship || {},
-            equipment = data.equipment || {};
+            ship = count.ship || {},
+            equipment = count.equipment || {};
 
         for (var i in ship) {
-            var count = parseInt(ship[i]) || 0,
-                multiper = 0;
+            var multiper = 0;
             switch (i) {
                 case 1:
                 case '1':
@@ -1293,27 +1292,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 case 'ct':
                     multiper = 6;break;
             }
-            result += multiper * count;
+            result += multiper * (parseInt(ship[i]) || 0);
         }
 
         for (var _i in equipment) {
-            var _count = parseInt(equipment[_i]) || 0,
-                _multiper = 0;
-            switch (_i) {
-                // landing craft
-                case 68:
-                case '68':
-                    _multiper = 8;break;
+            var _multiper = 0,
+                id = parseInt(_i);
+            switch (id) {
                 // canister
                 case 75:
-                case '75':
                     _multiper = 5;break;
+                // landing craft
+                case 68:
+                    _multiper = 8;break;
                 // landing craft (force)
                 case 166:
-                case '166':
-                    _multiper = 10.5;break;
+                    _multiper = 8;break;
+                // 特二式内火艇
+                case 167:
+                    _multiper = 8;break;
+                // 戦闘糧食
+                case 145:
+                    _multiper = 1;break;
+                // 秋刀魚の缶詰
+                case 150:
+                    _multiper = 1;break;
             }
-            result += _multiper * _count;
+            result += _multiper * (parseInt(equipment[_i]) || 0);
         }
 
         return result;
@@ -1500,19 +1505,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return formula.calc.losPower(x);
     };
     formula.calcByShip.TP = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
-        var data = {
+        var count = {
             ship: {},
             equipment: {}
         };
-        data.ship[ship.type] = 1;
+        count.ship[ship.type] = 1;
         equipments_by_slot.forEach(function (equipment) {
             if (equipment) {
-                if (!data.equipment[equipment.id]) data.equipment[equipment.id] = 0;
-                data.equipment[equipment.id]++;
+                if (!count.equipment[equipment.id]) count.equipment[equipment.id] = 0;
+                count.equipment[equipment.id]++;
             }
         });
-        //console.log(data)
-        return formula.calc.TP(data);
+        return formula.calc.TP(count);
     };
     formula.calcByField.fighterPowerAA = function (data) {
         /*
