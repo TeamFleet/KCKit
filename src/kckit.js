@@ -1855,6 +1855,7 @@
     KC.Entity = Entity;
     KC.Equipment = Equipment;
     KC.Ship = Ship;
+    KC.Consumable = Consumable;
     KC.formula = formula;
 
     return KC;
