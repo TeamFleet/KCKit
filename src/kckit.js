@@ -415,6 +415,11 @@
         }
     }
     Ship.lvlMax = KC.maxShipLv;
+    class Consumable extends ItemBase{
+        constructor(data) {
+            super(data);
+        }
+    }
 
 
 
@@ -527,7 +532,9 @@
             SeaplaneFighter:	51,		// 水战 / 水上战斗机
             AmphibiousCraft:    52,     // 特型内火艇
             LandBasedAttacker:	53,		// 陆攻 / 陆上攻击机
-            Interceptor:		54		// 局战 / 局地战斗机
+            Interceptor:		54,		// 局战 / 局地战斗机
+            JetBomberFighter:	55,		// 喷气式战斗轰炸机
+            JetBomberFighter2:	56		// 喷气式战斗轰炸机
         },	
     // 舰种
         shipType: {
@@ -611,8 +618,10 @@
             _equipmentType.DiveBomber,
             _equipmentType.SeaplaneFighter,
             _equipmentType.LandBasedAttacker,
-            _equipmentType.Interceptor/*,
-            _equipmentType.CarrierRecon*/
+            _equipmentType.Interceptor,
+            // _equipmentType.CarrierRecon
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2
         ];
 
         _equipmentType.Recons = [
@@ -648,12 +657,16 @@
             _equipmentType.TorpedoBomber,
             _equipmentType.DiveBomber,
             _equipmentType.CarrierRecon,
-            _equipmentType.CarrierRecon2
+            _equipmentType.CarrierRecon2,
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2
         ];
 
         _equipmentType.LandBased = [
             _equipmentType.LandBasedAttacker,
-            _equipmentType.Interceptor
+            _equipmentType.Interceptor,
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2
         ];
 
         _equipmentType.TorpedoBombers = [
@@ -662,6 +675,11 @@
 
         _equipmentType.DiveBombers = [
             _equipmentType.DiveBomber
+        ];
+
+        _equipmentType.JetBomberFighters = [
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2
         ];
 
         _equipmentType.Autogyros = [
