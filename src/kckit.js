@@ -216,25 +216,28 @@
                         'id':	this.id
                     }]
         }
-        /*	获取图鉴uri/path
-            变量
-                picId	[OPTIONAL]
-                    Number		图鉴Id，默认 0
-            返回值
-                String		uri/path
-            快捷方式
-                ship._pics	获取全部图鉴，Array
-        */
-        getPic(picId){
+        /**
+         * 获取图鉴uri/path
+         * 
+         * @param {number} [picId = 0] - 图鉴Id，默认 0
+         * @param {string} [ext]
+         * @returns {string} uri/path
+         * 
+         * @memberOf Ship
+         * 
+         * 快捷方式
+         *      ship._pics	获取全部图鉴，Array
+         */
+        getPic(picId, ext){
             let series = this.getSeriesData()
             picId = parseInt(picId || 0)
             
             let getURI = function(i, p){
                 if( typeof node != 'undefined' && node && node.path && KC.path.pics.ships )
-                    return node.path.join(KC.path.pics.ships, i + '/' +p+ '.webp')
+                    return node.path.join(KC.path.pics.ships, i + '/' +p+ '.' + (ext ? ext : 'webp'))
                 if( KC.path.pics.ships )
-                    return KC.path.pics.ships + i + '/' + p + '.png'
-                return '/' + i + '/' + p + '.png'
+                    return KC.path.pics.ships + i + '/' + p + '.' + (ext ? ext : 'png')
+                return '/' + i + '/' + p + '.' + (ext ? ext : 'png')
             }
             
             for(let i=0; i<series.length; i++){
