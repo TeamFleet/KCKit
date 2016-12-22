@@ -536,6 +536,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _equipment = function _equipment(equipment) {
         return equipment instanceof Equipment ? equipment : KC.db.equipments ? KC.db.equipments[equipment] : KC.db.items[equipment];
     };
+    var _slots = function _slots(arrSlot) {
+        var slots = arrSlot.map(function (value) {
+            return value;
+        });
+        slots[4] = 0;
+        return slots;
+    };
     var formula = {
         // 装备类型
         equipmentType: {
@@ -817,6 +824,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             'apshell': 0,
             'radar': 0
         },
+            slots = _slots(ship.slot),
             powerTorpedo = function powerTorpedo(options) {
             options = options || {};
             var result = 0;
@@ -824,7 +832,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 return options.returnZero ? 0 : -1;
             } else {
                 result = ship.stat.torpedo_max || 0;
-                ship.slot.map(function (carry, index) {
+                slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) {
                         result += equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight ? 0 : equipments_by_slot[index].stat.torpedo || 0;
 
@@ -859,7 +867,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 计算公式参考 http://bbs.ngacn.cc/read.php?tid=8680767
             case 'fighterPower':
                 value = 0;
-                ship.slot.map(function (carry, index) {
+                slots.map(function (carry, index) {
                     if (equipments_by_slot[index] && _equipmentType.Fighters.indexOf(equipments_by_slot[index].type) > -1 && carry) {
                         value = Math.sqrt(carry) * (equipments_by_slot[index].stat.aa || 0);
                         if (equipments_by_slot[index].type == _equipmentType.CarrierFighter) {
@@ -927,7 +935,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         isNight: !0
                     }) + powerTorpedo({ isNight: !0, returnZero: !0 });
                     // 改修加成
-                    ship.slot.map(function (carry, index) {
+                    slots.map(function (carry, index) {
                         if (equipments_by_slot[index]) {
                             if (star_by_slot[index]) {
                                 result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
@@ -960,7 +968,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             // 命中总和
             case 'addHit':
-                ship.slot.map(function (carry, index) {
+                slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) result += equipments_by_slot[index].stat.hit || 0;
                 });
                 return result >= 0 ? '+' + result : result;
@@ -968,7 +976,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             // 装甲总和
             case 'addArmor':
-                ship.slot.map(function (carry, index) {
+                slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) result += equipments_by_slot[index].stat.armor || 0;
                 });
                 return result;
@@ -976,7 +984,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             // 回避总和
             case 'addEvasion':
-                ship.slot.map(function (carry, index) {
+                slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) result += equipments_by_slot[index].stat.evasion || 0;
                 });
                 return result;
@@ -1404,7 +1412,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         options = options || {};
 
         var result = 0,
-            isCV = !1;
+            isCV = !1,
+            slots = _slots(ship.slot);
 
         // 检查是否为航母攻击模式
         if (formula.shipType.Carriers.indexOf(ship.type) > -1) {
@@ -1426,7 +1435,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 航母攻击模式
             var torpedoDamage = 0,
                 bombDamage = 0;
-            ship.slot.map(function (carry, index) {
+            slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
                     result += equipments_by_slot[index].stat.fire * 1.5 || 0;
 
@@ -1445,7 +1454,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 其他舰种
             var CLGunNavalNumber = 0,
                 CLGunTwinNumber = 0;
-            ship.slot.map(function (carry, index) {
+            slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
                     result += equipments_by_slot[index].stat.fire || 0;
 
@@ -1485,9 +1494,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         //return (ship.stat.fire_max || 0)
     };
     formula.calcByShip.fighterPower_v2 = function (ship, equipments_by_slot, star_by_slot, rank_by_slot) {
-        var results = [0, 0];
+        var results = [0, 0],
+            slots = _slots(ship.slot);
 
-        ship.slot.map(function (carry, index) {
+        slots.map(function (carry, index) {
             var r = formula.calc.fighterPower(equipments_by_slot[index], carry, rank_by_slot[index] || 0, star_by_slot[index] || 0);
             results[0] += r[0];
             results[1] += r[1];
