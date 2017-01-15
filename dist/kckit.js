@@ -1568,18 +1568,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
         return formula.calc.TP(count);
     };
-    formula.calcByShip.speed = function (ship, equipments_by_slot) {
+    formula.calcByShip.speed = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
         if (!ship) return '';
+        if ((typeof star_by_slot === 'undefined' ? 'undefined' : _typeof(star_by_slot)) === 'object' && star_by_slot.push) return formula.calcByShip.speed(ship, equipments_by_slot, [], [], star_by_slot);
+        if ((typeof rank_by_slot === 'undefined' ? 'undefined' : _typeof(rank_by_slot)) === 'object' && rank_by_slot.push) return formula.calcByShip.speed(ship, equipments_by_slot, star_by_slot, [], rank_by_slot);
+
         ship = _ship(ship);
         equipments_by_slot = equipments_by_slot || [];
+        options = options || {};
 
         var result = parseInt(ship.stat.speed);
+        var theResult = function theResult(_theResult) {
+            _theResult = Math.max(20, _theResult || result);
+            if (options.returnNumber) return _theResult;
+            return KC.statSpeed[_theResult];
+        };
 
         if (equipments_by_slot[4]) {
             var id = typeof equipment == 'number' ? equipments_by_slot[4] : _equipment(equipments_by_slot[4])['id'];
-            if (id != 33) return KC.statSpeed[result];
+            if (id != 33) return theResult();
         } else {
-            return KC.statSpeed[result];
+            return theResult();
         }
 
         var count = {
@@ -1694,7 +1703,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         if (multiper > 0 && multiper < 1) result += 5;else if (multiper >= 1 && multiper < 1.5) result += 10;else if (multiper >= 1.5) result += 15;
 
-        return KC.statSpeed[result];
+        return theResult();
     };
     formula.calcByShip.fireRange = function (ship, equipments_by_slot) {
         if (!ship) return '-';

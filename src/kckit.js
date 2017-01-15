@@ -1728,19 +1728,31 @@
         })
         return formula.calc.TP(count)
     };
-    formula.calcByShip.speed = function (ship, equipments_by_slot) {
+    formula.calcByShip.speed = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
         if (!ship) return ''
+        if( typeof star_by_slot === 'object' && star_by_slot.push )
+            return formula.calcByShip.speed(ship, equipments_by_slot, [], [], star_by_slot)
+        if( typeof rank_by_slot === 'object' && rank_by_slot.push )
+            return formula.calcByShip.speed(ship, equipments_by_slot, star_by_slot, [], rank_by_slot)
+
         ship = _ship(ship);
         equipments_by_slot = equipments_by_slot || []
+        options = options || {}
 
         let result = parseInt(ship.stat.speed)
+        const theResult = function(theResult){
+            theResult = Math.max(20, theResult || result)
+            if( options.returnNumber )
+                return theResult
+            return KC.statSpeed[theResult]
+        }
 
         if (equipments_by_slot[4]) {
             let id = typeof equipment == 'number' ? equipments_by_slot[4] : _equipment(equipments_by_slot[4])['id']
             if( id != 33 )
-                return KC.statSpeed[result]
+                return theResult()
         } else {
-            return KC.statSpeed[result]
+            return theResult()
         }
 
         let count = {
@@ -1866,7 +1878,7 @@
         else if (multiper >= 1.5)
             result += 15
 
-        return KC.statSpeed[result]
+        return theResult()
     };
     formula.calcByShip.fireRange = function (ship, equipments_by_slot) {
         if (!ship) return '-'
