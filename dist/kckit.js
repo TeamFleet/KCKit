@@ -1569,7 +1569,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return formula.calc.TP(count);
     };
     formula.calcByShip.speed = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
-        if (!ship || !equipments_by_slot || !equipments_by_slot.push) return 0;
+        if (!ship) return '';
+        equipments_by_slot = equipments_by_slot || [];
 
         ship = _ship(ship);
 
@@ -1685,7 +1686,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return KC.statSpeed[result];
     };
     formula.calcByShip.fireRange = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
-        if (!ship || !equipments_by_slot || !equipments_by_slot.push) return 0;
+        if (!ship) return '-';
+        equipments_by_slot = equipments_by_slot || [];
 
         var result = parseInt(ship.stat.range);
 
