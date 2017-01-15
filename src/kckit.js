@@ -1741,7 +1741,7 @@
 
         let result = parseInt(ship.stat.speed)
         const theResult = function(theResult){
-            theResult = Math.max(20, theResult || result)
+            theResult = Math.min(20, theResult || result)
             if( options.returnNumber )
                 return theResult
             return KC.statSpeed[theResult]

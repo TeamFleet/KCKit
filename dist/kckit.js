@@ -1579,7 +1579,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         var result = parseInt(ship.stat.speed);
         var theResult = function theResult(_theResult) {
-            _theResult = Math.max(20, _theResult || result);
+            _theResult = Math.min(20, _theResult || result);
             if (options.returnNumber) return _theResult;
             return KC.statSpeed[_theResult];
         };
