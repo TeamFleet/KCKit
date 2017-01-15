@@ -1728,16 +1728,20 @@
         })
         return formula.calc.TP(count)
     };
-    formula.calcByShip.speed = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+    formula.calcByShip.speed = function (ship, equipments_by_slot) {
         if (!ship) return ''
+        ship = _ship(ship);
         equipments_by_slot = equipments_by_slot || []
 
-        ship = _ship(ship);
-
-        let isTurbineInExtraSlot = equipments_by_slot[5] || false
         let result = parseInt(ship.stat.speed)
 
-        if (!isTurbineInExtraSlot) return KC.statRange[result]
+        if (equipments_by_slot[4]) {
+            let id = typeof equipment == 'number' ? equipments_by_slot[4] : _equipment(equipments_by_slot[4])['id']
+            if( id != 33 )
+                return KC.statSpeed[result]
+        } else {
+            return KC.statSpeed[result]
+        }
 
         let count = {
             '34': 0,
@@ -1750,12 +1754,13 @@
             if (!equipment) return
 
             let id = typeof equipment == 'number' ? equipment : _equipment(equipment)['id']
-            if (count[id])
-                count[id]++
+
+            if (typeof count['' + id] !== 'undefined')
+                count['' + id]++
         })
 
         switch (rule) {
-            case 'low-a':
+            case 'low-1':
                 // 低速A
                 // 	基础		5
                 // 	最大		20
@@ -1779,8 +1784,8 @@
                 multiper = 0.3 * Math.min(count['34'], 1)
                     + 0.7 * count['87']
                 break
-            case 'low-b':
-            case 'high-c':
+            case 'low-2':
+            case 'high-3':
                 // 低速B
                 // 	基础		5
                 // 	最大		15
@@ -1810,8 +1815,8 @@
                     count['34'] / 3 + 0.5 * count['87']
                 )
                 break
-            case 'low-c':
-            case 'high-d':
+            case 'low-3':
+            case 'high-4':
                 // 低速C
                 // 	基础		5
                 // 	最大		10
@@ -1821,7 +1826,7 @@
                 if (count['34'] || count['87'])
                     result += 5
                 break
-            case 'high-a':
+            case 'high-1':
                 // 高速A
                 // 	基础		10
                 // 	最大 		20
@@ -1832,7 +1837,7 @@
                 // 	y = 1
                 multiper = 0.5 * count['34'] + 1 * count['87']
                 break
-            case 'high-b':
+            case 'high-2':
                 // 高速B
                 // 	基础		10
                 // 	最大 		20
@@ -1847,6 +1852,13 @@
                 break
         }
 
+        console.log(
+            ship, equipments_by_slot,
+            count,
+            rule,
+            multiper
+        )
+
         if (multiper > 0 && multiper < 1)
             result += 5
         else if (multiper >= 1 && multiper < 1.5)
@@ -1856,7 +1868,7 @@
 
         return KC.statSpeed[result]
     };
-    formula.calcByShip.fireRange = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+    formula.calcByShip.fireRange = function (ship, equipments_by_slot) {
         if (!ship) return '-'
         equipments_by_slot = equipments_by_slot || []
 
