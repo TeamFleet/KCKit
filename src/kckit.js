@@ -23,7 +23,9 @@
         },
         statSpeed: {
             5: '低速',
-            10: '高速'
+            10: '高速',
+            15: '高速+',
+            20: '最速'
         },
         getStatSpeed: function (speed) {
             return this.statSpeed[parseInt(speed)]
@@ -278,6 +280,15 @@
         }
         get _speed() {
             return this.getSpeed()
+        }
+
+        getSpeedRule() {
+            return this.class
+                ? KC.db.ship_classes[this.class].speed_rule
+                : null
+        }
+        get _speedRule() {
+            return this.getSpeedRule()
         }
 
         getRange(language) {
@@ -1716,6 +1727,150 @@
         })
         return formula.calc.TP(count)
     };
+    formula.calcByShip.speed = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+        if (!ship || !equipments_by_slot || !equipments_by_slot.push) return 0
+
+        ship = _ship(ship);
+
+        let isTurbineInExtraSlot = equipments_by_slot[5] || false
+        let result = parseInt(ship.stat.speed)
+
+        if (!isTurbineInExtraSlot) return KC.statRange[result]
+
+        let count = {
+            '34': 0,
+            '87': 0
+        }
+        let rule = ship._speedRule
+        let multiper = 0
+
+        equipments_by_slot.slice(0, 4).forEach(function (equipment) {
+            if (!equipment) return
+
+            let id = typeof equipment == 'number' ? equipment : _equipment(equipment)['id']
+            if (count[id])
+                count[id]++
+        })
+
+        switch (rule) {
+            case 'low-a':
+                // 低速A
+                // 	基础		5
+                // 	最大		20
+                // 	1x + 0y		+5		0.3x
+                // 	2x + 0y		+5		0.3x
+                // 	3x + 0y		+5		0.3x
+                // 	0x + 1y		+5		0.7x
+                // 	1x + 1y		+10		1x
+                // 	2x + 1y		+10		1x
+                // 	3x + 1y		+10		1x
+                // 	0x + 2y		+10		1.4x
+                // 	1x + 2y		+15		1.7x
+                // 	2x + 2y		+15		1.7x
+                // 	3x + 2y		+15		1.7x
+                // 	0x + 3y		+15		2.1x
+                // 	1x + 2y		+15
+                // 	2x + 2y		+15
+                // 	3x + 2y		+15
+                // 	x = 0.3
+                // 	y = 0.7
+                multiper = 0.3 * Math.min(count['34'], 1)
+                    + 0.7 * count['87']
+                break
+            case 'low-b':
+            case 'high-c':
+                // 低速B
+                // 	基础		5
+                // 	最大		15
+                // 	1x + 0y		+5		0.33x
+                // 	2x + 0y		+5		0.66x
+                // 	3x + 0y		+10		1x
+                // 	0x + 1y		+5		0.5x
+                // 	1x + 1y		+5		0.83x
+                // 	2x + 1y		+10		1.33x
+                // 	0x + 2y		+10		1x
+                // 	x = 0.33
+                // 	y = 0.5
+                // 高速C
+                // 	基础		10
+                // 	最大		20
+                // 	1x + 0y		+5		0.33x
+                // 	2x + 0y		+5		0.66x
+                // 	3x + 0y		+10		1x
+                // 	0x + 1y		+5		0.5x
+                // 	1x + 1y		+5		0.83x
+                // 	2x + 1y		+10		1.33x
+                // 	0x + 2y		+10		1x
+                // 	x = 0.33
+                // 	y = 0.5
+                multiper = Math.max(
+                    1,
+                    count['34'] / 3 + 0.5 * count['87']
+                )
+                break
+            case 'low-c':
+            case 'high-d':
+                // 低速C
+                // 	基础		5
+                // 	最大		10
+                // 高速D
+                // 	基础		10
+                // 	最大		15
+                if (count['34'] || count['87'])
+                    result += 5
+                break
+            case 'high-a':
+                // 高速A
+                // 	基础		10
+                // 	最大 		20
+                // 	1x + 0y		+5		0.5x
+                // 	1x + 1y		+10		1.5x
+                // 	0x + 1y		+10		1x
+                // 	x = 0.5
+                // 	y = 1
+                multiper = 0.5 * count['34'] + 1 * count['87']
+                break
+            case 'high-b':
+                // 高速B
+                // 	基础		10
+                // 	最大 		20
+                // 	1x + 0y		+5		0.5x
+                // 	2x + 0y		+10		1x
+                // 	0x + 1y		+5		0.5x
+                // 	1x + 1y		+10		1x
+                // 	0x + 2y		+10		1x
+                // 	x = 0.5
+                // 	y = 0.5
+                multiper = 0.5 * count['34'] + 0.5 * count['87']
+                break
+        }
+
+        if (multiper > 0 && multiper < 1)
+            result += 5
+        else if (multiper >= 1 && multiper < 1.5)
+            result += 10
+        else if (multiper >= 1.5)
+            result += 15
+
+        return KC.statSpeed[result]
+    };
+    formula.calcByShip.fireRange = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+        if (!ship || !equipments_by_slot || !equipments_by_slot.push) return 0
+
+        let result = parseInt(ship.stat.range)
+
+        equipments_by_slot.forEach(function (equipment) {
+            if (!equipment) return
+
+            result = Math.max(
+                result,
+                _equipment(equipment).stat.range || 0
+            )
+        })
+
+        return KC.statRange[result]
+    };
+    // Calculate by Airfield
     formula.calcByField.fighterPowerAA = (data) => {
         /*
          * data {
