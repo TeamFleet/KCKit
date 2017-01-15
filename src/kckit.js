@@ -283,6 +283,7 @@
         }
 
         getSpeedRule() {
+            if (this.name.ja_jp === '天津風') return 'high-b'
             return this.class
                 ? KC.db.ship_classes[this.class].speed_rule
                 : null
