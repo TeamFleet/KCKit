@@ -1685,7 +1685,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 break;
         }
 
-        console.log(ship, equipments_by_slot, count, rule, multiper);
+        // console.log(
+        //     ship, equipments_by_slot,
+        //     count,
+        //     rule,
+        //     multiper
+        // )
 
         if (multiper > 0 && multiper < 1) result += 5;else if (multiper >= 1 && multiper < 1.5) result += 10;else if (multiper >= 1.5) result += 15;
 

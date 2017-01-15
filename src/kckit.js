@@ -1852,12 +1852,12 @@
                 break
         }
 
-        console.log(
-            ship, equipments_by_slot,
-            count,
-            rule,
-            multiper
-        )
+        // console.log(
+        //     ship, equipments_by_slot,
+        //     count,
+        //     rule,
+        //     multiper
+        // )
 
         if (multiper > 0 && multiper < 1)
             result += 5
