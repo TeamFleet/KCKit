@@ -1772,8 +1772,6 @@
                 count['' + id]++
         })
 
-        console.log(count)
-
         if( !count['33'] ) return theResult()
 
         switch (rule) {

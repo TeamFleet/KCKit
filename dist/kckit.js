@@ -1608,8 +1608,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (typeof count['' + id] !== 'undefined') count['' + id]++;
         });
 
-        console.log(count);
-
         if (!count['33']) return theResult();
 
         switch (rule) {
