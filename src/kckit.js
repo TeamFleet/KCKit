@@ -1763,7 +1763,7 @@
         let rule = ship._speedRule
         let multiper = 0
 
-        equipments_by_slot.slice(0, 4).forEach(function (equipment) {
+        equipments_by_slot.forEach(function (equipment) {
             if (!equipment) return
 
             let id = typeof equipment == 'number' ? equipment : _equipment(equipment)['id']
@@ -1771,6 +1771,8 @@
             if (typeof count['' + id] !== 'undefined')
                 count['' + id]++
         })
+
+        console.log(count)
 
         if( !count['33'] ) return theResult()
 
