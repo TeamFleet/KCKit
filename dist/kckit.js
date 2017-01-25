@@ -1584,14 +1584,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return KC.statSpeed[_theResult];
         };
 
-        if (equipments_by_slot[4]) {
-            var id = typeof equipment == 'number' ? equipments_by_slot[4] : _equipment(equipments_by_slot[4])['id'];
-            if (id != 33) return theResult();
-        } else {
-            return theResult();
-        }
+        // if (equipments_by_slot[4]) {
+        //     let id = typeof equipment == 'number' ? equipments_by_slot[4] : _equipment(equipments_by_slot[4])['id']
+        //     if( id != 33 )
+        //         return theResult()
+        // } else {
+        //     return theResult()
+        // }
 
         var count = {
+            '33': 0,
             '34': 0,
             '87': 0
         };
@@ -1605,6 +1607,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             if (typeof count['' + id] !== 'undefined') count['' + id]++;
         });
+
+        if (!count['33']) return theResult();
 
         switch (rule) {
             case 'low-1':

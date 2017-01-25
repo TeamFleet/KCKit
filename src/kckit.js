@@ -1747,15 +1747,16 @@
             return KC.statSpeed[theResult]
         }
 
-        if (equipments_by_slot[4]) {
-            let id = typeof equipment == 'number' ? equipments_by_slot[4] : _equipment(equipments_by_slot[4])['id']
-            if( id != 33 )
-                return theResult()
-        } else {
-            return theResult()
-        }
+        // if (equipments_by_slot[4]) {
+        //     let id = typeof equipment == 'number' ? equipments_by_slot[4] : _equipment(equipments_by_slot[4])['id']
+        //     if( id != 33 )
+        //         return theResult()
+        // } else {
+        //     return theResult()
+        // }
 
         let count = {
+            '33': 0,
             '34': 0,
             '87': 0
         }
@@ -1770,6 +1771,8 @@
             if (typeof count['' + id] !== 'undefined')
                 count['' + id]++
         })
+
+        if( !count['33'] ) return theResult()
 
         switch (rule) {
             case 'low-1':
