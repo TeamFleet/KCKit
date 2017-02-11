@@ -554,7 +554,9 @@
             LandBasedAttacker: 53,		// 陆攻 / 陆上攻击机
             Interceptor: 54,		// 局战 / 局地战斗机
             JetBomberFighter: 55,		// 喷气式战斗轰炸机
-            JetBomberFighter2: 56		// 喷气式战斗轰炸机
+            JetBomberFighter2: 56,		// 喷气式战斗轰炸机
+            TransportMaterial: 57,	    // 运输设备
+            SubmarineEquipment: 58		// 潜艇装备
         },
         // 舰种
         shipType: {
