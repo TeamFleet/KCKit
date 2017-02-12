@@ -1343,7 +1343,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         for (var _i in equipment) {
             var _multiper = 0,
-                id = parseInt(_i);
+                id = parseInt(_i),
+                data = void 0;
             switch (id) {
                 // canister
                 case 75:
@@ -1363,6 +1364,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // 秋刀魚の缶詰
                 case 150:
                     _multiper = 1;break;
+                default:
+                    // 瑞云 & 晴岚
+                    data = _equipment(id);
+                    switch (data.type) {
+                        case formula.equipmentType.SeaplaneBomber:
+                            if (data.name.ja_jp.indexOf('瑞雲') > -1) _multiper = 2;else if (data.name.ja_jp.indexOf('晴嵐') > -1) _multiper = 2;
+                            break;
+                    }
             }
             result += _multiper * (parseInt(equipment[_i]) || 0);
         }

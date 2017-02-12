@@ -1481,6 +1481,7 @@
         for (let i in equipment) {
             let multiper = 0
                 , id = parseInt(i)
+                , data
             switch (id) {
                 // canister
                 case 75: multiper = 5; break;
@@ -1494,6 +1495,17 @@
                 case 145: multiper = 1; break;
                 // 秋刀魚の缶詰
                 case 150: multiper = 1; break;
+                default:
+                    // 瑞云 & 晴岚
+                    data = _equipment(id)
+                    switch( data.type ){
+                        case formula.equipmentType.SeaplaneBomber:
+                            if( data.name.ja_jp.indexOf('瑞雲') > -1 )
+                                multiper = 2
+                            else if( data.name.ja_jp.indexOf('晴嵐') > -1 )
+                                multiper = 2
+                            break;
+                    }
             }
             result += multiper * (parseInt(equipment[i]) || 0)
         }
