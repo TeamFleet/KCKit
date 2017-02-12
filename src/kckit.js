@@ -1487,6 +1487,8 @@
                 case 75: multiper = 5; break;
                 // landing craft
                 case 68: multiper = 8; break;
+                // landing craft (large)
+                case 193: multiper = 8; break;
                 // landing craft (force)
                 case 166: multiper = 8; break;
                 // 特二式内火艇

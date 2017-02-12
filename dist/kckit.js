@@ -1352,6 +1352,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // landing craft
                 case 68:
                     _multiper = 8;break;
+                // landing craft (large)
+                case 193:
+                    _multiper = 8;break;
                 // landing craft (force)
                 case 166:
                     _multiper = 8;break;
