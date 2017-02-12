@@ -1503,7 +1503,7 @@
                             if( data.name.ja_jp.indexOf('瑞雲') > -1 )
                                 multiper = 2
                             else if( data.name.ja_jp.indexOf('晴嵐') > -1 )
-                                multiper = 2
+                                multiper = 4
                             break;
                     }
             }
