@@ -1501,11 +1501,15 @@
                     // 瑞云 & 晴岚
                     data = _equipment(id)
                     switch( data.type ){
-                        case formula.equipmentType.SeaplaneBomber:
-                            if( data.name.ja_jp.indexOf('瑞雲') > -1 )
-                                multiper = 2
-                            else if( data.name.ja_jp.indexOf('晴嵐') > -1 )
-                                multiper = 4
+                        // case formula.equipmentType.SeaplaneBomber:
+                        //     if( data.name.ja_jp.indexOf('瑞雲') > -1 )
+                        //         multiper = 2
+                        //     else if( data.name.ja_jp.indexOf('晴嵐') > -1 )
+                        //         multiper = 4
+                        //     break;
+                        case formula.equipmentType.LandingCraft:
+                            if( data.name.ja_jp.indexOf('大発動艇') > -1 )
+                                multiper = 8
                             break;
                     }
             }
