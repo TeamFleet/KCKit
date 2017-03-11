@@ -545,6 +545,7 @@
             AAFireDirector: 31,     // 高射装置
             LandingCraft: 38,     // 登陆艇
             Searchlight: 39,		// 探照灯
+            CommandFacility: 45,    // 舰队司令部设施
             LargeFlyingBoat: 45,		// 大型水上飞艇
             SearchlightLarge: 46,		// 大型探照灯
             SuparRadar: 47,		// 超大型雷达
@@ -652,6 +653,11 @@
         _equipmentType.CarrierRecon,
         _equipmentType.CarrierRecon2,
         _equipmentType.LargeFlyingBoat
+    ];
+
+    _equipmentType.ReconSeaplanes = [
+        _equipmentType.ReconSeaplane,
+        _equipmentType.ReconSeaplaneNight,
     ];
 
     _equipmentType.SeaplaneRecons = [
@@ -824,8 +830,12 @@
             antisub: 1
         },
         Radars: {
+            los: 1.25
         },
         Seaplanes: {
+        },
+        ReconSeaplanes: {
+            los: 1.2
         },
         CarrierFighters: {
             fighter: 0.2
@@ -1412,6 +1422,86 @@
         //var result = calc(x);
         //var score = result.y_estimate.toFixed(1) + ' ± ' + result.y_std_error.toFixed(1);
     };
+    formula.calc.los33 = function (data) {
+        if (!data) return;
+        /* data {
+            hq: 90,
+            equipments: [
+                {
+                    id: 123,
+                    star: 4,
+                    rank: 7
+                }
+            ],
+            ships: [
+                {
+                    id: 123,
+                    lv: 90
+                }
+            ]
+        }
+         */
+
+        let totalEquipmentValue = 0,
+            totalShipValue
+
+        const equipmentTypeValues = {
+            TorpedoBombers: 0.8,
+            CarrierRecons: 1,
+
+            ReconSeaplane: 1.2,
+            ReconSeaplaneNight: 1.2,
+            SeaplaneBomber: 1.1
+        }
+        Object.defineProperty(
+            equipmentTypeValue,
+            'default',
+            {
+                value: 0.6,
+                enumerable: false,
+                configurable: false,
+                writable: false
+            }
+        )
+        
+        data.equipments.forEach(function(o){
+            const equipment = _equipment(o.id)
+
+            if (equipment.stat.los) {
+                let typeValue = equipmentTypeValues.default,
+                    starMultiper = 0
+
+                for (let types in equipmentTypeValues) {
+                    if (Array.isArray(_equipmentType[types]))
+                        types = _equipmentType[types]
+                    else
+                        types = [_equipmentType[types]]
+                    if (types.indexOf(equipment.type) > -1) {
+                        typeValue = equipmentTypeValues[i]
+                    }
+                }
+
+                totalEquipmentValue
+                    += typeValue
+                    * (
+                        equipment.stat.los
+                        + getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star)
+                    )
+            }
+        })
+
+        data.ships.forEach(function(o){
+            const ship = _ship(o.id)
+
+            totalShipValue
+                += ship.getAttribute('los', o.lv || 1)
+        })
+
+        return totalEquipmentValue
+            + Math.sqrt(totalShipValue)
+            - Math.ceil(data.hq * 0.4)
+            + 2 * ( 6 - data.ships.length )
+    };
     formula.calc.TP = function (count) {
         /* count
         * {
@@ -1920,17 +2010,75 @@
 
         return KC.statRange[result]
     };
+    // Calculate by Fleet
+    formula.calcByFleet.los33 = (data, hq) => {
+        /* data [
+            [
+                {number} shipId,
+                [ // ship stat
+                    {number} shipLv,
+                    {number} shipLuck
+                ],
+                [ // equipment id
+                    {number} slot 1 id,
+                    {number} slot 2 id,
+                    {number} slot 3 id,
+                    {number} slot 4 id,
+                    {number} slot x id
+                ],
+                [ // equipment star
+                    {number} slot 1 star,
+                    {number} slot 2 star,
+                    {number} slot 3 star,
+                    {number} slot 4 star,
+                    {number} slot x star
+                ],
+                [ // equipment rank
+                    {number} slot 1 rank,
+                    {number} slot 2 rank,
+                    {number} slot 3 rank,
+                    {number} slot 4 rank,
+                    {number} slot x rank
+                ]
+            ]
+        ]*/
+
+        let equipments = [],
+            ships = []
+        
+        data.forEach(function(dataShip) {
+            const shipId = dataShip[0]
+            const equipmentIdPerSlot = dataShip[2]
+            const equipmentStarPerSlot = dataShip[3]
+            const equipmentRankPerSlot = dataShip[4]
+            ships.push({
+                id: shipId,
+                lv: dataShip[1][0]
+            })
+            equipmentIdPerSlot[2].forEach(function(equipmentId, index){
+                equipments.push({
+                    id: equipmentId,
+                    star: equipmentStarPerSlot[index],
+                    rank: equipmentRankPerSlot[index]
+                })
+            })
+        })
+
+        return formula.calc.los33({
+            hq: hq,
+            equipments: equipments,
+            ships: ships
+        })
+    };
     // Calculate by Airfield
     formula.calcByField.fighterPowerAA = (data) => {
         /*
-         * data {
-         *      [
-         *          equipment: equipmentId || Equipment,
-         *          star: Number,
-         *          rank: Number,
-         *          [carry]: Number
-         *      ]
-         * }
+         * data [
+         *      equipment: equipmentId || Equipment,
+         *      star: Number,
+         *      rank: Number,
+         *      [carry]: Number
+         * ]
          */
         let result = [0, 0]
             , reconBonus = 1;

@@ -71,8 +71,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function ItemBase(data) {
             _classCallCheck(this, ItemBase);
 
-            for (var i in data) {
-                this[i] = data[i];
+            for (var _i in data) {
+                this[_i] = data[_i];
             }
         }
 
@@ -278,8 +278,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     return '/' + i + '/' + p + '.' + (ext ? ext : 'png');
                 };
 
-                for (var i = 0; i < series.length; i++) {
-                    if (series[i].id == this.id) {
+                for (var _i2 = 0; _i2 < series.length; _i2++) {
+                    if (series[_i2].id == this.id) {
                         switch (picId) {
                             case 0:
                             case 1:
@@ -291,8 +291,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                 return getURI(this.id, picId);
                             //break;
                             default:
-                                if (series[i].illust_delete) {
-                                    return getURI(series[i - 1].id, picId);
+                                if (series[_i2].illust_delete) {
+                                    return getURI(series[_i2 - 1].id, picId);
                                 } else {
                                     return getURI(this.id, picId);
                                 }
@@ -447,8 +447,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: '_pics',
             get: function get() {
                 var arr = [];
-                for (var i = 0; i < 15; i++) {
-                    arr.push(this.getPic(i));
+                for (var _i3 = 0; _i3 < 15; _i3++) {
+                    arr.push(this.getPic(_i3));
                 }
                 return arr;
             }
@@ -591,6 +591,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             AAFireDirector: 31, // 高射装置
             LandingCraft: 38, // 登陆艇
             Searchlight: 39, // 探照灯
+            CommandFacility: 45, // 舰队司令部设施
             LargeFlyingBoat: 45, // 大型水上飞艇
             SearchlightLarge: 46, // 大型探照灯
             SuparRadar: 47, // 超大型雷达
@@ -651,6 +652,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
 
     _equipmentType.Recons = [_equipmentType.ReconSeaplane, _equipmentType.ReconSeaplaneNight, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.LargeFlyingBoat];
+
+    _equipmentType.ReconSeaplanes = [_equipmentType.ReconSeaplane, _equipmentType.ReconSeaplaneNight];
 
     _equipmentType.SeaplaneRecons = [_equipmentType.ReconSeaplane, _equipmentType.ReconSeaplaneNight, _equipmentType.LargeFlyingBoat];
 
@@ -747,8 +750,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             shelling: 0.75,
             antisub: 1
         },
-        Radars: {},
+        Radars: {
+            los: 1.25
+        },
         Seaplanes: {},
+        ReconSeaplanes: {
+            los: 1.2
+        },
         CarrierFighters: {
             fighter: 0.2
         },
@@ -762,16 +770,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
     formula.getStarMultiper = function (equipmentType, type) {
         if (!formula.starMultiper._init) {
-            var _loop = function _loop(i) {
-                if (_equipmentType[i] && _equipmentType[i].forEach) {
-                    _equipmentType[i].forEach(function (tid) {
-                        formula.starMultiper[tid] = formula.starMultiper[i];
+            var _loop = function _loop(_i4) {
+                if (_equipmentType[_i4] && _equipmentType[_i4].forEach) {
+                    _equipmentType[_i4].forEach(function (tid) {
+                        formula.starMultiper[tid] = formula.starMultiper[_i4];
                     });
                 }
             };
 
-            for (var i in formula.starMultiper) {
-                _loop(i);
+            for (var _i4 in formula.starMultiper) {
+                _loop(_i4);
             }
             formula.starMultiper._init = !0;
         }
@@ -1267,6 +1275,70 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         //var result = calc(x);
         //var score = result.y_estimate.toFixed(1) + ' ± ' + result.y_std_error.toFixed(1);
     };
+    formula.calc.los33 = function (data) {
+        if (!data) return;
+        /* data {
+            hq: 90,
+            equipments: [
+                {
+                    id: 123,
+                    star: 4,
+                    rank: 7
+                }
+            ],
+            ships: [
+                {
+                    id: 123,
+                    lv: 90
+                }
+            ]
+        }
+         */
+
+        var totalEquipmentValue = 0,
+            totalShipValue = void 0;
+
+        var equipmentTypeValues = {
+            TorpedoBombers: 0.8,
+            CarrierRecons: 1,
+
+            ReconSeaplane: 1.2,
+            ReconSeaplaneNight: 1.2,
+            SeaplaneBomber: 1.1
+        };
+        Object.defineProperty(equipmentTypeValue, 'default', {
+            value: 0.6,
+            enumerable: !1,
+            configurable: !1,
+            writable: !1
+        });
+
+        data.equipments.forEach(function (o) {
+            var equipment = _equipment(o.id);
+
+            if (equipment.stat.los) {
+                var typeValue = equipmentTypeValues.default,
+                    starMultiper = 0;
+
+                for (var types in equipmentTypeValues) {
+                    if (Array.isArray(_equipmentType[types])) types = _equipmentType[types];else types = [_equipmentType[types]];
+                    if (types.indexOf(equipment.type) > -1) {
+                        typeValue = equipmentTypeValues[i];
+                    }
+                }
+
+                totalEquipmentValue += typeValue * (equipment.stat.los + getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star));
+            }
+        });
+
+        data.ships.forEach(function (o) {
+            var ship = _ship(o.id);
+
+            totalShipValue += ship.getAttribute('los', o.lv || 1);
+        });
+
+        return totalEquipmentValue + Math.sqrt(totalShipValue) - Math.ceil(data.hq * 0.4) + 2 * (6 - data.ships.length);
+    };
     formula.calc.TP = function (count) {
         /* count
         * {
@@ -1293,9 +1365,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             ship = count.ship || {},
             equipment = count.equipment || {};
 
-        for (var i in ship) {
+        for (var _i5 in ship) {
             var multiper = 0;
-            switch (i) {
+            switch (_i5) {
                 case 1:
                 case '1':
                 case 19:
@@ -1338,12 +1410,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 case 'ct':
                     multiper = 6;break;
             }
-            result += multiper * (parseInt(ship[i]) || 0);
+            result += multiper * (parseInt(ship[_i5]) || 0);
         }
 
-        for (var _i in equipment) {
+        for (var _i6 in equipment) {
             var _multiper = 0,
-                id = parseInt(_i),
+                id = parseInt(_i6),
                 data = void 0;
             switch (id) {
                 // canister
@@ -1382,7 +1454,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             break;
                     }
             }
-            result += _multiper * (parseInt(equipment[_i]) || 0);
+            result += _multiper * (parseInt(equipment[_i6]) || 0);
         }
 
         return result;
@@ -1562,8 +1634,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         equipments_by_slot.forEach(function (equipment) {
             if (equipment) {
-                for (var i in x) {
-                    if (_equipmentType[i] && _equipmentType[i].push && _equipmentType[i].indexOf(equipment.type) > -1) x[i] += equipment.stat.los;
+                for (var _i7 in x) {
+                    if (_equipmentType[_i7] && _equipmentType[_i7].push && _equipmentType[_i7].indexOf(equipment.type) > -1) x[_i7] += equipment.stat.los;
                 }
             }
         });
@@ -1743,17 +1815,75 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         return KC.statRange[result];
     };
+    // Calculate by Fleet
+    formula.calcByFleet.los33 = function (data, hq) {
+        /* data [
+            [
+                {number} shipId,
+                [ // ship stat
+                    {number} shipLv,
+                    {number} shipLuck
+                ],
+                [ // equipment id
+                    {number} slot 1 id,
+                    {number} slot 2 id,
+                    {number} slot 3 id,
+                    {number} slot 4 id,
+                    {number} slot x id
+                ],
+                [ // equipment star
+                    {number} slot 1 star,
+                    {number} slot 2 star,
+                    {number} slot 3 star,
+                    {number} slot 4 star,
+                    {number} slot x star
+                ],
+                [ // equipment rank
+                    {number} slot 1 rank,
+                    {number} slot 2 rank,
+                    {number} slot 3 rank,
+                    {number} slot 4 rank,
+                    {number} slot x rank
+                ]
+            ]
+        ]*/
+
+        var equipments = [],
+            ships = [];
+
+        data.forEach(function (dataShip) {
+            var shipId = dataShip[0];
+            var equipmentIdPerSlot = dataShip[2];
+            var equipmentStarPerSlot = dataShip[3];
+            var equipmentRankPerSlot = dataShip[4];
+            ships.push({
+                id: shipId,
+                lv: dataShip[1][0]
+            });
+            equipmentIdPerSlot[2].forEach(function (equipmentId, index) {
+                equipments.push({
+                    id: equipmentId,
+                    star: equipmentStarPerSlot[index],
+                    rank: equipmentRankPerSlot[index]
+                });
+            });
+        });
+
+        return formula.calc.los33({
+            hq: hq,
+            equipments: equipments,
+            ships: ships
+        });
+    };
     // Calculate by Airfield
     formula.calcByField.fighterPowerAA = function (data) {
         /*
-         * data {
-         *      [
-         *          equipment: equipmentId || Equipment,
-         *          star: Number,
-         *          rank: Number,
-         *          [carry]: Number
-         *      ]
-         * }
+         * data [
+         *      equipment: equipmentId || Equipment,
+         *      star: Number,
+         *      rank: Number,
+         *      [carry]: Number
+         * ]
          */
         var result = [0, 0],
             reconBonus = 1;
