@@ -1445,7 +1445,7 @@
          */
 
         let totalEquipmentValue = 0,
-            totalShipValue
+            totalShipValue = 0
 
         let equipmentTypeValues = {
             TorpedoBombers: 0.8,
@@ -1473,13 +1473,15 @@
                 let typeValue = equipmentTypeValues.default
 
                 for (let types in equipmentTypeValues) {
+                    let typesForCheck
+
                     if (Array.isArray(_equipmentType[types]))
-                        types = _equipmentType[types]
+                        typesForCheck = _equipmentType[types]
                     else
-                        types = [_equipmentType[types]]
-                    if (types.indexOf(equipment.type) > -1) {
+                        typesForCheck = [_equipmentType[types]]
+
+                    if (typesForCheck.indexOf(equipment.type) > -1)
                         typeValue = equipmentTypeValues[types]
-                    }
                 }
 
                 totalEquipmentValue
@@ -1495,11 +1497,11 @@
             const ship = _ship(o.id)
 
             totalShipValue
-                += ship.getAttribute('los', o.lv || 1)
+                += Math.sqrt(ship.getAttribute('los', o.lv || 1))
         })
 
         return totalEquipmentValue
-            + Math.sqrt(totalShipValue)
+            + totalShipValue
             - Math.ceil(data.hq * 0.4)
             + 2 * ( 6 - data.ships.length )
     };
@@ -2049,20 +2051,23 @@
         
         data.forEach(function(dataShip) {
             const shipId = dataShip[0]
-            const equipmentIdPerSlot = dataShip[2]
-            const equipmentStarPerSlot = dataShip[3]
-            const equipmentRankPerSlot = dataShip[4]
-            ships.push({
-                id: shipId,
-                lv: dataShip[1][0]
-            })
-            equipmentIdPerSlot[2].forEach(function(equipmentId, index){
-                equipments.push({
-                    id: equipmentId,
-                    star: equipmentStarPerSlot[index],
-                    rank: equipmentRankPerSlot[index]
+
+            if (shipId) {
+                const equipmentIdPerSlot = dataShip[2]
+                const equipmentStarPerSlot = dataShip[3]
+                const equipmentRankPerSlot = dataShip[4]
+                ships.push({
+                    id: shipId,
+                    lv: dataShip[1][0]
                 })
-            })
+                equipmentIdPerSlot.forEach(function(equipmentId, index){
+                    equipments.push({
+                        id: equipmentId,
+                        star: equipmentStarPerSlot[index],
+                        rank: equipmentRankPerSlot[index]
+                    })
+                })
+            }
         })
 
         return formula.calc.los33({

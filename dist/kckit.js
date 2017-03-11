@@ -1298,7 +1298,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
          */
 
         var totalEquipmentValue = 0,
-            totalShipValue = void 0;
+            totalShipValue = 0;
 
         var equipmentTypeValues = {
             TorpedoBombers: 0.8,
@@ -1322,10 +1322,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 var typeValue = equipmentTypeValues.default;
 
                 for (var types in equipmentTypeValues) {
-                    if (Array.isArray(_equipmentType[types])) types = _equipmentType[types];else types = [_equipmentType[types]];
-                    if (types.indexOf(equipment.type) > -1) {
-                        typeValue = equipmentTypeValues[types];
-                    }
+                    var typesForCheck = void 0;
+
+                    if (Array.isArray(_equipmentType[types])) typesForCheck = _equipmentType[types];else typesForCheck = [_equipmentType[types]];
+
+                    if (typesForCheck.indexOf(equipment.type) > -1) typeValue = equipmentTypeValues[types];
                 }
 
                 totalEquipmentValue += typeValue * (equipment.stat.los + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star));
@@ -1335,10 +1336,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         data.ships.forEach(function (o) {
             var ship = _ship(o.id);
 
-            totalShipValue += ship.getAttribute('los', o.lv || 1);
+            totalShipValue += Math.sqrt(ship.getAttribute('los', o.lv || 1));
         });
 
-        return totalEquipmentValue + Math.sqrt(totalShipValue) - Math.ceil(data.hq * 0.4) + 2 * (6 - data.ships.length);
+        return totalEquipmentValue + totalShipValue - Math.ceil(data.hq * 0.4) + 2 * (6 - data.ships.length);
     };
     formula.calc.TP = function (count) {
         /* count
@@ -1854,20 +1855,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         data.forEach(function (dataShip) {
             var shipId = dataShip[0];
-            var equipmentIdPerSlot = dataShip[2];
-            var equipmentStarPerSlot = dataShip[3];
-            var equipmentRankPerSlot = dataShip[4];
-            ships.push({
-                id: shipId,
-                lv: dataShip[1][0]
-            });
-            equipmentIdPerSlot[2].forEach(function (equipmentId, index) {
-                equipments.push({
-                    id: equipmentId,
-                    star: equipmentStarPerSlot[index],
-                    rank: equipmentRankPerSlot[index]
-                });
-            });
+
+            if (shipId) {
+                (function () {
+                    var equipmentIdPerSlot = dataShip[2];
+                    var equipmentStarPerSlot = dataShip[3];
+                    var equipmentRankPerSlot = dataShip[4];
+                    ships.push({
+                        id: shipId,
+                        lv: dataShip[1][0]
+                    });
+                    equipmentIdPerSlot.forEach(function (equipmentId, index) {
+                        equipments.push({
+                            id: equipmentId,
+                            star: equipmentStarPerSlot[index],
+                            rank: equipmentRankPerSlot[index]
+                        });
+                    });
+                })();
+            }
         });
 
         return formula.calc.los33({
