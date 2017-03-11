@@ -1471,9 +1471,10 @@
 
             if (equipment.stat.los) {
                 let typeValue = equipmentTypeValues.default
+                const star = o.star || 0
 
                 for (let types in equipmentTypeValues) {
-                    let typesForCheck
+                    let typesForCheck = []
 
                     if (Array.isArray(_equipmentType[types]))
                         typesForCheck = _equipmentType[types]
@@ -1488,7 +1489,7 @@
                     += typeValue
                     * (
                         equipment.stat.los
-                        + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star)
+                        + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star)
                     )
             }
         })
