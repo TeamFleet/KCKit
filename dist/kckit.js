@@ -1349,21 +1349,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
 
         data.equipments.forEach(function (o) {
-            var equipment = _equipment(o.id);
+            if (o.id) {
+                var equipment = _equipment(o.id);
 
-            if (equipment.stat.los) {
-                var typeValue = equipmentTypeValues.default;
-                var star = o.star || 0;
+                if (equipment.stat.los) {
+                    var typeValue = equipmentTypeValues.default;
+                    var star = o.star || 0;
 
-                for (var types in equipmentTypeValues) {
-                    var typesForCheck = [];
+                    for (var types in equipmentTypeValues) {
+                        var typesForCheck = [];
 
-                    if (Array.isArray(_equipmentType[types])) typesForCheck = _equipmentType[types];else typesForCheck = [_equipmentType[types]];
+                        if (Array.isArray(_equipmentType[types])) typesForCheck = _equipmentType[types];else typesForCheck = [_equipmentType[types]];
 
-                    if (typesForCheck.indexOf(equipment.type) > -1) typeValue = equipmentTypeValues[types];
+                        if (typesForCheck.indexOf(equipment.type) > -1) typeValue = equipmentTypeValues[types];
+                    }
+
+                    totalEquipmentValue += typeValue * (equipment.stat.los + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star));
                 }
-
-                totalEquipmentValue += typeValue * (equipment.stat.los + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star));
             }
         });
 

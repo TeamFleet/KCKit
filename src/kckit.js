@@ -1491,30 +1491,32 @@
         )
         
         data.equipments.forEach(function(o){
-            const equipment = _equipment(o.id)
+            if (o.id) {
+                const equipment = _equipment(o.id)
 
-            if (equipment.stat.los) {
-                let typeValue = equipmentTypeValues.default
-                const star = o.star || 0
+                if (equipment.stat.los) {
+                    let typeValue = equipmentTypeValues.default
+                    const star = o.star || 0
 
-                for (let types in equipmentTypeValues) {
-                    let typesForCheck = []
+                    for (let types in equipmentTypeValues) {
+                        let typesForCheck = []
 
-                    if (Array.isArray(_equipmentType[types]))
-                        typesForCheck = _equipmentType[types]
-                    else
-                        typesForCheck = [_equipmentType[types]]
+                        if (Array.isArray(_equipmentType[types]))
+                            typesForCheck = _equipmentType[types]
+                        else
+                            typesForCheck = [_equipmentType[types]]
 
-                    if (typesForCheck.indexOf(equipment.type) > -1)
-                        typeValue = equipmentTypeValues[types]
+                        if (typesForCheck.indexOf(equipment.type) > -1)
+                            typeValue = equipmentTypeValues[types]
+                    }
+
+                    totalEquipmentValue
+                        += typeValue
+                        * (
+                            equipment.stat.los
+                            + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star)
+                        )
                 }
-
-                totalEquipmentValue
-                    += typeValue
-                    * (
-                        equipment.stat.los
-                        + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star)
-                    )
             }
         })
 
