@@ -253,6 +253,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     'id': this.id
                 }];
             }
+        }, {
+            key: 'getPic',
+
             /**
              * 获取图鉴uri/path
              * 
@@ -265,9 +268,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
              * 快捷方式
              *      ship._pics	获取全部图鉴，Array
              */
-
-        }, {
-            key: 'getPic',
             value: function getPic(picId, ext) {
                 var series = this.getSeriesData();
                 picId = parseInt(picId || 0);
@@ -439,9 +439,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 return;
             }
         }, {
+            key: 'getMinLv',
+
+
+            /* 获取该舰娘可能的最低等级
+             */
+            value: function getMinLv() {
+                var _this4 = this;
+
+                var series = this._series;
+                var lv = void 0;
+                series.some(function (o, index) {
+                    if (_this4.id == o.id) {
+                        if (index) {
+                            lv = series[index - 1].next_lvl;
+                        } else {
+                            lv = 1;
+                        }
+                    }
+                    return lv;
+                });
+                return lv;
+            }
+        }, {
             key: '_type',
             get: function get() {
                 return this.getType();
+            }
+        }, {
+            key: '_series',
+            get: function get() {
+                return this.getSeriesData();
             }
         }, {
             key: '_pics',
@@ -476,6 +504,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: '_illustrator',
             get: function get() {
                 return this.getIllustrator();
+            }
+        }, {
+            key: '_minLv',
+            get: function get() {
+                return this.getMinLv();
             }
         }]);
 
@@ -1337,7 +1370,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         data.ships.forEach(function (o) {
             var ship = _ship(o.id);
 
-            totalShipValue += Math.sqrt(ship.getAttribute('los', o.lv || 1));
+            totalShipValue += Math.sqrt(ship.getAttribute('los', Math.max(o.lv || 1, ship.getMinLv())));
         });
 
         return totalEquipmentValue + totalShipValue - Math.ceil(data.hq * 0.4) + 2 * (6 - data.ships.length);

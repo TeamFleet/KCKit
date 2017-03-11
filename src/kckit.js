@@ -218,6 +218,9 @@
                     'id': this.id
                 }]
         }
+        get _series() {
+            return this.getSeriesData()
+        }
         /**
          * 获取图鉴uri/path
          * 
@@ -427,6 +430,27 @@
         }
         get _illustrator() {
             return this.getIllustrator()
+        }
+
+        /* 获取该舰娘可能的最低等级
+         */
+        getMinLv() {
+            const series = this._series
+            let lv
+            series.some((o, index) => {
+                if (this.id == o.id) {
+                    if (index) {
+                        lv = series[index - 1].next_lvl
+                    } else {
+                        lv = 1
+                    }
+                }
+                return lv
+            })
+            return lv
+        }
+        get _minLv() {
+            return this.getMinLv()
         }
     }
     Ship.lvlMax = KC.maxShipLv;
@@ -1498,7 +1522,13 @@
             const ship = _ship(o.id)
 
             totalShipValue
-                += Math.sqrt(ship.getAttribute('los', o.lv || 1))
+                += Math.sqrt(ship.getAttribute(
+                    'los',
+                    Math.max(
+                        o.lv || 1,
+                        ship.getMinLv()
+                    )
+                ))
         })
 
         return totalEquipmentValue
