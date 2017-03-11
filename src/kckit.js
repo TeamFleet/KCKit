@@ -1445,7 +1445,7 @@
         let totalEquipmentValue = 0,
             totalShipValue
 
-        const equipmentTypeValues = {
+        let equipmentTypeValues = {
             TorpedoBombers: 0.8,
             CarrierRecons: 1,
 
@@ -1454,7 +1454,7 @@
             SeaplaneBomber: 1.1
         }
         Object.defineProperty(
-            equipmentTypeValue,
+            equipmentTypeValues,
             'default',
             {
                 value: 0.6,
@@ -1468,8 +1468,7 @@
             const equipment = _equipment(o.id)
 
             if (equipment.stat.los) {
-                let typeValue = equipmentTypeValues.default,
-                    starMultiper = 0
+                let typeValue = equipmentTypeValues.default
 
                 for (let types in equipmentTypeValues) {
                     if (Array.isArray(_equipmentType[types]))
@@ -1477,7 +1476,7 @@
                     else
                         types = [_equipmentType[types]]
                     if (types.indexOf(equipment.type) > -1) {
-                        typeValue = equipmentTypeValues[i]
+                        typeValue = equipmentTypeValues[types]
                     }
                 }
 
@@ -1485,7 +1484,7 @@
                     += typeValue
                     * (
                         equipment.stat.los
-                        + getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star)
+                        + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star)
                     )
             }
         })

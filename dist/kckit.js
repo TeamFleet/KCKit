@@ -71,8 +71,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function ItemBase(data) {
             _classCallCheck(this, ItemBase);
 
-            for (var _i in data) {
-                this[_i] = data[_i];
+            for (var i in data) {
+                this[i] = data[i];
             }
         }
 
@@ -278,8 +278,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     return '/' + i + '/' + p + '.' + (ext ? ext : 'png');
                 };
 
-                for (var _i2 = 0; _i2 < series.length; _i2++) {
-                    if (series[_i2].id == this.id) {
+                for (var i = 0; i < series.length; i++) {
+                    if (series[i].id == this.id) {
                         switch (picId) {
                             case 0:
                             case 1:
@@ -291,8 +291,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                 return getURI(this.id, picId);
                             //break;
                             default:
-                                if (series[_i2].illust_delete) {
-                                    return getURI(series[_i2 - 1].id, picId);
+                                if (series[i].illust_delete) {
+                                    return getURI(series[i - 1].id, picId);
                                 } else {
                                     return getURI(this.id, picId);
                                 }
@@ -447,8 +447,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: '_pics',
             get: function get() {
                 var arr = [];
-                for (var _i3 = 0; _i3 < 15; _i3++) {
-                    arr.push(this.getPic(_i3));
+                for (var i = 0; i < 15; i++) {
+                    arr.push(this.getPic(i));
                 }
                 return arr;
             }
@@ -770,16 +770,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
     formula.getStarMultiper = function (equipmentType, type) {
         if (!formula.starMultiper._init) {
-            var _loop = function _loop(_i4) {
-                if (_equipmentType[_i4] && _equipmentType[_i4].forEach) {
-                    _equipmentType[_i4].forEach(function (tid) {
-                        formula.starMultiper[tid] = formula.starMultiper[_i4];
+            var _loop = function _loop(i) {
+                if (_equipmentType[i] && _equipmentType[i].forEach) {
+                    _equipmentType[i].forEach(function (tid) {
+                        formula.starMultiper[tid] = formula.starMultiper[i];
                     });
                 }
             };
 
-            for (var _i4 in formula.starMultiper) {
-                _loop(_i4);
+            for (var i in formula.starMultiper) {
+                _loop(i);
             }
             formula.starMultiper._init = !0;
         }
@@ -1306,7 +1306,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             ReconSeaplaneNight: 1.2,
             SeaplaneBomber: 1.1
         };
-        Object.defineProperty(equipmentTypeValue, 'default', {
+        Object.defineProperty(equipmentTypeValues, 'default', {
             value: 0.6,
             enumerable: !1,
             configurable: !1,
@@ -1317,17 +1317,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var equipment = _equipment(o.id);
 
             if (equipment.stat.los) {
-                var typeValue = equipmentTypeValues.default,
-                    starMultiper = 0;
+                var typeValue = equipmentTypeValues.default;
 
                 for (var types in equipmentTypeValues) {
                     if (Array.isArray(_equipmentType[types])) types = _equipmentType[types];else types = [_equipmentType[types]];
                     if (types.indexOf(equipment.type) > -1) {
-                        typeValue = equipmentTypeValues[i];
+                        typeValue = equipmentTypeValues[types];
                     }
                 }
 
-                totalEquipmentValue += typeValue * (equipment.stat.los + getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star));
+                totalEquipmentValue += typeValue * (equipment.stat.los + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(o.star));
             }
         });
 
@@ -1365,9 +1364,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             ship = count.ship || {},
             equipment = count.equipment || {};
 
-        for (var _i5 in ship) {
+        for (var i in ship) {
             var multiper = 0;
-            switch (_i5) {
+            switch (i) {
                 case 1:
                 case '1':
                 case 19:
@@ -1410,12 +1409,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 case 'ct':
                     multiper = 6;break;
             }
-            result += multiper * (parseInt(ship[_i5]) || 0);
+            result += multiper * (parseInt(ship[i]) || 0);
         }
 
-        for (var _i6 in equipment) {
+        for (var _i in equipment) {
             var _multiper = 0,
-                id = parseInt(_i6),
+                id = parseInt(_i),
                 data = void 0;
             switch (id) {
                 // canister
@@ -1454,7 +1453,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             break;
                     }
             }
-            result += _multiper * (parseInt(equipment[_i6]) || 0);
+            result += _multiper * (parseInt(equipment[_i]) || 0);
         }
 
         return result;
@@ -1634,8 +1633,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         equipments_by_slot.forEach(function (equipment) {
             if (equipment) {
-                for (var _i7 in x) {
-                    if (_equipmentType[_i7] && _equipmentType[_i7].push && _equipmentType[_i7].indexOf(equipment.type) > -1) x[_i7] += equipment.stat.los;
+                for (var i in x) {
+                    if (_equipmentType[i] && _equipmentType[i].push && _equipmentType[i].indexOf(equipment.type) > -1) x[i] += equipment.stat.los;
                 }
             }
         });
