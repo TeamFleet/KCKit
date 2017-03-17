@@ -697,6 +697,10 @@
         _equipmentType.SeaplaneFighter
     ];
 
+    _equipmentType.SeaplaneFighters = [
+        _equipmentType.SeaplaneFighter
+    ];
+
     _equipmentType.CarrierFighters = [
         _equipmentType.CarrierFighter
     ];
@@ -862,6 +866,9 @@
         },
         ReconSeaplanes: {
             los: 1.2
+        },
+        SeaplaneFighters: {
+            fighter: 0.2
         },
         CarrierFighters: {
             fighter: 0.2
@@ -1664,9 +1671,7 @@
             && carry
         ) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
-            /*if( star )
-                console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
-            */
+            // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
             let statAA = (equipment.stat.aa || 0)
                 + (equipment.type == _equipmentType.Interceptor ? equipment.stat.evasion * 1.5 : 0)
                 + (star * formula.getStarMultiper(equipment.type, 'fighter'))
