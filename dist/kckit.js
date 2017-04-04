@@ -1793,7 +1793,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // 	0x + 2y		+10		1x
                 // 	x = 0.33
                 // 	y = 0.5
-                multiper = Math.max(1, count['34'] / 3 + 0.5 * count['87']);
+                if (count['34'] || count['87']) multiper = Math.min(1, count['34'] / 3 + 0.5 * count['87']);
+                console.log(count, multiper);
                 break;
             case 'low-3':
             case 'high-4':
@@ -1839,6 +1840,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         // )
 
         if (multiper > 0 && multiper < 1) result += 5;else if (multiper >= 1 && multiper < 1.5) result += 10;else if (multiper >= 1.5) result += 15;
+
+        console.log(result, theResult());
 
         return theResult();
     };
