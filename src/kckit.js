@@ -1981,7 +1981,6 @@
                         1,
                         count['34'] / 3 + 0.5 * count['87']
                     )
-                console.log(count, multiper)
                 break
             case 'low-3':
             case 'high-4':
@@ -2033,8 +2032,6 @@
             result += 10
         else if (multiper >= 1.5)
             result += 15
-        
-        console.log(result, theResult())
 
         return theResult()
     };
