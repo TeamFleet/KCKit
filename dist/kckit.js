@@ -643,7 +643,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 航母系列
             Carriers: [9, // 轻型航母
             10, // 正规航母
-            11 // 装甲航母
+            11, // 装甲航母
+            30 // 攻击型轻航母
             ],
             // 轻巡系列
             LightCruisers: [2, // 轻巡洋舰
