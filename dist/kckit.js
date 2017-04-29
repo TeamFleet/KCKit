@@ -636,7 +636,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             JetBomberFighter: 55, // 喷气式战斗轰炸机
             JetBomberFighter2: 56, // 喷气式战斗轰炸机
             TransportMaterial: 57, // 运输设备
-            SubmarineEquipment: 58 // 潜艇装备
+            SubmarineEquipment: 58, // 潜艇装备
+            LandBasedFighter: 59 // 陆战 / 陆上战斗机
         },
         // 舰种
         shipType: {
@@ -685,7 +686,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.Fighters = [_equipmentType.SeaplaneBomber, _equipmentType.CarrierFighter, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.SeaplaneFighter, _equipmentType.LandBasedAttacker, _equipmentType.Interceptor,
     // _equipmentType.CarrierRecon
-    _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
+    _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter];
+
+    _equipmentType.Interceptors = [_equipmentType.Interceptor, _equipmentType.LandBasedFighter];
 
     _equipmentType.Recons = [_equipmentType.ReconSeaplane, _equipmentType.ReconSeaplaneNight, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.LargeFlyingBoat];
 
@@ -703,7 +706,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.CarrierBased = [_equipmentType.CarrierFighter, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
 
-    _equipmentType.LandBased = [_equipmentType.LandBasedAttacker, _equipmentType.Interceptor, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
+    _equipmentType.LandBased = [_equipmentType.LandBasedAttacker, _equipmentType.Interceptor, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter];
 
     _equipmentType.TorpedoBombers = [_equipmentType.TorpedoBomber];
 
@@ -853,6 +856,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             case _equipmentType.CarrierFighter:
             case _equipmentType.Interceptor:
             case _equipmentType.SeaplaneFighter:
+            case _equipmentType.LandBasedFighter:
                 _typeValue = typeValue.CarrierFighter[rank];
                 break;
             case _equipmentType.SeaplaneBomber:
@@ -1377,8 +1381,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         data.ships.forEach(function (o) {
             var ship = _ship(o.id);
+            var shipLOS = ship.getAttribute('los', Math.max(o.lv || 1, ship.getMinLv()));
 
-            totalShipValue += Math.sqrt(ship.getAttribute('los', Math.max(o.lv || 1, ship.getMinLv())));
+            totalShipValue += Math.sqrt(Math.max(shipLOS, 1));
         });
 
         return totalEquipmentValue + totalShipValue - Math.ceil(data.hq * 0.4) + 2 * (6 - data.ships.length);
@@ -1519,7 +1524,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (_equipmentType.Fighters.indexOf(equipment.type) > -1 && carry) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
             // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
-            var statAA = (equipment.stat.aa || 0) + (equipment.type == _equipmentType.Interceptor ? equipment.stat.evasion * 1.5 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
+            var statAA = (equipment.stat.aa || 0) + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion * 1.5 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
                 base = statAA * Math.sqrt(carry),
                 rankBonus = formula.getFighterPowerRankMultiper(equipment, rank);
 
@@ -1542,7 +1547,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var results = [0, 0];
 
         if (carry) {
-            var statAA = (equipment.stat.aa || 0) + (equipment.type == _equipmentType.Interceptor ? equipment.stat.evasion : 0) + (equipment.type == _equipmentType.Interceptor ? equipment.stat.hit * 2 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
+            var statAA = (equipment.stat.aa || 0) + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion : 0) + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.hit * 2 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
                 base = statAA * Math.sqrt(carry),
                 rankBonus = formula.getFighterPowerRankMultiper(equipment, rank, {
                 isAA: !0
@@ -1897,22 +1902,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var shipId = dataShip[0];
 
             if (shipId) {
-                (function () {
-                    var equipmentIdPerSlot = dataShip[2];
-                    var equipmentStarPerSlot = dataShip[3];
-                    var equipmentRankPerSlot = dataShip[4];
-                    ships.push({
-                        id: shipId,
-                        lv: dataShip[1][0]
+                var equipmentIdPerSlot = dataShip[2];
+                var equipmentStarPerSlot = dataShip[3];
+                var equipmentRankPerSlot = dataShip[4];
+                ships.push({
+                    id: shipId,
+                    lv: dataShip[1][0]
+                });
+                equipmentIdPerSlot.forEach(function (equipmentId, index) {
+                    equipments.push({
+                        id: equipmentId,
+                        star: equipmentStarPerSlot[index],
+                        rank: equipmentRankPerSlot[index]
                     });
-                    equipmentIdPerSlot.forEach(function (equipmentId, index) {
-                        equipments.push({
-                            id: equipmentId,
-                            star: equipmentStarPerSlot[index],
-                            rank: equipmentRankPerSlot[index]
-                        });
-                    });
-                })();
+                });
             }
         });
 

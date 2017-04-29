@@ -581,7 +581,8 @@
             JetBomberFighter: 55,		// 喷气式战斗轰炸机
             JetBomberFighter2: 56,		// 喷气式战斗轰炸机
             TransportMaterial: 57,	    // 运输设备
-            SubmarineEquipment: 58		// 潜艇装备
+            SubmarineEquipment: 58,		// 潜艇装备
+            LandBasedFighter: 59    // 陆战 / 陆上战斗机
         },
         // 舰种
         shipType: {
@@ -671,8 +672,14 @@
         _equipmentType.Interceptor,
         // _equipmentType.CarrierRecon
         _equipmentType.JetBomberFighter,
-        _equipmentType.JetBomberFighter2
+        _equipmentType.JetBomberFighter2,
+        _equipmentType.LandBasedFighter
     ];
+
+    _equipmentType.Interceptors = [
+        _equipmentType.Interceptor,
+        _equipmentType.LandBasedFighter
+    ]
 
     _equipmentType.Recons = [
         _equipmentType.ReconSeaplane,
@@ -725,7 +732,8 @@
         _equipmentType.LandBasedAttacker,
         _equipmentType.Interceptor,
         _equipmentType.JetBomberFighter,
-        _equipmentType.JetBomberFighter2
+        _equipmentType.JetBomberFighter2,
+        _equipmentType.LandBasedFighter
     ];
 
     _equipmentType.TorpedoBombers = [
@@ -940,6 +948,7 @@
             case _equipmentType.CarrierFighter:
             case _equipmentType.Interceptor:
             case _equipmentType.SeaplaneFighter:
+            case _equipmentType.LandBasedFighter:
                 _typeValue = typeValue.CarrierFighter[rank];
                 break;
             case _equipmentType.SeaplaneBomber:
@@ -1530,15 +1539,16 @@
 
         data.ships.forEach(function(o){
             const ship = _ship(o.id)
-
-            totalShipValue
-                += Math.sqrt(ship.getAttribute(
+            const shipLOS = ship.getAttribute(
                     'los',
                     Math.max(
                         o.lv || 1,
                         ship.getMinLv()
                     )
-                ))
+                )
+
+            totalShipValue
+                += Math.sqrt(Math.max(shipLOS,1))
         })
 
         return totalEquipmentValue
@@ -1674,7 +1684,7 @@
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
             // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
             let statAA = (equipment.stat.aa || 0)
-                + (equipment.type == _equipmentType.Interceptor ? equipment.stat.evasion * 1.5 : 0)
+                + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion * 1.5 : 0)
                 + (star * formula.getStarMultiper(equipment.type, 'fighter'))
                 , base = statAA * Math.sqrt(carry)
                 , rankBonus = formula.getFighterPowerRankMultiper(equipment, rank)
@@ -1700,8 +1710,8 @@
 
         if (carry) {
             let statAA = (equipment.stat.aa || 0)
-                + (equipment.type == _equipmentType.Interceptor ? equipment.stat.evasion : 0)
-                + (equipment.type == _equipmentType.Interceptor ? equipment.stat.hit * 2 : 0)
+                + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion : 0)
+                + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.hit * 2 : 0)
                 + (star * formula.getStarMultiper(equipment.type, 'fighter'))
                 , base = statAA * Math.sqrt(carry)
                 , rankBonus = formula.getFighterPowerRankMultiper(equipment, rank, {
