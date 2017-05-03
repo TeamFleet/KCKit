@@ -33,7 +33,7 @@ let vars = {
     pathPics: {
     },
 
-    register = (settings = {}) => {
+    register: (settings = {}) => {
         deepExtend(vars, settings)
         return vars
     }
