@@ -13,8 +13,6 @@ const {
 const ItemBase = require('./base.js')
 
 module.exports = class Ship extends ItemBase {
-    static lvlMax = maxShipLv
-
     constructor(data) {
         super(data);
     }
