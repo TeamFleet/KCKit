@@ -1,10 +1,5 @@
 const deepExtend = require('deep-extend')
 
-const register = (settings = {}) => {
-    deepExtend(vars, settings)
-    return vars
-}
-
 let vars = {
     locale: "ja_jp",
     joint: "・",
@@ -36,10 +31,12 @@ let vars = {
 
     db: {},
     pathPics: {
+    },
+
+    register = (settings = {}) => {
+        deepExtend(vars, settings)
+        return vars
     }
 }
 
-module.exports = {
-    register,
-    ...vars
-}
+module.exports = vars

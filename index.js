@@ -1,7 +1,7 @@
 module.exports = {
     register: require('./src/register'),
 
-    ...require('./src/variables'),
+    vars: require('./src/variables'),
 
     // Classes
     Ship: require('./src/class/ship'),
@@ -10,5 +10,5 @@ module.exports = {
     Consumable: require('./src/class/consumable'),
 
     // Formulas
-    ...require('./src/formula/')
+    formula: require('./src/formula/')
 }
