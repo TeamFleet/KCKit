@@ -1,11 +1,4 @@
-const {
-    locale,
-    joint,
-    maxShipLv,
-    extPic,
-    db,
-    pathPics
-} = require('../variables')
+const vars = require('../variables')
 const {
     getSpeed,
     getRange
@@ -25,11 +18,11 @@ module.exports = class Ship extends ItemBase {
      * @return {string} 舰名 + 连接符（如果有） + 后缀名（如果有）
      * 快捷方式 - ship._name (默认连接符，默认语言)
      */
-    getName(theJoint = joint, locale = locale) {
-        let suffix = this.getSuffix(locale)
-        return this.getNameNoSuffix(locale) + (suffix
+    getName(theJoint = vars.joint, theLocale = vars.locale) {
+        let suffix = this.getSuffix(theLocale)
+        return this.getNameNoSuffix(theLocale) + (suffix
             ? (
-                (theJoint === true ? joint : theJoint)
+                (theJoint === true ? vars.joint : theJoint)
                 + suffix
             )
             : ''
@@ -43,8 +36,8 @@ module.exports = class Ship extends ItemBase {
         返回值
             String		舰名，不包括后缀
     */
-    getNameNoSuffix(locale = locale) {
-        return this.name[locale] || this.name.ja_jp
+    getNameNoSuffix(theLocale = vars.locale) {
+        return this.name[theLocale] || this.name.ja_jp
     }
 
     /*	获取后缀名
@@ -54,11 +47,11 @@ module.exports = class Ship extends ItemBase {
         返回值
             String		后缀名
     */
-    getSuffix(locale = locale) {
+    getSuffix(theLocale = vars.locale) {
         return this.name.suffix
             ? (
-                db.ship_namesuffix[this.name.suffix][locale]
-                || db.ship_namesuffix[this.name.suffix].ja_jp
+                vars.db.ship_namesuffix[this.name.suffix][theLocale]
+                || vars.db.ship_namesuffix[this.name.suffix].ja_jp
                 || ''
             )
             : ''
@@ -73,9 +66,9 @@ module.exports = class Ship extends ItemBase {
         快捷方式
             ship._type	默认语言
     */
-    getType(locale = locale) {
+    getType() {
         return this.type
-            ? db.ship_types[this.type].full_zh
+            ? vars.db.ship_types[this.type].full_zh
             : null
     }
     get _type() {
@@ -88,7 +81,7 @@ module.exports = class Ship extends ItemBase {
     */
     getSeriesData() {
         return this.series
-            ? db.ship_series[this.series].ships
+            ? vars.db.ship_series[this.series].ships
             : [{
                 'id': this.id
             }]
@@ -109,11 +102,11 @@ module.exports = class Ship extends ItemBase {
      * 快捷方式
      *      ship._pics	获取全部图鉴，Array
      */
-    getPic(picId = 0, ext = extPic) {
+    getPic(picId = 0, ext = vars.extPic) {
         let series = this.getSeriesData()
         picId = parseInt(picId)
 
-        const getUrl = (id, picId) => `${pathPics.ships || ''}/${id}/${picId}${ext}`
+        const getUrl = (id, picId) => `${vars.pathPics.ships || ''}/${id}/${picId}${ext}`
 
         for (let i = 0; i < series.length; i++) {
             if (series[i].id == this.id) {
@@ -157,7 +150,7 @@ module.exports = class Ship extends ItemBase {
     getSpeedRule() {
         if (this.name.ja_jp === '天津風') return 'high-b'
         return this.class
-            ? db.ship_classes[this.class].speed_rule
+            ? vars.db.ship_classes[this.class].speed_rule
             : 'low-2'
     }
     get _speedRule() {
@@ -172,13 +165,13 @@ module.exports = class Ship extends ItemBase {
     }
 
     getEquipmentTypes() {
-        return db.ship_types[this.type].equipable.concat((this.additional_item_types || [])).sort(function (a, b) {
+        return vars.db.ship_types[this.type].equipable.concat((this.additional_item_types || [])).sort(function (a, b) {
             return a - b
         })
     }
 
     getAttribute(attr, lvl = 1) {
-        if (lvl > maxShipLv) lvl = maxShipLv
+        if (lvl > vars.maxShipLv) lvl = vars.maxShipLv
 
         const getStatLvl = (lvl = 1, base, max) => {
             base = parseFloat(base)
@@ -246,14 +239,14 @@ module.exports = class Ship extends ItemBase {
     getRel(relation) {
         if (relation) {
             if (!this.rels[relation] && this.remodel && this.remodel.prev) {
-                let prev = db.ships[this.remodel.prev]
+                let prev = vars.db.ships[this.remodel.prev]
                 while (prev) {
                     if (prev.rels && prev.rels[relation])
                         return prev.rels[relation]
                     if (!prev.remodel || !prev.remodel.prev)
                         prev = null
                     else
-                        prev = db.ships[prev.remodel.prev]
+                        prev = vars.db.ships[prev.remodel.prev]
                 }
             }
             return this.rels[relation]
@@ -271,10 +264,10 @@ module.exports = class Ship extends ItemBase {
         快捷方式
             ship._cv	默认语言
     */
-    getCV(locale = locale) {
+    getCV(theLocale = vars.locale) {
         let entity = this.getRel('cv')
         if (entity)
-            return entities[entity].getName(locale)
+            return vars.db.entities[entity].getName(theLocale)
         return
     }
     get _cv() {
@@ -290,10 +283,10 @@ module.exports = class Ship extends ItemBase {
         快捷方式
             ship._illustrator	默认语言
     */
-    getIllustrator(locale = locale) {
+    getIllustrator(theLocale = vars.locale) {
         let entity = this.getRel('illustrator')
         if (entity)
-            return db.entities[entity].getName(locale)
+            return vars.db.entities[entity].getName(theLocale)
         return
     }
     get _illustrator() {

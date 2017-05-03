@@ -30,11 +30,11 @@ let vars = {
     extPic: '.png',
 
     db: {},
-    pathPics: {
-    },
+    pathPics: {},
 
     register: (settings = {}) => {
         deepExtend(vars, settings)
+        // Object.assign(vars, settings)
         return vars
     }
 }

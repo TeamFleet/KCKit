@@ -1,4 +1,4 @@
-const { locale } = require('../variables')
+const vars = require('../variables')
 
 module.exports = class {
     constructor(data) {
@@ -7,9 +7,9 @@ module.exports = class {
         }
     }
 
-    getName(locale = locale) {
+    getName(theLocale = vars.locale) {
         return this.name
-            ? (this.name[locale] || this.name)
+            ? (this.name[theLocale] || this.name)
             : null
     }
 

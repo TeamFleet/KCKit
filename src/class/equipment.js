@@ -1,7 +1,4 @@
-const {
-    locale,
-    db
-} = require('../variables')
+const vars = require('../variables')
 const ItemBase = require('./base.js')
 
 module.exports = class Consumable extends ItemBase {
@@ -9,22 +6,22 @@ module.exports = class Consumable extends ItemBase {
         super(data);
     }
 
-    getName(small_brackets, locale = locale) {
-        var result = ItemBase.prototype.getName.call(this, locale)
+    getName(small_brackets, theLocale = vars.locale) {
+        var result = ItemBase.prototype.getName.call(this, theLocale)
             , small_brackets_tag = small_brackets && !small_brackets === true ? small_brackets : 'small'
         return small_brackets
             ? result.replace(/（([^（^）]+)）/g, '<' + small_brackets_tag + '>($1)</' + small_brackets_tag + '>')
             : result
     }
 
-    getType(locale = locale) {
+    getType(theLocale = vars.locale) {
         return this.type
-            ? db.item_types[this.type].name[locale]
+            ? vars.db.item_types[this.type].name[theLocale]
             : null
     }
 
     getIconId() {
-        return db.item_types[this.type].icon
+        return vars.db.item_types[this.type].icon
     }
     get _icon() {
         return 'assets/images/itemicon/' + this.getIconId() + '.png'
@@ -39,7 +36,7 @@ module.exports = class Consumable extends ItemBase {
 
     getPower() {
         return this.stat[
-            db.item_types[this.type].main_attribute || 'fire'
+            vars.db.item_types[this.type].main_attribute || 'fire'
         ]
         /*
         switch( this.type ){
