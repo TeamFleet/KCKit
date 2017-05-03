@@ -2,7 +2,7 @@
     "name": "kckit",
     "main": "dist-app/main.html",
 
-    "version": "1.0.0",
+    "version": "1.0.1",
 
     "description": "Javascript library for KanColle",
     "author": {
@@ -15,7 +15,7 @@
         "type": "git",
         "url": "https://github.com/Diablohu/KCKit"
     },
-    "devDependencies": {
+    "dependencies": {
         "deep-extend": "^0.4.1"
     }
 }
