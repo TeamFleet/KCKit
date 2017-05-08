@@ -1922,7 +1922,7 @@
             '34': 0,
             '87': 0
         }
-        let rule = ship._speedRule
+        let rule = ship._speedRule || 'low-2'
         let multiper = 0
 
         equipments_by_slot.forEach(function (equipment) {
