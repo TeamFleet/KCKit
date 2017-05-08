@@ -645,8 +645,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             Carriers: [9, // 轻型航母
             10, // 正规航母
             11, // 装甲航母
-            30 // 攻击型轻航母
-            ],
+            30, // 攻击型轻航母
+            32],
             // 轻巡系列
             LightCruisers: [2, // 轻巡洋舰
             3, // 重雷装巡洋舰
@@ -1736,7 +1736,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             '34': 0,
             '87': 0
         };
-        var rule = ship._speedRule;
+        var rule = ship._speedRule || 'low-2';
         var multiper = 0;
 
         equipments_by_slot.forEach(function (equipment) {
