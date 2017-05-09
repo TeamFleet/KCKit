@@ -3,6 +3,7 @@ const {
     getSpeed,
     getRange
 } = require('../helpers')
+const getdb = require('../get-db.js')
 const ItemBase = require('./base.js')
 
 module.exports = class Ship extends ItemBase {
@@ -50,8 +51,8 @@ module.exports = class Ship extends ItemBase {
     getSuffix(theLocale = vars.locale) {
         return this.name.suffix
             ? (
-                vars.db.ship_namesuffix[this.name.suffix][theLocale]
-                || vars.db.ship_namesuffix[this.name.suffix].ja_jp
+                getdb('ship_namesuffix')[this.name.suffix][theLocale]
+                || getdb('ship_namesuffix')[this.name.suffix].ja_jp
                 || ''
             )
             : ''
@@ -68,7 +69,7 @@ module.exports = class Ship extends ItemBase {
     */
     getType() {
         return this.type
-            ? vars.db.ship_types[this.type].full_zh
+            ? getdb('ship_types')[this.type].full_zh
             : null
     }
     get _type() {
@@ -81,7 +82,7 @@ module.exports = class Ship extends ItemBase {
     */
     getSeriesData() {
         return this.series
-            ? vars.db.ship_series[this.series].ships
+            ? getdb('ship_series')[this.series].ships
             : [{
                 'id': this.id
             }]
@@ -150,7 +151,7 @@ module.exports = class Ship extends ItemBase {
     getSpeedRule() {
         if (this.name.ja_jp === '天津風') return 'high-b'
         return this.class
-            ? vars.db.ship_classes[this.class].speed_rule
+            ? getdb('ship_classes')[this.class].speed_rule
             : 'low-2'
     }
     get _speedRule() {
@@ -165,7 +166,7 @@ module.exports = class Ship extends ItemBase {
     }
 
     getEquipmentTypes() {
-        return vars.db.ship_types[this.type].equipable.concat((this.additional_item_types || [])).sort(function (a, b) {
+        return getdb('ship_types')[this.type].equipable.concat((this.additional_item_types || [])).sort(function (a, b) {
             return a - b
         })
     }
@@ -239,14 +240,14 @@ module.exports = class Ship extends ItemBase {
     getRel(relation) {
         if (relation) {
             if (!this.rels[relation] && this.remodel && this.remodel.prev) {
-                let prev = vars.db.ships[this.remodel.prev]
+                let prev = getdb('ships')[this.remodel.prev]
                 while (prev) {
                     if (prev.rels && prev.rels[relation])
                         return prev.rels[relation]
                     if (!prev.remodel || !prev.remodel.prev)
                         prev = null
                     else
-                        prev = vars.db.ships[prev.remodel.prev]
+                        prev = getdb('ships')[prev.remodel.prev]
                 }
             }
             return this.rels[relation]
@@ -267,7 +268,7 @@ module.exports = class Ship extends ItemBase {
     getCV(theLocale = vars.locale) {
         let entity = this.getRel('cv')
         if (entity)
-            return vars.db.entities[entity].getName(theLocale)
+            return getdb('entities')[entity].getName(theLocale)
         return
     }
     get _cv() {
@@ -286,7 +287,7 @@ module.exports = class Ship extends ItemBase {
     getIllustrator(theLocale = vars.locale) {
         let entity = this.getRel('illustrator')
         if (entity)
-            return vars.db.entities[entity].getName(theLocale)
+            return getdb('entities')[entity].getName(theLocale)
         return
     }
     get _illustrator() {
