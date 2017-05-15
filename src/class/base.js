@@ -9,7 +9,7 @@ module.exports = class {
 
     getName(theLocale = vars.locale) {
         return this.name
-            ? (this.name[theLocale] || this.name)
+            ? (this.name[theLocale] || this.name.ja_jp)
             : null
     }
 
