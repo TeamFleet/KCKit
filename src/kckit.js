@@ -201,7 +201,11 @@
         getType(language) {
             language = language || KC.lang
             return this.type
-                ? KC.db.ship_types[this.type].full_zh
+                ? (
+                    KC.db.ship_types[this.type].name[language]
+                    || KC.db.ship_types[this.type].name.ja_jp
+                    || ''
+                )
                 : null
         }
         get _type() {
@@ -822,6 +826,15 @@
     _equipmentType.AmphibiousCrafts = [
         _equipmentType.AmphibiousCraft
     ];
+
+    _equipmentType.isInterceptor = function (equipment) {
+        equipment = _equipment(equipment)
+
+        if (equipment.type_ingame && equipment.type_ingame[2] == 47)
+            return false
+
+        return (_equipmentType.Interceptors.indexOf(equipment.type) > -1)
+    };
 
     // 改修收益系数
     formula.starMultiper = {
@@ -1507,8 +1520,8 @@
                 writable: false
             }
         )
-        
-        data.equipments.forEach(function(o){
+
+        data.equipments.forEach(function (o) {
             if (o.id) {
                 const equipment = _equipment(o.id)
 
@@ -1538,24 +1551,24 @@
             }
         })
 
-        data.ships.forEach(function(o){
+        data.ships.forEach(function (o) {
             const ship = _ship(o.id)
             const shipLOS = ship.getAttribute(
-                    'los',
-                    Math.max(
-                        o.lv || 1,
-                        ship.getMinLv()
-                    )
+                'los',
+                Math.max(
+                    o.lv || 1,
+                    ship.getMinLv()
                 )
+            )
 
             totalShipValue
-                += Math.sqrt(Math.max(shipLOS,1))
+                += Math.sqrt(Math.max(shipLOS, 1))
         })
 
         return totalEquipmentValue
             + totalShipValue
             - Math.ceil(data.hq * 0.4)
-            + 2 * ( 6 - data.ships.length )
+            + 2 * (6 - data.ships.length)
     };
     formula.calc.TP = function (count) {
         /* count
@@ -1645,7 +1658,7 @@
                 default:
                     // 瑞云 & 晴岚
                     data = _equipment(id)
-                    switch( data.type ){
+                    switch (data.type) {
                         // case formula.equipmentType.SeaplaneBomber:
                         //     if( data.name.ja_jp.indexOf('瑞雲') > -1 )
                         //         multiper = 2
@@ -1653,7 +1666,7 @@
                         //         multiper = 4
                         //     break;
                         case formula.equipmentType.LandingCraft:
-                            if( data.name.ja_jp.indexOf('大発動艇') > -1 )
+                            if (data.name.ja_jp.indexOf('大発動艇') > -1)
                                 multiper = 8
                             break;
                     }
@@ -1685,7 +1698,7 @@
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
             // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
             let statAA = (equipment.stat.aa || 0)
-                + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion * 1.5 : 0)
+                + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion * 1.5 : 0)
                 + (star * formula.getStarMultiper(equipment.type, 'fighter'))
                 , base = statAA * Math.sqrt(carry)
                 , rankBonus = formula.getFighterPowerRankMultiper(equipment, rank)
@@ -1711,8 +1724,8 @@
 
         if (carry) {
             let statAA = (equipment.stat.aa || 0)
-                + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion : 0)
-                + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.hit * 2 : 0)
+                + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion : 0)
+                + (_equipmentType.isInterceptor(equipment) ? equipment.stat.hit * 2 : 0)
                 + (star * formula.getStarMultiper(equipment.type, 'fighter'))
                 , base = statAA * Math.sqrt(carry)
                 , rankBonus = formula.getFighterPowerRankMultiper(equipment, rank, {
@@ -1893,9 +1906,9 @@
     };
     formula.calcByShip.speed = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
         if (!ship) return ''
-        if( typeof star_by_slot === 'object' && star_by_slot.push )
+        if (typeof star_by_slot === 'object' && star_by_slot.push)
             return formula.calcByShip.speed(ship, equipments_by_slot, [], [], star_by_slot)
-        if( typeof rank_by_slot === 'object' && rank_by_slot.push )
+        if (typeof rank_by_slot === 'object' && rank_by_slot.push)
             return formula.calcByShip.speed(ship, equipments_by_slot, star_by_slot, [], rank_by_slot)
 
         ship = _ship(ship);
@@ -1903,9 +1916,9 @@
         options = options || {}
 
         let result = parseInt(ship.stat.speed)
-        const theResult = function(theResult){
+        const theResult = function (theResult) {
             theResult = Math.min(20, theResult || result)
-            if( options.returnNumber )
+            if (options.returnNumber)
                 return theResult
             return KC.statSpeed[theResult]
         }
@@ -1935,7 +1948,7 @@
                 count['' + id]++
         })
 
-        if( !count['33'] ) return theResult()
+        if (!count['33']) return theResult()
 
         switch (rule) {
             case 'low-1':
@@ -1988,7 +2001,7 @@
                 // 	0x + 2y		+10		1x
                 // 	x = 0.33
                 // 	y = 0.5
-                if(count['34'] || count['87'])
+                if (count['34'] || count['87'])
                     multiper = Math.min(
                         1,
                         count['34'] / 3 + 0.5 * count['87']
@@ -2099,8 +2112,8 @@
 
         let equipments = [],
             ships = []
-        
-        data.forEach(function(dataShip) {
+
+        data.forEach(function (dataShip) {
             const shipId = dataShip[0]
 
             if (shipId) {
@@ -2111,7 +2124,7 @@
                     id: shipId,
                     lv: dataShip[1][0]
                 })
-                equipmentIdPerSlot.forEach(function(equipmentId, index){
+                equipmentIdPerSlot.forEach(function (equipmentId, index) {
                     equipments.push({
                         id: equipmentId,
                         star: equipmentStarPerSlot[index],
