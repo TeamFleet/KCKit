@@ -239,7 +239,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: 'getType',
             value: function getType(language) {
                 language = language || KC.lang;
-                return this.type ? KC.db.ship_types[this.type].full_zh : null;
+                return this.type ? KC.db.ship_types[this.type].name[language] || KC.db.ship_types[this.type].name.ja_jp || '' : null;
             }
         }, {
             key: 'getSeriesData',
@@ -744,6 +744,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     _equipmentType.LandingCrafts = [_equipmentType.LandingCraft, _equipmentType.AmphibiousCraft];
 
     _equipmentType.AmphibiousCrafts = [_equipmentType.AmphibiousCraft];
+
+    _equipmentType.isInterceptor = function (equipment) {
+        equipment = _equipment(equipment);
+
+        if (equipment.type_ingame && equipment.type_ingame[2] == 47) return !1;
+
+        return _equipmentType.Interceptors.indexOf(equipment.type) > -1;
+    };
 
     // 改修收益系数
     formula.starMultiper = {
@@ -1524,7 +1532,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (_equipmentType.Fighters.indexOf(equipment.type) > -1 && carry) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
             // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
-            var statAA = (equipment.stat.aa || 0) + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion * 1.5 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
+            var statAA = (equipment.stat.aa || 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion * 1.5 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
                 base = statAA * Math.sqrt(carry),
                 rankBonus = formula.getFighterPowerRankMultiper(equipment, rank);
 
@@ -1547,7 +1555,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var results = [0, 0];
 
         if (carry) {
-            var statAA = (equipment.stat.aa || 0) + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.evasion : 0) + (_equipmentType.Interceptors.indexOf(equipment.type) > -1 ? equipment.stat.hit * 2 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
+            var statAA = (equipment.stat.aa || 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion : 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.hit * 2 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
                 base = statAA * Math.sqrt(carry),
                 rankBonus = formula.getFighterPowerRankMultiper(equipment, rank, {
                 isAA: !0
