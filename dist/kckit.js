@@ -896,9 +896,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             'main': 0,
             'secondary': 0,
             'torpedo': 0,
+            'torpedoLateModel': 0,
             'seaplane': 0,
             'apshell': 0,
-            'radar': 0
+            'radar': 0,
+            'submarineEquipment': 0
         },
             slots = _slots(ship.slot),
             powerTorpedo = function powerTorpedo(options) {
@@ -935,7 +937,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         equipments_by_slot.forEach(function (equipment) {
             if (!equipment) return;
-            if (_equipmentType.MainGuns.indexOf(equipment.type) > -1) count.main += 1;else if (_equipmentType.SecondaryGuns.indexOf(equipment.type) > -1) count.secondary += 1;else if (_equipmentType.Torpedos.indexOf(equipment.type) > -1) count.torpedo += 1;else if (_equipmentType.Seaplanes.indexOf(equipment.type) > -1) count.seaplane += 1;else if (_equipmentType.APShells.indexOf(equipment.type) > -1) count.apshell += 1;else if (_equipmentType.Radars.indexOf(equipment.type) > -1) count.radar += 1;
+            if (_equipmentType.MainGuns.indexOf(equipment.type) > -1) count.main += 1;else if (_equipmentType.SecondaryGuns.indexOf(equipment.type) > -1) count.secondary += 1;else if (_equipmentType.Torpedos.indexOf(equipment.type) > -1) {
+                count.torpedo += 1;
+                if (equipment.name.ja_jp.indexOf('後期型') > -1) count.torpedoLateModel += 1;
+            } else if (_equipmentType.Seaplanes.indexOf(equipment.type) > -1) count.seaplane += 1;else if (_equipmentType.APShells.indexOf(equipment.type) > -1) count.apshell += 1;else if (_equipmentType.Radars.indexOf(equipment.type) > -1) count.radar += 1;else if (_equipmentType.SubmarineEquipment == equipment.type) count.submarineEquipment += 1;
         });
 
         switch (type) {
@@ -1026,7 +1031,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         result
                     )
                     */
-                    if (count.torpedo >= 2) {
+                    // http://wikiwiki.jp/kancolle/?%C0%EF%C6%AE%A4%CB%A4%C4%A4%A4%A4%C6#NightBattle
+                    // console.log(
+                    //     count,
+                    //     formula.shipType.Submarines.indexOf(ship.type)
+                    // )
+                    if (formula.shipType.Submarines.indexOf(ship.type) > -1 && count.torpedoLateModel >= 1 && count.submarineEquipment >= 1) {
+                        // 潜艇专用
+                        return '雷击CI ' + Math.floor(result * 1.75) + ' x 2';
+                    } else if (formula.shipType.Submarines.indexOf(ship.type) > -1 && count.torpedoLateModel >= 2) {
+                        // 潜艇专用
+                        return '雷击CI ' + Math.floor(result * 1.6) + ' x 2';
+                    } else if (count.torpedo >= 2) {
                         return '雷击CI ' + Math.floor(result * 1.5) + ' x 2';
                     } else if (count.main >= 3) {
                         return '炮击CI ' + Math.floor(result * 2) + '';
