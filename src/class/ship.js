@@ -67,9 +67,13 @@ module.exports = class Ship extends ItemBase {
         快捷方式
             ship._type	默认语言
     */
-    getType() {
+    getType(theLocale = vars.locale) {
         return this.type
-            ? getdb('ship_types')[this.type].full_zh
+            ? (
+                getdb('ship_types')[this.type].name[theLocale]
+                || getdb('ship_types')[this.type].name.ja_jp
+                || ''
+            )
             : null
     }
     get _type() {
