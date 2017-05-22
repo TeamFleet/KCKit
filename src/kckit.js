@@ -290,7 +290,8 @@
         }
 
         getSpeedRule() {
-            if (this.name.ja_jp === '天津風') return 'high-b'
+            if (this.speed_rule) return this.speed_rule
+            // if (this.name.ja_jp === '天津風') return 'high-2'
             return this.class
                 ? KC.db.ship_classes[this.class].speed_rule
                 : null
@@ -1051,7 +1052,7 @@
                 count.secondary += 1
             else if (_equipmentType.Torpedos.indexOf(equipment.type) > -1) {
                 count.torpedo += 1
-                if(equipment.name.ja_jp.indexOf('後期型') > -1)
+                if (equipment.name.ja_jp.indexOf('後期型') > -1)
                     count.torpedoLateModel += 1
             }
             else if (_equipmentType.Seaplanes.indexOf(equipment.type) > -1)
