@@ -153,7 +153,8 @@ module.exports = class Ship extends ItemBase {
     }
 
     getSpeedRule() {
-        if (this.name.ja_jp === '天津風') return 'high-b'
+        if (this.speed_rule) return this.speed_rule
+        // if (this.name.ja_jp === '天津風') return 'high-2'
         return this.class
             ? getdb('ship_classes')[this.class].speed_rule
             : 'low-2'
