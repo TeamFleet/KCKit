@@ -203,11 +203,11 @@ module.exports = class Ship extends ItemBase {
     getAttribute(attr, lvl = 1) {
         if (lvl > vars.maxShipLv) lvl = vars.maxShipLv
 
-        const getStatLvl = (lvl = 1, base, max) => {
-            base = parseFloat(base)
-            max = parseFloat(max) || base
+        const getStatLvl = (lvl = 1, base, max, defaultValue = false) => {
             if (base < 0 || max < 0)
-                return -1
+                return undefined
+            if (max === 0)
+                return defaultValue
             if (base == max)
                 return max
             return Math.floor(base + (max - base) * lvl / 99)
@@ -237,7 +237,7 @@ module.exports = class Ship extends ItemBase {
 
             case 'luck':
                 if (lvl > 99)
-                    return (this.stat.luck + 3)
+                    return this.stat.luck + 3
                 return this.stat.luck
 
             case 'fuel':
@@ -249,11 +249,24 @@ module.exports = class Ship extends ItemBase {
             case 'aa':
             case 'armor':
             case 'fire':
-            case 'torpedo':
                 return this.stat[attr + '_max'] || this.stat[attr]
 
-            case 'night':
-                return this.stat.fire_max + this.stat.torpedo_max
+            case 'torpedo':
+                return this.stat[attr + '_max'] || this.stat[attr] || false
+
+            case 'night': {
+                if (this.isType('carrier') && !this.additional_night_shelling)
+                    return false
+                return (this.stat.fire_max + this.stat.torpedo_max) || 0
+            }
+
+            case 'asw':
+                return getStatLvl(
+                    lvl,
+                    this.stat[attr],
+                    this.stat[attr + '_max'],
+                    /^(5|8|9|12|24|30)$/.test(this.type) ? 0 : false
+                )
 
             default:
                 return getStatLvl(lvl, this.stat[attr], this.stat[attr + '_max'])
@@ -344,5 +357,35 @@ module.exports = class Ship extends ItemBase {
     }
     get _minLv() {
         return this.getMinLv()
+    }
+
+    /**
+     * 判断舰种大类
+     * 
+     * @param {any} majorType - 舰种大类，目前支持：carrier/CV, lightcruiser/CL, submarine/SS
+     * 
+     * @return {boolean}
+     */
+    isType(majorType) {
+        const shipTypes = require('../types/ships')
+        switch (majorType.toLowerCase()) {
+            case 'carrier':
+            case 'carriers':
+            case 'cv':
+                return (shipTypes.Carriers.indexOf(this.type) > -1)
+
+            case 'lightcruiser':
+            case 'lightcruisers':
+            case 'cl':
+                return (shipTypes.LightCruisers.indexOf(this.type) > -1)
+
+            case 'submarine':
+            case 'submarines':
+            case 'ss':
+                return (shipTypes.Submarines.indexOf(this.type) > -1)
+
+            default:
+                return false
+        }
     }
 }
