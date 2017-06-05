@@ -204,6 +204,7 @@ module.exports = class Ship extends ItemBase {
         if (lvl > vars.maxShipLv) lvl = vars.maxShipLv
 
         const getStatLvl = (lvl = 1, base, max, defaultValue = false) => {
+            max = max || base
             if (base < 0 || max < 0)
                 return undefined
             if (max === 0)
