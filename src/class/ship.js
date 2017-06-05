@@ -111,31 +111,55 @@ module.exports = class Ship extends ItemBase {
         let series = this.getSeriesData()
         picId = parseInt(picId)
 
-        const getUrl = (id, picId) => `${vars.pathPics.ships || ''}/${id}/${picId}${ext}`
+        const getUrl = id => `${id}/${picId}${ext}`
 
-        for (let i = 0; i < series.length; i++) {
-            if (series[i].id == this.id) {
-                switch (picId) {
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 12:
-                    case 13:
-                    case 14:
-                        return getUrl(this.id, picId)
-                    //break;
-                    default:
-                        if (series[i].illust_delete) {
-                            return getUrl(series[i - 1].id, picId)
-                        } else {
-                            return getUrl(this.id, picId)
-                        }
-                    //break;
-                }
-                //break;
+        switch (picId) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 12:
+            case 13:
+            case 14:
+                return getUrl(this.id)
+            default: {
+                let currentShip = this
+                while (currentShip.illust_same_as_prev && currentShip.remodel && currentShip.remodel.prev)
+                    currentShip = currentShip.remodel.prev
+
+                return getUrl(currentShip)
             }
+            // if (series[i].illust_delete) {
+            //     return getUrl(series[i - 1].id)
+            // } else {
+            //     return getUrl(this.id)
+            // }
+            //break;
         }
+
+        // for (let i = 0; i < series.length; i++) {
+        //     if (series[i].id == this.id) {
+        //         switch (picId) {
+        //             case 0:
+        //             case 1:
+        //             case 2:
+        //             case 3:
+        //             case 12:
+        //             case 13:
+        //             case 14:
+        //                 return getUrl(this.id, picId)
+        //             //break;
+        //             default:
+        //                 if (series[i].illust_delete) {
+        //                     return getUrl(series[i - 1].id, picId)
+        //                 } else {
+        //                     return getUrl(this.id, picId)
+        //                 }
+        //             //break;
+        //         }
+        //         //break;
+        //     }
+        // }
     }
     get _pics() {
         let arr = []
@@ -204,33 +228,35 @@ module.exports = class Ship extends ItemBase {
                     if (value > this.stat.hp_max) value = this.stat.hp_max
                 }
                 return value
-            //break;
+
             case 'speed':
                 return getSpeed(this.stat.speed)
-            //break;
+
             case 'range':
                 return getRange(this.stat.range)
-            //break;
+
             case 'luck':
                 if (lvl > 99)
                     return (this.stat.luck + 3)
                 return this.stat.luck
-            //break;
+
             case 'fuel':
             case 'ammo':
                 if (lvl > 99)
                     return Math.floor(this.consum[attr] * 0.85)
                 return this.consum[attr]
-            //break;
+
             case 'aa':
             case 'armor':
             case 'fire':
             case 'torpedo':
                 return this.stat[attr + '_max'] || this.stat[attr]
-            //break;
+
+            case 'night':
+                return this.stat.fire_max + this.stat.torpedo_max
+
             default:
                 return getStatLvl(lvl, this.stat[attr], this.stat[attr + '_max'])
-            //break;
         }
     }
 
