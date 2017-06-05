@@ -109,11 +109,11 @@ module.exports = class Ship extends ItemBase {
      */
     getPic(picId = 0, ext = vars.extPic) {
         let series = this.getSeriesData()
-        picId = parseInt(picId)
+        const thePicId = parseInt(picId)
 
-        const getUrl = id => `${id}/${picId}${ext}`
+        const getUrl = ship => `${typeof ship === 'number' ? ship : ship.id}/${picId}${ext}`
 
-        switch (picId) {
+        switch (thePicId) {
             case 0:
             case 1:
             case 2:
