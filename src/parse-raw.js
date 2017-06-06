@@ -3,9 +3,7 @@ const Equipment = require('./class/equipment')
 const Entity = require('./class/entity')
 const Consumable = require('./class/consumable')
 
-module.exports = (raw = {}) => {
-    let db = {}
-
+module.exports = (raw = {}, db = {}) => {
     for (let type in raw) {
         let Class
 
