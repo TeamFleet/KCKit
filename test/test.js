@@ -66,20 +66,59 @@ describe('Base functions/utilities', function () {
             it(`should db.ships[468].getSuffix() be 改二丁`, function () {
                 assert.equal('改二丁', db.ships[468].getSuffix());
             });
-            it(`should db.ships[408].getType("en_us") be Light Aircraft Carrier`, function () {
+            it(`should 隼鷹・改二 db.ships[408].getType("en_us") be Light Aircraft Carrier`, function () {
                 assert.equal('Light Aircraft Carrier', db.ships[408].getType("en_us"));
             });
-            it(`should db.ships[297]._series be length of 6`, function () {
+            it(`should 千代田・航改二 db.ships[297]._series be length of 6`, function () {
                 assert.equal(6, db.ships[297]._series.length);
             });
-            it(`should db.ships[277].getPic("0") be 277/0.png`, function () {
+            it(`should 赤城・改 db.ships[277].getPic("0") be 277/0.png`, function () {
                 assert.equal('277/0.png', db.ships[277].getPic("0"));
             });
-            it(`should db.ships[277].getPic("0-1", ".webp") be 277/0-1.webp`, function () {
+            it(`should 赤城・改 db.ships[277].getPic("0-1", ".webp") be 277/0-1.webp`, function () {
                 assert.equal('277/0-1.webp', db.ships[277].getPic("0-1", ".webp"));
             });
-            it(`should db.ships[277].getPic("8") be 83/8.png`, function () {
+            it(`should 赤城・改 db.ships[277].getPic("8") be 83/8.png`, function () {
                 assert.equal('83/8.png', db.ships[277].getPic("8"));
+            });
+            it(`should 長門・改 db.ships[275]._speedRule be low-2`, function () {
+                assert.equal('low-2', db.ships[275]._speedRule);
+            });
+            it(`should 長門・改二 db.ships[541]._speedRule be low-1`, function () {
+                assert.equal('low-1', db.ships[541]._speedRule);
+            });
+            it(`should Гангут・два db.ships[513].getAttribute('evasion', 99) be undefined`, function () {
+                assert.equal(undefined, db.ships[513].getAttribute('evasion', 99));
+            });
+            it(`should 大和・改 db.ships[136].getAttribute('torpedo') be false`, function () {
+                assert.equal(false, db.ships[136].getAttribute('torpedo'));
+            });
+            it(`should 睦月・改二 db.ships[434].getAttribute('asw') be 28`, function () {
+                assert.equal(28, db.ships[434].getAttribute('asw'));
+            });
+            it(`should 睦月・改二 db.ships[434].getAttribute('asw', 99) be 69`, function () {
+                assert.equal(69, db.ships[434].getAttribute('asw', 99));
+            });
+            it(`should 睦月・改二 db.ships[434].getAttribute('asw', 150) be 90`, function () {
+                assert.equal(90, db.ships[434].getAttribute('asw', 150));
+            });
+            it(`should Bismarck・drei db.ships[178].getAttribute('hp', 150) be 99`, function () {
+                assert.equal(99, db.ships[178].getAttribute('hp', 150));
+            });
+            it(`should 翔鶴・改二甲 db.ships[466]._cv be 野水 伊織`, function () {
+                assert.equal('野水 伊織', db.ships[466]._cv);
+            });
+            it(`should 択捉 db.ships[524]._illustrator be undefined`, function () {
+                assert.equal(undefined, db.ships[524]._illustrator);
+            });
+            it(`should 明石 db.ships[182]._minLv be 1`, function () {
+                assert.equal(1, db.ships[182]._minLv);
+            });
+            it(`should 鈴谷・改 db.ships[129]._minLv be 35`, function () {
+                assert.equal(35, db.ships[129]._minLv);
+            });
+            it(`should 鈴谷・航改二 db.ships[508].isType('carrier') be true`, function () {
+                assert.equal(true, db.ships[508].isType('carrier'));
             });
         });
 
@@ -87,6 +126,9 @@ describe('Base functions/utilities', function () {
         })
 
         describe('Checking entity samples...', function () {
+            it(`should db.entities[1] be instanceof Entity`, function () {
+                assert.equal(true, db.entities[1] instanceof require('../src/class/entity.js'));
+            });
         })
 
         describe('Checking consumable samples...', function () {

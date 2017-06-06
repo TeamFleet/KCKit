@@ -311,9 +311,9 @@ module.exports = class Ship extends ItemBase {
             ship._cv	默认语言
     */
     getCV(theLocale = vars.locale) {
-        let entity = this.getRel('cv')
-        if (entity)
-            return getdb('entities')[entity].getName(theLocale)
+        const id = this.getRel('cv')
+        if (id)
+            return getdb('entities')[id].getName(theLocale)
         return
     }
     get _cv() {
@@ -330,9 +330,9 @@ module.exports = class Ship extends ItemBase {
             ship._illustrator	默认语言
     */
     getIllustrator(theLocale = vars.locale) {
-        let entity = this.getRel('illustrator')
-        if (entity)
-            return getdb('entities')[entity].getName(theLocale)
+        let id = this.getRel('illustrator')
+        if (id)
+            return getdb('entities')[id].getName(theLocale)
         return
     }
     get _illustrator() {

@@ -1,4 +1,4 @@
-const deepExtend = require('deep-extend')
+// const deepExtend = require('deep-extend')
 
 let vars = {
     locale: "ja_jp",
@@ -30,13 +30,15 @@ let vars = {
     extPic: '.png',
 
     db: {},
-    pathPics: {},
+    pathPics: {}
+}
 
-    register: (settings = {}) => {
-        deepExtend(vars, settings)
-        // Object.assign(vars, settings)
-        return vars
-    }
+vars.register = (settings = {}) => {
+    // deepExtend(vars, settings)
+    Object.assign(vars, settings)
+    // console.log(settings.db.ships[1]._name)
+    // console.log(vars.db.ships[1]._name)
+    return vars
 }
 
 module.exports = vars
