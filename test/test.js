@@ -105,6 +105,18 @@ describe('Base functions/utilities', function () {
             it(`should Bismarck・drei db.ships[178].getAttribute('hp', 150) be 99`, function () {
                 assert.equal(99, db.ships[178].getAttribute('hp', 150));
             });
+            it(`should 鳳翔・改 db.ships[285].getAttribute('asw', 99) be 0`, function () {
+                assert.equal(0, db.ships[285].getAttribute('asw', 99));
+            });
+            it(`should 大鳳・改 db.ships[156].getAttribute('asw', 99) be false`, function () {
+                assert.equal(false, db.ships[156].getAttribute('asw', 99));
+            });
+            it(`should 大鹰・改 db.ships[380].getAttribute('night') be false`, function () {
+                assert.equal(false, db.ships[380].getAttribute('night'));
+            });
+            it(`should 大鹰・改二 db.ships[529].getAttribute('night') be 39`, function () {
+                assert.equal(39, db.ships[529].getAttribute('night'));
+            });
             it(`should 翔鶴・改二甲 db.ships[466]._cv be 野水 伊織`, function () {
                 assert.equal('野水 伊織', db.ships[466]._cv);
             });
