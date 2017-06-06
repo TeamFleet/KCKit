@@ -1,9 +1,96 @@
-var assert = require('assert');
+const assert = require('assert');
+const path = require('path')
+const fs = require('fs')
+const camelCase = require('camelcase')
+
+let db = {}
+let raw = {}
+const dbnames = [
+    'ships',
+    'ship_types',
+    'ship_classes',
+    'ship_namesuffix',
+    'ship_series',
+    'items',
+    'item_types',
+    'entities',
+    'consumables'
+]
 
 describe('Base functions/utilities', function () {
-    describe('#indexOf()', function () {
-        it('should return -1 when the value is not present', function () {
-            assert.equal(-1, [1, 2, 3].indexOf(4));
-        });
+
+    describe('Loading raw database files...', function () {
+
+        for (let dbname of dbnames) {
+            const type = camelCase(dbname)
+            raw[type] = fs.readFileSync(
+                path.resolve(__dirname, `./samples/db/${dbname}.nedb`),
+                'utf-8'
+            )
+            it(`raw.${type} should be string`, function () {
+                assert.equal('string', typeof raw[type]);
+            });
+        }
     });
+
+    describe('Parsing raw database files...', function () {
+        require('../src/parse-raw.js')(raw, db)
+
+        describe('Checking basics...', function () {
+            for (let dbname of dbnames) {
+                const type = camelCase(dbname)
+                it(`db.${type} should be object`, function () {
+                    assert.equal('object', typeof db[type]);
+                });
+            }
+        });
+
+        describe('Registering...', function () {
+            it(`should be success without error`, function () {
+                require('../src/register.js')({
+                    db
+                })
+            });
+        });
+
+        describe('Checking ship samples...', function () {
+            it(`should db.ships[200] be instanceof Ship`, function () {
+                assert.equal(true, db.ships[200] instanceof require('../src/class/ship.js'));
+            });
+            it(`should db.ships[420].getName("・", "ja_jp") be 叢雲・改二`, function () {
+                assert.equal('叢雲・改二', db.ships[420].getName("・", "ja_jp"));
+            });
+            it(`should db.ships[177].getNameNoSuffix("zh_cn") be 欧根亲王`, function () {
+                assert.equal('欧根亲王', db.ships[177].getNameNoSuffix("zh_cn"));
+            });
+            it(`should db.ships[468].getSuffix() be 改二丁`, function () {
+                assert.equal('改二丁', db.ships[468].getSuffix());
+            });
+            it(`should db.ships[408].getType("en_us") be Light Aircraft Carrier`, function () {
+                assert.equal('Light Aircraft Carrier', db.ships[408].getType("en_us"));
+            });
+            it(`should db.ships[297]._series be length of 6`, function () {
+                assert.equal(6, db.ships[297]._series.length);
+            });
+            it(`should db.ships[277].getPic("0") be 277/0.png`, function () {
+                assert.equal('277/0.png', db.ships[277].getPic("0"));
+            });
+            it(`should db.ships[277].getPic("0-1", ".webp") be 277/0-1.webp`, function () {
+                assert.equal('277/0-1.webp', db.ships[277].getPic("0-1", ".webp"));
+            });
+            it(`should db.ships[277].getPic("8") be 83/8.png`, function () {
+                assert.equal('83/8.png', db.ships[277].getPic("8"));
+            });
+        });
+
+        describe('Checking equipment samples...', function () {
+        })
+
+        describe('Checking entity samples...', function () {
+        })
+
+        describe('Checking consumable samples...', function () {
+        })
+    });
+
 });
