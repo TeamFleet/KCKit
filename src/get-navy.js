@@ -1,0 +1,1 @@
+module.exports = (navyId, localeId) => require('./get.js')('navy', localeId)[navyId]

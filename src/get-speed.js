@@ -1,0 +1,1 @@
+module.exports = (speedId, localeId) => require('./get.js')('speed', localeId)[speedId]

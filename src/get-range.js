@@ -1,0 +1,1 @@
+module.exports = (rangeId, localeId) => require('./get.js')('range', localeId)[rangeId]

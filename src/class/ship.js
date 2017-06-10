@@ -1,8 +1,8 @@
 const vars = require('../variables')
-const {
-    getSpeed,
-    getRange
-} = require('../helpers')
+// const {
+//     getSpeed,
+//     getRange
+// } = require('../helpers')
 const getdb = require('../get-db.js')
 const ItemBase = require('./base.js')
 
@@ -169,8 +169,8 @@ module.exports = class Ship extends ItemBase {
         return arr
     }
 
-    getSpeed() {
-        return getSpeed(this.stat.speed)
+    getSpeed(theLocale = vars.locale) {
+        return require('../get-speed.js')(this.stat.speed, theLocale)
     }
     get _speed() {
         return this.getSpeed()
@@ -180,15 +180,16 @@ module.exports = class Ship extends ItemBase {
         if (this.speed_rule) return this.speed_rule
         // if (this.name.ja_jp === '天津風') return 'high-2'
         return this.class
-            ? getdb('ship_classes')[this.class].speed_rule
+            ? (getdb('ship_classes')[this.class].speed_rule || 'low-2')
             : 'low-2'
     }
     get _speedRule() {
         return this.getSpeedRule()
     }
 
-    getRange() {
-        return getRange(this.stat.range)
+    getRange(theLocale = vars.locale) {
+        return require('../get-range.js')(this.stat.range, theLocale)
+        // return getRange(this.stat.range, theLocale)
     }
     get _range() {
         return this.getRange()
@@ -231,10 +232,10 @@ module.exports = class Ship extends ItemBase {
                 return value
 
             case 'speed':
-                return getSpeed(this.stat.speed)
+                return this._speed
 
             case 'range':
-                return getRange(this.stat.range)
+                return this._range
 
             case 'luck':
                 if (lvl > 99)
@@ -388,5 +389,17 @@ module.exports = class Ship extends ItemBase {
             default:
                 return false
         }
+    }
+
+    get navy() {
+        return this.class
+            ? (getdb('ship_classes')[this.class].navy || 'ijn')
+            : 'ijn'
+    }
+    getNavyName(theLocale = vars.locale) {
+        return require('../get-navy.js')(this.navy, theLocale)
+    }
+    get _navyName() {
+        return this.getNavyName()
     }
 }

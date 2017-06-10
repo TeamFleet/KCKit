@@ -75,8 +75,8 @@ describe('Base functions/utilities', () => {
             it(`should 長門・改二 db.ships[541]._speedRule be low-1`, function () {
                 expect('low-1').toBe(db.ships[541]._speedRule);
             });
-            it(`should Гангут・два db.ships[513].getAttribute('evasion', 99) be undefined`, function () {
-                expect(undefined).toBe(db.ships[513].getAttribute('evasion', 99));
+            it(`should Гангут・два db.ships[513].getAttribute('los', 99) be undefined`, function () {
+                expect(undefined).toBe(db.ships[513].getAttribute('los', 99));
             });
             it(`should 大和・改 db.ships[136].getAttribute('torpedo') be false`, function () {
                 expect(false).toBe(db.ships[136].getAttribute('torpedo'));
@@ -120,6 +120,30 @@ describe('Base functions/utilities', () => {
             it(`should 鈴谷・航改二 db.ships[508].isType('carrier') be true`, function () {
                 expect(true).toBe(db.ships[508].isType('carrier'));
             });
+            it(`should Гангут・два db.ships[513]._speed be 低速`, function () {
+                expect('低速').toBe(db.ships[513]._speed);
+            });
+            it(`should Гангут・два db.ships[513].getSpeed('en_us') be Slow`, function () {
+                expect('Slow').toBe(db.ships[513].getSpeed('en_us'));
+            });
+            it(`should Гангут・два db.ships[513]._range be 长`, function () {
+                expect('长').toBe(db.ships[513]._range);
+            });
+            it(`should Гангут・два db.ships[513].getRange('en_us') be Long`, function () {
+                expect('Long').toBe(db.ships[513].getRange('en_us'));
+            });
+            it(`should 鈴谷・航改二 db.ships[508].navy be ijn`, function () {
+                expect('ijn').toBe(db.ships[508].navy);
+            });
+            it(`should Гангут・два db.ships[513].navy be vmf`, function () {
+                expect('vmf').toBe(db.ships[513].navy);
+            });
+            it(`should Гангут・два db.ships[513]._navyName be Soviet Navy`, function () {
+                expect('Soviet Navy').toBe(db.ships[513]._navyName);
+            });
+            it(`should Гангут・два db.ships[513].getNavyName('zh_cn') be 苏联海军`, function () {
+                expect('苏联海军').toBe(db.ships[513].getNavyName('zh_cn'));
+            });
         });
 
         describe('Checking equipment samples...', function () {
@@ -135,4 +159,38 @@ describe('Base functions/utilities', () => {
         })
     });
 
+    describe('Chang locale...', () => {
+        describe('Changing to en_us...', () => {
+            it(`should be success without error`, () => {
+                require('../src/register.js')({
+                    locale: 'en_us'
+                })
+            });
+            it(`should 隼鷹・改二 db.ships[408].getType() be Light Aircraft Carrier`, function () {
+                expect('Light Aircraft Carrier').toBe(db.ships[408].getType());
+            });
+            it(`should Гангут・два db.ships[513]._speed be Slow`, function () {
+                expect('Slow').toBe(db.ships[513]._speed);
+            });
+            it(`should Гангут・два db.ships[513]._navyName be Soviet Navy`, function () {
+                expect('Soviet Navy').toBe(db.ships[513]._navyName);
+            });
+        })
+        describe('Changing to zh_cn...', () => {
+            it(`should be success without error`, () => {
+                require('../src/register.js')({
+                    locale: 'zh_cn'
+                })
+            });
+            it(`should 隼鷹・改二 db.ships[408].getType() be 轻型航母`, function () {
+                expect('轻型航母').toBe(db.ships[408].getType());
+            });
+            it(`should Гангут・два db.ships[513]._speed be 低速`, function () {
+                expect('低速').toBe(db.ships[513]._speed);
+            });
+            it(`should Гангут・два db.ships[513]._navyName be 苏联海军`, function () {
+                expect('苏联海军').toBe(db.ships[513]._navyName);
+            });
+        })
+    })
 })
