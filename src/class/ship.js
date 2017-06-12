@@ -80,6 +80,21 @@ module.exports = class Ship extends ItemBase {
         return this.getType()
     }
 
+    /*	获取舰级
+    */
+    getClass(theLocale = vars.locale) {
+        return this.class
+            ? (
+                getdb('ship_classes')[this.class].name[theLocale]
+                || getdb('ship_classes')[this.class].name.ja_jp
+                || ''
+            )
+            : null
+    }
+    get _class() {
+        return this.getClass()
+    }
+
     /*	获取系列数据
         返回值
             Object		系列

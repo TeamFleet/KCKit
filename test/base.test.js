@@ -57,6 +57,12 @@ describe('Base functions/utilities', () => {
             it(`should 隼鷹・改二 db.ships[408].getType("en_us") be Light Aircraft Carrier`, function () {
                 expect('Light Aircraft Carrier').toBe(db.ships[408].getType("en_us"));
             });
+            it(`should 亲潮・改 db.ships[362].getClass("en_us") be Kagerou`, function () {
+                expect('Kagerou').toBe(db.ships[362].getClass("en_us"));
+            });
+            it(`should 亲潮・改 db.ships[362]._class be 陽炎`, function () {
+                expect('陽炎').toBe(db.ships[362]._class);
+            });
             it(`should 千代田・航改二 db.ships[297]._series be length of 6`, function () {
                 expect(6).toBe(db.ships[297]._series.length);
             });
