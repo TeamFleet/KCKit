@@ -1,23 +1,15 @@
 const vars = require('../variables')
-// const {
-//     getSpeed,
-//     getRange
-// } = require('../helpers')
 const getdb = require('../get-db.js')
 const ItemBase = require('./base.js')
 
 module.exports = class Ship extends ItemBase {
-    constructor(data) {
-        super(data);
-    }
-
     /**
-     * @param {string} joint - OPTIONAL - 连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串
-     * @param {bollean} joint - OPTIONAL - 如果为 true，则添加默认连接符；false，则不添加连接符
-     * @param {null} joint - OPTIONAL - 不添加连接符
-     * @param {string} language - OPTIONAL - 语言代码，默认为 KCTip.lang
-     * @return {string} 舰名 + 连接符（如果有） + 后缀名（如果有）
-     * 快捷方式 - ship._name (默认连接符，默认语言)
+     * 获取舰名
+     * 快捷方式 - ship._name （默认连接符，默认语言）
+     * 
+     * @param {String|Boolean|undefined)} [joint=vars.joint] - 连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串。String：自定义连接符；Boolean：true 添加默认连接符；false 不添加连接符；undefined：默认连接符
+     * @param {String} [theLocale=vars.locale] - 语言ID
+     * @returns {String} 舰名[连接符[后缀名]]
      */
     getName(theJoint = vars.joint, theLocale = vars.locale) {
         let suffix = this.getSuffix(theLocale)
@@ -30,24 +22,22 @@ module.exports = class Ship extends ItemBase {
         )
     }
 
-    /*	获取舰名，不包括后缀
-        变量
-            language	[OPTIONAL]
-                String		语言代码，默认为 KC.lang
-        返回值
-            String		舰名，不包括后缀
-    */
+    /**
+     * 获取舰名，不包括后缀
+     * 
+     * @param {String} [theLocale=vars.locale]  - 语言ID
+     * @returns {String}
+     */
     getNameNoSuffix(theLocale = vars.locale) {
         return this.name[theLocale] || this.name.ja_jp
     }
 
-    /*	获取后缀名
-        变量
-            language	[OPTIONAL]
-                String		语言代码，默认为 KC.lang
-        返回值
-            String		后缀名
-    */
+    /**
+     * 获取后缀名
+     * 
+     * @param {String} [theLocale=vars.locale]  - 语言ID
+     * @returns {String}
+     */
     getSuffix(theLocale = vars.locale) {
         return this.name.suffix
             ? (
@@ -58,15 +48,13 @@ module.exports = class Ship extends ItemBase {
             : ''
     }
 
-    /*	获取舰种
-        变量
-            language	[OPTIONAL]
-                String		语言代码，默认为 KC.lang
-        返回值
-            String		舰种
-        快捷方式
-            ship._type	默认语言
-    */
+    /**
+     * 获取舰种名称
+     * 快捷方式 - ship._type （默认语言）
+     * 
+     * @param {String} [theLocale=vars.locale]  - 语言ID
+     * @returns {String}
+     */
     getType(theLocale = vars.locale) {
         return this.type
             ? (
@@ -80,8 +68,13 @@ module.exports = class Ship extends ItemBase {
         return this.getType()
     }
 
-    /*	获取舰级
-    */
+    /**
+     * 获取舰级名称
+     * 快捷方式 - ship._class （默认语言）
+     * 
+     * @param {String} [theLocale=vars.locale]  - 语言ID
+     * @returns {String}
+     */
     getClass(theLocale = vars.locale) {
         return this.class
             ? (
@@ -95,10 +88,12 @@ module.exports = class Ship extends ItemBase {
         return this.getClass()
     }
 
-    /*	获取系列数据
-        返回值
-            Object		系列
-    */
+    /**
+     * 获取改修系列数据
+     * 快捷方式 - ship._series
+     * 
+     * @returns {Object}
+     */
     getSeriesData() {
         return this.series
             ? getdb('ship_series')[this.series].ships
@@ -111,16 +106,12 @@ module.exports = class Ship extends ItemBase {
     }
 
     /**
-     * 获取图鉴uri/path
+     * 获取指定id图鉴path
+     * 获取全部图鉴 - ship._pics
      * 
-     * @param {number} [picId = 0] - 图鉴Id，默认 0
-     * @param {string} [ext]
-     * @returns {string} uri/path
-     * 
-     * @memberOf Ship
-     * 
-     * 快捷方式
-     *      ship._pics	获取全部图鉴，Array
+     * @param {Number} [picId = 0] - 图鉴id
+     * @param {String} [ext = vars.extPic] - 扩展名
+     * @returns {String} path
      */
     getPic(picId = 0, ext = vars.extPic) {
         let series = this.getSeriesData()
@@ -144,38 +135,14 @@ module.exports = class Ship extends ItemBase {
 
                 return getUrl(currentShip)
             }
-            // if (series[i].illust_delete) {
-            //     return getUrl(series[i - 1].id)
-            // } else {
-            //     return getUrl(this.id)
-            // }
-            //break;
         }
-
-        // for (let i = 0; i < series.length; i++) {
-        //     if (series[i].id == this.id) {
-        //         switch (picId) {
-        //             case 0:
-        //             case 1:
-        //             case 2:
-        //             case 3:
-        //             case 12:
-        //             case 13:
-        //             case 14:
-        //                 return getUrl(this.id, picId)
-        //             //break;
-        //             default:
-        //                 if (series[i].illust_delete) {
-        //                     return getUrl(series[i - 1].id, picId)
-        //                 } else {
-        //                     return getUrl(this.id, picId)
-        //                 }
-        //             //break;
-        //         }
-        //         //break;
-        //     }
-        // }
     }
+    /**
+     * 获取全部图鉴
+     * 
+     * @readonly
+     * @returns {String[]} 图鉴path
+     */
     get _pics() {
         let arr = []
         for (let i = 0; i < 15; i++) {
@@ -184,16 +151,30 @@ module.exports = class Ship extends ItemBase {
         return arr
     }
 
+    /**
+     * 获取航速
+     * 快捷方式 - ship._speed
+     * 
+     * @param {String|Boolean} [theLocale=vars.locale] - 语言ID。Boolean：如果为false仅返回航速属性值而非航速字符串
+     * @returns {String|Number}
+     */
     getSpeed(theLocale = vars.locale) {
+        if (theLocale === false)
+            return this.stat.speed
         return require('../get-speed.js')(this.stat.speed, theLocale)
     }
     get _speed() {
         return this.getSpeed()
     }
 
+    /**
+     * 获取航速提升规则，优先级：舰娘 > 舰级 > 舰种 > 默认值（low-2）
+     * 快捷方式 - ship._speedRule
+     * 
+     * @returns {String}
+     */
     getSpeedRule() {
         if (this.speed_rule) return this.speed_rule
-        // if (this.name.ja_jp === '天津風') return 'high-2'
         return this.class
             ? (getdb('ship_classes')[this.class].speed_rule || 'low-2')
             : 'low-2'
@@ -202,20 +183,44 @@ module.exports = class Ship extends ItemBase {
         return this.getSpeedRule()
     }
 
+    /**
+     * 获取射程
+     * 快捷方式 - ship._range
+     * 
+     * @param {String|Boolean} [theLocale=vars.locale] - 语言ID。Boolean：如果为false仅返回射程属性值而非射程字符串
+     * @returns {String|Number}
+     */
     getRange(theLocale = vars.locale) {
+        if (theLocale === false)
+            return this.stat.range
         return require('../get-range.js')(this.stat.range, theLocale)
-        // return getRange(this.stat.range, theLocale)
     }
     get _range() {
         return this.getRange()
     }
 
+    /**
+     * 获取可配置装备类型
+     * 快捷方式 - ship._equipmentTypes
+     * 
+     * @returns {Number[]} - 装备ID
+     */
     getEquipmentTypes() {
         return getdb('ship_types')[this.type].equipable.concat((this.additional_item_types || [])).sort(function (a, b) {
             return a - b
         })
     }
+    get _equipmentTypes() {
+        return this.getEquipmentTypes()
+    }
 
+    /**
+     * 获取指定属性
+     * 
+     * @param {String} attr - 指定属性名
+     * @param {Number} [lvl=1] - 指定等级
+     * @returns {String|Number|Boolean|undefined} - 属性。Boolean：false表明该舰娘无此能力。undfined：表明未指定数值
+     */
     getAttribute(attr, lvl = 1) {
         if (lvl > vars.maxShipLv) lvl = vars.maxShipLv
 
@@ -379,9 +384,8 @@ module.exports = class Ship extends ItemBase {
     /**
      * 判断舰种大类
      * 
-     * @param {any} majorType - 舰种大类，目前支持：carrier/CV, lightcruiser/CL, submarine/SS
-     * 
-     * @return {boolean}
+     * @param {String} majorType - 舰种大类，目前支持：carrier/CV, lightcruiser/CL, submarine/SS
+     * @return {Boolean}
      */
     isType(majorType) {
         const shipTypes = require('../types/ships')
@@ -406,15 +410,35 @@ module.exports = class Ship extends ItemBase {
         }
     }
 
+    /**
+     * 获取所属海军简称
+     * 
+     * @readonly
+     * @returns {String}
+     */
     get navy() {
         return this.class
             ? (getdb('ship_classes')[this.class].navy || 'ijn')
             : 'ijn'
     }
+    /**
+     * 获取所属海军名称
+     * 快捷方式 - ship._navyName （默认语言）
+     * 
+     * @param {String} [theLocale=vars.locale] - 语言ID
+     * @returns {String}
+     */
     getNavyName(theLocale = vars.locale) {
         return require('../get-navy.js')(this.navy, theLocale)
     }
     get _navyName() {
         return this.getNavyName()
+    }
+
+    getNo() {
+        let theShip = this
+        while (theShip.no > vars.hiddenShipIdStartFrom && theShip.remodel && theShip.remodel.prev)
+            theShip = getdb('ships')[theShip.remodel.prev]
+        return theShip.no
     }
 }

@@ -132,11 +132,17 @@ describe('Base functions/utilities', () => {
             it(`should Гангут・два db.ships[513].getSpeed('en_us') be Slow`, function () {
                 expect('Slow').toBe(db.ships[513].getSpeed('en_us'));
             });
+            it(`should Гангут・два db.ships[513].getSpeed(false) be 5`, function () {
+                expect(5).toBe(db.ships[513].getSpeed(false));
+            });
             it(`should Гангут・два db.ships[513]._range be 长`, function () {
                 expect('长').toBe(db.ships[513]._range);
             });
             it(`should Гангут・два db.ships[513].getRange('en_us') be Long`, function () {
                 expect('Long').toBe(db.ships[513].getRange('en_us'));
+            });
+            it(`should Гангут・два db.ships[513].getRange(false) be 3`, function () {
+                expect(3).toBe(db.ships[513].getRange(false));
             });
             it(`should 鈴谷・航改二 db.ships[508].navy be ijn`, function () {
                 expect('ijn').toBe(db.ships[508].navy);
@@ -149,6 +155,12 @@ describe('Base functions/utilities', () => {
             });
             it(`should Гангут・два db.ships[513].getNavyName('zh_cn') be 苏联海军`, function () {
                 expect('苏联海军').toBe(db.ships[513].getNavyName('zh_cn'));
+            });
+            it(`should 春風 db.ships[473].getNo() be 273`, function () {
+                expect(273).toBe(db.ships[473].getNo());
+            });
+            it(`should 春風・改 db.ships[363].getNo() be 273`, function () {
+                expect(273).toBe(db.ships[363].getNo());
             });
         });
 

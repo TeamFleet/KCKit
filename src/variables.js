@@ -18,7 +18,10 @@ let vars = {
     extPic: '.png',
 
     db: {},
-    pathPics: {}
+    pathPics: {},
+
+    hiddenShipIdStartFrom: 1000,
+    enemyIdStartFrom: 1500
 }
 
 vars.register = (settings = {}) => {
