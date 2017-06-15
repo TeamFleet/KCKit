@@ -441,4 +441,28 @@ module.exports = class Ship extends ItemBase {
             theShip = getdb('ships')[theShip.remodel.prev]
         return theShip.no
     }
+
+    /**
+     * 判断是否拥有额外图鉴
+     * 
+     * @returns {Ship|Boolean}
+     */
+    hasExtraIllust() {
+        let thisShip = this
+        while (thisShip.illust_same_as_prev && thisShip.remodel && thisShip.remodel.prev)
+            thisShip = getdb('ships')[thisShip.remodel.prev]
+        return Array.isArray(thisShip.illust_extra) ? thisShip : false
+    }
+    /**
+     * 获取额外图鉴
+     * 
+     * @readonly
+     * @returns {String[]|undefined} - 如果有，返回Array，内容为额外图鉴ID
+     */
+    get _extraIllust() {
+        const theShip = this.hasExtraIllust()
+        if (theShip)
+            return theShip.illust_extra
+        return undefined
+    }
 }

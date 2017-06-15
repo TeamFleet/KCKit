@@ -162,6 +162,24 @@ describe('Base functions/utilities', () => {
             it(`should 春風・改 db.ships[363].getNo() be 273`, function () {
                 expect(273).toBe(db.ships[363].getNo());
             });
+            it(`should 比叡 db.ships[86].hasExtraIllust() be false`, function () {
+                expect(false).toBe(db.ships[86].hasExtraIllust());
+            });
+            it(`should 金剛・改二 db.ships[149].hasExtraIllust() be typeof Ship`, function () {
+                expect(db.ships[149].hasExtraIllust() instanceof require('../src/class/ship.js')).toBe(true);
+            });
+            it(`should 金剛・改二 db.ships[149].hasExtraIllust() be Ship 149`, function () {
+                expect(db.ships[149].hasExtraIllust().id).toBe(149);
+            });
+            it(`should 赤城・改 db.ships[277].hasExtraIllust() be Ship 83`, function () {
+                expect(db.ships[277].hasExtraIllust().id).toBe(83);
+            });
+            it(`should 加古・改二 db.ships[417]._extraIllust be undefined`, function () {
+                expect(db.ships[417]._extraIllust).toBe(undefined);
+            });
+            it(`should 大淀・改 db.ships[321]._extraIllust be an Array of 5`, function () {
+                expect(db.ships[321]._extraIllust.length).toBe(5);
+            });
         });
 
         describe('Checking equipment samples...', function () {
