@@ -238,6 +238,9 @@ module.exports = class Ship extends ItemBase {
         let value
 
         switch (attr) {
+            case 'consum.fuel': return this.getAttribute('fuel', lvl)
+            case 'consum.ammo': return this.getAttribute('ammo', lvl)
+
             case 'hp':
                 value = this.stat.hp
                 if (lvl > 99) {
