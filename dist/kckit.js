@@ -810,6 +810,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         SeaplaneFighters: {
             fighter: 0.2
         },
+        SeaplaneBomber: {
+            fighter: 0.2
+        },
         CarrierFighters: {
             fighter: 0.2
         },
@@ -828,6 +831,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _equipmentType[i].forEach(function (tid) {
                         formula.starMultiper[tid] = formula.starMultiper[i];
                     });
+                } else if (typeof _equipmentType[i] === 'number') {
+                    formula.starMultiper[_equipmentType[i]] = formula.starMultiper[i];
                 }
             };
 
