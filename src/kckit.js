@@ -883,8 +883,11 @@
             shelling: 0.75,
             antisub: 1
         },
-        Radars: {
+        SmallRadars: {
             los: 1.25
+        },
+        LargeRadars: {
+            los: 1.4
         },
         Seaplanes: {
         },
@@ -895,13 +898,17 @@
             fighter: 0.2
         },
         SeaplaneBomber: {
-            fighter: 0.2
+            // fighter: 0.2
+            los: 1.15
         },
         CarrierFighters: {
             fighter: 0.2
         },
         DiveBombers: {
             fighter: 0.25
+        },
+        CarrierRecons: {
+            los: 1.2
         },
         LandingCrafts: {
             shelling: 1,
