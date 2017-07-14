@@ -75,6 +75,9 @@ describe('Base functions/utilities', () => {
             it(`should 赤城・改 db.ships[277].getPic("8") be 83/8.png`, function () {
                 expect('83/8.png').toBe(db.ships[277].getPic("8"));
             });
+            it(`should 択捉・改 db.ships[383].getPic("0") be 383/0.png?20170714`, function () {
+                expect(db.ships[383].getPic("0")).toBe("383/0.png?20170714");
+            });
             it(`should 長門・改 db.ships[275]._speedRule be low-2`, function () {
                 expect('low-2').toBe(db.ships[275]._speedRule);
             });
