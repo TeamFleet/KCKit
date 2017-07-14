@@ -147,14 +147,17 @@ describe('Base functions/utilities', () => {
             it(`should Гангут・два db.ships[513].getRange(false) be 3`, function () {
                 expect(3).toBe(db.ships[513].getRange(false));
             });
-            it(`should 鈴谷・航改二 db.ships[508].navy be ijn`, function () {
-                expect('ijn').toBe(db.ships[508].navy);
+            it(`should 鈴谷・航改二 db.ships[508]._navy be ijn`, function () {
+                expect('ijn').toBe(db.ships[508]._navy);
             });
-            it(`should Гангут・два db.ships[513].navy be vmf`, function () {
-                expect('vmf').toBe(db.ships[513].navy);
+            it(`should Гангут・два db.ships[513]._navy be vmf`, function () {
+                expect('vmf').toBe(db.ships[513]._navy);
             });
-            it(`should Гангут・два db.ships[513]._navyName be Soviet Navy`, function () {
-                expect('Soviet Navy').toBe(db.ships[513]._navyName);
+            it(`should Гангут・два db.ships[513]._navy be vmf`, function () {
+                expect('vmf').toBe(db.ships[513]._navy);
+            });
+            it(`should Верный db.ships[147]._navyName be Soviet Navy`, function () {
+                expect('Soviet Navy').toBe(db.ships[147]._navyName);
             });
             it(`should Гангут・два db.ships[513].getNavyName('zh_cn') be 苏联海军`, function () {
                 expect('苏联海军').toBe(db.ships[513].getNavyName('zh_cn'));

@@ -420,11 +420,16 @@ module.exports = class Ship extends ItemBase {
      * @readonly
      * @returns {String}
      */
-    get navy() {
+    getNavy() {
+        if (this.navy) return this.navy
         return this.class
             ? (getdb('ship_classes')[this.class].navy || 'ijn')
             : 'ijn'
     }
+    get _navy() {
+        return this.getNavy()
+    }
+
     /**
      * 获取所属海军名称
      * 快捷方式 - ship._navyName （默认语言）
@@ -433,7 +438,7 @@ module.exports = class Ship extends ItemBase {
      * @returns {String}
      */
     getNavyName(theLocale = vars.locale) {
-        return require('../get-navy.js')(this.navy, theLocale)
+        return require('../get-navy.js')(this._navy, theLocale)
     }
     get _navyName() {
         return this.getNavyName()
