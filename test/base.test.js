@@ -12,7 +12,9 @@ const dbnames = [
     'items',
     'item_types',
     'entities',
-    'consumables'
+    'consumables',
+    'exillusts',
+    'exillust_types'
 ]
 
 const initializeDatabase = () => new Promise(async resolve => {
@@ -198,6 +200,24 @@ describe('Base functions/utilities', () => {
         })
 
         describe('Checking consumable samples...', function () {
+        })
+
+        describe('Checking exillust-type samples...', function () {
+            it(`should db.exillustTypes[1] be instanceof ExillustType`, function () {
+                expect(db.exillustTypes[1] instanceof require('../src/class/exillust-type.js')).toBe(true);
+            });
+            it(`should db.exillustTypes[1].getName("ja_jp") be 晴れ着`, function () {
+                expect(db.exillustTypes[1].getName("ja_jp")).toBe("晴れ着");
+            });
+            it(`should db.exillustTypes[1].getName("zh_cn") be 晴れ着`, function () {
+                expect(db.exillustTypes[1].getName("zh_cn")).toBe("新年");
+            });
+            it(`should db.exillustTypes[1].getTime("ja_jp") be 1月初旬`, function () {
+                expect(db.exillustTypes[1].getTime("ja_jp")).toBe("1月初旬");
+            });
+            it(`should db.exillustTypes[1].getTime("en_us") be Early January`, function () {
+                expect(db.exillustTypes[1].getTime("en_us")).toBe("Early January");
+            });
         })
     });
 
