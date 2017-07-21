@@ -1,5 +1,5 @@
 const vars = require('../variables')
-const getdb = require('../get-db.js')
+const getdb = require('../get/db')
 const ItemBase = require('./base.js')
 
 module.exports = class Ship extends ItemBase {
@@ -162,7 +162,7 @@ module.exports = class Ship extends ItemBase {
     getSpeed(theLocale = vars.locale) {
         if (theLocale === false)
             return this.stat.speed
-        return require('../get-speed.js')(this.stat.speed, theLocale)
+        return require('../get/speed')(this.stat.speed, theLocale)
     }
     get _speed() {
         return this.getSpeed()
@@ -194,7 +194,7 @@ module.exports = class Ship extends ItemBase {
     getRange(theLocale = vars.locale) {
         if (theLocale === false)
             return this.stat.range
-        return require('../get-range.js')(this.stat.range, theLocale)
+        return require('../get/range')(this.stat.range, theLocale)
     }
     get _range() {
         return this.getRange()
@@ -438,7 +438,7 @@ module.exports = class Ship extends ItemBase {
      * @returns {String}
      */
     getNavyName(theLocale = vars.locale) {
-        return require('../get-navy.js')(this._navy, theLocale)
+        return require('../get/navy')(this._navy, theLocale)
     }
     get _navyName() {
         return this.getNavyName()

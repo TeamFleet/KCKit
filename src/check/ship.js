@@ -16,6 +16,6 @@
  * @param {number} [condition.slotIs] 判断舰娘的可配置栏位精确有 number 个
  * @param {number} [condition.slotAtMost] 判断舰娘的可配置栏位最多有 number 个
  */
-export default (ship, condition = {}) => {
+module.exports = (ship, condition = {}) => {
     
 }

@@ -1,0 +1,1 @@
+module.exports = (speedId, localeId) => require('./variable')('speed', localeId)[speedId]

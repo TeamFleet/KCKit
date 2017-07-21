@@ -1,0 +1,1 @@
+module.exports = (rangeId, localeId) => require('./variable')('range', localeId)[rangeId]

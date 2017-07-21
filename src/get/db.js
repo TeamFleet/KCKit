@@ -1,5 +1,5 @@
 const camelCase = require('camelcase')
-const vars = require('./variables')
+const vars = require('../variables')
 
 let results = {}
 

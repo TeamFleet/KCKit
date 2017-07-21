@@ -1,0 +1,1 @@
+module.exports = (navyId, localeId) => require('./variable')('navy', localeId)[navyId]

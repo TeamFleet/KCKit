@@ -1,21 +1,9 @@
 const path = require('path')
 const fs = require('fs')
 const camelCase = require('camelcase')
+const dbnames = require('./samples/dbnames')
 
 let db
-const dbnames = [
-    'ships',
-    'ship_types',
-    'ship_classes',
-    'ship_namesuffix',
-    'ship_series',
-    'items',
-    'item_types',
-    'entities',
-    'consumables',
-    'exillusts',
-    'exillust_types'
-]
 
 const initializeDatabase = () => new Promise(async resolve => {
     db = await require('./samples/initialize-database')(dbnames)
@@ -209,7 +197,7 @@ describe('Base functions/utilities', () => {
             it(`should db.exillustTypes[1].getName("ja_jp") be 晴れ着`, function () {
                 expect(db.exillustTypes[1].getName("ja_jp")).toBe("晴れ着");
             });
-            it(`should db.exillustTypes[1].getName("zh_cn") be 晴れ着`, function () {
+            it(`should db.exillustTypes[1].getName("zh_cn") be 新年`, function () {
                 expect(db.exillustTypes[1].getName("zh_cn")).toBe("新年");
             });
             it(`should db.exillustTypes[1].getTime("ja_jp") be 1月初旬`, function () {
