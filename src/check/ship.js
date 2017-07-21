@@ -7,7 +7,8 @@ const getShip = require('../get/ship')
  * @param {any} [conditions={}] 条件
  * @param {(number|number[])} [conditions.isID] 判断舰娘ID是否精确匹配或匹配其中一项
  * @param {(string|string[])} [conditions.isName] 判断舰娘名是否精确匹配或匹配其中一项
- * @param {(number|number[])} [conditions.isType] 判断舰娘是否属于给定类型或匹配其中一项
+ * @param {(number|number[])} [conditions.isType] 判断舰娘是否属于给定舰种或匹配其中一项
+ * @param {(number|number[])} [conditions.isClass] 判断舰娘是否属于给定舰级或匹配其中一项
  * @param {boolean} [conditions.isBattleship]
  * @param {boolean} [conditions.isBB]
  * @param {boolean} [conditions.isCarrier]
@@ -50,6 +51,12 @@ const checkCondition = {
             if (ship.name[key].toLowerCase() === name) return true
         }
         return false
+    }),
+
+    // isClass
+    isclass: (ship, Class) => ArrayOrItem(Class, Class => {
+        if (isNaN(Class)) return false
+        return parseInt(Class) === ship.class
     }),
 
     // isType

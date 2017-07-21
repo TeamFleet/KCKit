@@ -70,6 +70,14 @@ describe('Checking functions/utilities', () => {
             expect(check.ship(163, { isSS: true })).toBe(true);
             expect(check.ship(163, { isSS: false })).toBe(false);
         });
+        it(`should condition isClass be working`, function () {
+            expect(check.ship(1, { isClass: 12 })).toBe(true);
+            expect(check.ship(1, { isClass: 1 })).toBe(false);
+            expect(check.ship(1, { isClass: [12, 1] })).toBe(true);
+            expect(check.ship(db.ships[1], { isClass: 12 })).toBe(true);
+            expect(check.ship(db.ships[1], { isClass: 1 })).toBe(false);
+            expect(check.ship(db.ships[1], { isClass: [12, 1] })).toBe(true);
+        });
         it(`should condition isSlot (and other similar method) be working`, function () {
             expect(check.ship(1, { isSlot: 2 })).toBe(true);
             expect(check.ship(1, { isSlot: 1 })).toBe(false);
