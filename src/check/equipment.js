@@ -6,7 +6,7 @@ const { ArrayOrItem, ArrayOrItemAll } = require('./helpers')
  * 检查装备是否满足给定条件
  * 
  * @param {(number|Equipment)} equipment 要判断的装备
- * @param {any} [conditions={}] 条件
+ * @param {any} [conditions={}] 条件，需满足所有条件
  * @param {(number|number[])} [conditions.isID] 判断装备ID是否精确匹配或匹配其中一项
  * @param {(number|number[])} [conditions.isNotID] 判断装备ID是否不匹配
  * @param {(string|string[])} [conditions.isName] 判断装备名是否精确匹配或匹配其中一项
@@ -18,11 +18,14 @@ module.exports = (equipment, conditions = {}) => {
     equipment = getEquipment(equipment)
     if (typeof equipment === 'undefined') return false
 
+    // 需满足所有条件
     for (let key in conditions) {
         if (checkCondition[key.toLowerCase()]) {
+            // checkCondition 中存在该条件，直接运行
             if (!checkCondition[key.toLowerCase()](equipment, conditions[key]))
                 return false
         } else if (key.substr(0, 2) === 'is') {
+            // 以 is 为开头，通常为检查装备类型
             let typeName = key.substr(2)
             if (typeName === 'HAMountAAFD') {
                 typeName = 'HAMountsAAFD'

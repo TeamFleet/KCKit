@@ -5,7 +5,7 @@ const { ArrayOrItem, ArrayOrItemAll } = require('./helpers')
  * 检查舰娘是否满足给定条件
  * 
  * @param {(number|Ship)} ship 要判断的舰娘
- * @param {any} [conditions={}] 条件
+ * @param {any} [conditions={}] 条件，需满足所有条件
  * @param {(number|number[])} [conditions.isID] 判断舰娘ID是否精确匹配或匹配其中一项
  * @param {(number|number[])} [conditions.isNotID] 判断舰娘ID是否不匹配
  * @param {(string|string[])} [conditions.isName] 判断舰娘名是否精确匹配或匹配其中一项
@@ -28,6 +28,7 @@ module.exports = (ship, conditions = {}) => {
     ship = getShip(ship)
     if (typeof ship === 'undefined') return false
 
+    // 需满足所有条件
     for (let key in conditions) {
         if (!checkCondition[key.toLowerCase()](ship, conditions[key]))
             return false
