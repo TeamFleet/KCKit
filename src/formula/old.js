@@ -172,12 +172,12 @@
         _equipmentType.LargeFlyingBoat
     ];
 
-    _equipmentType.ReconSeaplanes = [
+    _equipmentType.SeaplaneRecons = [
         _equipmentType.ReconSeaplane,
         _equipmentType.ReconSeaplaneNight,
     ];
 
-    _equipmentType.SeaplaneRecons = [
+    _equipmentType.SeaplaneReconsAll = [
         _equipmentType.ReconSeaplane,
         _equipmentType.ReconSeaplaneNight,
         _equipmentType.LargeFlyingBoat
@@ -356,7 +356,7 @@
         },
         Seaplanes: {
         },
-        ReconSeaplanes: {
+        SeaplaneRecons: {
             los: 1.2
         },
         SeaplaneFighters: {
@@ -747,7 +747,7 @@
             , 'DiveBombers'
             , 'TorpedoBombers'
             , 'CarrierRecons'
-            , 'SeaplaneRecons'
+            , 'SeaplaneReconsAll'
             , 'SeaplaneBombers'
             , 'SmallRadars'
             , 'LargeRadars'
@@ -760,7 +760,7 @@
             , 'DiveBombers': 1.03745043134563
             , 'TorpedoBombers': 1.3679056374142
             , 'CarrierRecons': 1.65940512636315
-            , 'SeaplaneRecons': 2
+            , 'SeaplaneReconsAll': 2
             , 'SeaplaneBombers': 1.77886368594467
             , 'SmallRadars': 1.0045778494921
             , 'LargeRadars': 0.990738063979571
@@ -773,7 +773,7 @@
             , 'DiveBombers': 0.0965028505325845
             , 'TorpedoBombers': 0.108636184978525
             , 'CarrierRecons': 0.0976055279516298
-            , 'SeaplaneRecons': 0.0866229392463539
+            , 'SeaplaneReconsAll': 0.0866229392463539
             , 'SeaplaneBombers': 0.0917722496848294
             , 'SmallRadars': 0.0492773648320346
             , 'LargeRadars': 0.0491221486053861
@@ -787,7 +787,7 @@
                 , 'DiveBombers': -0.147020064768061
                 , 'TorpedoBombers': -0.379236131621529
                 , 'CarrierRecons': -0.572858669501918
-                , 'SeaplaneRecons': -0.733913857017495
+                , 'SeaplaneReconsAll': -0.733913857017495
                 , 'SeaplaneBombers': -0.642621825152428
                 , 'SmallRadars': -0.674829588068364
                 , 'LargeRadars': -0.707418111752863
@@ -800,7 +800,7 @@
                 , 'DiveBombers': 1
                 , 'TorpedoBombers': 0.288506347076736
                 , 'CarrierRecons': 0.365820372770994
-                , 'SeaplaneRecons': 0.425744409856409
+                , 'SeaplaneReconsAll': 0.425744409856409
                 , 'SeaplaneBombers': 0.417783698791503
                 , 'SmallRadars': 0.409046013184429
                 , 'LargeRadars': 0.413855653833994
@@ -813,7 +813,7 @@
                 , 'DiveBombers': 0.288506347076736
                 , 'TorpedoBombers': 1
                 , 'CarrierRecons': 0.482215071254241
-                , 'SeaplaneRecons': 0.584455876852325
+                , 'SeaplaneReconsAll': 0.584455876852325
                 , 'SeaplaneBombers': 0.558515133495825
                 , 'SmallRadars': 0.547260012897553
                 , 'LargeRadars': 0.560437619378443
@@ -826,7 +826,7 @@
                 , 'DiveBombers': 0.365820372770994
                 , 'TorpedoBombers': 0.482215071254241
                 , 'CarrierRecons': 1
-                , 'SeaplaneRecons': 0.804494553748065
+                , 'SeaplaneReconsAll': 0.804494553748065
                 , 'SeaplaneBombers': 0.75671307047535
                 , 'SmallRadars': 0.748420581669228
                 , 'LargeRadars': 0.767980338133817
@@ -834,12 +834,12 @@
                 , 'statLos': 0.743851348255527
                 , 'hqLv': -0.503544281376776
             }
-            , 'SeaplaneRecons': {
+            , 'SeaplaneReconsAll': {
                 '(Intercept)': -0.733913857017495
                 , 'DiveBombers': 0.425744409856409
                 , 'TorpedoBombers': 0.584455876852325
                 , 'CarrierRecons': 0.804494553748065
-                , 'SeaplaneRecons': 1
+                , 'SeaplaneReconsAll': 1
                 , 'SeaplaneBombers': 0.932444440578382
                 , 'SmallRadars': 0.923988080549326
                 , 'LargeRadars': 0.94904944359066
@@ -852,7 +852,7 @@
                 , 'DiveBombers': 0.417783698791503
                 , 'TorpedoBombers': 0.558515133495825
                 , 'CarrierRecons': 0.75671307047535
-                , 'SeaplaneRecons': 0.932444440578382
+                , 'SeaplaneReconsAll': 0.932444440578382
                 , 'SeaplaneBombers': 1
                 , 'SmallRadars': 0.864289865445084
                 , 'LargeRadars': 0.886872388674911
@@ -865,7 +865,7 @@
                 , 'DiveBombers': 0.409046013184429
                 , 'TorpedoBombers': 0.547260012897553
                 , 'CarrierRecons': 0.748420581669228
-                , 'SeaplaneRecons': 0.923988080549326
+                , 'SeaplaneReconsAll': 0.923988080549326
                 , 'SeaplaneBombers': 0.864289865445084
                 , 'SmallRadars': 1
                 , 'LargeRadars': 0.872011318623459
@@ -878,7 +878,7 @@
                 , 'DiveBombers': 0.413855653833994
                 , 'TorpedoBombers': 0.560437619378443
                 , 'CarrierRecons': 0.767980338133817
-                , 'SeaplaneRecons': 0.94904944359066
+                , 'SeaplaneReconsAll': 0.94904944359066
                 , 'SeaplaneBombers': 0.886872388674911
                 , 'SmallRadars': 0.872011318623459
                 , 'LargeRadars': 1
@@ -891,7 +891,7 @@
                 , 'DiveBombers': 0.308730607324667
                 , 'TorpedoBombers': 0.437934879351188
                 , 'CarrierRecons': 0.589651513349878
-                , 'SeaplaneRecons': 0.727912987329348
+                , 'SeaplaneReconsAll': 0.727912987329348
                 , 'SeaplaneBombers': 0.68310647756898
                 , 'SmallRadars': 0.671926570242336
                 , 'LargeRadars': 0.690102027588321
@@ -904,7 +904,7 @@
                 , 'DiveBombers': 0.317984916914851
                 , 'TorpedoBombers': 0.533934507932748
                 , 'CarrierRecons': 0.743851348255527
-                , 'SeaplaneRecons': 0.944434077970518
+                , 'SeaplaneReconsAll': 0.944434077970518
                 , 'SeaplaneBombers': 0.88122333327317
                 , 'SmallRadars': 0.857213501657084
                 , 'LargeRadars': 0.883771367337743
@@ -917,7 +917,7 @@
                 , 'DiveBombers': -0.386740224500626
                 , 'TorpedoBombers': -0.405349979885748
                 , 'CarrierRecons': -0.503544281376776
-                , 'SeaplaneRecons': -0.614921413821462
+                , 'SeaplaneReconsAll': -0.614921413821462
                 , 'SeaplaneBombers': -0.624797255805045
                 , 'SmallRadars': -0.560018086758868
                 , 'LargeRadars': -0.561336967269448
@@ -931,7 +931,7 @@
             'DiveBombers': 0,
             'TorpedoBombers': 0,
             'CarrierRecons': 0,
-            'SeaplaneRecons': 0,
+            'SeaplaneReconsAll': 0,
             'SeaplaneBombers': 0,
             'SmallRadars': 0,
             'LargeRadars': 0,
@@ -1330,7 +1330,7 @@
             'DiveBombers': 0,
             'TorpedoBombers': 0,
             'CarrierRecons': 0,
-            'SeaplaneRecons': 0,
+            'SeaplaneReconsAll': 0,
             'SeaplaneBombers': 0,
             'SmallRadars': 0,
             'LargeRadars': 0,

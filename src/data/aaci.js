@@ -27,10 +27,10 @@ register(5, {
     icons: ['16+', '16+', '11AA'],
     ship: {
         isSS: false,
-        isSlotMin: 3
+        hasSlotMin: 3
     },
     equipments: {
-        hasBuiltinHighAngleMount: 2,
+        hasHAMountAAFD: 2,
         hasAARadar: true
     }
 })
@@ -40,10 +40,10 @@ register(8, {
     icons: ['16+', '11AA'],
     ship: {
         isSS: false,
-        isSlotMin: 2
+        hasSlotMin: 2
     },
     equipments: {
-        hasBuiltinHighAngleMount: true,
+        hasHAMountAAFD: true,
         hasAARadar: true
     }
 })
@@ -53,10 +53,10 @@ register(7, {
     icons: [16, 30, '11AA'],
     ship: {
         isSS: false,
-        isSlotMin: 2
+        hasSlotMin: 2
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasAAFD: true,
         hasAARadar: true
     }
@@ -67,10 +67,10 @@ register(9, {
     icons: [16, 30],
     ship: {
         isSS: false,
-        isSlotMin: 1
+        hasSlotMin: 1
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasAAFD: true
     }
 })
@@ -80,10 +80,10 @@ register(12, {
     icons: ['15+', 15, '11AA'],
     ship: {
         isSS: false,
-        isSlotMin: 2
+        hasSlotMin: 2
     },
     equipments: {
-        hasCDMG: true,
+        hasAAGunCD: true,
         /* CDMGs are AAGuns, so we need at least 2 AA guns 
            including the CDMG one we have just counted */
         hasAAFD: 2,
@@ -98,10 +98,10 @@ register(4, {
     icons: [3, 12, 30, '11AA'],
     ship: {
         isBB: true,
-        isSlotMin: 4
+        hasSlotMin: 4
     },
     equipments: {
-        hasLargeCaliberMainGun: true,
+        hasLargeCaliber: true,
         hasType3Shell: true,
         hasAAFD: true,
         hasAARadar: true
@@ -113,10 +113,10 @@ register(6, {
     icons: [3, 12, 30],
     ship: {
         isBB: true,
-        isSlotMin: 3
+        hasSlotMin: 3
     },
     equipments: {
-        hasLargeCaliberMainGun: true,
+        hasLargeCaliber: true,
         hasType3Shell: true,
         hasAAFD: true
     }
@@ -131,7 +131,7 @@ register(1, {
         isClass: 23
     },
     equipments: {
-        hasHighAngleMount: 2,
+        hasHAMount: 2,
         hasRadar: true
     }
 })
@@ -143,7 +143,7 @@ register(2, {
         isClass: 23
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasRadar: true
     }
 })
@@ -155,7 +155,7 @@ register(3, {
         isClass: 23
     },
     equipments: {
-        hasHighAngleMount: 2
+        hasHAMount: 2
     }
 })
 
@@ -168,8 +168,8 @@ register(10, {
         isID: 428
     },
     equipments: {
-        hasHighAngleMount: true,
-        hasCDMG: true,
+        hasHAMount: true,
+        hasAAGunCD: true,
         hasAARadar: true
     }
 })
@@ -181,8 +181,8 @@ register(11, {
         isID: 428
     },
     equipments: {
-        hasHighAngleMount: true,
-        hasCDMG: true
+        hasHAMount: true,
+        hasAAGunCD: true
     }
 })
 
@@ -195,7 +195,7 @@ register(14, {
         isID: 141
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasAAGun: true,
         hasAARadar: true
     }
@@ -208,7 +208,7 @@ register(15, {
         isID: 141
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasAAGun: true
     }
 })
@@ -222,7 +222,7 @@ register(16, {
         isID: 470
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasAAGun: true,
         hasAARadar: true
     }
@@ -235,7 +235,7 @@ register(17, {
         isID: 470
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasAAGun: true
     }
 })
@@ -249,7 +249,7 @@ register(18, {
         isID: 418
     },
     equipments: {
-        hasCDMG: true
+        hasAAGunCD: true
     }
 })
 
@@ -262,9 +262,9 @@ register(19, {
         isID: 487
     },
     equipments: {
-        hasBuiltinHighAngleMount: false,
-        hasHighAngleMount: true,
-        hasCDMG: true
+        hasHAMountAAFD: false,
+        hasHAMount: true,
+        hasAAGunCD: true
     }
 })
 register(20, {
@@ -275,7 +275,7 @@ register(20, {
         isID: 487
     },
     equipments: {
-        hasCDMG: true
+        hasAAGunCD: true
     }
 })
 
@@ -288,7 +288,7 @@ register(21, {
         isID: 488
     },
     equipments: {
-        hasHighAngleMount: true,
+        hasHAMount: true,
         hasAARadar: true
     }
 })
