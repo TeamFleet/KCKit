@@ -74,9 +74,9 @@ describe('Base functions/utilities', () => {
             it(`should 長門・改二 db.ships[541]._speedRule be low-1`, function () {
                 expect('low-1').toBe(db.ships[541]._speedRule);
             });
-            it(`should Гангут・два db.ships[513].getAttribute('los', 99) be undefined`, function () {
-                expect(undefined).toBe(db.ships[513].getAttribute('los', 99));
-            });
+            // it(`should Гангут・два db.ships[513].getAttribute('los', 99) be undefined`, function () {
+            //     expect(undefined).toBe(db.ships[513].getAttribute('los', 99));
+            // });
             it(`should 大和・改 db.ships[136].getAttribute('torpedo') be false`, function () {
                 expect(false).toBe(db.ships[136].getAttribute('torpedo'));
             });
@@ -107,9 +107,9 @@ describe('Base functions/utilities', () => {
             it(`should 翔鶴・改二甲 db.ships[466]._cv be 野水 伊織`, function () {
                 expect('野水 伊織').toBe(db.ships[466]._cv);
             });
-            it(`should 択捉 db.ships[524]._illustrator be undefined`, function () {
-                expect(undefined).toBe(db.ships[524]._illustrator);
-            });
+            // it(`should 択捉 db.ships[524]._illustrator be undefined`, function () {
+            //     expect(undefined).toBe(db.ships[524]._illustrator);
+            // });
             it(`should 明石 db.ships[182]._minLv be 1`, function () {
                 expect(1).toBe(db.ships[182]._minLv);
             });
@@ -173,8 +173,8 @@ describe('Base functions/utilities', () => {
             it(`should 加古・改二 db.ships[417]._extraIllust be undefined`, function () {
                 expect(db.ships[417]._extraIllust).toBe(undefined);
             });
-            it(`should 大淀・改 db.ships[321]._extraIllust be an Array of 5`, function () {
-                expect(db.ships[321]._extraIllust.length).toBe(5);
+            it(`should 大淀・改 db.ships[321]._extraIllust be an Array of 6`, function () {
+                expect(db.ships[321]._extraIllust.length).toBe(6);
             });
         });
 

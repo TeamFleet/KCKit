@@ -92,4 +92,55 @@ describe('Checking functions/utilities', () => {
             expect(check.ship(1, { isSlotMax: 3 })).toBe(true);
         })
     });
+    describe('Checking for equipment...', () => {
+        it(`PLACEHOLDER`, function () {
+            expect(true).toBe(false);
+        })
+    })
+    describe('Checking for equipment list...', () => {
+        it(`PLACEHOLDER`, function () {
+            expect(true).toBe(false);
+        })
+    })
+    describe('Checking for AACI...', () => {
+        describe(`Get AACI ids for ship only`, () => {
+            it(`Result should be Array`, function () {
+                expect(Array.isArray(check.aaci(1))).toBe(true);
+            })
+            it(`Check for samples`, function () {
+                expect(check.aaci(405).map(obj => obj.id)).toEqual([8, 7, 12, 9]);
+                expect(check.aaci(428).map(obj => obj.id)).toEqual([10, 11, 5, 8, 7, 12, 9]);
+                expect(check.aaci(136).map(obj => obj.id)).toEqual([4, 5, 6, 8, 7, 12, 9]);
+                expect(check.aaci(330).map(obj => obj.id)).toEqual([1, 2, 3, 5, 8, 7, 12, 9]);
+                expect(check.aaci(141).map(obj => obj.id)).toEqual([5, 14, 8, 7, 15, 12, 9]);
+                expect(check.aaci(470).map(obj => obj.id)).toEqual([5, 16, 8, 7, 12, 9, 17]);
+                expect(check.aaci(418).map(obj => obj.id)).toEqual([5, 8, 7, 12, 9, 18]);
+                expect(check.aaci(487).map(obj => obj.id)).toEqual([19, 5, 8, 7, 20, 12, 9]);
+                expect(check.aaci(488).map(obj => obj.id)).toEqual([21, 5, 8, 7, 12, 9]);
+            })
+        });
+        describe(`Check AACI id for ship only`, () => {
+            it(`Result should be Boolean`, function () {
+                expect(typeof check.aaci(1, undefined, 1)).toBe('boolean');
+            })
+            it(`Check for samples`, function () {
+                expect(check.aaci(405, undefined, 8)).toBe(true);
+                expect(check.aaci(488, undefined, 1)).toEqual(false);
+                expect(check.aaci(488, undefined, 21)).toEqual(true);
+                expect(check.aaci(488, undefined, [21, 1])).toEqual(false);
+                expect(check.aaci(488, undefined, [21, 5])).toEqual(true);
+                expect(check.aaci(488, undefined, [21, 5, 8, 7, 12, 9])).toEqual(true);
+            })
+        });
+        describe(`Get AACI ids for ship and equipment list`, () => {
+            it(`PLACEHOLDER`, function () {
+                expect(true).toBe(false);
+            })
+        })
+        describe(`Check AACI id for ship and equipment list`, () => {
+            it(`PLACEHOLDER`, function () {
+                expect(true).toBe(false);
+            })
+        })
+    })
 })

@@ -1,7 +1,6 @@
 module.exports = {
-    register: require('./src/register'),
     vars: require('./src/variables'),
-    parseRaw: require('./src/parse-raw.js'),
+    data: require('./src/data'),
 
     // Classes
     Ship: require('./src/class/ship'),
@@ -10,5 +9,9 @@ module.exports = {
     Consumable: require('./src/class/consumable'),
 
     // Formulas
-    formula: require('./src/formula/')
+    formula: require('./src/formula/'),
+
+    // Helper functions
+    register: require('./src/register'),
+    parseRaw: require('./src/parse-raw')
 }

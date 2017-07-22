@@ -24,12 +24,14 @@ let vars = {
     enemyIdStartFrom: 1500
 }
 
-vars.register = (settings = {}) => {
-    // deepExtend(vars, settings)
-    Object.assign(vars, settings)
-    // console.log(settings.db.ships[1]._name)
-    // console.log(vars.db.ships[1]._name)
-    return vars
-}
+Object.defineProperty(vars, 'register', {
+    value: (settings = {}) => {
+        // deepExtend(vars, settings)
+        Object.assign(vars, settings)
+        // console.log(settings.db.ships[1]._name)
+        // console.log(vars.db.ships[1]._name)
+        return vars
+    }
+})
 
 module.exports = vars
