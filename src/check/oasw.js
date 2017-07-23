@@ -73,7 +73,7 @@ module.exports = (ship, equipments) => {
                 for (let stat in OASW.shipWithEquipments.hasStat) {
                     let value = OASW.shipWithEquipments.hasStat[stat]
                     const base = ship.stat[stat]
-                    if (!base || base <= 0) return false
+                    if (typeof base === 'undefined' || base === false || base < 0) return false
                     const max = ship.stat[stat + '_max']
                     if (typeof max !== 'undefined') {
                         if (!max || max <= 0) return false
@@ -82,7 +82,7 @@ module.exports = (ship, equipments) => {
                                 value -= bestSonarASW * slots
                             if (ship.canEquip(equipmentTypes.LargeSonar))
                                 value -= bestLargeSonarASW * slots
-                            const thisMinLv = Math.floor((value - base) * 99 / (max - base))
+                            const thisMinLv = Math.ceil((value - base) * 99 / (max - base))
                             if (thisMinLv > maxShipLv) return false
                             if (minLv) minLv = Math.max(minLv, thisMinLv)
                             else minLv = thisMinLv
