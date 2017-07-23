@@ -17,7 +17,7 @@ module.exports = (ship, equipments, aaciID) => {
     if (typeof ship === 'undefined') return false
 
 
-    const hasEquipments = Array.isArray(equipments) && equipments.length
+    const hasEquipments = Array.isArray(equipments)
     const _checkEquipments = (conditions) => {
         if (!hasEquipments) return true
         return checkEquipments(equipments, conditions)

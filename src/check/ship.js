@@ -123,4 +123,11 @@ const checkCondition = {
     hasslotmax: function (ship, max) {
         return this.hasslot(ship, [undefined, max])
     },
+
+    // minLevel
+    minlevel: (ship, level) => {
+        if(typeof ship.level !== 'undefined')
+            return ship.level >= level
+        return true
+    }
 }

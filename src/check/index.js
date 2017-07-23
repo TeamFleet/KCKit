@@ -6,4 +6,5 @@ module.exports = {
 
     aaci: require('./aaci'),
     oasw: require('./oasw'),
+    ots: require('./ots')
 }

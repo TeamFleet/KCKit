@@ -382,4 +382,32 @@ describe('Checking functions/utilities', () => {
             })
         })
     })
+    describe('Checking for OTS...', () => {
+        describe(`Get OTS table for ship only`, () => {
+            it(`Result should be Array or false`, function () {
+                expect(Array.isArray(check.ots(400))).toBe(true);
+                expect(Array.isArray(check.ots(119))).toBe(true);
+                expect(Array.isArray(check.ots(488))).toBe(true);
+                expect(check.ots(434)).toBe(false);
+            })
+            it(`Check samples`, function () {
+                expect(check.ots(400).length).toBe(2);
+                expect(check.ots(488).length).toBe(1);
+            })
+        });
+        describe(`Check OTS capability for ship and equipment list`, () => {
+            it(`Check samples`, function () {
+                expect(check.ots(Object.assign(db.ships[400], {
+                    level: 10
+                }), [])).toBe(true);
+                expect(check.ots(Object.assign(db.ships[400], {
+                    level: 1
+                }), [])).toBe(false);
+                expect(check.ots(Object.assign(db.ships[400], {
+                    level: 1
+                }), [41])).toBe(true);
+                expect(check.ots(488, [41])).toBe(true);
+            })
+        })
+    })
 })
