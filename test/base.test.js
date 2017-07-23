@@ -176,6 +176,21 @@ describe('Base functions/utilities', () => {
             it(`should 大淀・改 db.ships[321]._extraIllust be an Array of 6`, function () {
                 expect(db.ships[321]._extraIllust.length).toBe(6);
             });
+            it(`should 大淀・改 db.ships[321]._equipmentTypes be an Array of 26`, function () {
+                expect(db.ships[321]._equipmentTypes.length).toBe(26);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip(1) be true`, function () {
+                expect(db.ships[321].canEquip(1)).toBe(true);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip([1, 2]) be true`, function () {
+                expect(db.ships[321].canEquip([1, 2])).toBe(true);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip(5) be false`, function () {
+                expect(db.ships[321].canEquip(5)).toBe(false);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip([1, 5]) be false`, function () {
+                expect(db.ships[321].canEquip([1, 5])).toBe(false);
+            });
         });
 
         describe('Checking equipment samples...', function () {

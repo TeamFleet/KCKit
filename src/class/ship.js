@@ -216,6 +216,22 @@ module.exports = class Ship extends ItemBase {
     }
 
     /**
+     * 判断该舰娘是否可配置给定的类型的装备
+     * 
+     * @param {(number|number[])} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
+     * @returns {boolean}
+     */
+    canEquip(equipmentType) {
+        if (Array.isArray(equipmentType)) {
+            return equipmentType.every(type => this._equipmentTypes.includes(parseInt(type)))
+        } else if (isNaN(equipmentType)) {
+            return false
+        } else {
+            return this._equipmentTypes.includes(parseInt(equipmentType))
+        }
+    }
+
+    /**
      * 获取指定属性
      * 
      * @param {String} attr - 指定属性名

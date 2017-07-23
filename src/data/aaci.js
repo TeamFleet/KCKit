@@ -1,4 +1,6 @@
 // https://github.com/KC3Kai/KC3Kai/blob/master/src/library/modules/AntiAir.js
+// http://wikiwiki.jp/kancolle/?%B9%D2%B6%F5%C0%EF#antiairfire
+// http://kancolle.wikia.com/wiki/Combat/Aerial_Combat#Anti-Air_Cut-In
 
 let data = {}
 
