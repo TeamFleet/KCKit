@@ -199,6 +199,12 @@ describe('Checking functions/utilities', () => {
             expect(check.equipment(db.items[1], { isNotName: ['11cm単装砲', '12cm単装砲'] })).toBe(false);
             expect(check.equipment(db.items[1], { isNotName: ['12cm连装砲', '13cm连装砲'] })).toBe(true);
         });
+        it(`should condition isNameOf be working`, function () {
+            expect(check.equipment(1, { isNameOf: '12cm' })).toBe(true);
+            expect(check.equipment(1, { isNameOf: '12cm连装砲' })).toBe(false);
+            expect(check.equipment(1, { isNameOf: ['11cm', '12cm'] })).toBe(true);
+            expect(check.equipment(1, { isNameOf: ['11cm', '13cm'] })).toBe(false);
+        });
         it(`should condition isType (and other similar method) be working`, function () {
             expect(check.equipment(1, { isType: 1 })).toBe(true);
             expect(check.equipment(1, { isType: 2 })).toBe(false);
@@ -273,6 +279,16 @@ describe('Checking functions/utilities', () => {
             expect(check.equipments([1, 2, 3], { hasID: [1, 2] })).toBe(true);
             expect(check.equipments([1, 2], { hasID: 11 })).toBe(false);
             expect(check.equipments([1, 2, 3], { hasID: [11, 12] })).toBe(false);
+            expect(check.equipments([1, 2, 3], { hasID: [1, 111] })).toBe(false);
+            expect(check.equipments([1, 1, 2, 3], { hasID: [1, 111] })).toBe(false);
+        });
+        it(`should condition hasNameOf be working`, function () {
+            expect(check.equipments([1, 83], { hasNameOf: '九三一空' })).toBe(true);
+            expect(check.equipments([1, 83], { hasNameOf: ['12cm', '九三一空'] })).toBe(true);
+            expect(check.equipments([1, 83], { hasNameOf: '11cm' })).toBe(false);
+            expect(check.equipments([1, 2, 83], { hasNameOf: ['11cm', '六〇一空'] })).toBe(false);
+            expect(check.equipments([1, 2, 83], { hasNameOf: ['12cm', '11cm', '六〇一空'] })).toBe(false);
+            expect(check.equipments([1, 1, 2, 83], { hasNameOf: ['12cm', '11cm', '六〇一空'] })).toBe(false);
         });
         it(`should type conditions be working`, function () {
             expect(check.equipments([50, 51], { hasAAGun: true })).toBe(true);
@@ -344,6 +360,25 @@ describe('Checking functions/utilities', () => {
                 expect(check.aaci(428, [130, 130, 124], [5, 8])).toBe(true);
                 expect(check.aaci(428, [130, 130, 124], 6)).toBe(false);
                 expect(check.aaci(428, [130, 130, 124], [6, 7])).toBe(false);
+            })
+        })
+    })
+    describe('Checking for OASW...', () => {
+        describe(`Get OASW table for ship only`, () => {
+            it(`Result should be Array or false`, function () {
+                expect(Array.isArray(check.oasw(141))).toBe(true);
+                expect(check.oasw(1)).toBe(false);
+                expect(check.oasw(77)).toBe(false);
+            })
+            it(`Check samples`, function () {
+                expect(check.oasw(434)[0].minLv).toBe(86);
+                expect(check.oasw(380).length).toBe(3);
+            })
+        });
+        describe(`Get OASW table for ship and equipment list`, () => {
+            it(`Result should be Array`, function () {
+            })
+            it(`Check samples`, function () {
             })
         })
     })

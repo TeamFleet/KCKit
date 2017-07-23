@@ -4,5 +4,6 @@ module.exports = {
     equipment: require('./equipment'),
     equipments: require('./equipments'),
 
-    aaci: require('./aaci')
+    aaci: require('./aaci'),
+    oasw: require('./oasw'),
 }

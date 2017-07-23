@@ -4,6 +4,7 @@ const checkEquipment = require('./equipment')
 const checkListStatic = [
     'id',
     'name',
+    'nameof',
     'type'
 ]
 
@@ -20,25 +21,38 @@ const check = (equipments, conditions = {}) => {
     // 需满足所有条件
     for (let key in conditions) {
         if (conditions[key] === false) {
-            // 条件：是否存在
+            // 条件：不存在
             if (!equipments.every(
                 equipment => checkEquipment(equipment, {
                     [key.replace(/^has/, 'is')]: conditions[key]
                 })
             ))
                 return false
-        } else if (
-            conditions[key] === true
-            || (key.substr(0, 3) === 'has' && checkListStatic.includes(key.substr(3).toLowerCase()))
-        ) {
-            // 条件：不存在
-            // 条件：checkListStatic 中的项目
+        } else if (conditions[key] === true) {
+            // 条件：存在
             if (!equipments.some(
                 equipment => checkEquipment(equipment, {
                     [key.replace(/^has/, 'is')]: conditions[key]
                 })
             ))
                 return false
+        } else if (key.substr(0, 3) === 'has' && checkListStatic.includes(key.substr(3).toLowerCase())) {
+            // 条件：checkListStatic 中的项目
+            if (Array.isArray(conditions[key])) {
+                if(!conditions[key].every(value => equipments.some(
+                    equipment => checkEquipment(equipment, {
+                        [key.replace(/^has/, 'is')]: value
+                    })
+                )))
+                    return false
+            } else {
+                if (!equipments.some(
+                    equipment => checkEquipment(equipment, {
+                        [key.replace(/^has/, 'is')]: conditions[key]
+                    })
+                ))
+                    return false
+            }
         } else if (key.substr(0, 3) === 'has' && !isNaN(conditions[key])) {
             // 条件：有至少 N 个
             const filtered = equipments.filter(

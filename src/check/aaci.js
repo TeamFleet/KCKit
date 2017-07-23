@@ -1,5 +1,5 @@
-const getShip = require('../get/ship')
-const getEquipment = require('../get/equipment')
+// const getShip = require('../get/ship')
+// const getEquipment = require('../get/equipment')
 
 const checkShip = require('./ship')
 const checkEquipments = require('./equipments')

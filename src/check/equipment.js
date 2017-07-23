@@ -11,6 +11,8 @@ const { ArrayOrItem, ArrayOrItemAll } = require('./helpers')
  * @param {(number|number[])} [conditions.isNotID] 判断装备ID是否不匹配
  * @param {(string|string[])} [conditions.isName] 判断装备名是否精确匹配或匹配其中一项
  * @param {(string|string[])} [conditions.isNotName] 判断装备名是否不匹配
+ * @param {(string|string[])} [conditions.isNameOf] 判断装备名片段是否匹配或匹配其中一项
+ * @param {(string|string[])} [conditions.isNotNameOf] 判断装备名片段是否不匹配
  * @param {(number|number[])} [conditions.isType] 判断装备是否属于给定舰种或匹配其中一项
  * @param {(number|number[])} [conditions.isNotType] 判断装备是否不属于给定舰种
  */
@@ -61,14 +63,30 @@ const checkCondition = {
     isname: (equipment, name) => ArrayOrItem(name, name => {
         for (let key in equipment.name) {
             if (key === 'suffix') continue
-            if (equipment.name[key].toLowerCase() === name) return true
+            if (equipment.name[key] === name) return true
         }
         return false
     }),
     isnotname: (equipment, name) => ArrayOrItemAll(name, name => {
         for (let key in equipment.name) {
             if (key === 'suffix') continue
-            if (equipment.name[key].toLowerCase() === name) return false
+            if (equipment.name[key] === name) return false
+        }
+        return true
+    }),
+
+    // isNameOf
+    isnameof: (equipment, name) => ArrayOrItem(name, name => {
+        for (let key in equipment.name) {
+            if (key === 'suffix') continue
+            if (equipment.name[key].includes(name)) return true
+        }
+        return false
+    }),
+    isnotnameof: (equipment, name) => ArrayOrItemAll(name, name => {
+        for (let key in equipment.name) {
+            if (key === 'suffix') continue
+            if (equipment.name[key].includes(name)) return false
         }
         return true
     }),
