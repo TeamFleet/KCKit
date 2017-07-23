@@ -410,6 +410,11 @@ module.exports = class Ship extends ItemBase {
     isType(majorType) {
         const shipTypes = require('../types/ships')
         switch (majorType.toLowerCase()) {
+            case 'battleship':
+            case 'battleships':
+            case 'bb':
+                return (shipTypes.Battleships.indexOf(this.type) > -1)
+
             case 'carrier':
             case 'carriers':
             case 'cv':

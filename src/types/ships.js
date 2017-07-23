@@ -1,4 +1,12 @@
 module.exports = {
+    // 战列舰系列
+    Battleships: [
+        8,
+        6,
+        20,
+        7,
+        18
+    ],
     // 航母系列
     Carriers: [
         9,		// 轻型航母

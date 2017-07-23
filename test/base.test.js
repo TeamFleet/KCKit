@@ -119,6 +119,12 @@ describe('Base functions/utilities', () => {
             it(`should 鈴谷・航改二 db.ships[508].isType('carrier') be true`, function () {
                 expect(true).toBe(db.ships[508].isType('carrier'));
             });
+            it(`should 鈴谷・航改二 db.ships[508].isType('bb') be false`, function () {
+                expect(db.ships[508].isType('bb')).toBe(false);
+            });
+            it(`should Bismarck・drei db.ships[178].isType('bb') be true`, function () {
+                expect(db.ships[178].isType('bb')).toBe(true);
+            });
             it(`should Гангут・два db.ships[513]._speed be 低速`, function () {
                 expect('低速').toBe(db.ships[513]._speed);
             });
