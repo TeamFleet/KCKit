@@ -1,3 +1,4 @@
+const ClassBase = require('./class/base')
 const Ship = require('./class/ship')
 const Equipment = require('./class/equipment')
 const Entity = require('./class/entity')
@@ -10,12 +11,19 @@ module.exports = (raw = {}, db = {}) => {
 
         switch (type) {
             case 'ships': Class = Ship; break;
+
+            case 'items': Class = Equipment; break;
             case 'equipments': Class = Equipment; break;
+
             case 'entities': Class = Entity; break;
+
             case 'consumables': Class = Consumable; break;
+
             case 'exillustTypes':
             case 'exillust_types':
             case 'exillust-types': Class = ExillustType; break;
+
+            default: Class = ClassBase; break;
         }
 
         raw[type].split(/\r?\n/).forEach(item => {

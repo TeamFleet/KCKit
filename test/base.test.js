@@ -196,6 +196,15 @@ describe('Base functions/utilities', () => {
         describe('Checking equipment samples...', function () {
         })
 
+        describe('Checking equipment types samples...', function () {
+            it(`should db.itemTypes[1] be instanceof BaseClass`, function () {
+                expect(db.itemTypes[1] instanceof require('../src/class/base')).toBe(true);
+            });
+            it(`should db.itemTypes[1].getName("ja_jp") be 小口径主砲`, function () {
+                expect(db.itemTypes[1].getName("ja_jp")).toBe("小口径主砲");
+            });
+        })
+
         describe('Checking entity samples...', function () {
             it(`should db.entities[1] be instanceof Entity`, function () {
                 expect(true).toBe(db.entities[1] instanceof require('../src/class/entity.js'));
