@@ -53,9 +53,9 @@ module.exports = (ship, equipments) => {
                     if (typeName === 'HAMountAAFD') {
                         types = equipmentTypes['HAMountsAAFD']
                     } else if (typeName + 's' in equipmentTypes) {
-                        type = equipmentTypes[typeName + 's']
+                        types = equipmentTypes[typeName + 's']
                     } else if (typeName in equipmentTypes) {
-                        type = equipmentTypes[typeName]
+                        types = equipmentTypes[typeName]
                     }
                     if (Array.isArray(types)) {
                         if (!types.some(type => ship.canEquip(type)))
