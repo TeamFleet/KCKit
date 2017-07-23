@@ -32,6 +32,9 @@ const register = (options = {}) => {
 
 // 通用条件
 register({
+    ship: {
+        isNotType: 31
+    },
     shipWithEquipments: {
         hasStat: {
             asw: 100
