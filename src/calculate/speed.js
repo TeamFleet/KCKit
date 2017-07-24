@@ -2,7 +2,7 @@ const getShipAndEquipments = require('../get/ship-and-equipments')
 
 module.exports = (
     ship,
-    equipments = [],
+    equipments = []
     // equipmentStars = [],
     // equipmentRanks = []
 ) => {
