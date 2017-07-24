@@ -30,7 +30,7 @@ const getDB = (dbname) => {
             return vars.db[results[dbname]]
     }
 
-    return undefined
+    return {}
 }
 
 const getDBAlt = (dbname, dbnameReplaceSearch, dbnameReplaceTo) => {
