@@ -404,7 +404,7 @@ module.exports = class Ship extends ItemBase {
     /**
      * 判断舰种大类
      * 
-     * @param {String} majorType - 舰种大类，目前支持：carrier/CV, lightcruiser/CL, submarine/SS
+     * @param {String} majorType - 舰种大类，目前支持：battleship/BB, carrier/CV, lightcruiser/CL, submarine/SS
      * @return {Boolean}
      */
     isType(majorType) {

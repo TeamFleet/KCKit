@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames')
+const get = require('../src/get')
 
 let db
 
@@ -271,6 +272,19 @@ describe('Base functions/utilities', () => {
             it(`should Гангут・два db.ships[513]._navyName be 苏联海军`, function () {
                 expect('苏联海军').toBe(db.ships[513]._navyName);
             });
+        })
+    })
+})
+
+describe('Getting functions/utilities', () => {
+    describe('getShipAndEquipments', () => {
+        it('Normal condition', () => {
+            expect(get.shipAndEquipments(131, [87, undefined, undefined, 33, 87]).ship.id).toBe(131)
+            expect(get.shipAndEquipments(131, [87, undefined, undefined, 33, 87]).equipments.length).toBe(5)
+            expect(get.shipAndEquipments(131, [87, undefined, undefined, 33, 87]).equipments[3].id).toBe(33)
+        })
+        it('If ship has less slots, the missing slot should be empty', () => {
+            expect(get.shipAndEquipments(383, [87, undefined, undefined, 33, 87]).equipments[3]).toBe(undefined)
         })
     })
 })
