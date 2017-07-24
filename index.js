@@ -22,6 +22,6 @@ module.exports = {
     // formula: require('./src/formula/'),
 
     // Helper functions
-    register: require('./src/register')
-    // parseRaw: require('./src/parse-raw')
+    register: require('./src/register'),
+    parseRaw: require('./src/parse-raw')
 }
