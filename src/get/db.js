@@ -1,7 +1,7 @@
 const camelCase = require('camelcase')
 const vars = require('../variables')
 
-let results = {}
+const results = {}
 
 const getDB = (dbname) => {
     if (typeof results[dbname] !== 'undefined')
