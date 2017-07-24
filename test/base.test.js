@@ -201,6 +201,18 @@ describe('Base functions/utilities', () => {
         });
 
         describe('Checking equipment samples...', function () {
+            it(`should db.items[1] be instanceof Equipment`, function () {
+                expect(db.items[1] instanceof require('../src/class/equipment')).toBe(true);
+            });
+            it(`should db.items[1]._icon be 1`, function () {
+                expect(db.items[1]._icon).toBe(1);
+            });
+            it(`should db.items[1].getType('ja_jp') be 小口径主砲`, function () {
+                expect(db.items[1].getType('ja_jp')).toBe('小口径主砲');
+            });
+            it(`should db.items[1].getType('zh_cn') be 小口径主炮`, function () {
+                expect(db.items[1].getType('zh_cn')).toBe('小口径主炮');
+            });
         })
 
         describe('Checking equipment types samples...', function () {

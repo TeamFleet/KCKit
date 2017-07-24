@@ -1,4 +1,5 @@
 const vars = require('../variables')
+const getdb = require('../get/db')
 const ItemBase = require('./base.js')
 
 module.exports = class Consumable extends ItemBase {
@@ -16,15 +17,18 @@ module.exports = class Consumable extends ItemBase {
 
     getType(theLocale = vars.locale) {
         return this.type
-            ? vars.db.item_types[this.type].name[theLocale]
+            ? getdb('equipment_types')[this.type].name[theLocale]
             : null
     }
+    get _type() {
+        return this.getType()
+    }
 
-    getIconId() {
-        return vars.db.item_types[this.type].icon
+    getIcon() {
+        return getdb('equipment_types')[this.type].icon
     }
     get _icon() {
-        return 'assets/images/itemicon/' + this.getIconId() + '.png'
+        return this.getIcon()
     }
 
     getCaliber() {
@@ -36,7 +40,7 @@ module.exports = class Consumable extends ItemBase {
 
     getPower() {
         return this.stat[
-            vars.db.item_types[this.type].main_attribute || 'fire'
+            getdb('equipment_types')[this.type].main_attribute || 'fire'
         ]
         /*
         switch( this.type ){
