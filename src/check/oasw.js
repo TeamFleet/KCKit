@@ -9,8 +9,12 @@ const equipmentTypes = require('../types/equipments')
 const dataOASW = require('../data/oasw')
 const { maxShipLv } = require('../variables')
 
-const bestSonarASW = 12
-const bestLargeSonarASW = 11
+const equipmentStatASW = {
+    bestSonar: 12,
+    bestLargeSonar: 11,
+    "九七式艦攻(九三一空)": 7,
+    "天山(九三一空)": 8
+}
 
 /**
  * 检查舰娘和装备是否满足给定条件
@@ -31,7 +35,8 @@ module.exports = (ship, equipments) => {
     // }
     // const check = id => checkShip(ship, dataAACI[id].ship) && _checkEquipments(dataAACI[id].equipments)
     const check = OASW => {
-        let requireSonar = false
+        // let requireSonar = false
+        // let require九三一空 = false
         let minLv
 
         if (!checkShip(ship, OASW.ship))
@@ -43,13 +48,15 @@ module.exports = (ship, equipments) => {
         }
         if (!hasEquipments && OASW.equipments) {
             for (let key in OASW.equipments) {
-                if (key.substr(0, 3) === 'has') {
+                /*if (key === 'hasNameOf' && OASW.equipments === '九三一空') {
+                    require九三一空 = true
+                } else */if (key.substr(0, 3) === 'has') {
                     // 以 has 为开头，通常为检查装备类型
                     // 如果该舰不能装备该类型，则不能执行该类 OASW
                     let typeName = key.substr(3)
                     let types
-                    if (typeName === 'Sonar' || typeName === 'Sonars')
-                        requireSonar = true
+                    // if (typeName === 'Sonar' || typeName === 'Sonars')
+                    //     requireSonar = true
                     if (typeName === 'HAMountAAFD') {
                         types = equipmentTypes['HAMountsAAFD']
                     } else if (typeName + 's' in equipmentTypes) {
@@ -79,9 +86,11 @@ module.exports = (ship, equipments) => {
                         if (!max || max <= 0) return false
                         if (stat === 'asw') {
                             if (ship.canEquip(equipmentTypes.Sonar))
-                                value -= bestSonarASW * slots
-                            if (ship.canEquip(equipmentTypes.LargeSonar))
-                                value -= bestLargeSonarASW * slots
+                                value -= equipmentStatASW.bestSonar * slots
+                            else if (ship.canEquip(equipmentTypes.LargeSonar))
+                                value -= equipmentStatASW.bestLargeSonar * slots
+                            else if (ship.canEquip(equipmentTypes.TorpedoBomber))
+                                value -= (equipmentStatASW["天山(九三一空)"] + equipmentStatASW["九七式艦攻(九三一空)"] * (slots - 1))
                             const thisMinLv = Math.ceil((value - base) * 99 / (max - base))
                             if (thisMinLv > maxShipLv) return false
                             if (minLv) minLv = Math.max(minLv, thisMinLv)
