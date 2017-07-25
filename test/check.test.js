@@ -365,8 +365,9 @@ describe('Checking functions/utilities', () => {
     })
     describe('Checking for OASW...', () => {
         describe(`Get OASW table for ship only`, () => {
-            it(`Result should be Array or false`, function () {
-                expect(Array.isArray(check.oasw(141))).toBe(true);
+            it(`Result should be Array or boolean`, function () {
+                expect(Array.isArray(check.oasw(529))).toBe(true);
+                expect(check.oasw(141)).toBe(true);
                 expect(check.oasw(1)).toBe(false);
                 expect(check.oasw(77)).toBe(false);
             })
@@ -374,6 +375,7 @@ describe('Checking functions/utilities', () => {
                 expect(check.oasw(434)[0].minLv).toBe(87);
                 expect(check.oasw(321)[0].minLv).toBe(132);
                 expect(check.oasw(380).length).toBe(3);
+                expect(check.oasw(141)).toBe(true);
             })
         });
         describe(`Check OASW capability for ship and equipment list`, () => {
@@ -383,14 +385,15 @@ describe('Checking functions/utilities', () => {
     })
     describe('Checking for OTS...', () => {
         describe(`Get OTS table for ship only`, () => {
-            it(`Result should be Array or false`, function () {
-                expect(Array.isArray(check.ots(400))).toBe(true);
+            it(`Result should be Array or boolean`, function () {
+                expect(check.ots(400)).toBe(true);
                 expect(Array.isArray(check.ots(119))).toBe(true);
                 expect(Array.isArray(check.ots(488))).toBe(true);
                 expect(check.ots(434)).toBe(false);
             })
             it(`Check samples`, function () {
-                expect(check.ots(400).length).toBe(2);
+                expect(check.ots(400)).toBe(true);
+                expect(check.ots(431).length).toBe(2);
                 expect(check.ots(488).length).toBe(1);
             })
         });

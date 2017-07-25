@@ -18,7 +18,9 @@ const equipmentStatASW = {
 
 /**
  * 检查舰娘和装备是否满足给定条件
- * 如果只提供了舰娘，则返回该舰可执行 OASW 的条件列表，如果该舰不可执行 OASW 则返回 false
+ * 如果只提供了舰娘，则返回该舰可执行 OASW 的条件列表，按需要的对潜属性顺序排列。
+ * 如果该舰不可执行 OASW 则返回 false。
+ * 特例：如果直接满足了其中一个条件，则返回 true
  * 如果也提供了装备列表，则返回是否可执行 OASW (true / false)
  * 
  * @param {(number|Ship)} ship 要判断的舰娘
@@ -28,6 +30,8 @@ module.exports = (ship, equipments) => {
     ship = getShip(ship)
     if (typeof ship === 'undefined') return false
 
+    let meetRequirement = false
+
     const hasEquipments = Array.isArray(equipments)
     // const _checkEquipments = (conditions) => {
     //     if (!hasEquipments) return true
@@ -35,6 +39,8 @@ module.exports = (ship, equipments) => {
     // }
     // const check = id => checkShip(ship, dataAACI[id].ship) && _checkEquipments(dataAACI[id].equipments)
     const check = OASW => {
+        if (meetRequirement) return
+
         // let requireSonar = false
         // let require九三一空 = false
         let minLv
@@ -43,6 +49,17 @@ module.exports = (ship, equipments) => {
             return false
         if (hasEquipments && !checkEquipments(equipments, OASW.equipments))
             return false
+        if (!hasEquipments
+            && ((OASW.ship && OASW.ship.minLevel && ship._minLv >= OASW.ship.minLevel)
+                || !OASW.ship
+                || !OASW.ship.minLevel
+            )
+            && !OASW.equipments
+            && !OASW.shipWithEquipments
+        ) {
+            meetRequirement = true
+            return true
+        }
         if (hasEquipments && OASW.shipWithEquipments) {
 
         }
@@ -123,8 +140,20 @@ module.exports = (ship, equipments) => {
         else if (r)
             result.push(OASW)
     })
+    if (meetRequirement) return true
     if (Array.isArray(result) && result.length)
-        return result
+        return result.sort((a, b) => {
+            if (a.shipWithEquipments && a.shipWithEquipments.hasStat && a.shipWithEquipments.hasStat.asw
+                && b.shipWithEquipments && b.shipWithEquipments.hasStat && b.shipWithEquipments.hasStat.asw)
+                return a.shipWithEquipments.hasStat.asw - b.shipWithEquipments.hasStat.asw
+            if (a.shipWithEquipments && a.shipWithEquipments.hasStat && a.shipWithEquipments.hasStat.asw
+                && (!b.shipWithEquipments || !b.shipWithEquipments.hasStat || !b.shipWithEquipments.hasStat.asw))
+                return 1
+            if ((!a.shipWithEquipments || !a.shipWithEquipments.hasStat || !a.shipWithEquipments.hasStat.asw)
+                && b.shipWithEquipments && b.shipWithEquipments.hasStat && b.shipWithEquipments.hasStat.asw)
+                return -1
+            return 1
+        })
 
     return false
 
