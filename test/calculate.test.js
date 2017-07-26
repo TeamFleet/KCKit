@@ -506,6 +506,16 @@ describe('Calculating functions/utilities', () => {
                         calculate.ship.levelOASW(526, [83])
                     ).toBe(91)
                 })
+                it('占守 改', () => {
+                    expect(
+                        calculate.ship.levelOASW(376, [])
+                    ).toBe(95)
+                })
+                it('占守 改 + 四式水中聴音機', () => {
+                    expect(
+                        calculate.ship.levelOASW(376, [149])
+                    ).toBe(40)
+                })
             })
         })
     })
