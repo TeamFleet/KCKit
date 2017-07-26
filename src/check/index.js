@@ -1,6 +1,6 @@
 module.exports = {
     ship: require('./ship'),
-    shipWithEquipment: require('./shipWithEquipment'),
+    shipWithEquipment: require('./ship-with-equipment'),
     equipment: require('./equipment'),
     equipments: require('./equipments'),
 

@@ -1,3 +1,6 @@
 module.exports = {
-    speed: require('./speed')
+    ship: {
+        speed: require('./ship/speed'),
+        levelOASW: require('./ship/level-oasw')
+    }
 }
