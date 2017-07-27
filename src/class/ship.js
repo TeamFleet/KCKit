@@ -1,6 +1,7 @@
 const vars = require('../variables')
 const getdb = require('../get/db')
 const ItemBase = require('./base.js')
+const equipmentTypes = require('../types/equipments')
 
 module.exports = class Ship extends ItemBase {
     /**
@@ -218,13 +219,22 @@ module.exports = class Ship extends ItemBase {
     /**
      * 判断该舰娘是否可配置给定的类型的装备
      * 
-     * @param {(number|number[])} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
+     * @param {(number|number[]|string|string[])} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
      * @returns {boolean}
      */
     canEquip(equipmentType) {
         if (Array.isArray(equipmentType)) {
-            return equipmentType.every(type => this._equipmentTypes.includes(parseInt(type)))
-        } else if (isNaN(equipmentType)) {
+            return equipmentType.every(type => this.canEquip(type))
+        }
+        if (typeof equipmentType === 'string') {
+            if (Array.isArray(equipmentTypes[equipmentType]))
+                return equipmentTypes[equipmentType].some(type => this.canEquip(type))
+            if (typeof equipmentTypes[equipmentType] === 'number')
+                return this.canEquip(equipmentTypes[equipmentType])
+            if (Array.isArray(equipmentTypes[equipmentType + 's']))
+                return equipmentTypes[equipmentType + 's'].some(type => this.canEquip(type))
+        }
+        if (isNaN(equipmentType)) {
             return false
         } else {
             return this._equipmentTypes.includes(parseInt(equipmentType))

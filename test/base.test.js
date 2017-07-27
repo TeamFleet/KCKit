@@ -198,6 +198,42 @@ describe('Base functions/utilities', () => {
             it(`should 大淀・改 db.ships[321].canEquip([1, 5]) be false`, function () {
                 expect(db.ships[321].canEquip([1, 5])).toBe(false);
             });
+            it(`should 大淀・改 db.ships[321].canEquip('Sonar') be true`, function () {
+                expect(db.ships[321].canEquip('Sonar')).toBe(true);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip('Sonars') be true`, function () {
+                expect(db.ships[321].canEquip('Sonars')).toBe(true);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip('DiveBombers') be false`, function () {
+                expect(db.ships[321].canEquip('DiveBombers')).toBe(false);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip('DiveBombers') be false`, function () {
+                expect(db.ships[321].canEquip('DiveBombers')).toBe(false);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip(['Sonar','Torpedo']) be true`, function () {
+                expect(db.ships[321].canEquip(['Sonar', 'Torpedo'])).toBe(true);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip(['Sonar','DiveBombers']) be false`, function () {
+                expect(db.ships[321].canEquip(['Sonar', 'DiveBombers'])).toBe(false);
+            });
+            it(`should 大淀・改 db.ships[321].canEquip(['Sonars','DiveBombers']) be false`, function () {
+                expect(db.ships[321].canEquip(['Sonars', 'DiveBombers'])).toBe(false);
+            });
+            it(`should Warspite・改 db.ships[364].canEquip('SuperCaliber') be false`, function () {
+                expect(db.ships[364].canEquip('SuperCaliber')).toBe(false);
+            });
+            it(`should 大和・改 db.ships[136].canEquip('Sonar') be false`, function () {
+                expect(db.ships[136].canEquip('Sonar')).toBe(false);
+            });
+            it(`should 大和・改 db.ships[136].canEquip('LargeSonar') be true`, function () {
+                expect(db.ships[136].canEquip('LargeSonar')).toBe(true);
+            });
+            it(`should 大和・改 db.ships[136].canEquip('Sonars') be true`, function () {
+                expect(db.ships[136].canEquip('Sonars')).toBe(true);
+            });
+            it(`should 大和・改 db.ships[136].canEquip(['Sonars','SuperCaliber']) be true`, function () {
+                expect(db.ships[136].canEquip(['Sonars', 'SuperCaliber'])).toBe(true);
+            });
         });
 
         describe('Checking equipment samples...', function () {
