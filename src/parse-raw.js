@@ -12,7 +12,7 @@ module.exports = (raw = {}, db = {}) => {
         switch (type) {
             case 'ships': Class = Ship; break;
 
-            case 'items': Class = Equipment; break;
+            case 'items':
             case 'equipments': Class = Equipment; break;
 
             case 'entities': Class = Entity; break;

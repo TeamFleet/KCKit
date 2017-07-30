@@ -42,19 +42,17 @@ module.exports = class Consumable extends ItemBase {
         return this.stat[
             getdb('equipment_types')[this.type].main_attribute || 'fire'
         ]
-        /*
-        switch( this.type ){
-            // Guns
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-        }
-        */
+    }
+
+    /**
+     * 判断是否可装备入补强增设栏位
+     * 
+     * @returns {boolean}
+     */
+    isEquipableExSlot() {
+        if (this.equipable_exslot) return this.equipable_exslot || false
+        return this.type
+            ? getdb('equipment_types')[this.type].equipable_exslot || false
+            : false
     }
 }

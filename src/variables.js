@@ -1,4 +1,5 @@
 // const deepExtend = require('deep-extend')
+const getDB = require('./get/db')
 
 let vars = {
     locale: "ja_jp",
@@ -21,15 +22,36 @@ let vars = {
     pathPics: {},
 
     hiddenShipIdStartFrom: 1000,
-    enemyIdStartFrom: 1500
+    enemyIdStartFrom: 1500,
+
+    exSlotEquipmentTypes: undefined,
+    exSlotOtherEquipments: undefined
+}
+
+// 确定exslot装备类型和额外装备
+const defineExslotVars = (dbname, key) => {
+    if (Array.isArray(vars[key])) return
+    const db = getDB(dbname, vars.db)
+    if (!db) return
+    for (let id in db) {
+        if (db[id].equipable_exslot) {
+            if (!vars[key]) vars[key] = []
+            vars[key].push(db[id].id)
+        }
+    }
 }
 
 Object.defineProperty(vars, 'register', {
     value: (settings = {}) => {
         // deepExtend(vars, settings)
-        Object.assign(vars, settings)
+        Object.assign(vars, settings);
         // console.log(settings.db.ships[1]._name)
         // console.log(vars.db.ships[1]._name)
+
+        // 确定exslot装备类型和额外装备
+        defineExslotVars('equipmentTypes', 'exSlotEquipmentTypes')
+        defineExslotVars('equipments', 'exSlotOtherEquipments')
+
         return vars
     }
 })

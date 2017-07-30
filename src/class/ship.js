@@ -505,4 +505,16 @@ module.exports = class Ship extends ItemBase {
             return theShip.illust_extra
         return undefined
     }
+
+    getExSlotEquipmentTypes() {
+        return vars.exSlotEquipmentTypes.concat(
+            this.additional_exslot_item_types || []
+        )
+    }
+
+    getExSlotOtherEquipments() {
+        return vars.exSlotOtherEquipments.concat(
+            this.additional_exslot_item_ids || []
+        )
+    }
 }

@@ -3,6 +3,7 @@ const fs = require('fs')
 const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames')
 const get = require('../src/get')
+const kckit = require('../')
 
 let db
 
@@ -29,6 +30,17 @@ describe('Base functions/utilities', () => {
         describe('Registering...', function () {
             it(`should be success without error`, () => {
                 require('../src/register.js')({ db })
+            });
+        });
+
+        describe('Vars...', function () {
+            it(`vars.exslotEquipmentTypes should be Array`, () => {
+                // console.log(kckit.exslotEquipmentTypes)
+                expect(Array.isArray(kckit.exSlotEquipmentTypes)).toBe(true);
+            });
+            it(`vars.exslotOtherEquipments should be Array`, () => {
+                // console.log(kckit.exslotOtherEquipments)
+                expect(Array.isArray(kckit.exSlotOtherEquipments)).toBe(true);
             });
         });
 
@@ -234,6 +246,15 @@ describe('Base functions/utilities', () => {
             it(`should 大和・改 db.ships[136].canEquip(['Sonars','SuperCaliber']) be true`, function () {
                 expect(db.ships[136].canEquip(['Sonars', 'SuperCaliber'])).toBe(true);
             });
+            it(`should 大和・改 db.ships[136].getExSlotEquipmentTypes() be kckit.exslotEquipmentTypes`, function () {
+                expect(db.ships[136].getExSlotEquipmentTypes()).toEqual(kckit.exSlotEquipmentTypes);
+            });
+            it(`should 大和・改 db.ships[136].getExSlotOtherEquipments() be kckit.exslotEquipmentTypes`, function () {
+                expect(db.ships[136].getExSlotOtherEquipments()).toEqual(kckit.exSlotOtherEquipments);
+            });
+            it(`should 熊野・改二 db.ships[504].getExSlotOtherEquipments() not be kckit.exslotEquipmentTypes`, function () {
+                expect(db.ships[504].getExSlotOtherEquipments()).not.toEqual(kckit.exSlotOtherEquipments);
+            });
         });
 
         describe('Checking equipment samples...', function () {
@@ -248,6 +269,17 @@ describe('Base functions/utilities', () => {
             });
             it(`should db.items[1].getType('zh_cn') be 小口径主炮`, function () {
                 expect(db.items[1].getType('zh_cn')).toBe('小口径主炮');
+            });
+            it(`should db.items[1].isEquipableExSlot() be false`, function () {
+                expect(db.items[1].isEquipableExSlot()).toBe(false);
+            });
+            it(`should db.items[37].isEquipableExSlot() be false`, function () {
+                // 7.7mm机枪
+                expect(db.items[37].isEquipableExSlot()).toBe(true);
+            });
+            it(`should db.items[33].isEquipableExSlot() be false`, function () {
+                // 改良型舰船涡轮机
+                expect(db.items[33].isEquipableExSlot()).toBe(true);
             });
         })
 
