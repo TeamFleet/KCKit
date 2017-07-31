@@ -255,6 +255,19 @@ register(18, {
     }
 })
 
+// Fumizuki K2
+register(18, {
+    fixed: 2,
+    modifier: 1.25,
+    icons: ['15+'],
+    ship: {
+        isID: 548
+    },
+    equipments: {
+        hasAAGunCD: true
+    }
+})
+
 // Kinu K2
 register(19, {
     fixed: 5,
