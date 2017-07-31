@@ -4,7 +4,7 @@ const getDB = require('./get/db')
 let vars = {
     locale: "ja_jp",
     joint: "・",
-    maxShipLv: 155,
+    maxShipLv: 165,
 
     rank: {
         1: '|',
