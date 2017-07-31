@@ -256,7 +256,7 @@ register(18, {
 })
 
 // Fumizuki K2
-register(18, {
+register(22, {
     fixed: 2,
     modifier: 1.25,
     icons: ['15+'],
