@@ -414,7 +414,7 @@ module.exports = class Ship extends ItemBase {
     /**
      * 判断舰种大类
      * 
-     * @param {String} majorType - 舰种大类，目前支持：battleship/BB, carrier/CV, lightcruiser/CL, submarine/SS
+     * @param {String} majorType - 舰种大类，目前支持：Battleship/BB, Carrier/CV, LightCruiser/CL, Submarine/SS, SeaplaneTender/AV
      * @return {Boolean}
      */
     isType(majorType) {
@@ -439,6 +439,13 @@ module.exports = class Ship extends ItemBase {
             case 'submarines':
             case 'ss':
                 return (shipTypes.Submarines.indexOf(this.type) > -1)
+
+            case 'seaplanetender':
+            case 'seaplanetenders':
+            case 'seaplane tender':
+            case 'seaplane tenders':
+            case 'av':
+                return (shipTypes.SeaplaneTenders.indexOf(this.type) > -1)
 
             default:
                 return false

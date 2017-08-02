@@ -26,5 +26,10 @@ module.exports = {
     Submarines: [
         13,		// 潜艇
         14		// 航母潜艇
+    ],
+    // 水上机母舰系列
+    SeaplaneTenders: [
+        12,		// 水上机母舰
+        24		// 飞行艇母舰
     ]
 }
