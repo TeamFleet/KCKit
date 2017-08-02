@@ -138,6 +138,9 @@ describe('Base functions/utilities', () => {
             it(`should Bismarck・drei db.ships[178].isType('bb') be true`, function () {
                 expect(db.ships[178].isType('bb')).toBe(true);
             });
+            it(`should Bismarck・drei db.ships[450].isType('av') be true`, function () {
+                expect(db.ships[450].isType('av')).toBe(true);
+            });
             it(`should Гангут・два db.ships[513]._speed be 低速`, function () {
                 expect('低速').toBe(db.ships[513]._speed);
             });
