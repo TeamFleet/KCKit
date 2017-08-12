@@ -13,7 +13,7 @@
     let KC = {
         lang: 'zh_cn',
         joint: '・',
-        maxShipLv: 155,
+        maxShipLv: 165,
         db: {},
         path: {
             db: '/kcdb/',
