@@ -457,6 +457,22 @@
         get _minLv() {
             return this.getMinLv()
         }
+
+        /**
+         * 获取所属海军简称
+         * 
+         * @readonly
+         * @returns {String}
+         */
+        getNavy() {
+            if (this.navy) return this.navy
+            return this.class
+                ? (KC.db.ship_classes[this.class].navy || 'ijn')
+                : 'ijn'
+        }
+        get _navy() {
+            return this.getNavy()
+        }
     }
     Ship.lvlMax = KC.maxShipLv;
     class Consumable extends ItemBase {
