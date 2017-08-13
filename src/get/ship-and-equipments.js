@@ -14,6 +14,8 @@ module.exports = (ship, equipments = []) => {
                 return getEquipment(equipments[index]) || undefined
             }
         ),
+        equipmentStars: [],
+        equipmentRanks: []
         // equipments: equipments.map(equipment => getEquipment(equipment))
     }
 }
