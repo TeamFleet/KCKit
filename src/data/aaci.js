@@ -308,4 +308,17 @@ register(22, {
     }
 })
 
+// UIT-25, I-504
+// register(23, {
+//     fixed: 2,
+//     modifier: 1.2,
+//     icons: ['15'],
+//     ship: {
+//         isID: [539, 530]
+//     },
+//     equipments: {
+//         hasAAGun: true
+//     }
+// })
+
 module.exports = data
