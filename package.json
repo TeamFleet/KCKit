@@ -2,7 +2,7 @@
     "name": "kckit",
     "main": "dist-app/main.html",
 
-    "version": "1.12.6",
+    "version": "1.12.7",
 
     "description": "Javascript library for KanColle",
     "author": {

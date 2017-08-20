@@ -261,6 +261,16 @@ describe('Base functions/utilities', () => {
             it(`should 熊野・改二 db.ships[504].getExSlotOtherEquipments() not be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[504].getExSlotOtherEquipments()).not.toEqual(kckit.exSlotOtherEquipments);
             });
+            it(`should まるゆ・改 can equip 特殊潜航艇`, function () {
+                expect(db.ships[402].getEquipmentTypes().includes(14)).toEqual(true);
+            });
+            it(`should 路易吉·托雷利・改 cannot equip 特殊潜航艇`, function () {
+                expect(db.ships[605].getEquipmentTypes().includes(14)).toEqual(false);
+            });
+            it(`should UIT-25 cannot equip 特殊潜航艇 and can equip 対空機銃`, function () {
+                const arr = db.ships[539].getEquipmentTypes()
+                expect(!arr.includes(14) && arr.includes(29)).toEqual(true);
+            });
         });
 
         describe('Checking equipment samples...', function () {

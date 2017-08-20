@@ -208,9 +208,13 @@ module.exports = class Ship extends ItemBase {
      * @returns {Number[]} - 装备ID
      */
     getEquipmentTypes() {
-        return getdb('ship_types')[this.type].equipable.concat((this.additional_item_types || [])).sort(function (a, b) {
-            return a - b
-        })
+        const disabled = this.additional_disable_item_types || []
+        return getdb('ship_types')[this.type].equipable
+            .concat((this.additional_item_types || []))
+            .filter(type => !disabled.includes(type))
+            .sort(function (a, b) {
+                return a - b
+            })
     }
     get _equipmentTypes() {
         return this.getEquipmentTypes()
