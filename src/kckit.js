@@ -312,7 +312,9 @@
             const disabled = this.additional_disable_item_types || []
             return KC.db.ship_types[this.type].equipable
                 .concat((this.additional_item_types || []))
-                .filter(type => !disabled.includes(type))
+                .filter(function (type) {
+                    return disabled.indexOf(type) < 0;
+                })
                 .sort(function (a, b) {
                     return a - b
                 })

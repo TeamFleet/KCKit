@@ -326,7 +326,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             value: function getEquipmentTypes() {
                 var disabled = this.additional_disable_item_types || [];
                 return KC.db.ship_types[this.type].equipable.concat(this.additional_item_types || []).filter(function (type) {
-                    return !disabled.includes(type);
+                    return disabled.indexOf(type) < 0;
                 }).sort(function (a, b) {
                     return a - b;
                 });
