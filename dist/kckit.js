@@ -463,6 +463,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 return lv;
             }
         }, {
+            key: 'getNavy',
+
+
+            /**
+             * 获取所属海军简称
+             * 
+             * @readonly
+             * @returns {String}
+             */
+            value: function getNavy() {
+                if (this.navy) return this.navy;
+                return this.class ? KC.db.ship_classes[this.class].navy || 'ijn' : 'ijn';
+            }
+        }, {
             key: '_type',
             get: function get() {
                 return this.getType();
@@ -510,6 +524,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: '_minLv',
             get: function get() {
                 return this.getMinLv();
+            }
+        }, {
+            key: '_navy',
+            get: function get() {
+                return this.getNavy();
             }
         }]);
 
@@ -1431,13 +1450,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         * 		ship: {
         * 			dd
         * 			cl
+        * 			ct
         * 			cav
         * 			bbv
-        * 			ssv
         * 			av
+        * 			ssv
         * 			lha
         * 			ao
-        * 			ct
+        * 			as
         * 		},
         * 		equipment: {
         * 			68	// landing craft
@@ -1460,41 +1480,55 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 case '19':
                 case 'dd':
                     multiper = 5;break;
+
                 case 2:
                 case '2':
                 case 28:
                 case '28':
                 case 'cl':
                     multiper = 2;break;
+
+                case 21:
+                case '21':
+                case 'ct':
+                    multiper = 6;break;
+
                 case 5:
                 case '5':
                 case 'cav':
                     multiper = 4;break;
+
+                case 8:
+                case '8':
+                case 'bbv':
+                    multiper = 7;break;
+
                 case 12:
                 case '12':
                 case 24:
                 case '24':
                 case 'av':
                     multiper = 9.5;break;
-                case 15:
-                case '15':
-                case 'lha':
-                    multiper = 12.25;break;
-                case 29:
-                case '29':
-                case 'ao':
-                    multiper = 14.75;break;
-                case 8:
-                case '8':
-                case 'bbv':
+
                 case 14:
                 case '14':
                 case 'ssv':
+                    multiper = 1;break;
+
+                case 15:
+                case '15':
+                case 'lha':
+                    multiper = 12;break;
+
+                case 29:
+                case '29':
+                case 'ao':
+                    multiper = 15;break;
+
+                case 17:
+                case '17':
+                case 'as':
                     multiper = 7;break;
-                case 21:
-                case '21':
-                case 'ct':
-                    multiper = 6;break;
             }
             result += multiper * (parseInt(ship[i]) || 0);
         }
@@ -1504,6 +1538,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 id = parseInt(_i),
                 data = void 0;
             switch (id) {
+                // 戦闘糧食
+                case 145:
+                    _multiper = 1;break;
+                // 秋刀魚の缶詰
+                case 150:
+                    _multiper = 1;break;
                 // canister
                 case 75:
                     _multiper = 5;break;
@@ -1518,13 +1558,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _multiper = 8;break;
                 // 特二式内火艇
                 case 167:
-                    _multiper = 8;break;
-                // 戦闘糧食
-                case 145:
-                    _multiper = 1;break;
-                // 秋刀魚の缶詰
-                case 150:
-                    _multiper = 1;break;
+                    _multiper = 2;break;
                 default:
                     // 瑞云 & 晴岚
                     data = _equipment(id);

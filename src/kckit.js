@@ -1628,13 +1628,14 @@
         * 		ship: {
         * 			dd
         * 			cl
+        * 			ct
         * 			cav
         * 			bbv
-        * 			ssv
         * 			av
+        * 			ssv
         * 			lha
         * 			ao
-        * 			ct
+        * 			as
         * 		},
         * 		equipment: {
         * 			68	// landing craft
@@ -1655,35 +1656,47 @@
                 case '1':
                 case 19:
                 case '19':
-                case 'dd': multiper = 5; break;
+                case 'dd':multiper = 5; break;
+
                 case 2:
                 case '2':
                 case 28:
                 case '28':
                 case 'cl': multiper = 2; break;
+                
+                case 21:
+                case '21':
+                case 'ct': multiper = 6; break;
+
                 case 5:
                 case '5':
                 case 'cav': multiper = 4; break;
+                
+                case 8:
+                case '8':
+                case 'bbv': multiper = 7; break;
+
                 case 12:
                 case '12':
                 case 24:
                 case '24':
                 case 'av': multiper = 9.5; break;
-                case 15:
-                case '15':
-                case 'lha': multiper = 12.25; break;
-                case 29:
-                case '29':
-                case 'ao': multiper = 14.75; break;
-                case 8:
-                case '8':
-                case 'bbv':
+
                 case 14:
                 case '14':
-                case 'ssv': multiper = 7; break;
-                case 21:
-                case '21':
-                case 'ct': multiper = 6; break;
+                case 'ssv': multiper = 1; break;
+
+                case 15:
+                case '15':
+                case 'lha': multiper = 12; break;
+
+                case 29:
+                case '29':
+                case 'ao': multiper = 15; break;
+                
+                case 17:
+                case '17':
+                case 'as': multiper = 7; break;
             }
             result += multiper * (parseInt(ship[i]) || 0)
         }
@@ -1693,6 +1706,10 @@
                 , id = parseInt(i)
                 , data
             switch (id) {
+                // 戦闘糧食
+                case 145: multiper = 1; break;
+                // 秋刀魚の缶詰
+                case 150: multiper = 1; break;
                 // canister
                 case 75: multiper = 5; break;
                 // landing craft
@@ -1702,11 +1719,7 @@
                 // landing craft (force)
                 case 166: multiper = 8; break;
                 // 特二式内火艇
-                case 167: multiper = 8; break;
-                // 戦闘糧食
-                case 145: multiper = 1; break;
-                // 秋刀魚の缶詰
-                case 150: multiper = 1; break;
+                case 167: multiper = 2; break;
                 default:
                     // 瑞云 & 晴岚
                     data = _equipment(id)
