@@ -324,7 +324,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'getEquipmentTypes',
             value: function getEquipmentTypes() {
-                return KC.db.ship_types[this.type].equipable.concat(this.additional_item_types || []).sort(function (a, b) {
+                var disabled = this.additional_disable_item_types || [];
+                return KC.db.ship_types[this.type].equipable.concat(this.additional_item_types || []).filter(function (type) {
+                    return !disabled.includes(type);
+                }).sort(function (a, b) {
                     return a - b;
                 });
             }

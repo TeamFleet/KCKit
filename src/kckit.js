@@ -309,9 +309,13 @@
         }
 
         getEquipmentTypes() {
-            return KC.db.ship_types[this.type].equipable.concat((this.additional_item_types || [])).sort(function (a, b) {
-                return a - b
-            })
+            const disabled = this.additional_disable_item_types || []
+            return KC.db.ship_types[this.type].equipable
+                .concat((this.additional_item_types || []))
+                .filter(type => !disabled.includes(type))
+                .sort(function (a, b) {
+                    return a - b
+                })
         }
 
         getAttribute(attr, lvl) {
@@ -1656,14 +1660,14 @@
                 case '1':
                 case 19:
                 case '19':
-                case 'dd':multiper = 5; break;
+                case 'dd': multiper = 5; break;
 
                 case 2:
                 case '2':
                 case 28:
                 case '28':
                 case 'cl': multiper = 2; break;
-                
+
                 case 21:
                 case '21':
                 case 'ct': multiper = 6; break;
@@ -1671,7 +1675,7 @@
                 case 5:
                 case '5':
                 case 'cav': multiper = 4; break;
-                
+
                 case 8:
                 case '8':
                 case 'bbv': multiper = 7; break;
@@ -1693,7 +1697,7 @@
                 case 29:
                 case '29':
                 case 'ao': multiper = 15; break;
-                
+
                 case 17:
                 case '17':
                 case 'as': multiper = 7; break;
