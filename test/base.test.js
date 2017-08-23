@@ -252,6 +252,9 @@ describe('Base functions/utilities', () => {
             it(`should 大和・改 db.ships[136].canEquip(['Sonars','SuperCaliber']) be true`, function () {
                 expect(db.ships[136].canEquip(['Sonars', 'SuperCaliber'])).toBe(true);
             });
+            it(`should 路易吉·托雷利・改 db.ships[605].canEquip(['MidgetSubmarine']) be false`, function () {
+                expect(db.ships[605].canEquip(['MidgetSubmarine'])).toBe(false);
+            });
             it(`should 大和・改 db.ships[136].getExSlotEquipmentTypes() be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[136].getExSlotEquipmentTypes()).toEqual(kckit.exSlotEquipmentTypes);
             });
