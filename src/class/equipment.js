@@ -1,10 +1,15 @@
 const vars = require('../variables')
 const getdb = require('../get/db')
 const ItemBase = require('./base.js')
+const equipmentTypes = require('../types/equipments')
 
-module.exports = class Consumable extends ItemBase {
+module.exports = class Equipment extends ItemBase {
     constructor(data) {
-        super(data);
+        super(data)
+
+        Object.defineProperty(this, 'rankupgradable', {
+            value: this.isRankUpgradable()
+        })
     }
 
     getName(small_brackets, theLocale = vars.locale) {
@@ -54,5 +59,19 @@ module.exports = class Consumable extends ItemBase {
         return this.type
             ? getdb('equipment_types')[this.type].equipable_exslot || false
             : false
+    }
+
+    /**
+     * 判断是否可提升熟练度
+     * 
+     * @returns {boolean}
+     */
+    isRankUpgradable() {
+        return (
+            equipmentTypes.Aircrafts.includes(this.type)
+
+            && this.type !== equipmentTypes.Autogyro
+            && this.type !== equipmentTypes.AntiSubPatrol
+        )
     }
 }
