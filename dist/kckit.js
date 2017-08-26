@@ -112,7 +112,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function Equipment(data) {
             _classCallCheck(this, Equipment);
 
-            return _possibleConstructorReturn(this, (Equipment.__proto__ || Object.getPrototypeOf(Equipment)).call(this, data));
+            var _this2 = _possibleConstructorReturn(this, (Equipment.__proto__ || Object.getPrototypeOf(Equipment)).call(this, data));
+
+            Object.defineProperty(_this2, 'rankupgradable', {
+                value: _this2.isRankUpgradable()
+            });
+            return _this2;
         }
 
         _createClass(Equipment, [{
@@ -160,6 +165,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         case 9:
                 }
                 */
+            }
+
+            /**
+             * 判断是否可装备入补强增设栏位
+             * 
+             * @returns {boolean}
+             */
+
+        }, {
+            key: 'isEquipableExSlot',
+            value: function isEquipableExSlot() {
+                if (this.equipable_exslot) return this.equipable_exslot || !1;
+                return this.type ? KC.db.item_types[this.type].equipable_exslot || !1 : !1;
+            }
+
+            /**
+             * 判断是否可提升熟练度
+             * 
+             * @returns {boolean}
+             */
+
+        }, {
+            key: 'isRankUpgradable',
+            value: function isRankUpgradable() {
+                return formula.equipmentType.Aircrafts.includes(this.type) && this.type !== formula.equipmentType.Autogyro && this.type !== formula.equipmentType.AntiSubPatrol;
             }
         }, {
             key: '_icon',

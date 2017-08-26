@@ -84,7 +84,11 @@
     }
     class Equipment extends ItemBase {
         constructor(data) {
-            super(data);
+            super(data)
+
+            Object.defineProperty(this, 'rankupgradable', {
+                value: this.isRankUpgradable()
+            })
         }
 
         getName(small_brackets, language) {
@@ -135,6 +139,32 @@
                     case 9:
             }
             */
+        }
+        
+        /**
+         * 判断是否可装备入补强增设栏位
+         * 
+         * @returns {boolean}
+         */
+        isEquipableExSlot() {
+            if (this.equipable_exslot) return this.equipable_exslot || false
+            return this.type
+                ? KC.db.item_types[this.type].equipable_exslot || false
+                : false
+        }
+    
+        /**
+         * 判断是否可提升熟练度
+         * 
+         * @returns {boolean}
+         */
+        isRankUpgradable() {
+            return (
+                formula.equipmentType.Aircrafts.includes(this.type)
+    
+                && this.type !== formula.equipmentType.Autogyro
+                && this.type !== formula.equipmentType.AntiSubPatrol
+            )
         }
     }
     class Ship extends ItemBase {
