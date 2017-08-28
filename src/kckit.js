@@ -108,6 +108,8 @@
         }
 
         getIconId() {
+            if (Array.isArray(this.type_ingame) && this.type_ingame.length > 3)
+                return this.type_ingame[3]
             return KC.db.item_types[this.type].icon
         }
         get _icon() {
