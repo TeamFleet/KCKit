@@ -315,6 +315,12 @@ describe('Base functions/utilities', () => {
             it(`should [69] カ号観測機 rankupgradable be false`, function () {
                 expect(db.items[69].rankupgradable).toBe(false);
             });
+            it(`should [147] 120mm連装砲 is MainGun`, function () {
+                expect(db.items[147].isType('MainGun')).toBe(true);
+            });
+            it(`should [147] 120mm連装砲 is not LargeCaliber`, function () {
+                expect(db.items[147].isType('LargeCaliber')).toBe(false);
+            });
             it(`should [163] Ro.43水偵 is Aircraft`, function () {
                 expect(db.items[163].isType('Aircraft')).toBe(true);
             });
@@ -327,7 +333,7 @@ describe('Base functions/utilities', () => {
             it(`should [222] 一式戦 隼III型甲 is Interceptor`, function () {
                 expect(db.items[222].isType('Interceptor')).toBe(true);
             });
-            it(`should [187] 銀河 is not Aircraft`, function () {
+            it(`should [187] 銀河 is not Interceptor`, function () {
                 expect(db.items[187].isType('Interceptor')).toBe(false);
             });
         })

@@ -2,6 +2,7 @@ const vars = require('../variables')
 const getdb = require('../get/db')
 const ItemBase = require('./base.js')
 const equipmentTypes = require('../types/equipments')
+const checkEquipment = require('../check/equipment')
 
 module.exports = class Equipment extends ItemBase {
     constructor(data) {
@@ -83,27 +84,30 @@ module.exports = class Equipment extends ItemBase {
     /**
      * 判断是否属于目标类型
      * 
-     * @param {String} type - 装备类型，目前支持：Aircraft, Interceptor
+     * @param {String} type - 装备类型，目前支持：所有在 equipmentTypes 中存在的项，如：MainGuns, Aircraft, Interceptor。大小写敏感
      * @return {Boolean}
      */
     isType(type) {
-        switch (type.toLowerCase()) {
-            case 'aircraft':
-            case 'aircrafts':
-                return equipmentTypes.Aircrafts.includes(this.type)
+        return checkEquipment(this, {
+            ['is' + type]: true
+        })
+        // switch (type.toLowerCase()) {
+        //     case 'aircraft':
+        //     case 'aircrafts':
+        //         return equipmentTypes.Aircrafts.includes(this.type)
 
-            case 'interceptor':
-            case 'interceptors': {
-                if (equipmentTypes.Interceptors.includes(this.type)) {
-                    if (Array.isArray(this.type_ingame) && this.type_ingame[2] === 47)
-                        return false
-                    return true
-                }
-                return false
-            }
+        //     case 'interceptor':
+        //     case 'interceptors': {
+        //         if (equipmentTypes.Interceptors.includes(this.type)) {
+        //             if (Array.isArray(this.type_ingame) && this.type_ingame[2] === 47)
+        //                 return false
+        //             return true
+        //         }
+        //         return false
+        //     }
 
-            default:
-                return false
-        }
+        //     default:
+        //         return false
+        // }
     }
 }
