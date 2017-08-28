@@ -283,6 +283,9 @@ describe('Base functions/utilities', () => {
             it(`should db.items[1]._icon be 1`, function () {
                 expect(db.items[1]._icon).toBe(1);
             });
+            it(`should [224] 爆装一式戦 隼III型改(55戦隊) icon ID be 44`, function () {
+                expect(db.items[224]._icon).toBe(44);
+            });
             it(`should db.items[1].getType('ja_jp') be 小口径主砲`, function () {
                 expect(db.items[1].getType('ja_jp')).toBe('小口径主砲');
             });
@@ -311,6 +314,21 @@ describe('Base functions/utilities', () => {
             });
             it(`should [69] カ号観測機 rankupgradable be false`, function () {
                 expect(db.items[69].rankupgradable).toBe(false);
+            });
+            it(`should [163] Ro.43水偵 is Aircraft`, function () {
+                expect(db.items[163].isType('Aircraft')).toBe(true);
+            });
+            it(`should [175] 雷電 is Aircraft`, function () {
+                expect(db.items[175].isType('Aircraft')).toBe(true);
+            });
+            it(`should [142] 15m二重測距儀+21号電探改二 is not Aircraft`, function () {
+                expect(db.items[142].isType('Aircraft')).toBe(false);
+            });
+            it(`should [222] 一式戦 隼III型甲 is Interceptor`, function () {
+                expect(db.items[222].isType('Interceptor')).toBe(true);
+            });
+            it(`should [187] 銀河 is not Aircraft`, function () {
+                expect(db.items[187].isType('Interceptor')).toBe(false);
             });
         })
 

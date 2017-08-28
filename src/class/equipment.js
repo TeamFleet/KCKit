@@ -30,6 +30,11 @@ module.exports = class Equipment extends ItemBase {
     }
 
     getIcon() {
+        // if (equipmentTypes.LandBasedAttacker === this.type && Array.isArray(this.type_ingame) && this.type_ingame[3] === 44) {
+
+        // }
+        if (Array.isArray(this.type_ingame) && this.type_ingame.length > 3)
+            return this.type_ingame[3]
         return getdb('equipment_types')[this.type].icon
     }
     get _icon() {
@@ -73,5 +78,32 @@ module.exports = class Equipment extends ItemBase {
             && this.type !== equipmentTypes.Autogyro
             && this.type !== equipmentTypes.AntiSubPatrol
         )
+    }
+
+    /**
+     * 判断是否属于目标类型
+     * 
+     * @param {String} type - 装备类型，目前支持：Aircraft, Interceptor
+     * @return {Boolean}
+     */
+    isType(type) {
+        switch (type.toLowerCase()) {
+            case 'aircraft':
+            case 'aircrafts':
+                return equipmentTypes.Aircrafts.includes(this.type)
+
+            case 'interceptor':
+            case 'interceptors': {
+                if (equipmentTypes.Interceptors.includes(this.type)) {
+                    if (Array.isArray(this.type_ingame) && this.type_ingame[2] === 47)
+                        return false
+                    return true
+                }
+                return false
+            }
+
+            default:
+                return false
+        }
     }
 }
