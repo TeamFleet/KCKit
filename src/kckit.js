@@ -142,7 +142,7 @@
             }
             */
         }
-        
+
         /**
          * 判断是否可装备入补强增设栏位
          * 
@@ -154,7 +154,7 @@
                 ? KC.db.item_types[this.type].equipable_exslot || false
                 : false
         }
-    
+
         /**
          * 判断是否可提升熟练度
          * 
@@ -163,7 +163,7 @@
         isRankUpgradable() {
             return (
                 formula.equipmentType.Aircrafts.includes(this.type)
-    
+
                 && this.type !== formula.equipmentType.Autogyro
                 && this.type !== formula.equipmentType.AntiSubPatrol
             )
@@ -641,7 +641,8 @@
             JetBomberFighter2: 56,		// 喷气式战斗轰炸机
             TransportMaterial: 57,	    // 运输设备
             SubmarineEquipment: 58,		// 潜艇装备
-            LandBasedFighter: 59    // 陆战 / 陆上战斗机
+            LandBasedFighter: 59,    // 陆战 / 陆上战斗机
+            CarrierFighterNight: 60,		// 夜战 / 舰载战斗机（夜间）
         },
         // 舰种
         shipType: {
@@ -725,6 +726,7 @@
     _equipmentType.Fighters = [
         _equipmentType.SeaplaneBomber,
         _equipmentType.CarrierFighter,
+        _equipmentType.CarrierFighterNight,
         _equipmentType.TorpedoBomber,
         _equipmentType.DiveBomber,
         _equipmentType.SeaplaneFighter,
@@ -733,7 +735,7 @@
         // _equipmentType.CarrierRecon
         _equipmentType.JetBomberFighter,
         _equipmentType.JetBomberFighter2,
-        _equipmentType.LandBasedFighter
+        _equipmentType.LandBasedFighter,
     ];
 
     _equipmentType.Interceptors = [
@@ -770,7 +772,8 @@
     ];
 
     _equipmentType.CarrierFighters = [
-        _equipmentType.CarrierFighter
+        _equipmentType.CarrierFighter,
+        _equipmentType.CarrierFighterNight
     ];
 
     _equipmentType.CarrierRecons = [
@@ -780,6 +783,7 @@
 
     _equipmentType.CarrierBased = [
         _equipmentType.CarrierFighter,
+        _equipmentType.CarrierFighterNight,
         _equipmentType.TorpedoBomber,
         _equipmentType.DiveBomber,
         _equipmentType.CarrierRecon,
@@ -1027,6 +1031,7 @@
 
         switch (equipment.type) {
             case _equipmentType.CarrierFighter:
+            case _equipmentType.CarrierFighterNight:
             case _equipmentType.Interceptor:
             case _equipmentType.SeaplaneFighter:
             case _equipmentType.LandBasedFighter:
@@ -1142,7 +1147,7 @@
                         && carry
                     ) {
                         value = Math.sqrt(carry) * (equipments_by_slot[index].stat.aa || 0)
-                        if (equipments_by_slot[index].type == _equipmentType.CarrierFighter) {
+                        if (_equipmentType.CarrierFighters.includes(equipments_by_slot[index].type)) {
                             switch (rank_by_slot[index]) {
                                 case 1: case '1':
                                     value += 1; break;

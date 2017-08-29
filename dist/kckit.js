@@ -691,8 +691,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             JetBomberFighter2: 56, // 喷气式战斗轰炸机
             TransportMaterial: 57, // 运输设备
             SubmarineEquipment: 58, // 潜艇装备
-            LandBasedFighter: 59 // 陆战 / 陆上战斗机
-        },
+            LandBasedFighter: 59, // 陆战 / 陆上战斗机
+            CarrierFighterNight: 60 },
         // 舰种
         shipType: {
             // 航母系列
@@ -738,7 +738,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.Seaplanes = [_equipmentType.ReconSeaplane, _equipmentType.ReconSeaplaneNight, _equipmentType.SeaplaneBomber, _equipmentType.SeaplaneFighter];
 
-    _equipmentType.Fighters = [_equipmentType.SeaplaneBomber, _equipmentType.CarrierFighter, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.SeaplaneFighter, _equipmentType.LandBasedAttacker, _equipmentType.Interceptor,
+    _equipmentType.Fighters = [_equipmentType.SeaplaneBomber, _equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.SeaplaneFighter, _equipmentType.LandBasedAttacker, _equipmentType.Interceptor,
     // _equipmentType.CarrierRecon
     _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter];
 
@@ -754,11 +754,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.SeaplaneFighters = [_equipmentType.SeaplaneFighter];
 
-    _equipmentType.CarrierFighters = [_equipmentType.CarrierFighter];
+    _equipmentType.CarrierFighters = [_equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight];
 
     _equipmentType.CarrierRecons = [_equipmentType.CarrierRecon, _equipmentType.CarrierRecon2];
 
-    _equipmentType.CarrierBased = [_equipmentType.CarrierFighter, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
+    _equipmentType.CarrierBased = [_equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
 
     _equipmentType.LandBased = [_equipmentType.LandBasedAttacker, _equipmentType.Interceptor, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter];
 
@@ -928,6 +928,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         switch (equipment.type) {
             case _equipmentType.CarrierFighter:
+            case _equipmentType.CarrierFighterNight:
             case _equipmentType.Interceptor:
             case _equipmentType.SeaplaneFighter:
             case _equipmentType.LandBasedFighter:
@@ -1017,7 +1018,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index] && _equipmentType.Fighters.indexOf(equipments_by_slot[index].type) > -1 && carry) {
                         value = Math.sqrt(carry) * (equipments_by_slot[index].stat.aa || 0);
-                        if (equipments_by_slot[index].type == _equipmentType.CarrierFighter) {
+                        if (_equipmentType.CarrierFighters.includes(equipments_by_slot[index].type)) {
                             switch (rank_by_slot[index]) {
                                 case 1:case '1':
                                     value += 1;break;
