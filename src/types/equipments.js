@@ -59,8 +59,9 @@ const types = {
     TransportMaterial: 57,	    // 运输设备
     SubmarineEquipment: 58,		// 潜艇装备
     LandBasedFighter: 59,       // 陆战 / 陆上战斗机
-
+    CarrierFighterNight: 60,    // 夜战 / 舰载战斗机（夜间）
 }
+
 // Groups
 types.MainGuns = [
     types.SmallCaliber,
@@ -124,6 +125,7 @@ types.Seaplanes = [
 types.Fighters = [
     types.SeaplaneBomber,
     types.CarrierFighter,
+    types.CarrierFighterNight,
     types.TorpedoBomber,
     types.DiveBomber,
     types.SeaplaneFighter,
@@ -169,7 +171,8 @@ types.SeaplaneFighters = [
 ];
 
 types.CarrierFighters = [
-    types.CarrierFighter
+    types.CarrierFighter,
+    types.CarrierFighterNight
 ];
 
 types.CarrierRecons = [
@@ -179,6 +182,7 @@ types.CarrierRecons = [
 
 types.CarrierBased = [
     types.CarrierFighter,
+    types.CarrierFighterNight,
     types.TorpedoBomber,
     types.DiveBomber,
     types.CarrierRecon,
