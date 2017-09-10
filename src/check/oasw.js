@@ -13,7 +13,8 @@ const equipmentStatASW = {
     bestSonar: 12,
     bestLargeSonar: 11,
     "九七式艦攻(九三一空)": 7,
-    "天山(九三一空)": 8
+    "天山(九三一空)": 8,
+    "Swordfish Mk.III(熟練)": 10
 }
 
 /**
@@ -107,7 +108,11 @@ module.exports = (ship, equipments) => {
                             else if (ship.canEquip(equipmentTypes.LargeSonar))
                                 value -= equipmentStatASW.bestLargeSonar * slots
                             else if (ship.canEquip(equipmentTypes.TorpedoBomber))
-                                value -= (equipmentStatASW["天山(九三一空)"] + equipmentStatASW["九七式艦攻(九三一空)"] * (slots - 1))
+                                value -= (
+                                    equipmentStatASW["Swordfish Mk.III(熟練)"]
+                                    + equipmentStatASW["天山(九三一空)"]
+                                    + equipmentStatASW["九七式艦攻(九三一空)"] * (slots - 2)
+                                )
                             const thisMinLv = Math.ceil((value - base) * 99 / (max - base))
                             if (thisMinLv > maxShipLv) return false
                             if (minLv) minLv = Math.max(minLv, thisMinLv)

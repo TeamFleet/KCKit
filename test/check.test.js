@@ -386,6 +386,7 @@ describe('Checking functions/utilities', () => {
                 expect(check.oasw(77)).toBe(false);
             })
             it(`Check samples`, function () {
+                expect(check.oasw(526)[0].minLv).toBe(undefined);
                 expect(check.oasw(434)[0].minLv).toBe(87);
                 expect(check.oasw(321)[0].minLv).toBe(132);
                 expect(check.oasw(380).length).toBe(2);
