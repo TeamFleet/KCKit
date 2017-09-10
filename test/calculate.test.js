@@ -506,6 +506,11 @@ describe('Calculating functions/utilities', () => {
                         calculate.ship.levelOASW(526, [83])
                     ).toBe(91)
                 })
+                it('大鷹 改 + Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(526, [244])
+                    ).toBe(83)
+                })
                 it('占守 改', () => {
                     expect(
                         calculate.ship.levelOASW(376, [])

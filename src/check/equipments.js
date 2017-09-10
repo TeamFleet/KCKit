@@ -39,7 +39,7 @@ const check = (equipments, conditions = {}) => {
         } else if (key.substr(0, 3) === 'has' && checkListStatic.includes(key.substr(3).toLowerCase())) {
             // 条件：checkListStatic 中的项目
             if (Array.isArray(conditions[key])) {
-                if(!conditions[key].every(value => equipments.some(
+                if (!conditions[key].every(value => equipments.some(
                     equipment => checkEquipment(equipment, {
                         [key.replace(/^has/, 'is')]: value
                     })
@@ -53,6 +53,17 @@ const check = (equipments, conditions = {}) => {
                 ))
                     return false
             }
+        } else if (key.substr(0, 3) === 'has' && typeof conditions[key] === 'object' && !Array.isArray(conditions[key])) {
+            // 条件合集
+            const thisCondition = Object.assign({}, conditions[key])
+            const count = typeof thisCondition.count === 'undefined' ? 1 : thisCondition.count
+            delete thisCondition.count
+            const filtered = equipments.filter(
+                equipment => checkEquipment(equipment, {
+                    [key.replace(/^has/, 'is')]: thisCondition
+                })
+            )
+            return filtered.length >= count
         } else if (key.substr(0, 3) === 'has' && !isNaN(conditions[key])) {
             // 条件：有至少 N 个
             const filtered = equipments.filter(

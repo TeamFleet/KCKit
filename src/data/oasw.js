@@ -88,7 +88,12 @@ register({
         }
     },
     equipments: {
-        hasNameOf: '九三一空'
+        // hasNameOf: '九三一空'
+        hasTorpedoBomber: {
+            hasStat: {
+                asw: 7
+            }
+        }
     }
 })
 
@@ -103,21 +108,26 @@ register({
         }
     },
     equipments: {
-        hasTorpedoBomber: true
-    }
-})
-register({
-    ship: {
-        isID: [380, 529]
-    },
-    shipWithEquipments: {
-        hasStat: {
-            asw: 65
+        // hasTorpedoBomber: true
+        hasAircraft: {
+            hasStat: {
+                asw: 1
+            }
         }
-    },
-    equipments: {
-        hasDiveBomber: true
     }
 })
+// register({
+//     ship: {
+//         isID: [380, 529]
+//     },
+//     shipWithEquipments: {
+//         hasStat: {
+//             asw: 65
+//         }
+//     },
+//     equipments: {
+//         // hasDiveBomber: true
+//     }
+// })
 
 module.exports = data

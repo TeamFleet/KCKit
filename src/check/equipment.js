@@ -38,9 +38,10 @@ module.exports = (equipment, conditions = {}) => {
             } else {
                 return false
             }
+            const objConditions = conditions[key] && typeof conditions[key] === 'object' && !Array.isArray(conditions[key]) ? conditions[key] : undefined
             if (!checkCondition[
-                conditions[key] === true ? 'istype' : 'isnottype'
-            ](equipment, equipmentTypes[typeName]))
+                conditions[key] === true || (typeof conditions[key] === 'object' && !Array.isArray(conditions[key])) ? 'istype' : 'isnottype'
+            ](equipment, equipmentTypes[typeName], objConditions))
                 return false
         }
     }
@@ -92,9 +93,20 @@ const checkCondition = {
     }),
 
     // isType
-    istype: (equipment, type) => ArrayOrItem(type, type => {
+    istype: (equipment, type, conditions) => ArrayOrItem(type, type => {
         if (isNaN(type)) return false
-        return parseInt(type) === equipment.type
+        if (parseInt(type) !== equipment.type) return false
+        if (typeof conditions === 'object') {
+            if (conditions.hasStat) {
+                let pass = true
+                for (let stat in conditions.hasStat) {
+                    if (equipment.stat[stat] < conditions.hasStat[stat])
+                        pass = false
+                }
+                if (!pass) return false
+            }
+        }
+        return true
     }),
     isnottype: (equipment, type) => ArrayOrItemAll(type, type => {
         if (isNaN(type)) return false

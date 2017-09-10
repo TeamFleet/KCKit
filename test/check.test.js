@@ -313,6 +313,20 @@ describe('Checking functions/utilities', () => {
             expect(check.equipments([122, 106], {
                 hasHAMount: 2
             })).toBe(false);
+            expect(check.equipments([244, 188], {
+                hasTorpedoBomber: {
+                    hasStat: {
+                        asw: 7
+                    }
+                }
+            })).toBe(true);
+            expect(check.equipments([188], {
+                hasTorpedoBomber: {
+                    hasStat: {
+                        asw: 7
+                    }
+                }
+            })).toBe(false);
         });
     })
     describe('Checking for AACI...', () => {
@@ -374,7 +388,7 @@ describe('Checking functions/utilities', () => {
             it(`Check samples`, function () {
                 expect(check.oasw(434)[0].minLv).toBe(87);
                 expect(check.oasw(321)[0].minLv).toBe(132);
-                expect(check.oasw(380).length).toBe(3);
+                expect(check.oasw(380).length).toBe(2);
                 expect(check.oasw(141)).toBe(true);
             })
         });
