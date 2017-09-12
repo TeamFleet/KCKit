@@ -643,6 +643,7 @@
             SubmarineEquipment: 58,		// 潜艇装备
             LandBasedFighter: 59,    // 陆战 / 陆上战斗机
             CarrierFighterNight: 60,		// 夜战 / 舰载战斗机（夜间）
+            TorpedoBomberNight: 61,		// 夜攻 / 舰载鱼雷机（夜间）
         },
         // 舰种
         shipType: {
@@ -728,6 +729,7 @@
         _equipmentType.CarrierFighter,
         _equipmentType.CarrierFighterNight,
         _equipmentType.TorpedoBomber,
+        _equipmentType.TorpedoBomberNight,
         _equipmentType.DiveBomber,
         _equipmentType.SeaplaneFighter,
         _equipmentType.LandBasedAttacker,
@@ -785,6 +787,7 @@
         _equipmentType.CarrierFighter,
         _equipmentType.CarrierFighterNight,
         _equipmentType.TorpedoBomber,
+        _equipmentType.TorpedoBomberNight,
         _equipmentType.DiveBomber,
         _equipmentType.CarrierRecon,
         _equipmentType.CarrierRecon2,
@@ -801,7 +804,8 @@
     ];
 
     _equipmentType.TorpedoBombers = [
-        _equipmentType.TorpedoBomber
+        _equipmentType.TorpedoBomber,
+        _equipmentType.TorpedoBomberNight
     ];
 
     _equipmentType.DiveBombers = [
@@ -1084,7 +1088,8 @@
                     result = ship.stat.torpedo_max || 0
                     slots.map(function (carry, index) {
                         if (equipments_by_slot[index]) {
-                            result += (equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight)
+                            // result += (equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight)
+                            result += (_equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1 && !options.isNight)
                                 ? 0
                                 : (equipments_by_slot[index].stat.torpedo || 0)
 
@@ -1878,7 +1883,8 @@
                 if (equipments_by_slot[index]) {
                     result += (equipments_by_slot[index].stat.fire * 1.5) || 0
 
-                    if (equipments_by_slot[index].type == _equipmentType.TorpedoBomber)
+                    // if (equipments_by_slot[index].type == _equipmentType.TorpedoBomber)
+                    if (_equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1)
                         torpedoDamage += equipments_by_slot[index].stat.torpedo || 0
 
                     //if( equipments_by_slot[index].type == _equipmentType.DiveBomber )

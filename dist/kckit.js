@@ -692,7 +692,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             TransportMaterial: 57, // 运输设备
             SubmarineEquipment: 58, // 潜艇装备
             LandBasedFighter: 59, // 陆战 / 陆上战斗机
-            CarrierFighterNight: 60 },
+            CarrierFighterNight: 60, // 夜战 / 舰载战斗机（夜间）
+            TorpedoBomberNight: 61 // 夜攻 / 舰载鱼雷机（夜间）
+        },
         // 舰种
         shipType: {
             // 航母系列
@@ -738,7 +740,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.Seaplanes = [_equipmentType.ReconSeaplane, _equipmentType.ReconSeaplaneNight, _equipmentType.SeaplaneBomber, _equipmentType.SeaplaneFighter];
 
-    _equipmentType.Fighters = [_equipmentType.SeaplaneBomber, _equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.SeaplaneFighter, _equipmentType.LandBasedAttacker, _equipmentType.Interceptor,
+    _equipmentType.Fighters = [_equipmentType.SeaplaneBomber, _equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight, _equipmentType.TorpedoBomber, _equipmentType.TorpedoBomberNight, _equipmentType.DiveBomber, _equipmentType.SeaplaneFighter, _equipmentType.LandBasedAttacker, _equipmentType.Interceptor,
     // _equipmentType.CarrierRecon
     _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter];
 
@@ -758,11 +760,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.CarrierRecons = [_equipmentType.CarrierRecon, _equipmentType.CarrierRecon2];
 
-    _equipmentType.CarrierBased = [_equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight, _equipmentType.TorpedoBomber, _equipmentType.DiveBomber, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
+    _equipmentType.CarrierBased = [_equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight, _equipmentType.TorpedoBomber, _equipmentType.TorpedoBomberNight, _equipmentType.DiveBomber, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
 
     _equipmentType.LandBased = [_equipmentType.LandBasedAttacker, _equipmentType.Interceptor, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter];
 
-    _equipmentType.TorpedoBombers = [_equipmentType.TorpedoBomber];
+    _equipmentType.TorpedoBombers = [_equipmentType.TorpedoBomber, _equipmentType.TorpedoBomberNight];
 
     _equipmentType.DiveBombers = [_equipmentType.DiveBomber];
 
@@ -979,7 +981,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 result = ship.stat.torpedo_max || 0;
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) {
-                        result += equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight ? 0 : equipments_by_slot[index].stat.torpedo || 0;
+                        // result += (equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight)
+                        result += _equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1 && !options.isNight ? 0 : equipments_by_slot[index].stat.torpedo || 0;
 
                         // 改修加成
                         if (star_by_slot[index] && !options.isNight) {
@@ -1697,7 +1700,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (equipments_by_slot[index]) {
                     result += equipments_by_slot[index].stat.fire * 1.5 || 0;
 
-                    if (equipments_by_slot[index].type == _equipmentType.TorpedoBomber) torpedoDamage += equipments_by_slot[index].stat.torpedo || 0;
+                    // if (equipments_by_slot[index].type == _equipmentType.TorpedoBomber)
+                    if (_equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1) torpedoDamage += equipments_by_slot[index].stat.torpedo || 0;
 
                     //if( equipments_by_slot[index].type == _equipmentType.DiveBomber )
                     bombDamage += equipments_by_slot[index].stat.bomb || 0;
