@@ -60,6 +60,7 @@ const types = {
     SubmarineEquipment: 58,		// 潜艇装备
     LandBasedFighter: 59,       // 陆战 / 陆上战斗机
     CarrierFighterNight: 60,    // 夜战 / 舰载战斗机（夜间）
+    TorpedoBomberNight: 61,		// 夜攻 / 舰载鱼雷机（夜间）
 }
 
 // Groups
@@ -127,6 +128,7 @@ types.Fighters = [
     types.CarrierFighter,
     types.CarrierFighterNight,
     types.TorpedoBomber,
+    types.TorpedoBomberNight,
     types.DiveBomber,
     types.SeaplaneFighter,
     types.LandBasedAttacker,
@@ -184,6 +186,7 @@ types.CarrierBased = [
     types.CarrierFighter,
     types.CarrierFighterNight,
     types.TorpedoBomber,
+    types.TorpedoBomberNight,
     types.DiveBomber,
     types.CarrierRecon,
     types.CarrierRecon2,
@@ -200,7 +203,8 @@ types.LandBased = [
 ];
 
 types.TorpedoBombers = [
-    types.TorpedoBomber
+    types.TorpedoBomber,
+    types.TorpedoBomberNight
 ];
 
 types.DiveBombers = [
