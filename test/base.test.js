@@ -345,6 +345,12 @@ describe('Base functions/utilities', () => {
             it(`should [187] 銀河 is not Interceptor`, function () {
                 expect(db.items[187].isType('Interceptor')).toBe(false);
             });
+            it(`should [140] 96式150cm探照灯 TP be 0`, function () {
+                expect(db.items[140].getTP()).toBe(0);
+            });
+            it(`should [68] 大発動艇 TP be 8`, function () {
+                expect(db.items[68].getTP()).toBe(8);
+            });
         })
 
         describe('Checking equipment types samples...', function () {
