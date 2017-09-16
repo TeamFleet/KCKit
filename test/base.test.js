@@ -274,6 +274,12 @@ describe('Base functions/utilities', () => {
                 const arr = db.ships[539].getEquipmentTypes()
                 expect(!arr.includes(14) && arr.includes(29)).toEqual(true);
             });
+            it(`should getCapability() returns object`, function () {
+                expect(typeof db.ships[1].getCapability()).toEqual('object');
+            });
+            it(`should [487] 鬼怒・改二 counts as ONE Landing Craft`, function () {
+                expect(db.ships[487].getCapability('count_as_landing_craft')).toEqual(1);
+            });
         });
 
         describe('Checking equipment samples...', function () {

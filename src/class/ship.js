@@ -534,4 +534,15 @@ module.exports = class Ship extends ItemBase {
             this.additional_exslot_item_ids || []
         )
     }
+
+    /**
+     * 获取额外能力
+     * 
+     * @param {String} [type] - 要获取的能力
+     * @returns {Object|...} - 如果提供了 type，返回该能力。如果没有，返回 Object
+     */
+    getCapability(type) {
+        if (!type) return this.capabilities || {}
+        return this.capabilities[type]
+    }
 }
