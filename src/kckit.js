@@ -1225,7 +1225,9 @@
 
             // 夜战模式 & 伤害力
             case 'nightBattle':
-                if (!ship.additional_night_shelling && formula.shipType.Carriers.indexOf(ship.type) > -1) {
+                // Base rule: If a ships has either Fire or Torpedo stat on level 1, she can participate night battle
+                if (ship.stat.fire + ship.stat.torpedo <= 0) {
+                    // if (!ship.additional_night_shelling && formula.shipType.Carriers.indexOf(ship.type) > -1) {
                     // 航母没有夜战
                     return '-'
                 } else {
