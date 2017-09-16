@@ -43,6 +43,7 @@ const types = {
     CDMG: 30,                   // 对空机枪（强化）
     AAFireDirector: 31,         // 高射装置
     AAFD: 31,                   // 高射装置
+    AviationPersonnel: 36,      // 航空作战整备员
     LandingCraft: 38,           // 登陆艇
     Searchlight: 39,		    // 探照灯
     CommandFacility: 45,        // 舰队司令部设施
@@ -284,6 +285,10 @@ types.AAFDs = types.AAFireDirectors
 types.Searchlights = [
     types.Searchlight,
     types.SearchlightLarge
+];
+
+types.AviationPersonnels = [
+    types.AviationPersonnel
 ];
 
 types.LandingCrafts = [
