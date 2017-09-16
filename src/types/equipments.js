@@ -46,10 +46,12 @@ const types = {
     AviationPersonnel: 36,      // 航空作战整备员
     LandingCraft: 38,           // 登陆艇
     Searchlight: 39,		    // 探照灯
+    SupplyContainer: 41,        // 簡易輸送部材
     CommandFacility: 45,        // 舰队司令部设施
     LargeFlyingBoat: 45,		// 大型水上飞艇
     SearchlightLarge: 46,		// 大型探照灯
     SuparRadar: 47,		        // 超大型雷达
+    CombatRation: 48,           // 戦闘糧食
     CarrierRecon2: 50,		    // 舰侦II / 舰载侦察机II
     SeaplaneFighter: 51,		// 水战 / 水上战斗机
     AmphibiousCraft: 52,        // 特型内火艇
@@ -298,6 +300,14 @@ types.LandingCrafts = [
 
 types.AmphibiousCrafts = [
     types.AmphibiousCraft
+];
+
+types.SupplyContainers = [
+    types.SupplyContainer
+];
+
+types.CombatRations = [
+    types.CombatRation
 ];
 
 module.exports = types
