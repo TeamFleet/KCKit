@@ -511,6 +511,17 @@
         get _navy() {
             return this.getNavy()
         }
+
+        /**
+         * 获取额外能力
+         * 
+         * @param {String} [type] - 要获取的能力
+         * @returns {Object|...} - 如果提供了 type，返回该能力。如果没有，返回 Object
+         */
+        getCapability(type) {
+            if (!type) return this.capabilities || {}
+            return this.capabilities[type]
+        }
     }
     Ship.lvlMax = KC.maxShipLv;
     class Consumable extends ItemBase {
@@ -2016,6 +2027,14 @@
                 count.equipment[id]++
             }
         })
+
+        const count_as_landing_craft = ship.getCapability('count_as_landing_craft')
+        if (count_as_landing_craft) {
+            if (!count.equipment[68])
+                count.equipment[68] = 0
+            count.equipment[68]++
+        }
+
         return formula.calc.TP(count)
     };
     formula.calcByShip.speed = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
