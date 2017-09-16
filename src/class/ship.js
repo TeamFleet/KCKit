@@ -311,7 +311,8 @@ module.exports = class Ship extends ItemBase {
                 return this.stat[attr + '_max'] || this.stat[attr] || false
 
             case 'night': {
-                if (this.isType('carrier') && !this.additional_night_shelling)
+                if (this.stat.fire + this.stat.torpedo <= 0)
+                    // if (this.isType('carrier') && !this.additional_night_shelling)
                     return false
                 return (this.stat.fire_max + this.stat.torpedo_max) || 0
             }
