@@ -543,6 +543,7 @@ module.exports = class Ship extends ItemBase {
      */
     getCapability(type) {
         if (!type) return this.capabilities || {}
+        if (!this.capabilities) return undefined
         return this.capabilities[type]
     }
 }

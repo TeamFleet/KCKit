@@ -280,6 +280,9 @@ describe('Base functions/utilities', () => {
             it(`should [487] 鬼怒・改二 counts as ONE Landing Craft`, function () {
                 expect(db.ships[487].getCapability('count_as_landing_craft')).toEqual(1);
             });
+            it(`should [487] 鬼怒・改二 count_as_night_operation_aviation_personnel be undefined`, function () {
+                expect(db.ships[487].getCapability('count_as_night_operation_aviation_personnel')).toEqual(undefined);
+            });
         });
 
         describe('Checking equipment samples...', function () {
