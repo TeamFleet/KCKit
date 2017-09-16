@@ -313,8 +313,8 @@
             return arr
         }
 
-        getSpeed(language) {
-            language = language || KC.lang
+        getSpeed(/*language*/) {
+            // language = language || KC.lang
             return KC.statSpeed[parseInt(this.stat.speed)]
         }
         get _speed() {
@@ -332,8 +332,8 @@
             return this.getSpeedRule()
         }
 
-        getRange(language) {
-            language = language || KC.lang
+        getRange(/*language*/) {
+            // language = language || KC.lang
             return KC.statRange[parseInt(this.stat.range)]
         }
         get _range() {
@@ -520,6 +520,7 @@
          */
         getCapability(type) {
             if (!type) return this.capabilities || {}
+            if (!this.capabilities) return undefined
             return this.capabilities[type]
         }
     }
@@ -637,6 +638,7 @@
             AAGun: 29,		// 对空机枪
             AAGunConcentrated: 30,		// 对空机枪（集中配备）
             AAFireDirector: 31,     // 高射装置
+            AviationPersonnel: 36,      // 航空作战整备员
             LandingCraft: 38,     // 登陆艇
             Searchlight: 39,		// 探照灯
             CommandFacility: 45,    // 舰队司令部设施
@@ -892,6 +894,10 @@
         _equipmentType.SearchlightLarge
     ];
 
+    _equipmentType.AviationPersonnels = [
+        _equipmentType.AviationPersonnel
+    ];
+
     _equipmentType.LandingCrafts = [
         _equipmentType.LandingCraft,
         _equipmentType.AmphibiousCraft
@@ -1004,7 +1010,7 @@
         return formula.starMultiper[equipmentType] ? (formula.starMultiper[equipmentType][type] || 0) : 0
     };
     // 飞行器熟练度对制空战力的加成
-    formula.getFighterPowerRankMultiper = (equipment, rank, options) => {
+    formula.getFighterPowerRankMultiper = (equipment, rank/*, options*/) => {
         equipment = _equipment(equipment)
 
         let rankInternal = []
@@ -1087,35 +1093,49 @@
                 'seaplane': 0,
                 'apshell': 0,
                 'radar': 0,
-                'submarineEquipment': 0
+                'submarineEquipment': 0,
+                'carrierFighterNight': 0,
+                'diveBomberIwai': 0,
+                'torpedoBomberNight': 0,
+                'torpedoBomberSwordfish': 0,
+                'aviationPersonnelNight': 0
             }
             , slots = _slots(ship.slot)
-            , powerTorpedo = function (options) {
-                options = options || {}
-                let result = 0
-                if (formula.shipType.Carriers.indexOf(ship.type) > -1 && !options.isNight) {
-                    return options.returnZero ? 0 : -1
-                } else {
-                    result = ship.stat.torpedo_max || 0
-                    slots.map(function (carry, index) {
-                        if (equipments_by_slot[index]) {
-                            // result += (equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight)
-                            result += (_equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1 && !options.isNight)
-                                ? 0
-                                : (equipments_by_slot[index].stat.torpedo || 0)
+            // , powerTorpedo = function (options) {
+            //     options = options || {}
+            //     let result = 0
+            //     if (formula.shipType.Carriers.indexOf(ship.type) > -1 && !options.isNight) {
+            //         return options.returnZero ? 0 : -1
+            //     } else {
+            //         result = ship.stat.torpedo_max || 0
+            //         slots.map(function (carry, index) {
+            //             if (equipments_by_slot[index]) {
+            //                 // result += (equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight)
+            //                 result += (_equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1 && !options.isNight)
+            //                     ? 0
+            //                     : (equipments_by_slot[index].stat.torpedo || 0)
 
-                            // 改修加成
-                            if (star_by_slot[index] && !options.isNight) {
-                                result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
-                                    equipments_by_slot[index].type,
-                                    'torpedo'
-                                )
-                            }
-                        }
-                    })
-                    return result
-                }
-                //return (ship.stat.torpedo_max || 0)
+            //                 // 改修加成
+            //                 if (star_by_slot[index] && !options.isNight) {
+            //                     result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+            //                         equipments_by_slot[index].type,
+            //                         'torpedo'
+            //                     )
+            //                 }
+            //             }
+            //         })
+            //         return result
+            //     }
+            //     //return (ship.stat.torpedo_max || 0)
+            // }
+            , powerTorpedo = function (options) {
+                return formula.calcByShip.torpedoPower(
+                    ship,
+                    equipments_by_slot,
+                    star_by_slot,
+                    rank_by_slot,
+                    options
+                )
             }
             , value = 0
 
@@ -1150,6 +1170,25 @@
                 count.radar += 1
             else if (_equipmentType.SubmarineEquipment == equipment.type)
                 count.submarineEquipment += 1
+            else if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
+                if (equipment.name.ja_jp.indexOf('Swordfish') > -1)
+                    count.torpedoBomberSwordfish += 1
+            }
+            else if (_equipmentType.AviationPersonnels.indexOf(equipment.type) > -1) {
+                if (equipment.name.ja_jp.indexOf('夜間') > -1)
+                    count.aviationPersonnelNight += 1
+            }
+            else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
+                if (equipment.name.ja_jp.indexOf('岩井') > -1)
+                    count.diveBomberIwai += 1
+            }
+
+            if (equipment.type_ingame) {
+                if (equipment.type_ingame[3] === 45)
+                    count.carrierFighterNight += 1
+                else if (equipment.type_ingame[3] === 46)
+                    count.torpedoBomberNight += 1
+            }
         })
 
         switch (type) {
@@ -1224,71 +1263,20 @@
             //break;
 
             // 夜战模式 & 伤害力
-            case 'nightBattle':
-                // Base rule: If a ships has either Fire or Torpedo stat on level 1, she can participate night battle
-                if (ship.stat.fire + ship.stat.torpedo <= 0) {
-                    // if (!ship.additional_night_shelling && formula.shipType.Carriers.indexOf(ship.type) > -1) {
-                    // 航母没有夜战
-                    return '-'
-                } else {
-                    //console.log(count)
-                    result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
-                        isNight: true
-                    }) + powerTorpedo({ isNight: true, returnZero: true })
-                    // 改修加成
-                    slots.map(function (carry, index) {
-                        if (equipments_by_slot[index]) {
-                            if (star_by_slot[index]) {
-                                result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
-                                    equipments_by_slot[index].type,
-                                    'night'
-                                )
-                            }
-                        }
-                    })
-                    /*
-                    console.log(
-                        '夜',
-                        formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {isNight: true}),
-                        powerTorpedo({isNight: true, returnZero: true}),
-                        result
-                    )
-                    */
-                    // http://wikiwiki.jp/kancolle/?%C0%EF%C6%AE%A4%CB%A4%C4%A4%A4%A4%C6#NightBattle
-                    // console.log(
-                    //     count,
-                    //     formula.shipType.Submarines.indexOf(ship.type)
-                    // )
-                    if (formula.shipType.Submarines.indexOf(ship.type) > -1
-                        && count.torpedoLateModel >= 1
-                        && count.submarineEquipment >= 1
-                    ) {
-                        // 潜艇专用
-                        return '雷击CI ' + Math.floor(result * 1.75) + ' x 2'
-                    } else if (formula.shipType.Submarines.indexOf(ship.type) > -1
-                        && count.torpedoLateModel >= 2
-                    ) {
-                        // 潜艇专用
-                        return '雷击CI ' + Math.floor(result * 1.6) + ' x 2'
-                    } else if (count.torpedo >= 2) {
-                        return '雷击CI ' + Math.floor(result * 1.5) + ' x 2'
-                    } else if (count.main >= 3) {
-                        return '炮击CI ' + Math.floor(result * 2) + ''
-                    } else if (count.main == 2 && count.secondary >= 1) {
-                        return '炮击CI ' + Math.floor(result * 1.75) + ''
-                    } else if (count.main >= 1 && count.torpedo == 1) {
-                        return '炮雷CI ' + Math.floor(result * 1.3) + ' x 2'
-                    } else if (
-                        (count.main == 2 && count.secondary <= 0 && count.torpedo <= 0)
-                        || (count.main == 1 && count.secondary >= 1 && count.torpedo <= 0)
-                        || (count.main == 0 && count.secondary >= 2 && count.torpedo >= 0)
-                    ) {
-                        return '连击 ' + Math.floor(result * 1.2) + ' x 2'
-                    } else {
-                        return '通常 ' + Math.floor(result) + ''
-                    }
-                }
-            //break;
+            case 'nightBattle': {
+                const nightPower = formula.calcByShip.nightPower(
+                    ship,
+                    equipments_by_slot,
+                    star_by_slot,
+                    rank_by_slot,
+                    {},
+                    count
+                )
+                return nightPower.damage <= 0
+                    ? '-'
+                    : nightPower.value
+                //break;
+            }
 
             // 命中总和
             case 'addHit':
@@ -1961,6 +1949,292 @@
         }
         //return (ship.stat.fire_max || 0)
     };
+    formula.calcByShip.torpedoPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+        options = options || {}
+
+        let result = 0
+        const slots = _slots(ship.slot)
+
+        if (formula.shipType.Carriers.indexOf(ship.type) > -1 && !options.isNight) {
+            return options.returnZero ? 0 : -1
+        } else {
+            result = ship.stat.torpedo_max || 0
+            slots.map(function (carry, index) {
+                if (equipments_by_slot[index]) {
+                    // result += (equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight)
+                    result += (_equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1 && !options.isNight)
+                        ? 0
+                        : (equipments_by_slot[index].stat.torpedo || 0)
+
+                    // 改修加成
+                    if (star_by_slot[index] && !options.isNight) {
+                        result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                            equipments_by_slot[index].type,
+                            'torpedo'
+                        )
+                    }
+                }
+            })
+            return result
+        }
+    }
+    formula.calcByShip.nightPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, count) {
+        options = options || {}
+
+        const result = {
+            // value: ''
+            // type: undefined,
+            damage: 0
+        }
+
+        // 改修加成
+        let starBonus = 0
+        const slots = _slots(ship.slot)
+        slots.forEach(function (carry, index) {
+            if (!equipments_by_slot[index]) return
+
+            if (star_by_slot[index]) {
+                starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                    equipments_by_slot[index].type,
+                    'night'
+                )
+            }
+        })
+
+        // 航空夜战
+        // http://bbs.ngacn.cc/read.php?tid=12445064
+        if (
+            (count.aviationPersonnelNight || ship.getCapability('count_as_night_operation_aviation_personnel'))
+            && (
+                count.carrierFighterNight >= 1
+                || count.torpedoBomberNight >= 1
+            )
+        ) {
+            let spFire = 0     // 特殊机体火力
+            let spTorpedo = 0   // 特殊机体雷装
+            let spCount = 0     // 夜战机体格子剩余机数
+            let spBonus = 0     // 夜战机体格子剩余机数
+            let CI = 0
+            let hasAttacker = false
+
+            slots.forEach(function (carry, index) {
+                const equipment = equipments_by_slot[index]
+                let isSP = false
+                let isNight = false
+                if (!equipments_by_slot[index]) return
+
+                if (equipment.type_ingame) {
+                    // 夜战
+                    if (equipment.type_ingame[3] === 45) {
+                        isSP = true
+                        isNight = true
+                    }
+                    // 夜攻
+                    else if (equipment.type_ingame[3] === 46) {
+                        isSP = true
+                        isNight = true
+                    }
+                }
+                if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
+                    if (equipment.name.ja_jp.indexOf('Swordfish') > -1)
+                        isSP = true
+                } else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
+                    if (equipment.name.ja_jp.indexOf('岩井') > -1)
+                        isSP = true
+                }
+                if (
+                    _equipmentType.Aircrafts.indexOf(equipment.type) > -1
+                    && (
+                        equipment.stat.bomb
+                        || equipment.stat.torpedo
+                    )
+                ) hasAttacker = true
+
+                if (isSP) {
+                    spFire += equipment.stat.fire
+                    spTorpedo += equipment.stat.torpedo
+                    spCount += carry
+                    spBonus += Math.sqrt(carry) * (
+                        (3 + 1.5 * (isNight ? 1 : 0))
+                        * (
+                            equipment.stat.fire
+                            + equipment.stat.torpedo
+                            + equipment.stat.bomb
+                            + equipment.stat.asw
+                        )
+                        / 10
+                    )
+                }
+            })
+
+            if (!hasAttacker) return { damage: 0 }
+
+            // carrierFighterNight
+            // diveBomberIwai
+            // torpedoBomberNight
+            // torpedoBomberSwordfish
+            // aviationPersonnelNight
+
+            // 夜战/夜战/夜攻：约1.25
+            // 夜战/夜战/剑鱼：1.18
+
+            // 夜战/夜攻/剑鱼：约1.2
+            // 夜战/夜攻/岩井：？
+            // 夜战/夜攻：约1.2
+
+            // 夜战/剑鱼/剑鱼：1.18
+
+            if (
+                count.carrierFighterNight >= 2 && count.torpedoBomberNight >= 1
+            ) CI = 1.25
+            else if (
+                count.carrierFighterNight >= 2 && count.torpedoBomberSwordfish >= 1
+            ) CI = 1.18
+            else if (
+                count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && count.torpedoBomberSwordfish >= 1
+            ) CI = 1.2
+            else if (
+                count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && count.diveBomberIwai >= 1
+            ) CI = 1.2
+            else if (
+                count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1
+            ) CI = 1.18
+            else if (
+                count.carrierFighterNight >= 1 && count.torpedoBomberSwordfish >= 2
+            ) CI = 1.18
+
+            result.type = '航空'
+            result.hit = 1
+            result.damage = Math.floor(
+                ship.stat.fire_max
+                + spFire
+                + spTorpedo
+                + 3 * spCount
+                // + 特殊机体系数 * Math.sqrt(specialAircraftCount)
+                + spBonus
+                + starBonus
+            )
+            if (CI) {
+                result.damage_ci = Math.floor(result.damage * CI)
+            }
+            // (裸火力+特殊机体火力+特殊机体雷装+3*sum(夜战机体格子剩余机数)+sum(特殊机体系数*sqrt(特殊机体格子剩余机数))+夜间接触补正+改修补正)
+        }
+
+        // Ark Royal：剑鱼夜战
+        else if (
+            ship.getCapability('participate_night_battle_when_equip_swordfish')
+        ) {
+            result.damage += ship.stat.fire_max + ship.stat.torpedo_max
+            slots.forEach(function (carry, index) {
+                const equipment = equipments_by_slot[index]
+                if (!equipments_by_slot[index]) return
+                if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
+                    if (equipment.name.ja_jp.indexOf('Swordfish') > -1) {
+                        result.damage += equipment.stat.fire + equipment.stat.torpedo
+                    }
+                }
+            })
+            result.type = '通常'
+            result.damage = Math.floor(result.damage)
+            result.hit = 1
+        }
+
+        // Base rule: If a ships has either Fire or Torpedo stat on level 1, she can participate night battle
+
+        else if (ship.stat.fire + ship.stat.torpedo <= 0)
+            // if (!ship.additional_night_shelling && formula.shipType.Carriers.indexOf(ship.type) > -1) {
+            // 航母没有夜战
+            return {
+                damage: 0
+            }
+
+        // 炮雷夜战
+        else {
+            //console.log(count)
+            result.damage =
+                formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
+                    isNight: true
+                })
+                + formula.calcByShip.torpedoPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
+                    isNight: true, returnZero: true
+                })
+                + starBonus
+            /*
+            console.log(
+                '夜',
+                formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {isNight: true}),
+                powerTorpedo({isNight: true, returnZero: true}),
+                result.damage
+            )
+            */
+            // http://wikiwiki.jp/kancolle/?%C0%EF%C6%AE%A4%CB%A4%C4%A4%A4%A4%C6#NightBattle
+            // console.log(
+            //     count,
+            //     formula.shipType.Submarines.indexOf(ship.type)
+            // )
+
+            // 潜艇专用雷击CI
+            if (formula.shipType.Submarines.indexOf(ship.type) > -1
+                && count.torpedoLateModel >= 1
+                && count.submarineEquipment >= 1
+            ) {
+                result.type = '雷击CI'
+                result.damage = Math.floor(result.damage * 1.75)
+                result.hit = 2
+            }
+
+            // 潜艇专用雷击CI
+            else if (formula.shipType.Submarines.indexOf(ship.type) > -1
+                && count.torpedoLateModel >= 2
+            ) {
+                result.type = '雷击CI'
+                result.damage = Math.floor(result.damage * 1.6)
+                result.hit = 2
+            }
+
+            else if (count.torpedo >= 2) {
+                result.type = '雷击CI'
+                result.damage = Math.floor(result.damage * 1.5)
+                result.hit = 2
+            } else if (count.main >= 3) {
+                result.type = '炮击CI'
+                result.damage = Math.floor(result.damage * 2)
+                result.hit = 1
+            } else if (count.main == 2 && count.secondary >= 1) {
+                result.type = '炮击CI'
+                result.damage = Math.floor(result.damage * 1.75)
+                result.hit = 1
+            } else if (count.main >= 1 && count.torpedo == 1) {
+                result.type = '炮雷CI'
+                result.damage = Math.floor(result.damage * 1.3)
+                result.hit = 2
+            } else if (
+                (count.main == 2 && count.secondary <= 0 && count.torpedo <= 0)
+                || (count.main == 1 && count.secondary >= 1 && count.torpedo <= 0)
+                || (count.main == 0 && count.secondary >= 2 && count.torpedo >= 0)
+            ) {
+                result.type = '连击'
+                result.damage = Math.floor(result.damage * 1.2)
+                result.hit = 2
+            } else {
+                result.type = '通常'
+                result.damage = Math.floor(result.damage)
+                result.hit = 1
+            }
+        }
+
+        result.value = `${result.type} ${result.damage}`
+        if (result.hit && result.hit > 1)
+            result.value += ` x ${result.hit}`
+        if (result.damage_ci) {
+            const hit = result.hit_ci || result.hit || 1
+            result.value += ` (CI: ${result.damage_ci})`
+            if (hit && hit > 1)
+                result.value += ` x ${hit}`
+        }
+
+        return result
+    };
     formula.calcByShip.fighterPower_v2 = function (ship, equipments_by_slot, star_by_slot, rank_by_slot) {
         let results = [0, 0]
             , slots = _slots(ship.slot)
@@ -2031,6 +2305,7 @@
         })
 
         const count_as_landing_craft = ship.getCapability('count_as_landing_craft')
+        // console.log('count_as_landing_craft', count_as_landing_craft)
         if (count_as_landing_craft) {
             if (!count.equipment[68])
                 count.equipment[68] = 0

@@ -13,6 +13,12 @@ module.exports = {
         },
         "sourceType": "module"
     },
+    // 全局变量
+    // ture 可以被重写，false 不可以被重写
+    "globals": {
+        "define": false,
+        "node": false
+    },
     "rules": {
         "no-const-assign": 1,
         "no-extra-semi": 2,
