@@ -1095,9 +1095,9 @@
                 'radar': 0,
                 'submarineEquipment': 0,
                 'carrierFighterNight': 0,
-                'diveBomberIwai': 0,
+                // 'diveBomberIwai': 0,
                 'torpedoBomberNight': 0,
-                'torpedoBomberSwordfish': 0,
+                // 'torpedoBomberSwordfish': 0,
                 'aviationPersonnelNight': 0
             }
             , slots = _slots(ship.slot)
@@ -1170,18 +1170,18 @@
                 count.radar += 1
             else if (_equipmentType.SubmarineEquipment == equipment.type)
                 count.submarineEquipment += 1
-            else if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
-                if (equipment.name.ja_jp.indexOf('Swordfish') > -1)
-                    count.torpedoBomberSwordfish += 1
-            }
+            // else if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
+            //     if (equipment.name.ja_jp.indexOf('Swordfish') > -1)
+            //         count.torpedoBomberSwordfish += 1
+            // }
             else if (_equipmentType.AviationPersonnels.indexOf(equipment.type) > -1) {
                 if (equipment.name.ja_jp.indexOf('夜間') > -1)
                     count.aviationPersonnelNight += 1
             }
-            else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
-                if (equipment.name.ja_jp.indexOf('岩井') > -1)
-                    count.diveBomberIwai += 1
-            }
+            // else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
+            //     if (equipment.name.ja_jp.indexOf('岩井') > -1)
+            //         count.diveBomberIwai += 1
+            // }
 
             if (equipment.type_ingame) {
                 if (equipment.type_ingame[3] === 45)
@@ -2010,37 +2010,46 @@
                 || count.torpedoBomberNight >= 1
             )
         ) {
-            let spFire = 0     // 特殊机体火力
+            // (裸火力+特殊机体火力+特殊机体雷装+3*sum(夜战机体格子剩余机数)+sum(特殊机体系数*sqrt(特殊机体格子剩余机数))+夜间接触补正+改修补正)
+
+            let nightCarry = 0  // 夜战机体机数
+            let spFire = 0      // 特殊机体火力
             let spTorpedo = 0   // 特殊机体雷装
-            let spCount = 0     // 夜战机体格子剩余机数
-            let spBonus = 0     // 夜战机体格子剩余机数
+            let spBonus = 0     // sum(特殊机体系数*sqrt(特殊机体机数))
             let CI = 0
             let hasAttacker = false
 
+            let equipTorpedoBomberSwordfish = 0
+            let equipDiveBomberIwai = 0
+
             slots.forEach(function (carry, index) {
                 const equipment = equipments_by_slot[index]
-                let isSP = false
-                let isNight = false
+                let isNightAircraft = false
+                let isSPAircraft = false
                 if (!equipments_by_slot[index]) return
 
                 if (equipment.type_ingame) {
                     // 夜战
                     if (equipment.type_ingame[3] === 45) {
-                        isSP = true
-                        isNight = true
+                        isSPAircraft = true
+                        isNightAircraft = true
                     }
                     // 夜攻
                     else if (equipment.type_ingame[3] === 46) {
-                        isSP = true
-                        isNight = true
+                        isSPAircraft = true
+                        isNightAircraft = true
                     }
                 }
                 if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
-                    if (equipment.name.ja_jp.indexOf('Swordfish') > -1)
-                        isSP = true
+                    if (equipment.name.ja_jp.indexOf('Swordfish') > -1) {
+                        isSPAircraft = true
+                        equipTorpedoBomberSwordfish++
+                    }
                 } else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
-                    if (equipment.name.ja_jp.indexOf('岩井') > -1)
-                        isSP = true
+                    if (equipment.name.ja_jp.indexOf('岩井') > -1) {
+                        isSPAircraft = true
+                        equipDiveBomberIwai++
+                    }
                 }
                 if (
                     _equipmentType.Aircrafts.indexOf(equipment.type) > -1
@@ -2050,12 +2059,15 @@
                     )
                 ) hasAttacker = true
 
-                if (isSP) {
+                if (isNightAircraft) {
+                    nightCarry += carry
+                }
+
+                if (isSPAircraft) {
                     spFire += equipment.stat.fire
                     spTorpedo += equipment.stat.torpedo
-                    spCount += carry
                     spBonus += Math.sqrt(carry) * (
-                        (3 + 1.5 * (isNight ? 1 : 0))
+                        (3 + 1.5 * (isNightAircraft ? 1 : 0))
                         * (
                             equipment.stat.fire
                             + equipment.stat.torpedo
@@ -2084,23 +2096,24 @@
 
             // 夜战/剑鱼/剑鱼：1.18
 
+            const equipSPBomber = equipTorpedoBomberSwordfish + equipDiveBomberIwai
             if (
                 count.carrierFighterNight >= 2 && count.torpedoBomberNight >= 1
             ) CI = 1.25
             else if (
-                count.carrierFighterNight >= 2 && count.torpedoBomberSwordfish >= 1
+                count.carrierFighterNight >= 2 && equipSPBomber >= 1
             ) CI = 1.18
             else if (
-                count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && count.torpedoBomberSwordfish >= 1
+                count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && equipSPBomber >= 1
             ) CI = 1.2
-            else if (
-                count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && count.diveBomberIwai >= 1
-            ) CI = 1.2
+            // else if (
+            //     count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && count.diveBomberIwai >= 1
+            // ) CI = 1.2
             else if (
                 count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1
             ) CI = 1.18
             else if (
-                count.carrierFighterNight >= 1 && count.torpedoBomberSwordfish >= 2
+                count.carrierFighterNight >= 1 && equipSPBomber >= 2
             ) CI = 1.18
 
             result.type = '航空'
@@ -2109,15 +2122,13 @@
                 ship.stat.fire_max
                 + spFire
                 + spTorpedo
-                + 3 * spCount
-                // + 特殊机体系数 * Math.sqrt(specialAircraftCount)
+                + 3 * nightCarry
                 + spBonus
                 + starBonus
             )
             if (CI) {
                 result.damage_ci = Math.floor(result.damage * CI)
             }
-            // (裸火力+特殊机体火力+特殊机体雷装+3*sum(夜战机体格子剩余机数)+sum(特殊机体系数*sqrt(特殊机体格子剩余机数))+夜间接触补正+改修补正)
         }
 
         // Ark Royal：剑鱼夜战
