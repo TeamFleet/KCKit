@@ -1,6 +1,6 @@
 {
   "name": "kckit",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Javascript library for KanColle",
   "main": "dist/kckit.js",
   "author": "diablohu",

@@ -893,7 +893,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             fighter: 0.2
         },
         DiveBombers: {
-            fighter: 0.25
+            fighter: 0.25,
+            night: 1
         },
         CarrierRecons: {
             los: 1.2
@@ -1792,34 +1793,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         // 改修加成
         var starBonus = 0;
         var slots = _slots(ship.slot);
-        slots.forEach(function (carry, index) {
-            if (!equipments_by_slot[index]) return;
-
-            if (star_by_slot[index]) {
-                starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
-            }
-        });
 
         // 航空夜战
         // http://bbs.ngacn.cc/read.php?tid=12445064
         if ((count.aviationPersonnelNight || ship.getCapability('count_as_night_operation_aviation_personnel')) && (count.carrierFighterNight >= 1 || count.torpedoBomberNight >= 1)) {
-            // (裸火力+特殊机体火力+特殊机体雷装+3*sum(夜战机体格子剩余机数)+sum(特殊机体系数*sqrt(特殊机体格子剩余机数))+夜间接触补正+改修补正)
+            // (裸火力+特殊机体火力+特殊机体雷装+3*sum(夜战机体格子剩余机数)+sum(特殊机体系数*sqrt(特殊机体格子剩余机数))+夜间接触补正+特殊机体改修补正)*CI系数
+            // 夜战机体：F6F-3N，F6F-5N，TBM-3D
+            // 特殊机体：所有夜战机体，剑鱼系，零战62型(爆战/岩井队)
+
+            slots.forEach(function (carry, index) {
+                if (!equipments_by_slot[index]) return;
+
+                if (star_by_slot[index]) {
+                    starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
+                }
+            });
 
             var nightCarry = 0; // 夜战机体机数
             var spFire = 0; // 特殊机体火力
             var spTorpedo = 0; // 特殊机体雷装
             var spBonus = 0; // sum(特殊机体系数*sqrt(特殊机体机数))
-            var CI = 0;
-            var hasAttacker = !1;
+            var spStarBonus = 0; // 特殊机体改修补正
+            var multiplierCI = [];
+            // let hasAttacker = false
 
-            var equipTorpedoBomberSwordfish = 0;
-            var equipDiveBomberIwai = 0;
+            var countTorpedoBomberSwordfish = 0;
+            var countDiveBomberIwai = 0;
 
             slots.forEach(function (carry, index) {
-                var equipment = equipments_by_slot[index];
-                var isNightAircraft = !1;
-                var isSPAircraft = !1;
                 if (!equipments_by_slot[index]) return;
+
+                var equipment = equipments_by_slot[index];
+                var isNightAircraft = !1; // 是否为夜战机
+                var isSPAircraft = !1; // 是否为特殊机
 
                 if (equipment.type_ingame) {
                     // 夜战
@@ -1836,15 +1842,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
                     if (equipment.name.ja_jp.indexOf('Swordfish') > -1) {
                         isSPAircraft = !0;
-                        equipTorpedoBomberSwordfish++;
+                        countTorpedoBomberSwordfish++;
                     }
                 } else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
                     if (equipment.name.ja_jp.indexOf('岩井') > -1) {
                         isSPAircraft = !0;
-                        equipDiveBomberIwai++;
+                        countDiveBomberIwai++;
                     }
                 }
-                if (_equipmentType.Aircrafts.indexOf(equipment.type) > -1 && (equipment.stat.bomb || equipment.stat.torpedo)) hasAttacker = !0;
+                // if (
+                //     _equipmentType.Aircrafts.indexOf(equipment.type) > -1
+                //     && (
+                //         equipment.stat.bomb
+                //         || equipment.stat.torpedo
+                //     )
+                // ) hasAttacker = true
 
                 if (isNightAircraft) {
                     nightCarry += carry;
@@ -1854,38 +1866,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     spFire += equipment.stat.fire;
                     spTorpedo += equipment.stat.torpedo;
                     spBonus += Math.sqrt(carry) * ((3 + 1.5 * (isNightAircraft ? 1 : 0)) * (equipment.stat.fire + equipment.stat.torpedo + equipment.stat.bomb + equipment.stat.asw) / 10);
+                    if (star_by_slot[index]) {
+                        spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
+                    }
                 }
             });
 
-            if (!hasAttacker) return { damage: 0 };
+            // if (!hasAttacker) return { damage: 0 }
 
-            // carrierFighterNight
-            // diveBomberIwai
-            // torpedoBomberNight
-            // torpedoBomberSwordfish
-            // aviationPersonnelNight
-
-            // 夜战/夜战/夜攻：约1.25
-            // 夜战/夜战/剑鱼：1.18
-
-            // 夜战/夜攻/剑鱼：约1.2
-            // 夜战/夜攻/岩井：？
-            // 夜战/夜攻：约1.2
-
-            // 夜战/剑鱼/剑鱼：1.18
-
-            var equipSPBomber = equipTorpedoBomberSwordfish + equipDiveBomberIwai;
-            if (count.carrierFighterNight >= 2 && count.torpedoBomberNight >= 1) CI = 1.25;else if (count.carrierFighterNight >= 2 && equipSPBomber >= 1) CI = 1.18;else if (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && equipSPBomber >= 1) CI = 1.2;
-            // else if (
-            //     count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && count.diveBomberIwai >= 1
-            // ) CI = 1.2
-            else if (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1) CI = 1.18;else if (count.carrierFighterNight >= 1 && equipSPBomber >= 2) CI = 1.18;
+            var equipSPBomber = countTorpedoBomberSwordfish + countDiveBomberIwai;
+            if (count.carrierFighterNight >= 2 && count.torpedoBomberNight >= 1) multiplierCI.push(1.25);
+            if (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1) multiplierCI.push(1.2);
+            if (count.carrierFighterNight >= 3 || count.carrierFighterNight >= 2 && equipSPBomber >= 1 || count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && equipSPBomber >= 1 || count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 2) multiplierCI.push(1.18);
 
             result.type = '航空';
             result.hit = 1;
-            result.damage = Math.floor(ship.stat.fire_max + spFire + spTorpedo + 3 * nightCarry + spBonus + starBonus);
-            if (CI) {
-                result.damage_ci = Math.floor(result.damage * CI);
+            result.damage = Math.floor(ship.stat.fire_max + spFire + spTorpedo + 3 * nightCarry + spBonus + spStarBonus);
+
+            if (multiplierCI.length) {
+                result.cis = multiplierCI.map(function (multiplier) {
+                    return [Math.floor(result.damage * multiplier), 1];
+                });
+                // result.damage_ci = Math.floor(result.damage * CI)
             }
         }
 
@@ -1917,6 +1919,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     // 炮雷夜战
                 else {
+                        slots.forEach(function (carry, index) {
+                            if (!equipments_by_slot[index]) return;
+
+                            if (star_by_slot[index]) {
+                                starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
+                            }
+                        });
+
                         //console.log(count)
                         result.damage = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
                             isNight: !0
@@ -1978,9 +1988,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         result.value = result.type + ' ' + result.damage;
         if (result.hit && result.hit > 1) result.value += ' x ' + result.hit;
-        if (result.damage_ci) {
+        if (Array.isArray(result.cis) && result.cis.length) {
+            result.value += ' (CI ' + result.cis.sort(function (a, b) {
+                return a[0] - b[0];
+            }).map(function (ci) {
+                return ci[0] + (ci[1] && ci[1] > 1 ? ' x ' + ci[1] : '');
+            }).join(' 或 ') + ')';
+        } else if (result.damage_ci) {
             var hit = result.hit_ci || result.hit || 1;
-            result.value += ' (CI: ' + result.damage_ci + ')';
+            result.value += ' (CI ' + result.damage_ci + ')';
             if (hit && hit > 1) result.value += ' x ' + hit;
         }
 
