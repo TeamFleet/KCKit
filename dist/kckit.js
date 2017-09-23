@@ -26,6 +26,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         lang: 'zh_cn',
         joint: '・',
         maxShipLv: 165,
+        maxHqLv: 120,
         db: {},
         path: {
             db: '/kcdb/',

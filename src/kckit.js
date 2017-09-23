@@ -14,6 +14,7 @@
         lang: 'zh_cn',
         joint: '・',
         maxShipLv: 165,
+        maxHqLv: 120,
         db: {},
         path: {
             db: '/kcdb/',
