@@ -524,6 +524,37 @@
             if (!this.capabilities) return undefined
             return this.capabilities[type]
         }
+
+        /**
+         * 获取额外可提升的值
+         * 
+         * @param {String} [type] - 要获取的属性名
+         * @returns {Number} - 数值
+         */
+        getStatExtraMax(type, lvl = 1) {
+            switch (type.toLowerCase()) {
+                case 'hp': {
+                    // const hpBase = this.getStat(type, 99)
+                    // const hpAfterMarriage = this.getStat(type, 100)
+                    const stat = this.getAttribute(type, lvl)
+                    const statMax = this.stat.hp_max
+                    return Math.max(
+                        0,
+                        Math.min(
+                            2,
+                            statMax - stat
+                        )
+                    )
+                }
+                case 'asw': {
+                    return this.stat.asw
+                        ? 9
+                        : false
+                }
+                default:
+                    return false
+            }
+        }
     }
     Ship.lvlMax = KC.maxShipLv;
     class Consumable extends ItemBase {

@@ -526,6 +526,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (!this.capabilities) return undefined;
                 return this.capabilities[type];
             }
+
+            /**
+             * 获取额外可提升的值
+             * 
+             * @param {String} [type] - 要获取的属性名
+             * @returns {Number} - 数值
+             */
+
+        }, {
+            key: 'getStatExtraMax',
+            value: function getStatExtraMax(type) {
+                var lvl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+                switch (type.toLowerCase()) {
+                    case 'hp':
+                        {
+                            // const hpBase = this.getStat(type, 99)
+                            // const hpAfterMarriage = this.getStat(type, 100)
+                            var stat = this.getAttribute(type, lvl);
+                            var statMax = this.stat.hp_max;
+                            return Math.max(0, Math.min(2, statMax - stat));
+                        }
+                    case 'asw':
+                        {
+                            return this.stat.asw ? 9 : !1;
+                        }
+                    default:
+                        return !1;
+                }
+            }
         }, {
             key: '_type',
             get: function get() {
