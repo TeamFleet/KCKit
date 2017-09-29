@@ -27,7 +27,12 @@ let vars = {
     enemyIdStartFrom: 1500,
 
     exSlotEquipmentTypes: undefined,
-    exSlotOtherEquipments: undefined
+    exSlotOtherEquipments: undefined,
+
+    shipStatExtraMax: {
+        hp: 2,
+        asw: 9
+    }
 }
 
 // 确定exslot装备类型和额外装备

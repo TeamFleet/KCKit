@@ -329,6 +329,9 @@ module.exports = class Ship extends ItemBase {
                 return getStatLvl(lvl, this.stat[attr], this.stat[attr + '_max'])
         }
     }
+    getStat(stat, lvl = 1) {
+        return this.getAttribute(stat, lvl)
+    }
 
     /*	获取关系
         变量
@@ -545,5 +548,36 @@ module.exports = class Ship extends ItemBase {
         if (!type) return this.capabilities || {}
         if (!this.capabilities) return undefined
         return this.capabilities[type]
+    }
+
+    /**
+     * 获取额外可提升的值
+     * 
+     * @param {String} [type] - 要获取的属性名
+     * @returns {Number} - 数值
+     */
+    getStatExtraMax(type, lvl = 1) {
+        switch (type.toLowerCase()) {
+            case 'hp': {
+                // const hpBase = this.getStat(type, 99)
+                // const hpAfterMarriage = this.getStat(type, 100)
+                const stat = this.getStat(type, lvl)
+                const statMax = this.stat.hp_max
+                return Math.max(
+                    0,
+                    Math.min(
+                        vars.shipStatExtraMax[type],
+                        statMax - stat
+                    )
+                )
+            }
+            case 'asw': {
+                return this.stat.asw
+                    ? vars.shipStatExtraMax[type]
+                    : false
+            }
+            default:
+                return false
+        }
     }
 }

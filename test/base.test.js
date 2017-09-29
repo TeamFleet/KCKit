@@ -105,6 +105,9 @@ describe('Base functions/utilities', () => {
             it(`should Bismarck・drei db.ships[178].getAttribute('hp', 150) be 99`, function () {
                 expect(99).toBe(db.ships[178].getAttribute('hp', 150));
             });
+            it(`should Bismarck・drei db.ships[178].getStat('hp', 150) be 99`, function () {
+                expect(99).toBe(db.ships[178].getStat('hp', 150));
+            });
             it(`should 鳳翔・改 db.ships[285].getAttribute('asw', 99) be 0`, function () {
                 expect(0).toBe(db.ships[285].getAttribute('asw', 99));
             });
@@ -116,6 +119,9 @@ describe('Base functions/utilities', () => {
             });
             it(`should 大鹰・改二 db.ships[529].getAttribute('night') be 39`, function () {
                 expect(39).toBe(db.ships[529].getAttribute('night'));
+            });
+            it(`should 大鹰・改二 db.ships[529].getStat('night') be 39`, function () {
+                expect(39).toBe(db.ships[529].getStat('night'));
             });
             it(`should 翔鶴・改二甲 db.ships[466]._cv be 野水 伊織`, function () {
                 expect('野水 伊織').toBe(db.ships[466]._cv);
@@ -282,6 +288,30 @@ describe('Base functions/utilities', () => {
             });
             it(`should [487] 鬼怒・改二 count_as_night_operation_aviation_personnel be undefined`, function () {
                 expect(db.ships[487].getCapability('count_as_night_operation_aviation_personnel')).toEqual(undefined);
+            });
+            it(`should [80] 長門 getStatExtraMax('hp') be 2`, function () {
+                expect(db.ships[80].getStatExtraMax('hp')).toEqual(2);
+            });
+            it(`should [541] 長門・改二 getStatExtraMax('hp', 99) be 2`, function () {
+                expect(db.ships[541].getStatExtraMax('hp', 99)).toEqual(2);
+            });
+            it(`should [541] 長門・改二 getStatExtraMax('hp', 100) be 0`, function () {
+                expect(db.ships[541].getStatExtraMax('hp', 100)).toEqual(0);
+            });
+            it(`should [541] 長門・改二 getStatExtraMax('asw') be false`, function () {
+                expect(db.ships[541].getStatExtraMax('asw')).toEqual(false);
+            });
+            it(`should [541] 長門・改二 getStatExtraMax('aa') be false`, function () {
+                expect(db.ships[541].getStatExtraMax('aa')).toEqual(false);
+            });
+            it(`should [334] U-511改 getStatExtraMax('hp', 99) be 2`, function () {
+                expect(db.ships[334].getStatExtraMax('hp', 99)).toEqual(2);
+            });
+            it(`should [334] U-511改 getStatExtraMax('hp', 100) be 1`, function () {
+                expect(db.ships[334].getStatExtraMax('hp', 100)).toEqual(1);
+            });
+            it(`should [200] 阿武隈・改二 getStatExtraMax('asw') be 9`, function () {
+                expect(db.ships[200].getStatExtraMax('asw')).toEqual(9);
             });
         });
 
