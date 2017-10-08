@@ -61,36 +61,40 @@ const checkCondition = {
     }),
 
     // isName
-    isname: (equipment, name) => ArrayOrItem(name, name => {
-        for (let key in equipment.name) {
-            if (key === 'suffix') continue
-            if (equipment.name[key] === name) return true
-        }
-        return false
-    }),
-    isnotname: (equipment, name) => ArrayOrItemAll(name, name => {
-        for (let key in equipment.name) {
-            if (key === 'suffix') continue
-            if (equipment.name[key] === name) return false
-        }
-        return true
-    }),
+    isname: (equipment, name) => ArrayOrItem(name, name => (
+        equipment.isName(name)
+        // for (let key in equipment.name) {
+        //     if (key === 'suffix') continue
+        //     if (equipment.name[key] === name) return true
+        // }
+        // return false
+    )),
+    isnotname: (equipment, name) => ArrayOrItemAll(name, name => (
+        !equipment.isName(name)
+        // for (let key in equipment.name) {
+        //     if (key === 'suffix') continue
+        //     if (equipment.name[key] === name) return false
+        // }
+        // return true
+    )),
 
     // isNameOf
-    isnameof: (equipment, name) => ArrayOrItem(name, name => {
-        for (let key in equipment.name) {
-            if (key === 'suffix') continue
-            if (equipment.name[key].includes(name)) return true
-        }
-        return false
-    }),
-    isnotnameof: (equipment, name) => ArrayOrItemAll(name, name => {
-        for (let key in equipment.name) {
-            if (key === 'suffix') continue
-            if (equipment.name[key].includes(name)) return false
-        }
-        return true
-    }),
+    isnameof: (equipment, name) => ArrayOrItem(name, name => (
+        equipment.hasName(name)
+        // for (let key in equipment.name) {
+        //     if (key === 'suffix') continue
+        //     if (equipment.name[key].includes(name)) return true
+        // }
+        // return false
+    )),
+    isnotnameof: (equipment, name) => ArrayOrItemAll(name, name => (
+        !equipment.hasName(name)
+        // for (let key in equipment.name) {
+        //     if (key === 'suffix') continue
+        //     if (equipment.name[key].includes(name)) return false
+        // }
+        // return true
+    )),
 
     // isType
     istype: (equipment, type, conditions) => ArrayOrItem(type, type => {

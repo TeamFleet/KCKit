@@ -49,20 +49,22 @@ const checkCondition = {
     }),
 
     // isName
-    isname: (ship, name) => ArrayOrItem(name, name => {
-        for (let key in ship.name) {
-            if (key === 'suffix') continue
-            if (ship.name[key].toLowerCase() === name) return true
-        }
-        return false
-    }),
-    isnotname: (ship, name) => ArrayOrItemAll(name, name => {
-        for (let key in ship.name) {
-            if (key === 'suffix') continue
-            if (ship.name[key].toLowerCase() === name) return false
-        }
-        return true
-    }),
+    isname: (ship, name) => ArrayOrItem(name, name => (
+        ship.isName(name)
+        // for (let key in ship.name) {
+        //     if (key === 'suffix') continue
+        //     if (ship.name[key].toLowerCase() === name) return true
+        // }
+        // return false
+    )),
+    isnotname: (ship, name) => ArrayOrItemAll(name, name => (
+        !ship.isName(name)
+        // for (let key in ship.name) {
+        //     if (key === 'suffix') continue
+        //     if (ship.name[key].toLowerCase() === name) return false
+        // }
+        // return true
+    )),
 
     // isType
     istype: (ship, type) => ArrayOrItem(type, type => {
