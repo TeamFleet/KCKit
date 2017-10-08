@@ -76,6 +76,51 @@
         get _name() {
             return this.getName()
         }
+
+        /**
+         * 检查名称是否为（完全匹配）给定字符串
+         * 
+         * @param {String} nameToCheck - 要检查的名称
+         * @param {Boolean|String} [locale] - 要检查的语言。如果为 true 检查当前语言，如果为 falsy 检查所有语言
+         * @returns {Boolean} - 是否匹配
+         */
+        isName(nameToCheck, locale) {
+            if (locale === true) locale = vars.locale
+            if (locale) {
+                if (this.name[locale] === nameToCheck) return true
+                return false
+            }
+
+            for (let key in this.name) {
+                if (key === 'suffix') continue
+                if (this.name[key] === nameToCheck) return true
+            }
+            return false
+        }
+
+        /**
+         * 检查名称是否包含给定字符串
+         * 
+         * @param {String} nameToCheck - 要检查的名称
+         * @param {Boolean|String} [locale] - 要检查的语言。如果为 true 检查当前语言，如果为 falsy 检查所有语言
+         * @returns {Boolean} - 是否匹配
+         */
+        hasName(nameToCheck, locale) {
+            if (locale === true) locale = vars.locale
+            if (locale) {
+                if (this.name[locale].includes(nameToCheck)) return true
+                return false
+            }
+
+            for (let key in this.name) {
+                if (key === 'suffix') continue
+                if (this.name[key].includes(nameToCheck)) return true
+            }
+            return false
+        }
+        isNameOf(...args) {
+            return this.hasName(...args)
+        }
     }
     // Class for Entity (Person/Group, such as CVs, illustrators)
     class Entity extends ItemBase {
@@ -2026,6 +2071,7 @@
 
         // 航空夜战
         // http://bbs.ngacn.cc/read.php?tid=12445064
+        // http://bbs.ngacn.cc/read.php?tid=12590487
         if (
             (count.aviationPersonnelNight || ship.getCapability('count_as_night_operation_aviation_personnel'))
             && (
@@ -2036,6 +2082,9 @@
             // (裸火力+特殊机体火力+特殊机体雷装+3*sum(夜战机体格子剩余机数)+sum(特殊机体系数*sqrt(特殊机体格子剩余机数))+夜间接触补正+特殊机体改修补正)*CI系数
             // 夜战机体：F6F-3N，F6F-5N，TBM-3D
             // 特殊机体：所有夜战机体，剑鱼系，零战62型(爆战/岩井队)
+
+            // 基本攻击力 = 素火力 + ∑(夜间飞机火力)※ +∑(夜间飞机雷装)※ + ∑(夜间飞机搭载补正) + 夜间接触补正
+            // 夜间飞机搭载补正 = 系数A*机数 + 系数B*(火力+雷装+爆装+对潜)*√(机数) + √(★)
 
             slots.forEach(function (carry, index) {
                 if (!equipments_by_slot[index]) return
@@ -2079,12 +2128,12 @@
                     }
                 }
                 if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
-                    if (equipment.name.ja_jp.indexOf('Swordfish') > -1) {
+                    if (equipment.hasName('Swordfish', 'ja_jp')) {
                         isSPAircraft = true
                         countTorpedoBomberSwordfish++
                     }
                 } else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
-                    if (equipment.name.ja_jp.indexOf('岩井') > -1) {
+                    if (equipment.hasName('岩井', 'ja_jp')) {
                         isSPAircraft = true
                         countDiveBomberIwai++
                     }
@@ -2137,6 +2186,7 @@
                 || (count.carrierFighterNight >= 2 && equipSPBomber >= 1)
                 || (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && equipSPBomber >= 1)
                 || (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 2)
+                || (count.carrierFighterNight >= 1 && equipSPBomber >= 2)
             ) multiplierCI.push(1.18)
 
             result.type = '航空'
@@ -2149,6 +2199,7 @@
                 + spBonus
                 + spStarBonus
             )
+            result.isMax = true
 
             if (multiplierCI.length) {
                 result.cis = multiplierCI.map(multiplier => (
@@ -2272,11 +2323,13 @@
             }
         }
 
-        result.value = `${result.type} ${result.damage}`
+        let jointSymbol = ' '
+        if (result.isMax) jointSymbol = ' ≤ '
+        result.value = `${result.type}${jointSymbol}${result.damage}`
         if (result.hit && result.hit > 1)
             result.value += ` x ${result.hit}`
         if (Array.isArray(result.cis) && result.cis.length) {
-            result.value += ` (CI ${result.cis.sort((a, b) => (
+            result.value += ` (CI${jointSymbol}${result.cis.sort((a, b) => (
                 a[0] - b[0]
             )).map(ci => (
                 ci[0]
@@ -2284,7 +2337,7 @@
             )).join(' 或 ')})`
         } else if (result.damage_ci) {
             const hit = result.hit_ci || result.hit || 1
-            result.value += ` (CI ${result.damage_ci})`
+            result.value += ` (CI${jointSymbol}${result.damage_ci})`
             if (hit && hit > 1)
                 result.value += ` x ${hit}`
         }
