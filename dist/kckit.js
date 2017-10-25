@@ -2093,10 +2093,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                 result.type = '炮击CI';
                                 result.damage = Math.floor(result.damage * 1.75);
                                 result.hit = 1;
-                            } else if (count.main >= 1 && count.torpedo == 1) {
-                                result.type = '炮雷CI';
-                                result.damage = Math.floor(result.damage * 1.3);
-                                result.hit = 2;
                             }
 
                             // 驱逐舰专用 - 鱼雷+水上电探+瞭望员
@@ -2115,19 +2111,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                         result.isMin = !0;
                                     }
 
-                                    // 标准连击
-                                    else if (count.main == 2 && count.secondary <= 0 && count.torpedo <= 0 || count.main == 1 && count.secondary >= 1 && count.torpedo <= 0 || count.main == 0 && count.secondary >= 2 && count.torpedo >= 0) {
-                                            result.type = '连击';
-                                            result.damage = Math.floor(result.damage * 1.2);
+                                    // 
+                                    else if (count.main >= 1 && count.torpedo == 1) {
+                                            result.type = '炮雷CI';
+                                            result.damage = Math.floor(result.damage * 1.3);
                                             result.hit = 2;
                                         }
 
-                                        // 通常攻击
-                                        else {
-                                                result.type = '通常';
-                                                result.damage = Math.floor(result.damage);
-                                                result.hit = 1;
+                                        // 标准连击
+                                        else if (count.main == 2 && count.secondary <= 0 && count.torpedo <= 0 || count.main == 1 && count.secondary >= 1 && count.torpedo <= 0 || count.main == 0 && count.secondary >= 2 && count.torpedo >= 0) {
+                                                result.type = '连击';
+                                                result.damage = Math.floor(result.damage * 1.2);
+                                                result.hit = 2;
                                             }
+
+                                            // 通常攻击
+                                            else {
+                                                    result.type = '通常';
+                                                    result.damage = Math.floor(result.damage);
+                                                    result.hit = 1;
+                                                }
                     }
 
         var jointSymbol = ' ';

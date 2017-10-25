@@ -2335,10 +2335,6 @@
                 result.type = '炮击CI'
                 result.damage = Math.floor(result.damage * 1.75)
                 result.hit = 1
-            } else if (count.main >= 1 && count.torpedo == 1) {
-                result.type = '炮雷CI'
-                result.damage = Math.floor(result.damage * 1.3)
-                result.hit = 2
             }
 
             // 驱逐舰专用 - 鱼雷+水上电探+瞭望员
@@ -2363,6 +2359,13 @@
                 result.damage = Math.floor(result.damage * 1)
                 result.hit = 1
                 result.isMin = true
+            }
+
+            // 
+            else if (count.main >= 1 && count.torpedo == 1) {
+                result.type = '炮雷CI'
+                result.damage = Math.floor(result.damage * 1.3)
+                result.hit = 2
             }
 
             // 标准连击
