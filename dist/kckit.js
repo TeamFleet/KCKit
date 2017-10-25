@@ -95,7 +95,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
              * @returns {Boolean} - 是否匹配
              */
             value: function isName(nameToCheck, locale) {
-                if (locale === !0) locale = vars.locale;
+                if (locale === !0) locale = KC.lang;
                 if (locale) {
                     if (this.name[locale] === nameToCheck) return !0;
                     return !1;
@@ -119,7 +119,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'hasName',
             value: function hasName(nameToCheck, locale) {
-                if (locale === !0) locale = vars.locale;
+                if (locale === !0) locale = KC.lang;
                 if (locale) {
                     if (this.name[locale].includes(nameToCheck)) return !0;
                     return !1;
@@ -776,6 +776,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             AAGunConcentrated: 30, // 对空机枪（集中配备）
             AAFireDirector: 31, // 高射装置
             AviationPersonnel: 36, // 航空作战整备员
+            SurfaceShipPersonnel: 37, // 水上舰要员
             LandingCraft: 38, // 登陆艇
             Searchlight: 39, // 探照灯
             CommandFacility: 45, // 舰队司令部设施
@@ -807,6 +808,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             3, // 重雷装巡洋舰
             21, // 练习巡洋舰
             28 // 防空轻巡洋舰
+            ],
+            // 驱逐舰系列
+            Destroyers: [1, // 驱逐舰
+            19 // 防空驱逐舰
             ],
             // 潜艇系列
             Submarines: [13, // 潜艇
@@ -897,6 +902,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     _equipmentType.Searchlights = [_equipmentType.Searchlight, _equipmentType.SearchlightLarge];
 
     _equipmentType.AviationPersonnels = [_equipmentType.AviationPersonnel];
+
+    _equipmentType.SurfaceShipPersonnels = [_equipmentType.SurfaceShipPersonnel];
 
     _equipmentType.LandingCrafts = [_equipmentType.LandingCraft, _equipmentType.AmphibiousCraft];
 
@@ -1071,12 +1078,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             'seaplane': 0,
             'apshell': 0,
             'radar': 0,
+            radarAA: 0,
+            radarSurface: 0,
             'submarineEquipment': 0,
             'carrierFighterNight': 0,
             // 'diveBomberIwai': 0,
             'torpedoBomberNight': 0,
             // 'torpedoBomberSwordfish': 0,
-            'aviationPersonnelNight': 0
+            'aviationPersonnelNight': 0,
+            surfaceShipPersonnel: 0
         },
             slots = _slots(ship.slot)
         // , powerTorpedo = function (options) {
@@ -1123,24 +1133,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         equipments_by_slot.forEach(function (equipment) {
             if (!equipment) return;
-            if (_equipmentType.MainGuns.indexOf(equipment.type) > -1) count.main += 1;else if (_equipmentType.SecondaryGuns.indexOf(equipment.type) > -1) count.secondary += 1;else if (_equipmentType.Torpedos.indexOf(equipment.type) > -1) {
-                count.torpedo += 1;
-                if (equipment.name.ja_jp.indexOf('後期型') > -1) count.torpedoLateModel += 1;
-            } else if (_equipmentType.Seaplanes.indexOf(equipment.type) > -1) count.seaplane += 1;else if (_equipmentType.APShells.indexOf(equipment.type) > -1) count.apshell += 1;else if (_equipmentType.Radars.indexOf(equipment.type) > -1) count.radar += 1;else if (_equipmentType.SubmarineEquipment == equipment.type) count.submarineEquipment += 1;
-            // else if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
-            //     if (equipment.name.ja_jp.indexOf('Swordfish') > -1)
-            //         count.torpedoBomberSwordfish += 1
-            // }
-            else if (_equipmentType.AviationPersonnels.indexOf(equipment.type) > -1) {
-                    if (equipment.name.ja_jp.indexOf('夜間') > -1) count.aviationPersonnelNight += 1;
-                }
-            // else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
-            //     if (equipment.name.ja_jp.indexOf('岩井') > -1)
-            //         count.diveBomberIwai += 1
-            // }
+            // 主炮
+            if (_equipmentType.MainGuns.indexOf(equipment.type) > -1) count.main += 1;
+            // 副炮
+            else if (_equipmentType.SecondaryGuns.indexOf(equipment.type) > -1) count.secondary += 1;
+                // 鱼雷
+                else if (_equipmentType.Torpedos.indexOf(equipment.type) > -1) {
+                        count.torpedo += 1;
+                        if (equipment.name.ja_jp.indexOf('後期型') > -1) count.torpedoLateModel += 1;
+                    }
+                    // 水上机
+                    else if (_equipmentType.Seaplanes.indexOf(equipment.type) > -1) count.seaplane += 1;
+                        // 穿甲弹
+                        else if (_equipmentType.APShells.indexOf(equipment.type) > -1) count.apshell += 1;
+                            // 电探/雷达
+                            else if (_equipmentType.Radars.indexOf(equipment.type) > -1) {
+                                    count.radar += 1;
+                                    if (equipment.stat.aa) count.radarAA += 1;else count.radarSurface += 1;
+                                }
+                                // 潜艇装备
+                                else if (_equipmentType.SubmarineEquipment == equipment.type) count.submarineEquipment += 1;
+                                    // else if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
+                                    //     if (equipment.name.ja_jp.indexOf('Swordfish') > -1)
+                                    //         count.torpedoBomberSwordfish += 1
+                                    // }
+                                    // 夜间整备员
+                                    else if (_equipmentType.AviationPersonnels.indexOf(equipment.type) > -1) {
+                                            if (equipment.name.ja_jp.indexOf('夜間') > -1) count.aviationPersonnelNight += 1;
+                                        }
+                                        // else if (_equipmentType.DiveBombers.indexOf(equipment.type) > -1) {
+                                        //     if (equipment.name.ja_jp.indexOf('岩井') > -1)
+                                        //         count.diveBomberIwai += 1
+                                        // }
+                                        // 水上舰要员
+                                        else if (_equipmentType.SurfaceShipPersonnels.indexOf(equipment.type) > -1) count.surfaceShipPersonnel += 1;
 
+            // 夜间飞行器
             if (equipment.type_ingame) {
-                if (equipment.type_ingame[3] === 45) count.carrierFighterNight += 1;else if (equipment.type_ingame[3] === 46) count.torpedoBomberNight += 1;
+                // 夜间战斗机
+                if (equipment.type_ingame[3] === 45) count.carrierFighterNight += 1;
+                // 夜间轰炸机
+                else if (equipment.type_ingame[3] === 46) count.torpedoBomberNight += 1;
             }
         });
 
@@ -2006,7 +2039,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         damage: 0
                     };
 
-                    // 炮雷夜战
+                    // 其他夜战方式
                 else {
                         slots.forEach(function (carry, index) {
                             if (!equipments_by_slot[index]) return;
@@ -2036,14 +2069,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         //     formula.shipType.Submarines.indexOf(ship.type)
                         // )
 
-                        // 潜艇专用雷击CI
+                        // 潜艇专用
                         if (formula.shipType.Submarines.indexOf(ship.type) > -1 && count.torpedoLateModel >= 1 && count.submarineEquipment >= 1) {
                             result.type = '雷击CI';
                             result.damage = Math.floor(result.damage * 1.75);
                             result.hit = 2;
                         }
 
-                        // 潜艇专用雷击CI
+                        // 潜艇专用
                         else if (formula.shipType.Submarines.indexOf(ship.type) > -1 && count.torpedoLateModel >= 2) {
                                 result.type = '雷击CI';
                                 result.damage = Math.floor(result.damage * 1.6);
@@ -2064,19 +2097,42 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                 result.type = '炮雷CI';
                                 result.damage = Math.floor(result.damage * 1.3);
                                 result.hit = 2;
-                            } else if (count.main == 2 && count.secondary <= 0 && count.torpedo <= 0 || count.main == 1 && count.secondary >= 1 && count.torpedo <= 0 || count.main == 0 && count.secondary >= 2 && count.torpedo >= 0) {
-                                result.type = '连击';
-                                result.damage = Math.floor(result.damage * 1.2);
-                                result.hit = 2;
-                            } else {
-                                result.type = '通常';
-                                result.damage = Math.floor(result.damage);
-                                result.hit = 1;
                             }
+
+                            // 驱逐舰专用 - 鱼雷+水上电探+瞭望员
+                            else if (formula.shipType.Destroyers.indexOf(ship.type) > -1 && count.torpedo >= 1 && count.radarSurface >= 1 && count.surfaceShipPersonnel >= 1) {
+                                    result.type = '电探CI';
+                                    result.damage = Math.floor(result.damage * 1);
+                                    result.hit = 1;
+                                    result.isMin = !0;
+                                }
+
+                                // 驱逐舰专用 - 主炮+鱼雷+水上电探
+                                else if (formula.shipType.Destroyers.indexOf(ship.type) > -1 && count.torpedo >= 1 && count.radarSurface >= 1 && count.main >= 1) {
+                                        result.type = '电雷CI';
+                                        result.damage = Math.floor(result.damage * 1);
+                                        result.hit = 1;
+                                        result.isMin = !0;
+                                    }
+
+                                    // 标准连击
+                                    else if (count.main == 2 && count.secondary <= 0 && count.torpedo <= 0 || count.main == 1 && count.secondary >= 1 && count.torpedo <= 0 || count.main == 0 && count.secondary >= 2 && count.torpedo >= 0) {
+                                            result.type = '连击';
+                                            result.damage = Math.floor(result.damage * 1.2);
+                                            result.hit = 2;
+                                        }
+
+                                        // 通常攻击
+                                        else {
+                                                result.type = '通常';
+                                                result.damage = Math.floor(result.damage);
+                                                result.hit = 1;
+                                            }
                     }
 
         var jointSymbol = ' ';
         if (result.isMax) jointSymbol = ' ≤ ';
+        if (result.isMin) jointSymbol = ' ≥ ';
         result.value = '' + result.type + jointSymbol + result.damage;
         if (result.hit && result.hit > 1) result.value += ' x ' + result.hit;
         if (Array.isArray(result.cis) && result.cis.length) {
