@@ -44,6 +44,7 @@ const types = {
     AAFireDirector: 31,         // 高射装置
     AAFD: 31,                   // 高射装置
     AviationPersonnel: 36,      // 航空作战整备员
+    SurfaceShipPersonnel: 37,   // 水上舰要员
     LandingCraft: 38,           // 登陆艇
     Searchlight: 39,		    // 探照灯
     SupplyContainer: 41,        // 簡易輸送部材
@@ -291,6 +292,10 @@ types.Searchlights = [
 
 types.AviationPersonnels = [
     types.AviationPersonnel
+];
+
+types.SurfaceShipPersonnels = [
+    types.SurfaceShipPersonnel
 ];
 
 types.LandingCrafts = [
