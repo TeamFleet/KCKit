@@ -1149,7 +1149,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             // 电探/雷达
                             else if (_equipmentType.Radars.indexOf(equipment.type) > -1) {
                                     count.radar += 1;
-                                    if (equipment.stat.aa) count.radarAA += 1;else count.radarSurface += 1;
+                                    if (equipment.stat.aa) count.radarAA += 1;
+                                    // else
+                                    if (equipment.stat.hit && equipment.stat.hit >= 3) count.radarSurface += 1;
                                 }
                                 // 潜艇装备
                                 else if (_equipmentType.SubmarineEquipment == equipment.type) count.submarineEquipment += 1;

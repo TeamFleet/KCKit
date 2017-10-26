@@ -1266,7 +1266,8 @@
                 count.radar += 1
                 if (equipment.stat.aa)
                     count.radarAA += 1
-                else
+                // else
+                if (equipment.stat.hit && equipment.stat.hit >= 3)
                     count.radarSurface += 1
             }
             // 潜艇装备
