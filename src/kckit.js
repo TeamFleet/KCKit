@@ -2345,8 +2345,8 @@
                 && count.surfaceShipPersonnel >= 1
             ) {
                 result.type = '电探CI'
-                result.damage = Math.floor(result.damage * 1)
-                result.hit = 1.25
+                result.damage = Math.floor(result.damage * 1.25)
+                result.hit = 1
                 // result.isMin = true
             }
 
@@ -2357,8 +2357,8 @@
                 && count.main >= 1
             ) {
                 result.type = '电雷CI'
-                result.damage = Math.floor(result.damage * 1)
-                result.hit = 1.3
+                result.damage = Math.floor(result.damage * 1.3)
+                result.hit = 1
                 // result.isMin = true
             }
 
