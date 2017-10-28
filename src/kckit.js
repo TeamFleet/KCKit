@@ -2346,8 +2346,8 @@
             ) {
                 result.type = '电探CI'
                 result.damage = Math.floor(result.damage * 1)
-                result.hit = 1
-                result.isMin = true
+                result.hit = 1.25
+                // result.isMin = true
             }
 
             // 驱逐舰专用 - 主炮+鱼雷+水上电探
@@ -2358,8 +2358,8 @@
             ) {
                 result.type = '电雷CI'
                 result.damage = Math.floor(result.damage * 1)
-                result.hit = 1
-                result.isMin = true
+                result.hit = 1.3
+                // result.isMin = true
             }
 
             // 

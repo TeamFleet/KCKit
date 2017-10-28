@@ -2101,16 +2101,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             else if (formula.shipType.Destroyers.indexOf(ship.type) > -1 && count.torpedo >= 1 && count.radarSurface >= 1 && count.surfaceShipPersonnel >= 1) {
                                     result.type = '电探CI';
                                     result.damage = Math.floor(result.damage * 1);
-                                    result.hit = 1;
-                                    result.isMin = !0;
+                                    result.hit = 1.25;
+                                    // result.isMin = true
                                 }
 
                                 // 驱逐舰专用 - 主炮+鱼雷+水上电探
                                 else if (formula.shipType.Destroyers.indexOf(ship.type) > -1 && count.torpedo >= 1 && count.radarSurface >= 1 && count.main >= 1) {
                                         result.type = '电雷CI';
                                         result.damage = Math.floor(result.damage * 1);
-                                        result.hit = 1;
-                                        result.isMin = !0;
+                                        result.hit = 1.3;
+                                        // result.isMin = true
                                     }
 
                                     // 
