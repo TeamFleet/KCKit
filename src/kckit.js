@@ -735,6 +735,7 @@
             LandBasedFighter: 59,    // 陆战 / 陆上战斗机
             CarrierFighterNight: 60,		// 夜战 / 舰载战斗机（夜间）
             TorpedoBomberNight: 61,		// 夜攻 / 舰载鱼雷机（夜间）
+            LandBasedAntiSubPatrol: 62,		// 陆上哨戒机
         },
         // 舰种
         shipType: {
@@ -896,7 +897,8 @@
         _equipmentType.Interceptor,
         _equipmentType.JetBomberFighter,
         _equipmentType.JetBomberFighter2,
-        _equipmentType.LandBasedFighter
+        _equipmentType.LandBasedFighter,
+        _equipmentType.LandBasedAntiSubPatrol
     ];
 
     _equipmentType.TorpedoBombers = [
@@ -918,7 +920,8 @@
     ];
 
     _equipmentType.AntiSubPatrols = [
-        _equipmentType.AntiSubPatrol
+        _equipmentType.AntiSubPatrol,
+        _equipmentType.LandBasedAntiSubPatrol
     ];
 
     _equipmentType.Aircrafts = [];

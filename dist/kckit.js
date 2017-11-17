@@ -794,7 +794,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             SubmarineEquipment: 58, // 潜艇装备
             LandBasedFighter: 59, // 陆战 / 陆上战斗机
             CarrierFighterNight: 60, // 夜战 / 舰载战斗机（夜间）
-            TorpedoBomberNight: 61 },
+            TorpedoBomberNight: 61, // 夜攻 / 舰载鱼雷机（夜间）
+            LandBasedAntiSubPatrol: 62 },
         // 舰种
         shipType: {
             // 航母系列
@@ -866,7 +867,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.CarrierBased = [_equipmentType.CarrierFighter, _equipmentType.CarrierFighterNight, _equipmentType.TorpedoBomber, _equipmentType.TorpedoBomberNight, _equipmentType.DiveBomber, _equipmentType.CarrierRecon, _equipmentType.CarrierRecon2, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2];
 
-    _equipmentType.LandBased = [_equipmentType.LandBasedAttacker, _equipmentType.Interceptor, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter];
+    _equipmentType.LandBased = [_equipmentType.LandBasedAttacker, _equipmentType.Interceptor, _equipmentType.JetBomberFighter, _equipmentType.JetBomberFighter2, _equipmentType.LandBasedFighter, _equipmentType.LandBasedAntiSubPatrol];
 
     _equipmentType.TorpedoBombers = [_equipmentType.TorpedoBomber, _equipmentType.TorpedoBomberNight];
 
@@ -876,7 +877,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _equipmentType.Autogyros = [_equipmentType.Autogyro];
 
-    _equipmentType.AntiSubPatrols = [_equipmentType.AntiSubPatrol];
+    _equipmentType.AntiSubPatrols = [_equipmentType.AntiSubPatrol, _equipmentType.LandBasedAntiSubPatrol];
 
     _equipmentType.Aircrafts = [];
     [].concat(_equipmentType.Seaplanes).concat(_equipmentType.Recons).concat(_equipmentType.CarrierBased).concat(_equipmentType.Autogyros).concat(_equipmentType.AntiSubPatrols).concat(_equipmentType.LandBased).forEach(function (v) {
