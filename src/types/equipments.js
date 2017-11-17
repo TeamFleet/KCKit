@@ -65,6 +65,7 @@ const types = {
     LandBasedFighter: 59,       // 陆战 / 陆上战斗机
     CarrierFighterNight: 60,    // 夜战 / 舰载战斗机（夜间）
     TorpedoBomberNight: 61,		// 夜攻 / 舰载鱼雷机（夜间）
+    LandBasedAntiSubPatrol: 62,	// 陆上哨戒机
 }
 
 // Groups
@@ -203,7 +204,8 @@ types.LandBased = [
     types.Interceptor,
     types.JetBomberFighter,
     types.JetBomberFighter2,
-    types.LandBasedFighter
+    types.LandBasedFighter,
+    types.LandBasedAntiSubPatrol
 ];
 
 types.TorpedoBombers = [
@@ -230,7 +232,8 @@ types.Autogyros = [
 ];
 
 types.AntiSubPatrols = [
-    types.AntiSubPatrol
+    types.AntiSubPatrol,
+    types.LandBasedAntiSubPatrol
 ];
 
 types.Aircrafts = [];
