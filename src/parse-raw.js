@@ -31,7 +31,7 @@ module.exports = (raw = {}, db = {}) => {
             if (typeof db[type] === 'undefined') db[type] = {}
 
             const obj = JSON.parse(item)
-            const id = obj.id ? parseInt(obj.id) : obj._id
+            const id = typeof obj.id !== 'undefined' ? parseInt(obj.id) : obj._id
 
             if (Class) {
                 db[type][id] = new Class(obj)
