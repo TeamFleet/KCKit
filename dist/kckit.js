@@ -246,6 +246,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             value: function isRankUpgradable() {
                 return formula.equipmentType.Aircrafts.includes(this.type) && this.type !== formula.equipmentType.Autogyro && this.type !== formula.equipmentType.AntiSubPatrol;
             }
+
+            /**
+             * 获取属性
+             * 
+             * @param {String} statType - 属性类型
+             * @param {Number} [shipId] - 舰娘ID，如果给出，会查询额外收益
+             * @returns {boolean}
+             */
+
+        }, {
+            key: 'getStat',
+            value: function getStat(statType, shipId) {
+                statType = statType.toLowerCase();
+                var base = this.stat[statType] || undefined;
+                if (!shipId || base === undefined || !Array.isArray(this.stat_bonus)) return base;
+                if (shipId && Array.isArray(this.stat_bonus)) {
+                    if ((typeof shipId === 'undefined' ? 'undefined' : _typeof(shipId)) === 'object') shipId = shipId.id;
+                    var bonus = void 0;
+                    this.stat_bonus.some(function (o) {
+                        if (!Array.isArray(o.ships)) return !1;
+                        o.ships.some(function (ship) {
+                            if (ship == shipId) {
+                                bonus = o.bonus;
+                                return !0;
+                            }
+                            return !1;
+                        });
+                        return typeof bonus !== 'undefined';
+                    });
+                    if (bonus) {
+                        return base + (bonus[statType] || 0);
+                    }
+                }
+                return base;
+            }
         }, {
             key: '_icon',
             get: function get() {
@@ -1187,7 +1222,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 value = 0;
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index] && _equipmentType.Fighters.indexOf(equipments_by_slot[index].type) > -1 && carry) {
-                        value = Math.sqrt(carry) * (equipments_by_slot[index].stat.aa || 0);
+                        value = Math.sqrt(carry) * (equipments_by_slot[index].getStat('aa', ship) || 0);
                         if (_equipmentType.CarrierFighters.includes(equipments_by_slot[index].type)) {
                             switch (rank_by_slot[index]) {
                                 case 1:case '1':
@@ -1253,7 +1288,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 命中总和
             case 'addHit':
                 slots.map(function (carry, index) {
-                    if (equipments_by_slot[index]) result += equipments_by_slot[index].stat.hit || 0;
+                    if (equipments_by_slot[index]) result += equipments_by_slot[index].getStat('hit', ship) || 0;
                 });
                 return result >= 0 ? '+' + result : result;
             //break;
@@ -1261,7 +1296,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 装甲总和
             case 'addArmor':
                 slots.map(function (carry, index) {
-                    if (equipments_by_slot[index]) result += equipments_by_slot[index].stat.armor || 0;
+                    if (equipments_by_slot[index]) result += equipments_by_slot[index].getStat('armor', ship) || 0;
                 });
                 return result;
             //break;
@@ -1269,7 +1304,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // 回避总和
             case 'addEvasion':
                 slots.map(function (carry, index) {
-                    if (equipments_by_slot[index]) result += equipments_by_slot[index].stat.evasion || 0;
+                    if (equipments_by_slot[index]) result += equipments_by_slot[index].getStat('evasion', ship) || 0;
                 });
                 return result;
             //break;

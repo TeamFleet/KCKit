@@ -214,6 +214,38 @@
                 && this.type !== formula.equipmentType.AntiSubPatrol
             )
         }
+
+        /**
+         * 获取属性
+         * 
+         * @param {String} statType - 属性类型
+         * @param {Number} [shipId] - 舰娘ID，如果给出，会查询额外收益
+         * @returns {boolean}
+         */
+        getStat(statType, shipId) {
+            statType = statType.toLowerCase()
+            const base = this.stat[statType] || undefined
+            if (!shipId || base === undefined || !Array.isArray(this.stat_bonus)) return base
+            if (shipId && Array.isArray(this.stat_bonus)) {
+                if (typeof shipId === 'object') shipId = shipId.id
+                let bonus
+                this.stat_bonus.some(o => {
+                    if (!Array.isArray(o.ships)) return false
+                    o.ships.some(ship => {
+                        if (ship == shipId) {
+                            bonus = o.bonus
+                            return true
+                        }
+                        return false
+                    })
+                    return typeof bonus !== 'undefined'
+                })
+                if (bonus) {
+                    return base + (bonus[statType] || 0)
+                }
+            }
+            return base
+        }
     }
     class Ship extends ItemBase {
         constructor(data) {
@@ -1314,7 +1346,7 @@
                         && _equipmentType.Fighters.indexOf(equipments_by_slot[index].type) > -1
                         && carry
                     ) {
-                        value = Math.sqrt(carry) * (equipments_by_slot[index].stat.aa || 0)
+                        value = Math.sqrt(carry) * (equipments_by_slot[index].getStat('aa', ship) || 0)
                         if (_equipmentType.CarrierFighters.includes(equipments_by_slot[index].type)) {
                             switch (rank_by_slot[index]) {
                                 case 1: case '1':
@@ -1395,7 +1427,7 @@
             case 'addHit':
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index])
-                        result += equipments_by_slot[index].stat.hit || 0
+                        result += equipments_by_slot[index].getStat('hit', ship) || 0
                 })
                 return result >= 0 ? '+' + result : result
             //break;
@@ -1404,7 +1436,7 @@
             case 'addArmor':
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index])
-                        result += equipments_by_slot[index].stat.armor || 0
+                        result += equipments_by_slot[index].getStat('armor', ship) || 0
                 })
                 return result
             //break;
@@ -1413,7 +1445,7 @@
             case 'addEvasion':
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index])
-                        result += equipments_by_slot[index].stat.evasion || 0
+                        result += equipments_by_slot[index].getStat('evasion', ship) || 0
                 })
                 return result
             //break;
