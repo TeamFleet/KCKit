@@ -381,6 +381,17 @@ describe('Base functions/utilities', () => {
             it(`should [68] 大発動艇 TP be 8`, function () {
                 expect(db.items[68].getTP()).toBe(8);
             });
+            it(`should [268] 北方迷彩(+北方装備) ARMOR be 2`, function () {
+                expect(db.items[268].getStat('armor')).toBe(2);
+            });
+            it(`should [268] 北方迷彩(+北方装備) _KJGAA_ (wrone stat type) be undefined`, function () {
+                expect(db.items[268].getStat('_KJGAA_')).toBe(undefined);
+            });
+            it(`should [268] 北方迷彩(+北方装備) ARMOR for [547] 多摩改二 be 4`, function () {
+                expect(db.items[268].getStat('armor', 547)).toBe(4);
+                expect(db.items[268].getStat('armor', '547')).toBe(4);
+                expect(db.items[268].getStat('armor', db.ships[547])).toBe(4);
+            });
         })
 
         describe('Checking equipment types samples...', function () {

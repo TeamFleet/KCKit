@@ -120,4 +120,37 @@ module.exports = class Equipment extends ItemBase {
     getTP(type) {
         return dataTP.equipmentType[this.type] || 0
     }
+
+    /**
+     * 获取属性
+     * 
+     * @param {String} statType - 属性类型
+     * @param {Number} [shipId] - 舰娘ID，如果给出，会查询额外收益
+     * @returns {boolean}
+     */
+    getStat(statType, shipId) {
+        statType = statType.toLowerCase()
+        const base = this.stat[statType] || undefined
+        if (!shipId || base === undefined || !Array.isArray(this.stat_bonus))
+            return base
+        if (shipId && Array.isArray(this.stat_bonus)) {
+            if (typeof shipId === 'object') shipId = shipId.id
+            let bonus
+            this.stat_bonus.some(o => {
+                if (!Array.isArray(o.ships)) return false
+                o.ships.some(ship => {
+                    if (ship == shipId) {
+                        bonus = o.bonus
+                        return true
+                    }
+                    return false
+                })
+                return typeof bonus !== 'undefined'
+            })
+            if (bonus) {
+                return base + (bonus[statType] || 0)
+            }
+        }
+        return base
+    }
 }
