@@ -1029,9 +1029,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         LandingCrafts: {
             shelling: 1,
             night: 1
+        },
+        Interceptors: {
+            fighter: 0.2
         }
     };
-    formula.getStarMultiper = function (equipmentType, type) {
+    formula.getStarMultiper = function (equipmentType, statType) {
         if (!formula.starMultiper._init) {
             var _loop = function _loop(i) {
                 if (_equipmentType[i] && _equipmentType[i].forEach) {
@@ -1048,7 +1051,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
             formula.starMultiper._init = !0;
         }
-        return formula.starMultiper[equipmentType] ? formula.starMultiper[equipmentType][type] || 0 : 0;
+        return formula.starMultiper[equipmentType] ? formula.starMultiper[equipmentType][statType] || 0 : 0;
     };
     // 飞行器熟练度对制空战力的加成
     formula.getFighterPowerRankMultiper = function (equipment, rank /*, options*/) {
