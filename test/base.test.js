@@ -392,6 +392,29 @@ describe('Base functions/utilities', () => {
                 expect(db.items[268].getStat('armor', '547')).toBe(4);
                 expect(db.items[268].getStat('armor', db.ships[547])).toBe(4);
             });
+            it(`should [267] 12.7cm連装砲D型改二 FIRE be 3`, function () {
+                expect(db.items[267].getStat('fire')).toBe(3);
+                expect(db.items[267].getStat('fire', 547)).toBe(3);
+                expect(db.items[267].getStat('fire', '547')).toBe(3);
+                expect(db.items[267].getStat('fire', db.ships[547])).toBe(3);
+            });
+            it(`should [267] 12.7cm連装砲D型改二 FIRE for 島風型、夕雲型 be 5`, function () {
+                expect(db.items[267].getStat('fire', 229)).toBe(5);
+                expect(db.items[267].getStat('fire', 424)).toBe(5);
+                expect(db.items[267].getStat('fire', 344)).toBe(5);
+            });
+            it(`should [267] 12.7cm連装砲D型改二 FIRE for 陽炎型 be 4`, function () {
+                expect(db.items[267].getStat('fire', 18)).toBe(4);
+                expect(db.items[267].getStat('fire', 294)).toBe(4);
+            });
+            it(`should [267] 12.7cm連装砲D型改二 EVASION for 島風型、夕雲型、陽炎型 be 2`, function () {
+                expect(db.items[267].getStat('evasion', 229)).toBe(2);
+                expect(db.items[267].getStat('evasion', 424)).toBe(2);
+                expect(db.items[267].getStat('evasion', 344)).toBe(2);
+                expect(db.items[267].getStat('evasion', 229)).toBe(2);
+                expect(db.items[267].getStat('evasion', 424)).toBe(2);
+                expect(db.items[267].getStat('evasion', 344)).toBe(2);
+            });
         })
 
         describe('Checking equipment types samples...', function () {
