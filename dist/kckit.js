@@ -1867,15 +1867,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 bombDamage = 0;
             slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
-                    result += equipments_by_slot[index].stat.fire * 1.5 || 0;
+                    var equipment = equipments_by_slot[index];
+                    // result += (equipment.stat.fire * 1.5) || 0
+                    result += equipment.getStat('fire', ship) * 1.5 || 0;
 
-                    // if (equipments_by_slot[index].type == _equipmentType.TorpedoBomber)
-                    if (_equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1) torpedoDamage += equipments_by_slot[index].stat.torpedo || 0;
+                    // if (equipment.type == _equipmentType.TorpedoBomber)
+                    if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1)
+                        // torpedoDamage += equipment.stat.torpedo || 0
+                        torpedoDamage += equipment.getStat('torpedo', ship) || 0;
 
-                    //if( equipments_by_slot[index].type == _equipmentType.DiveBomber )
-                    bombDamage += equipments_by_slot[index].stat.bomb || 0;
+                    //if( equipment.type == _equipmentType.DiveBomber )
+                    // bombDamage += equipment.stat.bomb || 0
+                    bombDamage += equipment.getStat('bomb', ship) || 0;
 
-                    if (_equipmentType.SecondaryGuns.indexOf(equipments_by_slot[index].type) > -1) result += Math.sqrt((star_by_slot[index] || 0) * 1.5);
+                    if (_equipmentType.SecondaryGuns.indexOf(equipment.type) > -1) result += Math.sqrt((star_by_slot[index] || 0) * 1.5);
                 }
             });
             if (!torpedoDamage && !bombDamage) return -1;else result += Math.floor((Math.floor(bombDamage * 1.3) + torpedoDamage + ship.stat.fire_max) * 1.5) + 50;
@@ -1887,7 +1892,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 CLGunTwinNumber = 0;
             slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
-                    result += equipments_by_slot[index].stat.fire || 0;
+                    var equipment = equipments_by_slot[index];
+                    // result += equipment.stat.fire || 0
+                    result += equipment.getStat('fire', ship) || 0;
 
                     // 轻巡系主炮加成
                     if (formula.shipType.LightCruisers.indexOf(ship.type) > -1) {
@@ -1895,8 +1902,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         // 65	15.2cm连装炮
                         // 119	14cm连装炮
                         // 139	15.2cm连装炮改
-                        if (equipments_by_slot[index].id == 4) CLGunNavalNumber += 1;
-                        if (equipments_by_slot[index].id == 119 || equipments_by_slot[index].id == 65 || equipments_by_slot[index].id == 139) CLGunTwinNumber += 1;
+                        if (equipment.id == 4) CLGunNavalNumber += 1;
+                        if (equipment.id == 119 || equipment.id == 65 || equipment.id == 139) CLGunTwinNumber += 1;
                     }
 
                     // 改修加成
@@ -1916,7 +1923,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             options.isNight ? '夜战' : '昼战'
                         )
                         */
-                        result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'shelling');
+                        result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipment.type, 'shelling');
                     }
                 }
             });
@@ -1936,12 +1943,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             result = ship.stat.torpedo_max || 0;
             slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
-                    // result += (equipments_by_slot[index].type == _equipmentType.TorpedoBomber && !options.isNight)
-                    result += _equipmentType.TorpedoBombers.indexOf(equipments_by_slot[index].type) > -1 && !options.isNight ? 0 : equipments_by_slot[index].stat.torpedo || 0;
+                    var equipment = equipments_by_slot[index];
+                    // result += (equipment.type == _equipmentType.TorpedoBomber && !options.isNight)
+                    result += _equipmentType.TorpedoBombers.indexOf(equipment.type) > -1 && !options.isNight ? 0 : equipment.getStat('torpedo', ship) || 0;
 
                     // 改修加成
                     if (star_by_slot[index] && !options.isNight) {
-                        result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'torpedo');
+                        result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipment.type, 'torpedo');
                     }
                 }
             });
@@ -2034,9 +2042,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
 
                 if (isSPAircraft) {
-                    spFire += equipment.stat.fire;
-                    spTorpedo += equipment.stat.torpedo;
-                    spBonus += Math.sqrt(carry) * ((3 + 1.5 * (isNightAircraft ? 1 : 0)) * (equipment.stat.fire + equipment.stat.torpedo + equipment.stat.bomb + equipment.stat.asw) / 10);
+                    spFire += equipment.getStat('fire', ship);
+                    spTorpedo += equipment.getStat('torpedo', ship);
+                    spBonus += Math.sqrt(carry) * ((3 + 1.5 * (isNightAircraft ? 1 : 0)) * (equipment.getStat('fire', ship) + equipment.getStat('torpedo', ship) + equipment.getStat('bomb', ship) + equipment.getStat('asw', ship)) / 10);
                     if (star_by_slot[index]) {
                         spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
                     }
@@ -2071,7 +2079,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     if (!equipments_by_slot[index]) return;
                     if (_equipmentType.TorpedoBombers.indexOf(equipment.type) > -1) {
                         if (equipment.name.ja_jp.indexOf('Swordfish') > -1) {
-                            result.damage += equipment.stat.fire + equipment.stat.torpedo;
+                            // result.damage += equipment.stat.fire + equipment.stat.torpedo
+                            result.damage += equipment.getStat('fire', ship) + equipment.getStat('torpedo', ship);
                         }
                     }
                 });
