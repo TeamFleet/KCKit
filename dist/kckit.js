@@ -251,23 +251,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
              * 获取属性
              * 
              * @param {String} statType - 属性类型
-             * @param {Number} [shipId] - 舰娘ID，如果给出，会查询额外收益
+            * @param {Number|Object} [ship] - 舰娘ID或舰娘数据，如果给出，会查询额外收益
              * @returns {boolean}
              */
 
         }, {
             key: 'getStat',
-            value: function getStat(statType, shipId) {
+            value: function getStat(statType, ship) {
                 statType = statType.toLowerCase();
                 var base = this.stat[statType] || undefined;
-                if (!shipId || base === undefined || !Array.isArray(this.stat_bonus)) return base;
-                if (shipId && Array.isArray(this.stat_bonus)) {
-                    if ((typeof shipId === 'undefined' ? 'undefined' : _typeof(shipId)) === 'object') shipId = shipId.id;
+                if (!ship || base === undefined || !Array.isArray(this.stat_bonus)) return base;
+                if (ship && Array.isArray(this.stat_bonus)) {
+                    if ((typeof ship === 'undefined' ? 'undefined' : _typeof(ship)) !== 'object') ship = KC.db.ships[ship];
+                    var shipId = ship.id;
+
                     var bonus = void 0;
+
                     this.stat_bonus.some(function (o) {
-                        if (!Array.isArray(o.ships)) return !1;
-                        o.ships.some(function (ship) {
+                        if (Array.isArray(o.ships)) o.ships.some(function (ship) {
                             if (ship == shipId) {
+                                bonus = o.bonus;
+                                return !0;
+                            }
+                            return !1;
+                        });
+                        if (Array.isArray(o.ship_classes)) o.ship_classes.some(function (classId) {
+                            if (classId == ship.class) {
                                 bonus = o.bonus;
                                 return !0;
                             }
