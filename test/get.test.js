@@ -11,6 +11,7 @@ beforeAll(() => new Promise(async resolve => {
 }))
 
 const getShip = require ('../src/get/ship')
+const getShipClass = require ('../src/get/ship-class')
 
 
 describe('Getting functions/utilities', () => {
@@ -26,6 +27,20 @@ describe('Getting functions/utilities', () => {
         it(`should getShip(db.ships[285]) be instanceof Ship (ship.id = 285)`, function () {
             expect(getShip(db.ships[285]) instanceof require('../src/class/ship.js')).toBe(true);
             expect(getShip(db.ships[285]).id).toBe(285);
+        });
+    });
+    describe('get ship class...', () => {
+        it(`should getShipClass(1) be instanceof Base (shipClass.id = 1)`, function () {
+            expect(getShipClass(1) instanceof require('../src/class/base.js')).toBe(true);
+            expect(getShipClass(1).id).toBe(1);
+        });
+        it(`should getShipClass("11") be instanceof Base (shipClass.id = 11)`, function () {
+            expect(getShipClass("11") instanceof require('../src/class/base.js')).toBe(true);
+            expect(getShipClass("11").id).toBe(11);
+        });
+        it(`should getShipClass(db.shipClasses[1]) be instanceof Base (shipClass.id = 1)`, function () {
+            expect(getShipClass(db.shipClasses[1]) instanceof require('../src/class/base.js')).toBe(true);
+            expect(getShipClass(db.shipClasses[1]).id).toBe(1);
         });
     });
 })
