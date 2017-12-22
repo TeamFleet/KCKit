@@ -259,7 +259,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             key: 'getStat',
             value: function getStat(statType, ship) {
                 statType = statType.toLowerCase();
-                var base = this.stat[statType] || undefined;
+                var base = this.stat[statType];
                 if (!ship || base === undefined || !Array.isArray(this.stat_bonus)) return base;
                 if (ship && Array.isArray(this.stat_bonus)) {
                     if ((typeof ship === 'undefined' ? 'undefined' : _typeof(ship)) !== 'object') ship = KC.db.ships[ship];
