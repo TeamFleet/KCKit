@@ -233,7 +233,7 @@
                 const shipId = ship.id
 
                 let bonus
-    
+
                 this.stat_bonus.some(o => {
                     if (Array.isArray(o.ships))
                         o.ships.some(ship => {
@@ -2322,6 +2322,7 @@
 
         // 其他夜战方式
         else {
+            const equipmentCount = {}
             slots.forEach(function (carry, index) {
                 if (!equipments_by_slot[index]) return
 
@@ -2331,6 +2332,13 @@
                         'night'
                     )
                 }
+
+                if (!equipments_by_slot[index]) return
+                const equipment = equipments_by_slot[index]
+                if (!equipmentCount[equipment.id])
+                    equipmentCount[equipment.id] = 1
+                else
+                    equipmentCount[equipment.id]++
             })
 
             //console.log(count)
@@ -2407,8 +2415,11 @@
                 && count.radarSurface >= 1
                 && count.main >= 1
             ) {
+                // [267] 12.7cm連装砲D型改二
                 result.type = '电雷CI'
-                result.damage = Math.floor(result.damage * 1.3)
+                result.damage = equipmentCount[267]
+                    ? Math.floor(result.damage * 1.625)
+                    : Math.floor(result.damage * 1.3)
                 result.hit = 1
                 // result.isMin = true
             }

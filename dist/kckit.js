@@ -2091,12 +2091,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     // 其他夜战方式
                 else {
+                        var equipmentCount = {};
                         slots.forEach(function (carry, index) {
                             if (!equipments_by_slot[index]) return;
 
                             if (star_by_slot[index]) {
                                 starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
                             }
+
+                            if (!equipments_by_slot[index]) return;
+                            var equipment = equipments_by_slot[index];
+                            if (!equipmentCount[equipment.id]) equipmentCount[equipment.id] = 1;else equipmentCount[equipment.id]++;
                         });
 
                         //console.log(count)
@@ -2155,8 +2160,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                                 // 驱逐舰专用 - 主炮+鱼雷+水上电探
                                 else if (formula.shipType.Destroyers.indexOf(ship.type) > -1 && count.torpedo >= 1 && count.radarSurface >= 1 && count.main >= 1) {
+                                        // [267] 12.7cm連装砲D型改二
                                         result.type = '电雷CI';
-                                        result.damage = Math.floor(result.damage * 1.3);
+                                        result.damage = equipmentCount[267] ? Math.floor(result.damage * 1.625) : Math.floor(result.damage * 1.3);
                                         result.hit = 1;
                                         // result.isMin = true
                                     }
