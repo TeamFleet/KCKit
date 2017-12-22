@@ -130,7 +130,7 @@ module.exports = class Equipment extends ItemBase {
      */
     getStat(statType, ship) {
         statType = statType.toLowerCase()
-        const base = this.stat[statType] || undefined
+        const base = this.stat[statType]
         if (!ship || base === undefined || !Array.isArray(this.stat_bonus))
             return base
         if (ship && Array.isArray(this.stat_bonus)) {
