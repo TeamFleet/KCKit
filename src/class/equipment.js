@@ -140,11 +140,19 @@ module.exports = class Equipment extends ItemBase {
 
             let bonus
 
-            this.stat_bonus.some(o => {
+            this.stat_bonus.forEach(o => {
                 if (Array.isArray(o.ships))
                     o.ships.some(ship => {
                         if (ship == shipId) {
-                            bonus = o.bonus
+                            for (const stat in o.bonus) {
+                                if (!bonus) bonus = {}
+                                bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0)
+                            }
+                            // console.log(
+                            //     ship, shipId,
+                            //     o.bonus,
+                            //     bonus
+                            // )
                             return true
                         }
                         return false
@@ -152,15 +160,23 @@ module.exports = class Equipment extends ItemBase {
                 if (Array.isArray(o.ship_classes))
                     o.ship_classes.some(classId => {
                         if (classId == ship.class) {
-                            bonus = o.bonus
+                            for (const stat in o.bonus) {
+                                if (!bonus) bonus = {}
+                                bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0)
+                            }
+                            // console.log(
+                            //     o.bonus,
+                            //     bonus
+                            // )
                             return true
                         }
                         return false
                     })
-                return typeof bonus !== 'undefined'
+                // return typeof bonus !== 'undefined'
             })
             if (bonus) {
-                // console.log(ship._name, bonus)
+                // if (shipId === 543)
+                //     console.log(ship._name, bonus)
                 return base + (bonus[statType] || 0)
             }
         }

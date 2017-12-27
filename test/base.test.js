@@ -399,7 +399,7 @@ describe('Base functions/utilities', () => {
                 expect(db.items[267].getStat('fire', db.ships[547])).toBe(3);
             });
             it(`should [267] 12.7cm連装砲D型改二 FIRE for 島風型、夕雲型 be 5`, function () {
-                expect(db.items[267].getStat('fire', 229)).toBe(5);
+                expect(db.items[267].getStat('fire', 50)).toBe(5);
                 expect(db.items[267].getStat('fire', 424)).toBe(5);
                 expect(db.items[267].getStat('fire', 344)).toBe(5);
             });
@@ -411,9 +411,10 @@ describe('Base functions/utilities', () => {
                 expect(db.items[267].getStat('evasion', 229)).toBe(2);
                 expect(db.items[267].getStat('evasion', 424)).toBe(2);
                 expect(db.items[267].getStat('evasion', 344)).toBe(2);
-                expect(db.items[267].getStat('evasion', 229)).toBe(2);
-                expect(db.items[267].getStat('evasion', 424)).toBe(2);
-                expect(db.items[267].getStat('evasion', 344)).toBe(2);
+            });
+            it(`should [267] 12.7cm連装砲D型改二 FIRE for [543] 長波改二 / [229] 島風改 be 6`, function () {
+                expect(db.items[267].getStat('fire', 543)).toBe(6);
+                expect(db.items[267].getStat('fire', 229)).toBe(6);
             });
         })
 
