@@ -267,22 +267,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     var bonus = void 0;
 
-                    this.stat_bonus.some(function (o) {
+                    this.stat_bonus.forEach(function (o) {
                         if (Array.isArray(o.ships)) o.ships.some(function (ship) {
                             if (ship == shipId) {
-                                bonus = o.bonus;
+                                for (var stat in o.bonus) {
+                                    if (!bonus) bonus = {};
+                                    bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0);
+                                }
                                 return !0;
                             }
                             return !1;
                         });
                         if (Array.isArray(o.ship_classes)) o.ship_classes.some(function (classId) {
                             if (classId == ship.class) {
-                                bonus = o.bonus;
+                                for (var stat in o.bonus) {
+                                    if (!bonus) bonus = {};
+                                    bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0);
+                                }
                                 return !0;
                             }
                             return !1;
                         });
-                        return typeof bonus !== 'undefined';
+                        // return typeof bonus !== 'undefined'
                     });
                     if (bonus) {
                         return base + (bonus[statType] || 0);
