@@ -44,12 +44,30 @@ describe('Base functions/utilities', () => {
             });
         });
 
-        describe('Checking ship samples...', function () {
+        describe('Data type...', function () {
             it(`should db.ships[200] be instanceof Ship`, function () {
                 expect(true).toBe(db.ships[200] instanceof require('../src/class/ship.js'));
             });
-            it(`should db.ships[420].getName("・", "ja_jp") be 叢雲・改二`, function () {
-                expect('叢雲・改二').toBe(db.ships[420].getName("・", "ja_jp"));
+            it(`should db.items[1] be instanceof Equipment`, function () {
+                expect(db.items[1] instanceof require('../src/class/equipment')).toBe(true);
+            });
+            it(`should db.itemTypes[1] be instanceof BaseClass`, function () {
+                expect(db.itemTypes[1] instanceof require('../src/class/base')).toBe(true);
+            });
+            it(`should db.entities[1] be instanceof Entity`, function () {
+                expect(true).toBe(db.entities[1] instanceof require('../src/class/entity.js'));
+            });
+            it(`should db.exillustTypes[1] be instanceof ExillustType`, function () {
+                expect(db.exillustTypes[1] instanceof require('../src/class/exillust-type.js')).toBe(true);
+            });
+        })
+    });
+
+    describe('Class methods', () => {
+        describe('Ship', function () {
+            it(`should Ship.prototype.getName() works`, () => {
+                expect(db.ships[420].getName("・", "ja_jp")).toBe('叢雲・改二');
+                expect(db.ships[178].getName("")).toBe('Bismarck drei');
             });
             it(`should db.ships[177].getNameNoSuffix("zh_cn") be 欧根亲王`, function () {
                 expect('欧根亲王').toBe(db.ships[177].getNameNoSuffix("zh_cn"));
@@ -315,10 +333,7 @@ describe('Base functions/utilities', () => {
             });
         });
 
-        describe('Checking equipment samples...', function () {
-            it(`should db.items[1] be instanceof Equipment`, function () {
-                expect(db.items[1] instanceof require('../src/class/equipment')).toBe(true);
-            });
+        describe('Equipment...', function () {
             it(`should db.items[1]._icon be 1`, function () {
                 expect(db.items[1]._icon).toBe(1);
             });
@@ -418,28 +433,19 @@ describe('Base functions/utilities', () => {
             });
         })
 
-        describe('Checking equipment types samples...', function () {
-            it(`should db.itemTypes[1] be instanceof BaseClass`, function () {
-                expect(db.itemTypes[1] instanceof require('../src/class/base')).toBe(true);
-            });
+        describe('EquipmentType...', function () {
             it(`should db.itemTypes[1].getName("ja_jp") be 小口径主砲`, function () {
                 expect(db.itemTypes[1].getName("ja_jp")).toBe("小口径主砲");
             });
         })
 
-        describe('Checking entity samples...', function () {
-            it(`should db.entities[1] be instanceof Entity`, function () {
-                expect(true).toBe(db.entities[1] instanceof require('../src/class/entity.js'));
-            });
+        describe('Entity...', function () {
         })
 
-        describe('Checking consumable samples...', function () {
+        describe('Consumable...', function () {
         })
 
-        describe('Checking exillust-type samples...', function () {
-            it(`should db.exillustTypes[1] be instanceof ExillustType`, function () {
-                expect(db.exillustTypes[1] instanceof require('../src/class/exillust-type.js')).toBe(true);
-            });
+        describe('ExillustType...', function () {
             it(`should db.exillustTypes[1].getName("ja_jp") be 晴れ着`, function () {
                 expect(db.exillustTypes[1].getName("ja_jp")).toBe("晴れ着");
             });
@@ -453,9 +459,9 @@ describe('Base functions/utilities', () => {
                 expect(db.exillustTypes[1].getTime("en_us")).toBe("Early January");
             });
         })
-    });
+    })
 
-    describe('Chang locale...', () => {
+    describe('Change locale...', () => {
         describe('Changing to en_us...', () => {
             it(`should be success without error`, () => {
                 require('../src/register.js')({

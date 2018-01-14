@@ -9,18 +9,27 @@ module.exports = class Ship extends ItemBase {
      * 快捷方式 - ship._name （默认连接符，默认语言）
      * 
      * @param {String|Boolean|undefined)} [joint=vars.joint] - 连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串。String：自定义连接符；Boolean：true 添加默认连接符；false 不添加连接符；undefined：默认连接符
-     * @param {String} [theLocale=vars.locale] - 语言ID
+     * @param {String} [locale=vars.locale] - 语言ID
      * @returns {String} 舰名[连接符[后缀名]]
      */
-    getName(theJoint = vars.joint, theLocale = vars.locale) {
-        let suffix = this.getSuffix(theLocale)
-        return this.getNameNoSuffix(theLocale) + (suffix
-            ? (
-                (theJoint === true ? vars.joint : theJoint)
-                + suffix
-            )
-            : ''
-        )
+    getName(joint = vars.joint, locale = vars.locale) {
+        const suffix = this.getSuffix(locale)
+
+        if (!suffix)
+            return this.getNameNoSuffix(locale)
+
+        if (joint === true)
+            joint = vars.joint
+        else if (!joint && /^[a-z]/.test(suffix.substr(0, 1)))
+            joint = ' '
+
+        return this.getNameNoSuffix(locale)
+            + joint
+            + suffix
+                // (
+                // (joint === true ? vars.joint : joint)
+                // + suffix
+                // )
     }
 
     /**
