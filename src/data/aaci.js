@@ -317,7 +317,8 @@ register(23, {
         isID: [539, 530]
     },
     equipments: {
-        hasAAGun: true
+        hasAAGun: true,
+        hasAAGunCD: false,
     }
 })
 

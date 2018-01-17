@@ -363,9 +363,19 @@ describe('Checking functions/utilities', () => {
             it(`Result should be Array`, function () {
                 expect(Array.isArray(check.aaci(428, [130, 124]))).toBe(true);
             })
-            it(`Check samples`, function () {
-                expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);
-                expect(check.aaci(330, [122, 122, 106]).map(obj => obj.id)).toEqual([1, 2, 3, 5, 8]);
+            describe(`Check samples`, () => {
+                describe(`伊504`, function () {
+                    it(`Standard AA-gun`, function () {
+                        expect(check.aaci(530, [37]).map(obj => obj.id)).toEqual([23]);
+                    })
+                    it(`Special AA-gun`, function () {
+                        expect(check.aaci(530, [173]).map(obj => obj.id)).toEqual([]);
+                    })
+                })
+                it(`Other samples`, function () {
+                    expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);
+                    expect(check.aaci(330, [122, 122, 106]).map(obj => obj.id)).toEqual([1, 2, 3, 5, 8]);
+                })
             })
         })
         describe(`Check AACI id for ship and equipment list`, () => {
