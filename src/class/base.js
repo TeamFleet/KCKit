@@ -1,3 +1,5 @@
+const getName = require('../utils/get-name')
+
 const vars = require('../variables')
 
 module.exports = class {
@@ -8,9 +10,10 @@ module.exports = class {
     }
 
     getName(theLocale = vars.locale) {
-        return this.name
-            ? (this.name[theLocale] || this.name.ja_jp)
-            : null
+        return getName(this.name, theLocale)
+        // return this.name
+        //     ? (this.name[theLocale] || this.name.ja_jp)
+        //     : null
     }
 
     get _name() {

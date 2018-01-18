@@ -69,8 +69,9 @@ describe('Base functions/utilities', () => {
                 expect(db.ships[420].getName("・", "ja_jp")).toBe('叢雲・改二');
                 expect(db.ships[178].getName("")).toBe('Bismarck drei');
             });
-            it(`should db.ships[177].getNameNoSuffix("zh_cn") be 欧根亲王`, function () {
-                expect('欧根亲王').toBe(db.ships[177].getNameNoSuffix("zh_cn"));
+            it(`should Ship.prototype.getNameNoSuffix() works`, () => {
+                expect(db.ships[177].getNameNoSuffix("zh_cn")).toBe('欧根亲王');
+                expect(db.ships[417].getNameNoSuffix('en_us')).toBe('Kako');
             });
             it(`should db.ships[468].getSuffix() be 改二丁`, function () {
                 expect('改二丁').toBe(db.ships[468].getSuffix());

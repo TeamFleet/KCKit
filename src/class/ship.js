@@ -1,3 +1,5 @@
+const getName = require('../utils/get-name')
+
 const vars = require('../variables')
 const getdb = require('../get/db')
 const ItemBase = require('./base.js')
@@ -35,11 +37,12 @@ module.exports = class Ship extends ItemBase {
     /**
      * 获取舰名，不包括后缀
      * 
-     * @param {String} [theLocale=vars.locale]  - 语言ID
+     * @param {String} [locale=vars.locale]  - 语言ID
      * @returns {String}
      */
-    getNameNoSuffix(theLocale = vars.locale) {
-        return this.name[theLocale] || this.name.ja_jp
+    getNameNoSuffix(locale = vars.locale) {
+        return getName(this.name, locale)
+        // return this.name[locale] || this.name.ja_jp
     }
 
     /**
