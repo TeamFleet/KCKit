@@ -322,4 +322,20 @@ register(23, {
     }
 })
 
+// Tatsuta K2
+register(24, {
+    fixed: 3,
+    modifier: 1.25,
+    icons: ['16-', '15-'],
+    ship: {
+        isID: [478]
+    },
+    equipments: {
+        hasHAMount: true,
+        hasHAMountAAFD: false,
+        hasAAGun: true,
+        hasAAGunCD: false,
+    }
+})
+
 module.exports = data
