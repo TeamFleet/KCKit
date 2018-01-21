@@ -3,6 +3,7 @@ const getName = require('../utils/get-name')
 const vars = require('../variables')
 const getdb = require('../get/db')
 const ItemBase = require('./base.js')
+const shipTypes = require('../types/ships')
 const equipmentTypes = require('../types/equipments')
 
 module.exports = class Ship extends ItemBase {
@@ -28,10 +29,10 @@ module.exports = class Ship extends ItemBase {
         return this.getNameNoSuffix(locale)
             + joint
             + suffix
-                // (
-                // (joint === true ? vars.joint : joint)
-                // + suffix
-                // )
+        // (
+        // (joint === true ? vars.joint : joint)
+        // + suffix
+        // )
     }
 
     /**
@@ -565,8 +566,9 @@ module.exports = class Ship extends ItemBase {
     /**
      * 获取额外可提升的值
      * 
-     * @param {String} [type] - 要获取的属性名
-     * @returns {Number} - 数值
+     * @param {String} type - 要获取的属性名
+     * @param {Number} [lvl] - 设定当前等级
+     * @returns {Number|Boolean} - 数值。如果为false，表明不可提升
      */
     getStatExtraMax(type, lvl = 1) {
         switch (type.toLowerCase()) {
@@ -584,9 +586,11 @@ module.exports = class Ship extends ItemBase {
                 )
             }
             case 'asw': {
-                return this.stat.asw
-                    ? vars.shipStatExtraMax[type]
-                    : false
+                if (this.stat.asw)
+                    return vars.shipStatExtraMax[type]
+                if (shipTypes.LightCruisers.concat(shipTypes.Destroyers).includes(this.type))
+                    return vars.shipStatExtraMax[type]
+                return false
             }
             default:
                 return false

@@ -308,30 +308,20 @@ describe('Base functions/utilities', () => {
             it(`should [487] 鬼怒・改二 count_as_night_operation_aviation_personnel be undefined`, function () {
                 expect(db.ships[487].getCapability('count_as_night_operation_aviation_personnel')).toEqual(undefined);
             });
-            it(`should [80] 長門 getStatExtraMax('hp') be 2`, function () {
-                expect(db.ships[80].getStatExtraMax('hp')).toEqual(2);
-            });
-            it(`should [541] 長門・改二 getStatExtraMax('hp', 99) be 2`, function () {
-                expect(db.ships[541].getStatExtraMax('hp', 99)).toEqual(2);
-            });
-            it(`should [541] 長門・改二 getStatExtraMax('hp', 100) be 0`, function () {
-                expect(db.ships[541].getStatExtraMax('hp', 100)).toEqual(0);
-            });
-            it(`should [541] 長門・改二 getStatExtraMax('asw') be false`, function () {
-                expect(db.ships[541].getStatExtraMax('asw')).toEqual(false);
-            });
-            it(`should [541] 長門・改二 getStatExtraMax('aa') be false`, function () {
-                expect(db.ships[541].getStatExtraMax('aa')).toEqual(false);
-            });
-            it(`should [334] U-511改 getStatExtraMax('hp', 99) be 2`, function () {
-                expect(db.ships[334].getStatExtraMax('hp', 99)).toEqual(2);
-            });
-            it(`should [334] U-511改 getStatExtraMax('hp', 100) be 1`, function () {
-                expect(db.ships[334].getStatExtraMax('hp', 100)).toEqual(1);
-            });
-            it(`should [200] 阿武隈・改二 getStatExtraMax('asw') be 9`, function () {
-                expect(db.ships[200].getStatExtraMax('asw')).toEqual(9);
-            });
+            it(`should Ship.prototype.getStatExtraMax() works`, () => {
+                /* 長門 */ expect(db.ships[80].getStatExtraMax('hp')).toEqual(2);
+                /* 長門・改二 */ expect(db.ships[541].getStatExtraMax('hp', 99)).toEqual(2);
+                /* 長門・改二 */ expect(db.ships[541].getStatExtraMax('hp', 100)).toEqual(0);
+                /* 長門・改二 */ expect(db.ships[541].getStatExtraMax('asw')).toEqual(false);
+                /* 長門・改二 */ expect(db.ships[541].getStatExtraMax('aa')).toEqual(false);
+                /* U-511改 */ expect(db.ships[334].getStatExtraMax('hp', 99)).toEqual(2);
+                /* U-511改 */ expect(db.ships[334].getStatExtraMax('hp', 100)).toEqual(1);
+                /* 阿武隈・改二 */ expect(db.ships[200].getStatExtraMax('asw')).toEqual(9);
+                /* 大淀・改 (基础对潜0，但为CL，可提升) */ expect(db.ships[321].getStatExtraMax('asw')).toEqual(9);
+                /* 龍鳳・改 (CVL，无基础对潜，不可提升) */ expect(db.ships[318].getStatExtraMax('asw')).toEqual(false);
+                /* 春日丸 (CVL，无基础对潜，不可提升) */ expect(db.ships[521].getStatExtraMax('asw')).toEqual(false);
+                /* 大鹰・改二 (CVL，但有基础对潜，可提升) */ expect(db.ships[529].getStatExtraMax('asw')).toEqual(9);
+            })
         });
 
         describe('Equipment...', function () {
