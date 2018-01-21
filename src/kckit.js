@@ -643,9 +643,11 @@
                     )
                 }
                 case 'asw': {
-                    return this.stat.asw
-                        ? 9
-                        : false
+                    if (this.stat.asw)
+                        return 9
+                    if (formula.shipType.LightCruisers.concat(formula.shipType.Destroyers).includes(this.type))
+                        return 9
+                    return false
                 }
                 default:
                     return false

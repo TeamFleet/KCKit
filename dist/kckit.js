@@ -653,7 +653,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         }
                     case 'asw':
                         {
-                            return this.stat.asw ? 9 : !1;
+                            if (this.stat.asw) return 9;
+                            if (formula.shipType.LightCruisers.concat(formula.shipType.Destroyers).includes(this.type)) return 9;
+                            return !1;
                         }
                     default:
                         return !1;
