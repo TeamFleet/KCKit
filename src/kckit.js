@@ -827,237 +827,238 @@
         calc: {}
     };
     let _equipmentType = formula.equipmentType;
-    // 装备类型集合
-    _equipmentType.MainGuns = [
-        _equipmentType.SmallCaliber,
-        _equipmentType.SmallCaliberHigh,
-        _equipmentType.SmallCaliberAA,
-        _equipmentType.MediumCaliber,
-        _equipmentType.LargeCaliber,
-        _equipmentType.SuperCaliber
-    ];
+    { // 装备类型集合
+        _equipmentType.MainGuns = [
+            _equipmentType.SmallCaliber,
+            _equipmentType.SmallCaliberHigh,
+            _equipmentType.SmallCaliberAA,
+            _equipmentType.MediumCaliber,
+            _equipmentType.LargeCaliber,
+            _equipmentType.SuperCaliber
+        ];
 
-    _equipmentType.SmallCalibers = [
-        _equipmentType.SmallCaliber,
-        _equipmentType.SmallCaliberHigh,
-        _equipmentType.SmallCaliberAA
-    ];
+        _equipmentType.SmallCalibers = [
+            _equipmentType.SmallCaliber,
+            _equipmentType.SmallCaliberHigh,
+            _equipmentType.SmallCaliberAA
+        ];
 
-    _equipmentType.MediumCalibers = [
-        _equipmentType.MediumCaliber
-    ];
+        _equipmentType.MediumCalibers = [
+            _equipmentType.MediumCaliber
+        ];
 
-    _equipmentType.LargeCalibers = [
-        _equipmentType.LargeCaliber,
-        _equipmentType.SuperCaliber
-    ];
+        _equipmentType.LargeCalibers = [
+            _equipmentType.LargeCaliber,
+            _equipmentType.SuperCaliber
+        ];
 
-    _equipmentType.SecondaryGuns = [
-        _equipmentType.SecondaryGun,
-        _equipmentType.SecondaryGunHigh,
-        _equipmentType.SecondaryGunAA
-    ];
+        _equipmentType.SecondaryGuns = [
+            _equipmentType.SecondaryGun,
+            _equipmentType.SecondaryGunHigh,
+            _equipmentType.SecondaryGunAA
+        ];
 
-    _equipmentType.APShells = [
-        _equipmentType.APShell
-    ];
+        _equipmentType.APShells = [
+            _equipmentType.APShell
+        ];
 
-    _equipmentType.Torpedos = [
-        _equipmentType.Torpedo,
-        _equipmentType.SubmarineTorpedo
-    ];
+        _equipmentType.Torpedos = [
+            _equipmentType.Torpedo,
+            _equipmentType.SubmarineTorpedo
+        ];
 
-    _equipmentType.Seaplanes = [
-        _equipmentType.ReconSeaplane,
-        _equipmentType.ReconSeaplaneNight,
-        _equipmentType.SeaplaneBomber,
-        _equipmentType.SeaplaneFighter
-    ];
+        _equipmentType.Seaplanes = [
+            _equipmentType.ReconSeaplane,
+            _equipmentType.ReconSeaplaneNight,
+            _equipmentType.SeaplaneBomber,
+            _equipmentType.SeaplaneFighter
+        ];
 
-    _equipmentType.Fighters = [
-        _equipmentType.SeaplaneBomber,
-        _equipmentType.CarrierFighter,
-        _equipmentType.CarrierFighterNight,
-        _equipmentType.TorpedoBomber,
-        _equipmentType.TorpedoBomberNight,
-        _equipmentType.DiveBomber,
-        _equipmentType.SeaplaneFighter,
-        _equipmentType.LandBasedAttacker,
-        _equipmentType.Interceptor,
-        // _equipmentType.CarrierRecon
-        _equipmentType.JetBomberFighter,
-        _equipmentType.JetBomberFighter2,
-        _equipmentType.LandBasedFighter,
-    ];
+        _equipmentType.Fighters = [
+            _equipmentType.SeaplaneBomber,
+            _equipmentType.CarrierFighter,
+            _equipmentType.CarrierFighterNight,
+            _equipmentType.TorpedoBomber,
+            _equipmentType.TorpedoBomberNight,
+            _equipmentType.DiveBomber,
+            _equipmentType.SeaplaneFighter,
+            _equipmentType.LandBasedAttacker,
+            _equipmentType.Interceptor,
+            // _equipmentType.CarrierRecon
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2,
+            _equipmentType.LandBasedFighter,
+        ];
 
-    _equipmentType.Interceptors = [
-        _equipmentType.Interceptor,
-        _equipmentType.LandBasedFighter
-    ]
+        _equipmentType.Interceptors = [
+            _equipmentType.Interceptor,
+            _equipmentType.LandBasedFighter
+        ]
 
-    _equipmentType.Recons = [
-        _equipmentType.ReconSeaplane,
-        _equipmentType.ReconSeaplaneNight,
-        _equipmentType.CarrierRecon,
-        _equipmentType.CarrierRecon2,
-        _equipmentType.LargeFlyingBoat
-    ];
+        _equipmentType.Recons = [
+            _equipmentType.ReconSeaplane,
+            _equipmentType.ReconSeaplaneNight,
+            _equipmentType.CarrierRecon,
+            _equipmentType.CarrierRecon2,
+            _equipmentType.LargeFlyingBoat
+        ];
 
-    _equipmentType.ReconSeaplanes = [
-        _equipmentType.ReconSeaplane,
-        _equipmentType.ReconSeaplaneNight,
-    ];
+        _equipmentType.ReconSeaplanes = [
+            _equipmentType.ReconSeaplane,
+            _equipmentType.ReconSeaplaneNight,
+        ];
 
-    _equipmentType.SeaplaneRecons = [
-        _equipmentType.ReconSeaplane,
-        _equipmentType.ReconSeaplaneNight,
-        _equipmentType.LargeFlyingBoat
-    ];
+        _equipmentType.SeaplaneRecons = [
+            _equipmentType.ReconSeaplane,
+            _equipmentType.ReconSeaplaneNight,
+            _equipmentType.LargeFlyingBoat
+        ];
 
-    _equipmentType.SeaplaneBombers = [
-        _equipmentType.SeaplaneBomber,
-        _equipmentType.SeaplaneFighter
-    ];
+        _equipmentType.SeaplaneBombers = [
+            _equipmentType.SeaplaneBomber,
+            _equipmentType.SeaplaneFighter
+        ];
 
-    _equipmentType.SeaplaneFighters = [
-        _equipmentType.SeaplaneFighter
-    ];
+        _equipmentType.SeaplaneFighters = [
+            _equipmentType.SeaplaneFighter
+        ];
 
-    _equipmentType.CarrierFighters = [
-        _equipmentType.CarrierFighter,
-        _equipmentType.CarrierFighterNight
-    ];
+        _equipmentType.CarrierFighters = [
+            _equipmentType.CarrierFighter,
+            _equipmentType.CarrierFighterNight
+        ];
 
-    _equipmentType.CarrierRecons = [
-        _equipmentType.CarrierRecon,
-        _equipmentType.CarrierRecon2
-    ];
+        _equipmentType.CarrierRecons = [
+            _equipmentType.CarrierRecon,
+            _equipmentType.CarrierRecon2
+        ];
 
-    _equipmentType.CarrierBased = [
-        _equipmentType.CarrierFighter,
-        _equipmentType.CarrierFighterNight,
-        _equipmentType.TorpedoBomber,
-        _equipmentType.TorpedoBomberNight,
-        _equipmentType.DiveBomber,
-        _equipmentType.CarrierRecon,
-        _equipmentType.CarrierRecon2,
-        _equipmentType.JetBomberFighter,
-        _equipmentType.JetBomberFighter2
-    ];
+        _equipmentType.CarrierBased = [
+            _equipmentType.CarrierFighter,
+            _equipmentType.CarrierFighterNight,
+            _equipmentType.TorpedoBomber,
+            _equipmentType.TorpedoBomberNight,
+            _equipmentType.DiveBomber,
+            _equipmentType.CarrierRecon,
+            _equipmentType.CarrierRecon2,
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2
+        ];
 
-    _equipmentType.LandBased = [
-        _equipmentType.LandBasedAttacker,
-        _equipmentType.Interceptor,
-        _equipmentType.JetBomberFighter,
-        _equipmentType.JetBomberFighter2,
-        _equipmentType.LandBasedFighter,
-        _equipmentType.LandBasedAntiSubPatrol
-    ];
+        _equipmentType.LandBased = [
+            _equipmentType.LandBasedAttacker,
+            _equipmentType.Interceptor,
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2,
+            _equipmentType.LandBasedFighter,
+            _equipmentType.LandBasedAntiSubPatrol
+        ];
 
-    _equipmentType.TorpedoBombers = [
-        _equipmentType.TorpedoBomber,
-        _equipmentType.TorpedoBomberNight
-    ];
+        _equipmentType.TorpedoBombers = [
+            _equipmentType.TorpedoBomber,
+            _equipmentType.TorpedoBomberNight
+        ];
 
-    _equipmentType.DiveBombers = [
-        _equipmentType.DiveBomber
-    ];
+        _equipmentType.DiveBombers = [
+            _equipmentType.DiveBomber
+        ];
 
-    _equipmentType.JetBomberFighters = [
-        _equipmentType.JetBomberFighter,
-        _equipmentType.JetBomberFighter2
-    ];
+        _equipmentType.JetBomberFighters = [
+            _equipmentType.JetBomberFighter,
+            _equipmentType.JetBomberFighter2
+        ];
 
-    _equipmentType.Autogyros = [
-        _equipmentType.Autogyro
-    ];
+        _equipmentType.Autogyros = [
+            _equipmentType.Autogyro
+        ];
 
-    _equipmentType.AntiSubPatrols = [
-        _equipmentType.AntiSubPatrol,
-        _equipmentType.LandBasedAntiSubPatrol
-    ];
+        _equipmentType.AntiSubPatrols = [
+            _equipmentType.AntiSubPatrol,
+            _equipmentType.LandBasedAntiSubPatrol
+        ];
 
-    _equipmentType.Aircrafts = [];
-    [].concat(_equipmentType.Seaplanes)
-        .concat(_equipmentType.Recons)
-        .concat(_equipmentType.CarrierBased)
-        .concat(_equipmentType.Autogyros)
-        .concat(_equipmentType.AntiSubPatrols)
-        .concat(_equipmentType.LandBased)
-        .forEach(function (v) {
-            if (_equipmentType.Aircrafts.indexOf(v) < 0)
-                _equipmentType.Aircrafts.push(v)
-        });
+        _equipmentType.Aircrafts = [];
+        [].concat(_equipmentType.Seaplanes)
+            .concat(_equipmentType.Recons)
+            .concat(_equipmentType.CarrierBased)
+            .concat(_equipmentType.Autogyros)
+            .concat(_equipmentType.AntiSubPatrols)
+            .concat(_equipmentType.LandBased)
+            .forEach(function (v) {
+                if (_equipmentType.Aircrafts.indexOf(v) < 0)
+                    _equipmentType.Aircrafts.push(v)
+            });
 
-    _equipmentType.Radars = [
-        _equipmentType.SmallRadar,
-        _equipmentType.LargeRadar,
-        _equipmentType.SuparRadar
-    ];
+        _equipmentType.Radars = [
+            _equipmentType.SmallRadar,
+            _equipmentType.LargeRadar,
+            _equipmentType.SuparRadar
+        ];
 
-    _equipmentType.SmallRadars = [
-        _equipmentType.SmallRadar
-    ];
+        _equipmentType.SmallRadars = [
+            _equipmentType.SmallRadar
+        ];
 
-    _equipmentType.LargeRadars = [
-        _equipmentType.LargeRadar,
-        _equipmentType.SuparRadar
-    ];
+        _equipmentType.LargeRadars = [
+            _equipmentType.LargeRadar,
+            _equipmentType.SuparRadar
+        ];
 
-    _equipmentType.AntiSubmarines = [
-        _equipmentType.DepthCharge,
-        _equipmentType.Sonar,
-        _equipmentType.LargeSonar
-    ];
+        _equipmentType.AntiSubmarines = [
+            _equipmentType.DepthCharge,
+            _equipmentType.Sonar,
+            _equipmentType.LargeSonar
+        ];
 
-    _equipmentType.DepthCharges = [
-        _equipmentType.DepthCharge
-    ];
+        _equipmentType.DepthCharges = [
+            _equipmentType.DepthCharge
+        ];
 
-    _equipmentType.Sonars = [
-        _equipmentType.Sonar,
-        _equipmentType.LargeSonar
-    ];
+        _equipmentType.Sonars = [
+            _equipmentType.Sonar,
+            _equipmentType.LargeSonar
+        ];
 
-    _equipmentType.AAGuns = [
-        _equipmentType.AAGun,
-        _equipmentType.AAGunConcentrated
-    ];
+        _equipmentType.AAGuns = [
+            _equipmentType.AAGun,
+            _equipmentType.AAGunConcentrated
+        ];
 
-    _equipmentType.AAFireDirectors = [
-        _equipmentType.AAFireDirector
-    ];
+        _equipmentType.AAFireDirectors = [
+            _equipmentType.AAFireDirector
+        ];
 
-    _equipmentType.Searchlights = [
-        _equipmentType.Searchlight,
-        _equipmentType.SearchlightLarge
-    ];
+        _equipmentType.Searchlights = [
+            _equipmentType.Searchlight,
+            _equipmentType.SearchlightLarge
+        ];
 
-    _equipmentType.AviationPersonnels = [
-        _equipmentType.AviationPersonnel
-    ];
+        _equipmentType.AviationPersonnels = [
+            _equipmentType.AviationPersonnel
+        ];
 
-    _equipmentType.SurfaceShipPersonnels = [
-        _equipmentType.SurfaceShipPersonnel
-    ];
+        _equipmentType.SurfaceShipPersonnels = [
+            _equipmentType.SurfaceShipPersonnel
+        ];
 
-    _equipmentType.LandingCrafts = [
-        _equipmentType.LandingCraft,
-        _equipmentType.AmphibiousCraft
-    ];
+        _equipmentType.LandingCrafts = [
+            _equipmentType.LandingCraft,
+            _equipmentType.AmphibiousCraft
+        ];
 
-    _equipmentType.AmphibiousCrafts = [
-        _equipmentType.AmphibiousCraft
-    ];
+        _equipmentType.AmphibiousCrafts = [
+            _equipmentType.AmphibiousCraft
+        ];
 
-    _equipmentType.isInterceptor = function (equipment) {
-        equipment = _equipment(equipment)
+        _equipmentType.isInterceptor = function (equipment) {
+            equipment = _equipment(equipment)
 
-        if (equipment.type_ingame && equipment.type_ingame[2] == 47)
-            return false
+            if (equipment.type_ingame && equipment.type_ingame[2] == 47)
+                return false
 
-        return (_equipmentType.Interceptors.indexOf(equipment.type) > -1)
-    };
+            return (_equipmentType.Interceptors.indexOf(equipment.type) > -1)
+        };
+    }
 
     // 改修收益系数
     formula.starMultiper = {
@@ -2074,10 +2075,15 @@
                 result += Math.floor((Math.floor(bombDamage * 1.3) + torpedoDamage + ship.stat.fire_max) * 1.5) + 50
             return result
         } else {
-            result = ship.stat.fire_max || 0
             // 其他舰种
-            let CLGunNavalNumber = 0
-                , CLGunTwinNumber = 0
+            result = ship.stat.fire_max || 0
+
+            // 特定种类装备数量，仅在满足对特定条件时才会纳入数量统计
+            const count = {
+                CLMainGunNaval: 0, // 轻巡系主炮（单装炮）
+                CLMainGunTwin: 0, // 轻巡系主炮（连装炮）
+                ItalianCAMainGun: 0, // 意大利重巡主炮（仅对意大利重巡洋舰生效）
+            }
             slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
                     const equipment = equipments_by_slot[index]
@@ -2086,14 +2092,26 @@
 
                     // 轻巡系主炮加成
                     if (formula.shipType.LightCruisers.indexOf(ship.type) > -1) {
-                        // 4	14cm单装炮
-                        // 65	15.2cm连装炮
-                        // 119	14cm连装炮
-                        // 139	15.2cm连装炮改
-                        if (equipment.id == 4)
-                            CLGunNavalNumber += 1
-                        if (equipment.id == 119 || equipment.id == 65 || equipment.id == 139)
-                            CLGunTwinNumber += 1
+                        [
+                            '14cm单装炮',
+                            '15.2cm単装砲'
+                        ].forEach(name => {
+                            if (equipment.name.ja_jp.includes(name))
+                                count.CLMainGunNaval += 1
+                        });
+                        [
+                            '14cm連装砲',
+                            '15.2cm連装砲'
+                        ].forEach(name => {
+                            if (equipment.name.ja_jp.includes(name))
+                                count.CLMainGunTwin += 1
+                        });
+                    }
+
+                    // 意大利重巡主炮加成
+                    if (ship._navy === 'rm') {
+                        if (equipment.name.ja_jp.includes('203mm/53'))
+                            count.ItalianCAMainGun += 1
                     }
 
                     // 改修加成
@@ -2120,7 +2138,15 @@
                     }
                 }
             })
-            return result + 2 * Math.sqrt(CLGunTwinNumber) + Math.sqrt(CLGunNavalNumber)
+
+            // 加成
+            let bonus = 0
+                // 轻巡系主炮加成
+                + 2 * Math.sqrt(count.CLMainGunTwin) + Math.sqrt(count.CLMainGunNaval)
+                // 意大利重巡主炮加成（仅对意大利重巡洋舰生效）
+                + Math.sqrt(count.ItalianCAMainGun)
+
+            return result + bonus
         }
         //return (ship.stat.fire_max || 0)
     };
