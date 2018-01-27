@@ -386,7 +386,7 @@ register(23, {
 register(25, {
     fixed: '?',
     modifier: '?',
-    icons: ['16:274', '11AA', 12],
+    icons: ['15:274', '11AA', 12],
     ship: {
         isID: [82, 88]
     },
@@ -399,7 +399,7 @@ register(25, {
 register(26, {
     fixed: '?',
     modifier: '?',
-    icons: ['16:274', '11AA'],
+    icons: ['15:274', '11AA'],
     ship: {
         isID: [82, 88]
     },
