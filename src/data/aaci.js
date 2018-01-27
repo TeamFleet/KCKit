@@ -76,19 +76,56 @@ register(9, {
         hasAAFD: true
     }
 })
+// register(12, {
+//     fixed: 3,
+//     modifier: 1.25,
+//     icons: ['15+', 15, '11AA'],
+//     ship: {
+//         isSS: false,
+//         hasSlotMin: 2
+//     },
+//     equipments: {
+//         hasAAGunCD: true,
+//         /* CDMGs are AAGuns, so we need at least 2 AA guns 
+//            including the CDMG one we have just counted */
+//         hasAAFD: 2,
+//         hasAARadar: true
+//     }
+// })
+// register(12, {
+//     fixed: 3,
+//     modifier: 1.25,
+//     icons: ['15+', '15[3,8]', '11AA'],
+//     ship: {
+//         isSS: false,
+//         hasSlotMin: 2
+//     },
+//     equipments: {
+//         hasAAGunCD: true,
+//         hasAAGun: {
+//             hasStat: {
+//                 aa: [3, 8]
+//             }
+//         },
+//         hasAARadar: true
+//     }
+// })
 register(12, {
     fixed: 3,
     modifier: 1.25,
-    icons: ['15+', 15, '11AA'],
+    icons: ['15+', '15[3,]', '11AA'],
     ship: {
         isSS: false,
         hasSlotMin: 2
     },
     equipments: {
         hasAAGunCD: true,
-        /* CDMGs are AAGuns, so we need at least 2 AA guns 
-           including the CDMG one we have just counted */
-        hasAAFD: 2,
+        hasAAGun: {
+            hasStat: {
+                aa: 3
+            },
+            count: 2
+        },
         hasAARadar: true
     }
 })
@@ -96,7 +133,7 @@ register(12, {
 // battleship special AACIs
 register(4, {
     fixed: 6,
-    modifier: 1.4,
+    modifier: 1.5,
     icons: [3, 12, 30, '11AA'],
     ship: {
         isBB: true,
@@ -124,7 +161,119 @@ register(6, {
     }
 })
 
-// Akizuki-class AACIs
+// 摩耶・改二
+register(10, {
+    fixed: 8,
+    modifier: 1.65,
+    icons: [16, '15+', '11AA'],
+    ship: {
+        isID: 428
+    },
+    equipments: {
+        hasHAMount: true,
+        hasAAGunCD: true,
+        hasAARadar: true
+    }
+})
+register(11, {
+    fixed: 6,
+    modifier: 1.5,
+    icons: [16, '15+'],
+    ship: {
+        isID: 428
+    },
+    equipments: {
+        hasHAMount: true,
+        hasAAGunCD: true
+    }
+})
+
+// 五十鈴・改二
+register(14, {
+    fixed: 4,
+    modifier: 1.45,
+    icons: [16, 15, 11],
+    ship: {
+        isID: 141
+    },
+    equipments: {
+        hasHAMount: true,
+        hasAAGun: true,
+        hasAARadar: true
+    }
+})
+register(15, {
+    fixed: 3,
+    modifier: 1.3,
+    icons: [16, 15],
+    ship: {
+        isID: 141
+    },
+    equipments: {
+        hasHAMount: true,
+        hasAAGun: true
+    }
+})
+
+// 由良・改二
+register(21, {
+    fixed: 5,
+    modifier: 1.45,
+    icons: [16, 11],
+    ship: {
+        isID: 488
+    },
+    equipments: {
+        hasHAMount: true,
+        hasAARadar: true
+    }
+})
+
+// 鬼怒・改二
+register(19, {
+    fixed: 5,
+    modifier: 1.45,
+    icons: ['16-', '15+'],
+    ship: {
+        isID: 487
+    },
+    equipments: {
+        hasHAMountAAFD: false,
+        hasHAMount: true,
+        hasAAGunCD: true
+    }
+})
+register(20, {
+    fixed: 3,
+    modifier: 1.25,
+    icons: ['15+'],
+    ship: {
+        isID: 487
+    },
+    equipments: {
+        hasAAGunCD: true
+    }
+})
+
+// 龍田・改二
+register(24, {
+    fixed: 3,
+    modifier: 1.25,
+    icons: [16, '15[3,8]'],
+    ship: {
+        isID: 478
+    },
+    equipments: {
+        hasHAMount: true,
+        hasAAGun: {
+            hasStat: {
+                aa: [3, 8]
+            }
+        },
+    }
+})
+
+// 秋月型駆逐艦
 register(1, {
     fixed: 7,
     modifier: 1.7,
@@ -161,61 +310,33 @@ register(3, {
     }
 })
 
-// Maya K2
-register(10, {
-    fixed: 8,
-    modifier: 1.65,
-    icons: [16, '15+', '11AA'],
+// 皐月・改二
+register(18, {
+    fixed: 2,
+    modifier: 1.2,
+    icons: ['15+'],
     ship: {
-        isID: 428
+        isID: 418
     },
     equipments: {
-        hasHAMount: true,
-        hasAAGunCD: true,
-        hasAARadar: true
-    }
-})
-register(11, {
-    fixed: 6,
-    modifier: 1.5,
-    icons: [16, '15+'],
-    ship: {
-        isID: 428
-    },
-    equipments: {
-        hasHAMount: true,
         hasAAGunCD: true
     }
 })
 
-// Isuzu K2
-register(14, {
-    fixed: 4,
-    modifier: 1.45,
-    icons: [16, 15, 11],
+// 文月・改二
+register(22, {
+    fixed: 2,
+    modifier: 1.2,
+    icons: ['15+'],
     ship: {
-        isID: 141
+        isID: 548
     },
     equipments: {
-        hasHAMount: true,
-        hasAAGun: true,
-        hasAARadar: true
-    }
-})
-register(15, {
-    fixed: 3,
-    modifier: 1.3,
-    icons: [16, 15],
-    ship: {
-        isID: 141
-    },
-    equipments: {
-        hasHAMount: true,
-        hasAAGun: true
+        hasAAGunCD: true
     }
 })
 
-// Kasumi K2B
+// 霞・改二乙
 register(16, {
     fixed: 4,
     modifier: 1.4,
@@ -242,99 +363,49 @@ register(17, {
     }
 })
 
-// Satsuki K2
-register(18, {
-    fixed: 2,
-    modifier: 1.2,
-    icons: ['15+'],
-    ship: {
-        isID: 418
-    },
-    equipments: {
-        hasAAGunCD: true
-    }
-})
-
-// Kinu K2
-register(19, {
-    fixed: 5,
-    modifier: 1.45,
-    icons: ['16-', '15+'],
-    ship: {
-        isID: 487
-    },
-    equipments: {
-        hasHAMountAAFD: false,
-        hasHAMount: true,
-        hasAAGunCD: true
-    }
-})
-register(20, {
-    fixed: 3,
-    modifier: 1.25,
-    icons: ['15+'],
-    ship: {
-        isID: 487
-    },
-    equipments: {
-        hasAAGunCD: true
-    }
-})
-
-// Yura K2
-register(21, {
-    fixed: 5,
-    modifier: 1.45,
-    icons: [16, 11],
-    ship: {
-        isID: 488
-    },
-    equipments: {
-        hasHAMount: true,
-        hasAARadar: true
-    }
-})
-
-// Fumizuki K2
-register(22, {
-    fixed: 2,
-    modifier: 1.2,
-    icons: ['15+'],
-    ship: {
-        isID: 548
-    },
-    equipments: {
-        hasAAGunCD: true
-    }
-})
-
-// UIT-25, I-504
+// UIT-25
+// 伊504
 register(23, {
     fixed: 1,
     modifier: 1.05,
-    icons: ['15-'],
+    icons: ['15[3,8]'],
     ship: {
         isID: [539, 530]
     },
     equipments: {
-        hasAAGun: true,
-        hasAAGunCD: false,
+        hasAAGun: {
+            hasStat: {
+                aa: [3, 8]
+            }
+        },
     }
 })
 
-// Tatsuta K2
-register(24, {
-    fixed: 3,
-    modifier: 1.25,
-    icons: ['16-', '15-'],
+// 伊勢・改
+// 日向・改
+register(25, {
+    fixed: '?',
+    modifier: '?',
+    icons: ['16:274', '11AA', 12],
     ship: {
-        isID: [478]
+        isID: [82, 88]
     },
     equipments: {
-        hasHAMount: true,
-        hasHAMountAAFD: false,
-        hasAAGun: true,
-        hasAAGunCD: false,
+        hasID: 274,
+        hasAARadar: true,
+        hasType3Shell: true,
+    }
+})
+register(26, {
+    fixed: '?',
+    modifier: '?',
+    icons: ['16:274', '11AA'],
+    ship: {
+        isID: [82, 88]
+    },
+    equipments: {
+        hasID: [274],
+        hasAARadar: true,
     }
 })
 

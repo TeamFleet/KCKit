@@ -418,9 +418,8 @@ describe('Base functions/utilities', () => {
                 expect(db.items[267].getStat('evasion', 424)).toBe(2);
                 expect(db.items[267].getStat('evasion', 344)).toBe(2);
             });
-            it(`should [267] 12.7cm連装砲D型改二 FIRE for [543] 長波改二 / [229] 島風改 be 6`, function () {
+            it(`should [267] 12.7cm連装砲D型改二 FIRE for [543] 長波改二`, function () {
                 expect(db.items[267].getStat('fire', 543)).toBe(6);
-                expect(db.items[267].getStat('fire', 229)).toBe(6);
             });
         })
 

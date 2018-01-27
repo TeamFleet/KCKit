@@ -63,7 +63,9 @@ const check = (equipments, conditions = {}) => {
                     [key.replace(/^has/, 'is')]: thisCondition
                 })
             )
-            return filtered.length >= count
+            // console.log(thisCondition, equipments, filtered.length, count)
+            if (filtered.length < count)
+                return false
         } else if (key.substr(0, 3) === 'has' && !isNaN(conditions[key])) {
             // 条件：有至少 N 个
             const filtered = equipments.filter(
@@ -71,7 +73,8 @@ const check = (equipments, conditions = {}) => {
                     [key.replace(/^has/, 'is')]: true
                 })
             )
-            return filtered.length >= conditions[key]
+            if (filtered.length < conditions[key])
+                return false
         } else if (key.substr(0, 3) === 'has' && Array.isArray(conditions[key])) {
             // 条件：有至少 value[0] 个至多 value[1] 个
             const filtered = equipments.filter(
@@ -79,7 +82,8 @@ const check = (equipments, conditions = {}) => {
                     [key.replace(/^has/, 'is')]: true
                 })
             )
-            return filtered.length >= conditions[key][0] && filtered.length <= conditions[key][1]
+            if (filtered.length < conditions[key][0] || filtered.length > conditions[key][1])
+                return false
         }
     }
 

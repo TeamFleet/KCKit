@@ -364,13 +364,39 @@ describe('Checking functions/utilities', () => {
                 expect(Array.isArray(check.aaci(428, [130, 124]))).toBe(true);
             })
             describe(`Check samples`, () => {
-                describe(`伊504`, function () {
-                    it(`Standard AA-gun`, function () {
-                        expect(check.aaci(530, [37]).map(obj => obj.id)).toEqual([23]);
-                    })
-                    it(`Special AA-gun`, function () {
-                        expect(check.aaci(530, [173]).map(obj => obj.id)).toEqual([]);
-                    })
+                it(`全ての水上艦：特殊機銃 + 素対空3+の対空機銃 + 対空電探`, function () {
+                    // 吹雪・改二
+                    expect(check.aaci(426, [173, 38, 27]).map(obj => obj.id)).toEqual([12]);
+                    expect(check.aaci(426, [85, 38, 27]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(426, [173, 37, 27]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(426, [173, 131, 27]).map(obj => obj.id)).toEqual([12]);
+                    expect(check.aaci(426, [173, 38, 28]).map(obj => obj.id)).toEqual([]);
+                    // 伊13・改
+                    expect(check.aaci(374, [173, 38, 27]).map(obj => obj.id)).toEqual([]);
+                })
+                it(`UIT-25 / 伊504`, function () {
+                    expect(check.aaci(539, [38]).map(obj => obj.id)).toEqual([23]);
+                    expect(check.aaci(539, [85]).map(obj => obj.id)).toEqual([23]);
+                    expect(check.aaci(539, [37]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(539, [131]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(530, [38]).map(obj => obj.id)).toEqual([23]);
+                    expect(check.aaci(530, [85]).map(obj => obj.id)).toEqual([23]);
+                    expect(check.aaci(530, [37]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(530, [131]).map(obj => obj.id)).toEqual([]);
+                })
+                it(`龍田・改二`, function () {
+                    expect(check.aaci(478, [48, 38]).map(obj => obj.id)).toEqual([24]);
+                    expect(check.aaci(478, [122, 38]).map(obj => obj.id)).toEqual([24]);
+                    expect(check.aaci(478, [48, 85]).map(obj => obj.id)).toEqual([24]);
+                    expect(check.aaci(478, [122, 85]).map(obj => obj.id)).toEqual([24]);
+                    expect(check.aaci(478, [48, 37]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(478, [122, 37]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(478, [48, 131]).map(obj => obj.id)).toEqual([]);
+                    expect(check.aaci(478, [122, 131]).map(obj => obj.id)).toEqual([]);
+                })
+                it(`伊勢・改 / 日向・改`, function () {
+                    expect(check.aaci(82, [274, 27, 35]).map(obj => obj.id)).toEqual([26, 25]);
+                    expect(check.aaci(82, [274, 27]).map(obj => obj.id)).toEqual([26]);
                 })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);

@@ -19,6 +19,7 @@ const types = {
     SecondaryGunHA: 8,		    // 高角副炮
     SecondaryGunAA: 9,		    // 高角副炮（强化）
     SecondaryGunAAFD: 9,		// 高角副炮（强化）
+    Type3Shell: 10,		        // 对空强化弹
     APShell: 11,		        // 穿甲弹
     Torpedo: 12,		        // 鱼雷
     SubmarineTorpedo: 13,		// 潜艇鱼雷

@@ -16,7 +16,6 @@ const dataAACI = require('../data/aaci')
 module.exports = (ship, equipments, aaciID) => {
     if (typeof ship === 'undefined') return false
 
-
     const hasEquipments = Array.isArray(equipments)
     const _checkEquipments = (conditions) => {
         if (!hasEquipments) return true
@@ -27,10 +26,19 @@ module.exports = (ship, equipments, aaciID) => {
     if (typeof aaciID === 'undefined') {
         let result = []
 
+        // console.log('\r\n\r\n\r\n')
         for (let id in dataAACI) {
             if (check(id))
                 result.push(dataAACI[id])
         }
+
+        // if (ship == 478)
+        //     console.log(
+        //         ship,
+        //         equipments,
+        //         result.map(d => d.id)
+        //     )
+        // console.log('\r\n\r\n\r\n')
 
         return result.sort((a, b) => {
             if (a.fixed !== b.fixed)

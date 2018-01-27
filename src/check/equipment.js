@@ -38,9 +38,14 @@ module.exports = (equipment, conditions = {}) => {
             } else {
                 return false
             }
-            const objConditions = conditions[key] && typeof conditions[key] === 'object' && !Array.isArray(conditions[key]) ? conditions[key] : undefined
+            // console.log(typeName)
+            // 条件是否为Object
+            const isConditionObj = typeof conditions[key] === 'object' && !Array.isArray(conditions[key])
+            const objConditions = (conditions[key] && isConditionObj)
+                ? conditions[key]
+                : undefined
             if (!checkCondition[
-                conditions[key] === true || (typeof conditions[key] === 'object' && !Array.isArray(conditions[key])) ? 'istype' : 'isnottype'
+                conditions[key] === true || isConditionObj ? 'istype' : 'isnottype'
             ](equipment, equipmentTypes[typeName], objConditions))
                 return false
         }
@@ -50,17 +55,18 @@ module.exports = (equipment, conditions = {}) => {
 }
 
 const checkCondition = {
-    // isID
+    // 是特定ID
     isid: (equipment, id) => ArrayOrItem(id, id => {
         if (isNaN(id)) return false
         return parseInt(id) === equipment.id
     }),
+    // 不是特定ID
     isnotid: (equipment, id) => ArrayOrItemAll(id, id => {
         if (isNaN(id)) return false
         return parseInt(id) !== equipment.id
     }),
 
-    // isName
+    // 完全匹配特定名称
     isname: (equipment, name) => ArrayOrItem(name, name => (
         equipment.isName(name)
         // for (let key in equipment.name) {
@@ -69,6 +75,7 @@ const checkCondition = {
         // }
         // return false
     )),
+    // 不是特定名称
     isnotname: (equipment, name) => ArrayOrItemAll(name, name => (
         !equipment.isName(name)
         // for (let key in equipment.name) {
@@ -78,7 +85,7 @@ const checkCondition = {
         // return true
     )),
 
-    // isNameOf
+    // 名称里包含特定字段
     isnameof: (equipment, name) => ArrayOrItem(name, name => (
         equipment.hasName(name)
         // for (let key in equipment.name) {
@@ -87,6 +94,7 @@ const checkCondition = {
         // }
         // return false
     )),
+    // 名称里不包含特定字段
     isnotnameof: (equipment, name) => ArrayOrItemAll(name, name => (
         !equipment.hasName(name)
         // for (let key in equipment.name) {
@@ -96,31 +104,43 @@ const checkCondition = {
         // return true
     )),
 
-    // isType
+    // 是特定类型
+    // 如果判断条件为Object，也会进入该条件
     istype: (equipment, type, conditions) => ArrayOrItem(type, type => {
         if (isNaN(type)) return false
         if (parseInt(type) !== equipment.type) return false
+        // 条件是Object
         if (typeof conditions === 'object') {
+            // 包含属性
             if (conditions.hasStat) {
                 let pass = true
                 for (let stat in conditions.hasStat) {
-                    if (equipment.stat[stat] < conditions.hasStat[stat])
+                    if (Array.isArray(conditions.hasStat[stat])) {
+                        if (equipment.stat[stat] < conditions.hasStat[stat][0])
+                            pass = false
+                        if (equipment.stat[stat] > conditions.hasStat[stat][1])
+                            pass = false
+                    } else if (equipment.stat[stat] < conditions.hasStat[stat]) {
                         pass = false
+                    }
                 }
                 if (!pass) return false
             }
         }
         return true
     }),
+    // 不是特定类型
     isnottype: (equipment, type) => ArrayOrItemAll(type, type => {
         if (isNaN(type)) return false
         return parseInt(type) !== equipment.type
     }),
+    // 是对空电探/雷达
     isaaradar: function (equipment, isTrue) {
+        // console.log(`[${equipment.id}]`, equipment._name)
         return ((
             this.istype(equipment, equipmentTypes.Radars)
             && !isNaN(equipment.stat.aa)
-            && equipment.stat.aa > 0
+            && equipment.stat.aa >= 2
         ) === isTrue)
     },
 }
