@@ -1912,7 +1912,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     // 轻巡系主炮加成
                     if (formula.shipType.LightCruisers.indexOf(ship.type) > -1) {
-                        ['14cm单装炮', '15.2cm単装砲'].forEach(function (name) {
+                        ['14cm単装砲', '15.2cm単装砲'].forEach(function (name) {
+                            // console.log(
+                            //     name,
+                            //     equipment.name.ja_jp,
+                            //     equipment.name.ja_jp.includes(name)
+                            // );
                             if (equipment.name.ja_jp.includes(name)) count.CLMainGunNaval += 1;
                         });
                         ['14cm連装砲', '15.2cm連装砲'].forEach(function (name) {
@@ -1947,6 +1952,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
                 }
             });
+
+            // console.log(count)
 
             // 加成
             var bonus = 0
