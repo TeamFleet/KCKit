@@ -1922,6 +1922,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     // 意大利重巡主炮加成
                     if (ship._navy === 'rm') {
+                        // console.log(ship, equipment)
                         if (equipment.name.ja_jp.includes('203mm/53')) count.ItalianCAMainGun += 1;
                     }
 
