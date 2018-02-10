@@ -2813,6 +2813,9 @@
             ships = []
 
         data.forEach(function (dataShip) {
+            if (!Array.isArray(dataShip))
+                return
+
             const shipId = dataShip[0]
 
             if (shipId) {

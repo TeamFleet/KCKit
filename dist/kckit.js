@@ -2514,6 +2514,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             ships = [];
 
         data.forEach(function (dataShip) {
+            if (!Array.isArray(dataShip)) return;
+
             var shipId = dataShip[0];
 
             if (shipId) {
