@@ -383,9 +383,9 @@ register(23, {
 
 // 伊勢・改
 // 日向・改
-register(25, {
-    fixed: '?',
-    modifier: '?',
+register(28, {
+    fixed: 7,
+    modifier: 1.55,
     icons: ['15:274', '11AA', 12],
     ship: {
         isID: [82, 88]
@@ -396,12 +396,15 @@ register(25, {
         hasType3Shell: true,
     }
 })
-register(26, {
-    fixed: '?',
-    modifier: '?',
+// 伊勢・改
+// 日向・改
+// 武蔵・改
+register(27, {
+    fixed: 4,
+    modifier: 1.4,
     icons: ['15:274', '11AA'],
     ship: {
-        isID: [82, 88]
+        isID: [82, 88, 148]
     },
     equipments: {
         hasID: [274],
