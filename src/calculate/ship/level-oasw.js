@@ -20,7 +20,11 @@ module.exports = (ship, equipments) => {
         let resultLevel = maxShipLv + 1
         const base = ship.stat.asw
         const max = ship.stat.asw_max
-        OASWs.filter(OASW => (OASW.shipWithEquipments && OASW.shipWithEquipments.hasStat && OASW.shipWithEquipments.hasStat.asw))
+        OASWs.filter(OASW => (
+            OASW.shipWithEquipments &&
+            OASW.shipWithEquipments.hasStat &&
+            OASW.shipWithEquipments.hasStat.asw)
+        )
             .forEach(OASW => {
                 if (OASW.equipments) {
                     if (!checkEquipments(equipments, OASW.equipments))

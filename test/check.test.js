@@ -395,8 +395,8 @@ describe('Checking functions/utilities', () => {
                     expect(check.aaci(478, [122, 131]).map(obj => obj.id)).toEqual([]);
                 })
                 it(`伊勢・改 / 日向・改`, function () {
-                    expect(check.aaci(82, [274, 27, 35]).map(obj => obj.id)).toEqual([26, 25]);
-                    expect(check.aaci(82, [274, 27]).map(obj => obj.id)).toEqual([26]);
+                    expect(check.aaci(82, [274, 27, 35]).map(obj => obj.id)).toEqual([28, 27]);
+                    expect(check.aaci(82, [274, 27]).map(obj => obj.id)).toEqual([27]);
                 })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);

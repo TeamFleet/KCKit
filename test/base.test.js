@@ -488,11 +488,41 @@ describe('Base functions/utilities', () => {
 })
 
 describe('Getting functions/utilities', () => {
-    describe('getShipAndEquipments', () => {
+    describe('should getShipAndEquipments() works', () => {
         it('Normal condition', () => {
             expect(get.shipAndEquipments(131, [87, undefined, undefined, 33, 87]).ship.id).toBe(131)
             expect(get.shipAndEquipments(131, [87, undefined, undefined, 33, 87]).equipments.length).toBe(5)
             expect(get.shipAndEquipments(131, [87, undefined, undefined, 33, 87]).equipments[3].id).toBe(33)
+            expect(
+                get.shipAndEquipments(
+                    131,
+                    [87, undefined, undefined, 33, 87],
+                    [11]
+                ).equipmentStars[0]
+            ).toBe(10)
+            expect(
+                get.shipAndEquipments(
+                    131,
+                    [87, undefined, undefined, 33, 87],
+                    [0, 1]
+                ).equipmentStars[1]
+            ).toBe(undefined)
+            expect(
+                get.shipAndEquipments(
+                    131,
+                    [87, undefined, undefined, 33, 87],
+                    [],
+                    [11]
+                ).equipmentRanks[0]
+            ).toBe(7)
+            expect(
+                get.shipAndEquipments(
+                    131,
+                    [87, undefined, undefined, 33, 87],
+                    [],
+                    [0, 1]
+                ).equipmentRanks[1]
+            ).toBe(undefined)
         })
         it('If ship has less slots, the missing slot should be empty', () => {
             expect(get.shipAndEquipments(383, [87, undefined, undefined, 33, 87]).equipments[3]).toBe(undefined)
