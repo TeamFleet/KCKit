@@ -287,8 +287,7 @@
             ) + (suffix ? (
                 (joint === true ? KC.joint : joint)
                 + suffix
-            ) : ''
-                )
+            ) : '')
         }
         /*	获取舰名，不包括后缀
             变量
