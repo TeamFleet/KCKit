@@ -558,9 +558,21 @@ module.exports = class Ship extends ItemBase {
      * @returns {Object|...} - 如果提供了 type，返回该能力。如果没有，返回 Object
      */
     getCapability(type) {
-        if (!type) return this.capabilities || {}
-        if (!this.capabilities) return undefined
-        return this.capabilities[type]
+        const capabilities = Object.assign(
+            {},
+            this.type
+                ? getdb('ship_types')[this.type].capabilities || {}
+                : {},
+            this.class
+                ? getdb('ship_classes')[this.class].capabilities || {}
+                : {},
+            this.capabilities,
+        )
+        if (!type) return capabilities || {}
+        // if (!capabilities) return false
+        if (typeof capabilities[type] === 'undefined')
+            return false
+        return capabilities[type]
     }
 
     /**

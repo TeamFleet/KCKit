@@ -220,12 +220,10 @@ describe('Base functions/utilities', () => {
             it(`should 赤城・改 db.ships[277].hasExtraIllust() be Ship 83`, function () {
                 expect(db.ships[277].hasExtraIllust().id).toBe(83);
             });
-            it(`should 加古・改二 db.ships[417]._extraIllust be undefined`, function () {
+            it(`should Ship.prototype._extraIllust works`, () => {
                 expect(db.ships[417]._extraIllust).toBe(undefined);
-            });
-            it(`should 大淀・改 db.ships[321]._extraIllust be an Array of 6`, function () {
-                expect(db.ships[321]._extraIllust.length).toBe(6);
-            });
+                expect(db.ships[321]._extraIllust.length).toBe(7);
+            })
             it(`should 大淀・改 db.ships[321]._equipmentTypes be an Array of 26`, function () {
                 expect(db.ships[321]._equipmentTypes.length).toBe(26);
             });
@@ -299,15 +297,14 @@ describe('Base functions/utilities', () => {
                 const arr = db.ships[539].getEquipmentTypes()
                 expect(!arr.includes(14) && arr.includes(29)).toEqual(true);
             });
-            it(`should getCapability() returns object`, function () {
+            it(`should Ship.prototype.getCapability() works`, () => {
                 expect(typeof db.ships[1].getCapability()).toEqual('object');
-            });
-            it(`should [487] 鬼怒・改二 counts as ONE Landing Craft`, function () {
                 expect(db.ships[487].getCapability('count_as_landing_craft')).toEqual(1);
-            });
-            it(`should [487] 鬼怒・改二 count_as_night_operation_aviation_personnel be undefined`, function () {
-                expect(db.ships[487].getCapability('count_as_night_operation_aviation_personnel')).toEqual(undefined);
-            });
+                expect(db.ships[487].getCapability('count_as_night_operation_aviation_personnel')).toEqual(false);
+                /* 武蔵・改二 */ expect(db.ships[546].getCapability('anti_air_rocket_barrage')).toEqual(false);
+                /* 扶桑・改二 */ expect(db.ships[411].getCapability('anti_air_rocket_barrage')).toEqual(true);
+                /* 伊勢・改 */ expect(db.ships[82].getCapability('anti_air_rocket_barrage')).toEqual('high');
+            })
             it(`should Ship.prototype.getStatExtraMax() works`, () => {
                 /* 長門 */ expect(db.ships[80].getStatExtraMax('hp')).toEqual(2);
                 /* 長門・改二 */ expect(db.ships[541].getStatExtraMax('hp', 99)).toEqual(2);
