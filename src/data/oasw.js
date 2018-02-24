@@ -3,7 +3,7 @@
  * 
  * 参考
  * http://kancolle.wikia.com/wiki/Combat#Opening_Anti-Submarine_Warfare_.28OASW.29
- * http://wikiwiki.jp/kancolle/?%C0%EF%C6%AE%A4%CB%A4%C4%A4%A4%A4%C6#antisubpreemptiveattack
+ * http://wikiwiki.jp/kancolle/?%C2%D0%C0%F8%C0%E8%C0%A9%C7%FA%CD%EB%B9%B6%B7%E2
  * 
  * 通用条件
  * 对潜属性（自身+装备）至少 100 点且至少装备 声纳，无视装备改修收益
@@ -45,13 +45,6 @@ register({
     }
 })
 
-// 特殊条件 - 五十铃改二、龙田改二
-register({
-    ship: {
-        isID: [141, 478]
-    }
-})
-
 // 特殊条件 - 海防舰
 register({
     ship: {
@@ -77,10 +70,17 @@ register({
     }
 })
 
-// 特殊条件 - 大鹰
+// 特殊条件 - 五十铃改二 / 龙田改二 / Jervis改
 register({
     ship: {
-        isID: 526
+        isID: [141, 478, 394]
+    }
+})
+
+// 特殊条件 - 大鹰 / 瑞鳳改二乙 / Gambier Bay改
+register({
+    ship: {
+        isID: [526, 560, 396]
     },
     shipWithEquipments: {
         hasStat: {
@@ -114,6 +114,21 @@ register({
                 asw: 1
             }
         }
+    }
+})
+
+// 特殊条件 - Gambier Bay / Gambier Bay改
+register({
+    ship: {
+        isID: [544, 396]
+    },
+    shipWithEquipments: {
+        hasStat: {
+            asw: 50
+        }
+    },
+    equipments: {
+        hasLargeSonar: true,
     }
 })
 // register({
