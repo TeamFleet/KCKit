@@ -381,6 +381,20 @@ register(23, {
     }
 })
 
+// 武蔵・改二
+register(26, {
+    fixed: 6,
+    modifier: 1.4,
+    icons: ['16:275', '11AA'],
+    ship: {
+        isID: [546]
+    },
+    equipments: {
+        hasID: 275,
+        hasAARadar: true,
+    }
+})
+
 // 伊勢・改
 // 日向・改
 register(28, {
@@ -399,12 +413,13 @@ register(28, {
 // 伊勢・改
 // 日向・改
 // 武蔵・改
+// 武蔵・改二
 register(27, {
     fixed: 4,
     modifier: 1.4,
     icons: ['15:274', '11AA'],
     ship: {
-        isID: [82, 88, 148]
+        isID: [82, 88, 148, 546]
     },
     equipments: {
         hasID: [274],
