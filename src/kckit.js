@@ -730,7 +730,11 @@
             : (KC.db.equipments ? KC.db.equipments[equipment] : KC.db.items[equipment])
     };
     let _slots = (arrSlot) => {
-        let slots = arrSlot.map(value => value)
+        const slots = []
+        arrSlot.forEach((value, index) => {
+            slots[index >= 4 ? (index + 1) : index] = value
+        })
+        // let slots = arrSlot.map(value => value)
         slots[4] = 0
         return slots
     }

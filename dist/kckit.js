@@ -788,9 +788,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return equipment instanceof Equipment ? equipment : KC.db.equipments ? KC.db.equipments[equipment] : KC.db.items[equipment];
     };
     var _slots = function _slots(arrSlot) {
-        var slots = arrSlot.map(function (value) {
-            return value;
+        var slots = [];
+        arrSlot.forEach(function (value, index) {
+            slots[index >= 4 ? index + 1 : index] = value;
         });
+        // let slots = arrSlot.map(value => value)
         slots[4] = 0;
         return slots;
     };
