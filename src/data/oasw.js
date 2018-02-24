@@ -77,10 +77,14 @@ register({
     }
 })
 
-// 特殊条件 - 大鹰 / 瑞鳳改二乙 / Gambier Bay改
+// 特殊条件
 register({
     ship: {
-        isID: [526, 560, 396]
+        isID: [
+            526, // 大鹰
+            396, // Gambier Bay改
+            560, // 瑞鳳改二乙
+        ]
     },
     shipWithEquipments: {
         hasStat: {
@@ -89,7 +93,7 @@ register({
     },
     equipments: {
         // hasNameOf: '九三一空'
-        hasTorpedoBomber: {
+        hasAircraft: {
             hasStat: {
                 asw: 7
             }
@@ -117,10 +121,14 @@ register({
     }
 })
 
-// 特殊条件 - Gambier Bay / Gambier Bay改
+// 特殊条件
 register({
     ship: {
-        isID: [544, 396]
+        isID: [
+            544, // Gambier Bay
+            396, // Gambier Bay改
+            560, // 瑞鳳改二乙
+        ]
     },
     shipWithEquipments: {
         hasStat: {
@@ -129,6 +137,11 @@ register({
     },
     equipments: {
         hasLargeSonar: true,
+        hasAircraft: {
+            hasStat: {
+                asw: 7
+            }
+        },
     }
 })
 // register({

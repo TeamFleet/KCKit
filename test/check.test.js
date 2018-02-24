@@ -430,7 +430,11 @@ describe('Checking functions/utilities', () => {
             })
         });
         describe(`Check OASW capability for ship and equipment list`, () => {
-            it(`Check samples`, function () {
+            describe(`Check samples`, () => {
+                it(`零式水中聴音機`, function () {
+                    // Gambier Bay・改
+                    expect(check.oasw(396, [132, 244, 244])).toEqual(true);
+                })
             })
         })
     })
