@@ -3,7 +3,7 @@ const getdb = require('../get/db')
 const ItemBase = require('./base.js')
 const equipmentTypes = require('../types/equipments')
 const checkEquipment = require('../check/equipment')
-const dataTP = require('../data/tp')
+// const dataTP = require('../data/tp')
 
 module.exports = class Equipment extends ItemBase {
     constructor(data) {
@@ -118,7 +118,11 @@ module.exports = class Equipment extends ItemBase {
      * @return {Number}
      */
     getTP(type) {
-        return dataTP.equipmentType[this.type] || 0
+        // return dataTP.equipmentType[this.type] || 0
+        if (this.tp) return this.tp
+        return this.type
+            ? (getdb('equipment_types')[this.type].tp || 0)
+            : 0
     }
 
     /**

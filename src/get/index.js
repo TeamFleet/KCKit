@@ -7,5 +7,6 @@ module.exports = {
     shipType: require('./ship-type'),
     shipClass: require('./ship-class'),
     equipment: require('./equipment'),
+    equipmentType: require('./equipment-type'),
     shipAndEquipments: require('./ship-and-equipments'),
 }

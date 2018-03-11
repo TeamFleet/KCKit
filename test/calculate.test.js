@@ -14,6 +14,44 @@ const calculate = require('../src/calculate')
 
 
 describe('Calculating functions/utilities', () => {
+    describe('general', () => {
+        describe('tp...', () => {
+            it('case 1', () => {
+                expect(calculate.tp({
+                    shipType: {
+                        1: 1
+                    }
+                })).toBe(5)
+                expect(calculate.tp({
+                    shipType: {
+                        '1': 1
+                    }
+                })).toBe(5)
+            })
+            it('case 2', () => {
+                expect(calculate.tp({
+                    shipType: {
+                        1: 2
+                    },
+                    equipmentType: {
+                        LandingCraft: 3
+                    }
+                })).toBe(34)
+            })
+            it('case 3', () => {
+                expect(calculate.tp({
+                    shipType: {
+                        1: 2,
+                        15: 1,
+                    },
+                    equipmentType: {
+                        LandingCraft: 3,
+                        48: 1
+                    }
+                })).toBe(47)
+            })
+        })
+    })
     describe('ship', () => {
         describe('speed...', () => {
             it('type: low-1', () => {
