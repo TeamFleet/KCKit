@@ -395,8 +395,26 @@ describe('Checking functions/utilities', () => {
                     expect(check.aaci(478, [122, 131]).map(obj => obj.id)).toEqual([]);
                 })
                 it(`伊勢・改 / 日向・改`, function () {
-                    expect(check.aaci(82, [274, 27, 35]).map(obj => obj.id)).toEqual([28, 27]);
-                    expect(check.aaci(82, [274, 27]).map(obj => obj.id)).toEqual([27]);
+                    // 12cm30連装噴進砲改二 + 13号対空電探 + 三式弾
+                    expect(check.aaci(82, [274, 27, 35]).map(obj => obj.id)).toEqual([25, 28]);
+                    // 12cm30連装噴進砲改二 + 13号対空電探
+                    expect(check.aaci(82, [274, 27]).map(obj => obj.id)).toEqual([28]);
+                })
+                it(`鬼怒・改二`, function () {
+                    // Bofors 40mm四連装機関砲
+                    expect(check.aaci(487, [173]).map(obj => obj.id)).toEqual([20]);
+                    // Bofors 40mm四連装機関砲 + 10cm連装高角砲
+                    expect(check.aaci(487, [173, 3]).map(obj => obj.id)).toEqual([19, 20]);
+                    // Bofors 40mm四連装機関砲 + 10cm連装高角砲+高射装置
+                    expect(check.aaci(487, [173, 122]).map(obj => obj.id)).toEqual([20]);
+                })
+                it(`磯風・改二`, function () {
+                    // 10cm連装高角砲
+                    expect(check.aaci(557, [3]).map(obj => obj.id)).toEqual([]);
+                    // 10cm連装高角砲 + 13号対空電探
+                    expect(check.aaci(557, [3, 27]).map(obj => obj.id)).toEqual([29]);
+                    // 10cm連装高角砲+高射装置 + 13号対空電探
+                    expect(check.aaci(557, [122, 27]).map(obj => obj.id)).toEqual([8]);
                 })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);
