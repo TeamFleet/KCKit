@@ -414,7 +414,7 @@ describe('Checking functions/utilities', () => {
                     // 10cm連装高角砲 + 13号対空電探
                     expect(check.aaci(557, [3, 27]).map(obj => obj.id)).toEqual([29]);
                     // 10cm連装高角砲+高射装置 + 13号対空電探
-                    expect(check.aaci(557, [122, 27]).map(obj => obj.id)).toEqual([8]);
+                    expect(check.aaci(557, [122, 27]).map(obj => obj.id)).toEqual([29, 8]);
                 })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);

@@ -445,16 +445,12 @@ const register = (id, options = {}) => {
     register(29, {
         fixed: 5,
         modifier: 1.55,
-        icons: ['16-', '11AA'],
+        icons: [16, '11AA'],
         ship: {
             isID: [557, 558]
         },
         equipments: {
-            hasHAMount: {
-                hasStat: {
-                    aa: [0, 7]
-                }
-            },
+            hasHAMount: true,
             hasAARadar: true,
         }
     })
