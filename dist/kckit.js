@@ -1118,7 +1118,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     formula.getStarBonus = function (equipment, stat, star) {
         equipment = _equipment(equipment);
 
-        var _ref = _typeof(formula.starMultiper['_' + equipment.id]) === 'object' ? formula.starMultiper['_' + equipment.id] : formula.getStarMultiper(equipment.type),
+        var _ref = _typeof(formula.starMultiper['_' + equipment.id]) === 'object' ? formula.starMultiper['_' + equipment.id] : formula.getStarMultiplier(equipment.type),
             _ref$stat = _ref[stat],
             bonus = _ref$stat === undefined ? 0 : _ref$stat,
             _ref$_type = _ref._type,
@@ -1227,7 +1227,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         //                 // 改修加成
         //                 if (star_by_slot[index] && !options.isNight) {
-        //                     result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+        //                     result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
         //                         equipments_by_slot[index].type,
         //                         'torpedo'
         //                     )
@@ -1712,7 +1712,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     totalEquipmentValue += typeValue * (equipment.stat.los + formula.getStarBonus(equipment, 'los', star)
-                    // + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star)
+                    // + formula.getStarMultiplier(equipment.type, 'los') * Math.sqrt(star)
                     );
                 }
             }
@@ -1877,8 +1877,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         if (_equipmentType.Fighters.indexOf(equipment.type) > -1 && carry) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
-            // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
-            var statAA = (equipment.stat.aa || 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion * 1.5 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
+            // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiplier( equipment.type, 'fighter' ) )
+            var statAA = (equipment.stat.aa || 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion * 1.5 : 0) + star * formula.getStarMultiplier(equipment.type, 'fighter'),
                 base = statAA * Math.sqrt(carry),
                 rankBonus = formula.getFighterPowerRankMultiper(equipment, rank);
 
@@ -1901,7 +1901,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var results = [0, 0];
 
         if (carry) {
-            var statAA = (equipment.stat.aa || 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion : 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.hit * 2 : 0) + star * formula.getStarMultiper(equipment.type, 'fighter'),
+            var statAA = (equipment.stat.aa || 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion : 0) + (_equipmentType.isInterceptor(equipment) ? equipment.stat.hit * 2 : 0) + star * formula.getStarMultiplier(equipment.type, 'fighter'),
                 base = statAA * Math.sqrt(carry),
                 rankBonus = formula.getFighterPowerRankMultiper(equipment, rank, {
                 isAA: !0
@@ -2003,11 +2003,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         console.log(
                             equipments_by_slot[index]._name,
                             '★+' + star_by_slot[index],
-                            formula.getStarMultiper(
+                            formula.getStarMultiplier(
                                 equipments_by_slot[index].type,
                                 options.isNight ? 'night' : 'shelling'
                             ),
-                            Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                            Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                                 equipments_by_slot[index].type,
                                 options.isNight ? 'night' : 'shelling'
                             ),
@@ -2015,7 +2015,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         )
                         */
                         result += formula.getStarBonus(equipment, 'shelling', star_by_slot[index]);
-                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                         //     equipment.type,
                         //     'shelling'
                         // )
@@ -2055,7 +2055,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     // 改修加成
                     if (star_by_slot[index] && !options.isNight) {
                         result += formula.getStarBonus(equipment, 'torpedo', star_by_slot[index]);
-                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                         //     equipment.type,
                         //     'torpedo'
                         // )
@@ -2094,7 +2094,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 if (star_by_slot[index]) {
                     starBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index]);
-                    // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                    // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                     //     equipments_by_slot[index].type,
                     //     'night'
                     // )
@@ -2160,7 +2160,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     spBonus += Math.sqrt(carry) * ((3 + 1.5 * (isNightAircraft ? 1 : 0)) * (equipment.getStat('fire', ship) + equipment.getStat('torpedo', ship) + equipment.getStat('bomb', ship) + equipment.getStat('asw', ship)) / 10);
                     if (star_by_slot[index]) {
                         spStarBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index]);
-                        // spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        // spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                         //     equipments_by_slot[index].type,
                         //     'night'
                         // )
@@ -2223,7 +2223,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                             if (star_by_slot[index]) {
                                 starBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index]);
-                                // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                                // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                                 //     equipments_by_slot[index].type,
                                 //     'night'
                                 // )

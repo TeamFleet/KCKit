@@ -1209,7 +1209,7 @@
             _type: bonusType = 'sqrt'
         } = typeof formula.starMultiper[`_${equipment.id}`] === 'object'
             ? formula.starMultiper[`_${equipment.id}`]
-            : formula.getStarMultiper(equipment.type)
+            : formula.getStarMultiplier(equipment.type)
         switch (bonusType) {
             case 'sqrt': {
                 return bonus * Math.sqrt(star)
@@ -1331,7 +1331,7 @@
 
             //                 // 改修加成
             //                 if (star_by_slot[index] && !options.isNight) {
-            //                     result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+            //                     result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
             //                         equipments_by_slot[index].type,
             //                         'torpedo'
             //                     )
@@ -1880,7 +1880,7 @@
                         * (
                             equipment.stat.los
                             + formula.getStarBonus(equipment, 'los', star)
-                            // + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star)
+                            // + formula.getStarMultiplier(equipment.type, 'los') * Math.sqrt(star)
                         )
                 }
             }
@@ -2044,10 +2044,10 @@
             && carry
         ) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
-            // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiper( equipment.type, 'fighter' ) )
+            // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiplier( equipment.type, 'fighter' ) )
             let statAA = (equipment.stat.aa || 0)
                 + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion * 1.5 : 0)
-                + (star * formula.getStarMultiper(equipment.type, 'fighter'))
+                + (star * formula.getStarMultiplier(equipment.type, 'fighter'))
                 , base = statAA * Math.sqrt(carry)
                 , rankBonus = formula.getFighterPowerRankMultiper(equipment, rank)
 
@@ -2074,7 +2074,7 @@
             let statAA = (equipment.stat.aa || 0)
                 + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion : 0)
                 + (_equipmentType.isInterceptor(equipment) ? equipment.stat.hit * 2 : 0)
-                + (star * formula.getStarMultiper(equipment.type, 'fighter'))
+                + (star * formula.getStarMultiplier(equipment.type, 'fighter'))
                 , base = statAA * Math.sqrt(carry)
                 , rankBonus = formula.getFighterPowerRankMultiper(equipment, rank, {
                     isAA: true
@@ -2190,11 +2190,11 @@
                         console.log(
                             equipments_by_slot[index]._name,
                             '★+' + star_by_slot[index],
-                            formula.getStarMultiper(
+                            formula.getStarMultiplier(
                                 equipments_by_slot[index].type,
                                 options.isNight ? 'night' : 'shelling'
                             ),
-                            Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                            Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                                 equipments_by_slot[index].type,
                                 options.isNight ? 'night' : 'shelling'
                             ),
@@ -2202,7 +2202,7 @@
                         )
                         */
                         result += formula.getStarBonus(equipment, 'shelling', star_by_slot[index])
-                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                         //     equipment.type,
                         //     'shelling'
                         // )
@@ -2244,7 +2244,7 @@
                     // 改修加成
                     if (star_by_slot[index] && !options.isNight) {
                         result += formula.getStarBonus(equipment, 'torpedo', star_by_slot[index])
-                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                         //     equipment.type,
                         //     'torpedo'
                         // )
@@ -2289,7 +2289,7 @@
 
                 if (star_by_slot[index]) {
                     starBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index])
-                    // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                    // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                     //     equipments_by_slot[index].type,
                     //     'night'
                     // )
@@ -2364,7 +2364,7 @@
                     )
                     if (star_by_slot[index]) {
                         spStarBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index])
-                        // spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        // spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                         //     equipments_by_slot[index].type,
                         //     'night'
                         // )
@@ -2448,7 +2448,7 @@
 
                 if (star_by_slot[index]) {
                     starBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index])
-                    // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                    // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiplier(
                     //     equipments_by_slot[index].type,
                     //     'night'
                     // )
