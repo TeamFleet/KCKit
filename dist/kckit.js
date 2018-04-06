@@ -1053,9 +1053,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         },
         Interceptors: {
             fighter: 0.2
+        },
+
+        _10: {
+            _type: 'multiplication',
+            shelling: 0.2,
+            night: 0.2
+        },
+        _66: {
+            _type: 'multiplication',
+            shelling: 0.2,
+            night: 0.2
+        },
+        _220: {
+            _type: 'multiplication',
+            shelling: 0.2,
+            night: 0.2
+        },
+        _275: {
+            _type: 'multiplication',
+            shelling: 0.2,
+            night: 0.2
+        },
+        _247: {
+            _type: 'multiplication',
+            shelling: 0.3,
+            night: 0.3
+        },
+        _12: {
+            _type: 'multiplication',
+            shelling: 0.3,
+            night: 0.3
+        },
+        _234: {
+            _type: 'multiplication',
+            shelling: 0.3,
+            night: 0.3
         }
     };
-    formula.getStarMultiper = function (equipmentType, statType) {
+    // 获取改修加成对象
+    formula.getStarMultiplier = function (equipmentType, statType) {
+        // 如果 equipmentType 以 _ 开头，如 _123，则代表第 123 号装备，而非装备类型
         if (!formula.starMultiper._init) {
             var _loop = function _loop(i) {
                 if (_equipmentType[i] && _equipmentType[i].forEach) {
@@ -1072,7 +1110,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
             formula.starMultiper._init = !0;
         }
-        return formula.starMultiper[equipmentType] ? formula.starMultiper[equipmentType][statType] || 0 : 0;
+        var bonus = formula.starMultiper[equipmentType] || {};
+        if (statType) return bonus[statType] || 0;
+        return bonus;
+    };
+    // 计算改修加成
+    formula.getStarBonus = function (equipment, stat, star) {
+        equipment = _equipment(equipment);
+
+        var _ref = _typeof(formula.starMultiper['_' + equipment.id]) === 'object' ? formula.starMultiper['_' + equipment.id] : formula.getStarMultiper(equipment.type),
+            _ref$stat = _ref[stat],
+            bonus = _ref$stat === undefined ? 0 : _ref$stat,
+            _ref$_type = _ref._type,
+            bonusType = _ref$_type === undefined ? 'sqrt' : _ref$_type;
+
+        switch (bonusType) {
+            case 'sqrt':
+                {
+                    return bonus * Math.sqrt(star);
+                }
+            case 'multiplication':
+            case 'multiple':
+                {
+                    return bonus * star;
+                }
+        }
     };
     // 飞行器熟练度对制空战力的加成
     formula.getFighterPowerRankMultiper = function (equipment, rank /*, options*/) {
@@ -1649,7 +1711,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         if (typesForCheck.indexOf(equipment.type) > -1) typeValue = equipmentTypeValues[types];
                     }
 
-                    totalEquipmentValue += typeValue * (equipment.stat.los + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star));
+                    totalEquipmentValue += typeValue * (equipment.stat.los + formula.getStarBonus(equipment, 'los', star)
+                    // + formula.getStarMultiper(equipment.type, 'los') * Math.sqrt(star)
+                    );
                 }
             }
         });
@@ -1950,7 +2014,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             options.isNight ? '夜战' : '昼战'
                         )
                         */
-                        result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipment.type, 'shelling');
+                        result += formula.getStarBonus(equipment, 'shelling', star_by_slot[index]);
+                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        //     equipment.type,
+                        //     'shelling'
+                        // )
                     }
                 }
             });
@@ -1986,7 +2054,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     // 改修加成
                     if (star_by_slot[index] && !options.isNight) {
-                        result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipment.type, 'torpedo');
+                        result += formula.getStarBonus(equipment, 'torpedo', star_by_slot[index]);
+                        // result += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        //     equipment.type,
+                        //     'torpedo'
+                        // )
                     }
                 }
             });
@@ -2021,7 +2093,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (!equipments_by_slot[index]) return;
 
                 if (star_by_slot[index]) {
-                    starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
+                    starBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index]);
+                    // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                    //     equipments_by_slot[index].type,
+                    //     'night'
+                    // )
                 }
             });
 
@@ -2083,7 +2159,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     spTorpedo += equipment.getStat('torpedo', ship);
                     spBonus += Math.sqrt(carry) * ((3 + 1.5 * (isNightAircraft ? 1 : 0)) * (equipment.getStat('fire', ship) + equipment.getStat('torpedo', ship) + equipment.getStat('bomb', ship) + equipment.getStat('asw', ship)) / 10);
                     if (star_by_slot[index]) {
-                        spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
+                        spStarBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index]);
+                        // spStarBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                        //     equipments_by_slot[index].type,
+                        //     'night'
+                        // )
                     }
                 }
             });
@@ -2142,7 +2222,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             if (!equipments_by_slot[index]) return;
 
                             if (star_by_slot[index]) {
-                                starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(equipments_by_slot[index].type, 'night');
+                                starBonus += formula.getStarBonus(equipments_by_slot[index], 'night', star_by_slot[index]);
+                                // starBonus += Math.sqrt(star_by_slot[index]) * formula.getStarMultiper(
+                                //     equipments_by_slot[index].type,
+                                //     'night'
+                                // )
                             }
 
                             if (!equipments_by_slot[index]) return;
