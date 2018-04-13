@@ -1079,7 +1079,8 @@
         },
         SecondaryGuns: {
             shelling: 1,
-            night: 1
+            night: 1,
+            hit: 1,
         },
         APShells: {
             shelling: 1,
@@ -1146,39 +1147,39 @@
         },
 
         _10: {
-            _type: 'multiplication',
-            shelling: 0.2,
-            night: 0.2,
+            shelling: ['multiplication', 0.2],
+            night: 1,
         },
         _66: {
-            _type: 'multiplication',
-            shelling: 0.2,
-            night: 0.2,
+            shelling: ['multiplication', 0.2],
+            night: 1,
+            // aa
+            // aaFleet
         },
         _220: {
-            _type: 'multiplication',
-            shelling: 0.2,
-            night: 0.2,
+            shelling: ['multiplication', 0.2],
+            night: 1,
+            // aa
+            // aaFleet
         },
         _275: {
-            _type: 'multiplication',
-            shelling: 0.2,
-            night: 0.2,
+            shelling: ['multiplication', 0.2],
+            night: 1,
+            // aa
+            // aaFleet
         },
-        _247: {
-            _type: 'multiplication',
-            shelling: 0.3,
-            night: 0.3,
-        },
+        // _247: {
+        //     _type: 'multiplication',
+        //     shelling: 0.3,
+        //     night: 0.3,
+        // },
         _12: {
-            _type: 'multiplication',
-            shelling: 0.3,
-            night: 0.3,
+            shelling: ['multiplication', 0.3],
+            night: ['multiplication', 0.3],
         },
         _234: {
-            _type: 'multiplication',
-            shelling: 0.3,
-            night: 0.3,
+            shelling: ['multiplication', 0.3],
+            night: ['multiplication', 0.3],
         },
     };
     // 获取改修加成对象
@@ -1204,12 +1205,28 @@
     // 计算改修加成
     formula.getStarBonus = function (equipment, stat, star) {
         equipment = _equipment(equipment)
-        const {
-            [stat]: bonus = 0,
-            _type: bonusType = 'sqrt'
-        } = typeof formula.starMultiper[`_${equipment.id}`] === 'object'
-            ? formula.starMultiper[`_${equipment.id}`]
-            : formula.getStarMultiplier(equipment.type)
+
+        let {
+            [stat]: bonus = 0
+        } = Object.assign(
+            {},
+            formula.getStarMultiplier(equipment.type),
+            formula.starMultiper[`_${equipment.id}`]
+        )
+
+        let bonusType = 'sqrt'
+
+        if (Array.isArray(bonus)) {
+            bonusType = bonus[0]
+            bonus = bonus[1]
+        }
+
+        // const {
+        //     [stat]: bonus = 0,
+        //     _type: bonusType = 'sqrt'
+        // } = typeof formula.starMultiper[`_${equipment.id}`] === 'object'
+        //     ? formula.starMultiper[`_${equipment.id}`]
+        //     : formula.getStarMultiplier(equipment.type)
         switch (bonusType) {
             case 'sqrt': {
                 return bonus * Math.sqrt(star)
