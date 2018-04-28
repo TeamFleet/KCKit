@@ -133,6 +133,20 @@ module.exports = (
             // 	y = 0.5
             multiper = 0.5 * count[34] + 0.5 * count[87]
             break
+
+        case 'low-4':
+            // 低速4
+            // 	基础		5
+            // 	最大 		20
+            // 	1x + 0y		+5		0.5x
+            // 	2x + 0y		+10		1x
+            // 	0x + 1y		+5		0.5x
+            // 	1x + 1y		+10		1x
+            // 	0x + 2y		+10		1x
+            // 	x = 0.5
+            // 	y = 0.5
+            multiper = 0.5
+            break
     }
 
     // console.log(

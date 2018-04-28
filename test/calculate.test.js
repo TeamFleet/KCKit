@@ -231,6 +231,26 @@ describe('Calculating functions/utilities', () => {
                     33
                 ])).toBe(10);
             })
+            it('type: low-4', () => {
+                // Samuel B.Roberts
+                expect(calculate.ship.speed(561, [
+                    undefined, undefined, undefined, undefined,
+                    33
+                ])).toBe(10);
+                // Samuel B.Roberts 改
+                expect(calculate.ship.speed(681, [
+                    undefined, undefined, undefined, undefined,
+                    33
+                ])).toBe(10);
+                expect(calculate.ship.speed(681, [
+                    34, 34, 34, undefined,
+                    33
+                ])).toBe(10);
+                expect(calculate.ship.speed(681, [
+                    87, 87, 87, undefined,
+                    33
+                ])).toBe(10);
+            })
             it('type: high-1', () => {
                 // 翔鹤 改二甲
                 expect(calculate.ship.speed(466, [
