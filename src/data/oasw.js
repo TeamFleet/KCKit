@@ -70,10 +70,10 @@ register({
     }
 })
 
-// 特殊条件 - 五十铃改二 / 龙田改二 / Jervis改
+// 特殊条件 - 五十铃改二 / 龙田改二 / Jervis改 / Samuel B.Roberts改
 register({
     ship: {
-        isID: [141, 478, 394]
+        isID: [141, 478, 394, 681]
     }
 })
 
