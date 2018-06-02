@@ -51,6 +51,136 @@ describe('Calculating functions/utilities', () => {
                 })).toBe(47)
             })
         })
+        describe('bonus...', () => {
+            it('陽炎改二 || 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    566, 267
+                )).toEqual({
+                    fire: 2,
+                    evasion: 1,
+                })
+            })
+            it('陽炎改二 || 12.7cm連装砲D型改二 + 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    566, [267, 267]
+                )).toEqual({
+                    fire: 3,
+                    evasion: 2,
+                })
+            })
+            it('陽炎改二 || 12.7cm連装砲D型改二 + 12.7cm連装砲D型改二 + 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    566, [267, 267, 267]
+                )).toEqual({
+                    fire: 4,
+                    evasion: 3,
+                })
+            })
+            it('陽炎改二 || 12.7cm連装砲D型改二 + 12.7cm連装砲D型改二 + 22号対水上電探改四', () => {
+                expect(calculate.bonus(
+                    566, [267, 267, 88]
+                )).toEqual({
+                    fire: 3,
+                    evasion: 2,
+                })
+            })
+            it('長波改 || 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    304, 267
+                )).toEqual({
+                    fire: 2,
+                    evasion: 1,
+                })
+            })
+            it('長波改二 || 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    543, 267
+                )).toEqual({
+                    fire: 3,
+                    evasion: 1,
+                })
+            })
+            it('長波改二 || 12.7cm連装砲D型改二 + 12.7cm連装砲D型改二 + 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    543, [267, 267, 267]
+                )).toEqual({
+                    fire: 9,
+                    evasion: 3,
+                })
+            })
+            it('長波改二 || 12.7cm連装砲D型改二 + 12.7cm連装砲D型改二 + 22号対水上電探改四', () => {
+                expect(calculate.bonus(
+                    543, [267, 267, 88]
+                )).toEqual({
+                    fire: 7,
+                    evasion: 4,
+                    torpedo: 3,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    567, [15]
+                )).toEqual({
+                    torpedo: 2,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷 + 61cm四連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    567, [15, 15]
+                )).toEqual({
+                    torpedo: 4,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷 + 61cm四連装(酸素)魚雷 + 61cm四連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    567, [15, 15, 15]
+                )).toEqual({
+                    torpedo: 4,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷後期型 + 61cm四連装(酸素)魚雷後期型', () => {
+                expect(calculate.bonus(
+                    567, [286, 286]
+                )).toEqual({
+                    torpedo: 4,
+                    evasion: 2,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷後期型(MAX) + 61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
+                expect(calculate.bonus(
+                    567, [286, 286], [10, 5]
+                )).toEqual({
+                    fire: 1,
+                    torpedo: 6,
+                    evasion: 2,
+                })
+            })
+            it('不知火改二 || 12.7cm連装砲D型改二 + 61cm四連装(酸素)魚雷後期型(MAX) + 61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
+                expect(calculate.bonus(
+                    567, [267, 286, 286], [0, 10, 5]
+                )).toEqual({
+                    fire: 3,
+                    torpedo: 6,
+                    evasion: 3,
+                })
+            })
+            it('木曽改二 || 北方迷彩(＋北方装備)', () => {
+                expect(calculate.bonus(
+                    146, [268]
+                )).toEqual({
+                    armor: 2,
+                    evasion: 7,
+                })
+            })
+            it('木曽改二 || 北方迷彩(＋北方装備) + 北方迷彩(＋北方装備) + 北方迷彩(＋北方装備)', () => {
+                expect(calculate.bonus(
+                    146, [268, 268, 268]
+                )).toEqual({
+                    armor: 2,
+                    evasion: 7,
+                })
+            })
+        })
     })
     describe('ship', () => {
         describe('speed...', () => {

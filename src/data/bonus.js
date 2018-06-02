@@ -97,7 +97,8 @@ module.exports = [
     {
         equipment: 267,
         ship: {
-            isClass: [21]
+            isClass: [21],
+            isNotID: DD_KagerouClass2ndRemodel,
         },
         bonus: {
             fire: 1,
@@ -109,7 +110,8 @@ module.exports = [
     {
         equipment: 267,
         ship: {
-            isClass: [22, 24]
+            isClass: [22, 24],
+            isNotID: DD_YuugumoClass2ndRemodel,
         },
         bonus: {
             fire: 2,
@@ -246,7 +248,7 @@ module.exports = [
     // @ 特型駆逐艦 改二 / 初春型 改二
     {
         equipment: 285,
-        ships: {
+        ship: {
             isID: [].concat(
                 DD_FubukiClass2ndRemodel,
                 DD_AyanamiClass2ndRemodel,
@@ -273,7 +275,7 @@ module.exports = [
         ship: {
             isID: DD_KagerouClass2ndRemodel
         },
-        bonus: {
+        bonusCount: {
             1: {
                 torpedo: 2,
             },
@@ -286,7 +288,7 @@ module.exports = [
     // @ 陽炎型 改二
     {
         equipment: 286,
-        ships: {
+        ship: {
             isID: DD_KagerouClass2ndRemodel
         },
         bonusImprove: {
@@ -309,7 +311,7 @@ module.exports = [
     // @ 白露型 改二 / 朝潮型 改二 / 夕雲型 改二
     {
         equipment: 286,
-        ships: {
+        ship: {
             isID: [].concat(
                 DD_ShiratsuyuClass2ndRemodel,
                 DD_AsashioClass2ndRemodel,
@@ -336,7 +338,7 @@ module.exports = [
     // @ 球磨型 改
     {
         equipment: 268,
-        ships: {
+        ship: {
             isID: CL_KumaClassRemodel
         },
         bonusCount: {
@@ -380,7 +382,7 @@ module.exports = [
             fire: 2,
         }
     },
-    // 41cm三連装砲改二 + 水上電探
+    // 41cm三連装砲改二 + 対空電探
     // @ 伊勢型 改
     {
         equipments: {

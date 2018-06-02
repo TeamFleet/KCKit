@@ -1,38 +1,22 @@
 {
     "extends": "eslint:recommended",
-    "plugins": [
-        "react"
-    ],
-    // 环境定义了预定义的全局变量。
     "env": {
-        //环境定义了预定义的全局变量。更多在官网查看
         "browser": true,
         "node": true,
         "commonjs": true,
         "amd": true,
         "es6": true,
-        "mocha": true,
-        "jquery": true
+        "mocha": true
     },
     "parser": "babel-eslint",
-    // JavaScript 语言选项
     "parserOptions": {
-        // ECMAScript 版本
         "ecmaVersion": 7,
-        "sourceType": "module", //script
-        // 想使用的额外的语言特性:
+        "sourceType": "module",
         "ecmaFeatures": {
-            // 允许在全局作用域下使用 return 语句
             "globalReturn": true,
-            // impliedStric
-            "impliedStrict": true,
-            // 启用 JSX
-            "jsx": true,
-            "experimentalObjectRestSpread": true
+            "impliedStrict": true
         }
     },
-    // 全局变量
-    // ture 可以被重写，false 不可以被重写
     "globals": {
     },
     "settings": {
@@ -40,15 +24,9 @@
             "node_modules"
         ]
     },
-    /**
-     * "off" 或 0 - 关闭规则
-     * "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出),
-     * "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
-     */
     "rules": {
         "no-const-assign": 1,
         "no-extra-semi": 2,
-        //"semi": [2, "always", { "omitLastInOneLineBlock": true}],
         "semi": 0,
         "no-case-declarations": 2,
         "no-console": 0,

@@ -1,5 +1,6 @@
 module.exports = {
     tp: require('./tp'),
+    bonus: require('./bonus'),
 
     ship: {
         speed: require('./ship/speed'),

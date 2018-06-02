@@ -9,7 +9,15 @@ module.exports = (
     equipmentStars = [],
     equipmentRanks = [],
 ) => {
+    if (typeof equipments === 'number' || typeof equipments === 'string')
+        equipments = [equipments]
+    if (typeof equipmentStars === 'number' || typeof equipmentStars === 'string')
+        equipmentStars = [equipmentStars]
+    if (typeof equipmentRanks === 'number' || typeof equipmentRanks === 'string')
+        equipmentRanks = [equipmentRanks]
+
     ship = getShip(ship)
+
     equipments = [
         ...Array(Math.max(
             maxSlotsPlusExtra,
@@ -26,19 +34,20 @@ module.exports = (
             // return equipment
         }
     )
+
     return {
         ship,
         equipments,
         equipmentStars: equipments.map(
             (_, index) =>
                 typeof equipments[index] === 'object'
-                    ? Math.min(10, equipmentStars[index] || 0)
+                    ? Math.min(10, parseInt(equipmentStars[index]) || 0)
                     : undefined
         ),
         equipmentRanks: equipments.map(
             (_, index) =>
                 typeof equipments[index] === 'object'
-                    ? Math.min(7, equipmentRanks[index] || 0)
+                    ? Math.min(7, parseInt(equipmentRanks[index]) || 0)
                     : undefined
         ),
     }

@@ -17,7 +17,8 @@
     },
 
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "test:calculate": "jest ./test/calculate.test.js"
     },
 
     "dependencies": {
