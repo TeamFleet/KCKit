@@ -137,53 +137,53 @@ module.exports = class Equipment extends ItemBase {
         const base = this.stat[statType]
         if (!ship || base === undefined || !Array.isArray(this.stat_bonus))
             return base
-        if (ship && Array.isArray(this.stat_bonus)) {
-            if (typeof ship !== 'object')
-                ship = getdb('ships')[ship]
-            const shipId = ship.id
+        // if (ship && Array.isArray(this.stat_bonus)) {
+        //     if (typeof ship !== 'object')
+        //         ship = getdb('ships')[ship]
+        //     const shipId = ship.id
 
-            let bonus
+        //     let bonus
 
-            this.stat_bonus.forEach(o => {
-                if (Array.isArray(o.ships))
-                    o.ships.some(ship => {
-                        if (ship == shipId) {
-                            for (const stat in o.bonus) {
-                                if (!bonus) bonus = {}
-                                bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0)
-                            }
-                            // console.log(
-                            //     ship, shipId,
-                            //     o.bonus,
-                            //     bonus
-                            // )
-                            return true
-                        }
-                        return false
-                    })
-                if (Array.isArray(o.ship_classes))
-                    o.ship_classes.some(classId => {
-                        if (classId == ship.class) {
-                            for (const stat in o.bonus) {
-                                if (!bonus) bonus = {}
-                                bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0)
-                            }
-                            // console.log(
-                            //     o.bonus,
-                            //     bonus
-                            // )
-                            return true
-                        }
-                        return false
-                    })
-                // return typeof bonus !== 'undefined'
-            })
-            if (bonus) {
-                // if (shipId === 543)
-                //     console.log(ship._name, bonus)
-                return base + (bonus[statType] || 0)
-            }
-        }
+        //     this.stat_bonus.forEach(o => {
+        //         if (Array.isArray(o.ships))
+        //             o.ships.some(ship => {
+        //                 if (ship == shipId) {
+        //                     for (const stat in o.bonus) {
+        //                         if (!bonus) bonus = {}
+        //                         bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0)
+        //                     }
+        //                     // console.log(
+        //                     //     ship, shipId,
+        //                     //     o.bonus,
+        //                     //     bonus
+        //                     // )
+        //                     return true
+        //                 }
+        //                 return false
+        //             })
+        //         if (Array.isArray(o.ship_classes))
+        //             o.ship_classes.some(classId => {
+        //                 if (classId == ship.class) {
+        //                     for (const stat in o.bonus) {
+        //                         if (!bonus) bonus = {}
+        //                         bonus[stat] = Math.max(o.bonus[stat], bonus[stat] || 0)
+        //                     }
+        //                     // console.log(
+        //                     //     o.bonus,
+        //                     //     bonus
+        //                     // )
+        //                     return true
+        //                 }
+        //                 return false
+        //             })
+        //         // return typeof bonus !== 'undefined'
+        //     })
+        //     if (bonus) {
+        //         // if (shipId === 543)
+        //         //     console.log(ship._name, bonus)
+        //         return base + (bonus[statType] || 0)
+        //     }
+        // }
         return base
     }
 }
