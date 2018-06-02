@@ -3892,7 +3892,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         return result;
     };
     // Get bonus for specified ship and equipment(s)
-    formula.getBonus = function (ship, equipments, stat) {};
+    formula.getBonus = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, stat) {
+        return __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot, stat);
+    };
 
     /**
      * ES/JS Functions/Features

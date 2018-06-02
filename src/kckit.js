@@ -3007,8 +3007,8 @@
         return result;
     };
     // Get bonus for specified ship and equipment(s)
-    formula.getBonus = (ship, equipments, stat) => {
-
+    formula.getBonus = (ship, equipments_by_slot, star_by_slot, rank_by_slot, stat) => {
+        return __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot, stat)
     }
 
 
