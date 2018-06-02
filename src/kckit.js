@@ -3006,6 +3006,10 @@
 
         return result;
     };
+    // Get bonus for specified ship and equipment(s)
+    formula.getBonus = (ship, equipments, stat) => {
+
+    }
 
 
 
