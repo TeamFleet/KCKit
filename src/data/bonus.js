@@ -64,8 +64,8 @@ const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel = DD_YuugumoClass2ndRemode
 ])
 
 /**
- * @member {Number} equipment 单一装备
- * @member {Object} equipments 条件：装备组合
+ * @member {Number} [equipment] 单一装备
+ * @member {Object} [equipments] 条件：装备组合
  * @member {Object} ship 条件：匹配的舰娘
  * @member {Object} [bonus] 收益
  * @member {Object} [bonusCount] 仅当为单一装备时可用：不同装备数量的收益
