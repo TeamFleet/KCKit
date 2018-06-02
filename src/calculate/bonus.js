@@ -15,6 +15,8 @@ const calculateBonus = (
 ) => {
     if (typeof equipmentStars === 'string')
         return calculateBonus(ship, equipments, undefined, undefined, equipmentStars);
+    if (typeof equipmentRanks === 'string')
+        return calculateBonus(ship, equipments, equipmentStars, undefined, equipmentRanks);
 
     ({
         ship, equipments, equipmentStars, equipmentRanks
@@ -31,7 +33,7 @@ const calculateBonus = (
         }
     }
 
-    // condition: single equipment
+    // 条件：单一装备
     conditions
         .filter(bonus => (
             typeof bonus.equipment === 'number' &&
@@ -43,10 +45,15 @@ const calculateBonus = (
         .forEach(bonus => {
             let thisBonus = {}
 
+            // 根据改修星级
+            // 目前的数据结构下，改修星级条件与其他条件不能共存
+            // TODO: 改修星级条件与数量条件可并存
             if (typeof bonus.bonusImprove === 'object') {
+                // 从大到小排序可能的改修星级
                 const starsDesc = Object
                     .keys(bonus.bonusImprove)
                     .sort((a, b) => parseInt(b) - parseInt(a))
+                // 每个装备的收益单独计算
                 equipments.forEach((equipment, index) => {
                     if (equipment && equipment.id &&
                         equipment.id == bonus.equipment
@@ -68,7 +75,7 @@ const calculateBonus = (
             } else {
                 let thisCount = 0
 
-                // count for equipment
+                // 统计目标装备的数量
                 equipments.forEach(equipment => {
                     if (equipment && equipment.id &&
                         equipment.id == bonus.equipment
@@ -99,7 +106,7 @@ const calculateBonus = (
             addResult(thisBonus)
         })
 
-    // condition: equipment-set
+    // 条件：套装
     conditions
         .filter(bonus => (
             typeof bonus.equipments === 'object' &&

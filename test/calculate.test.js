@@ -180,6 +180,14 @@ describe('Calculating functions/utilities', () => {
                     evasion: 7,
                 })
             })
+            it('pass stat', () => {
+                expect(calculate.bonus(
+                    146, [268, 268, 268], 'fire'
+                )).toEqual(0)
+                expect(calculate.bonus(
+                    146, [268, 268, 268], 'armor'
+                )).toEqual(2)
+            })
         })
     })
     describe('ship', () => {
