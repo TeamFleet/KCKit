@@ -143,4 +143,15 @@ const checkCondition = {
             && equipment.stat.aa >= 2
         ) === isTrue)
     },
+    // 是对水面电探/雷达
+    issurfaceradar: function (equipment, isTrue) {
+        // console.log(`[${equipment.id}]`, equipment._name)
+        return ((
+            this.istype(equipment, equipmentTypes.Radars)
+            && (
+                isNaN(equipment.stat.aa)
+                || equipment.stat.aa < 2
+            )
+        ) === isTrue)
+    },
 }
