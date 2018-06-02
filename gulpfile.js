@@ -28,7 +28,7 @@ gulp.task('KCKit-js', function () {
 
 gulp.task('KCKit-watch', function () {
     gulp.watch(
-        './src/*.js',
+        './src/**/*.js',
         ['KCKit-js']
     )
 })

@@ -7,16 +7,16 @@
         window[name] = factory()
     }
 })('__getShipAndEquipments', function () {
-    const getShip = window.__getShip
-    const getEquipment = window.__getEquipment
-    const maxSlotsPlusExtra = 5
-
     return (
         ship,
         equipments = [],
         equipmentStars = [],
         equipmentRanks = [],
     ) => {
+        const getShip = window.__getShip
+        const getEquipment = window.__getEquipment
+        const maxSlotsPlusExtra = 5
+
         if (typeof equipments === 'number' || typeof equipments === 'string')
             equipments = [equipments]
         if (typeof equipmentStars === 'number' || typeof equipmentStars === 'string')

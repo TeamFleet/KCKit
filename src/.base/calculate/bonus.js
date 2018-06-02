@@ -7,11 +7,6 @@
         window[name] = factory()
     }
 })('__calculateBonus', function () {
-    const getShipAndEquipments = window.__getShipAndEquipments
-    const checkShip = window.__checkShip
-    const checkEquipments = window.__checkEquipments
-    const bonus = window.__bonus
-
     /**
      * Calculate stat bonus for specified ship with equipment(s)
      */
@@ -24,6 +19,11 @@
     ) => {
         if (typeof equipmentStars === 'string')
             return calculateBonus(ship, equipments, undefined, undefined, equipmentStars);
+
+        const getShipAndEquipments = window.__getShipAndEquipments
+        const checkShip = window.__checkShip
+        const checkEquipments = window.__checkEquipments
+        const bonus = window.__bonus;
 
         ({
             ship, equipments, equipmentStars, equipmentRanks

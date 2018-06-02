@@ -1,4 +1,4 @@
-(function (name, factory) {
+; (function (name, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else if (typeof module === 'object' && module.exports) {
@@ -1359,15 +1359,6 @@
             //     }
             //     //return (ship.stat.torpedo_max || 0)
             // }
-            , powerTorpedo = function (options) {
-                return formula.calcByShip.torpedoPower(
-                    ship,
-                    equipments_by_slot,
-                    star_by_slot,
-                    rank_by_slot,
-                    options
-                )
-            }
             , value = 0
 
         equipments_by_slot = equipments_by_slot.map(function (equipment) {
@@ -1441,6 +1432,24 @@
             }
         })
 
+        const bonus = __calculateBonus(
+            ship,
+            equipments_by_slot,
+            star_by_slot,
+            rank_by_slot
+        )
+
+        const powerTorpedo = function (options) {
+            return formula.calcByShip.torpedoPower(
+                ship,
+                equipments_by_slot,
+                star_by_slot,
+                rank_by_slot,
+                options,
+                bonus
+            )
+        }
+
         switch (type) {
             // 制空战力，装备须为战斗机类型 _equipmentType.Fighters
             // 计算公式参考 http://bbs.ngacn.cc/read.php?tid=8680767
@@ -1496,7 +1505,7 @@
                 if (formula.shipType.Submarines.indexOf(ship.type) > -1) {
                     return '-'
                 } else {
-                    result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot)
+                    result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {}, bonus)
                     if (result && result > -1)
                         return Math.floor(result)// + 5
                     return '-'
@@ -1520,7 +1529,8 @@
                     star_by_slot,
                     rank_by_slot,
                     {},
-                    count
+                    count,
+                    bonus
                 )
                 return nightPower.damage <= 0
                     ? '-'
@@ -1534,7 +1544,10 @@
                     if (equipments_by_slot[index])
                         result += equipments_by_slot[index].getStat('hit', ship) || 0
                 })
-                return result >= 0 ? '+' + result : result
+                result += (bonus.hit || 0)
+                return result >= 0
+                    ? ('+' + result)
+                    : result
             //break;
 
             // 装甲总和
@@ -1543,7 +1556,7 @@
                     if (equipments_by_slot[index])
                         result += equipments_by_slot[index].getStat('armor', ship) || 0
                 })
-                return result
+                return result + (bonus.armor || 0)
             //break;
 
             // 回避总和
@@ -1552,7 +1565,7 @@
                     if (equipments_by_slot[index])
                         result += equipments_by_slot[index].getStat('evasion', ship) || 0
                 })
-                return result
+                return result + (bonus.evasion || 0)
             //break;
 
             // 索敌能力
@@ -1560,7 +1573,7 @@
                 return formula.calcByShip.losPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, options)
             //break;
             default:
-                return formula.calcByShip[type](ship, equipments_by_slot, star_by_slot, rank_by_slot, options)
+                return formula.calcByShip[type](ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus)
             //break;
         }
 
@@ -2104,8 +2117,9 @@
         return results
     };
     // Calculate by Ship
-    formula.calcByShip.shellingPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+    formula.calcByShip.shellingPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus) {
         options = options || {}
+        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
 
         let result = 0
             , isCV = false
@@ -2153,7 +2167,11 @@
             if (!torpedoDamage && !bombDamage)
                 return -1
             else
-                result += Math.floor((Math.floor(bombDamage * 1.3) + torpedoDamage + ship.stat.fire_max) * 1.5) + 50
+                result += Math.floor(
+                    1.5 * (
+                        Math.floor(bombDamage * 1.3) + torpedoDamage + ship.stat.fire_max + (bonus.fire || 0)
+                    )
+                ) + 50
             return result
         } else {
             // 其他舰种
@@ -2230,18 +2248,20 @@
             // console.log(count)
 
             // 加成
-            let bonus = 0
+            let thisBonus = 0
                 // 轻巡系主炮加成
                 + 2 * Math.sqrt(count.CLMainGunTwin) + Math.sqrt(count.CLMainGunNaval)
                 // 意大利重巡主炮加成（仅对意大利重巡洋舰生效）
                 + Math.sqrt(count.ItalianCAMainGun)
+                + (bonus.fire || 0)
 
-            return result + bonus
+            return result + thisBonus
         }
         //return (ship.stat.fire_max || 0)
     };
-    formula.calcByShip.torpedoPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+    formula.calcByShip.torpedoPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus) {
         options = options || {}
+        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
 
         let result = 0
         const slots = _slots(ship.slot)
@@ -2249,7 +2269,8 @@
         if (formula.shipType.Carriers.indexOf(ship.type) > -1 && !options.isNight) {
             return options.returnZero ? 0 : -1
         } else {
-            result = ship.stat.torpedo_max || 0
+            result = (ship.stat.torpedo_max || 0)
+                + (bonus.torpedo || 0)
             slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
                     const equipment = equipments_by_slot[index]
@@ -2271,8 +2292,9 @@
             return result
         }
     }
-    formula.calcByShip.nightPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, count) {
+    formula.calcByShip.nightPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, count, bonus) {
         options = options || {}
+        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
 
         const result = {
             // value: ''
@@ -2410,6 +2432,7 @@
             result.hit = 1
             result.damage = Math.floor(
                 ship.stat.fire_max
+                + (bonus.fire || 0)
                 + spFire
                 + spTorpedo
                 + 3 * nightCarry
@@ -2430,7 +2453,9 @@
         else if (
             ship.getCapability('participate_night_battle_when_equip_swordfish')
         ) {
-            result.damage += ship.stat.fire_max + ship.stat.torpedo_max
+            result.damage
+                += ship.stat.fire_max + (bonus.fire || 0)
+                + ship.stat.torpedo_max + (bonus.torpedo || 0)
             slots.forEach(function (carry, index) {
                 const equipment = equipments_by_slot[index]
                 if (!equipments_by_slot[index]) return
@@ -2483,10 +2508,10 @@
             result.damage =
                 formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
                     isNight: true
-                })
+                }, bonus)
                 + formula.calcByShip.torpedoPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
                     isNight: true, returnZero: true
-                })
+                }, bonus)
                 + starBonus
             /*
             console.log(

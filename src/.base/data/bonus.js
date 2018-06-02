@@ -1,4 +1,4 @@
-;(function (name, factory) {
+; (function (name, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else if (typeof module === 'object' && module.exports) {
@@ -119,7 +119,8 @@
         {
             equipment: 267,
             ship: {
-                isClass: [22, 24]
+                isClass: [22, 24],
+                isNotID: DD_YuugumoClass2ndRemodel,
             },
             bonus: {
                 fire: 2,

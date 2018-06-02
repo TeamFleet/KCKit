@@ -8,7 +8,7 @@
     }
 })('__getShip', function () {
     return ship => {
-        if (typeof ship === 'object' && ship.id) {
+        if (ship && typeof ship === 'object' && ship.id) {
             return ship
         } else if (!isNaN(ship)) {
             return _g.data.ships[parseInt(ship)]

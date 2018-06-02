@@ -1,4 +1,4 @@
-;(function (name, factory) {
+; (function (name, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else if (typeof module === 'object' && module.exports) {
@@ -6,10 +6,10 @@
     } else {
         window[name] = factory()
     }
-})('__ArrayOrItem', function () {
+})('__ArrayOrItemAll', function () {
     return (arg, func) => {
         if (Array.isArray(arg))
-            return arg.some(func)
+            return arg.every(func)
         return func(arg)
     }
 })

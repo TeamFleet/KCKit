@@ -201,7 +201,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
 })('__getEquipment', function () {
     return function (equipment) {
-        if ((typeof equipment === 'undefined' ? 'undefined' : _typeof(equipment)) === 'object' && equipment.id) {
+        if (equipment && (typeof equipment === 'undefined' ? 'undefined' : _typeof(equipment)) === 'object' && equipment.id) {
             return equipment;
         } else if (!isNaN(equipment)) {
             return _g.data.items[parseInt(equipment)];
@@ -219,7 +219,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
 })('__getShip', function () {
     return function (ship) {
-        if ((typeof ship === 'undefined' ? 'undefined' : _typeof(ship)) === 'object' && ship.id) {
+        if (ship && (typeof ship === 'undefined' ? 'undefined' : _typeof(ship)) === 'object' && ship.id) {
             return ship;
         } else if (!isNaN(ship)) {
             return _g.data.ships[parseInt(ship)];
@@ -236,14 +236,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         window[name] = factory();
     }
 })('__getShipAndEquipments', function () {
-    var getShip = window.__getShip;
-    var getEquipment = window.__getEquipment;
-    var maxSlotsPlusExtra = 5;
-
     return function (ship) {
         var equipments = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
         var equipmentStars = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
         var equipmentRanks = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+
+        var getShip = window.__getShip;
+        var getEquipment = window.__getEquipment;
+        var maxSlotsPlusExtra = 5;
 
         if (typeof equipments === 'number' || typeof equipments === 'string') equipments = [equipments];
         if (typeof equipmentStars === 'number' || typeof equipmentStars === 'string') equipmentStars = [equipmentStars];
@@ -280,12 +280,432 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     } else {
         window[name] = factory();
     }
-})('__calculateBonus', function () {
-    var getShipAndEquipments = window.__getShipAndEquipments;
-    var checkShip = window.__checkShip;
-    var checkEquipments = window.__checkEquipments;
-    var bonus = window.__bonus;
+})('__checkEquipment', function () {
+    /**
+     * 检查装备是否满足给定条件
+     * 
+     * @param {(number|Equipment)} equipment 要判断的装备
+     * @param {any} [conditions={}] 条件，需满足所有条件
+     * @param {(number|number[])} [conditions.isID] 判断装备ID是否精确匹配或匹配其中一项
+     * @param {(number|number[])} [conditions.isNotID] 判断装备ID是否不匹配
+     * @param {(string|string[])} [conditions.isName] 判断装备名是否精确匹配或匹配其中一项
+     * @param {(string|string[])} [conditions.isNotName] 判断装备名是否不匹配
+     * @param {(string|string[])} [conditions.isNameOf] 判断装备名片段是否匹配或匹配其中一项
+     * @param {(string|string[])} [conditions.isNotNameOf] 判断装备名片段是否不匹配
+     * @param {(number|number[])} [conditions.isType] 判断装备是否属于给定舰种或匹配其中一项
+     * @param {(number|number[])} [conditions.isNotType] 判断装备是否不属于给定舰种
+     */
+    return function (equipment) {
+        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
+        var getEquipment = window.__getEquipment;
+        var equipmentTypes = window.__equipmentTypes;
+        var ArrayOrItem = window.__ArrayOrItem;
+        var ArrayOrItemAll = window.__ArrayOrItemAll;
+
+        equipment = getEquipment(equipment);
+        if (typeof equipment === 'undefined') return !1;
+
+        var checkCondition = {
+            // 是特定ID
+            isid: function isid(equipment, id) {
+                return ArrayOrItem(id, function (id) {
+                    if (isNaN(id)) return !1;
+                    return parseInt(id) === equipment.id;
+                });
+            },
+            // 不是特定ID
+            isnotid: function isnotid(equipment, id) {
+                return ArrayOrItemAll(id, function (id) {
+                    if (isNaN(id)) return !1;
+                    return parseInt(id) !== equipment.id;
+                });
+            },
+
+            // 完全匹配特定名称
+            isname: function isname(equipment, name) {
+                return ArrayOrItem(name, function (name) {
+                    return equipment.isName(name)
+                    // for (let key in equipment.name) {
+                    //     if (key === 'suffix') continue
+                    //     if (equipment.name[key] === name) return true
+                    // }
+                    // return false
+                    ;
+                });
+            },
+            // 不是特定名称
+            isnotname: function isnotname(equipment, name) {
+                return ArrayOrItemAll(name, function (name) {
+                    return !equipment.isName(name)
+                    // for (let key in equipment.name) {
+                    //     if (key === 'suffix') continue
+                    //     if (equipment.name[key] === name) return false
+                    // }
+                    // return true
+                    ;
+                });
+            },
+
+            // 名称里包含特定字段
+            isnameof: function isnameof(equipment, name) {
+                return ArrayOrItem(name, function (name) {
+                    return equipment.hasName(name)
+                    // for (let key in equipment.name) {
+                    //     if (key === 'suffix') continue
+                    //     if (equipment.name[key].includes(name)) return true
+                    // }
+                    // return false
+                    ;
+                });
+            },
+            // 名称里不包含特定字段
+            isnotnameof: function isnotnameof(equipment, name) {
+                return ArrayOrItemAll(name, function (name) {
+                    return !equipment.hasName(name)
+                    // for (let key in equipment.name) {
+                    //     if (key === 'suffix') continue
+                    //     if (equipment.name[key].includes(name)) return false
+                    // }
+                    // return true
+                    ;
+                });
+            },
+
+            // 是特定类型
+            // 如果判断条件为Object，也会进入该条件
+            istype: function istype(equipment, type, conditions) {
+                return ArrayOrItem(type, function (type) {
+                    if (isNaN(type)) return !1;
+                    if (parseInt(type) !== equipment.type) return !1;
+                    // 条件是Object
+                    if ((typeof conditions === 'undefined' ? 'undefined' : _typeof(conditions)) === 'object') {
+                        // 包含属性
+                        if (conditions.hasStat) {
+                            var pass = !0;
+                            for (var stat in conditions.hasStat) {
+                                if (Array.isArray(conditions.hasStat[stat])) {
+                                    if (equipment.stat[stat] < conditions.hasStat[stat][0]) pass = !1;
+                                    if (equipment.stat[stat] > conditions.hasStat[stat][1]) pass = !1;
+                                } else if (equipment.stat[stat] < conditions.hasStat[stat]) {
+                                    pass = !1;
+                                }
+                            }
+                            if (!pass) return !1;
+                        }
+                    }
+                    return !0;
+                });
+            },
+            // 不是特定类型
+            isnottype: function isnottype(equipment, type) {
+                return ArrayOrItemAll(type, function (type) {
+                    if (isNaN(type)) return !1;
+                    return parseInt(type) !== equipment.type;
+                });
+            },
+            // 是对空电探/雷达
+            isaaradar: function isaaradar(equipment, isTrue) {
+                // console.log(`[${equipment.id}]`, equipment._name)
+                return (this.istype(equipment, equipmentTypes.Radars) && !isNaN(equipment.stat.aa) && equipment.stat.aa >= 2) === isTrue;
+            },
+            // 是对水面电探/雷达
+            issurfaceradar: function issurfaceradar(equipment, isTrue) {
+                // console.log(`[${equipment.id}]`, equipment._name)
+                return (this.istype(equipment, equipmentTypes.Radars) && (isNaN(equipment.stat.aa) || equipment.stat.aa < 2)) === isTrue;
+            }
+
+            // 需满足所有条件
+        };for (var key in conditions) {
+            if (checkCondition[key.toLowerCase()]) {
+                // checkCondition 中存在该条件，直接运行
+                if (!checkCondition[key.toLowerCase()](equipment, conditions[key])) return !1;
+            } else if (key.substr(0, 2) === 'is') {
+                // 以 is 为开头，通常为检查装备类型
+                var typeName = key.substr(2);
+                if (typeName === 'HAMountAAFD') {
+                    typeName = 'HAMountsAAFD';
+                } else if (typeName + 's' in equipmentTypes) {
+                    typeName = typeName + 's';
+                } else if (typeName in equipmentTypes) {
+                    typeName = typeName;
+                } else {
+                    return !1;
+                }
+                // console.log(typeName)
+                // 条件是否为Object
+                var isConditionObj = _typeof(conditions[key]) === 'object' && !Array.isArray(conditions[key]);
+                var objConditions = conditions[key] && isConditionObj ? conditions[key] : undefined;
+                if (!checkCondition[conditions[key] === !0 || isConditionObj ? 'istype' : 'isnottype'](equipment, equipmentTypes[typeName], objConditions)) return !1;
+            }
+        }
+
+        return !0;
+    };
+});(function (name, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        window[name] = factory();
+    }
+})('__checkEquipments', function () {
+    var checkListStatic = ['id', 'name', 'nameof', 'type'];
+
+    /**
+     * 检查装备列表是否满足给定条件
+     * 
+     * @param {(number[]|Equipment[])} equipments 要判断的装备列表
+     * @param {any} [conditions={}] 条件，需满足所有条件
+     */
+    var check = function check(equipments) {
+        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        var getEquipment = window.__getEquipment;
+        var checkEquipment = window.__checkEquipment;
+
+        if (!Array.isArray(equipments)) return check([equipments], conditions);
+
+        // 需满足所有条件
+
+        var _loop = function _loop(key) {
+            if (conditions[key] === !1) {
+                // 条件：不存在
+                if (!equipments.every(function (equipment) {
+                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), conditions[key]));
+                })) return {
+                        v: !1
+                    };
+            } else if (conditions[key] === !0) {
+                // 条件：存在
+                if (!equipments.some(function (equipment) {
+                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), conditions[key]));
+                })) return {
+                        v: !1
+                    };
+            } else if (key.substr(0, 3) === 'has' && checkListStatic.includes(key.substr(3).toLowerCase())) {
+                // 条件：checkListStatic 中的项目
+                if (Array.isArray(conditions[key])) {
+                    if (!conditions[key].every(function (value) {
+                        return equipments.some(function (equipment) {
+                            return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), value));
+                        });
+                    })) return {
+                            v: !1
+                        };
+                } else {
+                    if (!equipments.some(function (equipment) {
+                        return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), conditions[key]));
+                    })) return {
+                            v: !1
+                        };
+                }
+            } else if (key.substr(0, 3) === 'has' && _typeof(conditions[key]) === 'object' && !Array.isArray(conditions[key])) {
+                // 条件合集
+                var thisCondition = Object.assign({}, conditions[key]);
+                var count = typeof thisCondition.count === 'undefined' ? 1 : thisCondition.count;
+                delete thisCondition.count;
+                var filtered = equipments.filter(function (equipment) {
+                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), thisCondition));
+                });
+                // console.log(thisCondition, equipments, filtered.length, count)
+                if (filtered.length < count) return {
+                        v: !1
+                    };
+            } else if (key.substr(0, 3) === 'has' && !isNaN(conditions[key])) {
+                // 条件：有至少 N 个
+                var _filtered = equipments.filter(function (equipment) {
+                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), !0));
+                });
+                if (_filtered.length < conditions[key]) return {
+                        v: !1
+                    };
+            } else if (key.substr(0, 3) === 'has' && Array.isArray(conditions[key])) {
+                // 条件：有至少 value[0] 个至多 value[1] 个
+                var _filtered2 = equipments.filter(function (equipment) {
+                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), !0));
+                });
+                if (_filtered2.length < conditions[key][0] || _filtered2.length > conditions[key][1]) return {
+                        v: !1
+                    };
+            }
+        };
+
+        for (var key in conditions) {
+            var _ret = _loop(key);
+
+            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+        }
+
+        return !0;
+    };
+
+    return check;
+});(function (name, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        window[name] = factory();
+    }
+})('__checkShip', function () {
+    /**
+     * 检查舰娘是否满足给定条件
+     * 
+     * @param {(number|Ship)} ship 要判断的舰娘
+     * @param {any} [conditions={}] 条件，需满足所有条件
+     * @param {(number|number[])} [conditions.isID] 判断舰娘ID是否精确匹配或匹配其中一项
+     * @param {(number|number[])} [conditions.isNotID] 判断舰娘ID是否不匹配
+     * @param {(string|string[])} [conditions.isName] 判断舰娘名是否精确匹配或匹配其中一项
+     * @param {(string|string[])} [conditions.isNotName] 判断舰娘名是否不匹配
+     * @param {(number|number[])} [conditions.isType] 判断舰娘是否属于给定舰种或匹配其中一项
+     * @param {(number|number[])} [conditions.isNotType] 判断舰娘是否不属于给定舰种
+     * @param {(number|number[])} [conditions.isClass] 判断舰娘是否属于给定舰级或匹配其中一项
+     * @param {(number|number[])} [conditions.isNotClass] 判断舰娘是否不属于给定舰级
+     * @param {boolean} [conditions.isBattleship]
+     * @param {boolean} [conditions.isBB]
+     * @param {boolean} [conditions.isCarrier]
+     * @param {boolean} [conditions.isCV]
+     * @param {boolean} [conditions.isSubmarine]
+     * @param {boolean} [conditions.isSS]
+     * @param {number|[min,max]} [conditions.hasSlot] 判断舰娘的可配置栏位精确有 number 个，或 min ~ max 个
+     * @param {number} [conditions.hasSlotMin] 判断舰娘的可配置栏位至少有 number 个
+     * @param {number} [conditions.hasSlotMax] 判断舰娘的可配置栏位最多有 number 个
+     */
+    return function (ship) {
+        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        var getShip = window.__getShip;
+        var ArrayOrItem = window.__ArrayOrItem;
+        var ArrayOrItemAll = window.__ArrayOrItemAll;
+
+        var checkCondition = {
+            // isID
+            isid: function isid(ship, id) {
+                return ArrayOrItem(id, function (id) {
+                    if (isNaN(id)) return !1;
+                    return parseInt(id) === ship.id;
+                });
+            },
+            isnotid: function isnotid(ship, id) {
+                return ArrayOrItemAll(id, function (id) {
+                    if (isNaN(id)) return !1;
+                    return parseInt(id) !== ship.id;
+                });
+            },
+
+            // isName
+            isname: function isname(ship, name) {
+                return ArrayOrItem(name, function (name) {
+                    return ship.isName(name)
+                    // for (let key in ship.name) {
+                    //     if (key === 'suffix') continue
+                    //     if (ship.name[key].toLowerCase() === name) return true
+                    // }
+                    // return false
+                    ;
+                });
+            },
+            isnotname: function isnotname(ship, name) {
+                return ArrayOrItemAll(name, function (name) {
+                    return !ship.isName(name)
+                    // for (let key in ship.name) {
+                    //     if (key === 'suffix') continue
+                    //     if (ship.name[key].toLowerCase() === name) return false
+                    // }
+                    // return true
+                    ;
+                });
+            },
+
+            // isType
+            istype: function istype(ship, type) {
+                return ArrayOrItem(type, function (type) {
+                    if (isNaN(type)) return !1;
+                    return parseInt(type) === ship.type;
+                });
+            },
+            isnottype: function isnottype(ship, type) {
+                return ArrayOrItemAll(type, function (type) {
+                    if (isNaN(type)) return !1;
+                    return parseInt(type) !== ship.type;
+                });
+            },
+            isbattleship: function isbattleship(ship, isTrue) {
+                return this.istype(ship, [8, 6, 20, 7, 18]) === isTrue;
+            },
+            isbb: function isbb(ship, isTrue) {
+                return this.isbattleship(ship, isTrue);
+            },
+            iscarrier: function iscarrier(ship, isTrue) {
+                return this.istype(ship, [11, 10, 9, 30, 32]) === isTrue;
+            },
+            iscv: function iscv(ship, isTrue) {
+                return this.iscarrier(ship, isTrue);
+            },
+            issubmarine: function issubmarine(ship, isTrue) {
+                return this.istype(ship, [14, 13]) === isTrue;
+            },
+            isss: function isss(ship, isTrue) {
+                return this.issubmarine(ship, isTrue);
+            },
+
+            // isClass
+            isclass: function isclass(ship, Class) {
+                return ArrayOrItem(Class, function (Class) {
+                    if (isNaN(Class)) return !1;
+                    return parseInt(Class) === ship.class;
+                });
+            },
+            isnotclass: function isnotclass(ship, Class) {
+                return ArrayOrItemAll(Class, function (Class) {
+                    if (isNaN(Class)) return !1;
+                    return parseInt(Class) !== ship.class;
+                });
+            },
+
+            // hasSlot
+            hasslot: function hasslot(ship, num) {
+                if (!Array.isArray(ship.slot)) return !1;
+                if (Array.isArray(num)) {
+                    if (isNaN(num[0]) && !isNaN(num[1])) return ship.slot.length <= parseInt(num[1]);else if (!isNaN(num[0]) && isNaN(num[1])) return ship.slot.length >= parseInt(num[0]);else if (!isNaN(num[0]) && !isNaN(num[1])) return ship.slot.length >= parseInt(num[0]) && ship.slot.length <= parseInt(num[1]);else return !1;
+                } else return !isNaN(num) && parseInt(num) === ship.slot.length;
+            },
+            hasslotmin: function hasslotmin(ship, min) {
+                return this.hasslot(ship, [min, undefined]);
+            },
+            hasslotmax: function hasslotmax(ship, max) {
+                return this.hasslot(ship, [undefined, max]);
+            },
+
+            // minLevel
+            minlevel: function minlevel(ship, level) {
+                if (typeof ship.level !== 'undefined') return ship.level >= level;
+                return !0;
+            }
+        };
+
+        ship = getShip(ship);
+        if (typeof ship === 'undefined') return !1;
+
+        // 需满足所有条件
+        for (var key in conditions) {
+            if (!checkCondition[key.toLowerCase()](ship, conditions[key])) return !1;
+        }
+
+        return !0;
+    };
+});(function (name, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        window[name] = factory();
+    }
+})('__calculateBonus', function () {
     /**
      * Calculate stat bonus for specified ship with equipment(s)
      */
@@ -296,6 +716,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         var stat = arguments[4];
 
         if (typeof equipmentStars === 'string') return calculateBonus(ship, equipments, undefined, undefined, equipmentStars);
+
+        var getShipAndEquipments = window.__getShipAndEquipments;
+        var checkShip = window.__checkShip;
+        var checkEquipments = window.__checkEquipments;
+        var bonus = window.__bonus;
 
         var _getShipAndEquipments = getShipAndEquipments(ship, equipments, equipmentStars, equipmentRanks);
 
@@ -395,434 +820,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     } else {
         window[name] = factory();
     }
-})('__checkEquipment', function () {
-    var getEquipment = window.__getEquipment;
-    var equipmentTypes = window.__equipmentTypes;
-    var ArrayOrItem = window.__ArrayOrItem;
-    var ArrayOrItemAll = window.__ArrayOrItemAll;
-
-    /**
-     * 检查装备是否满足给定条件
-     * 
-     * @param {(number|Equipment)} equipment 要判断的装备
-     * @param {any} [conditions={}] 条件，需满足所有条件
-     * @param {(number|number[])} [conditions.isID] 判断装备ID是否精确匹配或匹配其中一项
-     * @param {(number|number[])} [conditions.isNotID] 判断装备ID是否不匹配
-     * @param {(string|string[])} [conditions.isName] 判断装备名是否精确匹配或匹配其中一项
-     * @param {(string|string[])} [conditions.isNotName] 判断装备名是否不匹配
-     * @param {(string|string[])} [conditions.isNameOf] 判断装备名片段是否匹配或匹配其中一项
-     * @param {(string|string[])} [conditions.isNotNameOf] 判断装备名片段是否不匹配
-     * @param {(number|number[])} [conditions.isType] 判断装备是否属于给定舰种或匹配其中一项
-     * @param {(number|number[])} [conditions.isNotType] 判断装备是否不属于给定舰种
-     */
-    return function (equipment) {
-        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-        equipment = getEquipment(equipment);
-        if (typeof equipment === 'undefined') return !1;
-
-        // 需满足所有条件
-        for (var key in conditions) {
-            if (checkCondition[key.toLowerCase()]) {
-                // checkCondition 中存在该条件，直接运行
-                if (!checkCondition[key.toLowerCase()](equipment, conditions[key])) return !1;
-            } else if (key.substr(0, 2) === 'is') {
-                // 以 is 为开头，通常为检查装备类型
-                var typeName = key.substr(2);
-                if (typeName === 'HAMountAAFD') {
-                    typeName = 'HAMountsAAFD';
-                } else if (typeName + 's' in equipmentTypes) {
-                    typeName = typeName + 's';
-                } else if (typeName in equipmentTypes) {
-                    typeName = typeName;
-                } else {
-                    return !1;
-                }
-                // console.log(typeName)
-                // 条件是否为Object
-                var isConditionObj = _typeof(conditions[key]) === 'object' && !Array.isArray(conditions[key]);
-                var objConditions = conditions[key] && isConditionObj ? conditions[key] : undefined;
-                if (!checkCondition[conditions[key] === !0 || isConditionObj ? 'istype' : 'isnottype'](equipment, equipmentTypes[typeName], objConditions)) return !1;
-            }
-        }
-
-        return !0;
-    };
-
-    var checkCondition = {
-        // 是特定ID
-        isid: function isid(equipment, id) {
-            return ArrayOrItem(id, function (id) {
-                if (isNaN(id)) return !1;
-                return parseInt(id) === equipment.id;
-            });
-        },
-        // 不是特定ID
-        isnotid: function isnotid(equipment, id) {
-            return ArrayOrItemAll(id, function (id) {
-                if (isNaN(id)) return !1;
-                return parseInt(id) !== equipment.id;
-            });
-        },
-
-        // 完全匹配特定名称
-        isname: function isname(equipment, name) {
-            return ArrayOrItem(name, function (name) {
-                return equipment.isName(name)
-                // for (let key in equipment.name) {
-                //     if (key === 'suffix') continue
-                //     if (equipment.name[key] === name) return true
-                // }
-                // return false
-                ;
-            });
-        },
-        // 不是特定名称
-        isnotname: function isnotname(equipment, name) {
-            return ArrayOrItemAll(name, function (name) {
-                return !equipment.isName(name)
-                // for (let key in equipment.name) {
-                //     if (key === 'suffix') continue
-                //     if (equipment.name[key] === name) return false
-                // }
-                // return true
-                ;
-            });
-        },
-
-        // 名称里包含特定字段
-        isnameof: function isnameof(equipment, name) {
-            return ArrayOrItem(name, function (name) {
-                return equipment.hasName(name)
-                // for (let key in equipment.name) {
-                //     if (key === 'suffix') continue
-                //     if (equipment.name[key].includes(name)) return true
-                // }
-                // return false
-                ;
-            });
-        },
-        // 名称里不包含特定字段
-        isnotnameof: function isnotnameof(equipment, name) {
-            return ArrayOrItemAll(name, function (name) {
-                return !equipment.hasName(name)
-                // for (let key in equipment.name) {
-                //     if (key === 'suffix') continue
-                //     if (equipment.name[key].includes(name)) return false
-                // }
-                // return true
-                ;
-            });
-        },
-
-        // 是特定类型
-        // 如果判断条件为Object，也会进入该条件
-        istype: function istype(equipment, type, conditions) {
-            return ArrayOrItem(type, function (type) {
-                if (isNaN(type)) return !1;
-                if (parseInt(type) !== equipment.type) return !1;
-                // 条件是Object
-                if ((typeof conditions === 'undefined' ? 'undefined' : _typeof(conditions)) === 'object') {
-                    // 包含属性
-                    if (conditions.hasStat) {
-                        var pass = !0;
-                        for (var stat in conditions.hasStat) {
-                            if (Array.isArray(conditions.hasStat[stat])) {
-                                if (equipment.stat[stat] < conditions.hasStat[stat][0]) pass = !1;
-                                if (equipment.stat[stat] > conditions.hasStat[stat][1]) pass = !1;
-                            } else if (equipment.stat[stat] < conditions.hasStat[stat]) {
-                                pass = !1;
-                            }
-                        }
-                        if (!pass) return !1;
-                    }
-                }
-                return !0;
-            });
-        },
-        // 不是特定类型
-        isnottype: function isnottype(equipment, type) {
-            return ArrayOrItemAll(type, function (type) {
-                if (isNaN(type)) return !1;
-                return parseInt(type) !== equipment.type;
-            });
-        },
-        // 是对空电探/雷达
-        isaaradar: function isaaradar(equipment, isTrue) {
-            // console.log(`[${equipment.id}]`, equipment._name)
-            return (this.istype(equipment, equipmentTypes.Radars) && !isNaN(equipment.stat.aa) && equipment.stat.aa >= 2) === isTrue;
-        },
-        // 是对水面电探/雷达
-        issurfaceradar: function issurfaceradar(equipment, isTrue) {
-            // console.log(`[${equipment.id}]`, equipment._name)
-            return (this.istype(equipment, equipmentTypes.Radars) && (isNaN(equipment.stat.aa) || equipment.stat.aa < 2)) === isTrue;
-        }
-    };
-});(function (name, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(factory);
-    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
-        module.exports = factory();
-    } else {
-        window[name] = factory();
-    }
-})('__checkEquipments', function () {
-    var getEquipment = window.__getEquipment;
-    var checkEquipment = window.__checkEquipment;
-
-    var checkListStatic = ['id', 'name', 'nameof', 'type'];
-
-    /**
-     * 检查装备列表是否满足给定条件
-     * 
-     * @param {(number[]|Equipment[])} equipments 要判断的装备列表
-     * @param {any} [conditions={}] 条件，需满足所有条件
-     */
-    var check = function check(equipments) {
-        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-        if (!Array.isArray(equipments)) return check([equipments], conditions);
-
-        // 需满足所有条件
-
-        var _loop = function _loop(key) {
-            if (conditions[key] === !1) {
-                // 条件：不存在
-                if (!equipments.every(function (equipment) {
-                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), conditions[key]));
-                })) return {
-                        v: !1
-                    };
-            } else if (conditions[key] === !0) {
-                // 条件：存在
-                if (!equipments.some(function (equipment) {
-                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), conditions[key]));
-                })) return {
-                        v: !1
-                    };
-            } else if (key.substr(0, 3) === 'has' && checkListStatic.includes(key.substr(3).toLowerCase())) {
-                // 条件：checkListStatic 中的项目
-                if (Array.isArray(conditions[key])) {
-                    if (!conditions[key].every(function (value) {
-                        return equipments.some(function (equipment) {
-                            return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), value));
-                        });
-                    })) return {
-                            v: !1
-                        };
-                } else {
-                    if (!equipments.some(function (equipment) {
-                        return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), conditions[key]));
-                    })) return {
-                            v: !1
-                        };
-                }
-            } else if (key.substr(0, 3) === 'has' && _typeof(conditions[key]) === 'object' && !Array.isArray(conditions[key])) {
-                // 条件合集
-                var thisCondition = Object.assign({}, conditions[key]);
-                var count = typeof thisCondition.count === 'undefined' ? 1 : thisCondition.count;
-                delete thisCondition.count;
-                var filtered = equipments.filter(function (equipment) {
-                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), thisCondition));
-                });
-                // console.log(thisCondition, equipments, filtered.length, count)
-                if (filtered.length < count) return {
-                        v: !1
-                    };
-            } else if (key.substr(0, 3) === 'has' && !isNaN(conditions[key])) {
-                // 条件：有至少 N 个
-                var _filtered = equipments.filter(function (equipment) {
-                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), !0));
-                });
-                if (_filtered.length < conditions[key]) return {
-                        v: !1
-                    };
-            } else if (key.substr(0, 3) === 'has' && Array.isArray(conditions[key])) {
-                // 条件：有至少 value[0] 个至多 value[1] 个
-                var _filtered2 = equipments.filter(function (equipment) {
-                    return checkEquipment(equipment, _defineProperty({}, key.replace(/^has/, 'is'), !0));
-                });
-                if (_filtered2.length < conditions[key][0] || _filtered2.length > conditions[key][1]) return {
-                        v: !1
-                    };
-            }
-        };
-
-        for (var key in conditions) {
-            var _ret = _loop(key);
-
-            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-        }
-
-        return !0;
-    };
-
-    return check;
-});(function (name, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(factory);
-    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
-        module.exports = factory();
-    } else {
-        window[name] = factory();
-    }
-})('__checkShip', function () {
-    var getShip = window.__getShip;
-    var ArrayOrItem = window.__ArrayOrItem;
-    var ArrayOrItemAll = window.__ArrayOrItemAll;
-
-    /**
-     * 检查舰娘是否满足给定条件
-     * 
-     * @param {(number|Ship)} ship 要判断的舰娘
-     * @param {any} [conditions={}] 条件，需满足所有条件
-     * @param {(number|number[])} [conditions.isID] 判断舰娘ID是否精确匹配或匹配其中一项
-     * @param {(number|number[])} [conditions.isNotID] 判断舰娘ID是否不匹配
-     * @param {(string|string[])} [conditions.isName] 判断舰娘名是否精确匹配或匹配其中一项
-     * @param {(string|string[])} [conditions.isNotName] 判断舰娘名是否不匹配
-     * @param {(number|number[])} [conditions.isType] 判断舰娘是否属于给定舰种或匹配其中一项
-     * @param {(number|number[])} [conditions.isNotType] 判断舰娘是否不属于给定舰种
-     * @param {(number|number[])} [conditions.isClass] 判断舰娘是否属于给定舰级或匹配其中一项
-     * @param {(number|number[])} [conditions.isNotClass] 判断舰娘是否不属于给定舰级
-     * @param {boolean} [conditions.isBattleship]
-     * @param {boolean} [conditions.isBB]
-     * @param {boolean} [conditions.isCarrier]
-     * @param {boolean} [conditions.isCV]
-     * @param {boolean} [conditions.isSubmarine]
-     * @param {boolean} [conditions.isSS]
-     * @param {number|[min,max]} [conditions.hasSlot] 判断舰娘的可配置栏位精确有 number 个，或 min ~ max 个
-     * @param {number} [conditions.hasSlotMin] 判断舰娘的可配置栏位至少有 number 个
-     * @param {number} [conditions.hasSlotMax] 判断舰娘的可配置栏位最多有 number 个
-     */
-    var checkShip = function checkShip(ship) {
-        var conditions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-        ship = getShip(ship);
-        if (typeof ship === 'undefined') return !1;
-
-        // 需满足所有条件
-        for (var key in conditions) {
-            if (!checkCondition[key.toLowerCase()](ship, conditions[key])) return !1;
-        }
-
-        return !0;
-    };
-
-    var checkCondition = {
-        // isID
-        isid: function isid(ship, id) {
-            return ArrayOrItem(id, function (id) {
-                if (isNaN(id)) return !1;
-                return parseInt(id) === ship.id;
-            });
-        },
-        isnotid: function isnotid(ship, id) {
-            return ArrayOrItemAll(id, function (id) {
-                if (isNaN(id)) return !1;
-                return parseInt(id) !== ship.id;
-            });
-        },
-
-        // isName
-        isname: function isname(ship, name) {
-            return ArrayOrItem(name, function (name) {
-                return ship.isName(name)
-                // for (let key in ship.name) {
-                //     if (key === 'suffix') continue
-                //     if (ship.name[key].toLowerCase() === name) return true
-                // }
-                // return false
-                ;
-            });
-        },
-        isnotname: function isnotname(ship, name) {
-            return ArrayOrItemAll(name, function (name) {
-                return !ship.isName(name)
-                // for (let key in ship.name) {
-                //     if (key === 'suffix') continue
-                //     if (ship.name[key].toLowerCase() === name) return false
-                // }
-                // return true
-                ;
-            });
-        },
-
-        // isType
-        istype: function istype(ship, type) {
-            return ArrayOrItem(type, function (type) {
-                if (isNaN(type)) return !1;
-                return parseInt(type) === ship.type;
-            });
-        },
-        isnottype: function isnottype(ship, type) {
-            return ArrayOrItemAll(type, function (type) {
-                if (isNaN(type)) return !1;
-                return parseInt(type) !== ship.type;
-            });
-        },
-        isbattleship: function isbattleship(ship, isTrue) {
-            return this.istype(ship, [8, 6, 20, 7, 18]) === isTrue;
-        },
-        isbb: function isbb(ship, isTrue) {
-            return this.isbattleship(ship, isTrue);
-        },
-        iscarrier: function iscarrier(ship, isTrue) {
-            return this.istype(ship, [11, 10, 9, 30, 32]) === isTrue;
-        },
-        iscv: function iscv(ship, isTrue) {
-            return this.iscarrier(ship, isTrue);
-        },
-        issubmarine: function issubmarine(ship, isTrue) {
-            return this.istype(ship, [14, 13]) === isTrue;
-        },
-        isss: function isss(ship, isTrue) {
-            return this.issubmarine(ship, isTrue);
-        },
-
-        // isClass
-        isclass: function isclass(ship, Class) {
-            return ArrayOrItem(Class, function (Class) {
-                if (isNaN(Class)) return !1;
-                return parseInt(Class) === ship.class;
-            });
-        },
-        isnotclass: function isnotclass(ship, Class) {
-            return ArrayOrItemAll(Class, function (Class) {
-                if (isNaN(Class)) return !1;
-                return parseInt(Class) !== ship.class;
-            });
-        },
-
-        // hasSlot
-        hasslot: function hasslot(ship, num) {
-            if (!Array.isArray(ship.slot)) return !1;
-            if (Array.isArray(num)) {
-                if (isNaN(num[0]) && !isNaN(num[1])) return ship.slot.length <= parseInt(num[1]);else if (!isNaN(num[0]) && isNaN(num[1])) return ship.slot.length >= parseInt(num[0]);else if (!isNaN(num[0]) && !isNaN(num[1])) return ship.slot.length >= parseInt(num[0]) && ship.slot.length <= parseInt(num[1]);else return !1;
-            } else return !isNaN(num) && parseInt(num) === ship.slot.length;
-        },
-        hasslotmin: function hasslotmin(ship, min) {
-            return this.hasslot(ship, [min, undefined]);
-        },
-        hasslotmax: function hasslotmax(ship, max) {
-            return this.hasslot(ship, [undefined, max]);
-        },
-
-        // minLevel
-        minlevel: function minlevel(ship, level) {
-            if (typeof ship.level !== 'undefined') return ship.level >= level;
-            return !0;
-        }
-    };
-
-    return checkShip;
-});(function (name, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(factory);
-    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
-        module.exports = factory();
-    } else {
-        window[name] = factory();
-    }
 })('__bonus', function () {
     // 装备额外属性
 
@@ -910,7 +907,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     {
         equipment: 267,
         ship: {
-            isClass: [22, 24]
+            isClass: [22, 24],
+            isNotID: DD_YuugumoClass2ndRemodel
         },
         bonus: {
             fire: 2,
@@ -1186,7 +1184,33 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             evasion: 3
         }
     }];
-})(function (name, factory) {
+});(function (name, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        window[name] = factory();
+    }
+})('__ArrayOrItem', function () {
+    return function (arg, func) {
+        if (Array.isArray(arg)) return arg.some(func);
+        return func(arg);
+    };
+});(function (name, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        window[name] = factory();
+    }
+})('__ArrayOrItemAll', function () {
+    return function (arg, func) {
+        if (Array.isArray(arg)) return arg.every(func);
+        return func(arg);
+    };
+});(function (name, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
@@ -2428,9 +2452,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         //     //return (ship.stat.torpedo_max || 0)
         // }
         ,
-            powerTorpedo = function powerTorpedo(options) {
-            return formula.calcByShip.torpedoPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, options);
-        },
             value = 0;
 
         equipments_by_slot = equipments_by_slot.map(function (equipment) {
@@ -2490,6 +2511,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             }
         });
 
+        var bonus = __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot);
+
+        var powerTorpedo = function powerTorpedo(options) {
+            return formula.calcByShip.torpedoPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus);
+        };
+
         switch (type) {
             // 制空战力，装备须为战斗机类型 _equipmentType.Fighters
             // 计算公式参考 http://bbs.ngacn.cc/read.php?tid=8680767
@@ -2538,7 +2565,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 if (formula.shipType.Submarines.indexOf(ship.type) > -1) {
                     return '-';
                 } else {
-                    result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot);
+                    result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {}, bonus);
                     if (result && result > -1) return Math.floor(result); // + 5
                     return '-';
                 }
@@ -2555,7 +2582,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             // 夜战模式 & 伤害力
             case 'nightBattle':
                 {
-                    var nightPower = formula.calcByShip.nightPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {}, count);
+                    var nightPower = formula.calcByShip.nightPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {}, count, bonus);
                     return nightPower.damage <= 0 ? '-' : nightPower.value;
                     //break;
                 }
@@ -2565,6 +2592,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) result += equipments_by_slot[index].getStat('hit', ship) || 0;
                 });
+                result += bonus.hit || 0;
                 return result >= 0 ? '+' + result : result;
             //break;
 
@@ -2573,7 +2601,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) result += equipments_by_slot[index].getStat('armor', ship) || 0;
                 });
-                return result;
+                return result + (bonus.armor || 0);
             //break;
 
             // 回避总和
@@ -2581,7 +2609,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index]) result += equipments_by_slot[index].getStat('evasion', ship) || 0;
                 });
-                return result;
+                return result + (bonus.evasion || 0);
             //break;
 
             // 索敌能力
@@ -2589,7 +2617,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 return formula.calcByShip.losPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, options);
             //break;
             default:
-                return formula.calcByShip[type](ship, equipments_by_slot, star_by_slot, rank_by_slot, options);
+                return formula.calcByShip[type](ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus);
             //break;
         }
 
@@ -3103,8 +3131,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         return results;
     };
     // Calculate by Ship
-    formula.calcByShip.shellingPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+    formula.calcByShip.shellingPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus) {
         options = options || {};
+        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot);
 
         var result = 0,
             isCV = !1,
@@ -3148,7 +3177,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     if (_equipmentType.SecondaryGuns.indexOf(equipment.type) > -1) result += Math.sqrt((star_by_slot[index] || 0) * 1.5);
                 }
             });
-            if (!torpedoDamage && !bombDamage) return -1;else result += Math.floor((Math.floor(bombDamage * 1.3) + torpedoDamage + ship.stat.fire_max) * 1.5) + 50;
+            if (!torpedoDamage && !bombDamage) return -1;else result += Math.floor(1.5 * (Math.floor(bombDamage * 1.3) + torpedoDamage + ship.stat.fire_max + (bonus.fire || 0))) + 50;
             return result;
         } else {
             // 其他舰种
@@ -3216,18 +3245,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             // console.log(count)
 
             // 加成
-            var bonus = 0
+            var thisBonus = 0
             // 轻巡系主炮加成
             + 2 * Math.sqrt(count.CLMainGunTwin) + Math.sqrt(count.CLMainGunNaval)
             // 意大利重巡主炮加成（仅对意大利重巡洋舰生效）
-            + Math.sqrt(count.ItalianCAMainGun);
+            + Math.sqrt(count.ItalianCAMainGun) + (bonus.fire || 0);
 
-            return result + bonus;
+            return result + thisBonus;
         }
         //return (ship.stat.fire_max || 0)
     };
-    formula.calcByShip.torpedoPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
+    formula.calcByShip.torpedoPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus) {
         options = options || {};
+        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot);
 
         var result = 0;
         var slots = _slots(ship.slot);
@@ -3235,7 +3265,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         if (formula.shipType.Carriers.indexOf(ship.type) > -1 && !options.isNight) {
             return options.returnZero ? 0 : -1;
         } else {
-            result = ship.stat.torpedo_max || 0;
+            result = (ship.stat.torpedo_max || 0) + (bonus.torpedo || 0);
             slots.map(function (carry, index) {
                 if (equipments_by_slot[index]) {
                     var equipment = equipments_by_slot[index];
@@ -3255,8 +3285,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             return result;
         }
     };
-    formula.calcByShip.nightPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, count) {
+    formula.calcByShip.nightPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, count, bonus) {
         options = options || {};
+        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot);
 
         var result = {
             // value: ''
@@ -3366,7 +3397,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
             result.type = '航空';
             result.hit = 1;
-            result.damage = Math.floor(ship.stat.fire_max + spFire + spTorpedo + 3 * nightCarry + spBonus + spStarBonus);
+            result.damage = Math.floor(ship.stat.fire_max + (bonus.fire || 0) + spFire + spTorpedo + 3 * nightCarry + spBonus + spStarBonus);
             result.isMax = !0;
 
             if (multiplierCI.length) {
@@ -3379,7 +3410,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         // Ark Royal：剑鱼夜战
         else if (ship.getCapability('participate_night_battle_when_equip_swordfish')) {
-                result.damage += ship.stat.fire_max + ship.stat.torpedo_max;
+                result.damage += ship.stat.fire_max + (bonus.fire || 0) + ship.stat.torpedo_max + (bonus.torpedo || 0);
                 slots.forEach(function (carry, index) {
                     var equipment = equipments_by_slot[index];
                     if (!equipments_by_slot[index]) return;
@@ -3425,9 +3456,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     //console.log(count)
                     result.damage = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
                         isNight: !0
-                    }) + formula.calcByShip.torpedoPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
+                    }, bonus) + formula.calcByShip.torpedoPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {
                         isNight: !0, returnZero: !0
-                    }) + starBonus;
+                    }, bonus) + starBonus;
                     /*
                     console.log(
                         '夜',

@@ -1,4 +1,4 @@
-;(function (name, factory) {
+; (function (name, factory) {
     if (typeof define === 'function' && define.amd) {
         define(factory);
     } else if (typeof module === 'object' && module.exports) {
@@ -7,9 +7,6 @@
         window[name] = factory()
     }
 })('__checkEquipments', function () {
-    const getEquipment = window.__getEquipment
-    const checkEquipment = window.__checkEquipment
-
     const checkListStatic = [
         'id',
         'name',
@@ -24,6 +21,9 @@
      * @param {any} [conditions={}] 条件，需满足所有条件
      */
     const check = (equipments, conditions = {}) => {
+        const getEquipment = window.__getEquipment
+        const checkEquipment = window.__checkEquipment
+
         if (!Array.isArray(equipments))
             return check([equipments], conditions)
 
@@ -98,6 +98,6 @@
 
         return true
     }
-    
+
     return check
 })
