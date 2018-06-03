@@ -1,14 +1,21 @@
-; (function (name, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(factory);
-    } else if (typeof module === 'object' && module.exports) {
-        module.exports = factory()
-    } else {
-        window[name] = factory();
-    }
+(function (name, factory) {
+    // console.log(
+    //     name,
+    //     (typeof define === 'function' && define.amd) ? true : false,
+    //     (typeof module === 'object' && module.exports) ? true : false
+    // )
+    // if (typeof define === 'function' && define.amd) {
+    //     define(factory);
+    // } else if (typeof module === 'object' && module.exports) {
+    //     module.exports = factory()
+    // } else {
+    window[name] = factory();
+    // }
 })('KC', function () {
 
     "use strict";
+
+    const calculateBonus = require('./calculate/bonus')
 
     let KC = {
         lang: 'zh_cn',
@@ -1432,7 +1439,7 @@
             }
         })
 
-        const bonus = __calculateBonus(
+        const bonus = calculateBonus(
             ship,
             equipments_by_slot,
             star_by_slot,
@@ -2119,7 +2126,7 @@
     // Calculate by Ship
     formula.calcByShip.shellingPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus) {
         options = options || {}
-        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
+        bonus = bonus || calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
 
         let result = 0
             , isCV = false
@@ -2261,7 +2268,7 @@
     };
     formula.calcByShip.torpedoPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus) {
         options = options || {}
-        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
+        bonus = bonus || calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
 
         let result = 0
         const slots = _slots(ship.slot)
@@ -2294,7 +2301,7 @@
     }
     formula.calcByShip.nightPower = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, count, bonus) {
         options = options || {}
-        bonus = bonus || __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
+        bonus = bonus || calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
 
         const result = {
             // value: ''
@@ -3033,7 +3040,7 @@
     };
     // Get bonus for specified ship and equipment(s)
     formula.getBonus = (ship, equipments_by_slot, star_by_slot, rank_by_slot, stat) => {
-        return __calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot, stat)
+        return calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot, stat)
     }
 
 
