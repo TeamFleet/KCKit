@@ -356,7 +356,7 @@ module.exports = [
     // @ 夕雲型 改二 / 島風改
     {
         equipments: {
-            hasId: [267],
+            hasID: [267],
             hasSurfaceRadar: true,
         },
         ship: {
@@ -372,7 +372,7 @@ module.exports = [
     // @ 金剛型 改二
     {
         equipments: {
-            hasId: [289],
+            hasID: [289],
             hasSurfaceRadar: true,
         },
         ship: {
@@ -386,7 +386,7 @@ module.exports = [
     // @ 伊勢型 改
     {
         equipments: {
-            hasId: [290],
+            hasID: [290],
             hasAARadar: true,
         },
         ship: {

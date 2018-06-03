@@ -15,7 +15,10 @@
 
     "use strict";
 
+    const dataBonuses = require('./data/bonus')
     const calculateBonus = require('./calculate/bonus')
+    const checkShip = require('./check/ship')
+    const checkEquipment = require('./check/equipment')
 
     let KC = {
         lang: 'zh_cn',
@@ -226,7 +229,7 @@
          * 获取属性
          * 
          * @param {String} statType - 属性类型
-     * @param {Number|Object} [ship] - 舰娘ID或舰娘数据，如果给出，会查询额外收益
+         * @param {Number|Object} [ship] - 舰娘ID或舰娘数据，如果给出，会查询额外收益
          * @returns {boolean}
          */
         getStat(statType, ship) {
@@ -271,6 +274,23 @@
                 }
             }
             return base
+        }
+
+        /**
+         * 获取该装备所有可用的属性加成和装备组合
+         * @returns {Array} Bonuses
+         */
+        getBonuses() {
+            return dataBonuses.filter(bonus => {
+                if (bonus.equipment == this.id) return true
+                if (typeof bonus.equipments === 'object') {
+                    return checkEquipment(this, {
+                        isID: bonus.equipments.hasID,
+                        isNotID: bonus.equipments.hasNotID,
+                    })
+                }
+                return false
+            })
         }
     }
     class Ship extends ItemBase {
@@ -658,6 +678,16 @@
                 default:
                     return false
             }
+        }
+
+        /**
+         * 获取该舰娘所有可用的属性加成装备和装备组合
+         * @returns {Array} Bonuses
+         */
+        getBonuses() {
+            return dataBonuses.filter(bonus => (
+                checkShip(this, bonus.ship)
+            ))
         }
     }
     Ship.lvlMax = KC.maxShipLv;

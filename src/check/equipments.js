@@ -20,6 +20,7 @@ const check = (equipments, conditions = {}) => {
 
     // 需满足所有条件
     for (let key in conditions) {
+        if (typeof conditions[key] === 'undefined') continue
         if (conditions[key] === false) {
             // 条件：不存在
             if (!equipments.every(

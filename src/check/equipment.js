@@ -22,6 +22,7 @@ module.exports = (equipment, conditions = {}) => {
 
     // 需满足所有条件
     for (let key in conditions) {
+        if (typeof conditions[key] === 'undefined') continue
         if (checkCondition[key.toLowerCase()]) {
             // checkCondition 中存在该条件，直接运行
             if (!checkCondition[key.toLowerCase()](equipment, conditions[key]))
