@@ -360,7 +360,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isId: DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel
+            isID: DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel
         },
         bonus: {
             fire: 1,
@@ -376,7 +376,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isId: BB_KongouClass2ndRemodel
+            isID: BB_KongouClass2ndRemodel
         },
         bonus: {
             fire: 2,
@@ -390,7 +390,7 @@ module.exports = [
             hasAARadar: true,
         },
         ship: {
-            isId: BB_IseClassRemodel
+            isID: BB_IseClassRemodel
         },
         bonus: {
             aa: 2,
