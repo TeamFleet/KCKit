@@ -355,6 +355,10 @@ module.exports = [
     // 12.7cm連装砲D型改二 + 水上電探
     // @ 夕雲型 改二 / 島風改
     {
+        list: [
+            267,
+            'SurfaceRadar',
+        ],
         equipments: {
             hasID: [267],
             hasSurfaceRadar: true,
@@ -371,6 +375,10 @@ module.exports = [
     // 35.6cm三連装砲改(ダズル迷彩仕様) + 水上電探
     // @ 金剛型 改二
     {
+        list: [
+            289,
+            'SurfaceRadar',
+        ],
         equipments: {
             hasID: [289],
             hasSurfaceRadar: true,
@@ -385,6 +393,10 @@ module.exports = [
     // 41cm三連装砲改二 + 対空電探
     // @ 伊勢型 改
     {
+        list: [
+            290,
+            'AARadar',
+        ],
         equipments: {
             hasID: [290],
             hasAARadar: true,
