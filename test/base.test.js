@@ -324,6 +324,18 @@ describe('Base functions/utilities', () => {
                 /* 春日丸 (CVL，无基础对潜，不可提升) */ expect(db.ships[521].getStatExtraMax('asw')).toEqual(false);
                 /* 大鹰・改二 (CVL，但有基础对潜，可提升) */ expect(db.ships[529].getStatExtraMax('asw')).toEqual(9);
             })
+            describe(`should Ship.prototype.getBonuses() works`, () => {
+                it(`睦月 - No bonuses`, () => {
+                    expect(
+                        db.ships[1].getBonuses()
+                    ).toEqual([])
+                })
+                it(`榛名改二 - 3 bonuses`, () => {
+                    expect(
+                        db.ships[151].getBonuses().length
+                    ).toEqual(3)
+                })
+            })
         });
 
         describe('Equipment...', function () {
@@ -423,6 +435,18 @@ describe('Base functions/utilities', () => {
             // it(`should [267] 12.7cm連装砲D型改二 FIRE for [543] 長波改二`, function () {
             //     expect(db.items[267].getStat('fire', 543)).toBe(6);
             // });
+            describe(`should Equipment.prototype.getBonuses() works`, () => {
+                it(`12cm単装砲 - No bonuses`, () => {
+                    expect(
+                        db.items[1].getBonuses()
+                    ).toEqual([])
+                })
+                it(`12.7cm連装砲D型改二 - 5 bonuses`, () => {
+                    expect(
+                        db.items[267].getBonuses().length
+                    ).toEqual(5)
+                })
+            })
         })
 
         describe('EquipmentType...', function () {

@@ -1,5 +1,5 @@
 module.exports = equipment => {
-    if (typeof equipment === 'object' && equipment.id) {
+    if (equipment && typeof equipment === 'object' && equipment.id) {
         return equipment
     } else if (!isNaN(equipment)) {
         const requireDB = require('./db')

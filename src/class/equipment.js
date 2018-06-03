@@ -3,6 +3,7 @@ const getdb = require('../get/db')
 const ItemBase = require('./base.js')
 const equipmentTypes = require('../types/equipments')
 const checkEquipment = require('../check/equipment')
+const bonuses = require('../data/bonus')
 // const dataTP = require('../data/tp')
 
 module.exports = class Equipment extends ItemBase {
@@ -185,5 +186,22 @@ module.exports = class Equipment extends ItemBase {
         //     }
         // }
         return base
+    }
+
+    /**
+     * 获取该装备所有可用的属性加成和装备组合
+     * @returns {Array} Bonuses
+     */
+    getBonuses() {
+        return bonuses.filter(bonus => {
+            if (bonus.equipment == this.id) return true
+            if (typeof bonus.equipments === 'object') {
+                return checkEquipment(this, {
+                    isID: bonus.equipments.hasID,
+                    isNotID: bonus.equipments.hasNotID,
+                })
+            }
+            return false
+        })
     }
 }

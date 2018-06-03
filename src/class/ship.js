@@ -1,8 +1,9 @@
-const getName = require('../utils/get-name')
-
-const vars = require('../variables')
-const getdb = require('../get/db')
 const ItemBase = require('./base.js')
+const vars = require('../variables')
+const bonuses = require('../data/bonus')
+const getName = require('../utils/get-name')
+const getdb = require('../get/db')
+const checkShip = require('../check/ship')
 const shipTypes = require('../types/ships')
 const equipmentTypes = require('../types/equipments')
 
@@ -607,5 +608,15 @@ module.exports = class Ship extends ItemBase {
             default:
                 return false
         }
+    }
+
+    /**
+     * 获取该舰娘所有可用的属性加成装备和装备组合
+     * @returns {Array} Bonuses
+     */
+    getBonuses() {
+        return bonuses.filter(bonus => (
+            checkShip(this, bonus.ship)
+        ))
     }
 }
