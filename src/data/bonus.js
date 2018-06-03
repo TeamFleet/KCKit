@@ -10,6 +10,10 @@ const BB_IseClassRemodel = [
     82, // 伊勢改
     88, // 日向改
 ]
+const BB_FusouClass2ndRemodel = [
+    411, // 扶桑改二
+    412, // 山城改二
+]
 
 const CL_KumaClass2ndRemodel = [
     547, // 多摩改二
@@ -201,6 +205,7 @@ module.exports = [
         },
         bonus: {
             fire: 2,
+            aa: 1,
         }
     },
     // 35.6cm三連装砲改(ダズル迷彩仕様)
@@ -212,7 +217,7 @@ module.exports = [
         },
         bonus: {
             fire: 2,
-            aa: 1,
+            aa: 2,
             evasion: 2,
         }
     },
@@ -238,6 +243,17 @@ module.exports = [
             fire: 2,
             aa: 2,
             evasion: 1,
+        }
+    },
+    // 41cm三連装砲改二
+    // @ 扶桑型 改二
+    {
+        equipment: 290,
+        ship: {
+            isID: BB_FusouClass2ndRemodel
+        },
+        bonus: {
+            fire: 1,
         }
     },
 
@@ -388,18 +404,19 @@ module.exports = [
         },
         bonus: {
             fire: 2,
+            evasion: 2,
         }
     },
-    // 41cm三連装砲改二 + 対空電探
+    // 41cm三連装砲改二 + 水上電探
     // @ 伊勢型 改
     {
         list: [
             290,
-            'AARadar',
+            'SurfaceRadar',
         ],
         equipments: {
             hasID: [290],
-            hasAARadar: true,
+            hasSurfaceRadar: true,
         },
         ship: {
             isID: BB_IseClassRemodel
