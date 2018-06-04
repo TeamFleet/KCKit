@@ -231,6 +231,18 @@ describe('Checking functions/utilities', () => {
             expect(check.equipment(124, { isAARadar: false })).toBe(false);
             expect(check.equipment(141, { isAARadar: true })).toBe(false);
             expect(check.equipment(141, { isAARadar: false })).toBe(true);
+
+            // FuMO25 レーダー
+            expect(check.equipment(124, { isAARadar: true })).toBe(true)
+            expect(check.equipment(124, { isSurfaceRadar: true })).toBe(true)
+
+            // SK&SG レーダー
+            expect(check.equipment(279, { isAARadar: true })).toBe(true)
+            expect(check.equipment(279, { isSurfaceRadar: true })).toBe(true)
+
+            // 15m二重測距儀+21号電探改二
+            expect(check.equipment(142, { isAARadar: true })).toBe(true)
+            expect(check.equipment(142, { isSurfaceRadar: true })).toBe(true)
         });
         it(`should condition isNotType (and other similar method) be working`, function () {
             expect(check.equipment(1, { isNotType: 1 })).toBe(false);

@@ -56,18 +56,24 @@ module.exports = (equipment, conditions = {}) => {
 }
 
 const checkCondition = {
-    // 是特定ID
+    /**
+     * 是特定ID
+     */
     isid: (equipment, id) => ArrayOrItem(id, id => {
         if (isNaN(id)) return false
         return parseInt(id) === equipment.id
     }),
-    // 不是特定ID
+    /**
+     * 不是特定ID
+     */
     isnotid: (equipment, id) => ArrayOrItemAll(id, id => {
         if (isNaN(id)) return false
         return parseInt(id) !== equipment.id
     }),
 
-    // 完全匹配特定名称
+    /**
+     * 完全匹配特定名称
+     */
     isname: (equipment, name) => ArrayOrItem(name, name => (
         equipment.isName(name)
         // for (let key in equipment.name) {
@@ -76,7 +82,9 @@ const checkCondition = {
         // }
         // return false
     )),
-    // 不是特定名称
+    /**
+     * 不是特定名称
+     */
     isnotname: (equipment, name) => ArrayOrItemAll(name, name => (
         !equipment.isName(name)
         // for (let key in equipment.name) {
@@ -86,7 +94,9 @@ const checkCondition = {
         // return true
     )),
 
-    // 名称里包含特定字段
+    /**
+     * 名称里包含特定字段
+     */
     isnameof: (equipment, name) => ArrayOrItem(name, name => (
         equipment.hasName(name)
         // for (let key in equipment.name) {
@@ -95,7 +105,9 @@ const checkCondition = {
         // }
         // return false
     )),
-    // 名称里不包含特定字段
+    /**
+     * 名称里不包含特定字段
+     */
     isnotnameof: (equipment, name) => ArrayOrItemAll(name, name => (
         !equipment.hasName(name)
         // for (let key in equipment.name) {
@@ -105,8 +117,10 @@ const checkCondition = {
         // return true
     )),
 
-    // 是特定类型
-    // 如果判断条件为Object，也会进入该条件
+    /**
+     * 是特定类型
+     * 如果判断条件为Object，也会进入该条件
+     */
     istype: (equipment, type, conditions) => ArrayOrItem(type, type => {
         if (isNaN(type)) return false
         if (parseInt(type) !== equipment.type) return false
@@ -130,12 +144,18 @@ const checkCondition = {
         }
         return true
     }),
-    // 不是特定类型
+
+    /**
+     * 不是特定类型
+     */
     isnottype: (equipment, type) => ArrayOrItemAll(type, type => {
         if (isNaN(type)) return false
         return parseInt(type) !== equipment.type
     }),
-    // 是对空电探/雷达
+
+    /**
+     * 是对空电探/雷达
+     */
     isaaradar: function (equipment, isTrue) {
         // console.log(`[${equipment.id}]`, equipment._name)
         return ((
@@ -144,14 +164,17 @@ const checkCondition = {
             && equipment.stat.aa >= 2
         ) === isTrue)
     },
-    // 是对水面电探/雷达
+
+    /**
+     * 是对水面电探/雷达
+     */
     issurfaceradar: function (equipment, isTrue) {
         // console.log(`[${equipment.id}]`, equipment._name)
         return ((
             this.istype(equipment, equipmentTypes.Radars)
             && (
-                isNaN(equipment.stat.aa)
-                || equipment.stat.aa < 2
+                (equipment.stat.fire || 0) > 0
+                || (equipment.stat.aa || 0) < 2
             )
         ) === isTrue)
     },
