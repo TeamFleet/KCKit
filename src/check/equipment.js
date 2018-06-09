@@ -150,8 +150,8 @@ const checkCondition = {
         return ((
             this.istype(equipment, equipmentTypes.Radars)
             && (
-                isNaN(equipment.stat.aa)
-                || equipment.stat.aa < 2
+                (equipment.stat.fire || 0) > 0
+                || (equipment.stat.aa || 0) < 2
             )
         ) === isTrue)
     },

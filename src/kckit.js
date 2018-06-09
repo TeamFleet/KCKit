@@ -58,7 +58,11 @@
             5: '\\\\',
             6: '\\\\\\',
             7: '》'
-        }
+        },
+        check: {
+            ship: checkShip,
+            equipment: checkEquipment,
+        },
     };
 
 
