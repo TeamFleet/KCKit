@@ -325,9 +325,9 @@ describe('Base functions/utilities', () => {
                 /* 大鹰・改二 (CVL，但有基础对潜，可提升) */ expect(db.ships[529].getStatExtraMax('asw')).toEqual(9);
             })
             describe(`should Ship.prototype.getBonuses() works`, () => {
-                it(`睦月 - No bonuses`, () => {
+                it(`明石 - No bonuses`, () => {
                     expect(
-                        db.ships[1].getBonuses()
+                        db.ships[182].getBonuses()
                     ).toEqual([])
                 })
                 it(`榛名改二 - 3 bonuses`, () => {
@@ -440,6 +440,11 @@ describe('Base functions/utilities', () => {
                     expect(
                         db.items[1].getBonuses()
                     ).toEqual([])
+                })
+                it(`12.7cm単装高角砲(後期型) - 5 bonuses`, () => {
+                    expect(
+                        db.items[229].getBonuses().length
+                    ).toEqual(5)
                 })
                 it(`12.7cm連装砲D型改二 - 5 bonuses`, () => {
                     expect(

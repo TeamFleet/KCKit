@@ -195,6 +195,11 @@ module.exports = class Equipment extends ItemBase {
     getBonuses() {
         return bonuses.filter(bonus => {
             if (bonus.equipment == this.id) return true
+            if (Array.isArray(bonus.equipments)) {
+                return bonus.equipments.some(condition =>
+                    checkEquipment(this, 10, 7, condition)
+                )
+            }
             if (typeof bonus.equipments === 'object') {
                 return checkEquipment(this, {
                     isID: bonus.equipments.hasID,

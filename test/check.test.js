@@ -232,6 +232,10 @@ describe('Checking functions/utilities', () => {
             expect(check.equipment(141, { isAARadar: true })).toBe(false);
             expect(check.equipment(141, { isAARadar: false })).toBe(true);
 
+            // 21号対空電探改
+            expect(check.equipment(89, { isAARadar: true })).toBe(true)
+            expect(check.equipment(89, { isSurfaceRadar: true })).toBe(true)
+
             // FuMO25 レーダー
             expect(check.equipment(124, { isAARadar: true })).toBe(true)
             expect(check.equipment(124, { isSurfaceRadar: true })).toBe(true)

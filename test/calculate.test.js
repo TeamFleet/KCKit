@@ -180,6 +180,24 @@ describe('Calculating functions/utilities', () => {
                     evasion: 7,
                 })
             })
+            it('由良改二 || 12.7cm単装高角砲(後期型)⭐MAX + 12.7cm単装高角砲(後期型)⭐MAX + FuMO25 レーダー', () => {
+                expect(calculate.bonus(
+                    488,
+                    [229, 229, 124],
+                    [10, 10],
+                )).toEqual({
+                    fire: 7,
+                    aa: 6,
+                    evasion: 2,
+                })
+            })
+            it('由良改二 || 12.7cm単装高角砲(後期型)⭐5 + FuMO25 レーダー', () => {
+                expect(calculate.bonus(
+                    488,
+                    [229, 124],
+                    [5],
+                )).toEqual({})
+            })
             it('pass stat', () => {
                 expect(calculate.bonus(
                     146, [268, 268, 268], 'fire'

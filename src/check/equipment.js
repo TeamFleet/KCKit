@@ -6,6 +6,8 @@ const { ArrayOrItem, ArrayOrItemAll } = require('./helpers')
  * 检查装备是否满足给定条件
  * 
  * @param {(number|Equipment)} equipment 要判断的装备
+ * @param {Number} [star=0] 改修星级
+ * @param {Number} [rank=0] 熟练度级别
  * @param {any} [conditions={}] 条件，需满足所有条件
  * @param {(number|number[])} [conditions.isID] 判断装备ID是否精确匹配或匹配其中一项
  * @param {(number|number[])} [conditions.isNotID] 判断装备ID是否不匹配
@@ -16,16 +18,33 @@ const { ArrayOrItem, ArrayOrItemAll } = require('./helpers')
  * @param {(number|number[])} [conditions.isType] 判断装备是否属于给定舰种或匹配其中一项
  * @param {(number|number[])} [conditions.isNotType] 判断装备是否不属于给定舰种
  */
-module.exports = (equipment, conditions = {}) => {
+const check = (equipment, star = 0, rank = 0, conditions = {}) => {
+    if (typeof star === 'object')
+        return check(equipment, 0, 0, star)
+
+    if (typeof rank === 'object')
+        return check(equipment, star, 0, rank)
+
     equipment = getEquipment(equipment)
     if (typeof equipment === 'undefined') return false
 
     // 需满足所有条件
     for (let key in conditions) {
         if (typeof conditions[key] === 'undefined') continue
-        if (checkCondition[key.toLowerCase()]) {
+
+        const keyLowerCase = key.toLowerCase()
+
+        if ([
+            'improve',
+            'improvement',
+            'star'
+        ].includes(keyLowerCase)) {
+            return (parseInt(star || 0) || 0) >= parseInt(conditions[key])
+        }
+
+        if (checkCondition[keyLowerCase]) {
             // checkCondition 中存在该条件，直接运行
-            if (!checkCondition[key.toLowerCase()](equipment, conditions[key]))
+            if (!checkCondition[keyLowerCase](equipment, conditions[key]))
                 return false
         } else if (key.substr(0, 2) === 'is') {
             // 以 is 为开头，通常为检查装备类型
@@ -161,7 +180,7 @@ const checkCondition = {
         return ((
             this.istype(equipment, equipmentTypes.Radars)
             && !isNaN(equipment.stat.aa)
-            && equipment.stat.aa >= 2
+            && equipment.stat.aa >= 1
         ) === isTrue)
     },
 
@@ -172,10 +191,14 @@ const checkCondition = {
         // console.log(`[${equipment.id}]`, equipment._name)
         return ((
             this.istype(equipment, equipmentTypes.Radars)
-            && (
-                (equipment.stat.fire || 0) > 0
-                || (equipment.stat.aa || 0) < 2
-            )
+            // && (
+            //     (equipment.stat.fire || 0) > 0
+            //     || (equipment.stat.aa || 0) < 2
+            // )
+            && !isNaN(equipment.stat.hit)
+            && equipment.stat.hit >= 3
         ) === isTrue)
     },
 }
+
+module.exports = check

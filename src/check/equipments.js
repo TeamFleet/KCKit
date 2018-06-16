@@ -1,4 +1,4 @@
-const getEquipment = require('../get/equipment')
+// const getEquipment = require('../get/equipment')
 const checkEquipment = require('./equipment')
 
 const checkListStatic = [
@@ -12,45 +12,86 @@ const checkListStatic = [
  * 检查装备列表是否满足给定条件
  * 
  * @param {(number[]|Equipment[])} equipments 要判断的装备列表
+ * @param {Number[]} [stars=[]] 各装备的改修星级
+ * @param {Number[]} [ranks=[]] 各装备的熟练度级别
  * @param {any} [conditions={}] 条件，需满足所有条件
  */
-const check = (equipments, conditions = {}) => {
+const check = (equipments, stars, ranks, conditions = {}) => {
+    if (typeof stars === 'object' && !Array.isArray(stars))
+        return check(equipments, [], [], stars)
+
+    if (typeof ranks === 'object' && !Array.isArray(ranks))
+        return check(equipments, stars, [], ranks)
+
     if (!Array.isArray(equipments))
-        return check([equipments], conditions)
+        return check([equipments], stars, ranks, conditions)
+
+    if (!Array.isArray(stars)) stars = [stars]
+    if (!Array.isArray(ranks)) ranks = [ranks]
 
     // 需满足所有条件
+
+    // Array
+    if (Array.isArray(conditions)) {
+        return conditions.every(condition =>
+            equipments.some((equipment, index) => checkEquipment(
+                equipment,
+                stars[index],
+                ranks[index],
+                condition,
+            ))
+        )
+    }
+
+    // 其他情况
     for (let key in conditions) {
         if (typeof conditions[key] === 'undefined') continue
         if (conditions[key] === false) {
             // 条件：不存在
             if (!equipments.every(
-                equipment => checkEquipment(equipment, {
-                    [key.replace(/^has/, 'is')]: conditions[key]
-                })
+                (equipment, index) => checkEquipment(
+                    equipment,
+                    stars[index],
+                    ranks[index], {
+                        [key.replace(/^has/, 'is')]: conditions[key]
+                    }
+                )
             ))
                 return false
         } else if (conditions[key] === true) {
             // 条件：存在
             if (!equipments.some(
-                equipment => checkEquipment(equipment, {
-                    [key.replace(/^has/, 'is')]: conditions[key]
-                })
+                (equipment, index) => checkEquipment(
+                    equipment,
+                    stars[index],
+                    ranks[index], {
+                        [key.replace(/^has/, 'is')]: conditions[key]
+                    }
+                )
             ))
                 return false
         } else if (key.substr(0, 3) === 'has' && checkListStatic.includes(key.substr(3).toLowerCase())) {
             // 条件：checkListStatic 中的项目
             if (Array.isArray(conditions[key])) {
                 if (!conditions[key].every(value => equipments.some(
-                    equipment => checkEquipment(equipment, {
-                        [key.replace(/^has/, 'is')]: value
-                    })
+                    (equipment, index) => checkEquipment(
+                        equipment,
+                        stars[index],
+                        ranks[index], {
+                            [key.replace(/^has/, 'is')]: value
+                        }
+                    )
                 )))
                     return false
             } else {
                 if (!equipments.some(
-                    equipment => checkEquipment(equipment, {
-                        [key.replace(/^has/, 'is')]: conditions[key]
-                    })
+                    (equipment, index) => checkEquipment(
+                        equipment,
+                        stars[index],
+                        ranks[index], {
+                            [key.replace(/^has/, 'is')]: conditions[key]
+                        }
+                    )
                 ))
                     return false
             }
@@ -60,9 +101,13 @@ const check = (equipments, conditions = {}) => {
             const count = typeof thisCondition.count === 'undefined' ? 1 : thisCondition.count
             delete thisCondition.count
             const filtered = equipments.filter(
-                equipment => checkEquipment(equipment, {
-                    [key.replace(/^has/, 'is')]: thisCondition
-                })
+                (equipment, index) => checkEquipment(
+                    equipment,
+                    stars[index],
+                    ranks[index], {
+                        [key.replace(/^has/, 'is')]: thisCondition
+                    }
+                )
             )
             // console.log(thisCondition, equipments, filtered.length, count)
             if (filtered.length < count)
@@ -70,18 +115,26 @@ const check = (equipments, conditions = {}) => {
         } else if (key.substr(0, 3) === 'has' && !isNaN(conditions[key])) {
             // 条件：有至少 N 个
             const filtered = equipments.filter(
-                equipment => checkEquipment(equipment, {
-                    [key.replace(/^has/, 'is')]: true
-                })
+                (equipment, index) => checkEquipment(
+                    equipment,
+                    stars[index],
+                    ranks[index], {
+                        [key.replace(/^has/, 'is')]: true
+                    }
+                )
             )
             if (filtered.length < conditions[key])
                 return false
         } else if (key.substr(0, 3) === 'has' && Array.isArray(conditions[key])) {
             // 条件：有至少 value[0] 个至多 value[1] 个
             const filtered = equipments.filter(
-                equipment => checkEquipment(equipment, {
-                    [key.replace(/^has/, 'is')]: true
-                })
+                (equipment, index) => checkEquipment(
+                    equipment,
+                    stars[index],
+                    ranks[index], {
+                        [key.replace(/^has/, 'is')]: true
+                    }
+                )
             )
             if (filtered.length < conditions[key][0] || filtered.length > conditions[key][1])
                 return false

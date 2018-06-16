@@ -10,6 +10,10 @@ const BB_IseClassRemodel = [
     82, // 伊勢改
     88, // 日向改
 ]
+const BB_IseClass2ndRemodel = [
+    553, // 伊勢改二
+]
+const BB_IseClassRemodelAll = BB_IseClassRemodel.concat(BB_IseClass2ndRemodel)
 const BB_FusouClass2ndRemodel = [
     411, // 扶桑改二
     412, // 山城改二
@@ -23,6 +27,9 @@ const CL_KumaClassRemodel = [
     216, // 多摩改
     217, // 木曽改
 ].concat(CL_KumaClass2ndRemodel)
+const CL_NagaraClass2ndRemodel = [
+    488, // 由良改二
+]
 
 const DD_FubukiClass2ndRemodel = [
     426, // 吹雪改二
@@ -59,6 +66,7 @@ const DD_AsashioClass2ndRemodel = [
 const DD_KagerouClass2ndRemodel = [
     566, // 陽炎改二
     567, // 不知火改二
+    568, // 黒潮改二
 ]
 const DD_YuugumoClass2ndRemodel = [
     543, // 長波改二
@@ -81,6 +89,35 @@ module.exports = [
     /**
      * 小口径主炮
      */
+    // 12.7cm単装高角砲(後期型)
+    // @ 神風型 / 睦月型
+    // @ 占守型 / 択捉型 / 日振型
+    {
+        equipment: 229,
+        ship: {
+            isClass: [84, 12, 92, 94, 108],
+        },
+        bonusImprove: {
+            10: {
+                fire: 1,
+                aa: 1,
+            }
+        }
+    },
+    // 12.7cm単装高角砲(後期型)
+    // @ 長良型 改二
+    {
+        equipment: 229,
+        ship: {
+            isID: CL_NagaraClass2ndRemodel,
+        },
+        bonusImprove: {
+            10: {
+                fire: 2,
+                aa: 3,
+            }
+        }
+    },
     // 12.7cm連装砲C型改二
     // @ 陽炎型 改二
     {
@@ -234,6 +271,17 @@ module.exports = [
         }
     },
     // 41cm三連装砲改二
+    // @ 扶桑型 改二
+    {
+        equipment: 290,
+        ship: {
+            isID: BB_FusouClass2ndRemodel
+        },
+        bonus: {
+            fire: 1,
+        }
+    },
+    // 41cm三連装砲改二
     // @ 伊勢型 改
     {
         equipment: 290,
@@ -247,14 +295,16 @@ module.exports = [
         }
     },
     // 41cm三連装砲改二
-    // @ 扶桑型 改二
+    // @ 伊勢型 改二
     {
         equipment: 290,
         ship: {
-            isID: BB_FusouClass2ndRemodel
+            isID: BB_IseClass2ndRemodel
         },
         bonus: {
-            fire: 1,
+            fire: 3,
+            aa: 2,
+            evasion: 1,
         }
     },
 
@@ -369,7 +419,67 @@ module.exports = [
     /**
      * 组合
      */
-    // 12.7cm連装砲D型改二 + 水上電探
+    // 12.7cm単装高角砲(後期型) + 对水上電探
+    // @ 神風型 / 睦月型
+    {
+        equipments: [
+            {
+                isID: 229,
+                improvement: 10,
+            },
+            {
+                isSurfaceRadar: true
+            }
+        ],
+        ship: {
+            isClass: [84, 12],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 3,
+        }
+    },
+    // 12.7cm単装高角砲(後期型) + 对水上電探
+    // @ 占守型 / 択捉型 / 日振型
+    {
+        equipments: [
+            {
+                isID: 229,
+                improvement: 10,
+            },
+            {
+                isSurfaceRadar: true
+            }
+        ],
+        ship: {
+            isClass: [92, 94, 108],
+        },
+        bonus: {
+            fire: 1,
+            evasion: 4,
+        }
+    },
+    // 12.7cm単装高角砲(後期型)
+    // @ 長良型 改二
+    {
+        equipments: [
+            {
+                isID: 229,
+                improvement: 10,
+            },
+            {
+                isSurfaceRadar: true
+            }
+        ],
+        ship: {
+            isID: CL_NagaraClass2ndRemodel,
+        },
+        bonus: {
+            fire: 3,
+            evasion: 2,
+        }
+    },
+    // 12.7cm連装砲D型改二 + 对水上電探
     // @ 夕雲型 改二 / 島風改
     {
         list: [
@@ -389,7 +499,7 @@ module.exports = [
             evasion: 2,
         }
     },
-    // 35.6cm三連装砲改(ダズル迷彩仕様) + 水上電探
+    // 35.6cm三連装砲改(ダズル迷彩仕様) + 对水上電探
     // @ 金剛型 改二
     {
         list: [
@@ -408,19 +518,19 @@ module.exports = [
             evasion: 2,
         }
     },
-    // 41cm三連装砲改二 + 水上電探
+    // 41cm三連装砲改二 + 对空電探
     // @ 伊勢型 改
     {
         list: [
             290,
-            'SurfaceRadar',
+            'AARadar',
         ],
         equipments: {
             hasID: [290],
-            hasSurfaceRadar: true,
+            hasAARadar: true,
         },
         ship: {
-            isID: BB_IseClassRemodel
+            isID: BB_IseClassRemodelAll
         },
         bonus: {
             aa: 2,

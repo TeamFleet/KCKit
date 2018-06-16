@@ -110,7 +110,7 @@ const calculateBonus = (
     conditions
         .filter(bonus => (
             typeof bonus.equipments === 'object' &&
-            checkEquipments(equipments, bonus.equipments)
+            checkEquipments(equipments, equipmentStars, equipmentRanks, bonus.equipments)
         ))
         .forEach(bonus => {
             addResult(bonus.bonus)
