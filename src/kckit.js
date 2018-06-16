@@ -1561,6 +1561,7 @@
                     return '-'
                 } else {
                     result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {}, bonus)
+                    console.log('result', result)
                     if (result && result > -1)
                         return Math.floor(result)// + 5
                     return '-'
@@ -2183,11 +2184,15 @@
         // 检查是否为航母攻击模式
         if (formula.shipType.Carriers.indexOf(ship.type) > -1) {
             isCV = true
-        } else {
+        } else if (![33].includes(ship.type)) {
+            // 如果为BBV，判断为非航母模式
+
             //equipments_by_slot.forEach(function(equipment){
             //	if( equipment && !isCV && _equipmentType.CarrierBased.indexOf( equipment.type ) > -1 )
             //		isCV = true
             //})
+
+            // 如果有舰载机，判断为航母模式
             equipments_by_slot.some(function (equipment) {
                 if (equipment && !isCV && _equipmentType.CarrierBased.indexOf(equipment.type) > -1) {
                     isCV = true
@@ -2938,9 +2943,12 @@
 
         return theResult()
     };
-    formula.calcByShip.fireRange = function (ship, equipments_by_slot) {
+    formula.calcByShip.fireRange = function (ship, equipments_by_slot, star_by_slot, rank_by_slot, options, bonus) {
         if (!ship) return '-'
         equipments_by_slot = equipments_by_slot || []
+
+        options = options || {}
+        bonus = bonus || calculateBonus(ship, equipments_by_slot, star_by_slot, rank_by_slot)
 
         let result = parseInt(ship.stat.range)
 
@@ -2953,7 +2961,9 @@
             )
         })
 
-        return KC.statRange[result]
+        if (!isNaN(bonus.range)) result += parseInt(bonus.range)
+
+        return KC.statRange[Math.min(4, result)]
     };
     // Calculate by Fleet
     formula.calcByFleet.los33 = (data, hq) => {
