@@ -28,8 +28,10 @@ const calculateBonus = (
         for (let stat in bonus) {
             if (typeof result[stat] === 'undefined')
                 result[stat] = bonus[stat]
-            else
+            else if (typeof result[stat] === 'number')
                 result[stat] += bonus[stat]
+            else
+                result[stat] = bonus[stat]
         }
     }
 
@@ -63,8 +65,10 @@ const calculateBonus = (
                                 for (let stat in bonus.bonusImprove[star]) {
                                     if (typeof thisBonus[stat] === 'undefined')
                                         thisBonus[stat] = bonus.bonusImprove[star][stat]
-                                    else
+                                    else if (typeof thisBonus[stat] === 'number')
                                         thisBonus[stat] += bonus.bonusImprove[star][stat]
+                                    else
+                                        thisBonus[stat] = bonus.bonusImprove[star][stat]
                                 }
                                 return true
                             }
@@ -99,7 +103,9 @@ const calculateBonus = (
                     thisBonus = { ...bonus.bonus }
                     // add for count
                     for (let stat in thisBonus)
-                        thisBonus[stat] = thisBonus[stat] * thisCount
+                        thisBonus[stat] = typeof thisBonus[stat] === 'number'
+                            ? thisBonus[stat] * thisCount
+                            : parseInt(thisBonus[stat])
                 }
             }
 

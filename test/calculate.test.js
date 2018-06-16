@@ -1,6 +1,6 @@
-const path = require('path')
-const fs = require('fs')
-const camelCase = require('camelcase')
+// const path = require('path')
+// const fs = require('fs')
+// const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames')
 let db
 beforeAll(() => new Promise(async resolve => {
@@ -197,6 +197,17 @@ describe('Calculating functions/utilities', () => {
                     [229, 124],
                     [5],
                 )).toEqual({})
+            })
+            it('伊勢改二 || 二式艦上偵察機 + 二式艦上偵察機', () => {
+                expect(calculate.bonus(
+                    553,
+                    [61, 61],
+                )).toEqual({
+                    fire: 6,
+                    armor: 2,
+                    evasion: 4,
+                    range: 5,
+                })
             })
             it('pass stat', () => {
                 expect(calculate.bonus(
