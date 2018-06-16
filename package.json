@@ -1,6 +1,6 @@
 {
   "name": "kckit",
-  "version": "0.13.4",
+  "version": "0.13.5",
   "description": "Javascript library for KanColle",
   "main": "dist/kckit.js",
   "author": "diablohu",
@@ -18,6 +18,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^4.19.1",
+    "babel-eslint": "^8.2.3",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-concat": "^2.6.1",

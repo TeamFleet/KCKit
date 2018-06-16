@@ -287,6 +287,11 @@
         getBonuses() {
             return dataBonuses.filter(bonus => {
                 if (bonus.equipment == this.id) return true
+                if (Array.isArray(bonus.equipments)) {
+                    return bonus.equipments.some(condition =>
+                        checkEquipment(this, 10, 7, condition)
+                    )
+                }
                 if (typeof bonus.equipments === 'object') {
                     return checkEquipment(this, {
                         isID: bonus.equipments.hasID,
@@ -467,10 +472,19 @@
             return this.getRange()
         }
 
-        getEquipmentTypes() {
+        getEquipmentTypes(slotIndex) {
             const disabled = this.additional_disable_item_types || []
-            return KC.db.ship_types[this.type].equipable
-                .concat((this.additional_item_types || []))
+            const shipType = KC.db.ship_types[this.type]
+            const types = shipType.equipable.concat((this.additional_item_types || []))
+            if (typeof slotIndex === 'number' &&
+                Array.isArray(shipType.additional_item_types_by_slot) &&
+                Array.isArray(shipType.additional_item_types_by_slot[slotIndex])
+            ) {
+                shipType.additional_item_types_by_slot[slotIndex].forEach(id =>
+                    types.push(id)
+                )
+            }
+            return types
                 .filter(function (type) {
                     return disabled.indexOf(type) < 0;
                 })
