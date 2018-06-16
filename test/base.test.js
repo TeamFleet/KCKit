@@ -278,6 +278,30 @@ describe('Base functions/utilities', () => {
             it(`should 路易吉·托雷利・改 db.ships[605].canEquip(['MidgetSubmarine']) be false`, function () {
                 expect(db.ships[605].canEquip(['MidgetSubmarine'])).toBe(false);
             });
+            describe(`should Ship.prototype.canEquip() works`, () => {
+                it(`伊勢・改二 | ❌ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].canEquip('LargeCaliber')
+                    ).toEqual(false);
+                })
+                it(`伊勢・改二 (Slot #1) | ✔ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].canEquip('LargeCaliber', 0)
+                    ).toEqual(true);
+                })
+                it(`伊勢・改二 (Slot #2) | ✔ 中口径主砲 | ✔ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].canEquip(['MediumCaliber', 'LargeCaliber'], 1)
+                    ).toEqual(true);
+                })
+                it(`伊勢・改二 (Slot #3) | ❌ 中口径主砲 | ❌ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].canEquip(['MediumCaliber', 'LargeCaliber'], 2)
+                    ).toEqual(false);
+                })
+            })
+
+
             it(`should 大和・改 db.ships[136].getExSlotEquipmentTypes() be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[136].getExSlotEquipmentTypes()).toEqual(kckit.exSlotEquipmentTypes);
             });
@@ -292,16 +316,37 @@ describe('Base functions/utilities', () => {
             it(`should 熊野・改二 db.ships[504].getExSlotOtherEquipments() not be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[504].getExSlotOtherEquipments()).not.toEqual(kckit.exSlotOtherEquipments);
             });
-            it(`should まるゆ・改 can equip 特殊潜航艇`, function () {
-                expect(db.ships[402].getEquipmentTypes().includes(14)).toEqual(true);
-            });
-            it(`should 路易吉·托雷利・改 cannot equip 特殊潜航艇`, function () {
-                expect(db.ships[605].getEquipmentTypes().includes(14)).toEqual(false);
-            });
-            it(`should UIT-25 cannot equip 特殊潜航艇 and can equip 対空機銃`, function () {
-                const arr = db.ships[539].getEquipmentTypes()
-                expect(!arr.includes(14) && arr.includes(29)).toEqual(true);
-            });
+            describe(`should Ship.prototype.getEquipmentTypes() works`, () => {
+                it(`まるゆ・改 | ✔ 特殊潜航艇`, () => {
+                    expect(
+                        db.ships[402].getEquipmentTypes().includes(14)
+                    ).toEqual(true);
+                })
+                it(`Luigi Torelli・改 | ❌ 特殊潜航艇`, () => {
+                    expect(
+                        db.ships[605].getEquipmentTypes().includes(14)
+                    ).toEqual(false);
+                })
+                it(`UIT-25 | ❌ 特殊潜航艇 | ✔ 対空機銃`, () => {
+                    const arr = db.ships[539].getEquipmentTypes()
+                    expect(!arr.includes(14) && arr.includes(29)).toEqual(true)
+                })
+                it(`伊勢・改二 | ❌ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].getEquipmentTypes().includes(5)
+                    ).toEqual(false);
+                })
+                it(`伊勢・改二 (Slot #1) | ✔ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].getEquipmentTypes(0).includes(5)
+                    ).toEqual(true);
+                })
+                it(`伊勢・改二 (Slot #3) | ❌ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].getEquipmentTypes(2).includes(5)
+                    ).toEqual(false);
+                })
+            })
             it(`should Ship.prototype.getCapability() works`, () => {
                 expect(typeof db.ships[1].getCapability()).toEqual('object');
                 expect(db.ships[487].getCapability('count_as_landing_craft')).toEqual(1);
