@@ -545,7 +545,7 @@ module.exports = [
             fire: 3,
             armor: 1,
             evasion: 2,
-            range: '5',
+            range: '1',
         }
     },
 

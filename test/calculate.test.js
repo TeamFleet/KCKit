@@ -206,7 +206,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 6,
                     armor: 2,
                     evasion: 4,
-                    range: 5,
+                    range: 1,
                 })
             })
             it('pass stat', () => {
