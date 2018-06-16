@@ -54,7 +54,7 @@ const check = (equipment, star = 0, rank = 0, conditions = {}) => {
             } else if (typeName + 's' in equipmentTypes) {
                 typeName = typeName + 's'
             } else if (typeName in equipmentTypes) {
-                typeName = typeName
+                // typeName = typeName
             } else {
                 return false
             }

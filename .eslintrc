@@ -5,12 +5,11 @@
         "node": true,
         "commonjs": true,
         "amd": true,
-        "es6": true,
-        "mocha": true
+        "es6": true
     },
     "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 7,
+        "ecmaVersion": 2017,
         "sourceType": "module",
         "ecmaFeatures": {
             "globalReturn": true,
