@@ -1561,7 +1561,6 @@
                     return '-'
                 } else {
                     result = formula.calcByShip.shellingPower(ship, equipments_by_slot, star_by_slot, rank_by_slot, {}, bonus)
-                    console.log('result', result)
                     if (result && result > -1)
                         return Math.floor(result)// + 5
                     return '-'
