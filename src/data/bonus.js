@@ -18,6 +18,7 @@ const BB_FusouClass2ndRemodel = [
     411, // 扶桑改二
     412, // 山城改二
 ]
+const BB_IseClassRemodel_PLUS_FusouClass2ndRemodel = BB_IseClassRemodel.concat(BB_FusouClass2ndRemodel)
 
 const CL_KumaClass2ndRemodel = [
     547, // 多摩改二
@@ -79,7 +80,7 @@ const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel = DD_YuugumoClass2ndRemode
  * @member {Number} [equipment] 单一装备
  * @member {Object} [equipments] 条件：装备组合
  * @member {Object} ship 条件：匹配的舰娘
- * @member {Object} [bonus] 收益
+ * @member {Object} [bonus] 收益。数字表示可叠加，字符串表示仅单次
  * @member {Object} [bonusCount] 仅当为单一装备时可用：不同装备数量的收益
  * @member {Object} [bonusImprove] 仅当为单一装备时可用：不同改修星级的收益
  * @member {Array} [list] 显示的内容
@@ -395,6 +396,156 @@ module.exports = [
                 torpedo: 2,
                 evasion: 1,
             }
+        }
+    },
+
+    /**
+     * 水上轰炸机
+     */
+    // 瑞雲(六三四空)
+    // @ 伊勢型 改二
+    {
+        equipment: 79,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 3,
+        }
+    },
+    // 瑞雲(六三四空)
+    // @ 伊勢型 改 / 扶桑型 改二
+    {
+        equipment: 79,
+        ship: {
+            isID: BB_IseClassRemodel_PLUS_FusouClass2ndRemodel
+        },
+        bonus: {
+            fire: 2,
+        }
+    },
+    // 瑞雲12型(六三四空)
+    // @ 伊勢型 改二
+    {
+        equipment: 81,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 3,
+        }
+    },
+    // 瑞雲12型(六三四空)
+    // @ 伊勢型 改 / 扶桑型 改二
+    {
+        equipment: 81,
+        ship: {
+            isID: BB_IseClassRemodel_PLUS_FusouClass2ndRemodel
+        },
+        bonus: {
+            fire: 2,
+        }
+    },
+    // 瑞雲(六三四空/熟練)
+    // @ 伊勢型 改二
+    {
+        equipment: 237,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 4,
+        }
+    },
+    // 瑞雲(六三四空/熟練)
+    // @ 伊勢型 改 / 扶桑型 改二
+    {
+        equipment: 237,
+        ship: {
+            isID: BB_IseClassRemodel_PLUS_FusouClass2ndRemodel
+        },
+        bonus: {
+            fire: 3,
+        }
+    },
+
+    /**
+     * 舰载轰炸机
+     */
+    // 彗星
+    // @ 伊勢型 改二
+    {
+        equipment: 24,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 2,
+        }
+    },
+    // 彗星一二型甲
+    // @ 伊勢型 改二
+    {
+        equipment: 57,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 2,
+        }
+    },
+    // 彗星(江草隊)
+    // @ 伊勢型 改二
+    {
+        equipment: 100,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 4,
+        }
+    },
+    // 彗星二二型(六三四空)
+    // @ 伊勢型 改二
+    {
+        equipment: 291,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 6,
+            evasion: 1,
+        }
+    },
+    // 彗星二二型(六三四空/熟練)
+    // @ 伊勢型 改二
+    {
+        equipment: 292,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 8,
+            aa: 1,
+            evasion: 2,
+        }
+    },
+
+    /**
+     * 舰载侦察机
+     */
+    // 二式艦上偵察機
+    // @ 伊勢型 改二
+    {
+        equipment: 61,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 3,
+            armor: 1,
+            evasion: 2,
+            range: '5',
         }
     },
 
