@@ -573,6 +573,13 @@ module.exports = [
     // 12.7cm単装高角砲(後期型) + 对水上電探
     // @ 神風型 / 睦月型
     {
+        list: [
+            {
+                id: 229,
+                star: 10,
+            },
+            'SurfaceRadar',
+        ],
         equipments: [
             {
                 isID: 229,
@@ -593,6 +600,13 @@ module.exports = [
     // 12.7cm単装高角砲(後期型) + 对水上電探
     // @ 占守型 / 択捉型 / 日振型
     {
+        list: [
+            {
+                id: 229,
+                star: 10,
+            },
+            'SurfaceRadar',
+        ],
         equipments: [
             {
                 isID: 229,
@@ -613,6 +627,13 @@ module.exports = [
     // 12.7cm単装高角砲(後期型)
     // @ 長良型 改二
     {
+        list: [
+            {
+                id: 229,
+                star: 10,
+            },
+            'SurfaceRadar',
+        ],
         equipments: [
             {
                 isID: 229,
