@@ -91,17 +91,31 @@ module.exports = [
      * 小口径主炮
      */
     // 12.7cm単装高角砲(後期型)
-    // @ 神風型 / 睦月型
     // @ 占守型 / 択捉型 / 日振型
+    // @ 神風型
     {
         equipment: 229,
         ship: {
-            isClass: [84, 12, 92, 94, 108],
+            isClass: [92, 94, 108, 84],
         },
         bonusImprove: {
             10: {
                 fire: 1,
                 aa: 1,
+            }
+        }
+    },
+    // 12.7cm単装高角砲(後期型)
+    // @ 睦月型
+    {
+        equipment: 229,
+        ship: {
+            isClass: [12],
+        },
+        bonusImprove: {
+            10: {
+                fire: 2,
+                aa: 3,
             }
         }
     },
@@ -403,20 +417,31 @@ module.exports = [
      * 水上轰炸机
      */
     // 瑞雲(六三四空)
-    // @ 伊勢型 改二
+    // @ 伊勢型 改 / 扶桑型 改二
     {
         equipment: 79,
         ship: {
-            isID: BB_IseClass2ndRemodel
+            isID: BB_IseClassRemodel_PLUS_FusouClass2ndRemodel
         },
         bonus: {
-            fire: 3,
+            fire: 2,
         }
     },
     // 瑞雲(六三四空)
-    // @ 伊勢型 改 / 扶桑型 改二
+    // @ 伊勢型 改二
     {
         equipment: 79,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 3,
+        }
+    },
+    // 瑞雲12型(六三四空)
+    // @ 伊勢型 改 / 扶桑型 改二
+    {
+        equipment: 81,
         ship: {
             isID: BB_IseClassRemodel_PLUS_FusouClass2ndRemodel
         },
@@ -435,15 +460,26 @@ module.exports = [
             fire: 3,
         }
     },
-    // 瑞雲12型(六三四空)
-    // @ 伊勢型 改 / 扶桑型 改二
+    // 瑞雲(六三四空/熟練)
+    // @ 扶桑型 改二
     {
-        equipment: 81,
+        equipment: 237,
         ship: {
-            isID: BB_IseClassRemodel_PLUS_FusouClass2ndRemodel
+            isID: BB_FusouClass2ndRemodel
         },
         bonus: {
-            fire: 2,
+            fire: 3,
+        }
+    },
+    // 瑞雲(六三四空/熟練)
+    // @ 伊勢型 改
+    {
+        equipment: 237,
+        ship: {
+            isID: BB_IseClassRemodel
+        },
+        bonus: {
+            fire: 3,
         }
     },
     // 瑞雲(六三四空/熟練)
@@ -455,17 +491,6 @@ module.exports = [
         },
         bonus: {
             fire: 4,
-        }
-    },
-    // 瑞雲(六三四空/熟練)
-    // @ 伊勢型 改 / 扶桑型 改二
-    {
-        equipment: 237,
-        ship: {
-            isID: BB_IseClassRemodel_PLUS_FusouClass2ndRemodel
-        },
-        bonus: {
-            fire: 3,
         }
     },
 
@@ -487,6 +512,17 @@ module.exports = [
     // @ 伊勢型 改二
     {
         equipment: 57,
+        ship: {
+            isID: BB_IseClass2ndRemodel
+        },
+        bonus: {
+            fire: 2,
+        }
+    },
+    // 彗星(六〇一空)
+    // @ 伊勢型 改二
+    {
+        equipment: 111,
         ship: {
             isID: BB_IseClass2ndRemodel
         },
@@ -571,33 +607,6 @@ module.exports = [
      * 组合
      */
     // 12.7cm単装高角砲(後期型) + 对水上電探
-    // @ 神風型 / 睦月型
-    {
-        list: [
-            {
-                id: 229,
-                star: 10,
-            },
-            'SurfaceRadar',
-        ],
-        equipments: [
-            {
-                isID: 229,
-                improvement: 10,
-            },
-            {
-                isSurfaceRadar: true
-            }
-        ],
-        ship: {
-            isClass: [84, 12],
-        },
-        bonus: {
-            fire: 2,
-            evasion: 3,
-        }
-    },
-    // 12.7cm単装高角砲(後期型) + 对水上電探
     // @ 占守型 / 択捉型 / 日振型
     {
         list: [
@@ -622,6 +631,33 @@ module.exports = [
         bonus: {
             fire: 1,
             evasion: 4,
+        }
+    },
+    // 12.7cm単装高角砲(後期型) + 对水上電探
+    // @ 神風型 / 睦月型
+    {
+        list: [
+            {
+                id: 229,
+                star: 10,
+            },
+            'SurfaceRadar',
+        ],
+        equipments: [
+            {
+                isID: 229,
+                improvement: 10,
+            },
+            {
+                isSurfaceRadar: true
+            }
+        ],
+        ship: {
+            isClass: [84, 12],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 3,
         }
     },
     // 12.7cm単装高角砲(後期型)
@@ -683,7 +719,10 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isID: BB_KongouClass2ndRemodel
+            isID: [
+                149, // 金剛改二
+                151, // 榛名改二
+            ]
         },
         bonus: {
             fire: 2,

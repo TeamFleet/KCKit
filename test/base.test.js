@@ -486,10 +486,10 @@ describe('Base functions/utilities', () => {
                         db.items[1].getBonuses()
                     ).toEqual([])
                 })
-                it(`12.7cm単装高角砲(後期型) - 5 bonuses`, () => {
+                it(`12.7cm単装高角砲(後期型) - 6 bonuses`, () => {
                     expect(
                         db.items[229].getBonuses().length
-                    ).toEqual(5)
+                    ).toEqual(6)
                 })
                 it(`12.7cm連装砲D型改二 - 5 bonuses`, () => {
                     expect(
