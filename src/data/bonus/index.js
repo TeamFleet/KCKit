@@ -3,10 +3,6 @@
  * @module
  */
 
-const {
-    BB_IseClass2ndRemodel,
-} = require('./ships')
-
 /**
  * @member {Number} [equipment] 单一装备
  * @member {Object} [equipments] 条件：装备组合
