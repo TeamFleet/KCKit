@@ -2572,6 +2572,7 @@
                     isNight: true, returnZero: true
                 }, bonus)
                 + starBonus
+                + (bonus.nightExtra || 0)
             /*
             console.log(
                 '夜',
