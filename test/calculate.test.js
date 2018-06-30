@@ -112,9 +112,9 @@ describe('Calculating functions/utilities', () => {
                 expect(calculate.bonus(
                     543, [267, 267, 88]
                 )).toEqual({
-                    fire: 7,
+                    fire: 9,
+                    torpedo: 4,
                     evasion: 4,
-                    torpedo: 3,
                 })
             })
             it('不知火改二 || 61cm四連装(酸素)魚雷', () => {
@@ -197,6 +197,27 @@ describe('Calculating functions/utilities', () => {
                     [229, 124],
                     [5],
                 )).toEqual({})
+            })
+            it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX', () => {
+                expect(calculate.bonus(
+                    376,
+                    [229],
+                    [10],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                })
+            })
+            it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX + 22号対水上電探', () => {
+                expect(calculate.bonus(
+                    376,
+                    [229, 28],
+                    [10],
+                )).toEqual({
+                    fire: 2,
+                    aa: 1,
+                    evasion: 4,
+                })
             })
             it('伊勢改二 || 二式艦上偵察機 + 二式艦上偵察機', () => {
                 expect(calculate.bonus(

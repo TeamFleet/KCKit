@@ -89,8 +89,8 @@ module.exports = [
             isID: DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel
         },
         bonus: {
-            fire: 1,
-            torpedo: 3,
+            fire: 3,
+            torpedo: 4,
             evasion: 2,
         }
     },

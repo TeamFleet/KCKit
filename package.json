@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "dist-app/main.html",
-    "version": "1.18.7",
+    "version": "1.19.0",
     "description": "Javascript library for KanColle",
     "author": {
         "name": "Diablohu",

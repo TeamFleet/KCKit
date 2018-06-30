@@ -35,18 +35,43 @@ const DD_FubukiClass2ndRemodel = [
     426, // 吹雪改二
     420, // 叢雲改二
 ]
+const DD_AyanamiClassRemodel = [
+    207, // 綾波改
+    208, // 敷波改
+    390, // 天霧改
+    391, // 狭霧改
+    230, // 朧改
+    231, // 曙改
+    232, // 漣改
+    233, // 潮改
+]
 const DD_AyanamiClass2ndRemodel = [
     195, // 綾波改二
     407, // 潮改二
+]
+const DD_AyanamiClassRemodelAll = DD_AyanamiClassRemodel.concat(DD_AyanamiClass2ndRemodel)
+const DD_AkatsukiClassRemodel = [
+    234, // 暁改
+    235, // 響改
+    236, // 雷改
+    237, // 電改
 ]
 const DD_AkatsukiClass2ndRemodel = [
     437, // 暁改二
     147, // Верный
 ]
+const DD_AkatsukiClassRemodelAll = DD_AkatsukiClassRemodel.concat(DD_AkatsukiClass2ndRemodel)
+const DD_HatsuharuClassRemodel = [
+    238, // 初春改
+    239, // 子日改
+    240, // 若葉改
+    241, // 初霜改
+]
 const DD_HatsuharuClass2ndRemodel = [
     326, // 初春改二
     419, // 初霜改二
 ]
+const DD_HatsuharuClassRemodelAll = DD_HatsuharuClassRemodel.concat(DD_HatsuharuClass2ndRemodel)
 const DD_ShiratsuyuClass2ndRemodel = [
     145, // 時雨改二
     498, // 村雨改二
@@ -63,11 +88,34 @@ const DD_AsashioClass2ndRemodel = [
     464, // 霞改二
     470, // 霞改二乙
 ]
+const DD_KagerouClassRemodel = [
+    225, // 陽炎改
+    226, // 不知火改
+    227, // 黒潮改
+    362, // 親潮改
+    300, // 初風改
+    228, // 雪風改
+    316, // 天津風改
+    322, // 時津風改
+    317, // 浦風改
+    556, // 浦風丁改
+    320, // 磯風改
+    557, // 磯風乙改
+    312, // 浜風改
+    558, // 浜風乙改
+    313, // 谷風改
+    329, // 野分改
+    354, // 嵐改
+    355, // 萩風改
+    294, // 舞風改
+    301, // 秋雲改
+]
 const DD_KagerouClass2ndRemodel = [
     566, // 陽炎改二
     567, // 不知火改二
     568, // 黒潮改二
 ]
+const DD_KagerouClassRemodelAll = DD_KagerouClassRemodel.concat(DD_KagerouClass2ndRemodel)
 const DD_YuugumoClass2ndRemodel = [
     543, // 長波改二
 ]
@@ -85,12 +133,12 @@ module.exports = {
     CL_NagaraClass2ndRemodel,
 
     DD_FubukiClass2ndRemodel,
-    DD_AyanamiClass2ndRemodel,
-    DD_AkatsukiClass2ndRemodel,
-    DD_HatsuharuClass2ndRemodel,
+    DD_AyanamiClassRemodel, DD_AyanamiClass2ndRemodel, DD_AyanamiClassRemodelAll,
+    DD_AkatsukiClassRemodel, DD_AkatsukiClass2ndRemodel, DD_AkatsukiClassRemodelAll,
+    DD_HatsuharuClassRemodel, DD_HatsuharuClass2ndRemodel, DD_HatsuharuClassRemodelAll,
     DD_ShiratsuyuClass2ndRemodel,
     DD_AsashioClass2ndRemodel,
-    DD_KagerouClass2ndRemodel,
+    DD_KagerouClassRemodel, DD_KagerouClass2ndRemodel, DD_KagerouClassRemodelAll,
     DD_YuugumoClass2ndRemodel,
     DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel,
 }

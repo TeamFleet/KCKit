@@ -10,12 +10,11 @@ const {
 
 module.exports = [
 
-    // @ 占守型 / 択捉型 / 日振型
-    // @ 神風型
+    // @ 海防艦
     {
         equipment: 229,
         ship: {
-            isClass: [92, 94, 108, 84],
+            isType: [31],
         },
         bonusImprove: {
             10: {
@@ -25,16 +24,16 @@ module.exports = [
         }
     },
 
-    // @ 睦月型
+    // @ 神風型 / 睦月型
     {
         equipment: 229,
         ship: {
-            isClass: [12],
+            isClass: [84, 12],
         },
         bonusImprove: {
             10: {
-                fire: 2,
-                aa: 3,
+                fire: 1,
+                aa: 1,
             }
         }
     },
@@ -56,7 +55,7 @@ module.exports = [
     // ------------------------------------------------------------------------
 
     // + 对水上電探
-    // @ 占守型 / 択捉型 / 日振型
+    // @ 海防艦
     {
         list: [
             {
@@ -75,7 +74,7 @@ module.exports = [
             }
         ],
         ship: {
-            isClass: [92, 94, 108],
+            isType: [31],
         },
         bonus: {
             fire: 1,
