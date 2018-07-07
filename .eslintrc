@@ -17,6 +17,9 @@
         }
     },
     "globals": {
+        "$": false,
+        "node": false,
+        "KC": false
     },
     "settings": {
         "import/ignore": [
