@@ -196,51 +196,53 @@ module.exports = class Equipment extends ItemBase {
      * @returns {Array} Bonuses
      */
     getBonuses() {
-        return bonuses.filter(bonus => {
-            if (bonus.equipment == this.id) return true
-            if (typeof bonus.equipments !== 'undefined' && typeof bonus.ship === 'object') {
-                if (Array.isArray(bonus.ship.isID) &&
-                    !bonus.ship.isID.every(shipId => getShip(shipId).canEquip(this))
-                )
-                    return false
-                if (typeof bonus.ship.isID === 'number' &&
-                    !getShip(bonus.ship.isID).canEquip(this)
-                )
-                    return false
-                if (Array.isArray(bonus.ship.isType) &&
-                    !bonus.ship.isType.every(
-                        typeId => getShipType(typeId).equipable.includes(this.type)
+        if (!Array.isArray(this.__bonuses))
+            this.__bonuses = bonuses.filter(bonus => {
+                if (bonus.equipment == this.id) return true
+                if (typeof bonus.equipments !== 'undefined' && typeof bonus.ship === 'object') {
+                    if (Array.isArray(bonus.ship.isID) &&
+                        !bonus.ship.isID.every(shipId => getShip(shipId).canEquip(this))
                     )
-                )
-                    return false
-                if (typeof bonus.ship.isType === 'number' &&
-                    !getShipType(bonus.ship.isType).equipable.includes(this.type)
-                )
-                    return false
-                if (Array.isArray(bonus.ship.isClass) &&
-                    !bonus.ship.isClass.every(
-                        classId => getShipType(getShipClass(classId).ship_type_id).equipable.includes(this.type)
+                        return false
+                    if (typeof bonus.ship.isID === 'number' &&
+                        !getShip(bonus.ship.isID).canEquip(this)
                     )
-                )
-                    return false
-                if (typeof bonus.ship.isClass === 'number' &&
-                    !getShipType(getShipClass(bonus.ship.isClass).ship_type_id).equipable.includes(this.type)
-                )
-                    return false
-            }
-            if (Array.isArray(bonus.equipments)) {
-                return bonus.equipments.some(condition =>
-                    checkEquipment(this, 10, 7, condition)
-                )
-            }
-            if (typeof bonus.equipments === 'object') {
-                return Object.keys(bonus.equipments)
-                    .filter(key => /^has/.test(key))
-                    .some(key => checkEquipment(this, {
-                        [key.replace(/^has/, 'is')]: bonus.equipments[key]
-                    }))
-            }
-            return false
-        })
+                        return false
+                    if (Array.isArray(bonus.ship.isType) &&
+                        !bonus.ship.isType.every(
+                            typeId => getShipType(typeId).equipable.includes(this.type)
+                        )
+                    )
+                        return false
+                    if (typeof bonus.ship.isType === 'number' &&
+                        !getShipType(bonus.ship.isType).equipable.includes(this.type)
+                    )
+                        return false
+                    if (Array.isArray(bonus.ship.isClass) &&
+                        !bonus.ship.isClass.every(
+                            classId => getShipType(getShipClass(classId).ship_type_id).equipable.includes(this.type)
+                        )
+                    )
+                        return false
+                    if (typeof bonus.ship.isClass === 'number' &&
+                        !getShipType(getShipClass(bonus.ship.isClass).ship_type_id).equipable.includes(this.type)
+                    )
+                        return false
+                }
+                if (Array.isArray(bonus.equipments)) {
+                    return bonus.equipments.some(condition =>
+                        checkEquipment(this, 10, 7, condition)
+                    )
+                }
+                if (typeof bonus.equipments === 'object') {
+                    return Object.keys(bonus.equipments)
+                        .filter(key => /^has/.test(key))
+                        .some(key => checkEquipment(this, {
+                            [key.replace(/^has/, 'is')]: bonus.equipments[key]
+                        }))
+                }
+                return false
+            })
+        return this.__bonuses
     }
 }

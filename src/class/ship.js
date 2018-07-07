@@ -629,8 +629,10 @@ module.exports = class Ship extends ItemBase {
      * @returns {Array} Bonuses
      */
     getBonuses() {
-        return bonuses.filter(bonus => (
-            checkShip(this, bonus.ship)
-        ))
+        if (!Array.isArray(this.__bonuses))
+            this.__bonuses = bonuses.filter(bonus => (
+                checkShip(this, bonus.ship)
+            ))
+        return this.__bonuses
     }
 }
