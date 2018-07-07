@@ -33,13 +33,23 @@ const check = (equipments, stars, ranks, conditions = {}) => {
 
     // Array
     if (Array.isArray(conditions)) {
+        // 当条件为 Array 时，各个条件互相独立且必须同时满足
+        // 存在多个条件相同的可能性，表示该条件的装备存在多个
+        // 当满足一个条件后从队列中移除该装备，以确保完全匹配
+        const restEquipments = [...equipments]
         return conditions.every(condition =>
-            equipments.some((equipment, index) => checkEquipment(
-                equipment,
-                stars[index],
-                ranks[index],
-                condition,
-            ))
+            restEquipments.some((equipment, index) => {
+                if (checkEquipment(
+                    equipment,
+                    stars[index],
+                    ranks[index],
+                    condition,
+                )) {
+                    restEquipments.splice(index, 1)
+                    return true
+                }
+                return false
+            })
         )
     }
 
