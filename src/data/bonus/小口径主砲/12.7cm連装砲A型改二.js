@@ -44,4 +44,55 @@ module.exports = [
         }
     },
 
+    // + 61cm三連装(酸素)魚雷
+    // @ 吹雪型 改二
+    {
+        list: [
+            294,
+            [125, 285],
+        ],
+        equipments: [
+            {
+                isID: 294,
+            },
+            {
+                isID: [125, 285],
+            }
+        ],
+        ship: {
+            isID: DD_FubukiClass2ndRemodel
+        },
+        bonus: {
+            fire: 1,
+            torpedo: 3,
+        }
+    },
+
+    // + 61cm三連装(酸素)魚雷 x2
+    // @ 吹雪型 改二
+    {
+        list: [
+            294,
+            [125, 285],
+            [125, 285],
+        ],
+        equipments: [
+            {
+                isID: 294,
+            },
+            {
+                isID: [125, 285],
+            },
+            {
+                isID: [125, 285],
+            }
+        ],
+        ship: {
+            isID: DD_FubukiClass2ndRemodel
+        },
+        bonus: {
+            torpedo: 2,
+        }
+    },
+
 ]

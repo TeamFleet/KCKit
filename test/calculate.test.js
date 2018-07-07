@@ -114,7 +114,7 @@ describe('Calculating functions/utilities', () => {
                 )).toEqual({
                     fire: 9,
                     torpedo: 4,
-                    evasion: 4,
+                    evasion: 5,
                 })
             })
             it('不知火改二 || 61cm四連装(酸素)魚雷', () => {
@@ -228,6 +228,108 @@ describe('Calculating functions/utilities', () => {
                     armor: 2,
                     evasion: 4,
                     range: 1,
+                })
+            })
+            it('叢雲改二 || 61cm三連装(酸素)魚雷後期型', () => {
+                expect(calculate.bonus(
+                    420,
+                    [285],
+                )).toEqual({
+                    torpedo: 2,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [285],
+                    [10],
+                )).toEqual({
+                    fire: 1,
+                    torpedo: 2,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294],
+                )).toEqual({
+                    fire: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 + 33号対水上電探', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 29],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 1,
+                    evasion: 2,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 + 61cm三連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 125],
+                )).toEqual({
+                    fire: 2,
+                    torpedo: 3,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 + 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 285],
+                    [0, 10],
+                )).toEqual({
+                    fire: 3,
+                    torpedo: 5,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 + 61cm三連装(酸素)魚雷 + 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 125, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 3,
+                    torpedo: 7,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 + 61cm三連装(酸素)魚雷後期型 + 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 285, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 3,
+                    torpedo: 9,
+                    evasion: 2,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 + 61cm三連装(酸素)魚雷後期型⭐MAX + 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 285, 285],
+                    [0, 10, 10],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 9,
+                    evasion: 2,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 + 33号対水上電探 + 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 29, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 6,
+                    torpedo: 6,
+                    evasion: 3,
                 })
             })
             it('pass stat', () => {

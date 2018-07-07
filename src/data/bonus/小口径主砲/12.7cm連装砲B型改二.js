@@ -12,6 +12,19 @@ const {
 
 module.exports = [
 
+    // 綾波型改 / 暁型改 / 初春型改
+    {
+        equipment: 63,
+        ship: {
+            isID: DD_AyanamiClassRemodelAll
+                .concat(DD_AkatsukiClassRemodelAll)
+                .concat(DD_HatsuharuClassRemodelAll)
+        },
+        bonus: {
+            aa: 1,
+        }
+    },
+
     {
         equipment: 63,
         ship: {
@@ -41,21 +54,6 @@ module.exports = [
         equipment: 63,
         ship: {
             isID: [
-                144, // 夕立改二
-            ]
-        },
-        bonus: {
-            fire: 1,
-            torpedo: 1,
-            aa: 1,
-            evasion: 2,
-        }
-    },
-
-    {
-        equipment: 63,
-        ship: {
-            isID: [
                 469, // 江風改二
             ]
         },
@@ -64,16 +62,18 @@ module.exports = [
         }
     },
 
-    // 綾波型改 / 暁型改 / 初春型改
     {
         equipment: 63,
         ship: {
-            isID: DD_AyanamiClassRemodelAll
-                .concat(DD_AkatsukiClassRemodelAll)
-                .concat(DD_HatsuharuClassRemodelAll)
+            isID: [
+                144, // 夕立改二
+            ]
         },
         bonus: {
+            fire: 1,
+            torpedo: 1,
             aa: 1,
+            evasion: 2,
         }
     },
 

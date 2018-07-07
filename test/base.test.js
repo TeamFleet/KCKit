@@ -1,5 +1,5 @@
-const path = require('path')
-const fs = require('fs')
+// const path = require('path')
+// const fs = require('fs')
 const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames')
 const get = require('../src/get')
@@ -491,10 +491,15 @@ describe('Base functions/utilities', () => {
                         db.items[229].getBonuses().length
                     ).toEqual(6)
                 })
-                it(`12.7cm連装砲D型改二 - 5 bonuses`, () => {
+                it(`12.7cm連装砲D型改二 - 6 bonuses`, () => {
                     expect(
                         db.items[267].getBonuses().length
-                    ).toEqual(5)
+                    ).toEqual(6)
+                })
+                it(`61cm三連装(酸素)魚雷後期型 - 3 bonuses`, () => {
+                    expect(
+                        db.items[285].getBonuses().length
+                    ).toEqual(3)
                 })
             })
         })

@@ -11,6 +11,11 @@ const {
     DD_YuugumoClass2ndRemodel,
 } = require('../ships')
 
+const DD2nd_Shiratsuyu_Asashio_Yuugumo = DD_ShiratsuyuClass2ndRemodel.concat(
+    DD_AsashioClass2ndRemodel,
+    DD_YuugumoClass2ndRemodel,
+)
+
 module.exports = [
 
     // @ 陽炎型 改二
@@ -40,11 +45,7 @@ module.exports = [
     {
         equipment: 286,
         ship: {
-            isID: [].concat(
-                DD_ShiratsuyuClass2ndRemodel,
-                DD_AsashioClass2ndRemodel,
-                DD_YuugumoClass2ndRemodel,
-            )
+            isID: DD2nd_Shiratsuyu_Asashio_Yuugumo
         },
         bonusImprove: {
             0: {

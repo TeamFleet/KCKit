@@ -7,7 +7,7 @@
 const {
     DD_KagerouClass2ndRemodel,
     DD_YuugumoClass2ndRemodel,
-    DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel,
+    DD_ShimakazeRemodel,
 } = require('../ships')
 
 module.exports = [
@@ -75,7 +75,7 @@ module.exports = [
     // ------------------------------------------------------------------------
 
     // + 对水上電探
-    // @ 夕雲型 改二 / 島風改
+    // @ 島風改
     {
         list: [
             267,
@@ -86,12 +86,33 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isID: DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel
+            isID: DD_ShimakazeRemodel
+        },
+        bonus: {
+            fire: 1,
+            torpedo: 3,
+            evasion: 2,
+        }
+    },
+
+    // + 对水上電探
+    // @ 夕雲型 改二
+    {
+        list: [
+            267,
+            'SurfaceRadar',
+        ],
+        equipments: {
+            hasID: [267],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: DD_YuugumoClass2ndRemodel
         },
         bonus: {
             fire: 3,
             torpedo: 4,
-            evasion: 2,
+            evasion: 3,
         }
     },
 
