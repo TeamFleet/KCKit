@@ -129,7 +129,7 @@ module.exports = class Ship extends ItemBase {
      * @returns {String} path
      */
     getPic(picId = 0, ext = vars.extPic) {
-        let series = this.getSeriesData()
+        // let series = this.getSeriesData()
         const thePicId = parseInt(picId)
         const revision = this.illust_revision ? `?${this.illust_revision}` : ""
 
@@ -263,6 +263,9 @@ module.exports = class Ship extends ItemBase {
             if (Array.isArray(equipmentTypes[equipmentType + 's']))
                 return equipmentTypes[equipmentType + 's'].some(type => this.canEquip(type, slotIndex))
         }
+        // 如果传入的为 Equipment，获取 type
+        if (typeof equipmentType === 'object' && typeof equipmentType.type !== 'undefined')
+            equipmentType = equipmentType.type
         if (isNaN(equipmentType)) {
             return false
         } else {

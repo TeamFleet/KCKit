@@ -4,6 +4,9 @@ const ItemBase = require('./base.js')
 const equipmentTypes = require('../types/equipments')
 const checkEquipment = require('../check/equipment')
 const bonuses = require('../data/bonus')
+const getShip = require('../get/ship')
+const getShipType = require('../get/ship-type')
+const getShipClass = require('../get/ship-class')
 // const dataTP = require('../data/tp')
 
 module.exports = class Equipment extends ItemBase {
@@ -118,7 +121,7 @@ module.exports = class Equipment extends ItemBase {
      * 
      * @return {Number}
      */
-    getTP(type) {
+    getTP(/*type*/) {
         // return dataTP.equipmentType[this.type] || 0
         if (this.tp) return this.tp
         return this.type
@@ -195,6 +198,36 @@ module.exports = class Equipment extends ItemBase {
     getBonuses() {
         return bonuses.filter(bonus => {
             if (bonus.equipment == this.id) return true
+            if (typeof bonus.equipments !== 'undefined' && typeof bonus.ship === 'object') {
+                if (Array.isArray(bonus.ship.isID) &&
+                    !bonus.ship.isID.every(shipId => getShip(shipId).canEquip(this))
+                )
+                    return false
+                if (typeof bonus.ship.isID === 'number' &&
+                    !getShip(bonus.ship.isID).canEquip(this)
+                )
+                    return false
+                if (Array.isArray(bonus.ship.isType) &&
+                    !bonus.ship.isType.every(
+                        typeId => getShipType(typeId).equipable.includes(this.type)
+                    )
+                )
+                    return false
+                if (typeof bonus.ship.isType === 'number' &&
+                    !getShipType(bonus.ship.isType).equipable.includes(this.type)
+                )
+                    return false
+                if (Array.isArray(bonus.ship.isClass) &&
+                    !bonus.ship.isClass.every(
+                        classId => getShipType(getShipClass(classId).ship_type_id).equipable.includes(this.type)
+                    )
+                )
+                    return false
+                if (typeof bonus.ship.isClass === 'number' &&
+                    !getShipType(getShipClass(bonus.ship.isClass).ship_type_id).equipable.includes(this.type)
+                )
+                    return false
+            }
             if (Array.isArray(bonus.equipments)) {
                 return bonus.equipments.some(condition =>
                     checkEquipment(this, 10, 7, condition)

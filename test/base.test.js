@@ -506,6 +506,12 @@ describe('Base functions/utilities', () => {
                         db.items[29].getBonuses().length
                     ).toEqual(9)
                 })
+                it(`15m二重測距儀+21号電探改二 - 2 bonuses`, () => {
+                    console.log(db.items[142].getBonuses())
+                    expect(
+                        db.items[142].getBonuses().length
+                    ).toEqual(2)
+                })
             })
         })
 
