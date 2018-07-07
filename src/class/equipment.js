@@ -201,10 +201,11 @@ module.exports = class Equipment extends ItemBase {
                 )
             }
             if (typeof bonus.equipments === 'object') {
-                return checkEquipment(this, {
-                    isID: bonus.equipments.hasID,
-                    isNotID: bonus.equipments.hasNotID,
-                })
+                return Object.keys(bonus.equipments)
+                    .filter(key => /^has/.test(key))
+                    .some(key => checkEquipment(this, {
+                        [key.replace(/^has/, 'is')]: bonus.equipments[key]
+                    }))
             }
             return false
         })

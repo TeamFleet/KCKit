@@ -501,6 +501,11 @@ describe('Base functions/utilities', () => {
                         db.items[285].getBonuses().length
                     ).toEqual(3)
                 })
+                it(`33号対水上電探 - 9 bonuses`, () => {
+                    expect(
+                        db.items[29].getBonuses().length
+                    ).toEqual(9)
+                })
             })
         })
 
