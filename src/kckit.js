@@ -22,6 +22,7 @@
     const getShip = require('./get/ship')
     const getShipClass = require('./get/ship-class')
     const getShipType = require('./get/ship-type')
+    const equipmentTypes = require('./types/equipments')
 
     let KC = {
         lang: 'zh_cn',
@@ -729,6 +730,35 @@
                 }
                 default:
                     return false
+            }
+        }
+
+        /**
+         * 判断该舰娘是否可配置给定的类型的装备
+         * 
+         * @param {(number|number[]|string|string[])} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
+         * @param {Number} [slotIndex] 装备栏位index。从 0 开始
+         * @returns {boolean}
+         */
+        canEquip(equipmentType, slotIndex) {
+            if (Array.isArray(equipmentType)) {
+                return equipmentType.every(type => this.canEquip(type, slotIndex))
+            }
+            if (typeof equipmentType === 'string') {
+                if (Array.isArray(equipmentTypes[equipmentType]))
+                    return equipmentTypes[equipmentType].some(type => this.canEquip(type, slotIndex))
+                if (typeof equipmentTypes[equipmentType] === 'number')
+                    return this.canEquip(equipmentTypes[equipmentType], slotIndex)
+                if (Array.isArray(equipmentTypes[equipmentType + 's']))
+                    return equipmentTypes[equipmentType + 's'].some(type => this.canEquip(type, slotIndex))
+            }
+            // 如果传入的为 Equipment，获取 type
+            if (typeof equipmentType === 'object' && typeof equipmentType.type !== 'undefined')
+                equipmentType = equipmentType.type
+            if (isNaN(equipmentType)) {
+                return false
+            } else {
+                return this.getEquipmentTypes(slotIndex).includes(parseInt(equipmentType))
             }
         }
 
