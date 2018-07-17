@@ -496,15 +496,15 @@ describe('Base functions/utilities', () => {
                         db.items[267].getBonuses().length
                     ).toEqual(6)
                 })
-                it(`61cm三連装(酸素)魚雷後期型 - 3 bonuses`, () => {
+                it(`61cm三連装(酸素)魚雷後期型 - 6 bonuses`, () => {
                     expect(
                         db.items[285].getBonuses().length
-                    ).toEqual(3)
+                    ).toEqual(6)
                 })
-                it(`33号対水上電探 - 9 bonuses`, () => {
+                it(`33号対水上電探 - 12 bonuses`, () => {
                     expect(
                         db.items[29].getBonuses().length
-                    ).toEqual(9)
+                    ).toEqual(12)
                 })
                 it(`15m二重測距儀+21号電探改二 - 2 bonuses`, () => {
                     expect(

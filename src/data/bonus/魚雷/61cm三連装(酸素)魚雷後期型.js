@@ -9,7 +9,7 @@ const {
     DD_AyanamiClass2ndRemodel,
     DD_AkatsukiClass2ndRemodel,
     DD_HatsuharuClass2ndRemodel,
-} = require('../ships')
+} = require('../../ships')
 
 const condition1ships = DD_FubukiClass2ndRemodel.concat(
     DD_AyanamiClass2ndRemodel,

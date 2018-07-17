@@ -8,7 +8,7 @@ const {
     DD_AyanamiClassRemodelAll,
     DD_AkatsukiClassRemodelAll,
     DD_HatsuharuClassRemodelAll,
-} = require('../ships')
+} = require('../../ships')
 
 module.exports = [
 
@@ -47,7 +47,7 @@ module.exports = [
             ]
         },
         bonus: {
-            fire: 1,
+            fire: 2,
         }
     },
 
@@ -71,7 +71,7 @@ module.exports = [
             ]
         },
         bonus: {
-            fire: 1,
+            fire: 2,
             torpedo: 1,
             aa: 1,
             evasion: 2,

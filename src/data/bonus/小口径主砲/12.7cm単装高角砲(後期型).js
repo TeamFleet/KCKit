@@ -6,7 +6,7 @@
 
 const {
     CL_NagaraClass2ndRemodel,
-} = require('../ships')
+} = require('../../ships')
 
 module.exports = [
 

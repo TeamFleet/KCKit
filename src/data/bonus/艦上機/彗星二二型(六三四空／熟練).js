@@ -6,7 +6,7 @@
 
 const {
     BB_IseClass2ndRemodel,
-} = require('../ships')
+} = require('../../ships')
 
 module.exports = [
 

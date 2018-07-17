@@ -332,6 +332,30 @@ describe('Calculating functions/utilities', () => {
                     evasion: 3,
                 })
             })
+            it('初春改二 || 12.7cm連装砲A型改三(戦時改修)+高射装置 + 13号対空電探改 + 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [295, 106, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 6,
+                    aa: 8,
+                    evasion: 1,
+                })
+            })
+            it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 + 13号対空電探改 + 61cm四連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    144,
+                    [296, 106, 286],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 6,
+                    aa: 6,
+                    evasion: 2,
+                })
+            })
             it('pass stat', () => {
                 expect(calculate.bonus(
                     146, [268, 268, 268], 'fire'

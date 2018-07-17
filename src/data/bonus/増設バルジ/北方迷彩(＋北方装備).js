@@ -6,7 +6,7 @@
 
 const {
     CL_KumaClassRemodelAll,
-} = require('../ships')
+} = require('../../ships')
 
 module.exports = [
 

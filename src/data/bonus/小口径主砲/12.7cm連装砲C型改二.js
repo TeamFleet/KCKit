@@ -6,7 +6,7 @@
 
 const {
     DD_KagerouClass2ndRemodel,
-} = require('../ships')
+} = require('../../ships')
 
 const conditionSpecials = [
     145, // 時雨改二

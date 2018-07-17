@@ -6,7 +6,7 @@
 
 const {
     DD_KagerouClass2ndRemodel,
-} = require('../ships')
+} = require('../../ships')
 
 module.exports = [
     

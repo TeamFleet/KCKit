@@ -7,7 +7,7 @@
 const {
     BB_IseClassRemodel, BB_IseClass2ndRemodel,
     BB_FusouClass2ndRemodel,
-} = require('../ships')
+} = require('../../ships')
 
 module.exports = [
     

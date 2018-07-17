@@ -4,17 +4,15 @@
  * @module
  */
 
-const {
-    DD_FubukiClass2ndRemodel,
-} = require('../ships')
+const { DD_Fubuki } = require('../../ship-classes')
 
 module.exports = [
 
-    // @ 吹雪型 改二
+    // @ 吹雪型
     {
         equipment: 294,
         ship: {
-            isID: DD_FubukiClass2ndRemodel
+            isClass: [DD_Fubuki],
         },
         bonus: {
             fire: 1,
@@ -24,7 +22,7 @@ module.exports = [
     // ------------------------------------------------------------------------
 
     // + 对水上電探
-    // @ 吹雪型 改二
+    // @ 吹雪型
     {
         list: [
             294,
@@ -35,7 +33,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isID: DD_FubukiClass2ndRemodel
+            isClass: [DD_Fubuki],
         },
         bonus: {
             fire: 3,
@@ -45,7 +43,7 @@ module.exports = [
     },
 
     // + 61cm三連装(酸素)魚雷
-    // @ 吹雪型 改二
+    // @ 吹雪型
     {
         list: [
             294,
@@ -60,7 +58,7 @@ module.exports = [
             }
         ],
         ship: {
-            isID: DD_FubukiClass2ndRemodel
+            isClass: [DD_Fubuki],
         },
         bonus: {
             fire: 1,
@@ -69,7 +67,7 @@ module.exports = [
     },
 
     // + 61cm三連装(酸素)魚雷 x2
-    // @ 吹雪型 改二
+    // @ 吹雪型
     {
         list: [
             294,
@@ -88,7 +86,7 @@ module.exports = [
             }
         ],
         ship: {
-            isID: DD_FubukiClass2ndRemodel
+            isClass: [DD_Fubuki],
         },
         bonus: {
             torpedo: 2,

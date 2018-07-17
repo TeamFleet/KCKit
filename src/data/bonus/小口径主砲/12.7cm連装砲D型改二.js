@@ -8,7 +8,7 @@ const {
     DD_KagerouClass2ndRemodel,
     DD_YuugumoClass2ndRemodel,
     DD_ShimakazeRemodel,
-} = require('../ships')
+} = require('../../ships')
 
 module.exports = [
     
