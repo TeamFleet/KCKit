@@ -15,15 +15,17 @@ const {
 } = require('../../ship-classes')
 
 const classesAyanamiAkatsuki = [DD_Ayanami, DD_Akatsuki]
+const classesAyanamiAkatsukiShiratsuyu = [DD_Ayanami, DD_Akatsuki, DD_Shiratsuyu]
 const classesAyanamiAkatsukiHatsuharu = [DD_Ayanami, DD_Akatsuki, DD_Hatsuharu]
 
 module.exports = [
 
-    // 綾波型 / 暁型
+    // 綾波型 / 暁型 / 白露型
     {
         equipment: 296,
         ship: {
-            isClass: classesAyanamiAkatsuki
+            isClass: classesAyanamiAkatsukiShiratsuyu,
+            isNotID: DD_ShiratsuyuClass2ndRemodel,
         },
         bonus: {
             fire: 1,
@@ -39,18 +41,6 @@ module.exports = [
         bonus: {
             fire: 1,
             evasion: 1,
-        }
-    },
-
-    // 白露型
-    {
-        equipment: 296,
-        ship: {
-            isClass: [DD_Shiratsuyu],
-            isNotID: DD_ShiratsuyuClass2ndRemodel,
-        },
-        bonus: {
-            fire: 1,
         }
     },
 
