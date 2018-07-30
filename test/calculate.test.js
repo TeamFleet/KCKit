@@ -356,6 +356,49 @@ describe('Calculating functions/utilities', () => {
                     evasion: 2,
                 })
             })
+            it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 + 12.7cm連装砲B型改二 + 61cm四連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    144,
+                    [296, 63, 286],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 5,
+                    torpedo: 7,
+                    aa: 1,
+                    evasion: 4,
+                })
+            })
+            it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 + 12.7cm連装砲C型改二 + 33号対水上電探', () => {
+                expect(calculate.bonus(
+                    144,
+                    [296, 266, 29],
+                )).toEqual({
+                    fire: 5,
+                    torpedo: 7,
+                    evasion: 4,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲 + 16inch Mk.I三連装砲', () => {
+                expect(calculate.bonus(
+                    364,
+                    [298, 298],
+                )).toEqual({
+                    fire: 4,
+                    armor: 2,
+                    evasion: -4,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲 + 16inch Mk.I三連装砲 + 20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    364,
+                    [298, 298, 301],
+                )).toEqual({
+                    fire: 4,
+                    aa: 2,
+                    armor: 3,
+                    evasion: -3,
+                })
+            })
             it('pass stat', () => {
                 expect(calculate.bonus(
                     146, [268, 268, 268], 'fire'

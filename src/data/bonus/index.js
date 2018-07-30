@@ -26,6 +26,7 @@ module.exports = [
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
     ...require('./大口径主砲/35.6cm三連装砲改(ダズル迷彩仕様)'),
     ...require('./大口径主砲/41cm三連装砲改二'),
+    ...require('./大口径主砲/16inch Mk.I三連装砲'),
 
     ...require('./魚雷/61cm三連装(酸素)魚雷後期型'),
     ...require('./魚雷/61cm四連装(酸素)魚雷'),
@@ -42,6 +43,8 @@ module.exports = [
     ...require('./艦上機/彗星二二型(六三四空)'),
     ...require('./艦上機/彗星二二型(六三四空／熟練)'),
     ...require('./艦上機/二式艦上偵察機'),
+
+    ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
 

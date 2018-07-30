@@ -71,7 +71,7 @@ module.exports = [
             ]
         },
         bonus: {
-            fire: 2,
+            fire: 1,
             torpedo: 1,
             aa: 1,
             evasion: 2,
