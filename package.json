@@ -1,6 +1,6 @@
 {
     "name": "kckit",
-    "version": "0.13.17",
+    "version": "0.13.18",
     "description": "Javascript library for KanColle",
     "main": "dist/kckit.js",
     "author": "diablohu",
@@ -13,20 +13,20 @@
         "start": "webpack"
     },
     "devDependencies": {
-        "kckit": "^1.19.5",
+        "kckit": "^1.19.6",
         "babel-core": "^6.26.3",
         "babel-plugin-transform-minify-booleans": "^6.9.4",
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-preset-env": "^1.7.0",
-        "eslint": "^5.1.0",
+        "eslint": "^5.2.0",
         "babel-eslint": "^8.2.6",
         "gulp": "^3.9.1",
         "gulp-babel": "^7.0.1",
         "gulp-concat": "^2.6.1",
-        "gulp-rename": "^1.3.0",
-        "gulp-uglify": "^3.0.0",
-        "webpack": "^4.16.0",
-        "webpack-cli": "^3.0.8",
+        "gulp-rename": "^1.4.0",
+        "gulp-uglify": "^3.0.1",
+        "webpack": "^4.16.3",
+        "webpack-cli": "^3.1.0",
         "babel-loader": "^7.1.5"
     }
 }
