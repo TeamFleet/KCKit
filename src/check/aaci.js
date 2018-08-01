@@ -24,14 +24,6 @@ module.exports = (ship, equipments, aaciID) => {
     const check = id => checkShip(ship, dataAACI[id].ship) && _checkEquipments(dataAACI[id].equipments)
 
     if (typeof aaciID === 'undefined') {
-        let result = []
-
-        // console.log('\r\n\r\n\r\n')
-        for (let id in dataAACI) {
-            if (check(id))
-                result.push(dataAACI[id])
-        }
-
         // if (ship == 478)
         //     console.log(
         //         ship,
@@ -40,13 +32,16 @@ module.exports = (ship, equipments, aaciID) => {
         //     )
         // console.log('\r\n\r\n\r\n')
 
-        return result.sort((a, b) => {
-            if (a.fixed !== b.fixed)
-                return b.fixed - a.fixed
-            if (a.modifier !== b.modifier)
-                return b.modifier - a.modifier
-            return b.id - a.id
-        })
+        return Object.keys(dataAACI)
+            .filter(check)
+            .map(id => dataAACI[id])
+            .sort((a, b) => {
+                if (a.fixed !== b.fixed)
+                    return b.fixed - a.fixed
+                if (a.modifier !== b.modifier)
+                    return b.modifier - a.modifier
+                return b.id - a.id
+            })
     } else if (typeof aaciID === 'number') {
         return (check(aaciID))
     } else if (Array.isArray(aaciID)) {

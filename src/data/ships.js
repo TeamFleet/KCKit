@@ -116,6 +116,10 @@ const DD_KagerouClass2ndRemodel = [
     567, // 不知火改二
     568, // 黒潮改二
 ]
+const DD_KagerouClassRemodelB = [
+    557, // 磯風乙改
+    558, // 浜風乙改
+]
 const DD_KagerouClassRemodelAll = DD_KagerouClassRemodel.concat(DD_KagerouClass2ndRemodel)
 const DD_YuugumoClass2ndRemodel = [
     542, // 夕雲改二
@@ -141,7 +145,7 @@ module.exports = {
     DD_HatsuharuClassRemodel, DD_HatsuharuClass2ndRemodel, DD_HatsuharuClassRemodelAll,
     DD_ShiratsuyuClass2ndRemodel,
     DD_AsashioClass2ndRemodel,
-    DD_KagerouClassRemodel, DD_KagerouClass2ndRemodel, DD_KagerouClassRemodelAll,
+    DD_KagerouClassRemodel, DD_KagerouClassRemodelB, DD_KagerouClass2ndRemodel, DD_KagerouClassRemodelAll,
     DD_YuugumoClass2ndRemodel,
     DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel,
     DD_ShimakazeRemodel,

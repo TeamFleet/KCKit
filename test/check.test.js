@@ -360,6 +360,7 @@ describe('Checking functions/utilities', () => {
                 expect(check.aaci(418).map(obj => obj.id)).toEqual([5, 8, 7, 12, 9, 18]);
                 expect(check.aaci(487).map(obj => obj.id)).toEqual([19, 5, 8, 7, 20, 12, 9]);
                 expect(check.aaci(488).map(obj => obj.id)).toEqual([21, 5, 8, 7, 12, 9]);
+                expect(check.aaci(557).map(obj => obj.id)).toEqual([29, 5, 8, 7, 12, 9]);
             })
         });
         describe(`Check AACI id for ship only`, () => {
