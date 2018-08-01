@@ -154,20 +154,13 @@ describe('Base functions/utilities', () => {
             it(`should 鈴谷・改 db.ships[129]._minLv be 35`, function () {
                 expect(35).toBe(db.ships[129]._minLv);
             });
-            it(`should 鈴谷・航改二 db.ships[508].isType('carrier') be true`, function () {
-                expect(true).toBe(db.ships[508].isType('carrier'));
-            });
-            it(`should 鈴谷・航改二 db.ships[508].isType('bb') be false`, function () {
-                expect(db.ships[508].isType('bb')).toBe(false);
-            });
-            it(`should Bismarck・drei db.ships[178].isType('bb') be true`, function () {
-                expect(db.ships[178].isType('bb')).toBe(true);
-            });
-            it(`should Bismarck・drei db.ships[450].isType('av') be true`, function () {
-                expect(db.ships[450].isType('av')).toBe(true);
-            });
-            it(`should Bismarck・drei db.ships[177].isType('ca') be true`, function () {
-                expect(db.ships[177].isType('ca')).toBe(true);
+            it(`should Ship.prototype.isType(majorType) works`, () => {
+                /* 鈴谷・航改二 */ expect(db.ships[508].isType('carrier')).toBe(true);
+                /* 鈴谷・航改二 */ expect(db.ships[508].isType('bb')).toBe(false);
+                /* Bismarck・drei */ expect(db.ships[178].isType('bb')).toBe(true);
+                /* 秋津洲・改 */ expect(db.ships[450].isType('av')).toBe(true);
+                /* Prinz Eugen・改 */ expect(db.ships[177].isType('ca')).toBe(true);
+                /* Ташкент・改 */ expect(db.ships[395].isType('dd')).toBe(true);
             });
             it(`should Гангут・два db.ships[513]._speed be 低速`, function () {
                 expect('低速').toBe(db.ships[513]._speed);

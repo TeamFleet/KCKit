@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "dist-app/main.html",
-    "version": "1.19.6",
+    "version": "1.19.7",
     "description": "Javascript library for KanColle",
     "author": {
         "name": "Diablohu",
@@ -21,8 +21,8 @@
         "camelcase": "^5.0.0"
     },
     "devDependencies": {
-        "jest": "^23.4.1",
-        "eslint": "^5.1.0",
+        "jest": "^23.4.2",
+        "eslint": "^5.2.0",
         "babel-eslint": "^8.2.6"
     }
 }

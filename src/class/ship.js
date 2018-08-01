@@ -450,7 +450,7 @@ module.exports = class Ship extends ItemBase {
     /**
      * 判断舰种大类
      * 
-     * @param {String} majorType - 舰种大类，目前支持：Battleship/BB, Carrier/CV, LightCruiser/CL, HeavyCruiser/CA, Submarine/SS, SeaplaneTender/AV
+     * @param {String} majorType - 舰种大类，目前支持：Battleship/BB, Carrier/CV, LightCruiser/CL, HeavyCruiser/CA, Submarine/SS, SeaplaneTender/AV, Destroyer/DD
      * @return {Boolean}
      */
     isType(majorType) {
@@ -459,34 +459,39 @@ module.exports = class Ship extends ItemBase {
             case 'battleship':
             case 'battleships':
             case 'bb':
-                return (shipTypes.Battleships.indexOf(this.type) > -1)
+                return shipTypes.Battleships.includes(this.type)
 
             case 'carrier':
             case 'carriers':
             case 'cv':
-                return (shipTypes.Carriers.indexOf(this.type) > -1)
+                return shipTypes.Carriers.includes(this.type)
 
             case 'heavycruiser':
             case 'heavycruisers':
             case 'ca':
-                return (shipTypes.HeavyCruisers.indexOf(this.type) > -1)
+                return shipTypes.HeavyCruisers.includes(this.type)
 
             case 'lightcruiser':
             case 'lightcruisers':
             case 'cl':
-                return (shipTypes.LightCruisers.indexOf(this.type) > -1)
+                return shipTypes.LightCruisers.includes(this.type)
 
             case 'submarine':
             case 'submarines':
             case 'ss':
-                return (shipTypes.Submarines.indexOf(this.type) > -1)
+                return shipTypes.Submarines.includes(this.type)
 
             case 'seaplanetender':
             case 'seaplanetenders':
             case 'seaplane tender':
             case 'seaplane tenders':
             case 'av':
-                return (shipTypes.SeaplaneTenders.indexOf(this.type) > -1)
+                return shipTypes.SeaplaneTenders.includes(this.type)
+
+            case 'destroyer':
+            case 'destroyers':
+            case 'dd':
+                return shipTypes.Destroyers.includes(this.type)
 
             default:
                 return false
