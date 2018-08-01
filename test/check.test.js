@@ -433,6 +433,10 @@ describe('Checking functions/utilities', () => {
                     // 10cm連装高角砲+高射装置 + 13号対空電探
                     expect(check.aaci(557, [122, 27]).map(obj => obj.id)).toEqual([29, 8]);
                 })
+                it(`Warspite・改`, function () {
+                    // 20連装7inch UP Rocket Launchers + QF 2ポンド8連装ポンポン砲
+                    expect(check.aaci(364, [301, 191]).map(obj => obj.id)).toEqual([32]);
+                })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);
                     expect(check.aaci(330, [122, 122, 106]).map(obj => obj.id)).toEqual([1, 2, 3, 5, 8]);

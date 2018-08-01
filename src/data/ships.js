@@ -130,6 +130,12 @@ const DD_ShimakazeRemodel = [
 ]
 const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel = DD_YuugumoClass2ndRemodel.concat(DD_ShimakazeRemodel)
 
+const rn = [
+    439, 364, // Warspite
+    515, 393, // Ark Royal
+    519, 394, // Jervis
+]
+
 module.exports = {
     BB_KongouClass2ndRemodel,
     BB_IseClassRemodel, BB_IseClass2ndRemodel, BB_IseClassRemodelAll,
@@ -149,4 +155,6 @@ module.exports = {
     DD_YuugumoClass2ndRemodel,
     DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel,
     DD_ShimakazeRemodel,
+
+    rn,
 }

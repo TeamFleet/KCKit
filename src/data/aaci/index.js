@@ -90,6 +90,8 @@ const data = {
     ...require('./shiptype/destroyers'),
     ...require('./shiptype/submarines'),
 
+    ...require('./navy/rn'),
+
     // 13: {},
     // 27: {},
 }
