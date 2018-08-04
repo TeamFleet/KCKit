@@ -354,7 +354,7 @@ describe('Checking functions/utilities', () => {
                 expect(check.aaci(405).map(obj => obj.id)).toEqual([8, 7, 12, 9]);
                 expect(check.aaci(428).map(obj => obj.id)).toEqual([10, 11, 5, 8, 7, 12, 9]);
                 expect(check.aaci(136).map(obj => obj.id)).toEqual([4, 5, 6, 8, 7, 12, 9]);
-                expect(check.aaci(330).map(obj => obj.id)).toEqual([1, 2, 3, 5, 8, 7, 12, 9]);
+                /* 秋月・改 */ expect(check.aaci(330).map(obj => obj.id)).toEqual([1, 2, 3]);
                 expect(check.aaci(141).map(obj => obj.id)).toEqual([5, 14, 8, 7, 15, 12, 9]);
                 expect(check.aaci(470).map(obj => obj.id)).toEqual([5, 16, 8, 7, 12, 9, 17]);
                 expect(check.aaci(418).map(obj => obj.id)).toEqual([5, 8, 7, 12, 9, 18]);
@@ -439,7 +439,7 @@ describe('Checking functions/utilities', () => {
                 })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);
-                    expect(check.aaci(330, [122, 122, 106]).map(obj => obj.id)).toEqual([1, 2, 3, 5, 8]);
+                    expect(check.aaci(330, [122, 122, 106]).map(obj => obj.id)).toEqual([1, 2, 3]);
                 })
             })
         })

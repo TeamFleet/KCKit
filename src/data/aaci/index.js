@@ -10,7 +10,7 @@ const data = {
         ship: {
             hasSlotMin: 3,
             isSS: false,
-            isNotClass: 33,
+            isNotClass: 23,
         },
         equipments: {
             hasHAMountAAFD: 2,
@@ -25,7 +25,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: 33,
+            isNotClass: 23,
         },
         equipments: {
             hasHAMount: true,
@@ -41,7 +41,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: 33,
+            isNotClass: 23,
         },
         equipments: {
             hasHAMountAAFD: true,
@@ -56,7 +56,7 @@ const data = {
         ship: {
             hasSlotMin: 1,
             isSS: false,
-            isNotClass: 33,
+            isNotClass: 23,
         },
         equipments: {
             hasHAMount: true,
@@ -71,7 +71,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: 33,
+            isNotClass: 23,
         },
         equipments: {
             hasAAGunCD: true,

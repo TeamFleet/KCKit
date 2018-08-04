@@ -100,9 +100,10 @@ const checkCondition = {
         if (isNaN(Class)) return false
         return parseInt(Class) === ship.class
     }),
-    isnotclass: (ship, Class) => ArrayOrItemAll(Class, Class => {
-        if (isNaN(Class)) return false
-        return parseInt(Class) !== ship.class
+    isnotclass: (ship, classes) => ArrayOrItemAll(classes, shipClass => {
+        if (isNaN(shipClass)) return false
+        // console.log(ship._name, ship.class, shipClass)
+        return parseInt(shipClass) !== ship.class
     }),
 
     // hasSlot
