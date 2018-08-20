@@ -8,4 +8,6 @@ module.exports = {
     DD_Hatsuharu: 18,
     DD_Shiratsuyu: 19,
 
+    DD_Akizuki: 23,
+
 }
