@@ -5,7 +5,7 @@ let vars = {
     locale: "ja_jp",
     joint: "・",
 
-    maxShipLv: 165,
+    maxShipLv: 175,
     maxHqLv: 120,
 
     rank: {
