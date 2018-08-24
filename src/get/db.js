@@ -35,7 +35,7 @@ const getDB = (dbname, db = require('../variables').db) => {
 const getDBAlt = (dbname, dbnameReplaceSearch, dbnameReplaceTo, db = require('../variables').db) => {
     if (!dbname.includes(dbnameReplaceSearch)) return undefined
     const replaced = dbname.replace(dbnameReplaceSearch, dbnameReplaceTo)
-    let result
+    // let result
     if (typeof db[replaced] !== 'undefined') {
         results[dbname] = replaced
         return db[replaced]

@@ -1,6 +1,6 @@
-const path = require('path')
-const fs = require('fs')
-const camelCase = require('camelcase')
+// const path = require('path')
+// const fs = require('fs')
+// const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames')
 let db
 beforeAll(() => new Promise(async resolve => {

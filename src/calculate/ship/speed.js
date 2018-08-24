@@ -32,7 +32,7 @@ module.exports = (
 
     equipments.forEach(equipment => {
         if (!equipment) return
-        let id = equipment.id
+        // let id = equipment.id
         if (typeof count[equipment.id] !== 'undefined')
             count[equipment.id]++
     })

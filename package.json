@@ -1,8 +1,9 @@
 {
     "name": "kckit",
     "main": "dist-app/main.html",
-    "version": "1.19.11",
+    "version": "1.20.0",
     "description": "Javascript library for KanColle",
+    "sideEffects": false,
     "author": {
         "name": "Diablohu",
         "email": "diablohudream@gmail.com",
@@ -14,6 +15,7 @@
         "url": "https://github.com/TeamFleet/KCKit"
     },
     "scripts": {
+        "eslint": "eslint \"!(node_modules)/**/*.+(js|jsx)\"",
         "test": "jest",
         "test:calculate": "jest ./test/calculate.test.js"
     },

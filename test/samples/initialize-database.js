@@ -6,7 +6,7 @@ const parseRaw = require('../../src/parse-raw')
 module.exports = async (
     dbnames,
     dbpath = path.resolve(__dirname, './db/')
-) => await new Promise(async (resolve, reject) => {
+) => await new Promise(async (resolve/*, reject*/) => {
     let db = {}
     let raw = {}
 
