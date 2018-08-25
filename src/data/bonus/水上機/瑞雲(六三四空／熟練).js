@@ -18,7 +18,7 @@ module.exports = [
             isID: BB_FusouClass2ndRemodel
         },
         bonus: {
-            fire: 3,
+            fire: 2,
         }
     },
     
