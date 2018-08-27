@@ -54,6 +54,21 @@
         getStatRange: function (range) {
             return this.statRange[parseInt(range)]
         },
+        getFolderGroup: (folder, id) => {
+            if (typeof node != 'undefined' && node && node.path) {
+                folder = folder.substr(folder.length - 1) == '/'
+                    ? folder.substr(0, folder - 1)
+                    : folder
+                id = parseInt(id)
+                let index = 100
+                let multiplier = 1
+                while (index * multiplier < id) {
+                    multiplier++
+                }
+                return folder + '-' + multiplier + '/'
+            }
+            return folder
+        },
         textRank: {
             1: '|',
             2: '||',
@@ -442,8 +457,12 @@
             const strVersion = this.illust_version ? `?version=${this.illust_version}` : ''
 
             let getURI = function (i, p) {
-                if (typeof node != 'undefined' && node && node.path && KC.path.pics.ships)
-                    return node.path.join(KC.path.pics.ships, i + '/' + p + '.' + (ext ? ext : 'webp'))
+                if (typeof node != 'undefined' && node && node.path && KC.path.pics.ships) {
+                    return node.path.join(
+                        KC.getFolderGroup(KC.path.pics.ships, i),
+                        i + '/' + p + '.' + (ext ? ext : 'webp')
+                    )
+                }
                 if (KC.path.pics.ships)
                     return KC.path.pics.ships + i + '/' + p + '.' + (ext ? ext : 'png') + strVersion
                 return '/' + i + '/' + p + '.' + (ext ? ext : 'png') + strVersion
@@ -1610,14 +1629,14 @@
                     }
                 })
                 return result
-            //return Math.floor(result)
-            //break;
+                //return Math.floor(result)
+                //break;
 
             // 同时返回制空战力的上下限
             // 返回值为Array
             case 'fighterPower_v2':
                 return formula.calcByShip.fighterPower_v2(ship, equipments_by_slot, star_by_slot, rank_by_slot)
-            //break;
+                //break;
 
             // 炮击威力，除潜艇外
             case 'shelling':
@@ -1630,7 +1649,7 @@
                         return Math.floor(result)// + 5
                     return '-'
                 }
-            //break;
+                //break;
 
             // 雷击威力，航母除外
             case 'torpedo':
@@ -1639,7 +1658,7 @@
                 if (result && result > -1)
                     return Math.floor(result)// + 5
                 return '-'
-            //break;
+                //break;
 
             // 夜战模式 & 伤害力
             case 'nightBattle': {
@@ -1668,7 +1687,7 @@
                 return result >= 0
                     ? ('+' + result)
                     : result
-            //break;
+                //break;
 
             // 装甲总和
             case 'addArmor':
@@ -1677,7 +1696,7 @@
                         result += equipments_by_slot[index].getStat('armor', ship) || 0
                 })
                 return result + (bonus.armor || 0)
-            //break;
+                //break;
 
             // 回避总和
             case 'addEvasion':
@@ -1686,7 +1705,7 @@
                         result += equipments_by_slot[index].getStat('evasion', ship) || 0
                 })
                 return result + (bonus.evasion || 0)
-            //break;
+                //break;
 
             // 索敌能力
             case 'losPower':
