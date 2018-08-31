@@ -399,6 +399,42 @@ describe('Calculating functions/utilities', () => {
                     evasion: -3,
                 })
             })
+            it('北上 || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    25,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                })
+            })
+            it('北上改二 || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    119,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                })
+            })
+            it('大鷹改二 || 九七式艦攻(九三一空) + Ju87C改二(KMX搭載機)', () => {
+                expect(calculate.bonus(
+                    529,
+                    [82, 305],
+                )).toEqual({
+                    asw: 2,
+                    evasion: 2,
+                })
+            })
+            it('Graf Zeppelin改 || 九七式艦攻(九三一空) + Ju87C改二(KMX搭載機)', () => {
+                expect(calculate.bonus(
+                    353,
+                    [82, 305],
+                )).toEqual({
+                    asw: 1,
+                    evasion: 1,
+                })
+            })
             it('pass stat', () => {
                 expect(calculate.bonus(
                     146, [268, 268, 268], 'fire'

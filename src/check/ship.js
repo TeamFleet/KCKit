@@ -130,7 +130,7 @@ const checkCondition = {
 
     // minLevel
     minlevel: (ship, level) => {
-        if(typeof ship.level !== 'undefined')
+        if (typeof ship.level !== 'undefined')
             return ship.level >= level
         return true
     }

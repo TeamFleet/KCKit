@@ -23,6 +23,8 @@ module.exports = [
     ...require('./小口径主砲/12.7cm連装砲C型改二'),
     ...require('./小口径主砲/12.7cm連装砲D型改二'),
 
+    ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
+
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
     ...require('./大口径主砲/35.6cm三連装砲改(ダズル迷彩仕様)'),
     ...require('./大口径主砲/41cm三連装砲改二'),
@@ -44,6 +46,8 @@ module.exports = [
     ...require('./艦上機/彗星(江草隊)'),
     ...require('./艦上機/彗星二二型(六三四空)'),
     ...require('./艦上機/彗星二二型(六三四空／熟練)'),
+    ...require('./艦上機/九七式艦攻(九三一空)'),
+    ...require('./艦上機/Ju87C改二(KMX搭載機)'),
     ...require('./艦上機/二式艦上偵察機'),
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
