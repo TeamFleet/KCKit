@@ -322,7 +322,7 @@ eval("\n\n/**\r\n * 装备额外属性收益 - 瑞雲12型(六三四空)\r\n * \
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n/**\r\n * 装备额外属性收益 - Ju87C改二(KMX搭載機)\r\n * \r\n * @module\r\n */\n\nmodule.exports = [{\n    equipment: 305,\n    ship: {\n        isID: [390, // 大鷹改\n        529, // 大鷹改二\n        353, // Graf Zeppelin改\n        365]\n    },\n    bonus: {\n        asw: 1,\n        evasion: 1\n    }\n}];\n\n//# sourceURL=webpack:///./node_modules/kckit/src/data/bonus/%E8%89%A6%E4%B8%8A%E6%A9%9F/Ju87C%E6%94%B9%E4%BA%8C(KMX%E6%90%AD%E8%BC%89%E6%A9%9F).js?");
+eval("\n\n/**\r\n * 装备额外属性收益 - Ju87C改二(KMX搭載機)\r\n * \r\n * @module\r\n */\n\nmodule.exports = [{\n    equipment: 305,\n    ship: {\n        isID: [380, // 大鷹改\n        529, // 大鷹改二\n        353, // Graf Zeppelin改\n        365]\n    },\n    bonus: {\n        asw: 1,\n        evasion: 1\n    }\n}];\n\n//# sourceURL=webpack:///./node_modules/kckit/src/data/bonus/%E8%89%A6%E4%B8%8A%E6%A9%9F/Ju87C%E6%94%B9%E4%BA%8C(KMX%E6%90%AD%E8%BC%89%E6%A9%9F).js?");
 
 /***/ }),
 
@@ -334,7 +334,7 @@ eval("\n\n/**\r\n * 装备额外属性收益 - Ju87C改二(KMX搭載機)\r\n * \
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n/**\r\n * 装备额外属性收益 - 九七式艦攻(九三一空)\r\n * \r\n * @module\r\n */\n\nmodule.exports = [{\n    equipment: 82,\n    ship: {\n        isID: [390, // 大鷹改\n        529]\n    },\n    bonus: {\n        asw: 1,\n        evasion: 1\n    }\n}];\n\n//# sourceURL=webpack:///./node_modules/kckit/src/data/bonus/%E8%89%A6%E4%B8%8A%E6%A9%9F/%E4%B9%9D%E4%B8%83%E5%BC%8F%E8%89%A6%E6%94%BB(%E4%B9%9D%E4%B8%89%E4%B8%80%E7%A9%BA).js?");
+eval("\n\n/**\r\n * 装备额外属性收益 - 九七式艦攻(九三一空)\r\n * \r\n * @module\r\n */\n\nmodule.exports = [{\n    equipment: 82,\n    ship: {\n        isID: [380, // 大鷹改\n        529]\n    },\n    bonus: {\n        asw: 1,\n        evasion: 1\n    }\n}];\n\n//# sourceURL=webpack:///./node_modules/kckit/src/data/bonus/%E8%89%A6%E4%B8%8A%E6%A9%9F/%E4%B9%9D%E4%B8%83%E5%BC%8F%E8%89%A6%E6%94%BB(%E4%B9%9D%E4%B8%89%E4%B8%80%E7%A9%BA).js?");
 
 /***/ }),
 
