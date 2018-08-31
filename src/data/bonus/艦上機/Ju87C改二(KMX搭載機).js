@@ -10,7 +10,7 @@ module.exports = [
         equipment: 305,
         ship: {
             isID: [
-                390, // 大鷹改
+                380, // 大鷹改
                 529, // 大鷹改二
                 353, // Graf Zeppelin改
                 365, // Aquila改
