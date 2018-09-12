@@ -6,11 +6,13 @@
 
 module.exports = [
 
-    // @ 海防艦
     {
         equipment: 293,
         ship: {
-            isType: [31],
+            isClass: [
+                92, // 占守型
+                94, // 択捉型
+            ],
         },
         bonus: {
             fire: 1,
@@ -19,11 +21,13 @@ module.exports = [
         }
     },
 
-    // @ 神風型 / 睦月型
     {
         equipment: 293,
         ship: {
-            isClass: [84, 12],
+            isClass: [
+                84, // 神風型
+                12, // 睦月型
+            ],
         },
         bonus: {
             fire: 2,

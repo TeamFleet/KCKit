@@ -431,7 +431,7 @@ describe('Calculating functions/utilities', () => {
                     353,
                     [82, 305],
                 )).toEqual({
-                    asw: 1,
+                    fire: 1,
                     evasion: 1,
                 })
             })
