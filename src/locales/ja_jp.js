@@ -18,6 +18,7 @@ module.exports = {
         "mn": "フランス海軍",
         "rn": "イギリス海軍",
         "usn": "アメリカ海軍",
-        "vmf": "Soviet Navy"
+        "vmf": "Soviet Navy",
+        "sm": "スウェーデン海軍"
     }
 }
