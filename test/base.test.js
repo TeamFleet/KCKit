@@ -487,7 +487,7 @@ describe('Base functions/utilities', () => {
                 it(`12.7cm連装砲D型改二 - 6 bonuses`, () => {
                     expect(
                         db.items[267].getBonuses().length
-                    ).toEqual(6)
+                    ).toEqual(7)
                 })
                 it(`61cm三連装(酸素)魚雷後期型 - 6 bonuses`, () => {
                     expect(
@@ -497,7 +497,7 @@ describe('Base functions/utilities', () => {
                 it(`33号対水上電探 - 12 bonuses`, () => {
                     expect(
                         db.items[29].getBonuses().length
-                    ).toEqual(12)
+                    ).toEqual(15)
                 })
                 it(`15m二重測距儀+21号電探改二 - 2 bonuses`, () => {
                     expect(

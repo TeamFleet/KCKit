@@ -1,8 +1,13 @@
 /**
  * 装备额外属性收益 - Ju87C改二(KMX搭載機)
+ * [305] Ju87C改二(KMX搭載機)
+ * [306] Ju87C改二(KMX搭載機/熟練)
  * 
  * @module
  */
+
+// https://wikiwiki.jp/kancolle/Ju87C%E6%94%B9%E4%BA%8C%28KMX%E6%90%AD%E8%BC%89%E6%A9%9F%29
+// https://wikiwiki.jp/kancolle/Ju87C%E6%94%B9%E4%BA%8C%28KMX%E6%90%AD%E8%BC%89%E6%A9%9F%EF%BC%8F%E7%86%9F%E7%B7%B4%29
 
 const bonusGrafZeppelinAquila = {
     ship: {

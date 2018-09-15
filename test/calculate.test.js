@@ -92,6 +92,16 @@ describe('Calculating functions/utilities', () => {
                     evasion: 1,
                 })
             })
+            it('長波改 || 12.7cm連装砲D型改二 + 33号対水上電探', () => {
+                expect(calculate.bonus(
+                    304,
+                    [267, 29],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 3,
+                    evasion: 2,
+                })
+            })
             it('長波改二 || 12.7cm連装砲D型改二', () => {
                 expect(calculate.bonus(
                     543, 267
@@ -433,6 +443,123 @@ describe('Calculating functions/utilities', () => {
                 )).toEqual({
                     fire: 1,
                     evasion: 1,
+                })
+            })
+            it('睦月改二 || 12cm単装砲改二 + 33号対水上電探', () => {
+                expect(calculate.bonus(
+                    434,
+                    [293, 29],
+                )).toEqual({
+                    fire: 4,
+                    toepedo: 1,
+                    aa: 1,
+                    evasion: 6,
+                })
+            })
+            it('睦月改二 || 12cm単装砲改二 + 33号対水上電探 + 53cm連装魚雷', () => {
+                expect(calculate.bonus(
+                    434,
+                    [293, 29, 174],
+                )).toEqual({
+                    fire: 6,
+                    toepedo: 5,
+                    aa: 1,
+                    evasion: 6,
+                })
+            })
+            it('睦月改二 || 12cm単装砲改二 + 53cm連装魚雷 + 53cm連装魚雷', () => {
+                expect(calculate.bonus(
+                    434,
+                    [293, 174, 174],
+                )).toEqual({
+                    fire: 5,
+                    toepedo: 7,
+                    aa: 1,
+                    evasion: 3,
+                })
+            })
+            it('Gotland || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    574,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 2,
+                    evasion: 1,
+                })
+            })
+            it('Gotland || Bofors 15.2cm連装砲 Model 1930 + Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    574,
+                    [303, 303],
+                )).toEqual({
+                    fire: 2,
+                    aa: 4,
+                    evasion: 2,
+                })
+            })
+            it('Gotland改 || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    579,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 2,
+                    evasion: 1,
+                })
+            })
+            it('Gotland改 || Bofors 15.2cm連装砲 Model 1930 + Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    579,
+                    [303, 303],
+                )).toEqual({
+                    fire: 2,
+                    aa: 4,
+                    evasion: 2,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲改＋FCR type284 + 20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    364,
+                    [300, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: -1,
+                    armor: 2,
+                })
+            })
+            it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 + 20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    576,
+                    [298, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: 1,
+                    armor: 2,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲 + 20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    364,
+                    [298, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: -1,
+                    armor: 2,
+                })
+            })
+            it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 + 20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    576,
+                    [300, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: 1,
+                    armor: 2,
                 })
             })
             it('pass stat', () => {

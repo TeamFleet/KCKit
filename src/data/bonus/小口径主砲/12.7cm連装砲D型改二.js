@@ -96,6 +96,28 @@ module.exports = [
     },
 
     // + 对水上電探
+    // @ 夕雲型
+    {
+        list: [
+            267,
+            'SurfaceRadar',
+        ],
+        equipments: {
+            hasID: [267],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isClass: [22],
+            isNotID: DD_YuugumoClass2ndRemodel,
+        },
+        bonus: {
+            fire: 2,
+            torpedo: 3,
+            evasion: 1,
+        }
+    },
+
+    // + 对水上電探
     // @ 夕雲型 改二
     {
         list: [

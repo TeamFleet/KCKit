@@ -7,9 +7,27 @@
  * @module
  */
 
-const bonusWarspiteKai = {
+// https://wikiwiki.jp/kancolle/16inch%20Mk.I%E4%B8%89%E9%80%A3%E8%A3%85%E7%A0%B2
+// https://wikiwiki.jp/kancolle/16inch%20Mk.I%E4%B8%89%E9%80%A3%E8%A3%85%E7%A0%B2%EF%BC%8BAFCT%E6%94%B9
+// https://wikiwiki.jp/kancolle/16inch%20Mk.I%E4%B8%89%E9%80%A3%E8%A3%85%E7%A0%B2%E6%94%B9%EF%BC%8BFCR%20type284
+
+const {
+    BB_QueenElizabeth,
+    BB_Nelson,
+} = require('../../ship-classes')
+
+const bonusNelson = {
     ship: {
-        isID: [364]
+        isClass: [BB_Nelson]
+    },
+    bonus: {
+        fire: 2,
+        armor: 1,
+    }
+}
+const bonusWarspite = {
+    ship: {
+        isClass: [BB_QueenElizabeth]
     },
     bonus: {
         fire: 2,
@@ -28,36 +46,22 @@ const bonusKongouKaiNi = {
     }
 }
 
-module.exports = [
-
-    // @ Warspite改
-    {
-        equipment: 298,
-        ...bonusWarspiteKai
-    },
-    {
-        equipment: 299,
-        ...bonusWarspiteKai
-    },
-    {
-        equipment: 300,
-        ...bonusWarspiteKai
-    },
-
-    // @ 金剛改二
-    {
-        equipment: 298,
+const result = [];
+[
+    298, 299, 300,
+].forEach(equipmentId => {
+    result.push({
+        equipment: equipmentId,
+        ...bonusNelson
+    })
+    result.push({
+        equipment: equipmentId,
+        ...bonusWarspite
+    })
+    result.push({
+        equipment: equipmentId,
         ...bonusKongouKaiNi
-    },
-    {
-        equipment: 299,
-        ...bonusKongouKaiNi
-    },
-    {
-        equipment: 300,
-        ...bonusKongouKaiNi
-    },
+    })
+})
 
-    // ------------------------------------------------------------------------
-
-]
+module.exports = result

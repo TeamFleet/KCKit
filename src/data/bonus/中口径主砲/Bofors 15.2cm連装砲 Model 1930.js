@@ -4,7 +4,12 @@
  * @module
  */
 
-const { CL_Kuma, CL_Nagara, CL_Sendai, CL_Agano, CLT_Kuma } = require('../../ship-classes')
+// https://wikiwiki.jp/kancolle/Bofors15.2cm%E9%80%A3%E8%A3%85%E7%A0%B2%20Model1930
+
+const {
+    CL_Kuma, CL_Nagara, CL_Sendai, CL_Agano, CLT_Kuma,
+    CL_Gotland,
+} = require('../../ship-classes')
 
 module.exports = [
 
@@ -22,6 +27,20 @@ module.exports = [
         bonus: {
             fire: 1,
             aa: 1,
+        }
+    },
+
+    {
+        equipment: 303,
+        ship: {
+            isClass: [
+                CL_Gotland
+            ],
+        },
+        bonus: {
+            fire: 1,
+            aa: 2,
+            evasion: 1,
         }
     },
 
