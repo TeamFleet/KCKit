@@ -81,7 +81,7 @@ module.exports = [
         },
         bonus: {
             fire: 2,
-            toepedo: 1,
+            torpedo: 1,
             evasion: 3,
         }
     },
@@ -108,7 +108,7 @@ module.exports = [
         },
         bonus: {
             fire: 2,
-            toepedo: 4,
+            torpedo: 4,
         }
     },
 
@@ -138,7 +138,7 @@ module.exports = [
         },
         bonus: {
             fire: 1,
-            toepedo: 3,
+            torpedo: 3,
         }
     },
 ]

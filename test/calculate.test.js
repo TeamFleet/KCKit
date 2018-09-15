@@ -451,7 +451,7 @@ describe('Calculating functions/utilities', () => {
                     [293, 29],
                 )).toEqual({
                     fire: 4,
-                    toepedo: 1,
+                    torpedo: 1,
                     aa: 1,
                     evasion: 6,
                 })
@@ -462,7 +462,7 @@ describe('Calculating functions/utilities', () => {
                     [293, 29, 174],
                 )).toEqual({
                     fire: 6,
-                    toepedo: 5,
+                    torpedo: 5,
                     aa: 1,
                     evasion: 6,
                 })
@@ -473,7 +473,7 @@ describe('Calculating functions/utilities', () => {
                     [293, 174, 174],
                 )).toEqual({
                     fire: 5,
-                    toepedo: 7,
+                    torpedo: 7,
                     aa: 1,
                     evasion: 3,
                 })
