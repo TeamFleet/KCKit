@@ -11,6 +11,7 @@ module.exports = {
     CL_Agano: 52,
     CL_Gotland: 114,
     CLT_Kuma: 54,
+    CLV_Gotland: 116,
 
     DD_Special: [15, 16, 17],
     DD_Tokugata: [15, 16, 17],

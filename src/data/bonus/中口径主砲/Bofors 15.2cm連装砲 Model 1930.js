@@ -8,7 +8,7 @@
 
 const {
     CL_Kuma, CL_Nagara, CL_Sendai, CL_Agano, CLT_Kuma,
-    CL_Gotland,
+    CL_Gotland, CLV_Gotland,
 } = require('../../ship-classes')
 
 module.exports = [
@@ -34,7 +34,8 @@ module.exports = [
         equipment: 303,
         ship: {
             isClass: [
-                CL_Gotland
+                CL_Gotland,
+                CLV_Gotland,
             ],
         },
         bonus: {
