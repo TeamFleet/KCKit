@@ -130,6 +130,8 @@ const DD_ShimakazeRemodel = [
 ]
 const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel = DD_YuugumoClass2ndRemodel.concat(DD_ShimakazeRemodel)
 
+// 
+
 const rn_BB = [
     571, 576, // Nelson
     439, 364, // Warspite
@@ -139,6 +141,24 @@ const rn = [
     515, 393, // Ark Royal
     519, 394, // Jervis
 ]
+const usn_BB = [
+    440, 360, // Iowa
+]
+const usn_CV = [
+    544, 396, // Gambier Bay
+    549, 397, // Interpid
+    433, 438, 545, 550, // Saratoga
+]
+const usn_DD = [
+    561, 681, // Samuel B.Roberts
+]
+const usn = [
+    ...usn_BB,
+    ...usn_CV,
+    ...usn_DD,
+]
+
+//
 
 module.exports = {
     BB_KongouClass2ndRemodel,
@@ -161,4 +181,5 @@ module.exports = {
     DD_ShimakazeRemodel,
 
     rn, rn_BB,
+    usn, usn_BB, usn_CV, usn_DD,
 }
