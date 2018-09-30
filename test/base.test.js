@@ -399,7 +399,7 @@ describe('Base functions/utilities', () => {
                     expect(
                         db.ships[576].getAACI().map(o => o.id)
                     ).toEqual([
-                        4, 5, 6, 8, 7, 12, 32, 9
+                        4, 5, 6, 8, 7, 12, 32, 32, 9
                     ])
                 })
             })

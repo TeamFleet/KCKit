@@ -647,8 +647,25 @@ module.exports = class Ship extends ItemBase {
      * @returns {Array} AACI
      */
     getAACI() {
-        if (!Array.isArray(this.__aaci))
-            this.__aaci = checkAACI(this)
+        if (!Array.isArray(this.__aaci)) {
+            this.__aaci = []
+            checkAACI(this).forEach(aaci => {
+                const {
+                    conditions,
+                    ...obj
+                } = aaci
+                if (Array.isArray(conditions)) {
+                    conditions.forEach(condition => {
+                        this.__aaci.push({
+                            ...obj,
+                            ...condition
+                        })
+                    })
+                } else {
+                    this.__aaci.push(obj)
+                }
+            })
+        }
         return this.__aaci
     }
 }
