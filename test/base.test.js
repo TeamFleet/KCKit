@@ -374,6 +374,35 @@ describe('Base functions/utilities', () => {
                     ).toEqual(3)
                 })
             })
+            describe(`should Ship.prototype.getAACI() works`, () => {
+                it(`should be Array`, () => {
+                    expect(
+                        Array.isArray(db.ships[182].getAACI())
+                    ).toEqual(true)
+                    expect(
+                        Array.isArray(db.ships[400].getAACI())
+                    ).toEqual(true)
+                })
+                it(`伊8・改 - no bonuses`, () => {
+                    expect(
+                        db.ships[400].getAACI()
+                    ).toEqual([])
+                })
+                it(`伊504`, () => {
+                    expect(
+                        db.ships[530].getAACI().map(o => o.id)
+                    ).toEqual([
+                        23
+                    ])
+                })
+                it(`Nelson・改`, () => {
+                    expect(
+                        db.ships[576].getAACI().map(o => o.id)
+                    ).toEqual([
+                        4, 5, 6, 8, 7, 12, 32, 9
+                    ])
+                })
+            })
         });
 
         describe('Equipment...', function () {

@@ -130,9 +130,12 @@ const DD_ShimakazeRemodel = [
 ]
 const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel = DD_YuugumoClass2ndRemodel.concat(DD_ShimakazeRemodel)
 
-const rn = [
+const rn_BB = [
     571, 576, // Nelson
     439, 364, // Warspite
+]
+const rn = [
+    ...rn_BB,
     515, 393, // Ark Royal
     519, 394, // Jervis
 ]
@@ -157,5 +160,5 @@ module.exports = {
     DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel,
     DD_ShimakazeRemodel,
 
-    rn,
+    rn, rn_BB,
 }

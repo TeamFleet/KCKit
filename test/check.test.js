@@ -351,6 +351,7 @@ describe('Checking functions/utilities', () => {
                 expect(Array.isArray(check.aaci(1))).toBe(true);
             })
             it(`Check samples`, function () {
+                // 春雨・改
                 expect(check.aaci(405).map(obj => obj.id)).toEqual([8, 7, 12, 9]);
                 expect(check.aaci(428).map(obj => obj.id)).toEqual([10, 11, 5, 8, 7, 12, 9]);
                 expect(check.aaci(136).map(obj => obj.id)).toEqual([4, 5, 6, 8, 7, 12, 9]);
@@ -434,8 +435,22 @@ describe('Checking functions/utilities', () => {
                     expect(check.aaci(557, [122, 27]).map(obj => obj.id)).toEqual([29, 8]);
                 })
                 it(`Warspite・改`, function () {
+                    // 16inch Mk.I三連装砲改+FCR type284 + QF 2ポンド8連装ポンポン砲
+                    expect(check.aaci(364, [300, 191]).map(obj => obj.id)).toEqual([32]);
                     // 20連装7inch UP Rocket Launchers + QF 2ポンド8連装ポンポン砲
                     expect(check.aaci(364, [301, 191]).map(obj => obj.id)).toEqual([32]);
+                })
+                it(`Nelson・改`, function () {
+                    // 16inch Mk.I三連装砲改+FCR type284 + QF 2ポンド8連装ポンポン砲
+                    expect(check.aaci(576, [300, 191]).map(obj => obj.id)).toEqual([32]);
+                    // 20連装7inch UP Rocket Launchers + QF 2ポンド8連装ポンポン砲
+                    expect(check.aaci(576, [301, 191]).map(obj => obj.id)).toEqual([32]);
+                })
+                it(`Gotland・改`, function () {
+                    // 8cm高角砲 + 8cm高角砲 + 8cm高角砲
+                    expect(check.aaci(579, [66, 66, 66]).map(obj => obj.id)).toEqual([30]);
+                    // 8cm高角砲 + 7.7mm機銃
+                    expect(check.aaci(579, [66, 37]).map(obj => obj.id)).toEqual([33]);
                 })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);

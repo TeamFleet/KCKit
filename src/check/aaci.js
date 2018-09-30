@@ -21,7 +21,19 @@ module.exports = (ship, equipments, aaciID) => {
         if (!hasEquipments) return true
         return checkEquipments(equipments, conditions)
     }
-    const check = id => checkShip(ship, dataAACI[id].ship) && _checkEquipments(dataAACI[id].equipments)
+    
+    const check = id => {
+        if (Array.isArray(dataAACI[id].conditions)) {
+            return dataAACI[id].conditions.some(condition => (
+                checkSingleCondition(condition)
+            ))
+        }
+        return checkSingleCondition(dataAACI[id])
+    }
+    const checkSingleCondition = condition => (
+        checkShip(ship, condition.ship) &&
+        _checkEquipments(condition.equipments)
+    )
 
     if (typeof aaciID === 'undefined') {
         // if (ship == 478)

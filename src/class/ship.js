@@ -3,6 +3,7 @@ const vars = require('../variables')
 const bonuses = require('../data/bonus')
 const getName = require('../utils/get-name')
 const getdb = require('../get/db')
+const checkAACI = require('../check/aaci')
 const checkShip = require('../check/ship')
 const shipTypes = require('../types/ships')
 const equipmentTypes = require('../types/equipments')
@@ -639,5 +640,15 @@ module.exports = class Ship extends ItemBase {
                 checkShip(this, bonus.ship)
             ))
         return this.__bonuses
+    }
+
+    /**
+     * 获取该舰娘所有可用的 AACI
+     * @returns {Array} AACI
+     */
+    getAACI() {
+        if (!Array.isArray(this.__aaci))
+            this.__aaci = checkAACI(this)
+        return this.__aaci
     }
 }

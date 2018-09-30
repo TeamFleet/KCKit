@@ -29,12 +29,16 @@ module.exports = {
     },
 
     // 天龍・改二
+    // Gotland改
     30: {
         fixed: 3,
         modifier: 1.3,
         icons: [16, 16, 16],
         ship: {
-            isID: 477
+            isID: [
+                477, // 天龍・改二
+                579, // Gotland改
+            ]
         },
         equipments: {
             hasHAMount: 3,
@@ -146,6 +150,22 @@ module.exports = {
         },
         equipments: {
             hasAAGunCD: true
+        }
+    },
+
+    // Gotland改
+    33: {
+        fixed: 3,
+        modifier: 1.35,
+        icons: [16, 15],
+        ship: {
+            isID: [
+                579, // Gotland改
+            ]
+        },
+        equipments: {
+            hasHAMount: true,
+            hasAAGun: true
         }
     },
 }
