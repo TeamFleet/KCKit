@@ -51,6 +51,8 @@ module.exports = [
     ...require('./艦上機/Ju87C改二(KMX搭載機)'),
     ...require('./艦上機/二式艦上偵察機'),
 
+    ...require('./電探/GFCS Mk.37'),
+
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
