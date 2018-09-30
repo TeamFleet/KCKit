@@ -656,10 +656,11 @@ module.exports = class Ship extends ItemBase {
                 } = aaci
                 if (Array.isArray(conditions)) {
                     conditions.forEach(condition => {
-                        this.__aaci.push({
-                            ...obj,
-                            ...condition
-                        })
+                        if (checkShip(this, condition.ship))
+                            this.__aaci.push({
+                                ...obj,
+                                ...condition
+                            })
                     })
                 } else {
                     this.__aaci.push(obj)

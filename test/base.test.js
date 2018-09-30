@@ -402,6 +402,13 @@ describe('Base functions/utilities', () => {
                         4, 5, 6, 8, 7, 12, 32, 32, 9
                     ])
                 })
+                it(`Ark Royal・改`, () => {
+                    expect(
+                        db.ships[393].getAACI().map(o => o.id)
+                    ).toEqual([
+                        5, 8, 7, 12, 32, 9
+                    ])
+                })
             })
         });
 
