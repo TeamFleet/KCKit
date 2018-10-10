@@ -60,12 +60,12 @@
                     ? folder.substr(0, folder - 1)
                     : folder
                 id = parseInt(id)
-                let index = 100
-                let multiplier = 1
-                while (index * multiplier < id) {
-                    multiplier++
+                let groupCountMax = 50
+                let currentGroupNumber = 1
+                while (groupCountMax * currentGroupNumber < id) {
+                    currentGroupNumber++
                 }
-                return folder + '-' + multiplier + '/'
+                return folder + '-' + currentGroupNumber + '/'
             }
             return folder
         },
