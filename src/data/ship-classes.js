@@ -22,5 +22,6 @@ module.exports = {
     DD_Shiratsuyu: 19,
     DD_Akizuki: 23,
     DD_J: 107,
+    group_DD_Tokugata: [15, 16, 17],
 
 }

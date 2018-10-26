@@ -4,15 +4,14 @@
  * @module
  */
 
-const { DD_Fubuki } = require('../../ship-classes')
+const { group_DD_Tokugata } = require('../../ship-classes')
 
 module.exports = [
 
-    // @ 吹雪型
     {
         equipment: 294,
         ship: {
-            isClass: [DD_Fubuki],
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             fire: 1,
@@ -22,7 +21,6 @@ module.exports = [
     // ------------------------------------------------------------------------
 
     // + 对水上電探
-    // @ 吹雪型
     {
         list: [
             294,
@@ -33,7 +31,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isClass: [DD_Fubuki],
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             fire: 3,
@@ -43,7 +41,6 @@ module.exports = [
     },
 
     // + 61cm三連装(酸素)魚雷
-    // @ 吹雪型
     {
         list: [
             294,
@@ -58,7 +55,7 @@ module.exports = [
             }
         ],
         ship: {
-            isClass: [DD_Fubuki],
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             fire: 1,
@@ -86,7 +83,7 @@ module.exports = [
             }
         ],
         ship: {
-            isClass: [DD_Fubuki],
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             torpedo: 2,
