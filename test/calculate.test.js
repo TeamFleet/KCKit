@@ -687,11 +687,11 @@ describe('Calculating functions/utilities', () => {
                 expect(calculate.ship.speed(136, [
                     34, 34, undefined, 87,
                     33
-                ])).toBe(15);
+                ])).toBe(20);
                 expect(calculate.ship.speed(136, [
                     34, 34, 34, 87,
                     33
-                ])).toBe(15);
+                ])).toBe(20);
                 expect(calculate.ship.speed(136, [
                     undefined, undefined, 87, 87,
                     33
