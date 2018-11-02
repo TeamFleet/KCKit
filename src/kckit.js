@@ -2905,6 +2905,8 @@
         if (!count['33']) return theResult()
 
         switch (rule) {
+            // x - +10
+            // y - +13
             case 'low-1':
                 // 低速A
                 // 	基础		5
@@ -2914,8 +2916,8 @@
                 // 	3x + 0y		+5		0.3x
                 // 	0x + 1y		+5		0.7x
                 // 	1x + 1y		+10		1x
-                // 	2x + 1y		+10		1x
-                // 	3x + 1y		+10		1x
+                // 	2x + 1y		+15		1x
+                // 	3x + 1y		+15		1x
                 // 	0x + 2y		+10		1.4x
                 // 	1x + 2y		+15		1.7x
                 // 	2x + 2y		+15		1.7x
@@ -2926,8 +2928,14 @@
                 // 	3x + 2y		+15
                 // 	x = 0.3
                 // 	y = 0.7
-                multiper = 0.3 * Math.min(count['34'], 1)
-                    + 0.7 * count['87']
+                if (count['34'] && !count['87']) {
+                    multiper = 0.5
+                } else if (count['34'] >= 2 && count['87']) {
+                    multiper = 1.5
+                } else {
+                    multiper = 0.3 * Math.min(count['34'], 1)
+                        + 0.7 * count['87']
+                }
                 break
             case 'low-2':
             case 'high-3':
