@@ -24,6 +24,7 @@ module.exports = [
     ...require('./小口径主砲/12.7cm連装砲D型改二'),
     ...require('./小口径主砲/5inch単装砲 Mk.30改+GFCS Mk.37'),
 
+    ...require('./中口径主砲/20.3cm(2号)連装砲'),
     ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
 
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
@@ -56,5 +57,8 @@ module.exports = [
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
+
+    ...require('./その他/探照灯'),
+    ...require('./その他/96式150cm探照灯'),
 
 ]

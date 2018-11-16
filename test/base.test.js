@@ -530,10 +530,10 @@ describe('Base functions/utilities', () => {
                         db.items[285].getBonuses().length
                     ).toEqual(6)
                 })
-                it(`33号対水上電探 - 12 bonuses`, () => {
+                it(`33号対水上電探 - 16 bonuses`, () => {
                     expect(
                         db.items[29].getBonuses().length
-                    ).toEqual(15)
+                    ).toEqual(16)
                 })
                 it(`15m二重測距儀+21号電探改二 - 2 bonuses`, () => {
                     expect(
