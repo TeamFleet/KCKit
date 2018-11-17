@@ -189,6 +189,7 @@ const checkCondition = {
      */
     issurfaceradar: function (equipment, isTrue) {
         // console.log(`[${equipment.id}]`, equipment._name)
+        // 目前已知条件：命中 >= 3 或 索敌 >= 5
         return ((
             this.istype(equipment, equipmentTypes.Radars)
             // && (

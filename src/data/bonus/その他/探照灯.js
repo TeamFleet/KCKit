@@ -12,6 +12,19 @@ module.exports = [
         equipment: 74,
         ship: {
             isID: [
+                132 , // 秋雲
+                301 , // 秋雲改
+            ],
+        },
+        bonus: {
+            fire: 1,
+        }
+    },
+
+    {
+        equipment: 74,
+        ship: {
+            isID: [
                 86 , // 比叡
                 210 , // 比叡改
                 150 , // 比叡改二
