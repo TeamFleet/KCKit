@@ -25,6 +25,19 @@ module.exports = [
         equipment: 74,
         ship: {
             isID: [
+                20 , // 雪風
+                228 , // 雪風改
+            ],
+        },
+        bonus: {
+            aa: 1,
+        }
+    },
+
+    {
+        equipment: 74,
+        ship: {
+            isID: [
                 86 , // 比叡
                 210 , // 比叡改
                 150 , // 比叡改二

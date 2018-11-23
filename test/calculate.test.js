@@ -733,9 +733,8 @@ describe('Calculating functions/utilities', () => {
                             [90, 307],
                         )).toEqual({
                             fire: 5,
-                            aa: 5,
+                            evasion: 3,
                             torpedo: 2,
-                            evasion: 5,
                         })
                     })
                     it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
@@ -744,9 +743,8 @@ describe('Calculating functions/utilities', () => {
                             [90, 90, 307],
                         )).toEqual({
                             fire: 7,
+                            evasion: 4,
                             torpedo: 2,
-                            aa: 5,
-                            evasion: 6,
                         })
                     })
                     it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
@@ -755,9 +753,8 @@ describe('Calculating functions/utilities', () => {
                             [90, 90, 307, 307],
                         )).toEqual({
                             fire: 7,
+                            evasion: 4,
                             torpedo: 2,
-                            aa: 5,
-                            evasion: 6,
                         })
                     })
                 })
