@@ -1,28 +1,23 @@
 /**
- * 装备额外属性收益 - 61cm五連装(酸素)魚雷
+ * 装备额外属性收益 - 53cm連装魚雷
  * 
  * @module
  */
 
 const {
-    CLT_Kuma,
-    DD_Shimakaze,
-    DD_Akizuki,
+    DD_Kamikaze,
 } = require('../../ship-classes')
 
 module.exports = [
-
+    
     {
-        equipment: 58,
+        equipment: 174,
         ship: {
-            isClass: [
-                CLT_Kuma,
-                DD_Shimakaze,
-                DD_Akizuki,
-            ],
+            isClass: [DD_Kamikaze]
         },
         bonus: {
             torpedo: 1,
+            evasion: 2,
         }
     },
 

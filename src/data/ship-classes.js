@@ -18,6 +18,7 @@ module.exports = {
     CLV_Gotland: 116,
     CT_Katori: 55,
 
+    DD_Kamikaze: 84,
     DD_Special: [15, 16, 17],
     DD_Tokugata: [15, 16, 17],
     DD_Fubuki: 15,
@@ -25,6 +26,7 @@ module.exports = {
     DD_Akatsuki: 17,
     DD_Hatsuharu: 18,
     DD_Shiratsuyu: 19,
+    DD_Shimakaze: 24,
     DD_Akizuki: 23,
     DD_J: 107,
     group_DD_Tokugata: [15, 16, 17],

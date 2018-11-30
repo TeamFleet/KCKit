@@ -18,6 +18,25 @@ const DD2nd_Shiratsuyu_Asashio_Yuugumo = DD_ShiratsuyuClass2ndRemodel.concat(
 
 module.exports = [
 
+    // @ 白露型 改二 / 朝潮型 改二 / 夕雲型 改二
+    {
+        equipment: 286,
+        ship: {
+            isID: DD2nd_Shiratsuyu_Asashio_Yuugumo
+        },
+        bonusImprove: {
+            0: {
+                torpedo: 2,
+                evasion: 1,
+            },
+            10: {
+                fire: 1,
+                torpedo: 2,
+                evasion: 1,
+            }
+        }
+    },
+
     // @ 陽炎型 改二
     {
         equipment: 286,
@@ -36,25 +55,6 @@ module.exports = [
             10: {
                 fire: 1,
                 torpedo: 3,
-                evasion: 1,
-            }
-        }
-    },
-
-    // @ 白露型 改二 / 朝潮型 改二 / 夕雲型 改二
-    {
-        equipment: 286,
-        ship: {
-            isID: DD2nd_Shiratsuyu_Asashio_Yuugumo
-        },
-        bonusImprove: {
-            0: {
-                torpedo: 2,
-                evasion: 1,
-            },
-            10: {
-                fire: 1,
-                torpedo: 2,
                 evasion: 1,
             }
         }

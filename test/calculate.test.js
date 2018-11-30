@@ -788,6 +788,14 @@ describe('Calculating functions/utilities', () => {
                         evasion: -4,
                     })
                 })
+                it('陽炎改二 || 53cm艦首(酸素)魚雷', () => {
+                    expect(calculate.bonus(
+                        566,
+                        [67],
+                    )).toEqual({
+                        torpedo: -5,
+                    })
+                })
             })
 
             it('pass stat', () => {
