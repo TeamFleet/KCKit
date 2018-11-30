@@ -5,6 +5,9 @@ module.exports = {
 
     CV_ArkRoyal: 101,
 
+    CA_Furutaka: 39,
+    CA_Aoba: 40,
+
     CL_Kuma: 48,
     CL_Nagara: 49,
     CL_Sendai: 50,

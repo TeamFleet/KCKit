@@ -6,6 +6,8 @@
 
 // https://wikiwiki.jp/kancolle/20.3cm%282%E5%8F%B7%29%E9%80%A3%E8%A3%85%E7%A0%B2
 
+const { CA_Furutaka, CA_Aoba } = require('../../ship-classes')
+
 module.exports = [
 
     {
@@ -60,13 +62,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isID: [
-                264, // 青葉改
-                295, // 衣笠改
-                142, // 衣笠改二
-                416, // 古鷹改二
-                417, // 加古改二
-            ]
+            isClass: [CA_Furutaka, CA_Aoba]
         },
         bonus: {
             fire: 3,
