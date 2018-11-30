@@ -133,5 +133,9 @@ const checkCondition = {
         if (typeof ship.level !== 'undefined')
             return ship.level >= level
         return true
+    },
+
+    canequip: (ship, equipType) => {
+        return ship.canEquip(equipType)
     }
 }

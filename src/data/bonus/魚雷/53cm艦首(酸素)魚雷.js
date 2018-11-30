@@ -9,6 +9,7 @@ module.exports = [
     {
         equipment: 67,
         ship: {
+            canEquip: [12],
             isNotType: [
                 13, 14
             ],

@@ -1,9 +1,24 @@
+const BB_Iowa = 82
+const BB_QueenElizabeth = 85
+const BB_Nelson = 115
+
+const CV_Lexington = 87
+const CV_Essex = 110
+const CV_ArkRoyal = 101
+const CVB_Lexington = 105
+
+const DD_SamuelBRoberts = 112
+const DD_J = 107
+
 module.exports = {
 
-    BB_QueenElizabeth: 85,
-    BB_Nelson: 115,
+    BB_Iowa,
+    BB_QueenElizabeth,
+    BB_Nelson,
 
-    CV_ArkRoyal: 101,
+    CV_Lexington, CVB_Lexington,
+    CV_Essex,
+    CV_ArkRoyal,
 
     CA_Furutaka: 39,
     CA_Aoba: 40,
@@ -28,7 +43,20 @@ module.exports = {
     DD_Shiratsuyu: 19,
     DD_Shimakaze: 24,
     DD_Akizuki: 23,
-    DD_J: 107,
+    DD_J,
+    DD_SamuelBRoberts,
     group_DD_Tokugata: [15, 16, 17],
 
+    group_Navy_USN: [
+        BB_Iowa,
+        CV_Lexington, CVB_Lexington,
+        CV_Essex,
+        DD_SamuelBRoberts,
+    ],
+    group_Navy_RN: [
+        BB_QueenElizabeth,
+        BB_Nelson,
+        CV_ArkRoyal,
+        DD_J,
+    ],
 }

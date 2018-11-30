@@ -6,24 +6,14 @@
 
 // https://wikiwiki.jp/kancolle/20%E9%80%A3%E8%A3%857inch%20UP%20Rocket%20Launchers
 
-const {
-    BB_QueenElizabeth,
-    BB_Nelson,
-    CV_ArkRoyal,
-    DD_J,
-} = require('../../ship-classes')
+const { group_Navy_RN } = require('../../ship-classes')
 
 module.exports = [
 
     {
         equipment: 301,
         ship: {
-            isClass: [
-                BB_QueenElizabeth,
-                BB_Nelson,
-                CV_ArkRoyal,
-                DD_J,
-            ]
+            isClass: group_Navy_RN
         },
         bonus: {
             aa: 2,

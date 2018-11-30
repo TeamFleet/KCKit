@@ -10,6 +10,18 @@ const {
 
 module.exports = [
 
+    {
+        equipment: 268,
+        ship: {
+            canEquip: [33]
+        },
+        bonusArea: {
+            North: {
+                armor: 3,
+            }
+        },
+    },
+
     // @ 球磨型 改
     {
         equipment: 268,

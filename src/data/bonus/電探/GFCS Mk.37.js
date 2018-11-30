@@ -6,15 +6,15 @@
 
 // https://wikiwiki.jp/kancolle/GFCS%20Mk.37
 
+const { group_Navy_USN } = require('../../ship-classes')
+
 module.exports = [
 
     // @ US Navy
     {
         equipment: 307,
         ship: {
-            isClass: [
-                82, // Iowa型
-            ],
+            isClass: group_Navy_USN,
         },
         bonus: {
             fire: 1,
