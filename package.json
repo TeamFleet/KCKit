@@ -10,7 +10,8 @@
         "url": "https://github.com/Diablohu/KCKit"
     },
     "scripts": {
-        "start": "webpack"
+        "start": "webpack",
+        "publish": "npm publish --tag lts"
     },
     "devDependencies": {
         "kckit": "^1.21.10",

@@ -879,7 +879,7 @@
     }
     let formula = {
         // 装备类型
-        equipmentType,
+        equipmentType: equipmentTypes,
         // 舰种
         shipType: {
             // 航母系列
