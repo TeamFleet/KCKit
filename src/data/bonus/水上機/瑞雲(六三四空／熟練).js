@@ -30,6 +30,7 @@ module.exports = [
         },
         bonus: {
             fire: 3,
+            evasion: 1,
         }
     },
     
@@ -41,6 +42,7 @@ module.exports = [
         },
         bonus: {
             fire: 4,
+            evasion: 2,
         }
     },
 
