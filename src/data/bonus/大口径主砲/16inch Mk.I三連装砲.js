@@ -52,7 +52,7 @@ const result = [];
 ].forEach(equipmentId => {
     result.push({
         equipment: equipmentId,
-        ...bonusNelson
+        ...bonusKongouKaiNi
     })
     result.push({
         equipment: equipmentId,
@@ -60,7 +60,7 @@ const result = [];
     })
     result.push({
         equipment: equipmentId,
-        ...bonusKongouKaiNi
+        ...bonusNelson
     })
 })
 

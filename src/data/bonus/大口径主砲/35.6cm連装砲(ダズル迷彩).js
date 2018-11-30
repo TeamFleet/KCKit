@@ -6,6 +6,17 @@
 
 module.exports = [
     
+    // @ 比叡改二 / 霧島改二
+    {
+        equipment: 104,
+        ship: {
+            isID: [150, 152]
+        },
+        bonus: {
+            fire: 1,
+        }
+    },
+    
     // @ 金剛改二
     {
         equipment: 104,
@@ -27,17 +38,6 @@ module.exports = [
             fire: 2,
             aa: 1,
             evasion: 2,
-        }
-    },
-    
-    // @ 比叡改二 / 霧島改二
-    {
-        equipment: 104,
-        ship: {
-            isID: [150, 152]
-        },
-        bonus: {
-            fire: 1,
         }
     },
 
