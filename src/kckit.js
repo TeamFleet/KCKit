@@ -3172,6 +3172,7 @@
                 case _equipmentType.ReconSeaplane:
                 case _equipmentType.ReconSeaplaneNight:
                 case _equipmentType.LargeFlyingBoat:
+                case _equipmentType.LandBasedRecon:
                     if (equipment.stat.los <= 7) {
                         getReconBonus(1.1)
                     } else if (equipment.stat.los >= 9) {
