@@ -47,7 +47,7 @@ module.exports = [
             ]
         },
         bonus: {
-            fire: 2,
+            fire: 1,
         }
     },
 

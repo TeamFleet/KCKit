@@ -8,10 +8,12 @@ module.exports = {
     CL_Kuma: 48,
     CL_Nagara: 49,
     CL_Sendai: 50,
+    CL_Yuubari: 51,
     CL_Agano: 52,
     CL_Gotland: 114,
     CLT_Kuma: 54,
     CLV_Gotland: 116,
+    CT_Katori: 55,
 
     DD_Special: [15, 16, 17],
     DD_Tokugata: [15, 16, 17],

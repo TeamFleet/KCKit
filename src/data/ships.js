@@ -29,6 +29,7 @@ const CL_KumaClass2ndRemodel = [
 const CL_KumaClassRemodelAll = CL_KumaClassRemodel.concat(CL_KumaClass2ndRemodel)
 const CL_NagaraClass2ndRemodel = [
     488, // 由良改二
+    487, // 鬼怒改二
 ]
 
 const DD_FubukiClass2ndRemodel = [
@@ -105,6 +106,7 @@ const DD_KagerouClassRemodel = [
     312, // 浜風改
     558, // 浜風乙改
     313, // 谷風改
+    559, // 谷風丁改
     329, // 野分改
     354, // 嵐改
     355, // 萩風改

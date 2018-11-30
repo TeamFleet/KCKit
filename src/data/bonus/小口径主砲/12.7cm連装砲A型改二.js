@@ -44,14 +44,14 @@ module.exports = [
     {
         list: [
             294,
-            [125, 285],
+            125,
         ],
         equipments: [
             {
                 isID: 294,
             },
             {
-                isID: [125, 285],
+                isID: 125,
             }
         ],
         ship: {
@@ -68,24 +68,76 @@ module.exports = [
     {
         list: [
             294,
-            [125, 285],
-            [125, 285],
+            125,
+            125,
         ],
         equipments: [
             {
                 isID: 294,
             },
             {
-                isID: [125, 285],
+                isID: 125,
             },
             {
-                isID: [125, 285],
+                isID: 125,
             }
         ],
         ship: {
             isClass: group_DD_Tokugata,
         },
         bonus: {
+            fire: 1,
+            torpedo: 2,
+        }
+    },
+
+    // + 61cm三連装(酸素)魚雷後期型
+    {
+        list: [
+            294,
+            285,
+        ],
+        equipments: [
+            {
+                isID: 294,
+            },
+            {
+                isID: 285,
+            }
+        ],
+        ship: {
+            isClass: group_DD_Tokugata,
+        },
+        bonus: {
+            fire: 1,
+            torpedo: 4,
+        }
+    },
+
+    // + 61cm三連装(酸素)魚雷後期型 x2
+    // @ 吹雪型
+    {
+        list: [
+            294,
+            285,
+            285,
+        ],
+        equipments: [
+            {
+                isID: 294,
+            },
+            {
+                isID: 285,
+            },
+            {
+                isID: 285,
+            }
+        ],
+        ship: {
+            isClass: group_DD_Tokugata,
+        },
+        bonus: {
+            fire: 1,
             torpedo: 2,
         }
     },

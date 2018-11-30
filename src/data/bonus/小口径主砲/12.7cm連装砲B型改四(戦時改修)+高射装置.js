@@ -14,7 +14,7 @@ const {
     DD_Shiratsuyu
 } = require('../../ship-classes')
 
-const classesAyanamiAkatsuki = [DD_Ayanami, DD_Akatsuki]
+// const classesAyanamiAkatsuki = [DD_Ayanami, DD_Akatsuki]
 const classesAyanamiAkatsukiShiratsuyu = [DD_Ayanami, DD_Akatsuki, DD_Shiratsuyu]
 const classesAyanamiAkatsukiHatsuharu = [DD_Ayanami, DD_Akatsuki, DD_Hatsuharu]
 
@@ -108,7 +108,7 @@ module.exports = [
         },
         bonus: {
             fire: 1,
-            evasion: 1,
+            evasion: 2,
         }
     },
 
@@ -201,7 +201,7 @@ module.exports = [
             }
         ],
         ship: {
-            isClass: classesAyanamiAkatsuki,
+            isClass: classesAyanamiAkatsukiHatsuharu,
         },
         bonus: {
             fire: 1,

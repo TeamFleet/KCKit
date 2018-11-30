@@ -3,6 +3,8 @@
  * @module
  */
 
+// https://wikiwiki.jp/kancolle/%E8%A3%85%E5%82%99#bonus
+
 /**
  * @member {Number} [equipment] 单一装备
  * @member {Object} [equipments] 条件：装备组合
@@ -16,6 +18,7 @@ module.exports = [
 
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
+    ...require('./小口径主砲/12.7cm連装砲A型'),
     ...require('./小口径主砲/12.7cm連装砲A型改二'),
     ...require('./小口径主砲/12.7cm連装砲A型改三(戦時改修)+高射装置'),
     ...require('./小口径主砲/12.7cm連装砲B型改二'),
@@ -24,6 +27,8 @@ module.exports = [
     ...require('./小口径主砲/12.7cm連装砲D型改二'),
     ...require('./小口径主砲/5inch単装砲 Mk.30改+GFCS Mk.37'),
 
+    ...require('./中口径主砲/14cm連装砲'),
+    ...require('./中口径主砲/14cm連装砲改'),
     ...require('./中口径主砲/20.3cm(2号)連装砲'),
     ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
 

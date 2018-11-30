@@ -17,7 +17,7 @@ module.exports = [
             isType: [31],
         },
         bonusImprove: {
-            10: {
+            7: {
                 fire: 1,
                 aa: 1,
             }
@@ -31,21 +31,35 @@ module.exports = [
             isClass: [84, 12],
         },
         bonusImprove: {
-            10: {
+            7: {
                 fire: 1,
                 aa: 1,
             }
         }
     },
 
-    // @ 長良型 改二
+    // @ 鬼怒改二
     {
         equipment: 229,
         ship: {
-            isID: CL_NagaraClass2ndRemodel,
+            isID: [487],
         },
         bonusImprove: {
-            10: {
+            7: {
+                fire: 2,
+                aa: 2,
+            }
+        }
+    },
+
+    // @ 由良改二
+    {
+        equipment: 229,
+        ship: {
+            isID: [488],
+        },
+        bonusImprove: {
+            7: {
                 fire: 2,
                 aa: 3,
             }
@@ -67,7 +81,7 @@ module.exports = [
         equipments: [
             {
                 isID: 229,
-                improvement: 10,
+                improvement: 7,
             },
             {
                 isSurfaceRadar: true
@@ -95,7 +109,7 @@ module.exports = [
         equipments: [
             {
                 isID: 229,
-                improvement: 10,
+                improvement: 7,
             },
             {
                 isSurfaceRadar: true
@@ -123,7 +137,7 @@ module.exports = [
         equipments: [
             {
                 isID: 229,
-                improvement: 10,
+                improvement: 7,
             },
             {
                 isSurfaceRadar: true

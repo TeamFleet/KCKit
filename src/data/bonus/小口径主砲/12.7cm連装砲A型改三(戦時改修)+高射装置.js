@@ -4,28 +4,18 @@
  * @module
  */
 
-const { DD_Tokugata, DD_Hatsuharu } = require('../../ship-classes')
+const { group_DD_Tokugata } = require('../../ship-classes')
 
 module.exports = [
 
     {
         equipment: 295,
         ship: {
-            isClass: DD_Tokugata,
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             fire: 2,
             aa: 2,
-        }
-    },
-
-    {
-        equipment: 295,
-        ship: {
-            isClass: [DD_Hatsuharu],
-        },
-        bonus: {
-            fire: 2,
         }
     },
 
@@ -42,7 +32,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isClass: DD_Tokugata,
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             fire: 3,
@@ -62,10 +52,49 @@ module.exports = [
             hasAARadar: true,
         },
         ship: {
-            isClass: DD_Tokugata,
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             aa: 6,
+        }
+    },
+
+    // + 61cm三連装(酸素)魚雷
+    {
+        list: [
+            295,
+            125,
+        ],
+        equipments: [
+            { isID: 295 },
+            { isID: 125 },
+        ],
+        ship: {
+            isClass: group_DD_Tokugata,
+        },
+        bonus: {
+            fire: 1,
+            torpedo: 3,
+        }
+    },
+
+    // + 61cm三連装(酸素)魚雷 x2
+    {
+        list: [
+            295,
+            125,
+            125,
+        ],
+        equipments: [
+            { isID: 295 },
+            { isID: 125 },
+            { isID: 125 },
+        ],
+        ship: {
+            isClass: group_DD_Tokugata,
+        },
+        bonus: {
+            torpedo: 2,
         }
     },
 
@@ -76,15 +105,11 @@ module.exports = [
             285,
         ],
         equipments: [
-            {
-                isID: 295,
-            },
-            {
-                isID: 285,
-            }
+            { isID: 295 },
+            { isID: 285 },
         ],
         ship: {
-            isClass: DD_Tokugata,
+            isClass: group_DD_Tokugata,
         },
         bonus: {
             fire: 1,
@@ -100,21 +125,14 @@ module.exports = [
             285,
         ],
         equipments: [
-            {
-                isID: 295,
-            },
-            {
-                isID: 285,
-            },
-            {
-                isID: 285,
-            }
+            { isID: 295 },
+            { isID: 285 },
+            { isID: 285 },
         ],
         ship: {
-            isClass: DD_Tokugata,
+            isClass: group_DD_Tokugata,
         },
         bonus: {
-            fire: 1,
             torpedo: 2,
         }
     },
