@@ -21,16 +21,6 @@ const bonusGrafZeppelinAquila = {
         evasion: 1,
     }
 }
-const bonusGambierBay = {
-    ship: {
-        isID: [
-            396, // Gambier Bay改
-        ]
-    },
-    bonus: {
-        evasion: 1,
-    }
-}
 const bonusTaiyou = {
     ship: {
         isID: [
@@ -65,10 +55,6 @@ module.exports = [
     },
     {
         equipment: 305,
-        ...bonusGambierBay
-    },
-    {
-        equipment: 305,
         ...bonusTaiyou
     },
     {
@@ -80,10 +66,6 @@ module.exports = [
     {
         equipment: 306,
         ...bonusGrafZeppelinAquila
-    },
-    {
-        equipment: 306,
-        ...bonusGambierBay
     },
     {
         equipment: 306,
