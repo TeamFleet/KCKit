@@ -879,59 +879,7 @@
     }
     let formula = {
         // 装备类型
-        equipmentType: {
-            SmallCaliber: 1,		// 小口径主炮
-            SmallCaliberHigh: 2,		// 小口径主炮（高角）
-            SmallCaliberAA: 3,		// 小口径主炮（高射）
-            MediumCaliber: 4,		// 中口径主炮
-            LargeCaliber: 5,		// 大口径主炮
-            SuperCaliber: 6,		// 超大口径主炮
-            SecondaryGun: 7,		// 副炮
-            SecondaryGunHigh: 8,		// 副炮（高角）
-            SecondaryGunAA: 9,		// 副炮（高射）
-            APShell: 11,		// 穿甲弹
-            Torpedo: 12,		// 鱼雷
-            SubmarineTorpedo: 13,		// 潜艇鱼雷
-            MidgetSubmarine: 14,		// 微型潜艇
-            ReconSeaplane: 15,		// 水上侦察机
-            ReconSeaplaneNight: 16,		// 夜侦
-            SeaplaneBomber: 17,		// 水上轰炸机
-            CarrierFighter: 18,		// 舰战 / 舰载战斗机
-            TorpedoBomber: 19,		// 舰攻 / 舰载鱼雷轰炸机
-            DiveBomber: 20,		// 舰爆 / 舰载俯冲轰炸机
-            CarrierRecon: 21,		// 舰侦 / 舰载侦察机
-            Autogyro: 22,		// 旋翼机
-            AntiSubPatrol: 23,		// 对潜哨戒机
-            SmallRadar: 24,		// 小型雷达
-            LargeRadar: 25,		// 大型雷达
-            DepthCharge: 26,		// 爆雷
-            Sonar: 27,		// 声纳
-            LargeSonar: 28,		// 大型声纳
-            AAGun: 29,		// 对空机枪
-            AAGunConcentrated: 30,		// 对空机枪（集中配备）
-            AAFireDirector: 31,     // 高射装置
-            AviationPersonnel: 36,      // 航空作战整备员
-            SurfaceShipPersonnel: 37,   // 水上舰要员
-            LandingCraft: 38,     // 登陆艇
-            Searchlight: 39,		// 探照灯
-            CommandFacility: 45,    // 舰队司令部设施
-            LargeFlyingBoat: 45,		// 大型水上飞艇
-            SearchlightLarge: 46,		// 大型探照灯
-            SuparRadar: 47,		// 超大型雷达
-            CarrierRecon2: 50,		// 舰侦II / 舰载侦察机II
-            SeaplaneFighter: 51,		// 水战 / 水上战斗机
-            AmphibiousCraft: 52,     // 特型内火艇
-            LandBasedAttacker: 53,		// 陆攻 / 陆上攻击机
-            Interceptor: 54,		// 局战 / 局地战斗机
-            JetBomberFighter: 55,		// 喷气式战斗轰炸机
-            JetBomberFighter2: 56,		// 喷气式战斗轰炸机
-            TransportMaterial: 57,	    // 运输设备
-            SubmarineEquipment: 58,		// 潜艇装备
-            LandBasedFighter: 59,    // 陆战 / 陆上战斗机
-            CarrierFighterNight: 60,		// 夜战 / 舰载战斗机（夜间）
-            TorpedoBomberNight: 61,		// 夜攻 / 舰载鱼雷机（夜间）
-            LandBasedAntiSubPatrol: 62,		// 陆上哨戒机
-        },
+        equipmentType,
         // 舰种
         shipType: {
             // 航母系列
@@ -968,239 +916,15 @@
         calcByField: {},
         calc: {}
     };
-    let _equipmentType = formula.equipmentType;
-    { // 装备类型集合
-        _equipmentType.MainGuns = [
-            _equipmentType.SmallCaliber,
-            _equipmentType.SmallCaliberHigh,
-            _equipmentType.SmallCaliberAA,
-            _equipmentType.MediumCaliber,
-            _equipmentType.LargeCaliber,
-            _equipmentType.SuperCaliber
-        ];
+    const _equipmentType = formula.equipmentType;
+    _equipmentType.isInterceptor = function (equipment) {
+        equipment = _equipment(equipment)
 
-        _equipmentType.SmallCalibers = [
-            _equipmentType.SmallCaliber,
-            _equipmentType.SmallCaliberHigh,
-            _equipmentType.SmallCaliberAA
-        ];
+        if (equipment.type_ingame && equipment.type_ingame[2] == 47)
+            return false
 
-        _equipmentType.MediumCalibers = [
-            _equipmentType.MediumCaliber
-        ];
-
-        _equipmentType.LargeCalibers = [
-            _equipmentType.LargeCaliber,
-            _equipmentType.SuperCaliber
-        ];
-
-        _equipmentType.SecondaryGuns = [
-            _equipmentType.SecondaryGun,
-            _equipmentType.SecondaryGunHigh,
-            _equipmentType.SecondaryGunAA
-        ];
-
-        _equipmentType.APShells = [
-            _equipmentType.APShell
-        ];
-
-        _equipmentType.Torpedos = [
-            _equipmentType.Torpedo,
-            _equipmentType.SubmarineTorpedo
-        ];
-
-        _equipmentType.Seaplanes = [
-            _equipmentType.ReconSeaplane,
-            _equipmentType.ReconSeaplaneNight,
-            _equipmentType.SeaplaneBomber,
-            _equipmentType.SeaplaneFighter
-        ];
-
-        _equipmentType.Fighters = [
-            _equipmentType.SeaplaneBomber,
-            _equipmentType.CarrierFighter,
-            _equipmentType.CarrierFighterNight,
-            _equipmentType.TorpedoBomber,
-            _equipmentType.TorpedoBomberNight,
-            _equipmentType.DiveBomber,
-            _equipmentType.SeaplaneFighter,
-            _equipmentType.LandBasedAttacker,
-            _equipmentType.Interceptor,
-            // _equipmentType.CarrierRecon
-            _equipmentType.JetBomberFighter,
-            _equipmentType.JetBomberFighter2,
-            _equipmentType.LandBasedFighter,
-        ];
-
-        _equipmentType.Interceptors = [
-            _equipmentType.Interceptor,
-            _equipmentType.LandBasedFighter
-        ]
-
-        _equipmentType.Recons = [
-            _equipmentType.ReconSeaplane,
-            _equipmentType.ReconSeaplaneNight,
-            _equipmentType.CarrierRecon,
-            _equipmentType.CarrierRecon2,
-            _equipmentType.LargeFlyingBoat
-        ];
-
-        _equipmentType.ReconSeaplanes = [
-            _equipmentType.ReconSeaplane,
-            _equipmentType.ReconSeaplaneNight,
-        ];
-
-        _equipmentType.SeaplaneRecons = [
-            _equipmentType.ReconSeaplane,
-            _equipmentType.ReconSeaplaneNight,
-            _equipmentType.LargeFlyingBoat
-        ];
-
-        _equipmentType.SeaplaneBombers = [
-            _equipmentType.SeaplaneBomber,
-            _equipmentType.SeaplaneFighter
-        ];
-
-        _equipmentType.SeaplaneFighters = [
-            _equipmentType.SeaplaneFighter
-        ];
-
-        _equipmentType.CarrierFighters = [
-            _equipmentType.CarrierFighter,
-            _equipmentType.CarrierFighterNight
-        ];
-
-        _equipmentType.CarrierRecons = [
-            _equipmentType.CarrierRecon,
-            _equipmentType.CarrierRecon2
-        ];
-
-        _equipmentType.CarrierBased = [
-            _equipmentType.CarrierFighter,
-            _equipmentType.CarrierFighterNight,
-            _equipmentType.TorpedoBomber,
-            _equipmentType.TorpedoBomberNight,
-            _equipmentType.DiveBomber,
-            _equipmentType.CarrierRecon,
-            _equipmentType.CarrierRecon2,
-            _equipmentType.JetBomberFighter,
-            _equipmentType.JetBomberFighter2
-        ];
-
-        _equipmentType.LandBased = [
-            _equipmentType.LandBasedAttacker,
-            _equipmentType.Interceptor,
-            _equipmentType.JetBomberFighter,
-            _equipmentType.JetBomberFighter2,
-            _equipmentType.LandBasedFighter,
-            _equipmentType.LandBasedAntiSubPatrol
-        ];
-
-        _equipmentType.TorpedoBombers = [
-            _equipmentType.TorpedoBomber,
-            _equipmentType.TorpedoBomberNight
-        ];
-
-        _equipmentType.DiveBombers = [
-            _equipmentType.DiveBomber
-        ];
-
-        _equipmentType.JetBomberFighters = [
-            _equipmentType.JetBomberFighter,
-            _equipmentType.JetBomberFighter2
-        ];
-
-        _equipmentType.Autogyros = [
-            _equipmentType.Autogyro
-        ];
-
-        _equipmentType.AntiSubPatrols = [
-            _equipmentType.AntiSubPatrol,
-            _equipmentType.LandBasedAntiSubPatrol
-        ];
-
-        _equipmentType.Aircrafts = [];
-        [].concat(_equipmentType.Seaplanes)
-            .concat(_equipmentType.Recons)
-            .concat(_equipmentType.CarrierBased)
-            .concat(_equipmentType.Autogyros)
-            .concat(_equipmentType.AntiSubPatrols)
-            .concat(_equipmentType.LandBased)
-            .forEach(function (v) {
-                if (_equipmentType.Aircrafts.indexOf(v) < 0)
-                    _equipmentType.Aircrafts.push(v)
-            });
-
-        _equipmentType.Radars = [
-            _equipmentType.SmallRadar,
-            _equipmentType.LargeRadar,
-            _equipmentType.SuparRadar
-        ];
-
-        _equipmentType.SmallRadars = [
-            _equipmentType.SmallRadar
-        ];
-
-        _equipmentType.LargeRadars = [
-            _equipmentType.LargeRadar,
-            _equipmentType.SuparRadar
-        ];
-
-        _equipmentType.AntiSubmarines = [
-            _equipmentType.DepthCharge,
-            _equipmentType.Sonar,
-            _equipmentType.LargeSonar
-        ];
-
-        _equipmentType.DepthCharges = [
-            _equipmentType.DepthCharge
-        ];
-
-        _equipmentType.Sonars = [
-            _equipmentType.Sonar,
-            _equipmentType.LargeSonar
-        ];
-
-        _equipmentType.AAGuns = [
-            _equipmentType.AAGun,
-            _equipmentType.AAGunConcentrated
-        ];
-
-        _equipmentType.AAFireDirectors = [
-            _equipmentType.AAFireDirector
-        ];
-
-        _equipmentType.Searchlights = [
-            _equipmentType.Searchlight,
-            _equipmentType.SearchlightLarge
-        ];
-
-        _equipmentType.AviationPersonnels = [
-            _equipmentType.AviationPersonnel
-        ];
-
-        _equipmentType.SurfaceShipPersonnels = [
-            _equipmentType.SurfaceShipPersonnel
-        ];
-
-        _equipmentType.LandingCrafts = [
-            _equipmentType.LandingCraft,
-            _equipmentType.AmphibiousCraft
-        ];
-
-        _equipmentType.AmphibiousCrafts = [
-            _equipmentType.AmphibiousCraft
-        ];
-
-        _equipmentType.isInterceptor = function (equipment) {
-            equipment = _equipment(equipment)
-
-            if (equipment.type_ingame && equipment.type_ingame[2] == 47)
-                return false
-
-            return (_equipmentType.Interceptors.indexOf(equipment.type) > -1)
-        };
-    }
+        return (_equipmentType.Interceptors.indexOf(equipment.type) > -1)
+    };
 
     // 改修收益系数
     formula.starMultiper = {
@@ -1592,7 +1316,7 @@
         switch (type) {
             // 制空战力，装备须为战斗机类型 _equipmentType.Fighters
             // 计算公式参考 http://bbs.ngacn.cc/read.php?tid=8680767
-            case 'fighterPower':
+            case 'fighterPower': {
                 value = 0
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index]
@@ -1629,18 +1353,20 @@
                     }
                 })
                 return result
-                //return Math.floor(result)
-                //break;
+                // return Math.floor(result)
+                // break;
+            }
 
             // 同时返回制空战力的上下限
             // 返回值为Array
-            case 'fighterPower_v2':
+            case 'fighterPower_v2': {
                 return formula.calcByShip.fighterPower_v2(ship, equipments_by_slot, star_by_slot, rank_by_slot)
                 //break;
+            }
 
             // 炮击威力，除潜艇外
             case 'shelling':
-            case 'shellingDamage':
+            case 'shellingDamage': {
                 if (formula.shipType.Submarines.indexOf(ship.type) > -1) {
                     return '-'
                 } else {
@@ -1650,15 +1376,17 @@
                     return '-'
                 }
                 //break;
+            }
 
             // 雷击威力，航母除外
             case 'torpedo':
-            case 'torpedoDamage':
+            case 'torpedoDamage': {
                 result = powerTorpedo()
                 if (result && result > -1)
                     return Math.floor(result)// + 5
                 return '-'
                 //break;
+            }
 
             // 夜战模式 & 伤害力
             case 'nightBattle': {
@@ -1678,7 +1406,7 @@
             }
 
             // 命中总和
-            case 'addHit':
+            case 'addHit': {
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index])
                         result += equipments_by_slot[index].getStat('hit', ship) || 0
@@ -1688,24 +1416,27 @@
                     ? ('+' + result)
                     : result
                 //break;
+            }
 
             // 装甲总和
-            case 'addArmor':
+            case 'addArmor': {
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index])
                         result += equipments_by_slot[index].getStat('armor', ship) || 0
                 })
                 return result + (bonus.armor || 0)
                 //break;
+            }
 
             // 回避总和
-            case 'addEvasion':
+            case 'addEvasion': {
                 slots.map(function (carry, index) {
                     if (equipments_by_slot[index])
                         result += equipments_by_slot[index].getStat('evasion', ship) || 0
                 })
                 return result + (bonus.evasion || 0)
                 //break;
+            }
 
             // 索敌能力
             case 'losPower':
