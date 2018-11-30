@@ -3,6 +3,9 @@
  * AAFD     Anti-Air Fire Director
  */
 
+/**
+ * @type {Object} 装备类型和类型集合
+ */
 const types = {
 
     // Type ID
@@ -67,6 +70,7 @@ const types = {
     CarrierFighterNight: 60,    // 夜战 / 舰载战斗机（夜间）
     TorpedoBomberNight: 61,		// 夜攻 / 舰载鱼雷机（夜间）
     LandBasedAntiSubPatrol: 62,	// 陆上哨戒机
+    LandBasedRecon: 63,	        // 陆上侦察机
 }
 
 // Groups
@@ -155,7 +159,8 @@ types.Recons = [
     types.ReconSeaplaneNight,
     types.CarrierRecon,
     types.CarrierRecon2,
-    types.LargeFlyingBoat
+    types.LargeFlyingBoat,
+    types.LandBasedRecon,
 ];
 
 types.SeaplaneRecons = [
@@ -206,7 +211,8 @@ types.LandBased = [
     types.JetBomberFighter,
     types.JetBomberFighter2,
     types.LandBasedFighter,
-    types.LandBasedAntiSubPatrol
+    types.LandBasedAntiSubPatrol,
+    types.LandBasedRecon,
 ];
 
 types.TorpedoBombers = [
