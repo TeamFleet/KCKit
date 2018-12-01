@@ -8,7 +8,7 @@ const checkShip = require('../check/ship')
 const shipTypes = require('../types/ships')
 const equipmentTypes = require('../types/equipments')
 
-module.exports = class Ship extends ItemBase {
+class Ship extends ItemBase {
     /**
      * 获取舰名
      * 快捷方式 - ship._name （默认连接符，默认语言）
@@ -351,7 +351,7 @@ module.exports = class Ship extends ItemBase {
                     lvl,
                     this.stat[attr],
                     this.stat[attr + '_max'],
-                    /^(5|8|9|12|24|30)$/.test(this.type) ? 0 : false
+                    /^(5|8|9|12|24|30|33)$/.test(this.type) ? 0 : false
                 )
 
             default:
@@ -670,3 +670,5 @@ module.exports = class Ship extends ItemBase {
         return this.__aaci
     }
 }
+
+module.exports = Ship
