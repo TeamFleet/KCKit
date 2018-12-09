@@ -2064,7 +2064,10 @@
                     result += equipment.getStat('fire', ship) || 0
 
                     // 轻巡系主炮加成
-                    if (formula.shipType.LightCruisers.indexOf(ship.type) > -1) {
+                    if (
+                        formula.shipType.LightCruisers.indexOf(ship.type) > -1 &&
+                        !equipment.name.ja_jp.includes('Bofors')
+                    ) {
                         [
                             '14cm単装砲',
                             '15.2cm単装砲'
