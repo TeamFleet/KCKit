@@ -201,11 +201,11 @@ module.exports = class Equipment extends ItemBase {
                 if (bonus.equipment == this.id) return true
                 if (typeof bonus.equipments !== 'undefined' && typeof bonus.ship === 'object') {
                     if (Array.isArray(bonus.ship.isID) &&
-                        !bonus.ship.isID.every(shipId => getShip(shipId).canEquip(this))
+                        !bonus.ship.isID.every(shipId => getShip(shipId).canEquip(this, true))
                     )
                         return false
                     if (typeof bonus.ship.isID === 'number' &&
-                        !getShip(bonus.ship.isID).canEquip(this)
+                        !getShip(bonus.ship.isID).canEquip(this, true)
                     )
                         return false
                     if (Array.isArray(bonus.ship.isType) &&

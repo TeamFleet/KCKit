@@ -292,6 +292,11 @@ describe('Base functions/utilities', () => {
                         db.ships[553].canEquip(['MediumCaliber', 'LargeCaliber'], 2)
                     ).toEqual(false);
                 })
+                it(`伊勢・改二 (All slots) | ✔ 中口径主砲 | ✔ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].canEquip(['MediumCaliber', 'LargeCaliber'], true)
+                    ).toEqual(true);
+                })
             })
 
 
@@ -338,6 +343,11 @@ describe('Base functions/utilities', () => {
                     expect(
                         db.ships[553].getEquipmentTypes(2).includes(5)
                     ).toEqual(false);
+                })
+                it(`伊勢・改二 (All slots) | ✔ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].getEquipmentTypes(true).includes(5)
+                    ).toEqual(true);
                 })
             })
             it(`should Ship.prototype.getCapability() works`, () => {
@@ -539,6 +549,11 @@ describe('Base functions/utilities', () => {
                     expect(
                         db.items[142].getBonuses().length
                     ).toEqual(2)
+                })
+                it(`41cm三连装炮改二`, () => {
+                    expect(
+                        db.items[290].getBonuses().length
+                    ).toEqual(4)
                 })
             })
         })

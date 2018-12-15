@@ -220,21 +220,31 @@ class Ship extends ItemBase {
      * 获取可配置装备类型
      * 快捷方式 - ship._equipmentTypes
      * 
-     * @param {Number} [slotIndex] 装备栏位index。从 0 开始。如果给定，则会查询该栏位的装备类型，包含该栏位特有的类型
+     * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果给定，则会查询该栏位的装备类型，包含该栏位特有的类型。如果为 true，则会检查所有栏位可以装备的类型
      * @returns {Number[]} - 装备ID
      */
     getEquipmentTypes(slotIndex) {
         const disabled = this.additional_disable_item_types || []
         const shipType = getdb('ship_types')[this.type]
         const types = shipType.equipable.concat((this.additional_item_types || []))
-        if (typeof slotIndex === 'number' &&
-            Array.isArray(shipType.additional_item_types_by_slot) &&
-            Array.isArray(shipType.additional_item_types_by_slot[slotIndex])
-        ) {
-            shipType.additional_item_types_by_slot[slotIndex].forEach(id =>
-                types.push(id)
-            )
+
+        // 如果当前舰种存在根据装备栏位的额外可装备类型
+        if (Array.isArray(shipType.additional_item_types_by_slot)) {
+            // 如果指定了装备栏位，将该栏位对应的装备类型追加到类型表中
+            if (typeof slotIndex === 'number') {
+                if (Array.isArray(shipType.additional_item_types_by_slot[slotIndex]))
+                    shipType.additional_item_types_by_slot[slotIndex].forEach(id =>
+                        types.push(id)
+                    )
+            }
+            // 如果 slotIndex 为 true，将所有栏位的额外可装备类型追加到类型表中
+            else if (slotIndex === true) {
+                shipType.additional_item_types_by_slot.forEach(slotInfo => {
+                    slotInfo.forEach(id => types.push(id))
+                })
+            }
         }
+
         return types
             .filter(type => !disabled.includes(type))
             .sort(function (a, b) {
@@ -249,13 +259,15 @@ class Ship extends ItemBase {
      * 判断该舰娘是否可配置给定的类型的装备
      * 
      * @param {(number|number[]|string|string[])} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
-     * @param {Number} [slotIndex] 装备栏位index。从 0 开始
+     * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
      * @returns {boolean}
      */
     canEquip(equipmentType, slotIndex) {
         if (Array.isArray(equipmentType)) {
             return equipmentType.every(type => this.canEquip(type, slotIndex))
         }
+
+        // 如果 equipmentType 为 String，将其转为对应的类型数字或类型集
         if (typeof equipmentType === 'string') {
             if (Array.isArray(equipmentTypes[equipmentType]))
                 return equipmentTypes[equipmentType].some(type => this.canEquip(type, slotIndex))
@@ -264,9 +276,11 @@ class Ship extends ItemBase {
             if (Array.isArray(equipmentTypes[equipmentType + 's']))
                 return equipmentTypes[equipmentType + 's'].some(type => this.canEquip(type, slotIndex))
         }
-        // 如果传入的为 Equipment，获取 type
+
+        // 如果equipmentType 为 Equipment，获取 type
         if (typeof equipmentType === 'object' && typeof equipmentType.type !== 'undefined')
             equipmentType = equipmentType.type
+
         if (isNaN(equipmentType)) {
             return false
         } else {
