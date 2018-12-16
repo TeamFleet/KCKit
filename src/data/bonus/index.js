@@ -1,3 +1,5 @@
+const bonusIsSet = require('../../utils/bonus-is-set')
+
 /**
  * 装备额外属性收益
  * @module
@@ -14,7 +16,7 @@
  * @member {Object} [bonusImprove] 仅当为单一装备时可用：不同改修星级的收益
  * @member {Array} [list] 显示的内容
  */
-module.exports = [
+const dataBonuses = [
 
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
@@ -70,3 +72,31 @@ module.exports = [
     ...require('./その他/96式150cm探照灯'),
 
 ]
+
+// 检查所有套装加成
+// 如果 list 为 Number[]，检查是否是其他某个套装加成的子集
+// 如果是，修改对应套装加成，添加 bonusAccumulate
+{
+    const bonusSets = dataBonuses.filter(bonusIsSet)
+
+    bonusSets.forEach((bonus, index) => {
+        if (!bonus.list.every(item => !isNaN(item)))
+            return
+        bonusSets.forEach((toCheck, indexToCheck) => {
+            if (index === indexToCheck ||
+                bonus.list.length >= toCheck.list.length ||
+                !bonus.list.every(item => toCheck.list.includes(item))
+            )
+                return
+            if (!toCheck.bonusAccumulate)
+                toCheck.bonusAccumulate = { ...(toCheck.bonus || {}) }
+            Object.keys(bonus.bonus).forEach(stat => {
+                if (typeof toCheck.bonusAccumulate[stat] === 'undefined')
+                    toCheck.bonusAccumulate[stat] = 0
+                toCheck.bonusAccumulate[stat] += bonus.bonus[stat]
+            })
+        })
+    })
+}
+
+module.exports = dataBonuses
