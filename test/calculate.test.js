@@ -775,8 +775,8 @@ describe('Calculating functions/utilities', () => {
                         150,
                         [74, 74],
                     )).toEqual({
-                        fire: 4,
-                        evasion: -2,
+                        fire: 2,
+                        evasion: -1,
                     })
                 })
                 it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯', () => {
@@ -784,8 +784,17 @@ describe('Calculating functions/utilities', () => {
                         150,
                         [74, 74, 140],
                     )).toEqual({
-                        fire: 7,
-                        evasion: -4,
+                        fire: 5,
+                        evasion: -3,
+                    })
+                })
+                it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯 ➕96式150cm探照灯', () => {
+                    expect(calculate.bonus(
+                        150,
+                        [74, 74, 140, 140],
+                    )).toEqual({
+                        fire: 5,
+                        evasion: -3,
                     })
                 })
                 it('陽炎改二 || 53cm艦首(酸素)魚雷', () => {
