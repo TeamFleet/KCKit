@@ -14,7 +14,7 @@
         "publish": "npm publish --tag lts"
     },
     "devDependencies": {
-        "kckit": "1.21.12",
+        "kckit": "1.21.14",
         "babel-core": "^6.26.3",
         "babel-plugin-transform-minify-booleans": "^6.9.4",
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
