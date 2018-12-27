@@ -40,6 +40,7 @@ const dataBonuses = [
     ...require('./大口径主砲/16inch Mk.I三連装砲'),
 
     ...require('./魚雷/53cm連装魚雷'),
+    ...require('./魚雷/533mm五連装魚雷(初期型)'),
     ...require('./魚雷/61cm三連装(酸素)魚雷後期型'),
     ...require('./魚雷/61cm四連装(酸素)魚雷'),
     ...require('./魚雷/61cm四連装(酸素)魚雷後期型'),
@@ -63,6 +64,7 @@ const dataBonuses = [
     ...require('./艦上機/二式艦上偵察機'),
 
     ...require('./電探/GFCS Mk.37'),
+    ...require('./電探/SG レーダー(初期型)'),
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 

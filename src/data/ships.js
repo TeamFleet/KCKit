@@ -154,6 +154,7 @@ const usn_CV = [
 ]
 const usn_DD = [
     561, 681, // Samuel B.Roberts
+    562, 689, // Johston
 ]
 const usn = [
     ...usn_BB,

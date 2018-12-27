@@ -7,8 +7,14 @@ const CV_Essex = 110
 const CV_ArkRoyal = 101
 const CVB_Lexington = 105
 
-const DD_SamuelBRoberts = 112
+const DD_JohnCButler = 112
+const DD_Fletcher = 117
 const DD_J = 107
+
+const group_DD_Navy_USN = [
+    DD_JohnCButler,
+    DD_Fletcher,
+]
 
 module.exports = {
 
@@ -44,15 +50,17 @@ module.exports = {
     DD_Shimakaze: 24,
     DD_Akizuki: 23,
     DD_J,
-    DD_SamuelBRoberts,
+    DD_JohnCButler,
     group_DD_Tokugata: [15, 16, 17],
 
     group_Navy_USN: [
         BB_Iowa,
         CV_Lexington, CVB_Lexington,
         CV_Essex,
-        DD_SamuelBRoberts,
+        ...group_DD_Navy_USN
     ],
+    group_DD_Navy_USN,
+
     group_Navy_RN: [
         BB_QueenElizabeth,
         BB_Nelson,

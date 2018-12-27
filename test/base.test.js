@@ -535,10 +535,10 @@ describe('Base functions/utilities', () => {
                         db.items[267].getBonuses().length
                     ).toEqual(7)
                 })
-                it(`61cm三連装(酸素)魚雷後期型 - 6 bonuses`, () => {
+                it(`61cm三連装(酸素)魚雷後期型 - 7 bonuses`, () => {
                     expect(
                         db.items[285].getBonuses().length
-                    ).toEqual(6)
+                    ).toEqual(7)
                 })
                 it(`33号対水上電探 - 16 bonuses`, () => {
                     expect(

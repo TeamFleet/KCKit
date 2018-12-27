@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "dist-app/main.html",
-    "version": "1.21.14",
+    "version": "1.21.15",
     "description": "Javascript library for KanColle",
     "sideEffects": false,
     "author": {
@@ -17,6 +17,7 @@
     "scripts": {
         "eslint": "eslint \"!(node_modules)/**/*.+(js|jsx)\"",
         "test": "jest",
+        "test:base": "jest ./test/base.test.js",
         "test:calculate": "jest ./test/calculate.test.js"
     },
     "dependencies": {

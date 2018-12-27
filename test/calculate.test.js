@@ -805,6 +805,53 @@ describe('Calculating functions/utilities', () => {
                         torpedo: -5,
                     })
                 })
+                it('Johnston改 || SG レーダー(初期型)', () => {
+                    expect(calculate.bonus(
+                        689,
+                        [315],
+                    )).toEqual({
+                        fire: 2,
+                        evasion: 3,
+                        los: 4
+                    })
+                })
+                it('Samuel B.Roberts改 || SG レーダー(初期型)', () => {
+                    expect(calculate.bonus(
+                        681,
+                        [315],
+                    )).toEqual({
+                        fire: 3,
+                        evasion: 3,
+                        los: 4,
+                        range: 1,
+                    })
+                })
+            })
+
+            describe('Sets...', () => {
+                it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型', () => {
+                    expect(calculate.bonus(
+                        426,
+                        [295, 125, 285],
+                    )).toEqual({
+                        fire: 4,
+                        torpedo: 8,
+                        aa: 2,
+                        evasion: 1
+                    })
+                })
+                it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                    expect(calculate.bonus(
+                        426,
+                        [295, 125, 285],
+                        [0, 0, 10]
+                    )).toEqual({
+                        fire: 5,
+                        torpedo: 8,
+                        aa: 2,
+                        evasion: 1
+                    })
+                })
             })
 
             it('pass stat', () => {

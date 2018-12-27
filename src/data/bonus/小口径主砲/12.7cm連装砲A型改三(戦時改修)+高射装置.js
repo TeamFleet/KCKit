@@ -137,4 +137,24 @@ module.exports = [
         }
     },
 
+    // + 61cm三連装(酸素)魚雷 + 61cm三連装(酸素)魚雷後期型
+    {
+        list: [
+            295,
+            125,
+            285,
+        ],
+        equipments: [
+            { isID: 295 },
+            { isID: 125 },
+            { isID: 285 },
+        ],
+        ship: {
+            isClass: group_DD_Tokugata,
+        },
+        bonus: {
+            torpedo: -1,
+        }
+    },
+
 ]
