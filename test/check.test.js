@@ -297,6 +297,8 @@ describe('Checking functions/utilities', () => {
             expect(check.equipments([1, 2, 3], { hasID: [11, 12] })).toBe(false);
             expect(check.equipments([1, 2, 3], { hasID: [1, 111] })).toBe(false);
             expect(check.equipments([1, 1, 2, 3], { hasID: [1, 111] })).toBe(false);
+            expect(check.equipments([1, 1, 2, 3], { hasID_1: 3 })).toBe(false);
+            expect(check.equipments([1, 1, 1, 3], { hasID_1: 3 })).toBe(true);
         });
         it(`should condition hasNameOf be working`, function () {
             expect(check.equipments([1, 83], { hasNameOf: '九三一空' })).toBe(true);
@@ -620,6 +622,10 @@ describe('Checking functions/utilities', () => {
                     expect(check.aaci(576, [300, 191]).map(obj => obj.id)).toEqual([32]);
                     // 20連装7inch UP Rocket Launchers + QF 2ポンド8連装ポンポン砲
                     expect(check.aaci(576, [301, 191]).map(obj => obj.id)).toEqual([32]);
+                    // 20連装7inch UP Rocket Launchers
+                    expect(check.aaci(576, [301]).map(obj => obj.id)).toEqual([]);
+                    // 20連装7inch UP Rocket Launchers + 20連装7inch UP Rocket Launchers
+                    expect(check.aaci(576, [301, 301]).map(obj => obj.id)).toEqual([32]);
                 })
                 it(`Gotland・改`, function () {
                     // 8cm高角砲 + 8cm高角砲 + 8cm高角砲
@@ -662,7 +668,7 @@ describe('Checking functions/utilities', () => {
             it(`神鷹`, function () {
                 expect(check.oasw(534, [])).toEqual(false);
                 expect(check.oasw(534, [262])).toEqual(false);
-                expect(check.oasw(534, [262, 277])).toEqual(false);
+                expect(check.oasw(534, [262, 277])).toEqual(true);
             })
             it(`零式水中聴音機`, function () {
                 // Gambier Bay・改

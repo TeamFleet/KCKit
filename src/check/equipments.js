@@ -134,13 +134,20 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                 return false
         } else if (key.substr(0, 3) === 'has' && !isNaN(conditions[key])) {
             // 条件：有至少 N 个
+            let thisCondition = {
+                [key.replace(/^has/, 'is')]: true
+            }
+            if (/^hasID([_]*)([0-9]+)$/.test(key)) {
+                thisCondition = {
+                    isID: key.replace(/^hasID([_]*)/, '')
+                }
+            }
             const filtered = equipments.filter(
                 (equipment, index) => checkEquipment(
                     equipment,
                     stars[index],
-                    ranks[index], {
-                        [key.replace(/^has/, 'is')]: true
-                    }
+                    ranks[index],
+                    thisCondition
                 )
             )
             if (filtered.length < conditions[key])
