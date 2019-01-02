@@ -420,6 +420,31 @@ describe('Base functions/utilities', () => {
                     ])
                 })
             })
+            describe(`should Ship.prototype.getSpecialAttacks() works`, () => {
+                it(`should be Array`, () => {
+                    expect(
+                        Array.isArray(db.ships[182].getSpecialAttacks())
+                    ).toEqual(true)
+                    expect(
+                        Array.isArray(db.ships[576].getSpecialAttacks())
+                    ).toEqual(true)
+                })
+                it(`伊8改 - no special attacks`, () => {
+                    expect(
+                        db.ships[400].getSpecialAttacks().length
+                    ).toEqual(0)
+                })
+                it(`Nelson改 - 1 special attack`, () => {
+                    expect(
+                        db.ships[576].getSpecialAttacks().length
+                    ).toEqual(1)
+                })
+                it(`長門改二 - 1 special attack`, () => {
+                    expect(
+                        db.ships[541].getSpecialAttacks().length
+                    ).toEqual(1)
+                })
+            })
         });
 
         describe('Equipment...', function () {

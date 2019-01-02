@@ -1,6 +1,7 @@
 const ItemBase = require('./base.js')
 const vars = require('../variables')
 const bonuses = require('../data/bonus')
+const specialAttacks = require('../data/special-attack')
 const getName = require('../utils/get-name')
 const getdb = require('../get/db')
 const checkAACI = require('../check/aaci')
@@ -646,7 +647,7 @@ class Ship extends ItemBase {
 
     /**
      * 获取该舰娘所有可用的属性加成装备和装备组合
-     * @returns {Array} Bonuses
+     * @returns {Object[]} Bonuses
      */
     getBonuses() {
         if (!Array.isArray(this.__bonuses))
@@ -658,7 +659,7 @@ class Ship extends ItemBase {
 
     /**
      * 获取该舰娘所有可用的 AACI
-     * @returns {Array} AACI
+     * @returns {Object[]} AACI
      */
     getAACI() {
         if (!Array.isArray(this.__aaci)) {
@@ -682,6 +683,18 @@ class Ship extends ItemBase {
             })
         }
         return this.__aaci
+    }
+
+    /**
+     * 获取该舰娘所有可用的特殊攻击类型
+     * @returns {Object[]} SpecialAttack
+     */
+    getSpecialAttacks() {
+        if (!Array.isArray(this.__specialAttack))
+            this.__specialAttack = specialAttacks.filter(special => (
+                checkShip(this, special.ship)
+            ))
+        return this.__specialAttack
     }
 }
 

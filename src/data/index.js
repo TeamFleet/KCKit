@@ -4,6 +4,7 @@ let data = {
     ots: require('./ots'),
     tp: require('./tp'),
     bonus: require('./bonus'),
+    specialAttack: require('./special-attack')
 }
 
 module.exports = data
