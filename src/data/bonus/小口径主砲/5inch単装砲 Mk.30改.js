@@ -1,27 +1,28 @@
 /**
  * 装备额外属性收益
- * 314. **533mm五連装魚雷(初期型)**
- *  
+ * 313. **5inch単装砲 Mk.30改**
+ * 
  * @module
  */
 
-// https://wikiwiki.jp/kancolle/533mm%E4%BA%94%E9%80%A3%E8%A3%85%E9%AD%9A%E9%9B%B7%28%E5%88%9D%E6%9C%9F%E5%9E%8B%29
+// https://wikiwiki.jp/kancolle/5inch%E5%8D%98%E8%A3%85%E7%A0%B2%20Mk.30%E6%94%B9
 
 const { group_DD_Navy_USN } = require('../../ship-classes')
 
 module.exports = [
 
     {
-        equipment: 314,
+        equipment: 313,
         ship: {
             isClass: group_DD_Navy_USN,
         },
         bonus: {
-            fire: 1,
-            torpedo: 3,
+            fire: 2,
+            aa: 2,
+            evasion: 1,
+            armor: 1,
         }
     },
 
     // ------------------------------------------------------------------------
-
 ]
