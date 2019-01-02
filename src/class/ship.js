@@ -258,7 +258,7 @@ class Ship extends ItemBase {
     /**
      * 判断该舰娘是否可配置给定的类型的装备
      * 
-     * @param {(number|number[]|string|string[])} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
+     * @param {(number|number[]|string|string[]|Equipment)} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
      * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
      * @returns {boolean}
      */

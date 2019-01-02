@@ -17,9 +17,25 @@ module.exports = (ship, equipments) => {
 
     if (typeof OASWs === 'boolean') return OASWs
     if (Array.isArray(OASWs)) {
+
+        equipments = equipments.filter((equipment, index) =>
+            ship.canEquip(equipment, index)
+        )
+
         let resultLevel = maxShipLv + 1
+
         const base = ship.stat.asw
         const max = ship.stat.asw_max
+
+        // if (ship.id === 529) {
+        //     console.log(
+        //         ship._name,
+        //         resultLevel,
+        //         maxShipLv,
+        //         ship._minLv,
+        //     )
+        // }
+
         OASWs.filter(OASW => (
             OASW.shipWithEquipments &&
             OASW.shipWithEquipments.hasStat &&
@@ -45,6 +61,7 @@ module.exports = (ship, equipments) => {
         if (resultLevel < ship._minLv)
             return ship._minLv
         return resultLevel
+
     } else {
         return false
     }

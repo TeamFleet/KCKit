@@ -27,7 +27,7 @@ const equipmentStatASW = {
  * @param {(number|Ship)} ship 要判断的舰娘
  * @param {(number|Equipment[])} [equipments] 要判断的装备列表
  */
-module.exports = (ship, equipments) => {
+const checkOASW = (ship, equipments) => {
     ship = getShip(ship)
     if (typeof ship === 'undefined') return false
 
@@ -183,3 +183,5 @@ module.exports = (ship, equipments) => {
     //     return aaciID.every(check)
     // }
 }
+
+module.exports = checkOASW

@@ -1285,7 +1285,324 @@ describe('Calculating functions/utilities', () => {
             })
         })
         describe('level for oasw...', () => {
-            describe('check samples...', () => {
+            describe('神鷹', () => {
+                it('empty', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 69])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ 三式指揮連絡機(対潜)', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 70])
+                    ).toBe(false)
+                })
+                it('カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 69])
+                    ).toBe(false)
+                })
+                it('三式指揮連絡機(対潜)', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 70])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Re.2001 G改', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 262, 188])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 262, 242])
+                    ).toBe(124)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 262, 244])
+                    ).toBe(1)
+                })
+                it('Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [244])
+                    ).toBe(79)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 277])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(534, [262, 262, 277])
+                    ).toBe(137)
+                })
+            })
+            describe('神鷹改', () => {
+                it('empty', () => {
+                    expect(
+                        calculate.ship.levelOASW(381, [])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(381, [262, 262, 277])
+                    ).toBe(60)
+                })
+                it('FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(381, [277])
+                    ).toBe(60)
+                })
+                it('Swordfish', () => {
+                    expect(
+                        calculate.ship.levelOASW(381, [242])
+                    ).toBe(60)
+                })
+                it('カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(381, [69])
+                    ).toBe(false)
+                })
+                it('三式指揮連絡機(対潜)', () => {
+                    expect(
+                        calculate.ship.levelOASW(381, [70])
+                    ).toBe(60)
+                })
+                it('Re.2001 G改', () => {
+                    expect(
+                        calculate.ship.levelOASW(381, [188])
+                    ).toBe(false)
+                })
+            })
+            describe('神鷹改二', () => {
+                it('empty', () => {
+                    expect(
+                        calculate.ship.levelOASW(536, [])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(536, [262, 262, 277])
+                    ).toBe(85)
+                })
+                it('FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(536, [277])
+                    ).toBe(85)
+                })
+                it('Swordfish', () => {
+                    expect(
+                        calculate.ship.levelOASW(536, [242])
+                    ).toBe(85)
+                })
+                it('カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(536, [69])
+                    ).toBe(85)
+                })
+                it('Re.2001 G改', () => {
+                    expect(
+                        calculate.ship.levelOASW(536, [188])
+                    ).toBe(false)
+                })
+            })
+            describe('Gambier Bay', () => {
+                it('empty', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262, 69])
+                    ).toBe(90)
+                })
+                it('カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262, 69])
+                    ).toBe(90)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Re.2001 G改', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262, 262, 188])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262, 262, 242])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262, 262, 244])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [132, 132, 244])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262, 277])
+                    ).toBe(false)
+                })
+                it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [262, 262, 277])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(544, [132, 132, 277])
+                    ).toBe(false)
+                })
+            })
+            describe('瑞鳳改二', () => {
+                it('empty', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 69])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 三式指揮連絡機(対潜)', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 70])
+                    ).toBe(false)
+                })
+                it('カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 69])
+                    ).toBe(false)
+                })
+                it('三式指揮連絡機(対潜)', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 70])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Re.2001 G改', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 132, 188])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 132, 242])
+                    ).toBe(false)
+                })
+                it('Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [244])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 132, 244])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 277])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 132, 277])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(555, [132, 132, 132, 244])
+                    ).toBe(false)
+                })
+            })
+            describe('瑞鳳改二乙', () => {
+                it('empty', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 69])
+                    ).toBe(80)
+                })
+                it('零式水中聴音機 ＋ 三式指揮連絡機(対潜)', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 70])
+                    ).toBe(80)
+                })
+                it('カ号観測機', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 69])
+                    ).toBe(80)
+                })
+                it('三式指揮連絡機(対潜)', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 70])
+                    ).toBe(80)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Re.2001 G改', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 132, 188])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 132, 242])
+                    ).toBe(false)
+                })
+                it('Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [244])
+                    ).toBe(143)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 132, 244])
+                    ).toBe(80)
+                })
+                it('零式水中聴音機 ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 277])
+                    ).toBe(false)
+                })
+                it('零式水中聴音機 ＋ 零式水中聴音機 ＋ FM-2', () => {
+                    expect(
+                        calculate.ship.levelOASW(560, [132, 132, 277])
+                    ).toBe(false)
+                })
+            })
+            describe('other samples', () => {
                 it('最上 改', () => {
                     expect(
                         calculate.ship.levelOASW(73, [])
@@ -1339,7 +1656,7 @@ describe('Calculating functions/utilities', () => {
                 it('大鷹 改二 + 四式水中聴音機', () => {
                     expect(
                         calculate.ship.levelOASW(529, [149])
-                    ).toBe(92)
+                    ).toBe(false)
                 })
                 it('大鷹 改二 + 天山一二型(村田隊)', () => {
                     expect(

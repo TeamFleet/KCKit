@@ -80,6 +80,16 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                 )
             ))
                 return false
+        } else if (key.toLowerCase() === 'hasoneof') {
+            if (!equipments.some((equipment, index) =>
+                conditions[key].some(thisCondition => checkEquipment(
+                    equipment,
+                    stars[index],
+                    ranks[index],
+                    thisCondition
+                ))
+            ))
+                return false
         } else if (key.substr(0, 3) === 'has' && checkListStatic.includes(key.substr(3).toLowerCase())) {
             // 条件：checkListStatic 中的项目
             if (Array.isArray(conditions[key])) {

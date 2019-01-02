@@ -18,6 +18,29 @@ const BB_FusouClass2ndRemodel = [
 ]
 const BB_IseClassRemodel_PLUS_FusouClass2ndRemodel = BB_IseClassRemodel.concat(BB_FusouClass2ndRemodel)
 
+
+/*************************************************************************/
+
+
+const CVE_TaiyouClassRemodelAll = [
+    380, // 大鹰改
+    529, // 大鹰改二
+    381, // 神鷹改
+    536, // 神鷹改二
+]
+const CVE = [
+    526, // 大鹰
+    534, // 神鷹
+    544, // Gambier Bay
+    396, // Gambier Bay改
+    560, // 瑞鳳改二乙
+    ...CVE_TaiyouClassRemodelAll
+]
+
+
+/*************************************************************************/
+
+
 const CL_KumaClassRemodel = [
     216, // 多摩改
     217, // 木曽改
@@ -31,6 +54,10 @@ const CL_NagaraClass2ndRemodel = [
     488, // 由良改二
     487, // 鬼怒改二
 ]
+
+
+/*************************************************************************/
+
 
 const DD_FubukiClass2ndRemodel = [
     426, // 吹雪改二
@@ -133,7 +160,9 @@ const DD_ShimakazeRemodel = [
 ]
 const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel = DD_YuugumoClass2ndRemodel.concat(DD_ShimakazeRemodel)
 
-// 
+
+/*************************************************************************/
+
 
 const rn_BB = [
     571, 576, // Nelson
@@ -162,13 +191,18 @@ const usn = [
     ...usn_DD,
 ]
 
-//
+
+/*************************************************************************/
+
 
 module.exports = {
     BB_KongouClass2ndRemodel,
     BB_IseClassRemodel, BB_IseClass2ndRemodel, BB_IseClassRemodelAll,
     BB_FusouClass2ndRemodel,
     BB_IseClassRemodel_PLUS_FusouClass2ndRemodel,
+
+    CVE,
+    CVE_TaiyouClassRemodelAll,
 
     CL_KumaClassRemodel, CL_KumaClass2ndRemodel, CL_KumaClassRemodelAll,
     CL_NagaraClass2ndRemodel,

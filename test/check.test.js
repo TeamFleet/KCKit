@@ -343,6 +343,181 @@ describe('Checking functions/utilities', () => {
                     }
                 }
             })).toBe(false);
+            expect(check.equipments([244], {
+                hasOneOf: [
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 7
+                            }
+                        }
+                    },
+                    {
+                        isAutogyro: true
+                    },
+                    {
+                        isAntiSubPatrol: true
+                    }
+                ]
+            })).toBe(true);
+            expect(check.equipments([1, 244], {
+                hasOneOf: [
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 7
+                            }
+                        }
+                    },
+                    {
+                        isAutogyro: true
+                    },
+                    {
+                        isAntiSubPatrol: true
+                    }
+                ]
+            })).toBe(true);
+            expect(check.equipments([1, 69], {
+                hasOneOf: [
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 7
+                            }
+                        }
+                    },
+                    {
+                        isAutogyro: true
+                    },
+                    {
+                        isAntiSubPatrol: true
+                    }
+                ]
+            })).toBe(true);
+            expect(check.equipments([1, 244, 69], {
+                hasOneOf: [
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 7
+                            }
+                        }
+                    },
+                    {
+                        isAutogyro: true
+                    },
+                    {
+                        isAntiSubPatrol: true
+                    }
+                ]
+            })).toBe(true);
+            expect(check.equipments([306], {
+                hasOneOf: [
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 7
+                            }
+                        }
+                    },
+                    {
+                        isAutogyro: true
+                    },
+                    {
+                        isAntiSubPatrol: true
+                    }
+                ]
+            })).toBe(false);
+            expect(check.equipments([132, 306], {
+                hasSonars: true,
+                hasOneOf: [
+                    {
+                        isDiveBomber: true
+                    },
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 1
+                            }
+                        }
+                    }
+                ]
+            })).toBe(true);
+            expect(check.equipments([1, 132, 306], {
+                hasSonars: true,
+                hasOneOf: [
+                    {
+                        isDiveBomber: true
+                    },
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 1
+                            }
+                        }
+                    }
+                ]
+            })).toBe(true);
+            expect(check.equipments([132, 242], {
+                hasSonars: true,
+                hasOneOf: [
+                    {
+                        isDiveBomber: true
+                    },
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 1
+                            }
+                        }
+                    }
+                ]
+            })).toBe(true);
+            expect(check.equipments([1], {
+                hasSonars: true,
+                hasOneOf: [
+                    {
+                        isDiveBomber: true
+                    },
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 1
+                            }
+                        }
+                    }
+                ]
+            })).toBe(false);
+            expect(check.equipments([132], {
+                hasSonars: true,
+                hasOneOf: [
+                    {
+                        isDiveBomber: true
+                    },
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 1
+                            }
+                        }
+                    }
+                ]
+            })).toBe(false);
+            expect(check.equipments([306], {
+                hasSonars: true,
+                hasOneOf: [
+                    {
+                        isDiveBomber: true
+                    },
+                    {
+                        isTorpedoBomber: {
+                            hasStat: {
+                                asw: 1
+                            }
+                        }
+                    }
+                ]
+            })).toBe(false);
         });
     })
     describe('Checking for AACI...', () => {
@@ -479,16 +654,19 @@ describe('Checking functions/utilities', () => {
                 expect(check.oasw(526)[0].minLv).toBe(undefined);
                 expect(check.oasw(434)[0].minLv).toBe(87);
                 expect(check.oasw(321)[0].minLv).toBe(132);
-                expect(check.oasw(380).length).toBe(2);
+                expect(check.oasw(380).length).toBe(1);
                 expect(check.oasw(141)).toBe(true);
             })
         });
         describe(`Check OASW capability for ship and equipment list`, () => {
-            describe(`Check samples`, () => {
-                it(`零式水中聴音機`, function () {
-                    // Gambier Bay・改
-                    expect(check.oasw(396, [132, 244, 244])).toEqual(true);
-                })
+            it(`神鷹`, function () {
+                expect(check.oasw(534, [])).toEqual(false);
+                expect(check.oasw(534, [262])).toEqual(false);
+                expect(check.oasw(534, [262, 277])).toEqual(false);
+            })
+            it(`零式水中聴音機`, function () {
+                // Gambier Bay・改
+                expect(check.oasw(396, [132, 244, 244])).toEqual(true);
             })
         })
     })

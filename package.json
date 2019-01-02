@@ -18,6 +18,7 @@
         "eslint": "eslint \"!(node_modules)/**/*.+(js|jsx)\"",
         "test": "jest",
         "test:base": "jest ./test/base.test.js",
+        "test:check": "jest ./test/check.test.js",
         "test:calculate": "jest ./test/calculate.test.js"
     },
     "dependencies": {

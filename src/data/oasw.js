@@ -1,4 +1,5 @@
-/*
+/**
+ * @module
  * 先制反潜攻击
  * 
  * 参考
@@ -16,146 +17,240 @@
  * 
  */
 
-let data = []
+const { CVE, CVE_TaiyouClassRemodelAll } = require('./ships')
 
-/**
- * 注册数据
- * 
- * @param {any} [options={}] 
- * @param {object} [options.ship]
- * @param {object} [options.shipWithEquipments]
- * @param {object} [options.equipments]
- */
-const register = (options = {}) => {
-    data.push(options)
-}
+module.exports = [
 
-// 通用条件
-register({
-    ship: {
-        isNotType: 31
-    },
-    shipWithEquipments: {
-        hasStat: {
-            asw: 100
-        }
-    },
-    equipments: {
-        hasSonar: true
-    }
-})
-
-// 特殊条件 - 海防舰
-register({
-    ship: {
-        isType: 31
-    },
-    shipWithEquipments: {
-        hasStat: {
-            asw: 75
-        }
-    }
-})
-register({
-    ship: {
-        isType: 31
-    },
-    shipWithEquipments: {
-        hasStat: {
-            asw: 60
-        }
-    },
-    equipments: {
-        hasSonar: true
-    }
-})
-
-// 特殊条件 - 五十铃改二 / 龙田改二 / Jervis改 / Samuel B.Roberts改
-register({
-    ship: {
-        isID: [141, 478, 394, 681]
-    }
-})
-
-// 特殊条件
-register({
-    ship: {
-        isID: [
-            526, // 大鹰
-            396, // Gambier Bay改
-            560, // 瑞鳳改二乙
-        ]
-    },
-    shipWithEquipments: {
-        hasStat: {
-            asw: 65
-        }
-    },
-    equipments: {
-        // hasNameOf: '九三一空'
-        hasAircraft: {
+    /**
+     * 通用条件
+     * - 面板对潜属性至少 **100** 点（计算装备）
+     * - 装备**声纳**
+     */
+    {
+        ship: {
+            isNotType: 31,
+            isNotID: CVE,
+        },
+        shipWithEquipments: {
             hasStat: {
-                asw: 7
+                asw: 100
+            }
+        },
+        equipments: {
+            hasSonar: true
+        }
+    },
+
+
+    /*************************************************************************/
+
+
+    /**
+     * 无条件触发
+     * 141. **五十鈴改二**
+     * 478. **龍田改二**
+     * 681. **Samuel B.Roberts改**
+     * 689. **Johnston改**
+     * 394. **Jervis改**
+     */
+    {
+        ship: {
+            isID: [
+                // CL
+                141, 478,
+                // DD (USN)
+                681, 689,
+                // DD (RN)
+                394,
+            ]
+        }
+    },
+
+
+    /*************************************************************************/
+
+
+    /**
+     * 海防舰
+     * - 不装备*声纳*: 面板对潜属性至少 **75** 点（计算装备）
+     */
+    {
+        ship: {
+            isType: 31
+        },
+        shipWithEquipments: {
+            hasStat: {
+                asw: 75
             }
         }
-    }
-})
-
-// 特殊条件 - 大鹰改 / 大鹰改二
-register({
-    ship: {
-        isID: [380, 529]
     },
-    shipWithEquipments: {
-        hasStat: {
-            asw: 65
+    /**
+     * 海防舰
+     * - 装备*声纳*: 面板对潜属性至少 **60** 点（计算装备）
+     */
+    {
+        ship: {
+            isType: 31
+        },
+        shipWithEquipments: {
+            hasStat: {
+                asw: 60
+            }
+        },
+        equipments: {
+            hasSonar: true
         }
     },
-    equipments: {
-        // hasTorpedoBomber: true
-        hasAircraft: {
+
+
+    /*************************************************************************/
+
+
+    /**
+     * 护航航母
+     */
+    {
+        ship: {
+            isID: CVE,
+            isNotID: CVE_TaiyouClassRemodelAll,
+        },
+        shipWithEquipments: {
+            hasStat: {
+                asw: 50
+            }
+        },
+        equipments: {
+            hasSonars: true,
+            hasOneOf: [
+                {
+                    isTorpedoBomber: {
+                        hasStat: {
+                            asw: 7
+                        }
+                    }
+                },
+                {
+                    isAutogyro: true
+                },
+                {
+                    isAntiSubPatrol: true
+                }
+            ]
+        }
+    },
+    {
+        ship: {
+            isID: CVE,
+            isNotID: CVE_TaiyouClassRemodelAll,
+        },
+        shipWithEquipments: {
+            hasStat: {
+                asw: 65
+            }
+        },
+        equipments: {
+            hasOneOf: [
+                {
+                    isTorpedoBomber: {
+                        hasStat: {
+                            asw: 7
+                        }
+                    }
+                },
+                {
+                    isAutogyro: true
+                },
+                {
+                    isAntiSubPatrol: true
+                }
+            ]
+        }
+    },
+    {
+        ship: {
+            isID: CVE,
+            isNotID: CVE_TaiyouClassRemodelAll,
+        },
+        shipWithEquipments: {
+            hasStat: {
+                asw: 100
+            }
+        },
+        equipments: {
+            hasSonars: true,
+            hasOneOf: [
+                {
+                    isDiveBomber: true
+                },
+                {
+                    isTorpedoBomber: {
+                        hasStat: {
+                            asw: 1
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        ship: {
+            isID: CVE_TaiyouClassRemodelAll,
+        },
+        shipWithEquipments: {
             hasStat: {
                 asw: 1
             }
+        },
+        equipments: {
+            hasOneOf: [
+                {
+                    isDiveBomber: true
+                },
+                {
+                    isTorpedoBomber: {
+                        hasStat: {
+                            asw: 1
+                        }
+                    }
+                },
+                {
+                    isAutogyro: true
+                },
+                {
+                    isAntiSubPatrol: true
+                }
+            ]
         }
-    }
-})
-
-// 特殊条件
-register({
-    ship: {
-        isID: [
-            544, // Gambier Bay
-            396, // Gambier Bay改
-            560, // 瑞鳳改二乙
-        ]
     },
-    shipWithEquipments: {
-        hasStat: {
-            asw: 50
-        }
-    },
-    equipments: {
-        hasLargeSonar: true,
-        hasAircraft: {
+    {
+        ship: {
+            isID: [
+                555 // 瑞鳳改二
+            ],
+        },
+        shipWithEquipments: {
             hasStat: {
-                asw: 7
+                asw: 50
             }
         },
-    }
-})
-// register({
-//     ship: {
-//         isID: [380, 529]
-//     },
-//     shipWithEquipments: {
-//         hasStat: {
-//             asw: 65
-//         }
-//     },
-//     equipments: {
-//         // hasDiveBomber: true
-//     }
-// })
+        equipments: {
+            hasSonars: true,
+            hasOneOf: [
+                {
+                    isTorpedoBomber: {
+                        hasStat: {
+                            asw: 7
+                        }
+                    }
+                },
+                {
+                    isAutogyro: true
+                },
+                {
+                    isAntiSubPatrol: true
+                }
+            ]
+        }
+    },
 
-module.exports = data
+]
