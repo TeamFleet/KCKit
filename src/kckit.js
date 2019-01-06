@@ -1118,13 +1118,16 @@
         }
     };
     // 飞行器熟练度对制空战力的加成
-    formula.getFighterPowerRankMultiper = (equipment, rank/*, options*/) => {
+    formula.getFighterPowerRankMultiper = (equipment, rank, options = {}) => {
         // https://wikiwiki.jp/kancolle/艦載機熟練度
 
         equipment = _equipment(equipment)
 
         const rankInternal = []
         const typeValue = {}
+        const {
+            isFromField = false
+        } = options
 
         rankInternal[0] = [0, 9]
         rankInternal[1] = [10, 24]
@@ -1173,6 +1176,19 @@
             case _equipmentType.SeaplaneBomber:
                 typeBonus = typeValue.SeaplaneBomber[rank]
                 break;
+            // case _equipmentType.LandBasedAttacker:
+            // case _equipmentType.LandBasedAntiSubPatrol:
+            // case _equipmentType.CarrierRecon:
+            // case _equipmentType.CarrierRecon2:
+            // case _equipmentType.ReconSeaplane:
+            // case _equipmentType.ReconSeaplaneNight:
+            // case _equipmentType.LargeFlyingBoat:
+            // case _equipmentType.LandBasedRecon: {
+            //     if (isFromField) {
+            //         typeBonus = typeValue.SeaplaneBomber[rank]
+            //     }
+            //     break
+            // }
         }
 
         return {
@@ -1945,7 +1961,13 @@
 
         return result
     };
-    formula.calc.fighterPower = function (equipment, carry, rank, star) {
+    formula.calc.fighterPower = function (equipment, carry, rank, star, options = {}) {
+        // http://bbs.ngacn.cc/read.php?tid=8680767
+        // http://ja.kancolle.wikia.com/wiki/%E8%89%A6%E8%BC%89%E6%A9%9F%E7%86%9F%E7%B7%B4%E5%BA%A6
+        // https://wikiwiki.jp/kancolle/航空戦
+        // https://wikiwiki.jp/kancolle/艦載機熟練度
+        // https://wikiwiki.jp/kancolle/基地航空隊
+
         if (!equipment)
             return [0, 0]
 
@@ -1956,11 +1978,9 @@
         rank = rank || 0
         star = star || 0
 
-        // http://bbs.ngacn.cc/read.php?tid=8680767
-        // http://ja.kancolle.wikia.com/wiki/%E8%89%A6%E8%BC%89%E6%A9%9F%E7%86%9F%E7%B7%B4%E5%BA%A6
-        // https://wikiwiki.jp/kancolle/航空戦
-        // https://wikiwiki.jp/kancolle/艦載機熟練度
-        // https://wikiwiki.jp/kancolle/基地航空隊
+        const {
+            isFromField = false
+        } = options
 
         let results = [0, 0]
 
@@ -1974,7 +1994,7 @@
             const {
                 min: bonusMin,
                 max: bonusMax,
-            } = formula.getFighterPowerRankMultiper(equipment, rank)
+            } = formula.getFighterPowerRankMultiper(equipment, rank, { isFromField })
 
             results[0] += Math.floor(baseValue + bonusMin)
             results[1] += Math.floor(baseValue + bonusMax)
@@ -2896,6 +2916,11 @@
         const result = [0, 0]
         let reconBonus = 1
 
+        const updateReconBonus = (bonus) => {
+            reconBonus = Math.max(bonus, reconBonus)
+            return reconBonus
+        }
+    
         equipments.forEach(d => {
             const equipment = _equipment(d[0] || d.equipment || d.equipmentId)
             const star = d[1] || d.star || 0
@@ -2909,7 +2934,7 @@
                     carry = KC.planesPerSlotLBAS.attacker
             }
 
-            const value = formula.calc.fighterPower(equipment, carry, rank, star)
+            const value = formula.calc.fighterPower(equipment, carry, rank, star, { isFromField: true })
 
             result[0] += value[0]
             result[1] += value[1]
@@ -2917,11 +2942,11 @@
             // 计算侦察机加成
             // 二式陸上偵察機(熟練)
             if (equipment.id == 312) {
-                reconBonus = 1.18
+                updateReconBonus(1.18)
             } else {
                 switch (equipment.type) {
                     case _equipmentType.LandBasedRecon: {
-                        reconBonus = 1.15
+                        updateReconBonus(1.15)
                         break;
                     }
                 }
