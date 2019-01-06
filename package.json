@@ -1,6 +1,6 @@
 {
     "name": "kckit",
-    "main": "dist-app/main.html",
+    "main": "index.js",
     "version": "1.21.16",
     "description": "Javascript library for KanColle",
     "sideEffects": false,
