@@ -32,6 +32,11 @@ let vars = {
     shipStatExtraMax: {
         hp: 2,
         asw: 9
+    },
+
+    fieldPlanesPerSlot: {
+        recon: 4,
+        attacker: 18
     }
 }
 
