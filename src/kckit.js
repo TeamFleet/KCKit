@@ -1118,16 +1118,16 @@
         }
     };
     // 飞行器熟练度对制空战力的加成
-    formula.getFighterPowerRankMultiper = (equipment, rank, options = {}) => {
+    formula.getFighterPowerRankMultiper = (equipment, rank/*, options = {}*/) => {
         // https://wikiwiki.jp/kancolle/艦載機熟練度
 
         equipment = _equipment(equipment)
 
         const rankInternal = []
         const typeValue = {}
-        const {
-            isFromField = false
-        } = options
+        // const {
+        //     isFromField = false
+        // } = options
 
         rankInternal[0] = [0, 9]
         rankInternal[1] = [10, 24]
@@ -1176,19 +1176,6 @@
             case _equipmentType.SeaplaneBomber:
                 typeBonus = typeValue.SeaplaneBomber[rank]
                 break;
-            // case _equipmentType.LandBasedAttacker:
-            // case _equipmentType.LandBasedAntiSubPatrol:
-            // case _equipmentType.CarrierRecon:
-            // case _equipmentType.CarrierRecon2:
-            // case _equipmentType.ReconSeaplane:
-            // case _equipmentType.ReconSeaplaneNight:
-            // case _equipmentType.LargeFlyingBoat:
-            // case _equipmentType.LandBasedRecon: {
-            //     if (isFromField) {
-            //         typeBonus = typeValue.SeaplaneBomber[rank]
-            //     }
-            //     break
-            // }
         }
 
         return {
@@ -1984,7 +1971,7 @@
 
         let results = [0, 0]
 
-        if (carry && _equipmentType.Fighters.indexOf(equipment.type) > -1) {
+        if (carry && (isFromField || _equipmentType.Fighters.indexOf(equipment.type) > -1)) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
             // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiplier( equipment.type, 'fighter' ) )
             const equipmentStatAA = (equipment.stat.aa || 0)
@@ -1994,7 +1981,7 @@
             const {
                 min: bonusMin,
                 max: bonusMax,
-            } = formula.getFighterPowerRankMultiper(equipment, rank, { isFromField })
+            } = formula.getFighterPowerRankMultiper(equipment, rank)
 
             results[0] += Math.floor(baseValue + bonusMin)
             results[1] += Math.floor(baseValue + bonusMax)
@@ -2920,7 +2907,7 @@
             reconBonus = Math.max(bonus, reconBonus)
             return reconBonus
         }
-    
+
         equipments.forEach(d => {
             const equipment = _equipment(d[0] || d.equipment || d.equipmentId)
             const star = d[1] || d.star || 0
@@ -2970,7 +2957,7 @@
         let result = [0, 0]
             , reconBonus = 1;
 
-        function getReconBonus(bonus) {
+        function updateReconBonus(bonus) {
             reconBonus = Math.max(bonus, reconBonus)
             return reconBonus
         }
@@ -2988,7 +2975,7 @@
                     carry = KC.planesPerSlotLBAS.attacker
             }
 
-            const _r = formula.calc.fighterPowerAA(equipment, carry, rank, star)
+            const _r = formula.calc.fighterPowerAA(equipment, carry, rank, star, { isFromField: true })
 
             result[0] += _r[0]
             result[1] += _r[1]
@@ -2998,26 +2985,26 @@
                 case _equipmentType.CarrierRecon:
                 case _equipmentType.CarrierRecon2:
                     if (equipment.stat.los <= 7) {
-                        getReconBonus(1.2)
+                        updateReconBonus(1.2)
                     } else if (equipment.stat.los >= 9) {
-                        getReconBonus(1.3)
+                        updateReconBonus(1.3)
                     } else {
-                        getReconBonus(1.25)
+                        updateReconBonus(1.25)
                     }
                     break;
                 case _equipmentType.ReconSeaplane:
                 case _equipmentType.ReconSeaplaneNight:
                 case _equipmentType.LargeFlyingBoat:
                     if (equipment.stat.los <= 7) {
-                        getReconBonus(1.1)
+                        updateReconBonus(1.1)
                     } else if (equipment.stat.los >= 9) {
-                        getReconBonus(1.16)
+                        updateReconBonus(1.16)
                     } else {
-                        getReconBonus(1.13)
+                        updateReconBonus(1.13)
                     }
                     break;
                 case _equipmentType.LandBasedRecon: {
-                    getReconBonus(1.18)
+                    updateReconBonus(1.18)
                     break;
                 }
             }
