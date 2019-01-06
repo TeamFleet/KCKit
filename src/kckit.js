@@ -82,6 +82,10 @@
             ship: checkShip,
             equipment: checkEquipment,
         },
+        planesPerSlotLBAS: {
+            recon: 4,
+            attacker: 18
+        }
     };
 
 
@@ -773,7 +777,7 @@
             if (Array.isArray(equipmentType)) {
                 return equipmentType.every(type => this.canEquip(type, slotIndex))
             }
-    
+
             // 如果 equipmentType 为 String，将其转为对应的类型数字或类型集
             if (typeof equipmentType === 'string') {
                 if (Array.isArray(equipmentTypes[equipmentType]))
@@ -783,11 +787,11 @@
                 if (Array.isArray(equipmentTypes[equipmentType + 's']))
                     return equipmentTypes[equipmentType + 's'].some(type => this.canEquip(type, slotIndex))
             }
-    
+
             // 如果equipmentType 为 Equipment，获取 type
             if (typeof equipmentType === 'object' && typeof equipmentType.type !== 'undefined')
                 equipmentType = equipmentType.type
-    
+
             if (isNaN(equipmentType)) {
                 return false
             } else {
@@ -1115,10 +1119,12 @@
     };
     // 飞行器熟练度对制空战力的加成
     formula.getFighterPowerRankMultiper = (equipment, rank/*, options*/) => {
+        // https://wikiwiki.jp/kancolle/艦載機熟練度
+
         equipment = _equipment(equipment)
 
-        let rankInternal = []
-            , typeValue = {}
+        const rankInternal = []
+        const typeValue = {}
 
         rankInternal[0] = [0, 9]
         rankInternal[1] = [10, 24]
@@ -1151,8 +1157,10 @@
             6
         ]
 
-        let _rankInternal = rankInternal[rank]
-            , _typeValue = 0
+        /** @type {Number} 内部熟練ボーナス */
+        let rankBonus = rankInternal[rank]
+        /** @type {Number} 制空ボーナス */
+        let typeBonus = 0
 
         switch (equipment.type) {
             case _equipmentType.CarrierFighter:
@@ -1160,16 +1168,16 @@
             case _equipmentType.Interceptor:
             case _equipmentType.SeaplaneFighter:
             case _equipmentType.LandBasedFighter:
-                _typeValue = typeValue.CarrierFighter[rank];
+                typeBonus = typeValue.CarrierFighter[rank];
                 break;
             case _equipmentType.SeaplaneBomber:
-                _typeValue = typeValue.SeaplaneBomber[rank]
+                typeBonus = typeValue.SeaplaneBomber[rank]
                 break;
         }
 
         return {
-            min: Math.sqrt(_rankInternal[0] / 10) + _typeValue,
-            max: Math.sqrt(_rankInternal[1] / 10) + _typeValue
+            min: Math.sqrt(rankBonus[0] / 10) + typeBonus,
+            max: Math.sqrt(rankBonus[1] / 10) + typeBonus
         }
     };
     formula.calculate = function (type, ship, equipments_by_slot, star_by_slot, rank_by_slot, options) {
@@ -1950,22 +1958,26 @@
 
         // http://bbs.ngacn.cc/read.php?tid=8680767
         // http://ja.kancolle.wikia.com/wiki/%E8%89%A6%E8%BC%89%E6%A9%9F%E7%86%9F%E7%B7%B4%E5%BA%A6
+        // https://wikiwiki.jp/kancolle/航空戦
+        // https://wikiwiki.jp/kancolle/艦載機熟練度
+        // https://wikiwiki.jp/kancolle/基地航空隊
 
         let results = [0, 0]
 
-        if (_equipmentType.Fighters.indexOf(equipment.type) > -1
-            && carry
-        ) {
+        if (carry && _equipmentType.Fighters.indexOf(equipment.type) > -1) {
             // Math.floor(Math.sqrt(carry) * (equipment.stat.aa || 0) + Math.sqrt( rankInternal / 10 ) + typeValue)
             // if( star ) console.log( equipment._name, '★+' + star, star * formula.getStarMultiplier( equipment.type, 'fighter' ) )
-            let statAA = (equipment.stat.aa || 0)
+            const equipmentStatAA = (equipment.stat.aa || 0)
                 + (_equipmentType.isInterceptor(equipment) ? equipment.stat.evasion * 1.5 : 0)
                 + (star * formula.getStarMultiplier(equipment.type, 'fighter'))
-                , base = statAA * Math.sqrt(carry)
-                , rankBonus = formula.getFighterPowerRankMultiper(equipment, rank)
+            const baseValue = equipmentStatAA * Math.sqrt(carry)
+            const {
+                min: bonusMin,
+                max: bonusMax,
+            } = formula.getFighterPowerRankMultiper(equipment, rank)
 
-            results[0] += Math.floor(base + rankBonus.min)
-            results[1] += Math.floor(base + rankBonus.max)
+            results[0] += Math.floor(baseValue + bonusMin)
+            results[1] += Math.floor(baseValue + bonusMax)
         }
 
         return results
@@ -2871,6 +2883,56 @@
         })
     };
     // Calculate by Airfield
+    /**
+     * 按机场计算: 出击制空战力
+     * @param {Object[]} equipments
+     * @param {Equipment} equipments[].equipment
+     * @param {Number} equipments[].rank
+     * @param {Number} equipments[].star
+     * @param {Number} equipments[].carry
+     */
+    formula.calcByField.fighterPower = (equipments) => {
+        /** @type {Number[]} 计算结果 */
+        const result = [0, 0]
+        let reconBonus = 1
+
+        equipments.forEach(d => {
+            const equipment = _equipment(d[0] || d.equipment || d.equipmentId)
+            const star = d[1] || d.star || 0
+            const rank = d[2] || d.rank || 0
+
+            let carry = d[3] || d.carry || 0
+            if (!carry) {
+                if (formula.equipmentType.Recons.indexOf(equipment.type) > -1)
+                    carry = KC.planesPerSlotLBAS.recon
+                else
+                    carry = KC.planesPerSlotLBAS.attacker
+            }
+
+            const value = formula.calc.fighterPower(equipment, carry, rank, star)
+
+            result[0] += value[0]
+            result[1] += value[1]
+
+            // 计算侦察机加成
+            // 二式陸上偵察機(熟練)
+            if (equipment.id == 312) {
+                reconBonus = 1.18
+            } else {
+                switch (equipment.type) {
+                    case _equipmentType.LandBasedRecon: {
+                        reconBonus = 1.15
+                        break;
+                    }
+                }
+            }
+        })
+
+        result[0] = result[0] * reconBonus
+        result[1] = result[1] * reconBonus
+
+        return result
+    }
     formula.calcByField.fighterPowerAA = (data) => {
         /*
          * data [
@@ -2893,14 +2955,16 @@
                 , star = d[1] || d.star || 0
                 , rank = d[2] || d.rank || 0
                 , carry = d[3] || d.carry || 0
-                , _r = formula.calc.fighterPowerAA(equipment, carry, rank, star)
 
             if (!carry) {
                 if (formula.equipmentType.Recons.indexOf(equipment.type) > -1)
-                    carry = 4
+                    carry = KC.planesPerSlotLBAS.recon
                 else
-                    carry = 18
+                    carry = KC.planesPerSlotLBAS.attacker
             }
+
+            const _r = formula.calc.fighterPowerAA(equipment, carry, rank, star)
+
             result[0] += _r[0]
             result[1] += _r[1]
 
@@ -2919,7 +2983,6 @@
                 case _equipmentType.ReconSeaplane:
                 case _equipmentType.ReconSeaplaneNight:
                 case _equipmentType.LargeFlyingBoat:
-                case _equipmentType.LandBasedRecon:
                     if (equipment.stat.los <= 7) {
                         getReconBonus(1.1)
                     } else if (equipment.stat.los >= 9) {
@@ -2928,6 +2991,10 @@
                         getReconBonus(1.13)
                     }
                     break;
+                case _equipmentType.LandBasedRecon: {
+                    getReconBonus(1.18)
+                    break;
+                }
             }
         });
 
