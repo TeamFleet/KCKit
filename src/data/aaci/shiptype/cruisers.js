@@ -156,7 +156,7 @@ module.exports = {
     // Gotland改
     33: {
         fixed: 3,
-        modifier: 1.35,
+        modifier: 1.25,
         icons: [16, 15],
         ship: {
             isID: [
