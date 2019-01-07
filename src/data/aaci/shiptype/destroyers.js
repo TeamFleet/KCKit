@@ -1,6 +1,7 @@
 const {
     DD_KagerouClassRemodelB
 } = require('../../ships')
+const { DD_Akizuki } = require('../../ship-classes')
 
 module.exports = {
     // 秋月型駆逐艦
@@ -9,7 +10,7 @@ module.exports = {
         modifier: 1.7,
         icons: [16, 16, 11],
         ship: {
-            isClass: 23
+            isClass: DD_Akizuki
         },
         equipments: {
             hasHAMount: 2,
@@ -23,7 +24,7 @@ module.exports = {
         modifier: 1.7,
         icons: [16, 11],
         ship: {
-            isClass: 23
+            isClass: DD_Akizuki
         },
         equipments: {
             hasHAMount: true,
@@ -37,7 +38,7 @@ module.exports = {
         modifier: 1.6,
         icons: [16, 16],
         ship: {
-            isClass: 23
+            isClass: DD_Akizuki
         },
         equipments: {
             hasHAMount: 2

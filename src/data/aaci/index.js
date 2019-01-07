@@ -2,7 +2,7 @@
 // http://wikiwiki.jp/kancolle/?%B9%D2%B6%F5%C0%EF#antiairfire
 // http://kancolle.wikia.com/wiki/Combat/Aerial_Combat#Anti-Air_Cut-In
 
-const { DD_Fletcher } = require('../ship-classes')
+const { DD_Akizuki } = require('../ship-classes')
 
 const data = {
     5: {
@@ -12,7 +12,7 @@ const data = {
         ship: {
             hasSlotMin: 3,
             isSS: false,
-            isNotClass: 23,
+            isNotClass: DD_Akizuki,
         },
         equipments: {
             hasHAMountAAFD: 2,
@@ -27,7 +27,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: 23,
+            isNotClass: DD_Akizuki,
         },
         equipments: {
             hasHAMount: true,
@@ -43,7 +43,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: 23,
+            isNotClass: DD_Akizuki,
         },
         equipments: {
             hasHAMountAAFD: true,
@@ -58,7 +58,7 @@ const data = {
         ship: {
             hasSlotMin: 1,
             isSS: false,
-            isNotClass: 23,
+            isNotClass: DD_Akizuki,
         },
         equipments: {
             hasHAMount: true,
@@ -73,7 +73,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: 23,
+            isNotClass: DD_Akizuki,
         },
         equipments: {
             hasAAGunCD: true,
