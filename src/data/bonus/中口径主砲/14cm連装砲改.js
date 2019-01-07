@@ -1,8 +1,7 @@
 /**
+ * @module
  * 装备额外属性收益
  * 310. **14cm連装砲改**
- * 
- * @module
  */
 
 // https://wikiwiki.jp/kancolle/14cm%E9%80%A3%E8%A3%85%E7%A0%B2%E6%94%B9

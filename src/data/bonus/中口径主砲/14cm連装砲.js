@@ -1,8 +1,7 @@
 /**
- * 装备额外属性收益
- * 4. **14cm連装砲**
- * 
  * @module
+ * 装备额外属性收益
+ * 119. **14cm連装砲**
  */
 
 // https://wikiwiki.jp/kancolle/14cm%E9%80%A3%E8%A3%85%E7%A0%B2
@@ -15,7 +14,7 @@ const {
 module.exports = [
 
     {
-        equipment: 4,
+        equipment: 119,
         ship: {
             isClass: [
                 CL_Yuubari,
@@ -28,7 +27,7 @@ module.exports = [
     },
 
     {
-        equipment: 4,
+        equipment: 119,
         ship: {
             isClass: [
                 AV_Nisshin,
