@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "index.js",
-    "version": "1.21.16",
+    "version": "1.21.17",
     "description": "Javascript library for KanColle",
     "sideEffects": false,
     "author": {
@@ -26,7 +26,7 @@
     },
     "devDependencies": {
         "jest": "^23.6.0",
-        "eslint": "^5.11.1",
+        "eslint": "^5.12.0",
         "babel-eslint": "^10.0.1"
     },
     "jest": {
