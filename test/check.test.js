@@ -633,6 +633,23 @@ describe('Checking functions/utilities', () => {
                     // 8cm高角砲 + 7.7mm機銃
                     expect(check.aaci(579, [66, 37]).map(obj => obj.id)).toEqual([33]);
                 })
+                it(`Johnston / Johnston改`, function () {
+                    // Johnston | 5inch単装砲 Mk.30改+GFCS Mk.37 + 5inch単装砲 Mk.30改+GFCS Mk.37
+                    expect(check.aaci(562, [308, 308]).map(obj => obj.id)).toEqual([34]);
+                    // Johnston | 5inch単装砲 Mk.30改 + 5inch単装砲 Mk.30改
+                    expect(check.aaci(562, [313, 313]).map(obj => obj.id)).toEqual([37]);
+                    // Johnston | 5inch単装砲 Mk.30改+GFCS Mk.37 + 5inch単装砲 Mk.30改
+                    expect(check.aaci(562, [308, 313]).map(obj => obj.id)).toEqual([35]);
+
+                    // Johnston改 | 5inch単装砲 Mk.30改+GFCS Mk.37 + 5inch単装砲 Mk.30改+GFCS Mk.37 + 5inch単装砲 Mk.30改
+                    expect(check.aaci(689, [308, 308, 313]).map(obj => obj.id)).toEqual([34, 35]);
+                    // Johnston改 | 5inch単装砲 Mk.30改 + 5inch単装砲 Mk.30改 + GFCS Mk.37
+                    expect(check.aaci(689, [313, 313, 307]).map(obj => obj.id)).toEqual([36, 37]);
+                    // Johnston改 | 5inch単装砲 Mk.30改+GFCS Mk.37 + 5inch単装砲 Mk.30改 + 5inch単装砲 Mk.30改
+                    expect(check.aaci(689, [308, 313, 313]).map(obj => obj.id)).toEqual([35, 37]);
+                    // Johnston改 | 5inch単装砲 Mk.30改+GFCS Mk.37 + 5inch単装砲 Mk.30改+GFCS Mk.37 + GFCS Mk.37
+                    expect(check.aaci(689, [308, 308, 307]).map(obj => obj.id)).toEqual([34, 5, 8]);
+                })
                 it(`Other samples`, function () {
                     expect(check.aaci(428, [130, 130, 124]).map(obj => obj.id)).toEqual([5, 8]);
                     expect(check.aaci(330, [122, 122, 106]).map(obj => obj.id)).toEqual([1, 2, 3]);

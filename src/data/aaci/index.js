@@ -2,6 +2,8 @@
 // http://wikiwiki.jp/kancolle/?%B9%D2%B6%F5%C0%EF#antiairfire
 // http://kancolle.wikia.com/wiki/Combat/Aerial_Combat#Anti-Air_Cut-In
 
+const { DD_Fletcher } = require('../ship-classes')
+
 const data = {
     5: {
         fixed: 4,
@@ -91,6 +93,7 @@ const data = {
     ...require('./shiptype/submarines'),
 
     ...require('./navy/rn'),
+    ...require('./navy/usn'),
 
     // 13: {},
     // 27: {},

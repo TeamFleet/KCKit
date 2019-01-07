@@ -51,6 +51,7 @@ module.exports = {
     DD_Akizuki: 23,
     DD_J,
     DD_JohnCButler,
+    DD_Fletcher,
     group_DD_Tokugata: [15, 16, 17],
     group_DD_Navy_USN,
 
