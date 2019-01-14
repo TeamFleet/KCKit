@@ -1879,8 +1879,8 @@
                 case '5':
                 case 'cav': multiper = 4; break;
 
-                case 8:
-                case '8':
+                case 8: case '8':
+                case 33: case '33':
                 case 'bbv': multiper = 7; break;
 
                 case 12:
