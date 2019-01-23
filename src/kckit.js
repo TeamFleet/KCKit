@@ -998,7 +998,7 @@
         },
         Seaplanes: {
         },
-        ReconSeaplanes: {
+        SeaplaneRecons: {
             los: 1.2
         },
         SeaplaneFighters: {
