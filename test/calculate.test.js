@@ -645,6 +645,30 @@ describe('Calculating functions/utilities', () => {
                 })
             })
 
+            describe('小口径主砲...', () => {
+                describe('130mm B-13連装砲...', () => {
+                    it('Верный || 130mm B-13連装砲', () => {
+                        expect(calculate.bonus(
+                            147,
+                            [282],
+                        )).toEqual({
+                            fire: 2,
+                            armor: 1,
+                        })
+                    })
+                    it('Верный || 130mm B-13連装砲 ➕12.7cm連装砲A型改三(戦時改修)+高射装置', () => {
+                        expect(calculate.bonus(
+                            147,
+                            [282, 295],
+                        )).toEqual({
+                            fire: 4,
+                            aa: 2,
+                            armor: 1,
+                        })
+                    })
+                })
+            })
+
             describe('中口径主砲...', () => {
                 describe('20.3cm(2号)連装砲...', () => {
                     it('青葉改 || 20.3cm(2号)連装砲', () => {
@@ -755,6 +779,103 @@ describe('Calculating functions/utilities', () => {
                             fire: 7,
                             evasion: 4,
                             torpedo: 2,
+                        })
+                    })
+                })
+            })
+
+            describe('魚雷...', () => {
+                describe('533mm 三連装魚雷...', () => {
+                    it('Верный || 533mm 三連装魚雷', () => {
+                        expect(calculate.bonus(
+                            147,
+                            [283],
+                        )).toEqual({
+                            fire: 1,
+                            torpedo: 3,
+                            armor: 1,
+                        })
+                    })
+                    it('Верный || 533mm 三連装魚雷 ➕61cm三連装(酸素)魚雷後期型', () => {
+                        expect(calculate.bonus(
+                            147,
+                            [283, 285],
+                        )).toEqual({
+                            fire: 1,
+                            torpedo: 5,
+                            armor: 1,
+                            evasion: 1
+                        })
+                    })
+                })
+            })
+
+            describe('電探...', () => {
+                describe('13号対空電探改...', () => {
+                    it('Верный || 13号対空電探改 ➕13号対空電探改', () => {
+                        expect(calculate.bonus(
+                            147,
+                            [106, 106],
+                        )).toEqual({
+                            aa: 2,
+                            evasion: 6,
+                            armor: 2
+                        })
+                    })
+                    it('時雨改二 || 13号対空電探改 ➕13号対空電探改', () => {
+                        expect(calculate.bonus(
+                            145,
+                            [106, 106],
+                        )).toEqual({
+                            fire: 2,
+                            aa: 4,
+                            evasion: 6,
+                            armor: 2
+                        })
+                    })
+                    it('長門改二 || 13号対空電探改', () => {
+                        expect(calculate.bonus(
+                            541,
+                            [106],
+                        )).toEqual({
+                            fire: 1,
+                            aa: 2,
+                            evasion: 3,
+                            armor: 1
+                        })
+                    })
+                    it('涼月改 || 13号対空電探改', () => {
+                        expect(calculate.bonus(
+                            537,
+                            [106],
+                        )).toEqual({
+                            aa: 2,
+                            evasion: 2,
+                            armor: 1
+                        })
+                    })
+                })
+            })
+
+            describe('対潜兵装...', () => {
+                describe('三式水中探信儀...', () => {
+                    it('山雲改 || 三式水中探信儀 ➕三式水中探信儀', () => {
+                        expect(calculate.bonus(
+                            328,
+                            [47, 47],
+                        )).toEqual({
+                            evasion: 4,
+                            asw: 4,
+                        })
+                    })
+                    it('時雨改二 || 三式水中探信儀 ➕三式水中探信儀', () => {
+                        expect(calculate.bonus(
+                            145,
+                            [47, 47],
+                        )).toEqual({
+                            fire: 2,
+                            evasion: 4,
+                            asw: 6,
                         })
                     })
                 })

@@ -29,11 +29,12 @@ const dataBonuses = [
     ...require('./小口径主砲/12.7cm連装砲D型改二'),
     ...require('./小口径主砲/5inch単装砲 Mk.30改'),
     ...require('./小口径主砲/5inch単装砲 Mk.30改+GFCS Mk.37'),
+    ...require('./小口径主砲/130mm B-13連装砲'),
 
     ...require('./中口径主砲/14cm連装砲'),
     ...require('./中口径主砲/14cm連装砲改'),
-    ...require('./中口径主砲/20.3cm(2号)連装砲'),
     ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
+    ...require('./中口径主砲/20.3cm(2号)連装砲'),
 
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
     ...require('./大口径主砲/35.6cm三連装砲改(ダズル迷彩仕様)'),
@@ -41,13 +42,14 @@ const dataBonuses = [
     ...require('./大口径主砲/16inch Mk.I三連装砲'),
 
     ...require('./魚雷/53cm連装魚雷'),
+    ...require('./魚雷/53cm艦首(酸素)魚雷'),
+    ...require('./魚雷/533mm 三連装魚雷'),
     ...require('./魚雷/533mm五連装魚雷(初期型)'),
     ...require('./魚雷/61cm三連装(酸素)魚雷後期型'),
     ...require('./魚雷/61cm四連装(酸素)魚雷'),
     ...require('./魚雷/61cm四連装(酸素)魚雷後期型'),
     ...require('./魚雷/61cm五連装(酸素)魚雷'),
     ...require('./魚雷/試製61cm六連装(酸素)魚雷'),
-    ...require('./魚雷/53cm艦首(酸素)魚雷'),
 
     ...require('./水上機/S9 Osprey'),
     ...require('./水上機/瑞雲(六三四空)'),
@@ -64,8 +66,11 @@ const dataBonuses = [
     ...require('./艦上機/Ju87C改二(KMX搭載機)'),
     ...require('./艦上機/二式艦上偵察機'),
 
+    ...require('./電探/13号対空電探改'),
     ...require('./電探/GFCS Mk.37'),
     ...require('./電探/SG レーダー(初期型)'),
+
+    ...require('./対潜兵装/三式水中探信儀'),
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 

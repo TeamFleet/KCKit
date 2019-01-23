@@ -378,10 +378,10 @@ describe('Base functions/utilities', () => {
                         db.ships[156].getBonuses()
                     ).toEqual([])
                 })
-                it(`榛名改二 - 6 bonuses`, () => {
+                it(`榛名改二 - 7 bonuses`, () => {
                     expect(
                         db.ships[151].getBonuses().length
-                    ).toEqual(6)
+                    ).toEqual(7)
                 })
             })
             describe(`should Ship.prototype.getAACI() works`, () => {

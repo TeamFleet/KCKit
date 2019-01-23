@@ -188,7 +188,14 @@ const usn_DD = [
 const usn = [
     ...usn_BB,
     ...usn_CV,
-    ...usn_DD,
+    ...usn_DD
+]
+const vmf_DD = [
+    516, 395, // Ташкент
+    147 // Верный
+]
+const vmf = [
+    ...vmf_DD
 ]
 
 
@@ -206,6 +213,9 @@ module.exports = {
 
     CL_KumaClassRemodel, CL_KumaClass2ndRemodel, CL_KumaClassRemodelAll,
     CL_NagaraClass2ndRemodel,
+    Yahagi: [139, 307],
+    Ooyodo: [183, 321],
+    Kashima: [465, 356],
 
     DD_FubukiClass2ndRemodel,
     DD_AyanamiClassRemodel, DD_AyanamiClass2ndRemodel, DD_AyanamiClassRemodelAll,
@@ -217,7 +227,25 @@ module.exports = {
     DD_YuugumoClass2ndRemodel,
     DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel,
     DD_ShimakazeRemodel,
+    Kamikaze: [471, 476],
+    Harukaze: [473, 363],
+    Ushio: [16, 233, 407],
+    Hibiki: [35, 235, 147],
+    Ikazuchi: [36, 236],
+    Hatsushimo: [41, 241, 419],
+    Shigure: [43, 243, 145],
+    Yamakaze: [457, 369],
+    Yamagumo: [414, 328],
+    Kasumi: [49, 253, 464, 470],
+    Yukikaze: [20, 228],
+    Isokaze: [167, 320, 557],
+    Hamakaze: [170, 312, 558],
+    Maikaze: [122, 294],
+    Kishinami: [527, 686],
+    Asashimo: [425, 344],
+    Suzutsuki: [532, 537],
 
     rn, rn_BB,
     usn, usn_BB, usn_CV, usn_DD,
+    vmf, vmf_DD
 }
