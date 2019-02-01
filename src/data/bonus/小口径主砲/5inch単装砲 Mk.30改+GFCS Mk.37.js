@@ -18,9 +18,7 @@ module.exports = [
             isType: [
                 1, 19
             ],
-            isNotClass: [
-                112,
-            ]
+            isNotClass: group_DD_Navy_USN
         },
         bonus: {
             fire: 1,
