@@ -666,6 +666,15 @@ describe('Calculating functions/utilities', () => {
                             armor: 1,
                         })
                     })
+                    it('夕張 || 130mm B-13連装砲', () => {
+                        expect(calculate.bonus(
+                            115,
+                            [282],
+                        )).toEqual({
+                            fire: 2,
+                            armor: 1,
+                        })
+                    })
                 })
             })
 
@@ -805,6 +814,30 @@ describe('Calculating functions/utilities', () => {
                             torpedo: 5,
                             armor: 1,
                             evasion: 1
+                        })
+                    })
+                })
+            })
+
+            describe('艦上機...', () => {
+                describe('Re. series...', () => {
+                    it('Aquila改 || Re.2001 OR改 ➕Re.2005 改 ➕Re.2001 CB改 ➕Re.2001 G改', () => {
+                        expect(calculate.bonus(
+                            365,
+                            [184, 189, 316, 188],
+                        )).toEqual({
+                            fire: 8,
+                            aa: 5,
+                            evasion: 7,
+                        })
+                    })
+                    it('Graf Zeppelin改 || Re.2001 OR改 ➕Re.2005 改 ➕Re.2001 CB改 ➕Re.2001 G改', () => {
+                        expect(calculate.bonus(
+                            353,
+                            [184, 189, 316, 188],
+                        )).toEqual({
+                            aa: 1,
+                            evasion: 2,
                         })
                     })
                 })

@@ -596,8 +596,8 @@ describe('Base functions/utilities', () => {
         })
 
         describe('ExillustType...', function () {
-            it(`should db.exillustTypes[1].getName("ja_jp") be 晴れ着`, function () {
-                expect(db.exillustTypes[1].getName("ja_jp")).toBe("晴れ着");
+            it(`should db.exillustTypes[1].getName("ja_jp") be 新春`, function () {
+                expect(db.exillustTypes[1].getName("ja_jp")).toBe("新春");
             });
             it(`should db.exillustTypes[1].getName("zh_cn") be 新年`, function () {
                 expect(db.exillustTypes[1].getName("zh_cn")).toBe("新年");

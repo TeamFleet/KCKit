@@ -11,10 +11,10 @@ const {
     Yahagi, Ooyodo,
     Kashima,
 
-    Ushio,
+    // Ushio,
     Hibiki,
-    Hatsushimo,
-    Shigure,
+    // Hatsushimo,
+    // Shigure,
     Kasumi,
     Yukikaze, Isokaze, Hamakaze,
     Asashimo,
@@ -65,9 +65,9 @@ module.exports = [
             isID: [
                 151, // 榛名改二
                 541, // 長門改二
-                ...Ushio,
-                ...Shigure,
-                ...Hatsushimo
+                407, // 潮改二
+                145, // 時雨改二
+                419, // 初霜改二
             ],
         },
         bonus: {
