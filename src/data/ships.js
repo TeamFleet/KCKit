@@ -153,6 +153,7 @@ const DD_KagerouClassRemodelAll = DD_KagerouClassRemodel.concat(DD_KagerouClass2
 const DD_YuugumoClass2ndRemodel = [
     542, // 夕雲改二
     563, // 巻雲改二
+    564, // 風雲改二
     543, // 長波改二
 ]
 const DD_ShimakazeRemodel = [

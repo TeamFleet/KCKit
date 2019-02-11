@@ -373,10 +373,10 @@ describe('Base functions/utilities', () => {
                 /* 大鹰・改二 (CVL，但有基础对潜，可提升) */ expect(db.ships[529].getStatExtraMax('asw')).toEqual(9);
             })
             describe(`should Ship.prototype.getBonuses() works`, () => {
-                it(`大鳳改 - No bonuses`, () => {
+                it(`大鳳改 - 1 bonuses`, () => {
                     expect(
-                        db.ships[156].getBonuses()
-                    ).toEqual([])
+                        db.ships[156].getBonuses().length
+                    ).toEqual(1)
                 })
                 it(`榛名改二 - 7 bonuses`, () => {
                     expect(

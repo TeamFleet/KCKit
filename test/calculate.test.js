@@ -841,6 +841,28 @@ describe('Calculating functions/utilities', () => {
                         })
                     })
                 })
+                describe('二式艦上偵察機', () => {
+                    it('Saratoga・Mk.II Mod.2 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
+                        expect(calculate.bonus(
+                            550,
+                            [61, 61, 61, 61],
+                            [0, 1, 2, 10]
+                        )).toEqual({
+                            fire: 2,
+                            los: 4,
+                        })
+                    })
+                    it('蒼龍改二 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
+                        expect(calculate.bonus(
+                            197,
+                            [61, 61, 61, 61],
+                            [0, 1, 2, 10]
+                        )).toEqual({
+                            fire: 12,
+                            los: 14,
+                        })
+                    })
+                })
             })
 
             describe('電探...', () => {
