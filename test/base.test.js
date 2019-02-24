@@ -378,10 +378,10 @@ describe('Base functions/utilities', () => {
                         db.ships[156].getBonuses().length
                     ).toEqual(1)
                 })
-                it(`榛名改二 - 7 bonuses`, () => {
+                it(`榛名改二 - 8 bonuses`, () => {
                     expect(
                         db.ships[151].getBonuses().length
-                    ).toEqual(7)
+                    ).toEqual(8)
                 })
             })
             describe(`should Ship.prototype.getAACI() works`, () => {
@@ -570,15 +570,15 @@ describe('Base functions/utilities', () => {
                         db.items[29].getBonuses().length
                     ).toEqual(16)
                 })
-                it(`15m二重測距儀+21号電探改二 - 2 bonuses`, () => {
+                it(`15m二重測距儀+21号電探改二 - 3 bonuses`, () => {
                     expect(
                         db.items[142].getBonuses().length
-                    ).toEqual(2)
+                    ).toEqual(3)
                 })
                 it(`41cm三连装炮改二`, () => {
                     expect(
                         db.items[290].getBonuses().length
-                    ).toEqual(4)
+                    ).toEqual(6)
                 })
             })
         })

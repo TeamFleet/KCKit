@@ -38,6 +38,7 @@ const dataBonuses = [
 
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
     ...require('./大口径主砲/35.6cm三連装砲改(ダズル迷彩仕様)'),
+    ...require('./大口径主砲/41cm連装砲改二'),
     ...require('./大口径主砲/41cm三連装砲改二'),
     ...require('./大口径主砲/16inch Mk.I三連装砲'),
 
@@ -80,6 +81,7 @@ const dataBonuses = [
 
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
 
+    ...require('./その他/三式弾改'),
     ...require('./その他/探照灯'),
     ...require('./その他/96式150cm探照灯'),
 

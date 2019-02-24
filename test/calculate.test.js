@@ -793,6 +793,131 @@ describe('Calculating functions/utilities', () => {
                 })
             })
 
+            describe('大口径主砲...', () => {
+                describe('41cm...', () => {
+                    it('扶桑改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
+                        expect(calculate.bonus(
+                            411,
+                            [318, 318],
+                        )).toEqual({
+                            fire: 2,
+                        })
+                    })
+                    it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
+                        expect(calculate.bonus(
+                            411,
+                            [318, 290],
+                        )).toEqual({
+                            fire: 2,
+                        })
+                    })
+                    it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
+                        expect(calculate.bonus(
+                            411,
+                            [318, 290, 30],
+                        )).toEqual({
+                            fire: 2,
+                        })
+                    })
+                    it('伊勢改 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
+                        expect(calculate.bonus(
+                            82,
+                            [318, 318],
+                        )).toEqual({
+                            fire: 4,
+                            aa: 4,
+                            evasion: 4,
+                        })
+                    })
+                    it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
+                        expect(calculate.bonus(
+                            82,
+                            [318, 290],
+                        )).toEqual({
+                            fire: 4,
+                            aa: 4,
+                            evasion: 5,
+                            armor: 1,
+                        })
+                    })
+                    it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
+                        expect(calculate.bonus(
+                            82,
+                            [318, 290, 30],
+                        )).toEqual({
+                            fire: 4,
+                            aa: 8,
+                            evasion: 11,
+                            armor: 1,
+                        })
+                    })
+                    it('伊勢改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
+                        expect(calculate.bonus(
+                            553,
+                            [318, 318],
+                        )).toEqual({
+                            fire: 4,
+                            aa: 4,
+                            evasion: 4,
+                        })
+                    })
+                    it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
+                        expect(calculate.bonus(
+                            553,
+                            [318, 290],
+                        )).toEqual({
+                            fire: 5,
+                            aa: 4,
+                            evasion: 5,
+                            armor: 1,
+                        })
+                    })
+                    it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
+                        expect(calculate.bonus(
+                            553,
+                            [318, 290, 30],
+                        )).toEqual({
+                            fire: 5,
+                            aa: 8,
+                            evasion: 11,
+                            armor: 1,
+                        })
+                    })
+                    it('長門改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
+                        expect(calculate.bonus(
+                            541,
+                            [318, 318],
+                        )).toEqual({
+                            fire: 6,
+                            aa: 4,
+                            evasion: 2,
+                        })
+                    })
+                    it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
+                        expect(calculate.bonus(
+                            541,
+                            [318, 290],
+                        )).toEqual({
+                            fire: 5,
+                            aa: 2,
+                            evasion: 3,
+                            armor: 1,
+                        })
+                    })
+                    it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
+                        expect(calculate.bonus(
+                            541,
+                            [318, 290, 30],
+                        )).toEqual({
+                            fire: 5,
+                            aa: 2,
+                            evasion: 3,
+                            armor: 1,
+                        })
+                    })
+                })
+            })
+
             describe('魚雷...', () => {
                 describe('533mm 三連装魚雷...', () => {
                     it('Верный || 533mm 三連装魚雷', () => {
@@ -937,6 +1062,15 @@ describe('Calculating functions/utilities', () => {
             })
 
             describe('その他...', () => {
+                it('比叡改二 || 三式弾改 ➕三式弾改', () => {
+                    expect(calculate.bonus(
+                        150,
+                        [317, 317],
+                    )).toEqual({
+                        fire: 4,
+                        aa: 4,
+                    })
+                })
                 it('比叡改二 || 探照灯', () => {
                     expect(calculate.bonus(
                         150,

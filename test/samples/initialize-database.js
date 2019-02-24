@@ -5,7 +5,7 @@ const parseRaw = require('../../src/parse-raw')
 
 module.exports = async (
     dbnames,
-    dbpath = path.resolve(__dirname, './db/')
+    dbpath = path.resolve(__dirname, '../../node_modules/whocallsthefleet-database/db')
 ) => await new Promise(async (resolve/*, reject*/) => {
     let db = {}
     let raw = {}
@@ -14,7 +14,7 @@ module.exports = async (
         const type = camelCase(dbname)
         raw[type] = await new Promise((resolve, reject) => {
             fs.readFile(
-                path.resolve(dbpath, `./${dbname}.nedb`),
+                path.resolve(dbpath, `${dbname}.nedb`),
                 'utf-8',
                 (err, data) => {
                     if (err) reject(err)
