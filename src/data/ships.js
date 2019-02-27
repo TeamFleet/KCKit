@@ -1,5 +1,6 @@
 const BB_NagatoClass2ndRemodel = [
     541, // 長門改二
+    573, // 陸奥改二
 ]
 const BB_KongouClass2ndRemodel = [
     149, // 金剛改二
