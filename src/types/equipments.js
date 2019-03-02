@@ -117,6 +117,10 @@ types.HAMountsAAFD = [
     types.SecondaryGunAA
 ];
 
+types.Type3Shells = [
+    types.Type3Shell
+];
+
 types.APShells = [
     types.APShell
 ];
