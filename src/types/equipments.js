@@ -121,6 +121,10 @@ types.APShells = [
     types.APShell
 ];
 
+types.Type3Shells = [
+    types.Type3Shell
+];
+
 types.Torpedos = [
     types.Torpedo,
     types.SubmarineTorpedo
