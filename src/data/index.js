@@ -4,7 +4,8 @@ let data = {
     ots: require('./ots'),
     tp: require('./tp'),
     bonus: require('./bonus'),
-    specialAttack: require('./special-attack')
+    specialAttack: require('./special-attack'),
+    equipmentStarBonus: require('./equipment-star-bonus')
 }
 
 module.exports = data

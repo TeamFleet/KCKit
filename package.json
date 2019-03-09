@@ -22,13 +22,13 @@
         "test:calculate": "jest ./test/calculate.test.js"
     },
     "dependencies": {
-        "camelcase": "^5.0.0"
+        "camelcase": "5.2.0"
     },
     "devDependencies": {
-        "jest": "^24.1.0",
-        "eslint": "^5.14.1",
-        "babel-eslint": "^10.0.1",
-        "whocallsthefleet-database": "20190228.0.0"
+        "jest": "24.3.1",
+        "eslint": "5.15.1",
+        "babel-eslint": "10.0.1",
+        "whocallsthefleet-database": "20190305.0.0"
     },
     "jest": {
         "testEnvironment": "node"

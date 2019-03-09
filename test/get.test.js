@@ -10,10 +10,11 @@ beforeAll(() => new Promise(async resolve => {
     require('../src/register.js')({ db })
 }))
 
-const getShip = require ('../src/get/ship')
-const getShipType = require ('../src/get/ship-type')
-const getShipClass = require ('../src/get/ship-class')
-
+const getShip = require('../src/get/ship')
+const getShipType = require('../src/get/ship-type')
+const getShipClass = require('../src/get/ship-class')
+const getEquipmentStarBonusType = require('../src/get/equipment-star-bonus-type')
+const getEquipmentStarBonus = require('../src/get/equipment-star-bonus')
 
 describe('Getting functions/utilities', () => {
     describe('get ship...', () => {
@@ -58,4 +59,24 @@ describe('Getting functions/utilities', () => {
             expect(getShipClass(db.shipClasses[1]).id).toBe(1);
         });
     });
+    describe('get equipment star bonus type object...', () => {
+        it('should value for type works', () => {
+            expect(typeof getEquipmentStarBonusType(1)).toBe('object')
+            expect(getEquipmentStarBonusType(75)).toEqual({})
+        })
+        it('should value for stat works', () => {
+            expect(typeof getEquipmentStarBonusType(1, 'shelling')).toBe('number')
+            expect(Array.isArray(getEquipmentStarBonusType(10, 'shelling'))).toBe(true)
+            expect(typeof getEquipmentStarBonusType(10, 'night')).toBe('number')
+            expect(getEquipmentStarBonusType(1, 'fighter')).toBe(0)
+        })
+    })
+    describe('get equipment star bonus...', () => {
+        it('should works', () => {
+            expect(getEquipmentStarBonus(1, 'shelling', 9)).toBe(3)
+            expect(getEquipmentStarBonus(1, 'fighter', 9)).toBe(0)
+            expect(getEquipmentStarBonus(10, 'shelling', 10)).toBe(2)
+            expect(getEquipmentStarBonus(10, 'night', 9)).toBe(3)
+        })
+    })
 })

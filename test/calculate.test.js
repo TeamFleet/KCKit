@@ -14,1164 +14,1162 @@ const calculate = require('../src/calculate')
 
 
 describe('Calculating functions/utilities', () => {
-    describe('general', () => {
-        describe('tp...', () => {
-            it('case 1', () => {
-                expect(calculate.tp({
-                    shipType: {
-                        1: 1
-                    }
-                })).toBe(5)
-                expect(calculate.tp({
-                    shipType: {
-                        '1': 1
-                    }
-                })).toBe(5)
+    describe('tp...', () => {
+        it('case 1', () => {
+            expect(calculate.tp({
+                shipType: {
+                    1: 1
+                }
+            })).toBe(5)
+            expect(calculate.tp({
+                shipType: {
+                    '1': 1
+                }
+            })).toBe(5)
+        })
+        it('case 2', () => {
+            expect(calculate.tp({
+                shipType: {
+                    1: 2
+                },
+                equipmentType: {
+                    LandingCraft: 3
+                }
+            })).toBe(34)
+        })
+        it('case 3', () => {
+            expect(calculate.tp({
+                shipType: {
+                    1: 2,
+                    15: 1,
+                },
+                equipmentType: {
+                    LandingCraft: 3,
+                    48: 1
+                }
+            })).toBe(47)
+        })
+    })
+    describe('bonus...', () => {
+        describe('common...', () => {
+            it('陽炎改二 || 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    566, 267
+                )).toEqual({
+                    fire: 2,
+                    evasion: 1,
+                })
             })
-            it('case 2', () => {
-                expect(calculate.tp({
-                    shipType: {
-                        1: 2
-                    },
-                    equipmentType: {
-                        LandingCraft: 3
-                    }
-                })).toBe(34)
+            it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    566, [267, 267]
+                )).toEqual({
+                    fire: 3,
+                    evasion: 2,
+                })
             })
-            it('case 3', () => {
-                expect(calculate.tp({
-                    shipType: {
-                        1: 2,
-                        15: 1,
-                    },
-                    equipmentType: {
-                        LandingCraft: 3,
-                        48: 1
-                    }
-                })).toBe(47)
+            it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    566, [267, 267, 267]
+                )).toEqual({
+                    fire: 4,
+                    evasion: 3,
+                })
+            })
+            it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕22号対水上電探改四', () => {
+                expect(calculate.bonus(
+                    566, [267, 267, 88]
+                )).toEqual({
+                    fire: 3,
+                    evasion: 2,
+                })
+            })
+            it('長波改 || 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    304, 267
+                )).toEqual({
+                    fire: 2,
+                    evasion: 1,
+                })
+            })
+            it('長波改 || 12.7cm連装砲D型改二 ➕33号対水上電探', () => {
+                expect(calculate.bonus(
+                    304,
+                    [267, 29],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 3,
+                    evasion: 2,
+                })
+            })
+            it('長波改二 || 12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    543, 267
+                )).toEqual({
+                    fire: 3,
+                    evasion: 1,
+                })
+            })
+            it('長波改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
+                expect(calculate.bonus(
+                    543, [267, 267, 267]
+                )).toEqual({
+                    fire: 9,
+                    evasion: 3,
+                })
+            })
+            it('長波改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕22号対水上電探改四', () => {
+                expect(calculate.bonus(
+                    543, [267, 267, 88]
+                )).toEqual({
+                    fire: 9,
+                    torpedo: 4,
+                    evasion: 5,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    567, [15]
+                )).toEqual({
+                    torpedo: 2,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    567, [15, 15]
+                )).toEqual({
+                    torpedo: 4,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    567, [15, 15, 15]
+                )).toEqual({
+                    torpedo: 4,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷後期型 ➕61cm四連装(酸素)魚雷後期型', () => {
+                expect(calculate.bonus(
+                    567, [286, 286]
+                )).toEqual({
+                    torpedo: 4,
+                    evasion: 2,
+                })
+            })
+            it('不知火改二 || 61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
+                expect(calculate.bonus(
+                    567, [286, 286], [10, 5]
+                )).toEqual({
+                    fire: 1,
+                    torpedo: 6,
+                    evasion: 2,
+                })
+            })
+            it('不知火改二 || 12.7cm連装砲D型改二 ➕61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
+                expect(calculate.bonus(
+                    567, [267, 286, 286], [0, 10, 5]
+                )).toEqual({
+                    fire: 3,
+                    torpedo: 6,
+                    evasion: 3,
+                })
+            })
+            it('木曽改二 || 北方迷彩(＋北方装備)', () => {
+                expect(calculate.bonus(
+                    146, [268]
+                )).toEqual({
+                    armor: 2,
+                    evasion: 7,
+                })
+            })
+            it('木曽改二 || 北方迷彩(＋北方装備) ➕北方迷彩(＋北方装備) ➕北方迷彩(＋北方装備)', () => {
+                expect(calculate.bonus(
+                    146, [268, 268, 268]
+                )).toEqual({
+                    armor: 2,
+                    evasion: 7,
+                })
+            })
+            it('由良改二 || 12.7cm単装高角砲(後期型)⭐MAX ➕12.7cm単装高角砲(後期型)⭐MAX ➕FuMO25 レーダー', () => {
+                expect(calculate.bonus(
+                    488,
+                    [229, 229, 124],
+                    [10, 10],
+                )).toEqual({
+                    fire: 7,
+                    aa: 6,
+                    evasion: 2,
+                })
+            })
+            it('由良改二 || 12.7cm単装高角砲(後期型)⭐5 ➕FuMO25 レーダー', () => {
+                expect(calculate.bonus(
+                    488,
+                    [229, 124],
+                    [5],
+                )).toEqual({})
+            })
+            it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX', () => {
+                expect(calculate.bonus(
+                    376,
+                    [229],
+                    [10],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                })
+            })
+            it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX ➕22号対水上電探', () => {
+                expect(calculate.bonus(
+                    376,
+                    [229, 28],
+                    [10],
+                )).toEqual({
+                    fire: 2,
+                    aa: 1,
+                    evasion: 4,
+                })
+            })
+            it('伊勢改二 || 二式艦上偵察機 ➕二式艦上偵察機', () => {
+                expect(calculate.bonus(
+                    553,
+                    [61, 61],
+                )).toEqual({
+                    fire: 6,
+                    armor: 2,
+                    evasion: 4,
+                    range: 1,
+                })
+            })
+            it('叢雲改二 || 61cm三連装(酸素)魚雷後期型', () => {
+                expect(calculate.bonus(
+                    420,
+                    [285],
+                )).toEqual({
+                    torpedo: 2,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [285],
+                    [10],
+                )).toEqual({
+                    fire: 1,
+                    torpedo: 2,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294],
+                )).toEqual({
+                    fire: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 ➕33号対水上電探', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 29],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 1,
+                    evasion: 2,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 125],
+                )).toEqual({
+                    fire: 2,
+                    torpedo: 3,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 285],
+                    [0, 10],
+                )).toEqual({
+                    fire: 3,
+                    torpedo: 6,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 125, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 9,
+                    evasion: 1,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 285, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 10,
+                    evasion: 2,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型⭐MAX ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 285, 285],
+                    [0, 10, 10],
+                )).toEqual({
+                    fire: 5,
+                    torpedo: 10,
+                    evasion: 2,
+                })
+            })
+            it('叢雲改二 || 12.7cm連装砲A型改二 ➕33号対水上電探 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [294, 29, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 6,
+                    torpedo: 7,
+                    evasion: 3,
+                })
+            })
+            it('初春改二 || 12.7cm連装砲A型改三(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    420,
+                    [295, 106, 285],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 6,
+                    aa: 8,
+                    evasion: 1,
+                })
+            })
+            it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    144,
+                    [296, 106, 286],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 6,
+                    aa: 6,
+                    evasion: 2,
+                })
+            })
+            it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕12.7cm連装砲B型改二 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    144,
+                    [296, 63, 286],
+                    [0, 0, 10],
+                )).toEqual({
+                    fire: 5,
+                    torpedo: 7,
+                    aa: 1,
+                    evasion: 4,
+                })
+            })
+            it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕12.7cm連装砲C型改二 ➕33号対水上電探', () => {
+                expect(calculate.bonus(
+                    144,
+                    [296, 266, 29],
+                )).toEqual({
+                    fire: 5,
+                    torpedo: 7,
+                    evasion: 4,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲', () => {
+                expect(calculate.bonus(
+                    364,
+                    [298, 298],
+                )).toEqual({
+                    fire: 4,
+                    armor: 2,
+                    evasion: -4,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲 ➕20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    364,
+                    [298, 298, 301],
+                )).toEqual({
+                    fire: 4,
+                    aa: 2,
+                    armor: 3,
+                    evasion: -3,
+                })
+            })
+            it('北上 || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    25,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                })
+            })
+            it('北上改二 || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    119,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                })
+            })
+            it('大鷹改二 || 九七式艦攻(九三一空) ➕Ju87C改二(KMX搭載機)', () => {
+                expect(calculate.bonus(
+                    529,
+                    [82, 305],
+                )).toEqual({
+                    asw: 2,
+                    evasion: 2,
+                })
+            })
+            it('Graf Zeppelin改 || 九七式艦攻(九三一空) ➕Ju87C改二(KMX搭載機)', () => {
+                expect(calculate.bonus(
+                    353,
+                    [82, 305],
+                )).toEqual({
+                    fire: 1,
+                    evasion: 1,
+                })
+            })
+            it('睦月改二 || 12cm単装砲改二 ➕33号対水上電探', () => {
+                expect(calculate.bonus(
+                    434,
+                    [293, 29],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 1,
+                    aa: 1,
+                    evasion: 6,
+                })
+            })
+            it('睦月改二 || 12cm単装砲改二 ➕33号対水上電探 ➕53cm連装魚雷', () => {
+                expect(calculate.bonus(
+                    434,
+                    [293, 29, 174],
+                )).toEqual({
+                    fire: 6,
+                    torpedo: 5,
+                    aa: 1,
+                    evasion: 6,
+                })
+            })
+            it('睦月改二 || 12cm単装砲改二 ➕53cm連装魚雷 ➕53cm連装魚雷', () => {
+                expect(calculate.bonus(
+                    434,
+                    [293, 174, 174],
+                )).toEqual({
+                    fire: 5,
+                    torpedo: 7,
+                    aa: 1,
+                    evasion: 3,
+                })
+            })
+            it('Gotland || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    574,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 2,
+                    evasion: 1,
+                })
+            })
+            it('Gotland || Bofors 15.2cm連装砲 Model 1930 ➕Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    574,
+                    [303, 303],
+                )).toEqual({
+                    fire: 2,
+                    aa: 4,
+                    evasion: 2,
+                })
+            })
+            it('Gotland改 || Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    579,
+                    [303],
+                )).toEqual({
+                    fire: 1,
+                    aa: 2,
+                    evasion: 1,
+                })
+            })
+            it('Gotland改 || Bofors 15.2cm連装砲 Model 1930 ➕Bofors 15.2cm連装砲 Model 1930', () => {
+                expect(calculate.bonus(
+                    579,
+                    [303, 303],
+                )).toEqual({
+                    fire: 2,
+                    aa: 4,
+                    evasion: 2,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    364,
+                    [300, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: -1,
+                    armor: 2,
+                })
+            })
+            it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    576,
+                    [298, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: 1,
+                    armor: 2,
+                })
+            })
+            it('Warspite改 || 16inch Mk.I三連装砲 ➕20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    364,
+                    [298, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: -1,
+                    armor: 2,
+                })
+            })
+            it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
+                expect(calculate.bonus(
+                    576,
+                    [300, 301],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: 1,
+                    armor: 2,
+                })
+            })
+            it('長門改二 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    541,
+                    [308],
+                )).toEqual({
+                })
+            })
+            it('睦月 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    1,
+                    [308],
+                )).toEqual({
+                    fire: 1,
+                })
+            })
+            it('睦月 || 5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    1,
+                    [308, 308],
+                )).toEqual({
+                    fire: 2,
+                })
+            })
+            it('Samuel B.Roberts改 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    681,
+                    [308],
+                )).toEqual({
+                    fire: 2,
+                    aa: 1,
+                    evasion: 1,
+                })
+            })
+            it('Samuel B.Roberts改 || 5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    681,
+                    [308, 308, 308],
+                )).toEqual({
+                    fire: 6,
+                    aa: 3,
+                    evasion: 3,
+                })
+            })
+            it('長門改二 || GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    541,
+                    [307],
+                )).toEqual({
+                })
+            })
+            it('Iowa || GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    440,
+                    [307],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                    evasion: 1,
+                })
+            })
+            it('Iowa改 || GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    360,
+                    [307],
+                )).toEqual({
+                    fire: 1,
+                    aa: 1,
+                    evasion: 1,
+                })
+            })
+            it('Iowa改 || GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(
+                    360,
+                    [307, 307],
+                )).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: 2,
+                })
             })
         })
-        describe('bonus...', () => {
-            describe('common...', () => {
-                it('陽炎改二 || 12.7cm連装砲D型改二', () => {
+
+        describe('小口径主砲...', () => {
+            describe('130mm B-13連装砲...', () => {
+                it('Верный || 130mm B-13連装砲', () => {
                     expect(calculate.bonus(
-                        566, 267
+                        147,
+                        [282],
+                    )).toEqual({
+                        fire: 2,
+                        armor: 1,
+                    })
+                })
+                it('Верный || 130mm B-13連装砲 ➕12.7cm連装砲A型改三(戦時改修)+高射装置', () => {
+                    expect(calculate.bonus(
+                        147,
+                        [282, 295],
+                    )).toEqual({
+                        fire: 4,
+                        aa: 2,
+                        armor: 1,
+                    })
+                })
+                it('夕張 || 130mm B-13連装砲', () => {
+                    expect(calculate.bonus(
+                        115,
+                        [282],
+                    )).toEqual({
+                        fire: 2,
+                        armor: 1,
+                    })
+                })
+            })
+        })
+
+        describe('中口径主砲...', () => {
+            describe('20.3cm(2号)連装砲...', () => {
+                it('青葉改 || 20.3cm(2号)連装砲', () => {
+                    expect(calculate.bonus(
+                        264,
+                        [90],
+                    )).toEqual({
+                        fire: 1,
+                        aa: 1,
+                    })
+                })
+                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
+                    expect(calculate.bonus(
+                        264,
+                        [90, 90],
+                    )).toEqual({
+                        fire: 2,
+                        aa: 2,
+                    })
+                })
+                it('青葉改 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
+                    expect(calculate.bonus(
+                        264,
+                        [90, 307],
+                    )).toEqual({
+                        fire: 4,
+                        aa: 6,
+                        torpedo: 2,
+                        evasion: 4,
+                    })
+                })
+                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕32号対水上電探', () => {
+                    expect(calculate.bonus(
+                        264,
+                        [90, 90, 31],
+                    )).toEqual({
+                        fire: 5,
+                        aa: 2,
+                        torpedo: 2,
+                        evasion: 2,
+                    })
+                })
+                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
+                    expect(calculate.bonus(
+                        264,
+                        [90, 90, 307],
+                    )).toEqual({
+                        fire: 5,
+                        aa: 7,
+                        torpedo: 2,
+                        evasion: 4,
+                    })
+                })
+                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                    expect(calculate.bonus(
+                        264,
+                        [90, 90, 307, 307],
+                    )).toEqual({
+                        fire: 5,
+                        aa: 7,
+                        torpedo: 2,
+                        evasion: 4,
+                    })
+                })
+                it('衣笠改二 || 20.3cm(2号)連装砲', () => {
+                    expect(calculate.bonus(
+                        142,
+                        [90],
                     )).toEqual({
                         fire: 2,
                         evasion: 1,
                     })
                 })
-                it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
+                it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
                     expect(calculate.bonus(
-                        566, [267, 267]
-                    )).toEqual({
-                        fire: 3,
-                        evasion: 2,
-                    })
-                })
-                it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
-                    expect(calculate.bonus(
-                        566, [267, 267, 267]
+                        142,
+                        [90, 90],
                     )).toEqual({
                         fire: 4,
-                        evasion: 3,
-                    })
-                })
-                it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕22号対水上電探改四', () => {
-                    expect(calculate.bonus(
-                        566, [267, 267, 88]
-                    )).toEqual({
-                        fire: 3,
                         evasion: 2,
                     })
                 })
-                it('長波改 || 12.7cm連装砲D型改二', () => {
+                it('衣笠改二 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
                     expect(calculate.bonus(
-                        304, 267
+                        142,
+                        [90, 307],
                     )).toEqual({
-                        fire: 2,
-                        evasion: 1,
-                    })
-                })
-                it('長波改 || 12.7cm連装砲D型改二 ➕33号対水上電探', () => {
-                    expect(calculate.bonus(
-                        304,
-                        [267, 29],
-                    )).toEqual({
-                        fire: 4,
-                        torpedo: 3,
-                        evasion: 2,
-                    })
-                })
-                it('長波改二 || 12.7cm連装砲D型改二', () => {
-                    expect(calculate.bonus(
-                        543, 267
-                    )).toEqual({
-                        fire: 3,
-                        evasion: 1,
-                    })
-                })
-                it('長波改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
-                    expect(calculate.bonus(
-                        543, [267, 267, 267]
-                    )).toEqual({
-                        fire: 9,
+                        fire: 5,
                         evasion: 3,
-                    })
-                })
-                it('長波改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕22号対水上電探改四', () => {
-                    expect(calculate.bonus(
-                        543, [267, 267, 88]
-                    )).toEqual({
-                        fire: 9,
-                        torpedo: 4,
-                        evasion: 5,
-                    })
-                })
-                it('不知火改二 || 61cm四連装(酸素)魚雷', () => {
-                    expect(calculate.bonus(
-                        567, [15]
-                    )).toEqual({
                         torpedo: 2,
                     })
                 })
-                it('不知火改二 || 61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷', () => {
+                it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
                     expect(calculate.bonus(
-                        567, [15, 15]
-                    )).toEqual({
-                        torpedo: 4,
-                    })
-                })
-                it('不知火改二 || 61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷', () => {
-                    expect(calculate.bonus(
-                        567, [15, 15, 15]
-                    )).toEqual({
-                        torpedo: 4,
-                    })
-                })
-                it('不知火改二 || 61cm四連装(酸素)魚雷後期型 ➕61cm四連装(酸素)魚雷後期型', () => {
-                    expect(calculate.bonus(
-                        567, [286, 286]
-                    )).toEqual({
-                        torpedo: 4,
-                        evasion: 2,
-                    })
-                })
-                it('不知火改二 || 61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
-                    expect(calculate.bonus(
-                        567, [286, 286], [10, 5]
-                    )).toEqual({
-                        fire: 1,
-                        torpedo: 6,
-                        evasion: 2,
-                    })
-                })
-                it('不知火改二 || 12.7cm連装砲D型改二 ➕61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
-                    expect(calculate.bonus(
-                        567, [267, 286, 286], [0, 10, 5]
-                    )).toEqual({
-                        fire: 3,
-                        torpedo: 6,
-                        evasion: 3,
-                    })
-                })
-                it('木曽改二 || 北方迷彩(＋北方装備)', () => {
-                    expect(calculate.bonus(
-                        146, [268]
-                    )).toEqual({
-                        armor: 2,
-                        evasion: 7,
-                    })
-                })
-                it('木曽改二 || 北方迷彩(＋北方装備) ➕北方迷彩(＋北方装備) ➕北方迷彩(＋北方装備)', () => {
-                    expect(calculate.bonus(
-                        146, [268, 268, 268]
-                    )).toEqual({
-                        armor: 2,
-                        evasion: 7,
-                    })
-                })
-                it('由良改二 || 12.7cm単装高角砲(後期型)⭐MAX ➕12.7cm単装高角砲(後期型)⭐MAX ➕FuMO25 レーダー', () => {
-                    expect(calculate.bonus(
-                        488,
-                        [229, 229, 124],
-                        [10, 10],
+                        142,
+                        [90, 90, 307],
                     )).toEqual({
                         fire: 7,
-                        aa: 6,
-                        evasion: 2,
+                        evasion: 4,
+                        torpedo: 2,
                     })
                 })
-                it('由良改二 || 12.7cm単装高角砲(後期型)⭐5 ➕FuMO25 レーダー', () => {
+                it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
                     expect(calculate.bonus(
-                        488,
-                        [229, 124],
-                        [5],
-                    )).toEqual({})
-                })
-                it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX', () => {
-                    expect(calculate.bonus(
-                        376,
-                        [229],
-                        [10],
+                        142,
+                        [90, 90, 307, 307],
                     )).toEqual({
-                        fire: 1,
-                        aa: 1,
+                        fire: 7,
+                        evasion: 4,
+                        torpedo: 2,
                     })
                 })
-                it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX ➕22号対水上電探', () => {
+            })
+        })
+
+        describe('大口径主砲...', () => {
+            describe('41cm...', () => {
+                it('扶桑改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
                     expect(calculate.bonus(
-                        376,
-                        [229, 28],
-                        [10],
+                        411,
+                        [318, 318],
                     )).toEqual({
                         fire: 2,
-                        aa: 1,
+                    })
+                })
+                it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
+                    expect(calculate.bonus(
+                        411,
+                        [318, 290],
+                    )).toEqual({
+                        fire: 2,
+                    })
+                })
+                it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
+                    expect(calculate.bonus(
+                        411,
+                        [318, 290, 30],
+                    )).toEqual({
+                        fire: 2,
+                    })
+                })
+                it('伊勢改 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
+                    expect(calculate.bonus(
+                        82,
+                        [318, 318],
+                    )).toEqual({
+                        fire: 4,
+                        aa: 4,
                         evasion: 4,
                     })
                 })
-                it('伊勢改二 || 二式艦上偵察機 ➕二式艦上偵察機', () => {
+                it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
+                    expect(calculate.bonus(
+                        82,
+                        [318, 290],
+                    )).toEqual({
+                        fire: 4,
+                        aa: 4,
+                        evasion: 5,
+                        armor: 1,
+                    })
+                })
+                it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
+                    expect(calculate.bonus(
+                        82,
+                        [318, 290, 30],
+                    )).toEqual({
+                        fire: 4,
+                        aa: 8,
+                        evasion: 11,
+                        armor: 1,
+                    })
+                })
+                it('伊勢改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
                     expect(calculate.bonus(
                         553,
-                        [61, 61],
+                        [318, 318],
                     )).toEqual({
-                        fire: 6,
-                        armor: 2,
+                        fire: 4,
+                        aa: 4,
                         evasion: 4,
-                        range: 1,
                     })
                 })
-                it('叢雲改二 || 61cm三連装(酸素)魚雷後期型', () => {
+                it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
                     expect(calculate.bonus(
-                        420,
-                        [285],
-                    )).toEqual({
-                        torpedo: 2,
-                        evasion: 1,
-                    })
-                })
-                it('叢雲改二 || 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [285],
-                        [10],
-                    )).toEqual({
-                        fire: 1,
-                        torpedo: 2,
-                        evasion: 1,
-                    })
-                })
-                it('叢雲改二 || 12.7cm連装砲A型改二', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [294],
-                    )).toEqual({
-                        fire: 1,
-                    })
-                })
-                it('叢雲改二 || 12.7cm連装砲A型改二 ➕33号対水上電探', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [294, 29],
-                    )).toEqual({
-                        fire: 4,
-                        torpedo: 1,
-                        evasion: 2,
-                    })
-                })
-                it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [294, 125],
-                    )).toEqual({
-                        fire: 2,
-                        torpedo: 3,
-                    })
-                })
-                it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [294, 285],
-                        [0, 10],
-                    )).toEqual({
-                        fire: 3,
-                        torpedo: 6,
-                        evasion: 1,
-                    })
-                })
-                it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [294, 125, 285],
-                        [0, 0, 10],
-                    )).toEqual({
-                        fire: 4,
-                        torpedo: 9,
-                        evasion: 1,
-                    })
-                })
-                it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [294, 285, 285],
-                        [0, 0, 10],
-                    )).toEqual({
-                        fire: 4,
-                        torpedo: 10,
-                        evasion: 2,
-                    })
-                })
-                it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型⭐MAX ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [294, 285, 285],
-                        [0, 10, 10],
+                        553,
+                        [318, 290],
                     )).toEqual({
                         fire: 5,
-                        torpedo: 10,
-                        evasion: 2,
+                        aa: 4,
+                        evasion: 5,
+                        armor: 1,
                     })
                 })
-                it('叢雲改二 || 12.7cm連装砲A型改二 ➕33号対水上電探 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
                     expect(calculate.bonus(
-                        420,
-                        [294, 29, 285],
-                        [0, 0, 10],
+                        553,
+                        [318, 290, 30],
                     )).toEqual({
-                        fire: 6,
-                        torpedo: 7,
-                        evasion: 3,
-                    })
-                })
-                it('初春改二 || 12.7cm連装砲A型改三(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
-                    expect(calculate.bonus(
-                        420,
-                        [295, 106, 285],
-                        [0, 0, 10],
-                    )).toEqual({
-                        fire: 4,
-                        torpedo: 6,
+                        fire: 5,
                         aa: 8,
-                        evasion: 1,
+                        evasion: 11,
+                        armor: 1,
                     })
                 })
-                it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
+                it('長門改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
                     expect(calculate.bonus(
-                        144,
-                        [296, 106, 286],
-                        [0, 0, 10],
+                        541,
+                        [318, 318],
                     )).toEqual({
-                        fire: 4,
-                        torpedo: 6,
-                        aa: 6,
+                        fire: 6,
+                        aa: 4,
                         evasion: 2,
                     })
                 })
-                it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕12.7cm連装砲B型改二 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
+                it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
                     expect(calculate.bonus(
-                        144,
-                        [296, 63, 286],
-                        [0, 0, 10],
+                        541,
+                        [318, 290],
                     )).toEqual({
                         fire: 5,
-                        torpedo: 7,
-                        aa: 1,
-                        evasion: 4,
-                    })
-                })
-                it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕12.7cm連装砲C型改二 ➕33号対水上電探', () => {
-                    expect(calculate.bonus(
-                        144,
-                        [296, 266, 29],
-                    )).toEqual({
-                        fire: 5,
-                        torpedo: 7,
-                        evasion: 4,
-                    })
-                })
-                it('Warspite改 || 16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲', () => {
-                    expect(calculate.bonus(
-                        364,
-                        [298, 298],
-                    )).toEqual({
-                        fire: 4,
-                        armor: 2,
-                        evasion: -4,
-                    })
-                })
-                it('Warspite改 || 16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲 ➕20連装7inch UP Rocket Launchers', () => {
-                    expect(calculate.bonus(
-                        364,
-                        [298, 298, 301],
-                    )).toEqual({
-                        fire: 4,
                         aa: 2,
-                        armor: 3,
-                        evasion: -3,
+                        evasion: 3,
+                        armor: 1,
                     })
                 })
-                it('北上 || Bofors 15.2cm連装砲 Model 1930', () => {
+                it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
                     expect(calculate.bonus(
-                        25,
-                        [303],
+                        541,
+                        [318, 290, 30],
+                    )).toEqual({
+                        fire: 5,
+                        aa: 2,
+                        evasion: 3,
+                        armor: 1,
+                    })
+                })
+            })
+        })
+
+        describe('魚雷...', () => {
+            describe('533mm 三連装魚雷...', () => {
+                it('Верный || 533mm 三連装魚雷', () => {
+                    expect(calculate.bonus(
+                        147,
+                        [283],
                     )).toEqual({
                         fire: 1,
-                        aa: 1,
+                        torpedo: 3,
+                        armor: 1,
                     })
                 })
-                it('北上改二 || Bofors 15.2cm連装砲 Model 1930', () => {
+                it('Верный || 533mm 三連装魚雷 ➕61cm三連装(酸素)魚雷後期型', () => {
                     expect(calculate.bonus(
-                        119,
-                        [303],
+                        147,
+                        [283, 285],
                     )).toEqual({
                         fire: 1,
-                        aa: 1,
+                        torpedo: 5,
+                        armor: 1,
+                        evasion: 1
                     })
                 })
-                it('大鷹改二 || 九七式艦攻(九三一空) ➕Ju87C改二(KMX搭載機)', () => {
+            })
+        })
+
+        describe('艦上機...', () => {
+            describe('Re. series...', () => {
+                it('Aquila改 || Re.2001 OR改 ➕Re.2005 改 ➕Re.2001 CB改 ➕Re.2001 G改', () => {
                     expect(calculate.bonus(
-                        529,
-                        [82, 305],
+                        365,
+                        [184, 189, 316, 188],
                     )).toEqual({
-                        asw: 2,
-                        evasion: 2,
+                        fire: 8,
+                        aa: 5,
+                        evasion: 7,
                     })
                 })
-                it('Graf Zeppelin改 || 九七式艦攻(九三一空) ➕Ju87C改二(KMX搭載機)', () => {
+                it('Graf Zeppelin改 || Re.2001 OR改 ➕Re.2005 改 ➕Re.2001 CB改 ➕Re.2001 G改', () => {
                     expect(calculate.bonus(
                         353,
-                        [82, 305],
+                        [184, 189, 316, 188],
                     )).toEqual({
-                        fire: 1,
-                        evasion: 1,
-                    })
-                })
-                it('睦月改二 || 12cm単装砲改二 ➕33号対水上電探', () => {
-                    expect(calculate.bonus(
-                        434,
-                        [293, 29],
-                    )).toEqual({
-                        fire: 4,
-                        torpedo: 1,
                         aa: 1,
-                        evasion: 6,
-                    })
-                })
-                it('睦月改二 || 12cm単装砲改二 ➕33号対水上電探 ➕53cm連装魚雷', () => {
-                    expect(calculate.bonus(
-                        434,
-                        [293, 29, 174],
-                    )).toEqual({
-                        fire: 6,
-                        torpedo: 5,
-                        aa: 1,
-                        evasion: 6,
-                    })
-                })
-                it('睦月改二 || 12cm単装砲改二 ➕53cm連装魚雷 ➕53cm連装魚雷', () => {
-                    expect(calculate.bonus(
-                        434,
-                        [293, 174, 174],
-                    )).toEqual({
-                        fire: 5,
-                        torpedo: 7,
-                        aa: 1,
-                        evasion: 3,
-                    })
-                })
-                it('Gotland || Bofors 15.2cm連装砲 Model 1930', () => {
-                    expect(calculate.bonus(
-                        574,
-                        [303],
-                    )).toEqual({
-                        fire: 1,
-                        aa: 2,
-                        evasion: 1,
-                    })
-                })
-                it('Gotland || Bofors 15.2cm連装砲 Model 1930 ➕Bofors 15.2cm連装砲 Model 1930', () => {
-                    expect(calculate.bonus(
-                        574,
-                        [303, 303],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 4,
-                        evasion: 2,
-                    })
-                })
-                it('Gotland改 || Bofors 15.2cm連装砲 Model 1930', () => {
-                    expect(calculate.bonus(
-                        579,
-                        [303],
-                    )).toEqual({
-                        fire: 1,
-                        aa: 2,
-                        evasion: 1,
-                    })
-                })
-                it('Gotland改 || Bofors 15.2cm連装砲 Model 1930 ➕Bofors 15.2cm連装砲 Model 1930', () => {
-                    expect(calculate.bonus(
-                        579,
-                        [303, 303],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 4,
-                        evasion: 2,
-                    })
-                })
-                it('Warspite改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
-                    expect(calculate.bonus(
-                        364,
-                        [300, 301],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 2,
-                        evasion: -1,
-                        armor: 2,
-                    })
-                })
-                it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
-                    expect(calculate.bonus(
-                        576,
-                        [298, 301],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 2,
-                        evasion: 1,
-                        armor: 2,
-                    })
-                })
-                it('Warspite改 || 16inch Mk.I三連装砲 ➕20連装7inch UP Rocket Launchers', () => {
-                    expect(calculate.bonus(
-                        364,
-                        [298, 301],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 2,
-                        evasion: -1,
-                        armor: 2,
-                    })
-                })
-                it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
-                    expect(calculate.bonus(
-                        576,
-                        [300, 301],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 2,
-                        evasion: 1,
-                        armor: 2,
-                    })
-                })
-                it('長門改二 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        541,
-                        [308],
-                    )).toEqual({
-                    })
-                })
-                it('睦月 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        1,
-                        [308],
-                    )).toEqual({
-                        fire: 1,
-                    })
-                })
-                it('睦月 || 5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        1,
-                        [308, 308],
-                    )).toEqual({
-                        fire: 2,
-                    })
-                })
-                it('Samuel B.Roberts改 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        681,
-                        [308],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 1,
-                        evasion: 1,
-                    })
-                })
-                it('Samuel B.Roberts改 || 5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        681,
-                        [308, 308, 308],
-                    )).toEqual({
-                        fire: 6,
-                        aa: 3,
-                        evasion: 3,
-                    })
-                })
-                it('長門改二 || GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        541,
-                        [307],
-                    )).toEqual({
-                    })
-                })
-                it('Iowa || GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        440,
-                        [307],
-                    )).toEqual({
-                        fire: 1,
-                        aa: 1,
-                        evasion: 1,
-                    })
-                })
-                it('Iowa改 || GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        360,
-                        [307],
-                    )).toEqual({
-                        fire: 1,
-                        aa: 1,
-                        evasion: 1,
-                    })
-                })
-                it('Iowa改 || GFCS Mk.37 ➕GFCS Mk.37', () => {
-                    expect(calculate.bonus(
-                        360,
-                        [307, 307],
-                    )).toEqual({
-                        fire: 2,
-                        aa: 2,
                         evasion: 2,
                     })
                 })
             })
-
-            describe('小口径主砲...', () => {
-                describe('130mm B-13連装砲...', () => {
-                    it('Верный || 130mm B-13連装砲', () => {
-                        expect(calculate.bonus(
-                            147,
-                            [282],
-                        )).toEqual({
-                            fire: 2,
-                            armor: 1,
-                        })
-                    })
-                    it('Верный || 130mm B-13連装砲 ➕12.7cm連装砲A型改三(戦時改修)+高射装置', () => {
-                        expect(calculate.bonus(
-                            147,
-                            [282, 295],
-                        )).toEqual({
-                            fire: 4,
-                            aa: 2,
-                            armor: 1,
-                        })
-                    })
-                    it('夕張 || 130mm B-13連装砲', () => {
-                        expect(calculate.bonus(
-                            115,
-                            [282],
-                        )).toEqual({
-                            fire: 2,
-                            armor: 1,
-                        })
-                    })
-                })
-            })
-
-            describe('中口径主砲...', () => {
-                describe('20.3cm(2号)連装砲...', () => {
-                    it('青葉改 || 20.3cm(2号)連装砲', () => {
-                        expect(calculate.bonus(
-                            264,
-                            [90],
-                        )).toEqual({
-                            fire: 1,
-                            aa: 1,
-                        })
-                    })
-                    it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
-                        expect(calculate.bonus(
-                            264,
-                            [90, 90],
-                        )).toEqual({
-                            fire: 2,
-                            aa: 2,
-                        })
-                    })
-                    it('青葉改 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                        expect(calculate.bonus(
-                            264,
-                            [90, 307],
-                        )).toEqual({
-                            fire: 4,
-                            aa: 6,
-                            torpedo: 2,
-                            evasion: 4,
-                        })
-                    })
-                    it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕32号対水上電探', () => {
-                        expect(calculate.bonus(
-                            264,
-                            [90, 90, 31],
-                        )).toEqual({
-                            fire: 5,
-                            aa: 2,
-                            torpedo: 2,
-                            evasion: 2,
-                        })
-                    })
-                    it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                        expect(calculate.bonus(
-                            264,
-                            [90, 90, 307],
-                        )).toEqual({
-                            fire: 5,
-                            aa: 7,
-                            torpedo: 2,
-                            evasion: 4,
-                        })
-                    })
-                    it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
-                        expect(calculate.bonus(
-                            264,
-                            [90, 90, 307, 307],
-                        )).toEqual({
-                            fire: 5,
-                            aa: 7,
-                            torpedo: 2,
-                            evasion: 4,
-                        })
-                    })
-                    it('衣笠改二 || 20.3cm(2号)連装砲', () => {
-                        expect(calculate.bonus(
-                            142,
-                            [90],
-                        )).toEqual({
-                            fire: 2,
-                            evasion: 1,
-                        })
-                    })
-                    it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
-                        expect(calculate.bonus(
-                            142,
-                            [90, 90],
-                        )).toEqual({
-                            fire: 4,
-                            evasion: 2,
-                        })
-                    })
-                    it('衣笠改二 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                        expect(calculate.bonus(
-                            142,
-                            [90, 307],
-                        )).toEqual({
-                            fire: 5,
-                            evasion: 3,
-                            torpedo: 2,
-                        })
-                    })
-                    it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                        expect(calculate.bonus(
-                            142,
-                            [90, 90, 307],
-                        )).toEqual({
-                            fire: 7,
-                            evasion: 4,
-                            torpedo: 2,
-                        })
-                    })
-                    it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
-                        expect(calculate.bonus(
-                            142,
-                            [90, 90, 307, 307],
-                        )).toEqual({
-                            fire: 7,
-                            evasion: 4,
-                            torpedo: 2,
-                        })
-                    })
-                })
-            })
-
-            describe('大口径主砲...', () => {
-                describe('41cm...', () => {
-                    it('扶桑改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
-                        expect(calculate.bonus(
-                            411,
-                            [318, 318],
-                        )).toEqual({
-                            fire: 2,
-                        })
-                    })
-                    it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
-                        expect(calculate.bonus(
-                            411,
-                            [318, 290],
-                        )).toEqual({
-                            fire: 2,
-                        })
-                    })
-                    it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
-                        expect(calculate.bonus(
-                            411,
-                            [318, 290, 30],
-                        )).toEqual({
-                            fire: 2,
-                        })
-                    })
-                    it('伊勢改 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
-                        expect(calculate.bonus(
-                            82,
-                            [318, 318],
-                        )).toEqual({
-                            fire: 4,
-                            aa: 4,
-                            evasion: 4,
-                        })
-                    })
-                    it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
-                        expect(calculate.bonus(
-                            82,
-                            [318, 290],
-                        )).toEqual({
-                            fire: 4,
-                            aa: 4,
-                            evasion: 5,
-                            armor: 1,
-                        })
-                    })
-                    it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
-                        expect(calculate.bonus(
-                            82,
-                            [318, 290, 30],
-                        )).toEqual({
-                            fire: 4,
-                            aa: 8,
-                            evasion: 11,
-                            armor: 1,
-                        })
-                    })
-                    it('伊勢改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
-                        expect(calculate.bonus(
-                            553,
-                            [318, 318],
-                        )).toEqual({
-                            fire: 4,
-                            aa: 4,
-                            evasion: 4,
-                        })
-                    })
-                    it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
-                        expect(calculate.bonus(
-                            553,
-                            [318, 290],
-                        )).toEqual({
-                            fire: 5,
-                            aa: 4,
-                            evasion: 5,
-                            armor: 1,
-                        })
-                    })
-                    it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
-                        expect(calculate.bonus(
-                            553,
-                            [318, 290, 30],
-                        )).toEqual({
-                            fire: 5,
-                            aa: 8,
-                            evasion: 11,
-                            armor: 1,
-                        })
-                    })
-                    it('長門改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
-                        expect(calculate.bonus(
-                            541,
-                            [318, 318],
-                        )).toEqual({
-                            fire: 6,
-                            aa: 4,
-                            evasion: 2,
-                        })
-                    })
-                    it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
-                        expect(calculate.bonus(
-                            541,
-                            [318, 290],
-                        )).toEqual({
-                            fire: 5,
-                            aa: 2,
-                            evasion: 3,
-                            armor: 1,
-                        })
-                    })
-                    it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
-                        expect(calculate.bonus(
-                            541,
-                            [318, 290, 30],
-                        )).toEqual({
-                            fire: 5,
-                            aa: 2,
-                            evasion: 3,
-                            armor: 1,
-                        })
-                    })
-                })
-            })
-
-            describe('魚雷...', () => {
-                describe('533mm 三連装魚雷...', () => {
-                    it('Верный || 533mm 三連装魚雷', () => {
-                        expect(calculate.bonus(
-                            147,
-                            [283],
-                        )).toEqual({
-                            fire: 1,
-                            torpedo: 3,
-                            armor: 1,
-                        })
-                    })
-                    it('Верный || 533mm 三連装魚雷 ➕61cm三連装(酸素)魚雷後期型', () => {
-                        expect(calculate.bonus(
-                            147,
-                            [283, 285],
-                        )).toEqual({
-                            fire: 1,
-                            torpedo: 5,
-                            armor: 1,
-                            evasion: 1
-                        })
-                    })
-                })
-            })
-
-            describe('艦上機...', () => {
-                describe('Re. series...', () => {
-                    it('Aquila改 || Re.2001 OR改 ➕Re.2005 改 ➕Re.2001 CB改 ➕Re.2001 G改', () => {
-                        expect(calculate.bonus(
-                            365,
-                            [184, 189, 316, 188],
-                        )).toEqual({
-                            fire: 8,
-                            aa: 5,
-                            evasion: 7,
-                        })
-                    })
-                    it('Graf Zeppelin改 || Re.2001 OR改 ➕Re.2005 改 ➕Re.2001 CB改 ➕Re.2001 G改', () => {
-                        expect(calculate.bonus(
-                            353,
-                            [184, 189, 316, 188],
-                        )).toEqual({
-                            aa: 1,
-                            evasion: 2,
-                        })
-                    })
-                })
-                describe('二式艦上偵察機', () => {
-                    it('Saratoga・Mk.II Mod.2 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
-                        expect(calculate.bonus(
-                            550,
-                            [61, 61, 61, 61],
-                            [0, 1, 2, 10]
-                        )).toEqual({
-                            fire: 2,
-                            los: 4,
-                        })
-                    })
-                    it('蒼龍改二 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
-                        expect(calculate.bonus(
-                            197,
-                            [61, 61, 61, 61],
-                            [0, 1, 2, 10]
-                        )).toEqual({
-                            fire: 12,
-                            los: 14,
-                        })
-                    })
-                })
-            })
-
-            describe('電探...', () => {
-                describe('13号対空電探改...', () => {
-                    it('Верный || 13号対空電探改 ➕13号対空電探改', () => {
-                        expect(calculate.bonus(
-                            147,
-                            [106, 106],
-                        )).toEqual({
-                            aa: 2,
-                            evasion: 6,
-                            armor: 2
-                        })
-                    })
-                    it('時雨改二 || 13号対空電探改 ➕13号対空電探改', () => {
-                        expect(calculate.bonus(
-                            145,
-                            [106, 106],
-                        )).toEqual({
-                            fire: 2,
-                            aa: 4,
-                            evasion: 6,
-                            armor: 2
-                        })
-                    })
-                    it('長門改二 || 13号対空電探改', () => {
-                        expect(calculate.bonus(
-                            541,
-                            [106],
-                        )).toEqual({
-                            fire: 1,
-                            aa: 2,
-                            evasion: 3,
-                            armor: 1
-                        })
-                    })
-                    it('涼月改 || 13号対空電探改', () => {
-                        expect(calculate.bonus(
-                            537,
-                            [106],
-                        )).toEqual({
-                            aa: 2,
-                            evasion: 2,
-                            armor: 1
-                        })
-                    })
-                })
-            })
-
-            describe('対潜兵装...', () => {
-                describe('三式水中探信儀...', () => {
-                    it('山雲改 || 三式水中探信儀 ➕三式水中探信儀', () => {
-                        expect(calculate.bonus(
-                            328,
-                            [47, 47],
-                        )).toEqual({
-                            evasion: 4,
-                            asw: 4,
-                        })
-                    })
-                    it('時雨改二 || 三式水中探信儀 ➕三式水中探信儀', () => {
-                        expect(calculate.bonus(
-                            145,
-                            [47, 47],
-                        )).toEqual({
-                            fire: 2,
-                            evasion: 4,
-                            asw: 6,
-                        })
-                    })
-                })
-            })
-
-            describe('その他...', () => {
-                it('比叡改二 || 三式弾改 ➕三式弾改', () => {
+            describe('二式艦上偵察機', () => {
+                it('Saratoga・Mk.II Mod.2 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
                     expect(calculate.bonus(
-                        150,
-                        [317, 317],
-                    )).toEqual({
-                        fire: 4,
-                        aa: 4,
-                    })
-                })
-                it('比叡改二 || 探照灯', () => {
-                    expect(calculate.bonus(
-                        150,
-                        [74],
+                        550,
+                        [61, 61, 61, 61],
+                        [0, 1, 2, 10]
                     )).toEqual({
                         fire: 2,
-                        evasion: -1,
-                    })
-                })
-                it('比叡改二 || 探照灯 ➕探照灯', () => {
-                    expect(calculate.bonus(
-                        150,
-                        [74, 74],
-                    )).toEqual({
-                        fire: 2,
-                        evasion: -1,
-                    })
-                })
-                it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯', () => {
-                    expect(calculate.bonus(
-                        150,
-                        [74, 74, 140],
-                    )).toEqual({
-                        fire: 5,
-                        evasion: -3,
-                    })
-                })
-                it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯 ➕96式150cm探照灯', () => {
-                    expect(calculate.bonus(
-                        150,
-                        [74, 74, 140, 140],
-                    )).toEqual({
-                        fire: 5,
-                        evasion: -3,
-                    })
-                })
-                it('陽炎改二 || 53cm艦首(酸素)魚雷', () => {
-                    expect(calculate.bonus(
-                        566,
-                        [67],
-                    )).toEqual({
-                        torpedo: -5,
-                    })
-                })
-                it('Johnston改 || SG レーダー(初期型)', () => {
-                    expect(calculate.bonus(
-                        689,
-                        [315],
-                    )).toEqual({
-                        fire: 2,
-                        evasion: 3,
-                        los: 4
-                    })
-                })
-                it('Samuel B.Roberts改 || SG レーダー(初期型)', () => {
-                    expect(calculate.bonus(
-                        681,
-                        [315],
-                    )).toEqual({
-                        fire: 3,
-                        evasion: 3,
                         los: 4,
-                        range: 1,
                     })
                 })
-            })
-
-            describe('Sets...', () => {
-                it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型', () => {
+                it('蒼龍改二 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
                     expect(calculate.bonus(
-                        426,
-                        [295, 125, 285],
+                        197,
+                        [61, 61, 61, 61],
+                        [0, 1, 2, 10]
                     )).toEqual({
-                        fire: 4,
-                        torpedo: 8,
-                        aa: 2,
-                        evasion: 1
-                    })
-                })
-                it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
-                    expect(calculate.bonus(
-                        426,
-                        [295, 125, 285],
-                        [0, 0, 10]
-                    )).toEqual({
-                        fire: 5,
-                        torpedo: 8,
-                        aa: 2,
-                        evasion: 1
+                        fire: 12,
+                        los: 14,
                     })
                 })
             })
+        })
 
-            it('pass stat', () => {
-                expect(calculate.bonus(
-                    146, [268, 268, 268], 'fire'
-                )).toEqual(0)
-                expect(calculate.bonus(
-                    146, [268, 268, 268], 'armor'
-                )).toEqual(2)
+        describe('電探...', () => {
+            describe('13号対空電探改...', () => {
+                it('Верный || 13号対空電探改 ➕13号対空電探改', () => {
+                    expect(calculate.bonus(
+                        147,
+                        [106, 106],
+                    )).toEqual({
+                        aa: 2,
+                        evasion: 6,
+                        armor: 2
+                    })
+                })
+                it('時雨改二 || 13号対空電探改 ➕13号対空電探改', () => {
+                    expect(calculate.bonus(
+                        145,
+                        [106, 106],
+                    )).toEqual({
+                        fire: 2,
+                        aa: 4,
+                        evasion: 6,
+                        armor: 2
+                    })
+                })
+                it('長門改二 || 13号対空電探改', () => {
+                    expect(calculate.bonus(
+                        541,
+                        [106],
+                    )).toEqual({
+                        fire: 1,
+                        aa: 2,
+                        evasion: 3,
+                        armor: 1
+                    })
+                })
+                it('涼月改 || 13号対空電探改', () => {
+                    expect(calculate.bonus(
+                        537,
+                        [106],
+                    )).toEqual({
+                        aa: 2,
+                        evasion: 2,
+                        armor: 1
+                    })
+                })
             })
+        })
+
+        describe('対潜兵装...', () => {
+            describe('三式水中探信儀...', () => {
+                it('山雲改 || 三式水中探信儀 ➕三式水中探信儀', () => {
+                    expect(calculate.bonus(
+                        328,
+                        [47, 47],
+                    )).toEqual({
+                        evasion: 4,
+                        asw: 4,
+                    })
+                })
+                it('時雨改二 || 三式水中探信儀 ➕三式水中探信儀', () => {
+                    expect(calculate.bonus(
+                        145,
+                        [47, 47],
+                    )).toEqual({
+                        fire: 2,
+                        evasion: 4,
+                        asw: 6,
+                    })
+                })
+            })
+        })
+
+        describe('その他...', () => {
+            it('比叡改二 || 三式弾改 ➕三式弾改', () => {
+                expect(calculate.bonus(
+                    150,
+                    [317, 317],
+                )).toEqual({
+                    fire: 4,
+                    aa: 4,
+                })
+            })
+            it('比叡改二 || 探照灯', () => {
+                expect(calculate.bonus(
+                    150,
+                    [74],
+                )).toEqual({
+                    fire: 2,
+                    evasion: -1,
+                })
+            })
+            it('比叡改二 || 探照灯 ➕探照灯', () => {
+                expect(calculate.bonus(
+                    150,
+                    [74, 74],
+                )).toEqual({
+                    fire: 2,
+                    evasion: -1,
+                })
+            })
+            it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯', () => {
+                expect(calculate.bonus(
+                    150,
+                    [74, 74, 140],
+                )).toEqual({
+                    fire: 5,
+                    evasion: -3,
+                })
+            })
+            it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯 ➕96式150cm探照灯', () => {
+                expect(calculate.bonus(
+                    150,
+                    [74, 74, 140, 140],
+                )).toEqual({
+                    fire: 5,
+                    evasion: -3,
+                })
+            })
+            it('陽炎改二 || 53cm艦首(酸素)魚雷', () => {
+                expect(calculate.bonus(
+                    566,
+                    [67],
+                )).toEqual({
+                    torpedo: -5,
+                })
+            })
+            it('Johnston改 || SG レーダー(初期型)', () => {
+                expect(calculate.bonus(
+                    689,
+                    [315],
+                )).toEqual({
+                    fire: 2,
+                    evasion: 3,
+                    los: 4
+                })
+            })
+            it('Samuel B.Roberts改 || SG レーダー(初期型)', () => {
+                expect(calculate.bonus(
+                    681,
+                    [315],
+                )).toEqual({
+                    fire: 3,
+                    evasion: 3,
+                    los: 4,
+                    range: 1,
+                })
+            })
+        })
+
+        describe('Sets...', () => {
+            it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型', () => {
+                expect(calculate.bonus(
+                    426,
+                    [295, 125, 285],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 8,
+                    aa: 2,
+                    evasion: 1
+                })
+            })
+            it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                expect(calculate.bonus(
+                    426,
+                    [295, 125, 285],
+                    [0, 0, 10]
+                )).toEqual({
+                    fire: 5,
+                    torpedo: 8,
+                    aa: 2,
+                    evasion: 1
+                })
+            })
+        })
+
+        it('pass stat', () => {
+            expect(calculate.bonus(
+                146, [268, 268, 268], 'fire'
+            )).toEqual(0)
+            expect(calculate.bonus(
+                146, [268, 268, 268], 'armor'
+            )).toEqual(2)
         })
     })
     describe('ship', () => {

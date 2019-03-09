@@ -9,4 +9,7 @@ module.exports = {
     equipment: require('./equipment'),
     equipmentType: require('./equipment-type'),
     shipAndEquipments: require('./ship-and-equipments'),
+
+    equipmentStarBonusType: require('./equipment-star-bonus-type'),
+    equipmentStarBonus: require('./equipment-star-bonus')
 }
