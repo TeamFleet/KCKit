@@ -962,10 +962,11 @@
             night: 1,
             hit: 1,
         },
-        // Type3Shells: {
-
-        // },
         APShells: {
+            shelling: 1,
+            night: 1
+        },
+        AAShells: {
             shelling: 1,
             night: 1
         },
