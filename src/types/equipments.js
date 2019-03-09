@@ -121,7 +121,7 @@ types.APShells = [
     types.APShell
 ];
 
-types.Type3Shells = [
+types.AAShells = [
     types.Type3Shell
 ];
 
