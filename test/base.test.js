@@ -349,6 +349,11 @@ describe('Base functions/utilities', () => {
                         db.ships[553].getEquipmentTypes(true).includes(5)
                     ).toEqual(true);
                 })
+                it(`タカオ | ❌ 対空機銃`, () => {
+                    expect(
+                        db.ships[9182].getEquipmentTypes().includes(29)
+                    ).toEqual(false);
+                })
             })
             it(`should Ship.prototype.getCapability() works`, () => {
                 expect(typeof db.ships[1].getCapability()).toEqual('object');
