@@ -534,7 +534,7 @@
         getEquipmentTypes(slotIndex) {
             const disabled = this.additional_disable_item_types || []
             const shipType = KC.db.ship_types[this.type]
-            const types = shipType.equipable.concat((this.additional_item_types || []))
+            const types = (shipType.equipable || []).concat((this.additional_item_types || []))
 
             // 如果当前舰种存在根据装备栏位的额外可装备类型
             if (Array.isArray(shipType.additional_item_types_by_slot)) {
