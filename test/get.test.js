@@ -77,6 +77,7 @@ describe('Getting functions/utilities', () => {
             expect(getEquipmentStarBonus(1, 'fighter', 9)).toBe(0)
             expect(getEquipmentStarBonus(10, 'shelling', 10)).toBe(2)
             expect(getEquipmentStarBonus(10, 'night', 9)).toBe(3)
+            expect(getEquipmentStarBonus(317, 'shelling', 9)).toBe(3)
         })
     })
 })
