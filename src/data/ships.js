@@ -14,6 +14,7 @@ const BB_IseClassRemodel = [
 ]
 const BB_IseClass2ndRemodel = [
     553, // 伊勢改二
+    554, // 日向改二
 ]
 const BB_IseClassRemodelAll = BB_IseClassRemodel.concat(BB_IseClass2ndRemodel)
 const BB_FusouClass2ndRemodel = [
