@@ -386,7 +386,7 @@ describe('Base functions/utilities', () => {
                 it(`榛名改二 - 8 bonuses`, () => {
                     expect(
                         db.ships[151].getBonuses().length
-                    ).toEqual(8)
+                    ).toEqual(10)
                 })
             })
             describe(`should Ship.prototype.getAACI() works`, () => {

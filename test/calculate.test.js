@@ -914,6 +914,50 @@ describe('Calculating functions/utilities', () => {
                         armor: 1,
                     })
                 })
+                it('伊勢改二 || 35.6cm連装砲改', () => {
+                    expect(calculate.bonus(
+                        553,
+                        [328],
+                    )).toEqual({
+                        fire: 1,
+                    })
+                })
+                it('金剛改二 || 35.6cm連装砲改', () => {
+                    expect(calculate.bonus(
+                        149,
+                        [328],
+                    )).toEqual({
+                        fire: 2,
+                        evasion: 1,
+                    })
+                })
+                it('伊勢改二 || 35.6cm連装砲改二', () => {
+                    expect(calculate.bonus(
+                        553,
+                        [329],
+                    )).toEqual({
+                        fire: 1,
+                    })
+                })
+                it('金剛改 || 35.6cm連装砲改二', () => {
+                    expect(calculate.bonus(
+                        209,
+                        [329],
+                    )).toEqual({
+                        fire: 2,
+                        evasion: 1,
+                    })
+                })
+                it('金剛改二 || 35.6cm連装砲改二', () => {
+                    expect(calculate.bonus(
+                        149,
+                        [329],
+                    )).toEqual({
+                        fire: 3,
+                        aa: 1,
+                        evasion: 1,
+                    })
+                })
             })
         })
 

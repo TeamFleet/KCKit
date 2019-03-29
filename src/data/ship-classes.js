@@ -1,3 +1,10 @@
+const BB_Ise = 2
+const BBV_Ise = 6
+const BBVR_Ise = 113
+const group_BB_Ise = [BB_Ise, BBV_Ise, BBVR_Ise]
+const BB_Fusou = 4
+const BBV_Fusou = 11
+const group_BB_Fusou = [BB_Fusou, BBV_Fusou]
 const BB_Iowa = 82
 const BB_QueenElizabeth = 85
 const BB_Nelson = 115
@@ -25,6 +32,8 @@ const group_DD_Navy_USN = [
 
 module.exports = {
 
+    BB_Ise, BBV_Ise, BBVR_Ise, group_BB_Ise,
+    BB_Fusou, BBV_Fusou, group_BB_Fusou,
     BB_Iowa,
     BB_QueenElizabeth,
     BB_Nelson,

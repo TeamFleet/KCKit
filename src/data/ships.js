@@ -2,11 +2,21 @@ const BB_NagatoClass2ndRemodel = [
     541, // 長門改二
     573, // 陸奥改二
 ]
+const BB_KongouClassRemodel = [
+    209, // 金剛改
+    210, // 比叡改
+    211, // 榛名改
+    212, // 霧島改
+]
 const BB_KongouClass2ndRemodel = [
     149, // 金剛改二
     150, // 比叡改二
     151, // 榛名改二
     152, // 霧島改二
+]
+const BB_KongouClassRemodelAll = [
+    ...BB_KongouClassRemodel,
+    ...BB_KongouClass2ndRemodel,
 ]
 const BB_IseClassRemodel = [
     82, // 伊勢改
@@ -210,7 +220,7 @@ const vmf = [
 
 module.exports = {
     BB_NagatoClass2ndRemodel,
-    BB_KongouClass2ndRemodel,
+    BB_KongouClassRemodel, BB_KongouClass2ndRemodel, BB_KongouClassRemodelAll,
     BB_IseClassRemodel, BB_IseClass2ndRemodel, BB_IseClassRemodelAll,
     BB_FusouClass2ndRemodel,
     BB_IseClassRemodel_PLUS_FusouClass2ndRemodel,
