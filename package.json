@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "index.js",
-    "version": "1.21.25",
+    "version": "1.21.26",
     "description": "Javascript library for KanColle",
     "sideEffects": false,
     "author": {
@@ -22,13 +22,13 @@
         "test:calculate": "jest ./test/calculate.test.js"
     },
     "dependencies": {
-        "camelcase": "5.2.0"
+        "camelcase": "5.3.0"
     },
     "devDependencies": {
         "jest": "24.5.0",
-        "eslint": "5.15.3",
+        "eslint": "5.16.0",
         "babel-eslint": "10.0.1",
-        "whocallsthefleet-database": "20190330.0.0"
+        "whocallsthefleet-database": "20190331.0.0"
     },
     "jest": {
         "testEnvironment": "node"
