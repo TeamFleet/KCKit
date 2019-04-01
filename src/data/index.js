@@ -1,4 +1,4 @@
-let data = {
+module.exports = {
     aaci: require('./aaci'),
     oasw: require('./oasw'),
     ots: require('./ots'),
@@ -7,5 +7,3 @@ let data = {
     specialAttack: require('./special-attack'),
     equipmentStarBonus: require('./equipment-star-bonus')
 }
-
-module.exports = data
