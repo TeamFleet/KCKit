@@ -88,6 +88,7 @@ const dataBonuses = [
 
     ...require('./その他/三式弾改'),
     ...require('./その他/オ号観測機改'),
+    ...require('./その他/オ号観測機改二'),
     ...require('./その他/S-51J'),
     ...require('./その他/S-51J改'),
     ...require('./その他/探照灯'),
