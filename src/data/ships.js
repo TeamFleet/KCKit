@@ -10,6 +10,7 @@ const BB_KongouClassRemodel = [
 ]
 const BB_KongouClass2ndRemodel = [
     149, // 金剛改二
+    591, // 金剛改二丙
     150, // 比叡改二
     151, // 榛名改二
     152, // 霧島改二

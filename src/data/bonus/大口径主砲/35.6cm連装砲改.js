@@ -34,10 +34,24 @@ module.exports = [
     {
         equipment: 328,
         ship: {
-            isID: BB_KongouClassRemodelAll
+            isID: BB_KongouClassRemodelAll.filter(id => id !== 591)
         },
         bonus: {
             fire: 2,
+            evasion: 1,
+        }
+    },
+
+    {
+        equipment: 328,
+        ship: {
+            isID: [
+                591, // 金剛改二丙
+            ]
+        },
+        bonus: {
+            fire: 3,
+            torpedo: 1,
             evasion: 1,
         }
     },
