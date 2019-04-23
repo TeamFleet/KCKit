@@ -34,7 +34,7 @@ const bonusWarspite = {
 }
 const bonusKongouKaiNi = {
     ship: {
-        isID: BB_KongouClass2ndRemodel
+        isID: BB_KongouClass2ndRemodel.filter(id => id !== 591)
     },
     bonus: {
         fire: 1,

@@ -642,6 +642,17 @@ describe('Calculating functions/utilities', () => {
                     evasion: 2,
                 })
             })
+            it('金剛改二丙 || 16inch Mk.I三連装砲 ➕35.6cm連装砲改二 ➕ 35.6cm三連装砲改(ダズル迷彩仕様)➕53cm連装魚雷', () => {
+                expect(calculate.bonus(
+                    591,
+                    [298, 329, 289, 174],
+                )).toEqual({
+                    fire: 4,
+                    torpedo: 8,
+                    aa: 1,
+                    evasion: 4,
+                })
+            })
         })
 
         describe('小口径主砲...', () => {
