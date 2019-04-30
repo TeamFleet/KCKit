@@ -22,9 +22,11 @@ module.exports = [
                 212, // 霧島改
             ],
         },
-        bonus: {
-            fire: 1,
-            aa: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+                aa: 1,
+            },
         }
     },
 
@@ -36,9 +38,11 @@ module.exports = [
                 591, // 金剛改二丙
             ],
         },
-        bonus: {
-            fire: 3,
-            aa: 3,
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 3,
+            },
         }
     },
 
@@ -49,9 +53,11 @@ module.exports = [
                 150, // 比叡改二
             ],
         },
-        bonus: {
-            fire: 2,
-            aa: 2,
+        bonusCount: {
+            1: {
+                fire: 2,
+                aa: 2,
+            },
         }
     },
 
@@ -62,10 +68,12 @@ module.exports = [
                 151, // 榛名改二
             ],
         },
-        bonus: {
-            fire: 2,
-            aa: 2,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 2,
+                aa: 2,
+                evasion: 1,
+            },
         }
     },
 
@@ -76,9 +84,11 @@ module.exports = [
                 152, // 霧島改二
             ],
         },
-        bonus: {
-            fire: 3,
-            aa: 2,
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 2,
+            },
         }
     },
 
@@ -89,9 +99,11 @@ module.exports = [
                 541, // 長門改二
             ],
         },
-        bonus: {
-            fire: 1,
-            aa: 2,
+        bonusCount: {
+            1: {
+                fire: 1,
+                aa: 2,
+            },
         }
     },
 
@@ -102,10 +114,12 @@ module.exports = [
                 573, // 陸奥改二
             ],
         },
-        bonus: {
-            fire: 2,
-            aa: 2,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 2,
+                aa: 2,
+                evasion: 1,
+            },
         }
     },
 

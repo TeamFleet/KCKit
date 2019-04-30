@@ -34,7 +34,8 @@ const bonusWarspite = {
 }
 const bonusKongouKaiNi = {
     ship: {
-        isID: BB_KongouClass2ndRemodel.filter(id => id !== 591)
+        isID: BB_KongouClass2ndRemodel
+            .filter(id => id !== 591) // exclude 金剛改二丙
     },
     bonus: {
         fire: 1,

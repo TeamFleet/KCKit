@@ -237,7 +237,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 6,
                     armor: 2,
                     evasion: 4,
-                    range: 1,
+                    range: '1',
                 })
             })
             it('叢雲改二 || 61cm三連装(酸素)魚雷後期型', () => {
@@ -969,6 +969,15 @@ describe('Calculating functions/utilities', () => {
                         evasion: 1,
                     })
                 })
+                it('Nelson改 || 16inch Mk.I連装砲 ➕16inch Mk.V連装砲 ➕16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲', () => {
+                    expect(calculate.bonus(
+                        576,
+                        [330, 331, 298, 298],
+                    )).toEqual({
+                        fire: 8,
+                        armor: 2,
+                    })
+                })
             })
         })
 
@@ -1039,6 +1048,112 @@ describe('Calculating functions/utilities', () => {
                     )).toEqual({
                         fire: 12,
                         los: 14,
+                        range: '1'
+                    })
+                })
+            })
+            describe('江草隊', () => {
+                it('蒼龍改二 || 九九式艦爆(江草隊) ➕九九式艦爆(江草隊) ➕彗星(江草隊) ➕彗星(江草隊)', () => {
+                    expect(calculate.bonus(
+                        197,
+                        [99, 99, 100, 100],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 10,
+                    })
+                })
+                it('飛龍改二 || 九九式艦爆(江草隊) ➕九九式艦爆(江草隊) ➕彗星(江草隊) ➕彗星(江草隊)', () => {
+                    expect(calculate.bonus(
+                        196,
+                        [99, 99, 100, 100],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 4,
+                    })
+                })
+            })
+            describe('友永隊', () => {
+                it('蒼龍改二 || 九七式艦攻(友永隊) ➕九七式艦攻(友永隊) ➕天山一二型(友永隊) ➕天山一二型(友永隊)', () => {
+                    expect(calculate.bonus(
+                        197,
+                        [93, 93, 94, 94],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 4,
+                    })
+                })
+                it('飛龍改二 || 九七式艦攻(友永隊) ➕九七式艦攻(友永隊) ➕天山一二型(友永隊) ➕天山一二型(友永隊)', () => {
+                    expect(calculate.bonus(
+                        196,
+                        [93, 93, 94, 94],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 10,
+                    })
+                })
+            })
+            describe('村田隊', () => {
+                it('龍驤改二 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
+                    expect(calculate.bonus(
+                        157,
+                        [143, 143, 144, 144],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 2,
+                    })
+                })
+                it('赤城改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
+                    expect(calculate.bonus(
+                        277,
+                        [143, 143, 144, 144],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 6,
+                    })
+                })
+                it('加賀改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
+                    expect(calculate.bonus(
+                        278,
+                        [143, 143, 144, 144],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 4,
+                    })
+                })
+                it('翔鶴改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
+                    expect(calculate.bonus(
+                        288,
+                        [143, 143, 144, 144],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 4,
+                    })
+                })
+                it('翔鶴改二甲 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
+                    expect(calculate.bonus(
+                        466,
+                        [143, 143, 144, 144],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 6,
+                    })
+                })
+                it('瑞鶴改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
+                    expect(calculate.bonus(
+                        112,
+                        [143, 143, 144, 144],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 2,
+                    })
+                })
+                it('瑞鶴改二甲 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
+                    expect(calculate.bonus(
+                        467,
+                        [143, 143, 144, 144],
+                        [0, 0, 0, 0]
+                    )).toEqual({
+                        fire: 3,
                     })
                 })
             })
@@ -1121,8 +1236,8 @@ describe('Calculating functions/utilities', () => {
                     150,
                     [317, 317],
                 )).toEqual({
-                    fire: 4,
-                    aa: 4,
+                    fire: 2,
+                    aa: 2,
                 })
             })
             it('比叡改二 || 探照灯', () => {
@@ -1214,6 +1329,16 @@ describe('Calculating functions/utilities', () => {
                     torpedo: 8,
                     aa: 2,
                     evasion: 1
+                })
+            })
+            it('金剛改二丙 || 三式弾 ➕三式弾 ➕三式弾改 ➕三式弾改', () => {
+                expect(calculate.bonus(
+                    591,
+                    [35, 35, 317, 317],
+                    [0, 0, 0]
+                )).toEqual({
+                    fire: 4,
+                    aa: 4,
                 })
             })
         })

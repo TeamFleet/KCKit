@@ -13,11 +13,14 @@ module.exports = [
         ship: {
             isID: [
                 149, // 金剛改二
+                591, // 金剛改二丙
             ],
         },
-        bonus: {
-            fire: 1,
-            aa: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+                aa: 1,
+            },
         }
     },
 
@@ -28,8 +31,10 @@ module.exports = [
                 150, // 比叡改二
             ],
         },
-        bonus: {
-            aa: 1,
+        bonusCount: {
+            1: {
+                aa: 1,
+            },
         }
     },
 
@@ -40,9 +45,11 @@ module.exports = [
                 151, // 榛名改二
             ],
         },
-        bonus: {
-            aa: 1,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                aa: 1,
+                evasion: 1,
+            },
         }
     },
 
@@ -53,8 +60,10 @@ module.exports = [
                 152, // 霧島改二
             ],
         },
-        bonus: {
-            fire: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+            },
         }
     },
 

@@ -8,24 +8,93 @@
 
 // https://wikiwiki.jp/kancolle/%E4%BA%8C%E5%BC%8F%E8%89%A6%E4%B8%8A%E5%81%B5%E5%AF%9F%E6%A9%9F
 
-const {
-    BB_IseClass2ndRemodel,
-} = require('../../ships')
 const { Carriers } = require('../../../types/ships')
 
 module.exports = [
 
-    // @ 伊勢型 改二
     {
         equipment: 61,
         ship: {
-            isID: BB_IseClass2ndRemodel
+            isID: [553] // 伊勢改二
         },
-        bonus: {
-            fire: 3,
-            armor: 1,
-            evasion: 2,
-            range: '1',
+        bonusImprove: {
+            0: {
+                fire: 3,
+                evasion: 2,
+                armor: 1,
+                range: '1',
+            },
+            2: {
+                fire: 3,
+                evasion: 2,
+                armor: 1,
+                los: 1,
+                range: '1',
+            },
+            4: {
+                fire: 4,
+                evasion: 2,
+                armor: 1,
+                los: 1,
+                range: '1',
+            },
+            6: {
+                fire: 4,
+                evasion: 2,
+                armor: 1,
+                los: 2,
+                range: '1',
+            },
+            10: {
+                fire: 5,
+                evasion: 2,
+                armor: 1,
+                los: 3,
+                range: '1',
+            },
+        }
+    },
+
+    {
+        equipment: 61,
+        ship: {
+            isID: [554] // 日向改二
+        },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                evasion: 3,
+                armor: 3,
+                range: '1',
+            },
+            2: {
+                fire: 3,
+                evasion: 3,
+                armor: 3,
+                los: 1,
+                range: '1',
+            },
+            4: {
+                fire: 4,
+                evasion: 3,
+                armor: 3,
+                los: 1,
+                range: '1',
+            },
+            6: {
+                fire: 4,
+                evasion: 3,
+                armor: 3,
+                los: 2,
+                range: '1',
+            },
+            10: {
+                fire: 5,
+                evasion: 3,
+                armor: 3,
+                los: 3,
+                range: '1',
+            },
         }
     },
 
@@ -46,7 +115,11 @@ module.exports = [
             2: {
                 los: 1,
             },
-            7: {
+            4: {
+                fire: 1,
+                los: 1,
+            },
+            76: {
                 fire: 1,
                 los: 2,
             },
@@ -74,7 +147,11 @@ module.exports = [
                 fire: 1,
                 los: 2,
             },
-            7: {
+            4: {
+                fire: 2,
+                los: 2,
+            },
+            6: {
                 fire: 2,
                 los: 3,
             },
@@ -92,25 +169,38 @@ module.exports = [
             ]
         },
         bonusImprove: {
+            0: {
+                range: '1',
+            },
             1: {
                 fire: 3,
                 los: 3,
+                range: '1',
             },
             2: {
                 fire: 3,
                 los: 4,
+                range: '1',
+            },
+            4: {
+                fire: 4,
+                los: 4,
+                range: '1',
             },
             6: {
                 fire: 4,
                 los: 5,
+                range: '1',
             },
-            9: {
+            8: {
                 fire: 5,
                 los: 6,
+                range: '1',
             },
             10: {
                 fire: 6,
                 los: 7,
+                range: '1',
             }
         }
     },
@@ -122,21 +212,33 @@ module.exports = [
             ]
         },
         bonusImprove: {
+            0: {
+                range: '1',
+            },
             1: {
                 fire: 2,
                 los: 2,
+                range: '1',
             },
             2: {
                 fire: 2,
                 los: 3,
+                range: '1',
             },
-            7: {
+            4: {
+                fire: 3,
+                los: 3,
+                range: '1',
+            },
+            6: {
                 fire: 3,
                 los: 4,
+                range: '1',
             },
             10: {
                 fire: 4,
                 los: 5,
+                range: '1',
             }
         }
     },
