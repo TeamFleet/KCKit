@@ -119,7 +119,7 @@ module.exports = [
                 fire: 1,
                 los: 1,
             },
-            76: {
+            6: {
                 fire: 1,
                 los: 2,
             },
