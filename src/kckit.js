@@ -2258,6 +2258,7 @@
 
             let countTorpedoBomberSwordfish = 0
             let countDiveBomberIwai = 0
+            let countDiveBomber31PhotoelectricFuzeBombs = 0
 
             slots.forEach(function (carry, index) {
                 if (!equipments_by_slot[index]) return
@@ -2287,6 +2288,10 @@
                     if (equipment.hasName('岩井', 'ja_jp')) {
                         isSPAircraft = true
                         countDiveBomberIwai++
+                    }
+                    if (equipment.hasName('三一号光電管爆弾', 'ja_jp')) {
+                        isSPAircraft = true
+                        countDiveBomber31PhotoelectricFuzeBombs++
                     }
                 }
                 // if (
@@ -2326,7 +2331,10 @@
 
             // if (!hasAttacker) return { damage: 0 }
 
-            const equipSPBomber = countTorpedoBomberSwordfish + countDiveBomberIwai
+            const equipSPBomber =
+                countTorpedoBomberSwordfish
+                + countDiveBomberIwai
+                + countDiveBomber31PhotoelectricFuzeBombs
             if (
                 count.carrierFighterNight >= 2 && count.torpedoBomberNight >= 1
             ) multiplierCI.push(1.25)
