@@ -1,4 +1,4 @@
-const bonusIsSet = require('../../utils/bonus-is-set')
+const bonusIsSet = require('../../utils/bonus-is-set');
 
 /**
  * 装备额外属性收益
@@ -17,7 +17,6 @@ const bonusIsSet = require('../../utils/bonus-is-set')
  * @member {Array} [list] 显示的内容
  */
 const dataBonuses = [
-
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
     ...require('./小口径主砲/12.7cm連装砲A型'),
@@ -78,6 +77,7 @@ const dataBonuses = [
     ...require('./艦上機/九七式艦攻(九三一空)'),
     ...require('./艦上機/九七式艦攻(友永隊)'),
     ...require('./艦上機/九七式艦攻(村田隊)'),
+    ...require('./艦上機/流星改'),
     ...require('./艦上機/天山一二型(友永隊)'),
     ...require('./艦上機/天山一二型(村田隊)'),
     ...require('./艦上機/Re.2001 G改'),
@@ -100,34 +100,33 @@ const dataBonuses = [
     ...require('./その他/S-51J'),
     ...require('./その他/S-51J改'),
     ...require('./その他/探照灯'),
-    ...require('./その他/96式150cm探照灯'),
-
-]
+    ...require('./その他/96式150cm探照灯')
+];
 
 // 检查所有套装加成
 // 如果 list 为 Number[]，检查是否是其他某个套装加成的子集
 // 如果是，修改对应套装加成，添加 bonusAccumulate
 {
-    const bonusSets = dataBonuses.filter(bonusIsSet)
+    const bonusSets = dataBonuses.filter(bonusIsSet);
 
     bonusSets.forEach((bonus, index) => {
-        if (!bonus.list.every(item => !isNaN(item)))
-            return
+        if (!bonus.list.every(item => !isNaN(item))) return;
         bonusSets.forEach((toCheck, indexToCheck) => {
-            if (index === indexToCheck ||
+            if (
+                index === indexToCheck ||
                 bonus.list.length >= toCheck.list.length ||
                 !bonus.list.every(item => toCheck.list.includes(item))
             )
-                return
+                return;
             if (!toCheck.bonusAccumulate)
-                toCheck.bonusAccumulate = { ...(toCheck.bonus || {}) }
+                toCheck.bonusAccumulate = { ...(toCheck.bonus || {}) };
             Object.keys(bonus.bonus).forEach(stat => {
                 if (typeof toCheck.bonusAccumulate[stat] === 'undefined')
-                    toCheck.bonusAccumulate[stat] = 0
-                toCheck.bonusAccumulate[stat] += bonus.bonus[stat]
-            })
-        })
-    })
+                    toCheck.bonusAccumulate[stat] = 0;
+                toCheck.bonusAccumulate[stat] += bonus.bonus[stat];
+            });
+        });
+    });
 }
 
-module.exports = dataBonuses
+module.exports = dataBonuses;
