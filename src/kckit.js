@@ -13,7 +13,7 @@
     // }
 })('KC', function () {
 
-    "use strict";
+    
 
     const dataBonuses = require('./data/bonus')
     const calculateBonus = require('./calculate/bonus')
@@ -2234,6 +2234,7 @@
                 equipments: equipments_by_slot,
                 equipmentStars: star_by_slot,
                 equipmentRanks: rank_by_slot,
+                bonus,
                 count,
             }))
         }

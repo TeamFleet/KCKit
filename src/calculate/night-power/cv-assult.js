@@ -1,13 +1,17 @@
 const getShip = require('../../get/ship')
 const getShipSlots = require('../../get/ship-slots')
+const equipmentTypes = require('../../types/equipments')
 
 // https://wikiwiki.jp/kancolle/%E6%88%A6%E9%97%98%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6#nightAS
+
+// console.log('_')
 
 const calculateNightPowerCVAssult = ({
     ship: _ship,
     equipments = [],
     equipmentStars = [],
-    equipmentRanks = [],
+    // equipmentRanks = [],
+    bonus = {},
     count = {}
 }) => {
     /**
@@ -21,7 +25,6 @@ const calculateNightPowerCVAssult = ({
 
     const ship = getShip(_ship)
     const slots = getShipSlots(ship)
-    const _equipmentType = KC.formula.equipmentType
 
     /*
     const starBonus = slots.reduce((total, slot, index) => {
@@ -41,11 +44,15 @@ const calculateNightPowerCVAssult = ({
     */
 
     /** @type {Number} 基础伤害 */
-    let basePower = 0
+    let basePower = ship.stat.fire_max + (bonus.fire || 0)
     /** @type {Number} 参与夜袭的特殊飞机总装备数 */
     let countOtherAttackers = 0
     /** @type {Number[]} 可能的 CI 种类的伤害系数 */
     const multipliersCI = []
+
+    // console.log('')
+    // console.log('----------')
+    // console.log({ ship, slots, equipments, equipmentStars, count, basePower })
 
     // 计算基础伤害
     slots.forEach((carry, index) => {
@@ -58,19 +65,18 @@ const calculateNightPowerCVAssult = ({
         let participateAssult = false
 
         // 检测装备类型
-        if (equipment.type_ingame && (
+        if (Array.isArray(equipment.type_ingame) && (
             equipment.type_ingame[3] === 45 || // 夜战
             equipment.type_ingame[3] === 46    // 夜攻
         )) {
             isNightSpecific = true
             participateAssult = true
-        }
-        if (_equipmentType.TorpedoBombers.include(equipment.type)) {
+        } else if (equipmentTypes.TorpedoBombers.includes(equipment.type)) {
             if (equipment.hasName('Swordfish', 'ja_jp')) {
                 participateAssult = true
                 countOtherAttackers++
             }
-        } else if (_equipmentType.DiveBombers.include(equipment.type)) {
+        } else if (equipmentTypes.DiveBombers.includes(equipment.type)) {
             if (equipment.hasName('岩井', 'ja_jp')) {
                 participateAssult = true
                 countOtherAttackers++
@@ -91,17 +97,21 @@ const calculateNightPowerCVAssult = ({
                 +
                 multiplierA * carry
                 +
-                multiplierB * (
-                    equipment.getStat('fire', ship)
-                    +
-                    equipment.getStat('torpedo', ship)
-                    +
-                    equipment.getStat('bomb', ship)
-                    +
-                    equipment.getStat('asw', ship)
+                (
+                    multiplierB
+                    *
+                    Math.sqrt(carry)
+                    *
+                    (
+                        equipment.getStat('fire', ship)
+                        +
+                        equipment.getStat('torpedo', ship)
+                        +
+                        equipment.getStat('bomb', ship)
+                        +
+                        equipment.getStat('asw', ship)
+                    )
                 )
-                +
-                Math.sqrt(carry)
                 +
                 (equipmentStars[index]
                     ? KC.formula.getStarBonus(equipments[index], 'night', equipmentStars[index])
@@ -109,6 +119,18 @@ const calculateNightPowerCVAssult = ({
                 )
             )
         }
+
+        // console.log('｜', {
+        //     index,
+        //     carry,
+        //     equipment,
+        //     isNightSpecific, participateAssult, countOtherAttackers,
+        //     '火力': equipment.getStat('fire', ship),
+        //     '雷装': equipment.getStat('torpedo', ship),
+        //     '爆装': equipment.getStat('bomb', ship),
+        //     '対潜': equipment.getStat('asw', ship),
+        //     basePower
+        // })
     })
 
     // 计算 CI
@@ -138,6 +160,8 @@ const calculateNightPowerCVAssult = ({
             [Math.floor(result.damage * multiplier), 1]
         ))
     }
+
+    // console.log({ result })
 
     return result
 }
