@@ -33,6 +33,7 @@ const dataBonuses = [
     ...require('./中口径主砲/14cm連装砲'),
     ...require('./中口径主砲/14cm連装砲改'),
     ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
+    ...require('./中口径主砲/152mm／55 三連装速射砲'),
     ...require('./中口径主砲/20.3cm(2号)連装砲'),
 
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
