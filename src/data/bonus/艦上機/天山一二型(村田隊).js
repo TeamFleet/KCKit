@@ -6,6 +6,8 @@
 
 // https://wikiwiki.jp/kancolle/%E5%A4%A9%E5%B1%B1%28%E6%9D%91%E7%94%B0%E9%9A%8A%29
 
+const { CV_AkagiClassRemodelAll } = require('../../ships');
+
 module.exports = [
     {
         equipment: 144,
@@ -22,11 +24,7 @@ module.exports = [
     {
         equipment: 144,
         ship: {
-            isID: [
-                277, // 赤城改
-                594, // 赤城改二
-                599 // 赤城改二戊
-            ]
+            isID: [...CV_AkagiClassRemodelAll]
         },
         bonusCount: {
             1: {

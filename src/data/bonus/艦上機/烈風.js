@@ -1,0 +1,63 @@
+/**
+ * @module
+ * 装备额外属性收益
+ * 335. **烈風改(試製艦載型)**
+ * 336. **烈風改二**
+ */
+
+// https://wikiwiki.jp/kancolle/%E7%83%88%E9%A2%A8%E6%94%B9%28%E8%A9%A6%E8%A3%BD%E8%89%A6%E8%BC%89%E5%9E%8B%29
+// https://wikiwiki.jp/kancolle/%E7%83%88%E9%A2%A8%E6%94%B9%E4%BA%8C
+
+const { CV_AkagiClass2ndRemodel, CV_KagaClassRemodel } = require('../../ships');
+
+module.exports = [
+    // ========================================================================
+    // 烈風改(試製艦載型)
+    // ========================================================================
+    {
+        equipment: 335,
+        ship: {
+            isID: [...CV_KagaClassRemodel]
+        },
+        bonus: {
+            aa: 1,
+            evasion: 1
+        }
+    },
+    {
+        equipment: 335,
+        ship: {
+            isID: [...CV_AkagiClass2ndRemodel]
+        },
+        bonus: {
+            aa: 2,
+            evasion: 1
+        }
+    },
+
+    // ========================================================================
+    // 烈風改二
+    // ========================================================================
+    {
+        equipment: 336,
+        ship: {
+            isID: [...CV_KagaClassRemodel]
+        },
+        bonus: {
+            fire: 1,
+            aa: 1,
+            evasion: 1
+        }
+    },
+    {
+        equipment: 336,
+        ship: {
+            isID: [...CV_AkagiClass2ndRemodel]
+        },
+        bonus: {
+            fire: 1,
+            aa: 2,
+            evasion: 1
+        }
+    }
+];

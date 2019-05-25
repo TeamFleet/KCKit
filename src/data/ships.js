@@ -49,6 +49,20 @@ const BB_NelsonClassRemodel = [
 
 /*************************************************************************/
 
+const CV_AkagiClassRemodel = [
+    277 // 赤城改
+];
+const CV_AkagiClass2ndRemodel = [
+    594, // 赤城改二
+    599 // 赤城改二戊
+];
+const CV_AkagiClassRemodelAll = [
+    ...CV_AkagiClassRemodel,
+    ...CV_AkagiClass2ndRemodel
+];
+const CV_KagaClassRemodel = [
+    278 // 加賀改
+];
 const CVE_TaiyouClassRemodelAll = [
     380, // 大鹰改
     529, // 大鹰改二
@@ -259,6 +273,10 @@ module.exports = {
     BB_IseClassRemodel_PLUS_FusouClass2ndRemodel,
     BB_NelsonClassRemodel,
 
+    CV_AkagiClassRemodel,
+    CV_AkagiClass2ndRemodel,
+    CV_AkagiClassRemodelAll,
+    CV_KagaClassRemodel,
     CVE,
     CVE_TaiyouClassRemodelAll,
 

@@ -7,6 +7,7 @@
 // https://wikiwiki.jp/kancolle/%E4%B9%9D%E4%B8%83%E5%BC%8F%E8%89%A6%E6%94%BB%28%E5%8F%8B%E6%B0%B8%E9%9A%8A%29
 
 const { Shoukaku, Zuikaku } = require('../../ship-series');
+const { CV_AkagiClassRemodelAll } = require('../../ships');
 
 module.exports = [
     {
@@ -24,11 +25,7 @@ module.exports = [
     {
         equipment: 143,
         ship: {
-            isID: [
-                277, // 赤城改
-                594, // 赤城改二
-                599 // 赤城改二戊
-            ]
+            isID: [...CV_AkagiClassRemodelAll]
         },
         bonusCount: {
             1: {

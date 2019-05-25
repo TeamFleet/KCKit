@@ -62,6 +62,7 @@ const dataBonuses = [
     ...require('./水上機/瑞雲改二(六三四空)'),
     ...require('./水上機/瑞雲改二(六三四空／熟練)'),
 
+    ...require('./艦上機/烈風'),
     ...require('./艦上機/Re.2001 OR改'),
     ...require('./艦上機/Re.2005 改'),
     ...require('./艦上機/九九式艦爆(江草隊)'),
