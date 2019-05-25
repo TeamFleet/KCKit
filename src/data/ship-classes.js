@@ -5,9 +5,11 @@ const group_BB_Ise = [BB_Ise, BBV_Ise, BBVR_Ise];
 const BB_Fusou = 4;
 const BBV_Fusou = 11;
 const group_BB_Fusou = [BB_Fusou, BBV_Fusou];
+const BB_Colorado = 122;
 const BB_Iowa = 82;
 const BB_QueenElizabeth = 85;
 const BB_Nelson = 115;
+const group_BB_Navy_USN = [BB_Colorado, BB_Iowa];
 
 const CVB_Lexington = 105;
 const CV_Lexington = 87;
@@ -34,6 +36,7 @@ module.exports = {
     BB_Fusou,
     BBV_Fusou,
     group_BB_Fusou,
+    BB_Colorado,
     BB_Iowa,
     BB_QueenElizabeth,
     BB_Nelson,
@@ -80,7 +83,7 @@ module.exports = {
     AV_Nisshin: 118,
 
     group_Navy_USN: [
-        BB_Iowa,
+        ...group_BB_Navy_USN,
         CV_Lexington,
         CVB_Lexington,
         CV_Essex,

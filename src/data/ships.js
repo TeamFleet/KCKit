@@ -212,6 +212,8 @@ const rn = [
     394 // Jervis
 ];
 const usn_BB = [
+    601, // Colorado
+    1496, // Colorado改
     440,
     360 // Iowa
 ];
@@ -228,6 +230,8 @@ const usn_CV = [
 const usn_DD = [
     561,
     681, // Samuel B.Roberts
+    596, // Fletcher
+    692, // Flechter改
     562,
     689 // Johston
 ];
