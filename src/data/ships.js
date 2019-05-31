@@ -63,6 +63,12 @@ const CV_AkagiClassRemodelAll = [
 const CV_KagaClassRemodel = [
     278 // 加賀改
 ];
+const CV_ShoukakuClass2ndRemodel = [
+    461, // 翔鶴改二
+    466, // 翔鶴改二甲
+    462, // 瑞鶴改二
+    467 // 瑞鶴改二甲
+];
 const CVE_TaiyouClassRemodelAll = [
     380, // 大鹰改
     529, // 大鹰改二
@@ -277,6 +283,7 @@ module.exports = {
     CV_AkagiClass2ndRemodel,
     CV_AkagiClassRemodelAll,
     CV_KagaClassRemodel,
+    CV_ShoukakuClass2ndRemodel,
     CVE,
     CVE_TaiyouClassRemodelAll,
 

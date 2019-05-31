@@ -964,9 +964,10 @@ describe('Calculating functions/utilities', () => {
             });
             it('Johnston改 || SG レーダー(初期型)', () => {
                 expect(calculate.bonus(689, [315])).toEqual({
-                    fire: 2,
+                    fire: 3,
                     evasion: 3,
-                    los: 4
+                    los: 4,
+                    range: 1
                 });
             });
             it('Samuel B.Roberts改 || SG レーダー(初期型)', () => {
