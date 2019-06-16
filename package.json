@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "index.js",
-    "version": "1.21.37",
+    "version": "1.21.38",
     "description": "Javascript library for KanColle",
     "sideEffects": false,
     "author": {
@@ -28,11 +28,11 @@
         "babel-eslint": "10.0.1",
         "eslint": "^5.16.0",
         "eslint-config-koot": "^0.1.1",
-        "husky": "^2.3.0",
+        "husky": "^2.4.1",
         "jest": "24.8.0",
-        "lint-staged": "^8.1.7",
-        "prettier": "^1.17.1",
-        "whocallsthefleet-database": "20190601.0.0"
+        "lint-staged": "^8.2.1",
+        "prettier": "^1.18.2",
+        "whocallsthefleet-database": "20190608.0.0"
     },
     "jest": {
         "testEnvironment": "node"
