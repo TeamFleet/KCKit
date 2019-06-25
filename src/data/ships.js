@@ -156,6 +156,7 @@ const DD_ShiratsuyuClass2ndRemodel = [
     145, // 時雨改二
     498, // 村雨改二
     144, // 夕立改二
+    587, // 海風改二
     469 // 江風改二
 ];
 const DD_AsashioClass2ndRemodel = [
