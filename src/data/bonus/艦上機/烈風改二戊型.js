@@ -55,26 +55,14 @@ module.exports = [
         equipment: 339,
         ship: {
             isID: [
-                277 // 赤城改
-            ]
-        },
-        bonus: {
-            fire: 1,
-            aa: 2,
-            evasion: 2
-        }
-    },
-    {
-        equipment: 339,
-        ship: {
-            isID: [
+                277, // 赤城改
                 278 // 加賀改
             ]
         },
         bonus: {
             fire: 1,
             aa: 2,
-            evasion: 3
+            evasion: 2
         }
     },
     {
