@@ -13,7 +13,7 @@
     // }
 })('KC', function () {
 
-    
+
 
     const dataBonuses = require('./data/bonus')
     const calculateBonus = require('./calculate/bonus')
@@ -116,7 +116,7 @@
 
         /**
          * 检查名称是否为（完全匹配）给定字符串
-         * 
+         *
          * @param {String} nameToCheck - 要检查的名称
          * @param {Boolean|String} [locale] - 要检查的语言。如果为 true 检查当前语言，如果为 falsy 检查所有语言
          * @returns {Boolean} - 是否匹配
@@ -137,7 +137,7 @@
 
         /**
          * 检查名称是否包含给定字符串
-         * 
+         *
          * @param {String} nameToCheck - 要检查的名称
          * @param {Boolean|String} [locale] - 要检查的语言。如果为 true 检查当前语言，如果为 falsy 检查所有语言
          * @returns {Boolean} - 是否匹配
@@ -228,7 +228,7 @@
 
         /**
          * 判断是否可装备入补强增设栏位
-         * 
+         *
          * @returns {boolean}
          */
         isEquipableExSlot() {
@@ -240,7 +240,7 @@
 
         /**
          * 判断是否可提升熟练度
-         * 
+         *
          * @returns {boolean}
          */
         isRankUpgradable() {
@@ -254,7 +254,7 @@
 
         /**
          * 获取属性
-         * 
+         *
          * @param {String} statType - 属性类型
          * @param {Number|Object} [ship] - 舰娘ID或舰娘数据，如果给出，会查询额外收益
          * @returns {boolean}
@@ -445,13 +445,13 @@
         }
         /**
          * 获取图鉴uri/path
-         * 
+         *
          * @param {number} [picId = 0] - 图鉴Id，默认 0
          * @param {string} [ext]
          * @returns {string} uri/path
-         * 
+         *
          * @memberOf Ship
-         * 
+         *
          * 快捷方式
          *      ship._pics	获取全部图鉴，Array
          */
@@ -707,7 +707,7 @@
 
         /**
          * 获取所属海军简称
-         * 
+         *
          * @readonly
          * @returns {String}
          */
@@ -723,7 +723,7 @@
 
         /**
          * 获取额外能力
-         * 
+         *
          * @param {String} [type] - 要获取的能力
          * @returns {Object|...} - 如果提供了 type，返回该能力。如果没有，返回 Object
          */
@@ -735,7 +735,7 @@
 
         /**
          * 获取额外可提升的值
-         * 
+         *
          * @param {String} [type] - 要获取的属性名
          * @returns {Number} - 数值
          */
@@ -768,7 +768,7 @@
 
         /**
          * 判断该舰娘是否可配置给定的类型的装备
-         * 
+         *
          * @param {(number|number[]|string|string[])} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
          * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
          * @returns {boolean}
@@ -797,6 +797,44 @@
             } else {
                 return this.getEquipmentTypes(slotIndex).includes(parseInt(equipmentType))
             }
+        }
+
+        /**
+         * 判断该舰娘是否可配置给定的装备
+         *
+         * @param {(number|number[]|string|string[]|Equipment)} equipment 装备，如果为 Array，会判断是否满足所有条件
+         * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
+         * @returns {boolean}
+         */
+        canEquipThis(equipment, slotIndex) {
+            if (Array.isArray(equipment)) {
+                return equipment.every(e => this.canEquipThis(e, slotIndex));
+            }
+
+            if (typeof equipment === 'string') {
+                if (isNaN(equipment)) return false;
+                equipment = parseInt(equipment);
+            }
+
+            let equipmentType;
+
+            if (typeof equipment === 'number') {
+                equipmentType = KC.db.item_types[equipment].type;
+            }
+            if (typeof equipment === 'object') {
+                if (equipment.id) {
+                    equipmentType = equipment.type;
+                    equipment = equipment.id;
+                } else return false;
+            }
+
+            if (
+                Array.isArray(this.additional_items) &&
+                this.additional_items.includes(equipment)
+            )
+                return true;
+
+            return this.canEquip(equipmentType, slotIndex);
         }
 
         /**
@@ -2223,7 +2261,14 @@
         // http://bbs.ngacn.cc/read.php?tid=12445064
         // http://bbs.ngacn.cc/read.php?tid=12590487
         if (
-            (count.aviationPersonnelNight || ship.getCapability('count_as_night_operation_aviation_personnel'))
+            [
+                9,		// 轻型航母
+                10,		// 正规航母
+                11,		// 装甲航母
+                30,		// 攻击型轻航母
+                32      // 特设航母
+            ].includes(ship.type)
+            && (count.aviationPersonnelNight || ship.getCapability('count_as_night_operation_aviation_personnel'))
             && (
                 count.carrierFighterNight >= 1
                 || count.torpedoBomberNight >= 1
@@ -2378,7 +2423,7 @@
                 // result.isMin = true
             }
 
-            // 
+            //
             else if (count.main >= 1 && count.torpedo == 1) {
                 result.type = '炮雷CI'
                 result.damage = Math.floor(result.damage * 1.3)
@@ -2979,7 +3024,7 @@
 
 
     /**
-     * 
+     *
      */
     KC.Entity = Entity;
     KC.Equipment = Equipment;
