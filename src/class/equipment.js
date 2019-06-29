@@ -1,38 +1,48 @@
-const vars = require('../variables')
-const getdb = require('../get/db')
-const ItemBase = require('./base.js')
-const equipmentTypes = require('../types/equipments')
-const checkEquipment = require('../check/equipment')
-const bonuses = require('../data/bonus')
-const getShip = require('../get/ship')
-const getShipType = require('../get/ship-type')
-const getShipClass = require('../get/ship-class')
+const vars = require('../variables');
+const getdb = require('../get/db');
+const ItemBase = require('./base.js');
+const equipmentTypes = require('../types/equipments');
+const checkEquipment = require('../check/equipment');
+const bonuses = require('../data/bonus');
+const getShip = require('../get/ship');
+const getShipType = require('../get/ship-type');
+const getShipClass = require('../get/ship-class');
 // const dataTP = require('../data/tp')
 
 module.exports = class Equipment extends ItemBase {
     constructor(data) {
-        super(data)
+        super(data);
 
         Object.defineProperty(this, 'rankupgradable', {
             value: this.isRankUpgradable()
-        })
+        });
     }
 
     getName(small_brackets, theLocale = vars.locale) {
-        var result = ItemBase.prototype.getName.call(this, theLocale)
-            , small_brackets_tag = small_brackets && !small_brackets === true ? small_brackets : 'small'
+        var result = ItemBase.prototype.getName.call(this, theLocale),
+            small_brackets_tag =
+                small_brackets && !small_brackets === true
+                    ? small_brackets
+                    : 'small';
         return small_brackets
-            ? result.replace(/（([^（^）]+)）/g, '<' + small_brackets_tag + '>($1)</' + small_brackets_tag + '>')
-            : result
+            ? result.replace(
+                  /（([^（^）]+)）/g,
+                  '<' +
+                      small_brackets_tag +
+                      '>($1)</' +
+                      small_brackets_tag +
+                      '>'
+              )
+            : result;
     }
 
     getType(theLocale = vars.locale) {
         return this.type
             ? getdb('equipment_types')[this.type].name[theLocale]
-            : null
+            : null;
     }
     get _type() {
-        return this.getType()
+        return this.getType();
     }
 
     getIcon() {
@@ -40,62 +50,61 @@ module.exports = class Equipment extends ItemBase {
 
         // }
         if (Array.isArray(this.type_ingame) && this.type_ingame.length > 3)
-            return this.type_ingame[3]
-        return getdb('equipment_types')[this.type].icon
+            return this.type_ingame[3];
+        return getdb('equipment_types')[this.type].icon;
     }
     get _icon() {
-        return this.getIcon()
+        return this.getIcon();
     }
 
     getCaliber() {
-        let name = this.getName(false, 'ja_jp')
-            , caliber = parseFloat(name)
+        let name = this.getName(false, 'ja_jp'),
+            caliber = parseFloat(name);
 
-        return caliber
+        return caliber;
     }
 
     getPower() {
         return this.stat[
             getdb('equipment_types')[this.type].main_attribute || 'fire'
-        ]
+        ];
     }
 
     /**
      * 判断是否可装备入补强增设栏位
-     * 
+     *
      * @returns {boolean}
      */
     isEquipableExSlot() {
-        if (this.equipable_exslot) return this.equipable_exslot || false
+        if (this.equipable_exslot) return this.equipable_exslot || false;
         return this.type
             ? getdb('equipment_types')[this.type].equipable_exslot || false
-            : false
+            : false;
     }
 
     /**
      * 判断是否可提升熟练度
-     * 
+     *
      * @returns {boolean}
      */
     isRankUpgradable() {
         return (
-            equipmentTypes.Aircrafts.includes(this.type)
-
-            && this.type !== equipmentTypes.Autogyro
-            && this.type !== equipmentTypes.AntiSubPatrol
-        )
+            equipmentTypes.Aircrafts.includes(this.type) &&
+            this.type !== equipmentTypes.Autogyro &&
+            this.type !== equipmentTypes.AntiSubPatrol
+        );
     }
 
     /**
      * 判断是否属于目标类型
-     * 
+     *
      * @param {String} type - 装备类型，目前支持：所有在 equipmentTypes 中存在的项，如：MainGuns, Aircraft, Interceptor。大小写敏感
      * @return {Boolean}
      */
     isType(type) {
         return checkEquipment(this, {
             ['is' + type]: true
-        })
+        });
         // switch (type.toLowerCase()) {
         //     case 'aircraft':
         //     case 'aircrafts':
@@ -118,29 +127,27 @@ module.exports = class Equipment extends ItemBase {
 
     /**
      * 获取TP
-     * 
+     *
      * @return {Number}
      */
     getTP(/*type*/) {
         // return dataTP.equipmentType[this.type] || 0
-        if (this.tp) return this.tp
-        return this.type
-            ? (getdb('equipment_types')[this.type].tp || 0)
-            : 0
+        if (this.tp) return this.tp;
+        return this.type ? getdb('equipment_types')[this.type].tp || 0 : 0;
     }
 
     /**
      * 获取属性
-     * 
+     *
      * @param {String} statType - 属性类型
      * @param {Number|Object} [ship] - 舰娘ID或舰娘数据，如果给出，会查询额外收益
      * @returns {boolean}
      */
     getStat(statType, ship) {
-        statType = statType.toLowerCase()
-        const base = this.stat[statType]
+        statType = statType.toLowerCase();
+        const base = this.stat[statType];
         if (!ship || base === undefined || !Array.isArray(this.stat_bonus))
-            return base
+            return base;
         // if (ship && Array.isArray(this.stat_bonus)) {
         //     if (typeof ship !== 'object')
         //         ship = getdb('ships')[ship]
@@ -188,7 +195,7 @@ module.exports = class Equipment extends ItemBase {
         //         return base + (bonus[statType] || 0)
         //     }
         // }
-        return base
+        return base;
     }
 
     /**
@@ -198,51 +205,72 @@ module.exports = class Equipment extends ItemBase {
     getBonuses() {
         if (!Array.isArray(this.__bonuses))
             this.__bonuses = bonuses.filter(bonus => {
-                if (bonus.equipment == this.id) return true
-                if (typeof bonus.equipments !== 'undefined' && typeof bonus.ship === 'object') {
-                    if (Array.isArray(bonus.ship.isID) &&
-                        !bonus.ship.isID.every(shipId => getShip(shipId).canEquip(this, true))
-                    )
-                        return false
-                    if (typeof bonus.ship.isID === 'number' &&
-                        !getShip(bonus.ship.isID).canEquip(this, true)
-                    )
-                        return false
-                    if (Array.isArray(bonus.ship.isType) &&
-                        !bonus.ship.isType.every(
-                            typeId => getShipType(typeId).equipable.includes(this.type)
+                if (bonus.equipment == this.id) return true;
+                if (
+                    typeof bonus.equipments !== 'undefined' &&
+                    typeof bonus.ship === 'object'
+                ) {
+                    if (
+                        Array.isArray(bonus.ship.isID) &&
+                        !bonus.ship.isID.every(shipId =>
+                            getShip(shipId).canEquipThis(this, true)
                         )
                     )
-                        return false
-                    if (typeof bonus.ship.isType === 'number' &&
-                        !getShipType(bonus.ship.isType).equipable.includes(this.type)
+                        return false;
+                    if (
+                        typeof bonus.ship.isID === 'number' &&
+                        !getShip(bonus.ship.isID).canEquipThis(this, true)
                     )
-                        return false
-                    if (Array.isArray(bonus.ship.isClass) &&
-                        !bonus.ship.isClass.every(
-                            classId => getShipType(getShipClass(classId).ship_type_id).equipable.includes(this.type)
+                        return false;
+                    if (
+                        Array.isArray(bonus.ship.isType) &&
+                        !bonus.ship.isType.every(typeId =>
+                            getShipType(typeId).equipable.includes(this.type)
                         )
                     )
-                        return false
-                    if (typeof bonus.ship.isClass === 'number' &&
-                        !getShipType(getShipClass(bonus.ship.isClass).ship_type_id).equipable.includes(this.type)
+                        return false;
+                    if (
+                        typeof bonus.ship.isType === 'number' &&
+                        !getShipType(bonus.ship.isType).equipable.includes(
+                            this.type
+                        )
                     )
-                        return false
+                        return false;
+                    if (
+                        Array.isArray(bonus.ship.isClass) &&
+                        !bonus.ship.isClass.every(classId =>
+                            getShipType(
+                                getShipClass(classId).ship_type_id
+                            ).equipable.includes(this.type)
+                        )
+                    )
+                        return false;
+                    if (
+                        typeof bonus.ship.isClass === 'number' &&
+                        !getShipType(
+                            getShipClass(bonus.ship.isClass).ship_type_id
+                        ).equipable.includes(this.type)
+                    )
+                        return false;
                 }
                 if (Array.isArray(bonus.equipments)) {
                     return bonus.equipments.some(condition =>
                         checkEquipment(this, 10, 7, condition)
-                    )
+                    );
                 }
                 if (typeof bonus.equipments === 'object') {
                     return Object.keys(bonus.equipments)
                         .filter(key => /^has/.test(key))
-                        .some(key => checkEquipment(this, {
-                            [key.replace(/^has/, 'is')]: bonus.equipments[key]
-                        }))
+                        .some(key =>
+                            checkEquipment(this, {
+                                [key.replace(/^has/, 'is')]: bonus.equipments[
+                                    key
+                                ]
+                            })
+                        );
                 }
-                return false
-            })
-        return this.__bonuses
+                return false;
+            });
+        return this.__bonuses;
     }
-}
+};

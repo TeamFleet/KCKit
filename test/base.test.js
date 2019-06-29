@@ -523,6 +523,24 @@ describe('Base functions/utilities', () => {
                     expect(db.ships[541].getSpecialAttacks().length).toEqual(1);
                 });
             });
+            it(`should Ship.prototype.canEquipThis() works`, () => {
+                // Richelieu改 ✅ 46cm三連装砲改
+                expect(db.ships[392].canEquipThis(276)).toEqual(true);
+                // Richelieu改 ✅ Laté 298B
+                expect(db.ships[392].canEquipThis(194)).toEqual(true);
+                // Richelieu改 ✅ 46cm三連装砲改 + Laté 298B
+                expect(db.ships[392].canEquipThis([276, 194])).toEqual(true);
+                // Richelieu改 ❌ 46cm三連装砲改 + Laté 298B + 51cm連装砲
+                expect(db.ships[392].canEquipThis([276, 194, 281])).toEqual(
+                    false
+                );
+                // Richelieu ✅ 46cm三連装砲改
+                expect(db.ships[492].canEquipThis(276)).toEqual(true);
+                // Richelieu ❌ Laté 298B
+                expect(db.ships[492].canEquipThis(194)).toEqual(false);
+                // Richelieu ❌ 46cm三連装砲改 + Laté 298B
+                expect(db.ships[492].canEquipThis([276, 194])).toEqual(false);
+            });
         });
 
         describe('Equipment...', function() {

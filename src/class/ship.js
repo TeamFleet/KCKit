@@ -3,6 +3,7 @@ const vars = require('../variables');
 const bonuses = require('../data/bonus');
 const specialAttacks = require('../data/special-attack');
 const getName = require('../utils/get-name');
+const getEquipment = require('../get/equipment');
 const getdb = require('../get/db');
 const checkAACI = require('../check/aaci');
 const checkShip = require('../check/ship');
@@ -298,6 +299,44 @@ class Ship extends ItemBase {
                 parseInt(equipmentType)
             );
         }
+    }
+
+    /**
+     * 判断该舰娘是否可配置给定的装备
+     *
+     * @param {(number|number[]|string|string[]|Equipment)} equipment 装备，如果为 Array，会判断是否满足所有条件
+     * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
+     * @returns {boolean}
+     */
+    canEquipThis(equipment, slotIndex) {
+        if (Array.isArray(equipment)) {
+            return equipment.every(e => this.canEquipThis(e, slotIndex));
+        }
+
+        if (typeof equipment === 'string') {
+            if (isNaN(equipment)) return false;
+            equipment = parseInt(equipment);
+        }
+
+        let equipmentType;
+
+        if (typeof equipment === 'number') {
+            equipmentType = getEquipment(equipment).type;
+        }
+        if (typeof equipment === 'object') {
+            if (equipment.id) {
+                equipmentType = equipment.type;
+                equipment = equipment.id;
+            } else return false;
+        }
+
+        if (
+            Array.isArray(this.additional_items) &&
+            this.additional_items.includes(equipment)
+        )
+            return true;
+
+        return this.canEquip(equipmentType, slotIndex);
     }
 
     /**
