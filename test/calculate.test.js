@@ -1862,6 +1862,21 @@ describe('Calculating functions/utilities', () => {
                     );
                 });
             });
+            it('日向改二', () => {
+                expect(calculate.ship.levelOASW(554, [])).toBe(false);
+                // カ号観測機
+                expect(calculate.ship.levelOASW(554, [69])).toBe(false);
+                // カ号観測機 + カ号観測機
+                expect(calculate.ship.levelOASW(554, [69, 69])).toBe(90);
+                // カ号観測機 + オ号観測機改
+                expect(calculate.ship.levelOASW(554, [69, 324])).toBe(90);
+                // オ号観測機改 + オ号観測機改二
+                expect(calculate.ship.levelOASW(554, [324, 325])).toBe(90);
+                // S-51J
+                expect(calculate.ship.levelOASW(554, [326])).toBe(90);
+                // S-51J改
+                expect(calculate.ship.levelOASW(554, [327])).toBe(90);
+            });
             describe('other samples', () => {
                 it('最上 改', () => {
                     expect(calculate.ship.levelOASW(73, [])).toBe(false);

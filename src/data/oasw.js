@@ -44,25 +44,19 @@ module.exports = [
 
     /**
      * 无条件触发
-     * 141. **五十鈴改二**
-     * 478. **龍田改二**
-     * 681. **Samuel B.Roberts改**
-     * 692. **Flechter改**
-     * 689. **Johnston改**
-     * 394. **Jervis改**
      */
     {
         ship: {
             isID: [
                 // CL
-                141,
-                478,
+                141, // 五十鈴改二
+                478, // 龍田改二
                 // DD (USN)
-                681,
-                692,
-                689,
+                681, // Samuel B.Roberts改
+                692, // Flechter改
+                689, // Johnston改
                 // DD (RN)
-                394
+                394 // Jervis改
             ]
         }
     },
@@ -108,7 +102,10 @@ module.exports = [
      */
     {
         ship: {
-            isID: CVE,
+            isID: [
+                ...CVE,
+                555 // 瑞鳳改二
+            ],
             isNotID: CVE_TaiyouClassRemodelAll
         },
         shipWithEquipments: {
@@ -177,7 +174,11 @@ module.exports = [
             hasSonars: true,
             hasOneOf: [
                 {
-                    isDiveBomber: true
+                    isDiveBomber: {
+                        hasStat: {
+                            asw: 1
+                        }
+                    }
                 },
                 {
                     isTorpedoBomber: {
@@ -201,7 +202,11 @@ module.exports = [
         equipments: {
             hasOneOf: [
                 {
-                    isDiveBomber: true
+                    isDiveBomber: {
+                        hasStat: {
+                            asw: 1
+                        }
+                    }
                 },
                 {
                     isTorpedoBomber: {
@@ -219,34 +224,36 @@ module.exports = [
             ]
         }
     },
+
+    // 日向改二 ===============================================================
     {
         ship: {
-            isID: [
-                555 // 瑞鳳改二
-            ]
+            isID: [554]
         },
         shipWithEquipments: {
             hasStat: {
-                asw: 50
+                asw: 1
             }
         },
         equipments: {
-            hasSonars: true,
-            hasOneOf: [
-                {
-                    isTorpedoBomber: {
-                        hasStat: {
-                            asw: 7
-                        }
-                    }
-                },
-                {
-                    isAutogyro: true
-                },
-                {
-                    isAntiSubPatrol: true
+            hasAutogyro: {
+                hasStat: {
+                    asw: 12
                 }
-            ]
+            }
+        }
+    },
+    {
+        ship: {
+            isID: [554]
+        },
+        shipWithEquipments: {
+            hasStat: {
+                asw: 1
+            }
+        },
+        equipments: {
+            hasAutogyro: 2
         }
     }
 ];
