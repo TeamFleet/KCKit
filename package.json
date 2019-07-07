@@ -19,7 +19,8 @@
         "test": "jest",
         "test:base": "jest ./test/base.test.js",
         "test:check": "jest ./test/check.test.js",
-        "test:calculate": "jest ./test/calculate.test.js"
+        "test:calculate": "jest ./test/calculate.test.js",
+        "update": "yarn upgrade-interactive --latest"
     },
     "dependencies": {
         "camelcase": "5.3.1"
@@ -28,12 +29,12 @@
         "babel-eslint": "10.0.2",
         "eslint": "^5.16.0",
         "eslint-config-koot": "^0.2.0",
-        "husky": "^2.7.0",
+        "husky": "^3.0.0",
         "jest": "24.8.0",
-        "lint-staged": "^8.2.1",
+        "lint-staged": "^9.1.0",
         "prettier": "^1.18.2",
         "react": "^16.8.6",
-        "whocallsthefleet-database": "20190629.1.0"
+        "whocallsthefleet-database": "20190701.0.1"
     },
     "jest": {
         "testEnvironment": "node"
