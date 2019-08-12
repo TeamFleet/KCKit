@@ -1861,6 +1861,9 @@ describe('Calculating functions/utilities', () => {
                         false
                     );
                 });
+                it('九七式艦攻改(熟練) 試製三号戊型(空六号電探改装備機)', () => {
+                    expect(calculate.ship.levelOASW(560, [345])).toBe(161);
+                });
             });
             it('日向改二', () => {
                 expect(calculate.ship.levelOASW(554, [])).toBe(false);
