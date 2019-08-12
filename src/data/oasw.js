@@ -22,13 +22,15 @@ const { CVE, CVE_TaiyouClassRemodelAll } = require('./ships');
 module.exports = [
     /**
      * 通用条件
+     * - 不能装备舰爆
      * - 面板对潜属性至少 **100** 点（计算装备）
      * - 装备**声纳**
      */
     {
         ship: {
             isNotType: 31,
-            isNotID: CVE
+            isNotID: CVE,
+            cannotEquip: [20]
         },
         shipWithEquipments: {
             hasStat: {

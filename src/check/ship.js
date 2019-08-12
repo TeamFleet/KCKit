@@ -145,9 +145,16 @@ const checkCondition = {
         return true;
     },
 
-    canequip: (ship, equipType) => {
-        return ship.canEquip(equipType);
-    },
+    canequip: (ship, equipType) =>
+        ArrayOrItem(equipType, equipType => {
+            if (isNaN(equipType)) return false;
+            return ship.canEquip(equipType);
+        }),
+    cannotequip: (ship, equipType) =>
+        ArrayOrItemAll(equipType, equipType => {
+            if (isNaN(equipType)) return false;
+            return !ship.canEquip(equipType);
+        }),
     canequipthis: (ship, equipment) => {
         return ship.canEquipThis(equipment);
     }

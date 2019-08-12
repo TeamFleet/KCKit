@@ -1879,6 +1879,10 @@ describe('Calculating functions/utilities', () => {
                 expect(calculate.ship.levelOASW(554, [326])).toBe(90);
                 // S-51J改
                 expect(calculate.ship.levelOASW(554, [327])).toBe(90);
+                // HF/DF + Type144/147 ASDIC + Ju87C改二(KMX搭載機/熟練)
+                expect(calculate.ship.levelOASW(554, [262, 306])).toBe(false);
+                // HF/DF + Type144/147 ASDIC
+                expect(calculate.ship.levelOASW(554, [262])).toBe(false);
             });
             describe('other samples', () => {
                 it('最上 改', () => {
