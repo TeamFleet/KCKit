@@ -15,9 +15,14 @@ class Ship extends ItemBase {
      * 获取舰名
      * 快捷方式 - ship._name （默认连接符，默认语言）
      *
-     * @param {String|Boolean|undefined)} [joint=vars.joint] - 连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串。String：自定义连接符；Boolean：true 添加默认连接符；false 不添加连接符；undefined：默认连接符
-     * @param {String} [locale=vars.locale] - 语言ID
-     * @returns {String} 舰名[连接符[后缀名]]
+     * @param {string|boolean} [joint=vars.joint]
+     *        连接符，如果存在后缀名，则在舰名和后缀名之间插入该字符串
+     *        - `string` 自定义连接符
+     *        - `boolean` true 添加默认连接符；false 不添加连接符
+     *        - `undefined` 默认连接符
+     * @param {string} [locale=vars.locale]
+     *        语言ID
+     * @returns {string} 舰名[连接符[后缀名]]
      */
     getName(joint = vars.joint, locale = vars.locale) {
         const suffix = this.getSuffix(locale);
@@ -37,8 +42,8 @@ class Ship extends ItemBase {
     /**
      * 获取舰名，不包括后缀
      *
-     * @param {String} [locale=vars.locale]  - 语言ID
-     * @returns {String}
+     * @param {string} [locale=vars.locale] 语言ID
+     * @returns {string}
      */
     getNameNoSuffix(locale = vars.locale) {
         return getName(this.name, locale);
@@ -48,8 +53,8 @@ class Ship extends ItemBase {
     /**
      * 获取后缀名
      *
-     * @param {String} [theLocale=vars.locale]  - 语言ID
-     * @returns {String}
+     * @param {string} [theLocale=vars.locale] 语言ID
+     * @returns {string}
      */
     getSuffix(theLocale = vars.locale) {
         return this.name.suffix
@@ -61,10 +66,10 @@ class Ship extends ItemBase {
 
     /**
      * 获取舰种名称
-     * 快捷方式 - ship._type （默认语言）
      *
-     * @param {String} [theLocale=vars.locale]  - 语言ID
-     * @returns {String}
+     * @alias _type 快捷方式 - ship._type （默认语言）
+     * @param {string} [theLocale=vars.locale] 语言ID
+     * @returns {string}
      */
     getType(theLocale = vars.locale) {
         return this.type
@@ -81,8 +86,8 @@ class Ship extends ItemBase {
      * 获取舰级名称
      * 快捷方式 - ship._class （默认语言）
      *
-     * @param {String} [theLocale=vars.locale]  - 语言ID
-     * @returns {String}
+     * @param {string} [theLocale=vars.locale] 语言ID
+     * @returns {string}
      */
     getClass(theLocale = vars.locale) {
         return this.class
@@ -118,9 +123,9 @@ class Ship extends ItemBase {
      * 获取指定id图鉴path
      * 获取全部图鉴 - ship._pics
      *
-     * @param {Number} [picId = 0] - 图鉴id
-     * @param {String} [ext = vars.extPic] - 扩展名
-     * @returns {String} path
+     * @param {number} [picId = 0] - 图鉴id
+     * @param {string} [ext = vars.extPic] - 扩展名
+     * @returns {string} path
      */
     getPic(picId = 0, ext = vars.extPic) {
         // let series = this.getSeriesData()
@@ -158,7 +163,7 @@ class Ship extends ItemBase {
      * 获取全部图鉴
      *
      * @readonly
-     * @returns {String[]} 图鉴path
+     * @returns {string[]} 图鉴path
      */
     get _pics() {
         let arr = [];
@@ -172,8 +177,8 @@ class Ship extends ItemBase {
      * 获取航速
      * 快捷方式 - ship._speed
      *
-     * @param {String|Boolean} [theLocale=vars.locale] - 语言ID。Boolean：如果为false仅返回航速属性值而非航速字符串
-     * @returns {String|Number}
+     * @param {string|boolean} [theLocale=vars.locale] - 语言ID。Boolean：如果为false仅返回航速属性值而非航速字符串
+     * @returns {string|number}
      */
     getSpeed(theLocale = vars.locale) {
         if (theLocale === false) return this.stat.speed;
@@ -187,7 +192,7 @@ class Ship extends ItemBase {
      * 获取航速提升规则，优先级：舰娘 > 舰级 > 舰种 > 默认值（low-2）
      * 快捷方式 - ship._speedRule
      *
-     * @returns {String}
+     * @returns {string}
      */
     getSpeedRule() {
         if (this.speed_rule) return this.speed_rule;
@@ -203,8 +208,8 @@ class Ship extends ItemBase {
      * 获取射程
      * 快捷方式 - ship._range
      *
-     * @param {String|Boolean} [theLocale=vars.locale] - 语言ID。Boolean：如果为false仅返回射程属性值而非射程字符串
-     * @returns {String|Number}
+     * @param {string|boolean} [theLocale=vars.locale] - 语言ID。Boolean：如果为false仅返回射程属性值而非射程字符串
+     * @returns {string|number}
      */
     getRange(theLocale = vars.locale) {
         if (theLocale === false) return this.stat.range;
@@ -218,8 +223,8 @@ class Ship extends ItemBase {
      * 获取可配置装备类型
      * 快捷方式 - ship._equipmentTypes
      *
-     * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果给定，则会查询该栏位的装备类型，包含该栏位特有的类型。如果为 true，则会检查所有栏位可以装备的类型
-     * @returns {Number[]} - 装备ID
+     * @param {number|boolean} [slotIndex] 装备栏位index。从 0 开始。如果给定，则会查询该栏位的装备类型，包含该栏位特有的类型。如果为 true，则会检查所有栏位可以装备的类型
+     * @returns {number[]} - 装备ID
      */
     getEquipmentTypes(slotIndex) {
         const disabled = this.additional_disable_item_types || [];
@@ -263,7 +268,7 @@ class Ship extends ItemBase {
      * 判断该舰娘是否可配置给定的类型的装备
      *
      * @param {(number|number[]|string|string[]|Equipment)} equipmentType 装备类型，如果为 Array，会判断是否满足所有条件
-     * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
+     * @param {number|boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
      * @returns {boolean}
      */
     canEquip(equipmentType, slotIndex) {
@@ -305,7 +310,7 @@ class Ship extends ItemBase {
      * 判断该舰娘是否可配置给定的装备
      *
      * @param {(number|number[]|string|string[]|Equipment)} equipment 装备，如果为 Array，会判断是否满足所有条件
-     * @param {Number|Boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
+     * @param {number|boolean} [slotIndex] 装备栏位index。从 0 开始。如果为 true，则检查所有栏位
      * @returns {boolean}
      */
     canEquipThis(equipment, slotIndex) {
@@ -342,9 +347,9 @@ class Ship extends ItemBase {
     /**
      * 获取指定属性
      *
-     * @param {String} attr - 指定属性名
-     * @param {Number} [lvl=1] - 指定等级
-     * @returns {String|Number|Boolean|undefined} - 属性。Boolean：false表明该舰娘无此能力。undfined：表明未指定数值
+     * @param {string} attr - 指定属性名
+     * @param {number} [lvl=1] - 指定等级
+     * @returns {string|number|boolean|undefined} - 属性。Boolean：false表明该舰娘无此能力。undfined：表明未指定数值
      */
     getAttribute(attr, lvl = 1) {
         if (lvl > vars.maxShipLv) lvl = vars.maxShipLv;
@@ -431,10 +436,10 @@ class Ship extends ItemBase {
     /*	获取关系
         变量
             relation	[OPTIONAL]
-                String		关系名
+                string		关系名
         返回值
             Object			如果没有给出 relation，返回关系对象
-            String||Number	如果给出 relation，返回值，默认读取 rels 下的属性，如果不存在，读取上一个改造版本的对应关系
+            string||Number	如果给出 relation，返回值，默认读取 rels 下的属性，如果不存在，读取上一个改造版本的对应关系
     */
     getRel(relation) {
         if (relation) {
@@ -456,9 +461,9 @@ class Ship extends ItemBase {
     /*	获取声优
         变量
             language	[OPTIONAL]
-                String		语言代码，默认为 KC.lang
+                string		语言代码，默认为 KC.lang
         返回值
-            String		声优名
+            string		声优名
         快捷方式
             ship._cv	默认语言
     */
@@ -474,9 +479,9 @@ class Ship extends ItemBase {
     /*	获取画师
         变量
             language	[OPTIONAL]
-                String		语言代码，默认为 KC.lang
+                string		语言代码，默认为 KC.lang
         返回值
-            String		画师名
+            string		画师名
         快捷方式
             ship._illustrator	默认语言
     */
@@ -513,8 +518,8 @@ class Ship extends ItemBase {
     /**
      * 判断舰种大类
      *
-     * @param {String} majorType - 舰种大类，目前支持：Battleship/BB, Carrier/CV, LightCruiser/CL, HeavyCruiser/CA, Submarine/SS, SeaplaneTender/AV, Destroyer/DD
-     * @return {Boolean}
+     * @param {string} majorType - 舰种大类，目前支持：Battleship/BB, Carrier/CV, LightCruiser/CL, HeavyCruiser/CA, Submarine/SS, SeaplaneTender/AV, Destroyer/DD
+     * @return {number}
      */
     isType(majorType) {
         const shipTypes = require('../types/ships');
@@ -565,7 +570,7 @@ class Ship extends ItemBase {
      * 获取所属海军简称
      *
      * @readonly
-     * @returns {String}
+     * @returns {string}
      */
     getNavy() {
         if (this.navy) return this.navy;
@@ -581,8 +586,8 @@ class Ship extends ItemBase {
      * 获取所属海军名称
      * 快捷方式 - ship._navyName （默认语言）
      *
-     * @param {String} [theLocale=vars.locale] - 语言ID
-     * @returns {String}
+     * @param {string} [theLocale=vars.locale] - 语言ID
+     * @returns {string}
      */
     getNavyName(theLocale = vars.locale) {
         return require('../get/navy')(this._navy, theLocale);
@@ -627,7 +632,7 @@ class Ship extends ItemBase {
      * 获取额外图鉴
      *
      * @readonly
-     * @returns {String[]|undefined} - 如果有，返回Array，内容为额外图鉴ID
+     * @returns {string[]|undefined} - 如果有，返回Array，内容为额外图鉴ID
      */
     get _extraIllust() {
         const theShip = this.hasExtraIllust();
@@ -650,7 +655,7 @@ class Ship extends ItemBase {
     /**
      * 获取额外能力
      *
-     * @param {String} [type] - 要获取的能力
+     * @param {string} [type] - 要获取的能力
      * @returns {Object|...} - 如果提供了 type，返回该能力。如果没有，返回 Object
      */
     getCapability(type) {
@@ -671,7 +676,7 @@ class Ship extends ItemBase {
     /**
      * 获取额外可提升的值
      *
-     * @param {String} type - 要获取的属性名
+     * @param {string} type - 要获取的属性名
      * @param {Number} [lvl] - 设定当前等级
      * @returns {Number|Boolean} - 数值。如果为false，表明不可提升
      */
