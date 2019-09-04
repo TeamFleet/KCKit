@@ -58,7 +58,8 @@ module.exports = [
                 692, // Flechter改
                 689, // Johnston改
                 // DD (RN)
-                394 // Jervis改
+                394, // Jervis改
+                893 // Janus改
             ]
         }
     },

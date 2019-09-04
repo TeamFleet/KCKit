@@ -230,7 +230,9 @@ const rn = [
     515,
     393, // Ark Royal
     519,
-    394 // Jervis
+    394, // Jervis
+    520, // Janus
+    893 // Janus改
 ];
 const usn_BB = [
     601, // Colorado
