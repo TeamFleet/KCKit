@@ -1,8 +1,8 @@
 // https://github.com/KC3Kai/KC3Kai/blob/master/src/library/modules/AntiAir.js
-// http://wikiwiki.jp/kancolle/?%B9%D2%B6%F5%C0%EF#antiairfire
+// https://wikiwiki.jp/kancolle/%E5%AF%BE%E7%A9%BA%E7%A0%B2%E7%81%AB#antiairfire
 // http://kancolle.wikia.com/wiki/Combat/Aerial_Combat#Anti-Air_Cut-In
 
-const { DD_Akizuki } = require('../ship-classes')
+const { DD_Akizuki } = require('../ship-classes');
 
 const data = {
     5: {
@@ -12,7 +12,7 @@ const data = {
         ship: {
             hasSlotMin: 3,
             isSS: false,
-            isNotClass: DD_Akizuki,
+            isNotClass: DD_Akizuki
         },
         equipments: {
             hasHAMountAAFD: 2,
@@ -27,7 +27,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: DD_Akizuki,
+            isNotClass: DD_Akizuki
         },
         equipments: {
             hasHAMount: true,
@@ -43,7 +43,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: DD_Akizuki,
+            isNotClass: DD_Akizuki
         },
         equipments: {
             hasHAMountAAFD: true,
@@ -58,7 +58,7 @@ const data = {
         ship: {
             hasSlotMin: 1,
             isSS: false,
-            isNotClass: DD_Akizuki,
+            isNotClass: DD_Akizuki
         },
         equipments: {
             hasHAMount: true,
@@ -73,7 +73,7 @@ const data = {
         ship: {
             hasSlotMin: 2,
             isSS: false,
-            isNotClass: DD_Akizuki,
+            isNotClass: DD_Akizuki
         },
         equipments: {
             hasAAGunCD: true,
@@ -93,15 +93,15 @@ const data = {
     ...require('./shiptype/submarines'),
 
     ...require('./navy/rn'),
-    ...require('./navy/usn'),
+    ...require('./navy/usn')
 
     // 13: {},
     // 27: {},
-}
+};
 
 /**
- * @param {number} [id] 
- * @param {any} [options={}] 
+ * @param {number} [id]
+ * @param {any} [options={}]
  * @param {number} [options.fixed] 固定额外击坠量
  * @param {number} [options.modifier] 击坠量系数
  * @param {(number[]|string[])} [options.icons] 显示图标
@@ -115,9 +115,8 @@ const data = {
 //     data[id] = options
 // }
 
-Object.keys(data)
-    .forEach(id => {
-        data[id].id = parseInt(id)
-    })
+Object.keys(data).forEach(id => {
+    data[id].id = parseInt(id);
+});
 
-module.exports = data
+module.exports = data;

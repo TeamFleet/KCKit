@@ -50,6 +50,11 @@ module.exports = {
     group_CV_Navy_KM,
     group_CV_Navy_RM,
 
+    CV_Houshou: 33,
+    CV_Kagasumaru: 95,
+    CV_Taiyou_SP: 96,
+    CV_Taiyou: 97,
+
     CA_Furutaka: 39,
     CA_Aoba: 40,
 

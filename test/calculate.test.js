@@ -871,6 +871,42 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('九六式艦戦 series...', () => {
+                it('雲龍改 || 九六式艦戦 ➕九六式艦戦改', () => {
+                    expect(calculate.bonus(406, [19, 228])).toEqual({});
+                });
+                it('龍驤改二 || 九六式艦戦 ➕九六式艦戦改', () => {
+                    expect(calculate.bonus(157, [19, 228])).toEqual({
+                        aa: 2,
+                        asw: 2,
+                        evasion: 2
+                    });
+                });
+                it('鳳翔改 || 九六式艦戦 ➕九六式艦戦改', () => {
+                    expect(calculate.bonus(285, [19, 228])).toEqual({
+                        fire: 2,
+                        aa: 4,
+                        asw: 3,
+                        evasion: 5
+                    });
+                });
+                it('春日丸 || 九六式艦戦 ➕九六式艦戦改', () => {
+                    expect(calculate.bonus(521, [19, 228])).toEqual({
+                        fire: 2,
+                        aa: 3,
+                        asw: 6,
+                        evasion: 3
+                    });
+                });
+                it('大鷹改二 || 九六式艦戦 ➕九六式艦戦改', () => {
+                    expect(calculate.bonus(529, [19, 228])).toEqual({
+                        fire: 2,
+                        aa: 3,
+                        asw: 6,
+                        evasion: 3
+                    });
+                });
+            });
         });
 
         describe('電探...', () => {
