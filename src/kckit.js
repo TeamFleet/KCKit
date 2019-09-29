@@ -1024,6 +1024,9 @@
             torpedo: 1.2,
             night: 1
         },
+        MidgetSubmarine: {
+            night: 1
+        },
         DepthCharges: {
             shelling: 0.75,
             antisub: 1
@@ -1057,6 +1060,10 @@
             fighter: 0.25,
             night: 1
         },
+        // TorpedoBombers: {
+        //     shelling: 1,
+        //     night: 1
+        // },
         CarrierRecons: {
             los: 1.2
         },
@@ -1156,6 +1163,9 @@
             case 'multiplication':
             case 'multiple': {
                 return bonus * star
+            }
+            default: {
+                return 0
             }
         }
     };
