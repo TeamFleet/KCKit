@@ -1,3 +1,7 @@
+const S = require('./ship-series');
+
+// ============================================================================
+
 const BB_NagatoClassRemodel = [
     275, // 長門改
     276 // 陸奥改
@@ -235,6 +239,7 @@ const rn = [
     520, // Janus
     893 // Janus改
 ];
+const ran = [];
 const usn_BB = [
     601, // Colorado
     1496, // Colorado改
@@ -329,7 +334,7 @@ module.exports = {
     Yamakaze: [457, 369],
     Yamagumo: [414, 328],
     Kasumi: [49, 253, 464, 470],
-    Yukikaze: [20, 228],
+    Yukikaze: S.Yukikaze,
     Isokaze: [167, 320, 557],
     Hamakaze: [170, 312, 558],
     Maikaze: [122, 294],
@@ -337,8 +342,11 @@ module.exports = {
     Asashimo: [425, 344],
     Suzutsuki: [532, 537],
 
+    //
+
     rn,
     rn_BB,
+    ran,
     usn,
     usn_BB,
     usn_CV,

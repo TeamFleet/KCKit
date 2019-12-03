@@ -598,6 +598,20 @@ describe('Calculating functions/utilities', () => {
                         torpedo: 2
                     });
                 });
+                it('Gotland改 || Bofors 15cm連装速射砲 Mk.9改＋単装速射砲 Mk.10改 Model 1938', () => {
+                    expect(calculate.bonus(579, [361])).toEqual({
+                        fire: 2,
+                        aa: 1,
+                        evasion: 1
+                    });
+                });
+                it('De Ruyter改 || Bofors 15cm連装速射砲 Mk.9改＋単装速射砲 Mk.10改 Model 1938', () => {
+                    expect(calculate.bonus(609, [361])).toEqual({
+                        fire: 2,
+                        aa: 2,
+                        evasion: 1
+                    });
+                });
             });
         });
 

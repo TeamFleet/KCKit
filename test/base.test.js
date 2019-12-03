@@ -18,7 +18,7 @@ beforeAll(() => initializeDatabase());
 describe('Base functions/utilities', () => {
     describe('Parsing raw database files...', () => {
         describe('Checking basics...', () => {
-            for (let dbname of dbnames) {
+            for (const dbname of dbnames) {
                 const type = camelCase(dbname);
                 it(`should db.${type} be object`, () => {
                     expect('object').toBe(typeof db[type]);
@@ -454,10 +454,10 @@ describe('Base functions/utilities', () => {
                 ).toEqual(9);
             });
             describe(`should Ship.prototype.getBonuses() works`, () => {
-                it(`大鳳改 - 3 bonuses`, () => {
-                    expect(db.ships[156].getBonuses().length).toEqual(3);
+                it(`大鳳改 - 5 bonuses`, () => {
+                    expect(db.ships[156].getBonuses().length).toEqual(5);
                 });
-                it(`榛名改二 - 8 bonuses`, () => {
+                it(`榛名改二 - 11 bonuses`, () => {
                     expect(db.ships[151].getBonuses().length).toEqual(11);
                 });
             });

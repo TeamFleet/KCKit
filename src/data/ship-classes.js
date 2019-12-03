@@ -20,8 +20,15 @@ const CV_Aquila = 91;
 const group_CV_Navy_KM = [CV_GrafZeppelin];
 const group_CV_Navy_RM = [CV_Aquila];
 
+const CA_Houston = 124;
+const group_CA_Navy_USN = [CA_Houston];
+
 const CL_Abruzzi = 120;
+const CL_DeRuyter = 127;
+const CL_Perth = 125;
 const group_CL_Navy_RM = [CL_Abruzzi];
+const group_CL_Navy_RNLN = [CL_DeRuyter];
+const group_CL_Navy_RAN = [CL_Perth];
 
 const DD_JohnCButler = 112;
 const DD_Fletcher = 117;
@@ -57,6 +64,7 @@ module.exports = {
 
     CA_Furutaka: 39,
     CA_Aoba: 40,
+    CA_Houston,
 
     CL_Kuma: 48,
     CL_Nagara: 49,
@@ -65,6 +73,8 @@ module.exports = {
     CL_Agano: 52,
     CL_Gotland: 114,
     CL_Abruzzi,
+    CL_DeRuyter,
+    CL_Perth,
     CLT_Kuma: 54,
     CLV_Gotland: 116,
     CT_Katori: 55,
@@ -92,9 +102,12 @@ module.exports = {
         CV_Lexington,
         CVB_Lexington,
         CV_Essex,
+        ...group_CA_Navy_USN,
         ...group_DD_Navy_USN
     ],
     group_Navy_KM: [...group_CV_Navy_KM],
     group_Navy_RN: [BB_QueenElizabeth, BB_Nelson, CV_ArkRoyal, DD_J],
-    group_Navy_RM: [...group_CV_Navy_RM, ...group_CL_Navy_RM]
+    group_Navy_RM: [...group_CV_Navy_RM, ...group_CL_Navy_RM],
+    group_Navy_RNLN: [...group_CL_Navy_RNLN],
+    group_Navy_RAN: [...group_CL_Navy_RAN]
 };

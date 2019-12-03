@@ -32,8 +32,10 @@ const dataBonuses = [
 
     ...require('./中口径主砲/14cm連装砲'),
     ...require('./中口径主砲/14cm連装砲改'),
+    ...require('./中口径主砲/Bofors 15cm連装速射砲'),
     ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
     ...require('./中口径主砲/152mm／55 三連装速射砲'),
+    ...require('./中口径主砲/6inch連装速射砲'),
     ...require('./中口径主砲/20.3cm(2号)連装砲'),
 
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
@@ -56,6 +58,7 @@ const dataBonuses = [
     ...require('./魚雷/試製61cm六連装(酸素)魚雷'),
 
     ...require('./水上機/S9 Osprey'),
+    ...require('./水上機/Laté 298B'),
     ...require('./水上機/瑞雲(六三四空)'),
     ...require('./水上機/瑞雲12型(六三四空)'),
     ...require('./水上機/瑞雲(六三四空／熟練)'),
@@ -88,7 +91,9 @@ const dataBonuses = [
     ...require('./艦上機/天山一二型(友永隊)'),
     ...require('./艦上機/天山一二型(村田隊)'),
     ...require('./艦上機/Re.2001 G改'),
+    ...require('./艦上機/彩雲'),
     ...require('./艦上機/二式艦上偵察機'),
+    ...require('./艦上機/試製景雲(艦偵型)'),
 
     ...require('./電探/13号対空電探改'),
     ...require('./電探/GFCS Mk.37'),
