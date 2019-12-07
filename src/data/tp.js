@@ -1,5 +1,5 @@
 // const shipTypes = require('../types/ships')
-const equipmentTypes = require('../types/equipments')
+const equipmentTypes = require('../types/equipments');
 
 module.exports = {
     shipType: {
@@ -9,7 +9,8 @@ module.exports = {
 
         // CL
         2: 2,
-        28: 2,
+        34: 2, // 轻航巡
+        28: 2, // 防空巡
 
         // CT
         21: 6,
@@ -43,4 +44,4 @@ module.exports = {
         [equipmentTypes.LandingCraft]: 8,
         [equipmentTypes.AmphibiousCraft]: 2
     }
-}
+};

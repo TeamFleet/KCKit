@@ -62,8 +62,11 @@ module.exports = {
     CV_Taiyou_SP: 96,
     CV_Taiyou: 97,
 
+    CAV_Mogami: 45,
+    CAV_MogamiRevised: 90,
     CA_Furutaka: 39,
     CA_Aoba: 40,
+    CA_Mogami: 43,
     CA_Houston,
 
     CL_Kuma: 48,
