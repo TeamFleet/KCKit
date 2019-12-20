@@ -7,9 +7,20 @@
  *
  */
 
-const { CL_Perth } = require('../../ship-classes');
+const { CL_Perth, CL_Yuubari } = require('../../ship-classes');
 
 module.exports = [
+    {
+        equipment: 359,
+        ship: {
+            isClass: CL_Yuubari
+        },
+        bonus: {
+            fire: 1,
+            aa: 1,
+            evasion: 1
+        }
+    },
     {
         equipment: 359,
         ship: {
