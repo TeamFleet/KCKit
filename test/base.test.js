@@ -243,7 +243,7 @@ describe('Base functions/utilities', () => {
                 expect(db.ships[321]._extraIllust.length).toBe(7);
             });
             it(`should 大淀・改 db.ships[321]._equipmentTypes be an Array of 26`, function() {
-                expect(db.ships[321]._equipmentTypes.length).toBe(26);
+                expect(db.ships[321]._equipmentTypes.length).toBe(27);
             });
             it(`should 大淀・改 db.ships[321].canEquip(1) be true`, function() {
                 expect(db.ships[321].canEquip(1)).toBe(true);

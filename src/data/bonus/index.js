@@ -38,6 +38,7 @@ const dataBonuses = [
     ...require('./中口径主砲/6inch連装速射砲'),
     ...require('./中口径主砲/20.3cm(2号)連装砲'),
     ...require('./中口径主砲/8inch三連装砲 Mk.9'),
+    ...require('./中口径主砲/5inch連装両用砲(集中配備)'),
 
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
     ...require('./大口径主砲/35.6cm連装砲改'),

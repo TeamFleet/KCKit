@@ -612,6 +612,12 @@ describe('Calculating functions/utilities', () => {
                         evasion: 1
                     });
                 });
+                it('De Ruyter改 || 5inch連装両用砲(集中配備)＋GFCS Mk.37＋5inch連装両用砲(集中配備)', () => {
+                    expect(calculate.bonus(609, [362, 363])).toEqual({
+                        aa: -2,
+                        evasion: -4
+                    });
+                });
             });
         });
 

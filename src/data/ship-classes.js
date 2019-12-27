@@ -86,11 +86,13 @@ module.exports = {
     CA_Houston,
     group_CA_Navy_USN,
 
+    CL_Tenryuu: 47,
     CL_Kuma: 48,
     CL_Nagara: 49,
     CL_Sendai: 50,
     CL_Yuubari: 51,
     CL_Agano: 52,
+    CL_Ooyodo: 53,
     CL_Gotland: 114,
     CL_Abruzzi,
     CL_DeRuyter,
