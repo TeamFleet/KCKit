@@ -71,7 +71,7 @@ module.exports = {
      *************************************************************************/
     39: {
         fixed: 10,
-        modifier: 1,
+        modifier: 1.7,
         icons: ['16:362', '16:363'],
         ship: {
             isClass: CL_Atlanta
@@ -83,7 +83,7 @@ module.exports = {
     },
     40: {
         fixed: 10,
-        modifier: 1,
+        modifier: 1.7,
         conditions: [
             {
                 icons: ['16:362', '16:362', '11:307'],
@@ -110,7 +110,7 @@ module.exports = {
     },
     41: {
         fixed: 9,
-        modifier: 1,
+        modifier: 1.65,
         icons: ['16:362', '16:362'],
         ship: {
             isClass: CL_Atlanta
