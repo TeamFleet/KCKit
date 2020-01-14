@@ -53,6 +53,7 @@ module.exports = [
                 // CL
                 141, // 五十鈴改二
                 478, // 龍田改二
+                624, // 夕張改二丁
                 // DD (USN)
                 681, // Samuel B.Roberts改
                 692, // Flechter改

@@ -91,6 +91,7 @@ module.exports = {
     CL_Nagara: 49,
     CL_Sendai: 50,
     CL_Yuubari: 51,
+    CL_Yuubari2: 129,
     CL_Agano: 52,
     CL_Ooyodo: 53,
     CL_Gotland: 114,

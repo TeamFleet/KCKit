@@ -105,6 +105,7 @@ const CL_NagaraClass2ndRemodel = [
     488, // 由良改二
     487 // 鬼怒改二
 ];
+const CL_YuubariClass2ndRemodel = [622, 623, 624];
 
 /*************************************************************************/
 
@@ -301,6 +302,7 @@ module.exports = {
     CL_KumaClassRemodelAll,
     CL_NagaraClass2ndRemodel,
     Yuubari: [115, 293],
+    CL_YuubariClass2ndRemodel,
     Yahagi: [139, 307],
     Ooyodo: [183, 321],
     Kashima: [465, 356],
