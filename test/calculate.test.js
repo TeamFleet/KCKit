@@ -1337,11 +1337,56 @@ describe('Calculating functions/utilities', () => {
                     ])
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(681, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(681, [
+                        34,
+                        undefined,
+                        undefined,
+                        undefined,
+                        33
+                    ])
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(681, [87, 87, 87, undefined, 33])
+                    calculate.ship.speed(681, [
+                        34,
+                        34,
+                        undefined,
+                        undefined,
+                        33
+                    ])
                 ).toBe(10);
+                expect(
+                    calculate.ship.speed(681, [
+                        34,
+                        87,
+                        undefined,
+                        undefined,
+                        33
+                    ])
+                ).toBe(10);
+                expect(
+                    calculate.ship.speed(681, [
+                        87,
+                        undefined,
+                        undefined,
+                        undefined,
+                        33
+                    ])
+                ).toBe(10);
+                expect(
+                    calculate.ship.speed(681, [34, 34, 34, undefined, 33])
+                ).toBe(15);
+                expect(
+                    calculate.ship.speed(681, [34, 34, 87, undefined, 33])
+                ).toBe(15);
+                expect(
+                    calculate.ship.speed(681, [
+                        87,
+                        87,
+                        undefined,
+                        undefined,
+                        33
+                    ])
+                ).toBe(15);
             });
             it('type: high-1', () => {
                 // 翔鹤 改二甲
