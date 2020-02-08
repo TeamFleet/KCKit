@@ -303,9 +303,9 @@ describe('Base functions/utilities', () => {
                 expect(db.ships[605].canEquip(['MidgetSubmarine'])).toBe(false);
             });
             describe(`should Ship.prototype.canEquip() works`, () => {
-                it(`伊勢・改二 | ❌ 大口径主砲`, () => {
+                it(`伊勢・改二 | ✔ 大口径主砲`, () => {
                     expect(db.ships[553].canEquip('LargeCaliber')).toEqual(
-                        false
+                        true
                     );
                 });
                 it(`伊勢・改二 (Slot #1) | ✔ 大口径主砲`, () => {
@@ -369,10 +369,10 @@ describe('Base functions/utilities', () => {
                     const arr = db.ships[539].getEquipmentTypes();
                     expect(!arr.includes(14) && arr.includes(29)).toEqual(true);
                 });
-                it(`伊勢・改二 | ❌ 大口径主砲`, () => {
+                it(`伊勢・改二 | ✔ 大口径主砲`, () => {
                     expect(
                         db.ships[553].getEquipmentTypes().includes(5)
-                    ).toEqual(false);
+                    ).toEqual(true);
                 });
                 it(`伊勢・改二 (Slot #1) | ✔ 大口径主砲`, () => {
                     expect(
@@ -388,6 +388,38 @@ describe('Base functions/utilities', () => {
                     expect(
                         db.ships[553].getEquipmentTypes(true).includes(5)
                     ).toEqual(true);
+                });
+                it(`夕張改二 | ✔ 中口径主砲`, () => {
+                    expect(
+                        db.ships[622].getEquipmentTypes().includes(4)
+                    ).toEqual(true);
+                    expect(
+                        db.ships[622].getEquipmentTypes().includes(64)
+                    ).toEqual(true);
+                });
+                it(`夕張改二 (Slot #4 & #5) | ❌ 中口径主砲`, () => {
+                    expect(
+                        db.ships[622].getEquipmentTypes(3).includes(4)
+                    ).toEqual(false);
+                    expect(
+                        db.ships[622].getEquipmentTypes(3).includes(64)
+                    ).toEqual(false);
+                    expect(
+                        db.ships[622].getEquipmentTypes(4).includes(4)
+                    ).toEqual(false);
+                    expect(
+                        db.ships[622].getEquipmentTypes(4).includes(64)
+                    ).toEqual(false);
+                });
+                it(`夕張改二 (Slot #4) | ✔ 機関部強化`, () => {
+                    expect(
+                        db.ships[622].getEquipmentTypes(3).includes(32)
+                    ).toEqual(true);
+                });
+                it(`夕張改二 (Slot #5) | ❌ 機関部強化`, () => {
+                    expect(
+                        db.ships[622].getEquipmentTypes(4).includes(32)
+                    ).toEqual(false);
                 });
                 it(`タカオ | ❌ 対空機銃`, () => {
                     expect(

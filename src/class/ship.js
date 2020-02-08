@@ -229,9 +229,10 @@ class Ship extends ItemBase {
     getEquipmentTypes(slotIndex) {
         const disabled = this.additional_disable_item_types || [];
         const shipType = getdb('ship_types')[this.type];
-        const types = (shipType.equipable || []).concat(
-            this.additional_item_types || []
-        );
+        const types = [
+            ...(shipType.equipable || []),
+            ...(this.additional_item_types || [])
+        ];
 
         // 如果当前舰种存在根据装备栏位的额外可装备类型
         if (Array.isArray(shipType.additional_item_types_by_slot)) {
@@ -252,6 +253,18 @@ class Ship extends ItemBase {
                     slotInfo.forEach(id => types.push(id));
                 });
             }
+        }
+
+        // 如果当前舰种存在根据装备栏位的可装备类型排除个例
+        if (
+            typeof slotIndex === 'number' &&
+            Array.isArray(shipType.equipable_exclude_by_slot) &&
+            Array.isArray(shipType.equipable_exclude_by_slot[slotIndex])
+        ) {
+            shipType.equipable_exclude_by_slot[slotIndex].forEach(excludeId => {
+                const index = types.indexOf(excludeId);
+                if (index >= 0) types.splice(index, 1);
+            });
         }
 
         return types
