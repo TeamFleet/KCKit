@@ -166,7 +166,7 @@ class Ship extends ItemBase {
      * @returns {string[]} 图鉴path
      */
     get _pics() {
-        let arr = [];
+        const arr = [];
         for (let i = 0; i < 15; i++) {
             arr.push(this.getPic(i));
         }
@@ -242,9 +242,9 @@ class Ship extends ItemBase {
                         shipType.additional_item_types_by_slot[slotIndex]
                     )
                 )
-                    shipType.additional_item_types_by_slot[slotIndex].forEach(
-                        id => types.push(id)
-                    );
+                    shipType.additional_item_types_by_slot[
+                        slotIndex
+                    ].forEach(id => types.push(id));
             }
             // 如果 slotIndex 为 true，将所有栏位的额外可装备类型追加到类型表中
             else if (slotIndex === true) {
@@ -486,7 +486,7 @@ class Ship extends ItemBase {
             ship._illustrator	默认语言
     */
     getIllustrator(theLocale = vars.locale) {
-        let id = this.getRel('illustrator');
+        const id = this.getRel('illustrator');
         if (id) return getdb('entities')[id].getName(theLocale);
         return;
     }

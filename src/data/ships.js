@@ -125,6 +125,7 @@ const DD_AyanamiClassRemodel = [
 ];
 const DD_AyanamiClass2ndRemodel = [
     195, // 綾波改二
+    627, // 敷波改二
     407 // 潮改二
 ];
 const DD_AyanamiClassRemodelAll = DD_AyanamiClassRemodel.concat(
