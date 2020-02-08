@@ -570,24 +570,43 @@
             return this.getRange();
         }
 
+        /**
+         * 获取可配置装备类型
+         * 快捷方式 - ship._equipmentTypes
+         *
+         * @param {number|boolean} [slotIndex] 装备栏位index
+         *                         - 从 0 开始，4 固定为补强增设栏，第 5 装备栏从 5 开始
+         *                         - 如果给定，则会查询该栏位的装备类型，包含该栏位特有的类型
+         *                         - 如果为 true，则会检查所有栏位可以装备的类型
+         * @returns {number[]} - 装备ID
+         */
         getEquipmentTypes(slotIndex) {
             const disabled = this.additional_disable_item_types || [];
             const shipType = KC.db.ship_types[this.type];
             const types = (shipType.equipable || []).concat(
                 this.additional_item_types || []
             );
+            /** 忽略补强增设栏 (固定 index 4) 的 index */
+            const trueSlotIndex =
+                typeof slotIndex === 'number'
+                    ? slotIndex > 4
+                        ? slotIndex - 1
+                        : slotIndex
+                    : undefined;
 
             // 如果当前舰种存在根据装备栏位的额外可装备类型
             if (Array.isArray(shipType.additional_item_types_by_slot)) {
                 // 如果指定了装备栏位，将该栏位对应的装备类型追加到类型表中
-                if (typeof slotIndex === 'number') {
+                if (typeof trueSlotIndex === 'number') {
                     if (
                         Array.isArray(
-                            shipType.additional_item_types_by_slot[slotIndex]
+                            shipType.additional_item_types_by_slot[
+                                trueSlotIndex
+                            ]
                         )
                     )
                         shipType.additional_item_types_by_slot[
-                            slotIndex
+                            trueSlotIndex
                         ].forEach(id => types.push(id));
                 }
                 // 如果 slotIndex 为 true，将所有栏位的额外可装备类型追加到类型表中
@@ -600,11 +619,11 @@
 
             // 如果当前舰种存在根据装备栏位的可装备类型排除个例
             if (
-                typeof slotIndex === 'number' &&
+                typeof trueSlotIndex === 'number' &&
                 Array.isArray(shipType.equipable_exclude_by_slot) &&
-                Array.isArray(shipType.equipable_exclude_by_slot[slotIndex])
+                Array.isArray(shipType.equipable_exclude_by_slot[trueSlotIndex])
             ) {
-                shipType.equipable_exclude_by_slot[slotIndex].forEach(
+                shipType.equipable_exclude_by_slot[trueSlotIndex].forEach(
                     excludeId => {
                         const index = types.indexOf(excludeId);
                         if (index >= 0) types.splice(index, 1);
