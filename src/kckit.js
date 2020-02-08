@@ -597,6 +597,21 @@
                     });
                 }
             }
+
+            // 如果当前舰种存在根据装备栏位的可装备类型排除个例
+            if (
+                typeof slotIndex === 'number' &&
+                Array.isArray(shipType.equipable_exclude_by_slot) &&
+                Array.isArray(shipType.equipable_exclude_by_slot[slotIndex])
+            ) {
+                shipType.equipable_exclude_by_slot[slotIndex].forEach(
+                    excludeId => {
+                        const index = types.indexOf(excludeId);
+                        if (index >= 0) types.splice(index, 1);
+                    }
+                );
+            }
+
             return types
                 .filter(function(type) {
                     return disabled.indexOf(type) < 0;
@@ -3074,18 +3089,32 @@
                 multiper = 0.5 * count['34'] + 0.5 * count['87'];
                 break;
             case 'low-4':
-                // 低速4
+                // 低速特殊B群
                 // 	基础		5
-                // 	最大 		20
-                // 	1x + 0y		+5		0.5x
-                // 	2x + 0y		+10		1x
+                // 	最大 		15
+                //  タービンのみで高速化可能
+                //  0x + 0y     +5
+                // 	1x + 0y		+5		0.33x
+                // 	2x + 0y		+5		0.66x
+                // 	3x + 0y		+10		1x
+                // 	4x + 0y		+10		1x
                 // 	0x + 1y		+5		0.5x
-                // 	1x + 1y		+10		1x
+                // 	1x + 1y		+5		0.83x
+                // 	2x + 1y		+10		1.33x
+                // 	3x + 1y		+10		1.33x
                 // 	0x + 2y		+10		1x
-                // 	x = 0.5
+                // 	x = 0.33
                 // 	y = 0.5
                 multiper = 0.5;
+                if (
+                    count['34'] >= 3 ||
+                    count['87'] >= 2 ||
+                    (count['34'] >= 2 && count['87'] >= 1)
+                )
+                    multiper += 0.5;
                 break;
+            default: {
+            }
         }
 
         // console.log(
