@@ -329,6 +329,22 @@ describe('Base functions/utilities', () => {
                         )
                     ).toEqual(false);
                 });
+                it(`伊勢・改二 (Slot #4) | ❌ 中口径主砲 | ❌ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].canEquip(
+                            ['MediumCaliber', 'LargeCaliber'],
+                            3
+                        )
+                    ).toEqual(false);
+                });
+                it(`伊勢・改二 (Slot #5) | ❌ 中口径主砲 | ❌ 大口径主砲`, () => {
+                    expect(
+                        db.ships[553].canEquip(
+                            ['MediumCaliber', 'LargeCaliber'],
+                            5
+                        )
+                    ).toEqual(false);
+                });
                 it(`伊勢・改二 (All slots) | ✔ 中口径主砲 | ✔ 大口径主砲`, () => {
                     expect(
                         db.ships[553].canEquip(
@@ -405,10 +421,10 @@ describe('Base functions/utilities', () => {
                         db.ships[622].getEquipmentTypes(3).includes(64)
                     ).toEqual(false);
                     expect(
-                        db.ships[622].getEquipmentTypes(4).includes(4)
+                        db.ships[622].getEquipmentTypes(5).includes(4)
                     ).toEqual(false);
                     expect(
-                        db.ships[622].getEquipmentTypes(4).includes(64)
+                        db.ships[622].getEquipmentTypes(5).includes(64)
                     ).toEqual(false);
                 });
                 it(`夕張改二 (Slot #4) | ✔ 機関部強化`, () => {
@@ -418,7 +434,7 @@ describe('Base functions/utilities', () => {
                 });
                 it(`夕張改二 (Slot #5) | ❌ 機関部強化`, () => {
                     expect(
-                        db.ships[622].getEquipmentTypes(4).includes(32)
+                        db.ships[622].getEquipmentTypes(5).includes(32)
                     ).toEqual(false);
                 });
                 it(`タカオ | ❌ 対空機銃`, () => {
