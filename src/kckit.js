@@ -586,9 +586,13 @@
             const types = (shipType.equipable || []).concat(
                 this.additional_item_types || []
             );
-            /** 忽略补强增设栏 (固定 index 4) 的 index */
+            /**
+             * 忽略补强增设栏 (固定 index 4) 的 index
+             * - 如果 index 为 4，忽略
+             * - 如果 index 大于 4，减 1
+             */
             const trueSlotIndex =
-                typeof slotIndex === 'number'
+                typeof slotIndex === 'number' && slotIndex !== 4
                     ? slotIndex > 4
                         ? slotIndex - 1
                         : slotIndex
