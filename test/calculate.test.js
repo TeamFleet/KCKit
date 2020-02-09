@@ -1034,6 +1034,87 @@ describe('Calculating functions/utilities', () => {
                     range: 1
                 });
             });
+            describe('一式徹甲弾改', () => {
+                it('金剛改二', () => {
+                    expect(calculate.bonus(149, [365])).toEqual({
+                        fire: 1
+                    });
+                });
+                it('金剛改二丙', () => {
+                    expect(calculate.bonus(591, [365])).toEqual({
+                        fire: 3
+                    });
+                });
+                it('武蔵改', () => {
+                    expect(calculate.bonus(148, [365])).toEqual({
+                        fire: 1
+                    });
+                });
+                it('武蔵改二', () => {
+                    expect(calculate.bonus(546, [365])).toEqual({
+                        fire: 2
+                    });
+                });
+            });
+            describe('甲標的 丁型改(蛟龍改)', () => {
+                it('夕張改二特', () => {
+                    expect(calculate.bonus(623, [364])).toEqual({
+                        fire: 1,
+                        torpedo: 4,
+                        evasion: -2
+                    });
+                });
+                it('北上改二', () => {
+                    expect(calculate.bonus(119, [364])).toEqual({
+                        torpedo: 2,
+                        evasion: -2
+                    });
+                });
+                it('大井改二', () => {
+                    expect(calculate.bonus(118, [364])).toEqual({
+                        torpedo: 1,
+                        evasion: -2
+                    });
+                });
+                it('日進甲', () => {
+                    expect(calculate.bonus(586, [364])).toEqual({
+                        torpedo: 1,
+                        evasion: -2
+                    });
+                });
+                it('伊13改', () => {
+                    expect(calculate.bonus(374, [364])).toEqual({
+                        fire: -1,
+                        evasion: -7
+                    });
+                });
+                it('まるゆ改', () => {
+                    expect(calculate.bonus(402, [364])).toEqual({
+                        fire: -1,
+                        evasion: -7
+                    });
+                });
+                it('由良改二', () => {
+                    expect(calculate.bonus(488, [364])).toEqual({
+                        fire: -1,
+                        evasion: -7
+                    });
+                });
+            });
+            describe('四式水中聴音機', () => {
+                it('夕張改二丁', () => {
+                    expect(calculate.bonus(624, [149])).toEqual({
+                        asw: 3,
+                        evasion: 5
+                    });
+                });
+                it('涼月', () => {
+                    expect(calculate.bonus(532, [149])).toEqual({
+                        asw: 1,
+                        evasion: 2
+                    });
+                });
+            });
         });
 
         describe('Sets...', () => {
@@ -1061,6 +1142,53 @@ describe('Calculating functions/utilities', () => {
                 ).toEqual({
                     fire: 4,
                     aa: 4
+                });
+            });
+        });
+
+        describe('Specific Ships', () => {
+            describe('敷波改二', () => {
+                it('12.7cm連装砲B型改二 ➕12.7cm連装砲B型改四(戦時改修)+高射装置 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
+                    expect(
+                        calculate.bonus(627, [63, 296, 285], [0, 0, 10])
+                    ).toEqual({
+                        fire: 6,
+                        torpedo: 6,
+                        aa: 1,
+                        evasion: 1
+                    });
+                });
+            });
+            describe('夕張改二', () => {
+                it('130mm B-13連装砲 ➕6inch連装速射砲 Mk.XXI', () => {
+                    expect(calculate.bonus(622, [282, 359], [])).toEqual({
+                        fire: 4,
+                        aa: 2,
+                        armor: 1,
+                        evasion: 1
+                    });
+                });
+            });
+            describe('夕張改二特', () => {
+                it('14cm連装砲 ➕5inch連装両用砲(集中配備)', () => {
+                    expect(calculate.bonus(623, [119, 362], [])).toEqual({
+                        fire: -2,
+                        aa: -3,
+                        evasion: -8
+                    });
+                });
+            });
+            describe('夕張改二丁', () => {
+                it('14cm連装砲改 ➕14cm連装砲改⭐+8 ➕33号対水上電探', () => {
+                    expect(
+                        calculate.bonus(624, [310, 310, 29], [0, 8, 0])
+                    ).toEqual({
+                        fire: 12,
+                        torpedo: 3,
+                        aa: 2,
+                        evasion: 6,
+                        asw: 2
+                    });
                 });
             });
         });

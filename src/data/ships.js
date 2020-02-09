@@ -302,7 +302,6 @@ module.exports = {
     CL_KumaClass2ndRemodel,
     CL_KumaClassRemodelAll,
     CL_NagaraClass2ndRemodel,
-    Yuubari: [115, 293],
     CL_YuubariClass2ndRemodel,
     Yahagi: [139, 307],
     Ooyodo: [183, 321],

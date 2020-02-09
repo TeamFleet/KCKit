@@ -13,6 +13,7 @@ const {
     DD_Hatsuharu,
     DD_Shiratsuyu
 } = require('../../ship-classes');
+const { Shikinami2ndRemodelAll } = require('../../ship-series/dd');
 
 // const classesAyanamiAkatsuki = [DD_Ayanami, DD_Akatsuki]
 const classesAyanamiAkatsukiShiratsuyu = [
@@ -28,10 +29,24 @@ module.exports = [
         equipment: 296,
         ship: {
             isClass: classesAyanamiAkatsukiShiratsuyu,
-            isNotID: DD_ShiratsuyuClass2ndRemodel
+            isNotID: [
+                ...Shikinami2ndRemodelAll,
+                ...DD_ShiratsuyuClass2ndRemodel
+            ]
         },
         bonus: {
             fire: 1
+        }
+    },
+
+    {
+        equipment: 296,
+        ship: {
+            isID: Shikinami2ndRemodelAll
+        },
+        bonus: {
+            fire: 3,
+            torpedo: 1
         }
     },
 

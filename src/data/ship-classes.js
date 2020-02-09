@@ -41,6 +41,9 @@ const group_CL_Navy_RNLN = [CL_DeRuyter];
 const group_CL_Navy_RAN = [CL_Perth];
 const group_CL_Navy_USN = [CL_Atlanta];
 
+const DD_Fubuki = 15;
+const DD_Ayanami = 16;
+const DD_Akatsuki = 17;
 const DD_JohnCButler = 112;
 const DD_Fletcher = 117;
 const DD_J = 107;
@@ -54,6 +57,10 @@ module.exports = {
     BB_Fusou,
     BBV_Fusou,
     group_BB_Fusou,
+    BB_Nagato: 10,
+    BB_Yamato: 83,
+    BB_Kongou: 9,
+    BB_Kongou2: 119,
     BB_Colorado,
     BB_Iowa,
     BB_QueenElizabeth,
@@ -105,11 +112,11 @@ module.exports = {
     group_CL_Navy_USN,
 
     DD_Kamikaze: 84,
-    DD_Special: [15, 16, 17],
-    DD_Tokugata: [15, 16, 17],
-    DD_Fubuki: 15,
-    DD_Ayanami: 16,
-    DD_Akatsuki: 17,
+    DD_Special: [DD_Fubuki, DD_Ayanami, DD_Akatsuki],
+    DD_Tokugata: [DD_Fubuki, DD_Ayanami, DD_Akatsuki],
+    DD_Fubuki,
+    DD_Ayanami,
+    DD_Akatsuki,
     DD_Hatsuharu: 18,
     DD_Shiratsuyu: 19,
     DD_Shimakaze: 24,
@@ -117,7 +124,7 @@ module.exports = {
     DD_J,
     DD_JohnCButler,
     DD_Fletcher,
-    group_DD_Tokugata: [15, 16, 17],
+    group_DD_Tokugata: [DD_Fubuki, DD_Ayanami, DD_Akatsuki],
     group_DD_Navy_USN,
 
     AV_Nisshin: 118,

@@ -1,6 +1,14 @@
+const Shikinami2ndRemodelAll = [627];
+
 module.exports = {
     //
 
+    Shikinami: [
+        14,
+        208,
+        ...Shikinami2ndRemodelAll // 敷波改二
+    ],
+    Shikinami2ndRemodelAll,
     Akatsuki: [
         34, // 暁
         234, // 暁改

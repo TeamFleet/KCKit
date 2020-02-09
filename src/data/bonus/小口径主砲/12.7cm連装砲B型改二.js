@@ -6,24 +6,29 @@
 
 // https://wikiwiki.jp/kancolle/12.7cm%E9%80%A3%E8%A3%85%E7%A0%B2B%E5%9E%8B%E6%94%B9%E4%BA%8C
 
-const {
-    DD_AyanamiClassRemodelAll,
-    DD_AkatsukiClassRemodelAll,
-    DD_HatsuharuClassRemodelAll
-} = require('../../ships');
+const { group_DD_Tokugata } = require('../../ship-classes');
+const { Shikinami2ndRemodelAll } = require('../../ship-series/dd');
 
 module.exports = [
     // 綾波型改 / 暁型改 / 初春型改
     {
         equipment: 63,
         ship: {
-            isID: [
-                ...DD_AyanamiClassRemodelAll,
-                ...DD_AkatsukiClassRemodelAll,
-                ...DD_HatsuharuClassRemodelAll
-            ]
+            isClass: group_DD_Tokugata,
+            isNotID: Shikinami2ndRemodelAll
         },
         bonus: {
+            aa: 1
+        }
+    },
+
+    {
+        equipment: 63,
+        ship: {
+            isID: Shikinami2ndRemodelAll
+        },
+        bonus: {
+            fire: 1,
             aa: 1
         }
     },

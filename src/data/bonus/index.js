@@ -104,13 +104,16 @@ const dataBonuses = [
     ...require('./電探/SG レーダー(初期型)'),
 
     ...require('./対潜兵装/三式水中探信儀'),
+    ...require('./対潜兵装/四式水中聴音機'),
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
 
+    ...require('./その他/一式徹甲弾改'),
     ...require('./その他/三式弾'),
     ...require('./その他/三式弾改'),
+    ...require('./その他/甲標的 丁型改(蛟龍改)'),
     ...require('./その他/オ号観測機改'),
     ...require('./その他/オ号観測機改二'),
     ...require('./その他/S-51J'),

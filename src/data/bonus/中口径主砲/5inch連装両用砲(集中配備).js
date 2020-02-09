@@ -22,6 +22,7 @@ const {
     CL_Sendai,
     CL_Agano,
     CL_Yuubari,
+    CL_Yuubari2,
     CL_Ooyodo,
     CL_Gotland,
     CLV_Gotland,
@@ -82,7 +83,7 @@ const bonuses = [
     },
     {
         ship: {
-            isClass: [CL_Tenryuu, CL_Yuubari]
+            isClass: [CL_Tenryuu, CL_Yuubari, CL_Yuubari2]
         },
         bonus: {
             fire: -3,
