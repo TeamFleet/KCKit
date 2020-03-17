@@ -341,7 +341,7 @@ module.exports = {
     Hamakaze: [170, 312, 558],
     Maikaze: [122, 294],
     Kishinami: [527, 686],
-    Asashimo: [425, 344],
+    Asashimo: [425, 344, 578],
     Suzutsuki: [532, 537],
 
     //
