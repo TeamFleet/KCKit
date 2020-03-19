@@ -215,6 +215,7 @@ const DD_YuugumoClass2ndRemodel = [
     563, // 巻雲改二
     564, // 風雲改二
     543, // 長波改二
+    569, // 沖波改二
     578 // 朝霜改二
 ];
 const DD_ShimakazeRemodel = [
