@@ -1,43 +1,45 @@
 /**
- * 装备额外属性收益 - 12.7cm連装砲D型改二
- * 
  * @module
+ * 装备额外属性收益
+ *
+ * 267. 12.7cm連装砲D型改二
+ *      https://wikiwiki.jp/kancolle/12.7cm%E9%80%A3%E8%A3%85%E7%A0%B2D%E5%9E%8B%E6%94%B9%E4%BA%8C
+ *
  */
 
 const {
     DD_KagerouClass2ndRemodel,
     DD_YuugumoClass2ndRemodel,
-    DD_ShimakazeRemodel,
-} = require('../../ships')
+    DD_ShimakazeRemodel
+} = require('../../ships');
 
 module.exports = [
-    
     // @ 陽炎型
     {
         equipment: 267,
         ship: {
             isClass: [21],
-            isNotID: DD_KagerouClass2ndRemodel,
+            isNotID: DD_KagerouClass2ndRemodel
         },
         bonus: {
             fire: 1,
-            evasion: 1,
+            evasion: 1
         }
     },
-    
+
     // @ 夕雲型 / 島風型
     {
         equipment: 267,
         ship: {
             isClass: [22, 24],
-            isNotID: DD_YuugumoClass2ndRemodel,
+            isNotID: DD_YuugumoClass2ndRemodel
         },
         bonus: {
             fire: 2,
-            evasion: 1,
+            evasion: 1
         }
     },
-    
+
     // @ 陽炎型 改二
     {
         equipment: 267,
@@ -47,19 +49,19 @@ module.exports = [
         bonusCount: {
             1: {
                 fire: 2,
-                evasion: 1,
+                evasion: 1
             },
             2: {
                 fire: 3,
-                evasion: 2,
+                evasion: 2
             },
             3: {
                 fire: 4,
-                evasion: 3,
-            },
+                evasion: 3
+            }
         }
     },
-    
+
     // @ 夕雲型 改二
     {
         equipment: 267,
@@ -68,7 +70,7 @@ module.exports = [
         },
         bonus: {
             fire: 3,
-            evasion: 1,
+            evasion: 1
         }
     },
 
@@ -77,13 +79,10 @@ module.exports = [
     // + 对水上電探
     // @ 島風改
     {
-        list: [
-            267,
-            'SurfaceRadar',
-        ],
+        list: [267, 'SurfaceRadar'],
         equipments: {
             hasID: [267],
-            hasSurfaceRadar: true,
+            hasSurfaceRadar: true
         },
         ship: {
             isID: DD_ShimakazeRemodel
@@ -91,42 +90,36 @@ module.exports = [
         bonus: {
             fire: 1,
             torpedo: 3,
-            evasion: 2,
+            evasion: 2
         }
     },
 
     // + 对水上電探
     // @ 夕雲型
     {
-        list: [
-            267,
-            'SurfaceRadar',
-        ],
+        list: [267, 'SurfaceRadar'],
         equipments: {
             hasID: [267],
-            hasSurfaceRadar: true,
+            hasSurfaceRadar: true
         },
         ship: {
             isClass: [22],
-            isNotID: DD_YuugumoClass2ndRemodel,
+            isNotID: DD_YuugumoClass2ndRemodel
         },
         bonus: {
             fire: 2,
             torpedo: 3,
-            evasion: 1,
+            evasion: 1
         }
     },
 
     // + 对水上電探
     // @ 夕雲型 改二
     {
-        list: [
-            267,
-            'SurfaceRadar',
-        ],
+        list: [267, 'SurfaceRadar'],
         equipments: {
             hasID: [267],
-            hasSurfaceRadar: true,
+            hasSurfaceRadar: true
         },
         ship: {
             isID: DD_YuugumoClass2ndRemodel
@@ -134,8 +127,7 @@ module.exports = [
         bonus: {
             fire: 3,
             torpedo: 4,
-            evasion: 3,
+            evasion: 3
         }
-    },
-
-]
+    }
+];
