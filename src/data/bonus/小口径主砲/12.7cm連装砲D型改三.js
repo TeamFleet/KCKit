@@ -82,10 +82,7 @@ module.exports = [
     {
         equipment: 366,
         ship: {
-            isID: DD_YuugumoClass2ndRemodel,
-            isNotID: [
-                569 // 沖波改二
-            ]
+            isID: DD_YuugumoClass2ndRemodel.filter(shipId => shipId !== 569)
         },
         bonus: {
             fire: 3,
