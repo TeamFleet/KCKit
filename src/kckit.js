@@ -2798,10 +2798,13 @@
                 count.main >= 1
             ) {
                 // [267] 12.7cm連装砲D型改二
+                let multiplier = 1.3;
+                const countDTypeGun = equipmentCount[267] + equipmentCount[366];
+                if (countDTypeGun === 1) multiplier *= 1.25;
+                else if (countDTypeGun > 1) multiplier *= 1.4;
+                if (equipmentCount[366]) multiplier *= 1.05;
                 result.type = '电雷CI';
-                result.damage = equipmentCount[267]
-                    ? Math.floor(result.damage * 1.625)
-                    : Math.floor(result.damage * 1.3);
+                result.damage = Math.floor(result.damage * multiplier);
                 result.hit = 1;
                 // result.isMin = true
             }
