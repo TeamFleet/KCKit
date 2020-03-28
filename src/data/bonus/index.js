@@ -122,6 +122,7 @@ const dataBonuses = [
     ...require('./その他/S-51J改'),
     ...require('./その他/探照灯'),
     ...require('./その他/96式150cm探照灯'),
+    ...require('./その他/熟練見張員'),
 ];
 
 // 检查所有套装加成

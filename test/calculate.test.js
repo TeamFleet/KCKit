@@ -953,25 +953,25 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('鳳翔改 || 九六式艦戦 ➕九六式艦戦改', () => {
                     expect(calculate.bonus(285, [19, 228])).toEqual({
-                        fire: 2,
-                        aa: 4,
-                        asw: 3,
-                        evasion: 5,
+                        fire: 5,
+                        aa: 7,
+                        asw: 8,
+                        evasion: 8,
                     });
                 });
                 it('春日丸 || 九六式艦戦 ➕九六式艦戦改', () => {
                     expect(calculate.bonus(521, [19, 228])).toEqual({
-                        fire: 2,
+                        fire: 4,
                         aa: 3,
-                        asw: 6,
+                        asw: 10,
                         evasion: 3,
                     });
                 });
                 it('大鷹改二 || 九六式艦戦 ➕九六式艦戦改', () => {
                     expect(calculate.bonus(529, [19, 228])).toEqual({
-                        fire: 2,
+                        fire: 4,
                         aa: 3,
-                        asw: 6,
+                        asw: 10,
                         evasion: 3,
                     });
                 });
@@ -1040,26 +1040,32 @@ describe('Calculating functions/utilities', () => {
             });
             it('比叡改二 || 探照灯', () => {
                 expect(calculate.bonus(150, [74])).toEqual({
-                    fire: 2,
+                    fire: 4,
                     evasion: -1,
                 });
             });
             it('比叡改二 || 探照灯 ➕探照灯', () => {
                 expect(calculate.bonus(150, [74, 74])).toEqual({
-                    fire: 2,
+                    fire: 4,
                     evasion: -1,
                 });
             });
             it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯', () => {
                 expect(calculate.bonus(150, [74, 74, 140])).toEqual({
-                    fire: 5,
+                    fire: 10,
                     evasion: -3,
                 });
             });
             it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯 ➕96式150cm探照灯', () => {
                 expect(calculate.bonus(150, [74, 74, 140, 140])).toEqual({
-                    fire: 5,
+                    fire: 10,
                     evasion: -3,
+                });
+            });
+            it('武蔵改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯 ➕96式150cm探照灯', () => {
+                expect(calculate.bonus(546, [74, 74, 140, 140])).toEqual({
+                    fire: 4,
+                    evasion: -1,
                 });
             });
             it('陽炎改二 || 53cm艦首(酸素)魚雷', () => {
@@ -1161,6 +1167,65 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(532, [149])).toEqual({
                         asw: 1,
                         evasion: 2,
+                    });
+                });
+            });
+            describe('熟練見張員', () => {
+                it('Prinz Eugen改', () => {
+                    expect(calculate.bonus(177, [129])).toEqual({});
+                });
+                it('鈴谷改', () => {
+                    expect(calculate.bonus(129, [129])).toEqual({
+                        fire: 1,
+                        los: 3,
+                        evasion: 2,
+                    });
+                });
+                it('摩耶改二', () => {
+                    expect(calculate.bonus(428, [129, 129])).toEqual({
+                        fire: 2,
+                        los: 6,
+                        evasion: 4,
+                    });
+                });
+                it('Atlanta改', () => {
+                    expect(calculate.bonus(696, [129])).toEqual({});
+                });
+                it('香取', () => {
+                    expect(calculate.bonus(154, [129])).toEqual({
+                        fire: 1,
+                        torpedo: 2,
+                        los: 3,
+                        evasion: 2,
+                    });
+                });
+                it('夕張改二特', () => {
+                    expect(calculate.bonus(623, [129, 129])).toEqual({
+                        fire: 2,
+                        torpedo: 4,
+                        los: 6,
+                        evasion: 4,
+                    });
+                });
+                it('Ташкент改', () => {
+                    expect(calculate.bonus(395, [129])).toEqual({});
+                });
+                it('夕雲', () => {
+                    expect(calculate.bonus(133, [129])).toEqual({
+                        fire: 1,
+                        torpedo: 2,
+                        asw: 2,
+                        los: 1,
+                        evasion: 2,
+                    });
+                });
+                it('春風改', () => {
+                    expect(calculate.bonus(363, [129, 129])).toEqual({
+                        fire: 2,
+                        torpedo: 4,
+                        asw: 4,
+                        los: 2,
+                        evasion: 4,
                     });
                 });
             });

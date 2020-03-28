@@ -1,3 +1,8 @@
+// ============================================================================
+//
+// BB
+//
+// ============================================================================const BB_Ise = 2;
 const BB_Ise = 2;
 const BBV_Ise = 6;
 const BBVR_Ise = 113;
@@ -12,6 +17,11 @@ const BB_Nelson = 115;
 const group_BB_Navy_USN = [BB_Colorado, BB_Iowa];
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 
+// ============================================================================
+//
+// CV
+//
+// ============================================================================
 const CVB_Lexington = 105;
 const CV_Lexington = 87;
 const CV_Essex = 110;
@@ -29,6 +39,11 @@ const group_CV_Navy_USN = [
 ];
 const group_CV_Navy_RN = [CV_ArkRoyal];
 
+// ============================================================================
+//
+// CA
+//
+// ============================================================================
 const CAV_Mogami = 45;
 const CAV_MogamiRevised = 90;
 const CAV_Tone = 46;
@@ -50,24 +65,93 @@ const group_CA_Navy_IJN = [
 ];
 const group_CA_Navy_USN = [CA_Houston];
 
+// ============================================================================
+//
+// CL
+//
+// ============================================================================
+// 重雷装巡洋艦
+const CLT_Kuma = 54;
+// 軽航空巡洋艦
+const CLV_Gotland = 116;
+// 兵装実験軽巡洋艦
+const CL_Yuubari2 = 129;
+// 防空巡洋艦
+const CL_Atlanta = 128;
+// 軽巡洋艦
+const CL_Tenryuu = 47;
+const CL_Kuma = 48;
+const CL_Nagara = 49;
+const CL_Sendai = 50;
+const CL_Yuubari = 51;
+const CL_Agano = 52;
+const CL_Ooyodo = 53;
+const CL_Gotland = 114;
 const CL_Abruzzi = 120;
 const CL_DeRuyter = 127;
 const CL_Perth = 125;
-const CL_Atlanta = 128;
+// 練習巡洋艦
+const CT_Katori = 55;
+// GROUPS
+const group_CL_Navy_IJN = [
+    CL_Tenryuu,
+    CL_Kuma,
+    CL_Nagara,
+    CL_Sendai,
+    CL_Yuubari,
+    CL_Agano,
+    CL_Ooyodo,
+];
 const group_CL_Navy_RM = [CL_Abruzzi];
 const group_CL_Navy_RNLN = [CL_DeRuyter];
 const group_CL_Navy_RAN = [CL_Perth];
 const group_CL_Navy_USN = [CL_Atlanta];
+const group_CL_S_Navy_IJN = [
+    CLT_Kuma,
+    CL_Yuubari2,
+    ...group_CL_Navy_IJN,
+    CT_Katori,
+];
 
+// ============================================================================
+//
+// DD
+//
+// ============================================================================
+const DD_Kamikaze = 84;
+const DD_Mutsuki = 12;
 const DD_Fubuki = 15;
 const DD_Ayanami = 16;
 const DD_Akatsuki = 17;
+const DD_Hatsuharu = 18;
+const DD_Shiratsuyu = 19;
+const DD_Asashio = 20;
+const DD_Kagerou = 21;
+const DD_Yuugumo = 22;
+const DD_Shimakaze = 24;
+const DD_Akizuki = 23;
 const DD_JohnCButler = 112;
 const DD_Fletcher = 117;
 const DD_J = 107;
+// GROUPS
+const group_DD_Navy_IJN = [
+    DD_Kamikaze,
+    DD_Mutsuki,
+    DD_Fubuki,
+    DD_Ayanami,
+    DD_Akatsuki,
+    DD_Hatsuharu,
+    DD_Shiratsuyu,
+    DD_Asashio,
+    DD_Kagerou,
+    DD_Yuugumo,
+    DD_Akizuki,
+    DD_Shimakaze,
+];
 const group_DD_Navy_USN = [DD_JohnCButler, DD_Fletcher];
 
 module.exports = {
+    // ========================================================================
     BB_Ise,
     BBV_Ise,
     BBVR_Ise,
@@ -86,6 +170,7 @@ module.exports = {
     group_BB_Navy_USN,
     group_BB_Navy_RN,
 
+    // ========================================================================
     CV_Lexington,
     CVB_Lexington,
     CV_Essex,
@@ -103,6 +188,7 @@ module.exports = {
     CV_Taiyou: 97,
     CV_Casablanca,
 
+    // ========================================================================
     CAV_Mogami,
     CAV_MogamiRevised,
     CAV_Tone,
@@ -117,38 +203,56 @@ module.exports = {
     group_CA_Navy_IJN,
     group_CA_Navy_USN,
 
-    CL_Tenryuu: 47,
-    CL_Kuma: 48,
-    CL_Nagara: 49,
-    CL_Sendai: 50,
-    CL_Yuubari: 51,
-    CL_Yuubari2: 129,
-    CL_Agano: 52,
-    CL_Ooyodo: 53,
-    CL_Gotland: 114,
+    // ========================================================================
+    // 重雷装巡洋艦
+    CLT_Kuma,
+    // 軽航空巡洋艦
+    CLV_Gotland,
+    // 兵装実験軽巡洋艦
+    CL_Yuubari2,
+    // 防空巡洋艦
+    CL_Atlanta,
+    // 軽巡洋艦
+    CL_Tenryuu,
+    CL_Kuma,
+    CL_Nagara,
+    CL_Sendai,
+    CL_Yuubari,
+    CL_Agano,
+    CL_Ooyodo,
+    CL_Gotland,
     CL_Abruzzi,
     CL_DeRuyter,
     CL_Perth,
-    CL_Atlanta,
-    CLT_Kuma: 54,
-    CLV_Gotland: 116,
-    CT_Katori: 55,
+    // 練習巡洋艦
+    CT_Katori,
+    // GROUPS
+    group_CL_Navy_IJN,
+    group_CL_Navy_RNLN,
+    group_CL_Navy_RAN,
     group_CL_Navy_USN,
+    group_CL_S_Navy_IJN,
 
-    DD_Kamikaze: 84,
+    // ========================================================================
+    DD_Kamikaze,
+    DD_Mutsuki,
     DD_Special: [DD_Fubuki, DD_Ayanami, DD_Akatsuki],
     DD_Tokugata: [DD_Fubuki, DD_Ayanami, DD_Akatsuki],
     DD_Fubuki,
     DD_Ayanami,
     DD_Akatsuki,
-    DD_Hatsuharu: 18,
-    DD_Shiratsuyu: 19,
-    DD_Shimakaze: 24,
-    DD_Akizuki: 23,
+    DD_Hatsuharu,
+    DD_Shiratsuyu,
+    DD_Asashio,
+    DD_Kagerou,
+    DD_Yuugumo,
+    DD_Akizuki,
+    DD_Shimakaze,
     DD_J,
     DD_JohnCButler,
     DD_Fletcher,
     group_DD_Tokugata: [DD_Fubuki, DD_Ayanami, DD_Akatsuki],
+    group_DD_Navy_IJN,
     group_DD_Navy_USN,
 
     AV_Nisshin: 118,

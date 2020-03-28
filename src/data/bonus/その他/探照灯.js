@@ -16,54 +16,55 @@ const {
 
     Akatsuki,
     Akigumo,
-    Yukikaze
+    Yukikaze,
 } = require('../../ship-series');
 
 module.exports = [
     {
         equipment: 74,
         ship: {
-            isID: [...Akigumo]
+            isID: [...Akigumo],
         },
         bonus: {
-            fire: 1
-        }
+            fire: 2,
+        },
     },
 
     {
         equipment: 74,
         ship: {
-            isID: [...Yukikaze]
+            isID: [...Yukikaze],
         },
         bonus: {
-            aa: 1
-        }
+            fire: 1,
+            aa: 1,
+        },
     },
 
     {
         equipment: 74,
         ship: {
-            isID: [...Hiei, ...Kirishima, ...Choukai, ...Akatsuki]
+            isID: [...Hiei, ...Kirishima, ...Choukai, ...Akatsuki],
         },
         bonusCount: {
             1: {
-                fire: 2,
-                evasion: -1
-            }
-        }
+                fire: 4,
+                evasion: -1,
+            },
+        },
     },
 
     {
         equipment: 74,
         ship: {
-            isID: [...Jintsu]
+            isID: [...Jintsu],
         },
         bonusCount: {
             1: {
-                fire: 2,
-                torpedo: 2,
-                evasion: -1
-            }
-        }
-    }
+                fire: 8,
+                torpedo: 6,
+                evasion: -1,
+            },
+        },
+    },
 ];

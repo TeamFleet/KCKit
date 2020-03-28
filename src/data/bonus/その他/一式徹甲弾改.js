@@ -13,37 +13,37 @@ const {
     BB_Nagato,
     BB_Yamato,
     BB_Kongou,
-    BB_Kongou2
+    BB_Kongou2,
 } = require('../../ship-classes');
 
 const tier2IDs = [
     541, // 長門改二
     573, // 陸奥改二
     136, // 大和改
-    546 // 武蔵改二
+    546, // 武蔵改二
 ];
 const tier3IDs = [
-    591 // 金剛改二丙
+    591, // 金剛改二丙
 ];
 
 module.exports = [
     {
         equipment: 365,
         ship: {
-            isID: tier3IDs
+            isID: tier3IDs,
         },
         bonus: {
-            fire: 3
-        }
+            fire: 3,
+        },
     },
     {
         equipment: 365,
         ship: {
-            isID: tier2IDs
+            isID: tier2IDs,
         },
         bonus: {
-            fire: 2
-        }
+            fire: 2,
+        },
     },
     {
         equipment: 365,
@@ -54,12 +54,12 @@ module.exports = [
                 BB_Nagato,
                 BB_Yamato,
                 BB_Kongou,
-                BB_Kongou2
+                BB_Kongou2,
             ],
-            isNotID: [...tier2IDs, ...tier3IDs]
+            isNotID: [...tier2IDs, ...tier3IDs],
         },
         bonus: {
-            fire: 1
-        }
-    }
+            fire: 1,
+        },
+    },
 ];
