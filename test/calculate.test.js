@@ -708,6 +708,7 @@ describe('Calculating functions/utilities', () => {
                         aa: 8,
                         evasion: 11,
                         armor: 1,
+                        hit: 1,
                     });
                 });
                 it('伊勢改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
@@ -715,6 +716,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 4,
                         aa: 4,
                         evasion: 4,
+                        hit: 6,
                     });
                 });
                 it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
@@ -723,6 +725,16 @@ describe('Calculating functions/utilities', () => {
                         aa: 4,
                         evasion: 5,
                         armor: 1,
+                        hit: 6,
+                    });
+                });
+                it('日向改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
+                    expect(calculate.bonus(554, [318, 290])).toEqual({
+                        fire: 7,
+                        aa: 4,
+                        evasion: 6,
+                        armor: 1,
+                        hit: 7,
                     });
                 });
                 it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
@@ -731,6 +743,7 @@ describe('Calculating functions/utilities', () => {
                         aa: 8,
                         evasion: 11,
                         armor: 1,
+                        hit: 7,
                     });
                 });
                 it('長門改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
@@ -738,6 +751,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 6,
                         aa: 4,
                         evasion: 2,
+                        hit: 4,
                     });
                 });
                 it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
@@ -746,6 +760,7 @@ describe('Calculating functions/utilities', () => {
                         aa: 2,
                         evasion: 3,
                         armor: 1,
+                        hit: 3,
                     });
                 });
                 it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
@@ -754,6 +769,7 @@ describe('Calculating functions/utilities', () => {
                         aa: 2,
                         evasion: 3,
                         armor: 1,
+                        hit: 3,
                     });
                 });
                 it('伊勢改二 || 35.6cm連装砲改', () => {

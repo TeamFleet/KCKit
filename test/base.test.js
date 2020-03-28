@@ -708,7 +708,7 @@ describe('Base functions/utilities', () => {
                     expect(db.items[142].getBonuses().length).toEqual(3);
                 });
                 it(`41cm三连装炮改二`, () => {
-                    expect(db.items[290].getBonuses().length).toEqual(6);
+                    expect(db.items[290].getBonuses().length).toEqual(8);
                 });
             });
         });
