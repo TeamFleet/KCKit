@@ -65,6 +65,7 @@ const dataBonuses = [
 
     ...require('./水上機/S9 Osprey'),
     ...require('./水上機/Laté 298B'),
+    ...require('./水上機/Swordfish'),
     ...require('./水上機/瑞雲(六三四空)'),
     ...require('./水上機/瑞雲12型(六三四空)'),
     ...require('./水上機/瑞雲(六三四空／熟練)'),

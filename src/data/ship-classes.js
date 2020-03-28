@@ -255,8 +255,14 @@ module.exports = {
     group_DD_Navy_IJN,
     group_DD_Navy_USN,
 
+    // ========================================================================
     AV_Nisshin: 118,
+    AV_CommandantTeste: 86,
+    AV_Mizuho: 77,
+    AO_Kamoi: 98,
+    AV_Kamoi: 99,
 
+    // ========================================================================
     group_Navy_USN: [
         ...group_BB_Navy_USN,
         ...group_CV_Navy_USN,

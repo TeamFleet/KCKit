@@ -1089,6 +1089,13 @@ describe('Calculating functions/utilities', () => {
                     range: 1,
                 });
             });
+            it('神威改母 || Swordfish(水上機型) ➕Swordfish Mk.III改(水上機型)', () => {
+                expect(calculate.bonus(500, [367, 368])).toEqual({
+                    fire: 2,
+                    asw: 2,
+                    evasion: 2,
+                });
+            });
             describe('一式徹甲弾改', () => {
                 it('金剛改二', () => {
                     expect(calculate.bonus(149, [365])).toEqual({
