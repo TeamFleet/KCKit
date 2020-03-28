@@ -38,6 +38,7 @@ const dataBonuses = [
     ...require('./中口径主砲/152mm／55 三連装速射砲'),
     ...require('./中口径主砲/6inch連装速射砲'),
     ...require('./中口径主砲/20.3cm(2号)連装砲'),
+    ...require('./中口径主砲/20.3cm(3号)連装砲'),
     ...require('./中口径主砲/8inch三連装砲 Mk.9'),
     ...require('./中口径主砲/5inch連装両用砲(集中配備)'),
 
@@ -120,7 +121,7 @@ const dataBonuses = [
     ...require('./その他/S-51J'),
     ...require('./その他/S-51J改'),
     ...require('./その他/探照灯'),
-    ...require('./その他/96式150cm探照灯')
+    ...require('./その他/96式150cm探照灯'),
 ];
 
 // 检查所有套装加成
@@ -130,17 +131,17 @@ const dataBonuses = [
     const bonusSets = dataBonuses.filter(bonusIsSet);
 
     bonusSets.forEach((bonus, index) => {
-        if (!bonus.list.every(item => !isNaN(item))) return;
+        if (!bonus.list.every((item) => !isNaN(item))) return;
         bonusSets.forEach((toCheck, indexToCheck) => {
             if (
                 index === indexToCheck ||
                 bonus.list.length >= toCheck.list.length ||
-                !bonus.list.every(item => toCheck.list.includes(item))
+                !bonus.list.every((item) => toCheck.list.includes(item))
             )
                 return;
             if (!toCheck.bonusAccumulate)
                 toCheck.bonusAccumulate = { ...(toCheck.bonus || {}) };
-            Object.keys(bonus.bonus).forEach(stat => {
+            Object.keys(bonus.bonus).forEach((stat) => {
                 if (typeof toCheck.bonusAccumulate[stat] === 'undefined')
                     toCheck.bonusAccumulate[stat] = 0;
                 toCheck.bonusAccumulate[stat] += bonus.bonus[stat];

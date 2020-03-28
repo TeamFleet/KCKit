@@ -5,7 +5,7 @@ const dbnames = require('./samples/dbnames');
 
 let db;
 beforeAll(() =>
-    new Promise(async resolve => {
+    new Promise(async (resolve) => {
         db = await require('./samples/initialize-database')(dbnames);
         resolve();
     }).then(() => {
@@ -21,15 +21,15 @@ describe('Calculating functions/utilities', () => {
             expect(
                 calculate.tp({
                     shipType: {
-                        1: 1
-                    }
+                        1: 1,
+                    },
                 })
             ).toBe(5);
             expect(
                 calculate.tp({
                     shipType: {
-                        '1': 1
-                    }
+                        '1': 1,
+                    },
                 })
             ).toBe(5);
         });
@@ -37,11 +37,11 @@ describe('Calculating functions/utilities', () => {
             expect(
                 calculate.tp({
                     shipType: {
-                        1: 2
+                        1: 2,
                     },
                     equipmentType: {
-                        LandingCraft: 3
-                    }
+                        LandingCraft: 3,
+                    },
                 })
             ).toBe(34);
         });
@@ -50,12 +50,12 @@ describe('Calculating functions/utilities', () => {
                 calculate.tp({
                     shipType: {
                         1: 2,
-                        15: 1
+                        15: 1,
                     },
                     equipmentType: {
                         LandingCraft: 3,
-                        48: 1
-                    }
+                        48: 1,
+                    },
                 })
             ).toBe(47);
         });
@@ -65,85 +65,85 @@ describe('Calculating functions/utilities', () => {
             it('陽炎改二 || 12.7cm連装砲D型改二', () => {
                 expect(calculate.bonus(566, 267)).toEqual({
                     fire: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
                 expect(calculate.bonus(566, [267, 267])).toEqual({
                     fire: 3,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
                 expect(calculate.bonus(566, [267, 267, 267])).toEqual({
                     fire: 4,
-                    evasion: 3
+                    evasion: 3,
                 });
             });
             it('陽炎改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕22号対水上電探改四', () => {
                 expect(calculate.bonus(566, [267, 267, 88])).toEqual({
                     fire: 3,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('長波改 || 12.7cm連装砲D型改二', () => {
                 expect(calculate.bonus(304, 267)).toEqual({
                     fire: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('長波改 || 12.7cm連装砲D型改二 ➕33号対水上電探', () => {
                 expect(calculate.bonus(304, [267, 29])).toEqual({
                     fire: 4,
                     torpedo: 3,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('長波改二 || 12.7cm連装砲D型改二', () => {
                 expect(calculate.bonus(543, 267)).toEqual({
                     fire: 3,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('長波改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二', () => {
                 expect(calculate.bonus(543, [267, 267, 267])).toEqual({
                     fire: 9,
-                    evasion: 3
+                    evasion: 3,
                 });
             });
             it('長波改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕22号対水上電探改四', () => {
                 expect(calculate.bonus(543, [267, 267, 88])).toEqual({
                     fire: 9,
                     torpedo: 4,
-                    evasion: 5
+                    evasion: 5,
                 });
             });
             it('不知火改二 || 61cm四連装(酸素)魚雷', () => {
                 expect(calculate.bonus(567, [15])).toEqual({
-                    torpedo: 2
+                    torpedo: 2,
                 });
             });
             it('不知火改二 || 61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷', () => {
                 expect(calculate.bonus(567, [15, 15])).toEqual({
-                    torpedo: 4
+                    torpedo: 4,
                 });
             });
             it('不知火改二 || 61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷 ➕61cm四連装(酸素)魚雷', () => {
                 expect(calculate.bonus(567, [15, 15, 15])).toEqual({
-                    torpedo: 4
+                    torpedo: 4,
                 });
             });
             it('不知火改二 || 61cm四連装(酸素)魚雷後期型 ➕61cm四連装(酸素)魚雷後期型', () => {
                 expect(calculate.bonus(567, [286, 286])).toEqual({
                     torpedo: 4,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('不知火改二 || 61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
                 expect(calculate.bonus(567, [286, 286], [10, 5])).toEqual({
                     fire: 1,
                     torpedo: 6,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('不知火改二 || 12.7cm連装砲D型改二 ➕61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
@@ -152,19 +152,19 @@ describe('Calculating functions/utilities', () => {
                 ).toEqual({
                     fire: 3,
                     torpedo: 6,
-                    evasion: 3
+                    evasion: 3,
                 });
             });
             it('木曽改二 || 北方迷彩(＋北方装備)', () => {
                 expect(calculate.bonus(146, [268])).toEqual({
                     armor: 2,
-                    evasion: 7
+                    evasion: 7,
                 });
             });
             it('木曽改二 || 北方迷彩(＋北方装備) ➕北方迷彩(＋北方装備) ➕北方迷彩(＋北方装備)', () => {
                 expect(calculate.bonus(146, [268, 268, 268])).toEqual({
                     armor: 2,
-                    evasion: 7
+                    evasion: 7,
                 });
             });
             it('由良改二 || 12.7cm単装高角砲(後期型)⭐MAX ➕12.7cm単装高角砲(後期型)⭐MAX ➕FuMO25 レーダー', () => {
@@ -172,7 +172,7 @@ describe('Calculating functions/utilities', () => {
                     {
                         fire: 7,
                         aa: 6,
-                        evasion: 2
+                        evasion: 2,
                     }
                 );
             });
@@ -182,14 +182,14 @@ describe('Calculating functions/utilities', () => {
             it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX', () => {
                 expect(calculate.bonus(376, [229], [10])).toEqual({
                     fire: 1,
-                    aa: 1
+                    aa: 1,
                 });
             });
             it('占守改 || 12.7cm単装高角砲(後期型)⭐MAX ➕22号対水上電探', () => {
                 expect(calculate.bonus(376, [229, 28], [10])).toEqual({
                     fire: 2,
                     aa: 1,
-                    evasion: 4
+                    evasion: 4,
                 });
             });
             it('伊勢改二 || 二式艦上偵察機 ➕二式艦上偵察機', () => {
@@ -197,45 +197,45 @@ describe('Calculating functions/utilities', () => {
                     fire: 6,
                     armor: 2,
                     evasion: 4,
-                    range: '1'
+                    range: '1',
                 });
             });
             it('叢雲改二 || 61cm三連装(酸素)魚雷後期型', () => {
                 expect(calculate.bonus(420, [285])).toEqual({
                     torpedo: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('叢雲改二 || 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(calculate.bonus(420, [285], [10])).toEqual({
                     fire: 1,
                     torpedo: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二', () => {
                 expect(calculate.bonus(420, [294])).toEqual({
-                    fire: 1
+                    fire: 1,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕33号対水上電探', () => {
                 expect(calculate.bonus(420, [294, 29])).toEqual({
                     fire: 4,
                     torpedo: 1,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷', () => {
                 expect(calculate.bonus(420, [294, 125])).toEqual({
                     fire: 2,
-                    torpedo: 3
+                    torpedo: 3,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(calculate.bonus(420, [294, 285], [0, 10])).toEqual({
                     fire: 3,
                     torpedo: 6,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
@@ -244,7 +244,7 @@ describe('Calculating functions/utilities', () => {
                 ).toEqual({
                     fire: 4,
                     torpedo: 9,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
@@ -253,7 +253,7 @@ describe('Calculating functions/utilities', () => {
                 ).toEqual({
                     fire: 4,
                     torpedo: 10,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型⭐MAX ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
@@ -262,7 +262,7 @@ describe('Calculating functions/utilities', () => {
                 ).toEqual({
                     fire: 5,
                     torpedo: 10,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕33号対水上電探 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
@@ -271,7 +271,7 @@ describe('Calculating functions/utilities', () => {
                 ).toEqual({
                     fire: 6,
                     torpedo: 7,
-                    evasion: 3
+                    evasion: 3,
                 });
             });
             it('初春改二 || 12.7cm連装砲A型改三(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
@@ -281,7 +281,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 4,
                     torpedo: 6,
                     aa: 8,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
@@ -291,7 +291,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 4,
                     torpedo: 6,
                     aa: 6,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕12.7cm連装砲B型改二 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
@@ -301,21 +301,21 @@ describe('Calculating functions/utilities', () => {
                     fire: 5,
                     torpedo: 7,
                     aa: 1,
-                    evasion: 4
+                    evasion: 4,
                 });
             });
             it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕12.7cm連装砲C型改二 ➕33号対水上電探', () => {
                 expect(calculate.bonus(144, [296, 266, 29])).toEqual({
                     fire: 5,
                     torpedo: 7,
-                    evasion: 4
+                    evasion: 4,
                 });
             });
             it('Warspite改 || 16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲', () => {
                 expect(calculate.bonus(364, [298, 298])).toEqual({
                     fire: 4,
                     armor: 2,
-                    evasion: -4
+                    evasion: -4,
                 });
             });
             it('Warspite改 || 16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲 ➕20連装7inch UP Rocket Launchers', () => {
@@ -323,31 +323,31 @@ describe('Calculating functions/utilities', () => {
                     fire: 4,
                     aa: 2,
                     armor: 3,
-                    evasion: -3
+                    evasion: -3,
                 });
             });
             it('北上 || Bofors 15.2cm連装砲 Model 1930', () => {
                 expect(calculate.bonus(25, [303])).toEqual({
                     fire: 1,
-                    aa: 1
+                    aa: 1,
                 });
             });
             it('北上改二 || Bofors 15.2cm連装砲 Model 1930', () => {
                 expect(calculate.bonus(119, [303])).toEqual({
                     fire: 1,
-                    aa: 1
+                    aa: 1,
                 });
             });
             it('大鷹改二 || 九七式艦攻(九三一空) ➕Ju87C改二(KMX搭載機)', () => {
                 expect(calculate.bonus(529, [82, 305])).toEqual({
                     asw: 2,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('Graf Zeppelin改 || 九七式艦攻(九三一空) ➕Ju87C改二(KMX搭載機)', () => {
                 expect(calculate.bonus(353, [82, 305])).toEqual({
                     fire: 1,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('睦月改二 || 12cm単装砲改二 ➕33号対水上電探', () => {
@@ -355,7 +355,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 4,
                     torpedo: 1,
                     aa: 1,
-                    evasion: 6
+                    evasion: 6,
                 });
             });
             it('睦月改二 || 12cm単装砲改二 ➕33号対水上電探 ➕53cm連装魚雷', () => {
@@ -363,7 +363,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 6,
                     torpedo: 5,
                     aa: 1,
-                    evasion: 6
+                    evasion: 6,
                 });
             });
             it('睦月改二 || 12cm単装砲改二 ➕53cm連装魚雷 ➕53cm連装魚雷', () => {
@@ -371,35 +371,35 @@ describe('Calculating functions/utilities', () => {
                     fire: 5,
                     torpedo: 7,
                     aa: 1,
-                    evasion: 3
+                    evasion: 3,
                 });
             });
             it('Gotland || Bofors 15.2cm連装砲 Model 1930', () => {
                 expect(calculate.bonus(574, [303])).toEqual({
                     fire: 1,
                     aa: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('Gotland || Bofors 15.2cm連装砲 Model 1930 ➕Bofors 15.2cm連装砲 Model 1930', () => {
                 expect(calculate.bonus(574, [303, 303])).toEqual({
                     fire: 2,
                     aa: 4,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('Gotland改 || Bofors 15.2cm連装砲 Model 1930', () => {
                 expect(calculate.bonus(579, [303])).toEqual({
                     fire: 1,
                     aa: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('Gotland改 || Bofors 15.2cm連装砲 Model 1930 ➕Bofors 15.2cm連装砲 Model 1930', () => {
                 expect(calculate.bonus(579, [303, 303])).toEqual({
                     fire: 2,
                     aa: 4,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('Warspite改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
@@ -407,7 +407,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 2,
                     aa: 2,
                     evasion: -1,
-                    armor: 2
+                    armor: 2,
                 });
             });
             it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
@@ -415,7 +415,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 2,
                     aa: 2,
                     evasion: 1,
-                    armor: 2
+                    armor: 2,
                 });
             });
             it('Warspite改 || 16inch Mk.I三連装砲 ➕20連装7inch UP Rocket Launchers', () => {
@@ -423,7 +423,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 2,
                     aa: 2,
                     evasion: -1,
-                    armor: 2
+                    armor: 2,
                 });
             });
             it('Nelson改 || 16inch Mk.I三連装砲改＋FCR type284 ➕20連装7inch UP Rocket Launchers', () => {
@@ -431,7 +431,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 2,
                     aa: 2,
                     evasion: 1,
-                    armor: 2
+                    armor: 2,
                 });
             });
             it('長門改二 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
@@ -439,26 +439,26 @@ describe('Calculating functions/utilities', () => {
             });
             it('睦月 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
                 expect(calculate.bonus(1, [308])).toEqual({
-                    fire: 1
+                    fire: 1,
                 });
             });
             it('睦月 || 5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37', () => {
                 expect(calculate.bonus(1, [308, 308])).toEqual({
-                    fire: 2
+                    fire: 2,
                 });
             });
             it('Samuel B.Roberts改 || 5inch単装砲 Mk.30改+GFCS Mk.37', () => {
                 expect(calculate.bonus(681, [308])).toEqual({
                     fire: 2,
                     aa: 1,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('Samuel B.Roberts改 || 5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37 ➕5inch単装砲 Mk.30改+GFCS Mk.37', () => {
                 expect(calculate.bonus(681, [308, 308, 308])).toEqual({
                     fire: 6,
                     aa: 3,
-                    evasion: 3
+                    evasion: 3,
                 });
             });
             it('長門改二 || GFCS Mk.37', () => {
@@ -468,21 +468,21 @@ describe('Calculating functions/utilities', () => {
                 expect(calculate.bonus(440, [307])).toEqual({
                     fire: 1,
                     aa: 1,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('Iowa改 || GFCS Mk.37', () => {
                 expect(calculate.bonus(360, [307])).toEqual({
                     fire: 1,
                     aa: 1,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('Iowa改 || GFCS Mk.37 ➕GFCS Mk.37', () => {
                 expect(calculate.bonus(360, [307, 307])).toEqual({
                     fire: 2,
                     aa: 2,
-                    evasion: 2
+                    evasion: 2,
                 });
             });
             it('金剛改二丙 || 16inch Mk.I三連装砲 ➕35.6cm連装砲改二 ➕ 35.6cm三連装砲改(ダズル迷彩仕様)➕53cm連装魚雷', () => {
@@ -490,7 +490,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 4,
                     torpedo: 8,
                     aa: 1,
-                    evasion: 4
+                    evasion: 4,
                 });
             });
         });
@@ -500,123 +500,172 @@ describe('Calculating functions/utilities', () => {
                 it('Верный || 130mm B-13連装砲', () => {
                     expect(calculate.bonus(147, [282])).toEqual({
                         fire: 2,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('Верный || 130mm B-13連装砲 ➕12.7cm連装砲A型改三(戦時改修)+高射装置', () => {
                     expect(calculate.bonus(147, [282, 295])).toEqual({
                         fire: 4,
                         aa: 2,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('夕張 || 130mm B-13連装砲', () => {
                     expect(calculate.bonus(115, [282])).toEqual({
                         fire: 2,
-                        armor: 1
+                        armor: 1,
                     });
                 });
             });
         });
 
         describe('中口径主砲...', () => {
-            describe('20.3cm(2号)連装砲...', () => {
-                it('青葉改 || 20.3cm(2号)連装砲', () => {
-                    expect(calculate.bonus(264, [90])).toEqual({
-                        fire: 1,
-                        aa: 1
-                    });
+            it('青葉改 || 20.3cm(2号)連装砲', () => {
+                expect(calculate.bonus(264, [90])).toEqual({
+                    fire: 2,
+                    aa: 1,
                 });
-                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
-                    expect(calculate.bonus(264, [90, 90])).toEqual({
-                        fire: 2,
-                        aa: 2
-                    });
+            });
+            it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
+                expect(calculate.bonus(264, [90, 90])).toEqual({
+                    fire: 4,
+                    aa: 2,
                 });
-                it('青葉改 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                    expect(calculate.bonus(264, [90, 307])).toEqual({
-                        fire: 4,
-                        aa: 6,
-                        torpedo: 2,
-                        evasion: 4
-                    });
+            });
+            it('青葉改 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(264, [90, 307])).toEqual({
+                    fire: 5,
+                    aa: 6,
+                    torpedo: 2,
+                    evasion: 4,
                 });
-                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕32号対水上電探', () => {
-                    expect(calculate.bonus(264, [90, 90, 31])).toEqual({
-                        fire: 5,
-                        aa: 2,
-                        torpedo: 2,
-                        evasion: 2
-                    });
+            });
+            it('青葉改 || 20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(264, [90, 307, 307])).toEqual({
+                    fire: 5,
+                    torpedo: 2,
+                    aa: 6,
+                    evasion: 4,
                 });
-                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                    expect(calculate.bonus(264, [90, 90, 307])).toEqual({
-                        fire: 5,
-                        aa: 7,
-                        torpedo: 2,
-                        evasion: 4
-                    });
+            });
+            it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕32号対水上電探', () => {
+                expect(calculate.bonus(264, [90, 90, 31])).toEqual({
+                    fire: 7,
+                    aa: 2,
+                    torpedo: 2,
+                    evasion: 2,
                 });
-                it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
-                    expect(calculate.bonus(264, [90, 90, 307, 307])).toEqual({
-                        fire: 5,
-                        aa: 7,
-                        torpedo: 2,
-                        evasion: 4
-                    });
+            });
+            it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(264, [90, 90, 307])).toEqual({
+                    fire: 7,
+                    aa: 7,
+                    torpedo: 2,
+                    evasion: 4,
                 });
-                it('衣笠改二 || 20.3cm(2号)連装砲', () => {
-                    expect(calculate.bonus(142, [90])).toEqual({
-                        fire: 2,
-                        evasion: 1
-                    });
+            });
+            it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(264, [90, 90, 307, 307])).toEqual({
+                    fire: 7,
+                    aa: 7,
+                    torpedo: 2,
+                    evasion: 4,
                 });
-                it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
-                    expect(calculate.bonus(142, [90, 90])).toEqual({
-                        fire: 4,
-                        evasion: 2
-                    });
+            });
+            it('衣笠改二 || 20.3cm(2号)連装砲', () => {
+                expect(calculate.bonus(142, [90])).toEqual({
+                    fire: 3,
+                    evasion: 1,
                 });
-                it('衣笠改二 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                    expect(calculate.bonus(142, [90, 307])).toEqual({
-                        fire: 5,
-                        evasion: 3,
-                        torpedo: 2
-                    });
+            });
+            it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲', () => {
+                expect(calculate.bonus(142, [90, 90])).toEqual({
+                    fire: 6,
+                    evasion: 2,
                 });
-                it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
-                    expect(calculate.bonus(142, [90, 90, 307])).toEqual({
-                        fire: 7,
-                        evasion: 4,
-                        torpedo: 2
-                    });
+            });
+            it('衣笠改二 || 20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(142, [90, 307])).toEqual({
+                    fire: 6,
+                    evasion: 3,
+                    torpedo: 2,
                 });
-                it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
-                    expect(calculate.bonus(142, [90, 90, 307, 307])).toEqual({
-                        fire: 7,
-                        evasion: 4,
-                        torpedo: 2
-                    });
+            });
+            it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(142, [90, 90, 307])).toEqual({
+                    fire: 9,
+                    evasion: 4,
+                    torpedo: 2,
                 });
-                it('Gotland改 || Bofors 15cm連装速射砲 Mk.9改＋単装速射砲 Mk.10改 Model 1938', () => {
-                    expect(calculate.bonus(579, [361])).toEqual({
-                        fire: 2,
-                        aa: 1,
-                        evasion: 1
-                    });
+            });
+            it('衣笠改二 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(142, [90, 90, 307, 307])).toEqual({
+                    fire: 9,
+                    evasion: 4,
+                    torpedo: 2,
                 });
-                it('De Ruyter改 || Bofors 15cm連装速射砲 Mk.9改＋単装速射砲 Mk.10改 Model 1938', () => {
-                    expect(calculate.bonus(609, [361])).toEqual({
-                        fire: 2,
-                        aa: 2,
-                        evasion: 1
-                    });
+            });
+            it('衣笠 || 20.3cm(2号)連装砲 ➕20.3cm(2号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(123, [90, 90, 307, 307])).toEqual({
+                    fire: 5,
+                    torpedo: 2,
+                    evasion: 2,
                 });
-                it('De Ruyter改 || 5inch連装両用砲(集中配備)＋GFCS Mk.37＋5inch連装両用砲(集中配備)', () => {
-                    expect(calculate.bonus(609, [362, 363])).toEqual({
-                        aa: -2,
-                        evasion: -4
-                    });
+            });
+            it('青葉改 || 20.3cm(2号)連装砲 ➕20.3cm(3号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(264, [90, 50, 307, 307])).toEqual({
+                    fire: 7,
+                    torpedo: 3,
+                    aa: 6,
+                    evasion: 5,
+                });
+            });
+            it('青葉改 || 20.3cm(3号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(264, [50, 307, 307])).toEqual({
+                    fire: 2,
+                    torpedo: 1,
+                    evasion: 1,
+                });
+            });
+            it('鈴谷改二 || 20.3cm(2号)連装砲 ➕20.3cm(3号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(503, [90, 50, 307, 307])).toEqual({
+                    fire: 6,
+                    torpedo: 2,
+                    evasion: 3,
+                });
+            });
+            it('鈴谷改二 || 20.3cm(3号)連装砲 ➕20.3cm(3号)連装砲 ➕GFCS Mk.37 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(503, [50, 50, 307, 307])).toEqual({
+                    fire: 9,
+                    torpedo: 2,
+                    evasion: 4,
+                });
+            });
+            it('鈴谷改二 || 20.3cm(3号)連装砲 ➕20.3cm(3号)連装砲 ➕20.3cm(3号)連装砲 ➕GFCS Mk.37', () => {
+                expect(calculate.bonus(503, [50, 50, 50, 307])).toEqual({
+                    fire: 12,
+                    torpedo: 2,
+                    evasion: 5,
+                });
+            });
+            it('Gotland改 || Bofors 15cm連装速射砲 Mk.9改＋単装速射砲 Mk.10改 Model 1938', () => {
+                expect(calculate.bonus(579, [361])).toEqual({
+                    fire: 2,
+                    aa: 1,
+                    evasion: 1,
+                });
+            });
+            it('De Ruyter改 || Bofors 15cm連装速射砲 Mk.9改＋単装速射砲 Mk.10改 Model 1938', () => {
+                expect(calculate.bonus(609, [361])).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: 1,
+                });
+            });
+            it('De Ruyter改 || 5inch連装両用砲(集中配備)＋GFCS Mk.37＋5inch連装両用砲(集中配備)', () => {
+                expect(calculate.bonus(609, [362, 363])).toEqual({
+                    aa: -2,
+                    evasion: -4,
                 });
             });
         });
@@ -625,24 +674,24 @@ describe('Calculating functions/utilities', () => {
             describe('41cm...', () => {
                 it('扶桑改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
                     expect(calculate.bonus(411, [318, 318])).toEqual({
-                        fire: 2
+                        fire: 2,
                     });
                 });
                 it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
                     expect(calculate.bonus(411, [318, 290])).toEqual({
-                        fire: 2
+                        fire: 2,
                     });
                 });
                 it('扶桑改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
                     expect(calculate.bonus(411, [318, 290, 30])).toEqual({
-                        fire: 2
+                        fire: 2,
                     });
                 });
                 it('伊勢改 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
                     expect(calculate.bonus(82, [318, 318])).toEqual({
                         fire: 4,
                         aa: 4,
-                        evasion: 4
+                        evasion: 4,
                     });
                 });
                 it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
@@ -650,7 +699,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 4,
                         aa: 4,
                         evasion: 5,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('伊勢改 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
@@ -658,14 +707,14 @@ describe('Calculating functions/utilities', () => {
                         fire: 4,
                         aa: 8,
                         evasion: 11,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('伊勢改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
                     expect(calculate.bonus(553, [318, 318])).toEqual({
                         fire: 4,
                         aa: 4,
-                        evasion: 4
+                        evasion: 4,
                     });
                 });
                 it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
@@ -673,7 +722,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 5,
                         aa: 4,
                         evasion: 5,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('伊勢改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
@@ -681,14 +730,14 @@ describe('Calculating functions/utilities', () => {
                         fire: 5,
                         aa: 8,
                         evasion: 11,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('長門改二 || 41cm連装砲改二 ➕41cm連装砲改二', () => {
                     expect(calculate.bonus(541, [318, 318])).toEqual({
                         fire: 6,
                         aa: 4,
-                        evasion: 2
+                        evasion: 2,
                     });
                 });
                 it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二', () => {
@@ -696,7 +745,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 5,
                         aa: 2,
                         evasion: 3,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('長門改二 || 41cm連装砲改二 ➕41cm三連装砲改二 ➕21号対空電探', () => {
@@ -704,42 +753,42 @@ describe('Calculating functions/utilities', () => {
                         fire: 5,
                         aa: 2,
                         evasion: 3,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('伊勢改二 || 35.6cm連装砲改', () => {
                     expect(calculate.bonus(553, [328])).toEqual({
-                        fire: 1
+                        fire: 1,
                     });
                 });
                 it('金剛改二 || 35.6cm連装砲改', () => {
                     expect(calculate.bonus(149, [328])).toEqual({
                         fire: 2,
-                        evasion: 1
+                        evasion: 1,
                     });
                 });
                 it('伊勢改二 || 35.6cm連装砲改二', () => {
                     expect(calculate.bonus(553, [329])).toEqual({
-                        fire: 1
+                        fire: 1,
                     });
                 });
                 it('金剛改 || 35.6cm連装砲改二', () => {
                     expect(calculate.bonus(209, [329])).toEqual({
                         fire: 2,
-                        evasion: 1
+                        evasion: 1,
                     });
                 });
                 it('金剛改二 || 35.6cm連装砲改二', () => {
                     expect(calculate.bonus(149, [329])).toEqual({
                         fire: 3,
                         aa: 1,
-                        evasion: 1
+                        evasion: 1,
                     });
                 });
                 it('Nelson改 || 16inch Mk.I連装砲 ➕16inch Mk.V連装砲 ➕16inch Mk.I三連装砲 ➕16inch Mk.I三連装砲', () => {
                     expect(calculate.bonus(576, [330, 331, 298, 298])).toEqual({
                         fire: 8,
-                        armor: 2
+                        armor: 2,
                     });
                 });
             });
@@ -751,7 +800,7 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(147, [283])).toEqual({
                         fire: 1,
                         torpedo: 3,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('Верный || 533mm 三連装魚雷 ➕61cm三連装(酸素)魚雷後期型', () => {
@@ -759,7 +808,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 1,
                         torpedo: 5,
                         armor: 1,
-                        evasion: 1
+                        evasion: 1,
                     });
                 });
             });
@@ -771,13 +820,13 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(365, [184, 189, 316, 188])).toEqual({
                         fire: 8,
                         aa: 5,
-                        evasion: 7
+                        evasion: 7,
                     });
                 });
                 it('Graf Zeppelin改 || Re.2001 OR改 ➕Re.2005 改 ➕Re.2001 CB改 ➕Re.2001 G改', () => {
                     expect(calculate.bonus(353, [184, 189, 316, 188])).toEqual({
                         aa: 1,
-                        evasion: 2
+                        evasion: 2,
                     });
                 });
             });
@@ -787,7 +836,7 @@ describe('Calculating functions/utilities', () => {
                         calculate.bonus(550, [61, 61, 61, 61], [0, 1, 2, 10])
                     ).toEqual({
                         fire: 2,
-                        los: 4
+                        los: 4,
                     });
                 });
                 it('蒼龍改二 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
@@ -796,7 +845,7 @@ describe('Calculating functions/utilities', () => {
                     ).toEqual({
                         fire: 12,
                         los: 14,
-                        range: '1'
+                        range: '1',
                     });
                 });
             });
@@ -805,14 +854,14 @@ describe('Calculating functions/utilities', () => {
                     expect(
                         calculate.bonus(197, [99, 99, 100, 100], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 10
+                        fire: 10,
                     });
                 });
                 it('飛龍改二 || 九九式艦爆(江草隊) ➕九九式艦爆(江草隊) ➕彗星(江草隊) ➕彗星(江草隊)', () => {
                     expect(
                         calculate.bonus(196, [99, 99, 100, 100], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 4
+                        fire: 4,
                     });
                 });
             });
@@ -821,14 +870,14 @@ describe('Calculating functions/utilities', () => {
                     expect(
                         calculate.bonus(197, [93, 93, 94, 94], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 4
+                        fire: 4,
                     });
                 });
                 it('飛龍改二 || 九七式艦攻(友永隊) ➕九七式艦攻(友永隊) ➕天山一二型(友永隊) ➕天山一二型(友永隊)', () => {
                     expect(
                         calculate.bonus(196, [93, 93, 94, 94], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 10
+                        fire: 10,
                     });
                 });
             });
@@ -837,49 +886,49 @@ describe('Calculating functions/utilities', () => {
                     expect(
                         calculate.bonus(157, [143, 143, 144, 144], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 2
+                        fire: 2,
                     });
                 });
                 it('赤城改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
                         calculate.bonus(277, [143, 143, 144, 144], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 6
+                        fire: 6,
                     });
                 });
                 it('加賀改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
                         calculate.bonus(278, [143, 143, 144, 144], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 4
+                        fire: 4,
                     });
                 });
                 it('翔鶴改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
                         calculate.bonus(288, [143, 143, 144, 144], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 4
+                        fire: 4,
                     });
                 });
                 it('翔鶴改二甲 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
                         calculate.bonus(466, [143, 143, 144, 144], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 6
+                        fire: 6,
                     });
                 });
                 it('瑞鶴改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
                         calculate.bonus(112, [143, 143, 144, 144], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 2
+                        fire: 2,
                     });
                 });
                 it('瑞鶴改二甲 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
                         calculate.bonus(467, [143, 143, 144, 144], [0, 0, 0, 0])
                     ).toEqual({
-                        fire: 3
+                        fire: 3,
                     });
                 });
             });
@@ -887,7 +936,7 @@ describe('Calculating functions/utilities', () => {
                 it('赤城改二戊 || 流星 ➕流星 ➕流星 ➕流星改 ➕流星改', () => {
                     expect(calculate.bonus(599, [18, 18, 18, 52, 52])).toEqual({
                         fire: 10,
-                        evasion: 5
+                        evasion: 5,
                     });
                 });
             });
@@ -899,7 +948,7 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(157, [19, 228])).toEqual({
                         aa: 2,
                         asw: 2,
-                        evasion: 2
+                        evasion: 2,
                     });
                 });
                 it('鳳翔改 || 九六式艦戦 ➕九六式艦戦改', () => {
@@ -907,7 +956,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 2,
                         aa: 4,
                         asw: 3,
-                        evasion: 5
+                        evasion: 5,
                     });
                 });
                 it('春日丸 || 九六式艦戦 ➕九六式艦戦改', () => {
@@ -915,7 +964,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 2,
                         aa: 3,
                         asw: 6,
-                        evasion: 3
+                        evasion: 3,
                     });
                 });
                 it('大鷹改二 || 九六式艦戦 ➕九六式艦戦改', () => {
@@ -923,7 +972,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 2,
                         aa: 3,
                         asw: 6,
-                        evasion: 3
+                        evasion: 3,
                     });
                 });
             });
@@ -935,7 +984,7 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(147, [106, 106])).toEqual({
                         aa: 2,
                         evasion: 6,
-                        armor: 2
+                        armor: 2,
                     });
                 });
                 it('時雨改二 || 13号対空電探改 ➕13号対空電探改', () => {
@@ -943,7 +992,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 2,
                         aa: 4,
                         evasion: 6,
-                        armor: 2
+                        armor: 2,
                     });
                 });
                 it('長門改二 || 13号対空電探改', () => {
@@ -951,14 +1000,14 @@ describe('Calculating functions/utilities', () => {
                         fire: 1,
                         aa: 2,
                         evasion: 3,
-                        armor: 1
+                        armor: 1,
                     });
                 });
                 it('涼月改 || 13号対空電探改', () => {
                     expect(calculate.bonus(537, [106])).toEqual({
                         aa: 2,
                         evasion: 2,
-                        armor: 1
+                        armor: 1,
                     });
                 });
             });
@@ -969,14 +1018,14 @@ describe('Calculating functions/utilities', () => {
                 it('山雲改 || 三式水中探信儀 ➕三式水中探信儀', () => {
                     expect(calculate.bonus(328, [47, 47])).toEqual({
                         evasion: 4,
-                        asw: 4
+                        asw: 4,
                     });
                 });
                 it('時雨改二 || 三式水中探信儀 ➕三式水中探信儀', () => {
                     expect(calculate.bonus(145, [47, 47])).toEqual({
                         fire: 2,
                         evasion: 4,
-                        asw: 6
+                        asw: 6,
                     });
                 });
             });
@@ -986,36 +1035,36 @@ describe('Calculating functions/utilities', () => {
             it('比叡改二 || 三式弾改 ➕三式弾改', () => {
                 expect(calculate.bonus(150, [317, 317])).toEqual({
                     fire: 2,
-                    aa: 2
+                    aa: 2,
                 });
             });
             it('比叡改二 || 探照灯', () => {
                 expect(calculate.bonus(150, [74])).toEqual({
                     fire: 2,
-                    evasion: -1
+                    evasion: -1,
                 });
             });
             it('比叡改二 || 探照灯 ➕探照灯', () => {
                 expect(calculate.bonus(150, [74, 74])).toEqual({
                     fire: 2,
-                    evasion: -1
+                    evasion: -1,
                 });
             });
             it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯', () => {
                 expect(calculate.bonus(150, [74, 74, 140])).toEqual({
                     fire: 5,
-                    evasion: -3
+                    evasion: -3,
                 });
             });
             it('比叡改二 || 探照灯 ➕探照灯 ➕96式150cm探照灯 ➕96式150cm探照灯', () => {
                 expect(calculate.bonus(150, [74, 74, 140, 140])).toEqual({
                     fire: 5,
-                    evasion: -3
+                    evasion: -3,
                 });
             });
             it('陽炎改二 || 53cm艦首(酸素)魚雷', () => {
                 expect(calculate.bonus(566, [67])).toEqual({
-                    torpedo: -5
+                    torpedo: -5,
                 });
             });
             it('Johnston改 || SG レーダー(初期型)', () => {
@@ -1023,7 +1072,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 3,
                     evasion: 3,
                     los: 4,
-                    range: 1
+                    range: 1,
                 });
             });
             it('Samuel B.Roberts改 || SG レーダー(初期型)', () => {
@@ -1031,28 +1080,28 @@ describe('Calculating functions/utilities', () => {
                     fire: 3,
                     evasion: 3,
                     los: 4,
-                    range: 1
+                    range: 1,
                 });
             });
             describe('一式徹甲弾改', () => {
                 it('金剛改二', () => {
                     expect(calculate.bonus(149, [365])).toEqual({
-                        fire: 1
+                        fire: 1,
                     });
                 });
                 it('金剛改二丙', () => {
                     expect(calculate.bonus(591, [365])).toEqual({
-                        fire: 3
+                        fire: 3,
                     });
                 });
                 it('武蔵改', () => {
                     expect(calculate.bonus(148, [365])).toEqual({
-                        fire: 1
+                        fire: 1,
                     });
                 });
                 it('武蔵改二', () => {
                     expect(calculate.bonus(546, [365])).toEqual({
-                        fire: 2
+                        fire: 2,
                     });
                 });
             });
@@ -1061,43 +1110,43 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(623, [364])).toEqual({
                         fire: 1,
                         torpedo: 4,
-                        evasion: -2
+                        evasion: -2,
                     });
                 });
                 it('北上改二', () => {
                     expect(calculate.bonus(119, [364])).toEqual({
                         torpedo: 2,
-                        evasion: -2
+                        evasion: -2,
                     });
                 });
                 it('大井改二', () => {
                     expect(calculate.bonus(118, [364])).toEqual({
                         torpedo: 1,
-                        evasion: -2
+                        evasion: -2,
                     });
                 });
                 it('日進甲', () => {
                     expect(calculate.bonus(586, [364])).toEqual({
                         torpedo: 1,
-                        evasion: -2
+                        evasion: -2,
                     });
                 });
                 it('伊13改', () => {
                     expect(calculate.bonus(374, [364])).toEqual({
                         fire: -1,
-                        evasion: -7
+                        evasion: -7,
                     });
                 });
                 it('まるゆ改', () => {
                     expect(calculate.bonus(402, [364])).toEqual({
                         fire: -1,
-                        evasion: -7
+                        evasion: -7,
                     });
                 });
                 it('由良改二', () => {
                     expect(calculate.bonus(488, [364])).toEqual({
                         fire: -1,
-                        evasion: -7
+                        evasion: -7,
                     });
                 });
             });
@@ -1105,13 +1154,13 @@ describe('Calculating functions/utilities', () => {
                 it('夕張改二丁', () => {
                     expect(calculate.bonus(624, [149])).toEqual({
                         asw: 3,
-                        evasion: 5
+                        evasion: 5,
                     });
                 });
                 it('涼月', () => {
                     expect(calculate.bonus(532, [149])).toEqual({
                         asw: 1,
-                        evasion: 2
+                        evasion: 2,
                     });
                 });
             });
@@ -1123,7 +1172,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 4,
                     torpedo: 8,
                     aa: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
@@ -1133,7 +1182,7 @@ describe('Calculating functions/utilities', () => {
                     fire: 5,
                     torpedo: 8,
                     aa: 2,
-                    evasion: 1
+                    evasion: 1,
                 });
             });
             it('金剛改二丙 || 三式弾 ➕三式弾 ➕三式弾改 ➕三式弾改', () => {
@@ -1141,7 +1190,7 @@ describe('Calculating functions/utilities', () => {
                     calculate.bonus(591, [35, 35, 317, 317], [0, 0, 0])
                 ).toEqual({
                     fire: 4,
-                    aa: 4
+                    aa: 4,
                 });
             });
         });
@@ -1155,7 +1204,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 6,
                         torpedo: 6,
                         aa: 1,
-                        evasion: 1
+                        evasion: 1,
                     });
                 });
             });
@@ -1165,7 +1214,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 4,
                         aa: 2,
                         armor: 1,
-                        evasion: 1
+                        evasion: 1,
                     });
                 });
             });
@@ -1174,7 +1223,7 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(623, [119, 362], [])).toEqual({
                         fire: -2,
                         aa: -3,
-                        evasion: -8
+                        evasion: -8,
                     });
                 });
             });
@@ -1187,7 +1236,7 @@ describe('Calculating functions/utilities', () => {
                         torpedo: 3,
                         aa: 2,
                         evasion: 6,
-                        asw: 2
+                        asw: 2,
                     });
                 });
             });
@@ -1208,7 +1257,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(5);
                 expect(
@@ -1217,7 +1266,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1226,7 +1275,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1241,7 +1290,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1250,7 +1299,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1265,7 +1314,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1289,7 +1338,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(5);
                 expect(
@@ -1298,7 +1347,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1307,7 +1356,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1322,7 +1371,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1331,7 +1380,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1346,7 +1395,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1370,7 +1419,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(5);
                 expect(
@@ -1379,7 +1428,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1388,7 +1437,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1403,7 +1452,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1412,7 +1461,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1427,7 +1476,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1451,7 +1500,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 // Samuel B.Roberts 改
@@ -1461,7 +1510,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1470,7 +1519,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1479,7 +1528,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1488,7 +1537,7 @@ describe('Calculating functions/utilities', () => {
                         87,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1497,7 +1546,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1512,7 +1561,7 @@ describe('Calculating functions/utilities', () => {
                         87,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
             });
@@ -1524,7 +1573,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1533,7 +1582,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1542,7 +1591,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1557,7 +1606,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1566,7 +1615,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1581,7 +1630,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1605,7 +1654,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1614,7 +1663,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1623,7 +1672,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1638,7 +1687,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1647,7 +1696,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1662,7 +1711,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1686,7 +1735,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1695,7 +1744,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1704,7 +1753,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1716,7 +1765,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1725,7 +1774,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1737,7 +1786,7 @@ describe('Calculating functions/utilities', () => {
                         87,
                         87,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(20);
                 expect(
@@ -1755,7 +1804,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(10);
                 expect(
@@ -1764,7 +1813,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1773,7 +1822,7 @@ describe('Calculating functions/utilities', () => {
                         34,
                         undefined,
                         undefined,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1788,7 +1837,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1797,7 +1846,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(
@@ -1812,7 +1861,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         87,
-                        33
+                        33,
                     ])
                 ).toBe(15);
                 expect(

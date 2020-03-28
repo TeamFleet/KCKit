@@ -1,22 +1,19 @@
 /**
  * 装备额外属性收益 - 12.7cm連装砲C型改二
- * 
+ *
  * @module
  */
 
-const {
-    DD_KagerouClass2ndRemodel,
-} = require('../../ships')
+const { DD_KagerouClass2ndRemodel } = require('../../ships');
 
 const conditionSpecials = [
     145, // 時雨改二
     228, // 雪風改
     557, // 磯風丁改
-]
-const condition1excludes = DD_KagerouClass2ndRemodel.concat(conditionSpecials)
+];
+const condition1excludes = DD_KagerouClass2ndRemodel.concat(conditionSpecials);
 
 module.exports = [
-
     {
         equipment: 266,
         ship: {
@@ -29,7 +26,7 @@ module.exports = [
         },
         bonus: {
             fire: 1,
-        }
+        },
     },
     {
         equipment: 266,
@@ -39,14 +36,14 @@ module.exports = [
         bonus: {
             fire: 1,
             evasion: 1,
-        }
+        },
     },
 
     // @ 陽炎型 改二
     {
         equipment: 266,
         ship: {
-            isID: DD_KagerouClass2ndRemodel
+            isID: DD_KagerouClass2ndRemodel,
         },
         bonusCount: {
             1: {
@@ -57,18 +54,15 @@ module.exports = [
             },
             3: {
                 fire: 6,
-            }
-        }
+            },
+        },
     },
 
     // ------------------------------------------------------------------------
 
     // + 对水上電探
     {
-        list: [
-            266,
-            'SurfaceRadar',
-        ],
+        list: [266, 'SurfaceRadar'],
         equipments: {
             hasID: [266],
             hasSurfaceRadar: true,
@@ -83,15 +77,12 @@ module.exports = [
             fire: 1,
             torpedo: 3,
             evasion: 1,
-        }
+        },
     },
 
     // + 对水上電探
     {
-        list: [
-            266,
-            'SurfaceRadar',
-        ],
+        list: [266, 'SurfaceRadar'],
         equipments: {
             hasID: [266],
             hasSurfaceRadar: true,
@@ -105,7 +96,6 @@ module.exports = [
             fire: 2,
             torpedo: 3,
             evasion: 1,
-        }
+        },
     },
-
-]
+];

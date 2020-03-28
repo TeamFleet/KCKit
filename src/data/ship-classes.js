@@ -25,11 +25,29 @@ const group_CV_Navy_USN = [
     CVB_Lexington,
     CV_Lexington,
     CV_Essex,
-    CV_Casablanca
+    CV_Casablanca,
 ];
 const group_CV_Navy_RN = [CV_ArkRoyal];
 
+const CAV_Mogami = 45;
+const CAV_MogamiRevised = 90;
+const CAV_Tone = 46;
+const group_CAV_Navy_IJN = [CAV_Mogami, CAV_MogamiRevised, CAV_Tone];
+const CA_Furutaka = 39;
+const CA_Aoba = 40;
+const CA_Myoukou = 41;
+const CA_Takao = 42;
 const CA_Houston = 124;
+const CA_Mogami = 43;
+const CA_Tone = 44;
+const group_CA_Navy_IJN = [
+    CA_Furutaka,
+    CA_Aoba,
+    CA_Mogami,
+    CA_Myoukou,
+    CA_Takao,
+    CA_Tone,
+];
 const group_CA_Navy_USN = [CA_Houston];
 
 const CL_Abruzzi = 120;
@@ -85,12 +103,18 @@ module.exports = {
     CV_Taiyou: 97,
     CV_Casablanca,
 
-    CAV_Mogami: 45,
-    CAV_MogamiRevised: 90,
-    CA_Furutaka: 39,
-    CA_Aoba: 40,
-    CA_Mogami: 43,
+    CAV_Mogami,
+    CAV_MogamiRevised,
+    CAV_Tone,
+    group_CAV_Navy_IJN,
+    CA_Furutaka,
+    CA_Aoba,
+    CA_Myoukou,
+    CA_Takao,
+    CA_Mogami,
+    CA_Tone,
     CA_Houston,
+    group_CA_Navy_IJN,
     group_CA_Navy_USN,
 
     CL_Tenryuu: 47,
@@ -134,11 +158,11 @@ module.exports = {
         ...group_CV_Navy_USN,
         ...group_CA_Navy_USN,
         ...group_CL_Navy_USN,
-        ...group_DD_Navy_USN
+        ...group_DD_Navy_USN,
     ],
     group_Navy_KM: [...group_CV_Navy_KM],
     group_Navy_RN: [...group_BB_Navy_RN, ...group_CV_Navy_RN, DD_J],
     group_Navy_RM: [...group_CV_Navy_RM, ...group_CL_Navy_RM],
     group_Navy_RNLN: [...group_CL_Navy_RNLN],
-    group_Navy_RAN: [...group_CL_Navy_RAN]
+    group_Navy_RAN: [...group_CL_Navy_RAN],
 };

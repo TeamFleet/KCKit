@@ -28,13 +28,13 @@
     "devDependencies": {
         "babel-eslint": "10.1.0",
         "eslint": "^6.8.0",
-        "eslint-config-koot": "^1.6.0",
+        "eslint-config-koot": "^1.7.1",
         "husky": "^4.2.3",
-        "jest": "25.1.0",
-        "lint-staged": "^10.0.8",
-        "prettier": "^1.19.1",
+        "jest": "25.2.3",
+        "lint-staged": "^10.0.9",
+        "prettier": "^2.0.2",
         "react": "^16.13.1",
-        "whocallsthefleet-database": "20200320.0.0"
+        "whocallsthefleet-database": "20200328.0.0"
     },
     "jest": {
         "testEnvironment": "node"
