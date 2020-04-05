@@ -1109,7 +1109,7 @@ describe('Calculating functions/utilities', () => {
                 expect(calculate.bonus(500, [367, 368])).toEqual({
                     fire: 2,
                     asw: 2,
-                    los: 1,
+                    los: 3,
                     evasion: 2,
                 });
             });
