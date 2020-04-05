@@ -2706,7 +2706,10 @@
             });
 
             //console.log(count)
-            result.damage =
+            delete result.damage;
+            result.ciAvailable = {};
+
+            const baseDamage =
                 formula.calcByShip.shellingPower(
                     ship,
                     equipments_by_slot,
@@ -2730,6 +2733,32 @@
                 ) +
                 starBonus +
                 (bonus.nightExtra || 0);
+            function addCI(type, damage, hit) {
+                damage = Math.floor(damage);
+                hit = hit || 1;
+
+                if (typeof result.ciAvailable[type] === 'object') {
+                    if (
+                        damage * hit >
+                            result.ciAvailable[type].damage *
+                                result.ciAvailable[type].hit ||
+                        (damage * hit ===
+                            result.ciAvailable[type].damage *
+                                result.ciAvailable[type].hit &&
+                            hit > result.ciAvailable[type].hit)
+                    ) {
+                        result.ciAvailable[type] = {
+                            damage: damage,
+                            hit: hit
+                        };
+                    }
+                } else {
+                    result.ciAvailable[type] = {
+                        damage: damage,
+                        hit: hit
+                    };
+                }
+            }
             /*
             console.log(
                 '夜',
@@ -2744,115 +2773,117 @@
             //     formula.shipType.Submarines.indexOf(ship.type)
             // )
 
-            // 潜艇专用
-            if (
-                formula.shipType.Submarines.indexOf(ship.type) > -1 &&
-                count.torpedoLateModel >= 1 &&
-                count.submarineEquipment >= 1
-            ) {
-                result.type = '雷击CI';
-                result.damage = Math.floor(result.damage * 1.75);
-                result.hit = 2;
-            }
+            // 标准
+            if (count.torpedo >= 2) addCI('雷击CI', baseDamage * 1.5, 2);
+            if (count.main >= 3) addCI('炮击CI', baseDamage * 2, 1);
+            if (count.main === 2 && count.secondary >= 1)
+                addCI('炮击CI', baseDamage * 1.75, 1);
+            if (count.main >= 1 && count.torpedo === 1)
+                addCI('炮雷CI', baseDamage * 1.3, 1);
 
             // 潜艇专用
-            else if (
-                formula.shipType.Submarines.indexOf(ship.type) > -1 &&
-                count.torpedoLateModel >= 2
-            ) {
-                result.type = '雷击CI';
-                result.damage = Math.floor(result.damage * 1.6);
-                result.hit = 2;
-            } else if (count.torpedo >= 2) {
-                result.type = '雷击CI';
-                result.damage = Math.floor(result.damage * 1.5);
-                result.hit = 2;
-            } else if (count.main >= 3) {
-                result.type = '炮击CI';
-                result.damage = Math.floor(result.damage * 2);
-                result.hit = 1;
-            } else if (count.main == 2 && count.secondary >= 1) {
-                result.type = '炮击CI';
-                result.damage = Math.floor(result.damage * 1.75);
-                result.hit = 1;
+            if (formula.shipType.Submarines.indexOf(ship.type) > -1) {
+                if (
+                    count.torpedoLateModel >= 1 &&
+                    count.submarineEquipment >= 1
+                )
+                    addCI('雷击CI', baseDamage * 1.75, 2);
+                if (count.torpedoLateModel >= 2)
+                    addCI('雷击CI', baseDamage * 1.6, 2);
             }
 
-            // 驱逐舰专用 - 鱼雷+水上电探+瞭望员
-            else if (
-                formula.shipType.Destroyers.indexOf(ship.type) > -1 &&
-                count.torpedo >= 1 &&
-                count.radarSurface >= 1 &&
-                count.surfaceShipPersonnel >= 1
-            ) {
-                result.type = '电探CI';
-                result.damage = Math.floor(result.damage * 1.25);
-                result.hit = 1;
-                // result.isMin = true
-            }
-
-            // 驱逐舰专用 - 主炮+鱼雷+水上电探
-            else if (
-                formula.shipType.Destroyers.indexOf(ship.type) > -1 &&
-                count.torpedo >= 1 &&
-                count.radarSurface >= 1 &&
-                count.main >= 1
-            ) {
+            // 驱逐舰专用
+            else if (formula.shipType.Destroyers.indexOf(ship.type) > -1) {
                 // [267] 12.7cm連装砲D型改二
-                let multiplier = 1.3;
-                const countDTypeGun = equipmentCount[267] + equipmentCount[366];
-                if (countDTypeGun === 1) multiplier *= 1.25;
-                else if (countDTypeGun > 1) multiplier *= 1.4;
-                if (equipmentCount[366]) multiplier *= 1.05;
-                result.type = '电雷CI';
-                result.damage = Math.floor(result.damage * multiplier);
-                result.hit = 1;
-                // result.isMin = true
+                // [366] 12.7cm連装砲D型改三
+                const countDTypeGun =
+                    (equipmentCount[267] || 0) + (equipmentCount[366] || 0);
+                let extraMultiplier = 1;
+                if (countDTypeGun === 1) extraMultiplier *= 1.25;
+                else if (countDTypeGun > 1) extraMultiplier *= 1.4;
+                if (equipmentCount[366]) extraMultiplier *= 1.05;
+
+                // 鱼雷+水上电探+瞭望员
+                if (
+                    count.torpedo >= 1 &&
+                    count.radarSurface >= 1 &&
+                    count.surfaceShipPersonnel >= 1
+                ) {
+                    addCI('电探CI', baseDamage * 1.2 * extraMultiplier, 1);
+                }
+
+                // 主炮+鱼雷+水上电探
+                if (
+                    count.torpedo >= 1 &&
+                    count.radarSurface >= 1 &&
+                    count.main >= 1
+                ) {
+                    // 覆盖 炮雷CI
+                    delete result.ciAvailable['炮雷CI'];
+                    addCI('电雷CI', baseDamage * 1.3 * extraMultiplier, 1);
+                }
             }
 
-            //
-            else if (count.main >= 1 && count.torpedo == 1) {
-                result.type = '炮雷CI';
-                result.damage = Math.floor(result.damage * 1.3);
-                result.hit = 2;
-            }
+            // 没有匹配任何 CI
+            if (Object.keys(result.ciAvailable).length === 0) {
+                delete result.ciAvailable;
 
-            // 标准连击
-            else if (
-                (count.main == 2 &&
-                    count.secondary <= 0 &&
-                    count.torpedo <= 0) ||
-                (count.main == 1 &&
-                    count.secondary >= 1 &&
-                    count.torpedo <= 0) ||
-                (count.main == 0 && count.secondary >= 2 && count.torpedo >= 0)
-            ) {
-                result.type = '连击';
-                result.damage = Math.floor(result.damage * 1.2);
-                result.hit = 2;
-            }
+                // 标准连击
+                if (
+                    (count.main === 2 &&
+                        count.secondary <= 0 &&
+                        count.torpedo <= 0) ||
+                    (count.main === 1 &&
+                        count.secondary >= 1 &&
+                        count.torpedo <= 0) ||
+                    (count.main === 0 &&
+                        count.secondary >= 2 &&
+                        count.torpedo >= 0)
+                ) {
+                    result.type = '连击';
+                    result.damage = Math.floor(baseDamage * 1.2);
+                    result.hit = 2;
+                }
 
-            // 通常攻击
-            else {
-                result.type = '通常';
-                result.damage = Math.floor(result.damage);
-                result.hit = 1;
+                // 通常攻击
+                else {
+                    result.type = '通常';
+                    result.damage = Math.floor(baseDamage);
+                    result.hit = 1;
+                }
             }
         }
 
         let jointSymbol = ' ';
-        if (result.isMax) jointSymbol = ' ≤ ';
-        if (result.isMin) jointSymbol = ' ≥ ';
-        result.value = `${result.type}${jointSymbol}${result.damage}`;
-        if (result.hit && result.hit > 1) result.value += ` x ${result.hit}`;
-        if (Array.isArray(result.cis) && result.cis.length) {
-            result.value += ` (CI${jointSymbol}${result.cis
-                .sort((a, b) => a[0] - b[0])
-                .map(ci => ci[0] + (ci[1] && ci[1] > 1 ? ` x ${ci[1]}` : ''))
-                .join(' 或 ')})`;
-        } else if (result.damage_ci) {
-            const hit = result.hit_ci || result.hit || 1;
-            result.value += ` (CI${jointSymbol}${result.damage_ci})`;
-            if (hit && hit > 1) result.value += ` x ${hit}`;
+        if (
+            typeof result.ciAvailable === 'object' &&
+            Object.keys(result.ciAvailable).length
+        ) {
+            result.value = Object.entries(result.ciAvailable)
+                .map(function(entry) {
+                    const type = entry[0];
+                    const ci = entry[1];
+                    return `${type}${jointSymbol}${ci.damage}${ci.hit > 1 ? ` x ${ci.hit}` : ''}`;
+                })
+                .join(' | ');
+        } else {
+            if (result.isMax) jointSymbol = ' ≤ ';
+            if (result.isMin) jointSymbol = ' ≥ ';
+            result.value = `${result.type}${jointSymbol}${result.damage || 0}`;
+            if (result.hit && result.hit > 1)
+                result.value += ` x ${result.hit}`;
+            if (Array.isArray(result.cis) && result.cis.length) {
+                result.value += ` (CI${jointSymbol}${result.cis
+                    .sort((a, b) => a[0] - b[0])
+                    .map(
+                        ci => ci[0] + (ci[1] && ci[1] > 1 ? ` x ${ci[1]}` : '')
+                    )
+                    .join(' 或 ')})`;
+            } else if (result.damage_ci) {
+                const hit = result.hit_ci || result.hit || 1;
+                result.value += ` (CI${jointSymbol}${result.damage_ci})`;
+                if (hit && hit > 1) result.value += ` x ${hit}`;
+            }
         }
 
         return result;
@@ -3306,6 +3337,8 @@
                         updateReconBonus(1.15);
                         break;
                     }
+                    default: {
+                    }
                 }
             }
         });
@@ -3381,6 +3414,8 @@
                 case _equipmentType.LandBasedRecon: {
                     updateReconBonus(1.18);
                     break;
+                }
+                default: {
                 }
             }
         });
