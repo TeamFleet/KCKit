@@ -13,35 +13,35 @@ module.exports = [
     {
         equipment: 194,
         ship: {
-            isID: [...Mizuho, ...Kamoi]
+            isID: [...Mizuho, ...Kamoi],
         },
         bonus: {
             evasion: 1,
-            los: 2
-        }
+            los: 2,
+        },
     },
     {
         equipment: 194,
         ship: {
-            isID: [...CommandantTeste]
+            isID: [...CommandantTeste],
         },
         bonus: {
             fire: 3,
             evasion: 2,
-            los: 2
-        }
+            los: 2,
+        },
     },
     {
         equipment: 194,
         ship: {
             isID: [
-                392 // Richelieu改
-            ]
+                392, // Richelieu改
+            ],
         },
         bonus: {
             fire: 1,
             evasion: 2,
-            los: 2
-        }
-    }
+            los: 2,
+        },
+    },
 ];

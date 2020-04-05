@@ -14,6 +14,7 @@ const BB_Colorado = 122;
 const BB_Iowa = 82;
 const BB_QueenElizabeth = 85;
 const BB_Nelson = 115;
+const BB_Richelieu = 100;
 const group_BB_Navy_USN = [BB_Colorado, BB_Iowa];
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 
@@ -167,6 +168,7 @@ module.exports = {
     BB_Iowa,
     BB_QueenElizabeth,
     BB_Nelson,
+    BB_Richelieu,
     group_BB_Navy_USN,
     group_BB_Navy_RN,
 
