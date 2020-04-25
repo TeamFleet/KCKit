@@ -15,13 +15,13 @@ module.exports = [
     {
         equipment: 340,
         ship: {
-            isClass: [CL_Abruzzi]
+            isClass: [CL_Abruzzi],
         },
         bonus: {
             fire: 1,
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
 
     // ========================================================================
@@ -31,23 +31,23 @@ module.exports = [
     {
         equipment: 341,
         ship: {
-            isClass: [CL_Gotland, CLV_Gotland]
+            isClass: [CL_Gotland, CLV_Gotland],
         },
         bonus: {
             fire: 1,
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
     {
         equipment: 341,
         ship: {
-            isClass: [CL_Abruzzi]
+            isClass: [CL_Abruzzi],
         },
         bonus: {
             fire: 2,
             aa: 1,
-            evasion: 1
-        }
-    }
+            evasion: 1,
+        },
+    },
 ];

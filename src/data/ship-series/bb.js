@@ -1,3 +1,5 @@
+const { 比叡改二丙 } = require('../ship-ids');
+
 module.exports = {
     Colorado: [
         601, // Colorado
@@ -14,6 +16,7 @@ module.exports = {
         86, // 比叡
         210, // 比叡改
         150, // 比叡改二
+        比叡改二丙,
     ],
     Haruna: [
         79, // 榛名

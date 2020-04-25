@@ -112,7 +112,9 @@ const dataBonuses = [
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 
+    ...require('./増設バルジ/新型高温高圧缶'),
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
+    ...require('./増設バルジ/艦本新設計 増設バルジ(大型艦)'),
 
     ...require('./その他/一式徹甲弾改'),
     ...require('./その他/三式弾'),

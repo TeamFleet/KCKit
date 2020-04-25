@@ -29,76 +29,76 @@ const {
     CL_DeRuyter,
     CL_Atlanta,
 
-    CT_Katori
+    CT_Katori,
 } = require('../../ship-classes');
 
 const bonuses = [
     {
         ship: {
-            isClass: [CL_Atlanta]
+            isClass: [CL_Atlanta],
         },
         bonus: {
             fire: 1,
             aa: 3,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
     {
         ship: {
-            isClass: [BB_Colorado, CA_Houston]
+            isClass: [BB_Colorado, CA_Houston],
         },
         bonus: {
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
     {
         ship: {
-            isClass: [CL_Agano, CL_Ooyodo, CL_DeRuyter]
+            isClass: [CL_Agano, CL_Ooyodo, CL_DeRuyter],
         },
         bonus: {
             aa: -1,
-            evasion: -2
-        }
+            evasion: -2,
+        },
     },
     {
         ship: {
-            isClass: [CLV_Gotland, CL_Gotland, CT_Katori]
+            isClass: [CLV_Gotland, CL_Gotland, CT_Katori],
         },
         bonus: {
             fire: -2,
             aa: -1,
-            evasion: -4
-        }
+            evasion: -4,
+        },
     },
     {
         ship: {
-            isClass: [CL_Kuma, CLT_Kuma, CL_Nagara, CL_Sendai]
+            isClass: [CL_Kuma, CLT_Kuma, CL_Nagara, CL_Sendai],
         },
         bonus: {
             fire: -3,
             aa: -2,
-            evasion: -6
-        }
+            evasion: -6,
+        },
     },
     {
         ship: {
-            isClass: [CL_Tenryuu, CL_Yuubari, CL_Yuubari2]
+            isClass: [CL_Tenryuu, CL_Yuubari, CL_Yuubari2],
         },
         bonus: {
             fire: -3,
             aa: -3,
-            evasion: -8
-        }
-    }
+            evasion: -8,
+        },
+    },
 ];
 
 const result = [];
-[362, 363].forEach(equipment => {
-    bonuses.forEach(bonus => {
+[362, 363].forEach((equipment) => {
+    bonuses.forEach((bonus) => {
         result.push({
             equipment,
-            ...bonus
+            ...bonus,
         });
     });
 });

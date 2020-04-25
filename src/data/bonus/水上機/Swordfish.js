@@ -23,6 +23,11 @@ const {
     AO_Kamoi,
     AV_Kamoi,
 } = require('../../ship-classes');
+const {
+    Gotland,
+    Gotland改,
+    'Gotland andra': GotlandAndra,
+} = require('../../ship-ids');
 
 module.exports = [
     // ========================================================================
@@ -74,13 +79,35 @@ module.exports = [
     {
         equipment: 368,
         ship: {
-            isClass: [CL_Gotland, CLV_Gotland],
+            isID: [Gotland, Gotland改],
         },
         bonus: {
             fire: 4,
             asw: 3,
             los: 3,
             evasion: 2,
+        },
+    },
+    {
+        equipment: 368,
+        ship: {
+            isID: [GotlandAndra],
+        },
+        bonusCount: {
+            1: {
+                fire: 6,
+                torpedo: 2,
+                asw: 3,
+                los: 4,
+                evasion: 3,
+            },
+            2: {
+                fire: 10,
+                torpedo: 2,
+                asw: 6,
+                los: 7,
+                evasion: 5,
+            },
         },
     },
     {
@@ -116,13 +143,26 @@ module.exports = [
     {
         equipment: 369,
         ship: {
-            isClass: [CL_Gotland, CLV_Gotland],
+            isID: [Gotland, Gotland改],
         },
         bonus: {
             fire: 5,
             asw: 4,
             los: 3,
             evasion: 4,
+        },
+    },
+    {
+        equipment: 369,
+        ship: {
+            isID: [GotlandAndra],
+        },
+        bonus: {
+            fire: 8,
+            torpedo: 3,
+            asw: 4,
+            los: 5,
+            evasion: 6,
         },
     },
     {

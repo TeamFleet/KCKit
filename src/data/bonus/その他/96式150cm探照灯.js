@@ -8,16 +8,30 @@
 
 const { Hiei, Kirishima } = require('../../ship-series');
 const { BB_Yamato } = require('../../ship-classes');
+const { 比叡改二丙 } = require('../../ship-ids');
 
 module.exports = [
     {
         equipment: 140,
         ship: {
-            isID: [...Hiei, ...Kirishima],
+            isID: [...Hiei, ...Kirishima].filter((id) => id !== 比叡改二丙),
         },
         bonusCount: {
             1: {
                 fire: 6,
+                evasion: -2,
+            },
+        },
+    },
+    {
+        equipment: 140,
+        ship: {
+            isID: [比叡改二丙],
+        },
+        bonusCount: {
+            1: {
+                fire: 9,
+                torpedo: 3,
                 evasion: -2,
             },
         },

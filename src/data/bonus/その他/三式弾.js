@@ -7,13 +7,13 @@
 // https://wikiwiki.jp/kancolle/%E4%B8%89%E5%BC%8F%E5%BC%BE
 
 module.exports = [
-
     {
         equipment: 35,
         ship: {
             isID: [
                 149, // 金剛改二
                 591, // 金剛改二丙
+                592, // 比叡改二丙
             ],
         },
         bonusCount: {
@@ -21,7 +21,7 @@ module.exports = [
                 fire: 1,
                 aa: 1,
             },
-        }
+        },
     },
 
     {
@@ -35,7 +35,7 @@ module.exports = [
             1: {
                 aa: 1,
             },
-        }
+        },
     },
 
     {
@@ -50,7 +50,7 @@ module.exports = [
                 aa: 1,
                 evasion: 1,
             },
-        }
+        },
     },
 
     {
@@ -64,7 +64,6 @@ module.exports = [
             1: {
                 fire: 1,
             },
-        }
+        },
     },
-
-]
+];

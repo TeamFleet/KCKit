@@ -11,25 +11,42 @@ const {
     BB_QueenElizabeth,
     BB_Nelson,
     BB_Richelieu,
-    CL_Gotland,
-    CLV_Gotland,
+    // CL_Gotland,
+    // CLV_Gotland,
     AV_CommandantTeste,
     // AV_Mizuho,
     // AO_Kamoi,
     // AV_Kamoi,
 } = require('../../ship-classes');
+const {
+    Gotland,
+    Gotland改,
+    'Gotland andra': GotlandAndra,
+} = require('../../ship-ids');
 
 module.exports = [
     {
         equipment: 371,
         ship: {
-            isClass: [CL_Gotland, CLV_Gotland],
+            isID: [Gotland, Gotland改],
         },
         bonus: {
             fire: 4,
             asw: 2,
             los: 6,
             evasion: 3,
+        },
+    },
+    {
+        equipment: 371,
+        ship: {
+            isID: [GotlandAndra],
+        },
+        bonus: {
+            fire: 6,
+            asw: 2,
+            los: 9,
+            evasion: 5,
         },
     },
     {

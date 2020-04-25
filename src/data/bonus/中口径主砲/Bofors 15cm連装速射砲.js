@@ -14,42 +14,42 @@ const {
     CL_Agano,
     CL_Gotland,
     CLV_Gotland,
-    CL_DeRuyter
+    CL_DeRuyter,
 } = require('../../ship-classes');
 
 const result = [];
-[360, 361].forEach(equipment => {
+[360, 361].forEach((equipment) => {
     result.push({
         equipment,
         ship: {
-            isClass: [CL_Agano]
+            isClass: [CL_Agano],
         },
         bonus: {
             fire: 1,
-            aa: 1
-        }
+            aa: 1,
+        },
     });
     result.push({
         equipment,
         ship: {
-            isClass: [CL_Gotland, CLV_Gotland]
+            isClass: [CL_Gotland, CLV_Gotland],
         },
         bonus: {
             fire: 2,
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     });
     result.push({
         equipment,
         ship: {
-            isClass: [CL_DeRuyter]
+            isClass: [CL_DeRuyter],
         },
         bonus: {
             fire: 2,
             aa: 2,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     });
 });
 module.exports = result;

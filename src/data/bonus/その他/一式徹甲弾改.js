@@ -15,6 +15,7 @@ const {
     BB_Kongou,
     BB_Kongou2,
 } = require('../../ship-classes');
+const { 比叡改二丙 } = require('../../ship-ids');
 
 const tier2IDs = [
     541, // 長門改二
@@ -24,6 +25,7 @@ const tier2IDs = [
 ];
 const tier3IDs = [
     591, // 金剛改二丙
+    比叡改二丙,
 ];
 
 module.exports = [
