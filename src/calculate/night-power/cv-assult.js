@@ -1,6 +1,7 @@
-const getShip = require('../../get/ship')
-const getShipSlots = require('../../get/ship-slots')
-const equipmentTypes = require('../../types/equipments')
+const getShip = require('../../get/ship');
+const getShipSlots = require('../../get/ship-slots');
+const equipmentTypes = require('../../types/equipments');
+const convertSlotsArr = require('../../.helpers/convert-slots-array-for-calculator');
 
 // https://wikiwiki.jp/kancolle/%E6%88%A6%E9%97%98%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6#nightAS
 
@@ -23,8 +24,8 @@ const calculateNightPowerCVAssult = ({
      * - SF系・岩井爆戦： A = 0、B = 0.3
      */
 
-    const ship = getShip(_ship)
-    const slots = getShipSlots(ship)
+    const ship = getShip(_ship);
+    const slots = convertSlotsArr(getShipSlots(ship));
 
     /*
     const starBonus = slots.reduce((total, slot, index) => {
@@ -44,80 +45,85 @@ const calculateNightPowerCVAssult = ({
     */
 
     /** @type {Number} 基础伤害 */
-    let basePower = ship.stat.fire_max + (bonus.fire || 0)
-    /** @type {Number} 参与夜袭的特殊飞机总装备数 */
-    let countOtherAttackers = 0
-    /** @type {Number[]} 可能的 CI 种类的伤害系数 */
-    const multipliersCI = []
+    let basePower = ship.stat.fire_max;
+    // + (bonus.fire || 0) // ゆめみ: 夜袭没有蓝字加成
 
-    // console.log('')
-    // console.log('----------')
-    // console.log({ ship, slots, equipments, equipmentStars, count, basePower })
+    /** @type {Number} 参与夜袭的特殊飞机总装备数 */
+    let countOtherAttackers = 0;
+
+    /** @type {Number[]} 可能的 CI 种类的伤害系数 */
+    const multipliersCI = [];
+
+    if (ship.id === 599) {
+        console.log('');
+        console.log('----------');
+        console.log({
+            ship,
+            statFire: ship.stat.fire_max,
+            bonus,
+            slots,
+            equipments,
+            equipmentStars,
+            count,
+            basePower
+        });
+    }
 
     // 计算基础伤害
     slots.forEach((carry, index) => {
-        if (!equipments[index]) return
+        if (!equipments[index]) return;
 
-        const equipment = equipments[index]
+        const equipment = equipments[index];
+        if (ship.id === 599) console.log(equipment._name);
         /** @type {Boolean} 是否为 _夜战_ 或 _夜攻_ */
-        let isNightSpecific = false
+        let isNightSpecific = false;
         /** @type {Boolean} 是否参与夜袭 */
-        let participateAssult = false
+        let participateAssult = false;
 
         // 检测装备类型
-        if (Array.isArray(equipment.type_ingame) && (
-            equipment.type_ingame[3] === 45 || // 夜战
-            equipment.type_ingame[3] === 46    // 夜攻
-        )) {
-            isNightSpecific = true
-            participateAssult = true
+        if (
+            Array.isArray(equipment.type_ingame) &&
+            (equipment.type_ingame[3] === 45 || // 夜战
+                equipment.type_ingame[3] === 46) // 夜攻
+        ) {
+            isNightSpecific = true;
+            participateAssult = true;
         } else if (equipmentTypes.TorpedoBombers.includes(equipment.type)) {
             if (equipment.hasName('Swordfish', 'ja_jp')) {
-                participateAssult = true
-                countOtherAttackers++
+                participateAssult = true;
+                countOtherAttackers++;
             }
         } else if (equipmentTypes.DiveBombers.includes(equipment.type)) {
             if (equipment.hasName('岩井', 'ja_jp')) {
-                participateAssult = true
-                countOtherAttackers++
+                participateAssult = true;
+                countOtherAttackers++;
             }
             if (equipment.hasName('三一号光電管爆弾', 'ja_jp')) {
-                participateAssult = true
-                countOtherAttackers++
+                participateAssult = true;
+                countOtherAttackers++;
             }
         }
 
         if (participateAssult) {
-            const multiplierA = isNightSpecific ? 3 : 0
-            const multiplierB = isNightSpecific ? 0.45 : 0.3
-            basePower += (
-                equipment.getStat('fire', ship)
-                +
-                equipment.getStat('torpedo', ship)
-                +
-                multiplierA * carry
-                +
-                (
-                    multiplierB
-                    *
-                    Math.sqrt(carry)
-                    *
-                    (
-                        equipment.getStat('fire', ship)
-                        +
-                        equipment.getStat('torpedo', ship)
-                        +
-                        equipment.getStat('bomb', ship)
-                        +
-                        equipment.getStat('asw', ship)
-                    )
-                )
-                +
+            const multiplierA = isNightSpecific ? 3 : 0;
+            const multiplierB = isNightSpecific ? 0.45 : 0.3;
+            basePower +=
+                equipment.getStat('fire', ship) +
+                equipment.getStat('torpedo', ship) +
+                multiplierA * carry +
+                multiplierB *
+                    Math.sqrt(carry) *
+                    (equipment.getStat('fire', ship) +
+                        equipment.getStat('torpedo', ship) +
+                        equipment.getStat('bomb', ship) +
+                        equipment.getStat('asw', ship)) +
                 (equipmentStars[index]
-                    ? KC.formula.getStarBonus(equipments[index], 'night', equipmentStars[index])
-                    : 0
-                )
-            )
+                    ? KC.formula.getStarBonus(
+                          equipments[index],
+                          'night',
+                          equipmentStars[index]
+                      )
+                    : 0);
         }
 
         // console.log('｜', {
@@ -131,21 +137,23 @@ const calculateNightPowerCVAssult = ({
         //     '対潜': equipment.getStat('asw', ship),
         //     basePower
         // })
-    })
+    });
 
     // 计算 CI
-    if (count.carrierFighterNight >= 2 &&
-        count.torpedoBomberNight >= 1
-    ) multipliersCI.push(1.25)
-    if (count.carrierFighterNight >= 1 &&
-        count.torpedoBomberNight >= 1
-    ) multipliersCI.push(1.2)
-    if ((count.carrierFighterNight >= 3)
-        || (count.carrierFighterNight >= 2 && countOtherAttackers >= 1)
-        || (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1 && countOtherAttackers >= 1)
-        || (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 2)
-        || (count.carrierFighterNight >= 1 && countOtherAttackers >= 2)
-    ) multipliersCI.push(1.18)
+    if (count.carrierFighterNight >= 2 && count.torpedoBomberNight >= 1)
+        multipliersCI.push(1.25);
+    if (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 1)
+        multipliersCI.push(1.2);
+    if (
+        count.carrierFighterNight >= 3 ||
+        (count.carrierFighterNight >= 2 && countOtherAttackers >= 1) ||
+        (count.carrierFighterNight >= 1 &&
+            count.torpedoBomberNight >= 1 &&
+            countOtherAttackers >= 1) ||
+        (count.carrierFighterNight >= 1 && count.torpedoBomberNight >= 2) ||
+        (count.carrierFighterNight >= 1 && countOtherAttackers >= 2)
+    )
+        multipliersCI.push(1.18);
 
     /** @type {Object} 结果对象 */
     const result = {
@@ -153,17 +161,18 @@ const calculateNightPowerCVAssult = ({
         hit: 1,
         damage: Math.floor(basePower),
         isMax: true
-    }
+    };
 
     if (multipliersCI.length) {
-        result.cis = multipliersCI.map(multiplier => (
-            [Math.floor(result.damage * multiplier), 1]
-        ))
+        result.cis = multipliersCI.map(multiplier => [
+            Math.floor(result.damage * multiplier),
+            1
+        ]);
     }
 
     // console.log({ result })
 
-    return result
-}
+    return result;
+};
 
-module.exports = calculateNightPowerCVAssult
+module.exports = calculateNightPowerCVAssult;
