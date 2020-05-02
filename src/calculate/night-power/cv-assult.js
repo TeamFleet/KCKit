@@ -54,20 +54,20 @@ const calculateNightPowerCVAssult = ({
     /** @type {Number[]} 可能的 CI 种类的伤害系数 */
     const multipliersCI = [];
 
-    if (ship.id === 599) {
-        console.log('');
-        console.log('----------');
-        console.log({
-            ship,
-            statFire: ship.stat.fire_max,
-            bonus,
-            slots,
-            equipments,
-            equipmentStars,
-            count,
-            basePower
-        });
-    }
+    // if (ship.id === 599) {
+    //     console.log('');
+    //     console.log('----------');
+    //     console.log({
+    //         ship,
+    //         statFire: ship.stat.fire_max,
+    //         bonus,
+    //         slots,
+    //         equipments,
+    //         equipmentStars,
+    //         count,
+    //         basePower
+    //     });
+    // }
 
     // 计算基础伤害
     slots.forEach((carry, index) => {

@@ -2811,7 +2811,7 @@
                     count.main >= 1
                 ) {
                     // 覆盖 炮雷CI
-                    delete result.ciAvailable['炮雷CI'];
+                    // delete result.ciAvailable['炮雷CI'];
                     addCI('电雷CI', baseDamage * 1.3 * extraMultiplier, 1);
                 }
             }
