@@ -23,6 +23,7 @@ const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 // CV
 //
 // ============================================================================
+const CV_Kaga = 27;
 const CVB_Lexington = 105;
 const CV_Lexington = 87;
 const CV_Essex = 110;
@@ -173,6 +174,7 @@ module.exports = {
     group_BB_Navy_RN,
 
     // ========================================================================
+    CV_Kaga,
     CV_Lexington,
     CVB_Lexington,
     CV_Essex,
