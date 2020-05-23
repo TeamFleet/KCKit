@@ -56,13 +56,14 @@ const dataBonuses = [
     ...require('./魚雷/53cm連装魚雷'),
     ...require('./魚雷/53cm艦首(酸素)魚雷'),
     ...require('./魚雷/533mm 三連装魚雷'),
-    ...require('./魚雷/533mm五連装魚雷(初期型)'),
+    ...require('./魚雷/533mm五連装魚雷'),
     ...require('./魚雷/61cm三連装(酸素)魚雷後期型'),
     ...require('./魚雷/61cm四連装(酸素)魚雷'),
     ...require('./魚雷/61cm四連装(酸素)魚雷後期型'),
     ...require('./魚雷/61cm五連装(酸素)魚雷'),
     ...require('./魚雷/試製61cm六連装(酸素)魚雷'),
 
+    ...require('./水上機/OS2U'),
     ...require('./水上機/S9 Osprey'),
     ...require('./水上機/Laté 298B'),
     ...require('./水上機/Swordfish'),
@@ -107,10 +108,12 @@ const dataBonuses = [
 
     ...require('./電探/13号対空電探改'),
     ...require('./電探/GFCS Mk.37'),
-    ...require('./電探/SG レーダー(初期型)'),
+    ...require('./電探/SK／SGレーダー'),
 
     ...require('./対潜兵装/三式水中探信儀'),
     ...require('./対潜兵装/四式水中聴音機'),
+    ...require('./対潜兵装/RUR-4A'),
+    ...require('./対潜兵装/対潜短魚雷'),
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
 

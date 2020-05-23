@@ -992,6 +992,26 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('天山一二型', () => {
+                it('翔鶴 || 天山一二型(村田隊) ➕天山一二型甲改(空六号電探改装備機) ➕天山一二型甲改(熟練/空六号電探改装備機)', () => {
+                    expect(
+                        calculate.bonus(110, [144, 373, 374], [0, 0, 0, 0])
+                    ).toEqual({
+                        fire: 4,
+                        torpedo: 2,
+                        evasion: 2,
+                    });
+                });
+                it('翔鶴改二甲 || 天山一二型(村田隊) ➕天山一二型甲改(空六号電探改装備機) ➕天山一二型甲改(熟練/空六号電探改装備機)', () => {
+                    expect(
+                        calculate.bonus(466, [144, 373, 374], [0, 0, 0, 0])
+                    ).toEqual({
+                        fire: 9,
+                        torpedo: 5,
+                        evasion: 5,
+                    });
+                });
+            });
         });
 
         describe('電探...', () => {

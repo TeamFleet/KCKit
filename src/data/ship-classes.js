@@ -151,6 +151,7 @@ const group_DD_Navy_IJN = [
     DD_Shimakaze,
 ];
 const group_DD_Navy_USN = [DD_JohnCButler, DD_Fletcher];
+const group_DD_Navy_RN = [DD_J];
 
 module.exports = {
     // ========================================================================
@@ -258,6 +259,7 @@ module.exports = {
     group_DD_Tokugata: [DD_Fubuki, DD_Ayanami, DD_Akatsuki],
     group_DD_Navy_IJN,
     group_DD_Navy_USN,
+    group_DD_Navy_RN,
 
     // ========================================================================
     AV_Nisshin: 118,
@@ -275,7 +277,11 @@ module.exports = {
         ...group_DD_Navy_USN,
     ],
     group_Navy_KM: [...group_CV_Navy_KM],
-    group_Navy_RN: [...group_BB_Navy_RN, ...group_CV_Navy_RN, DD_J],
+    group_Navy_RN: [
+        ...group_BB_Navy_RN,
+        ...group_CV_Navy_RN,
+        ...group_DD_Navy_RN,
+    ],
     group_Navy_RM: [...group_CV_Navy_RM, ...group_CL_Navy_RM],
     group_Navy_RNLN: [...group_CL_Navy_RNLN],
     group_Navy_RAN: [...group_CL_Navy_RAN],
