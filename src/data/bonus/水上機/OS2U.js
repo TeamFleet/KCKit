@@ -15,7 +15,7 @@ const {
 
 module.exports = [
     {
-        equipment: 377,
+        equipment: 171,
         ship: {
             isClass: [
                 ...group_BB_Navy_USN,
