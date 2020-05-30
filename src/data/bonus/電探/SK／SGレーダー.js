@@ -11,7 +11,15 @@
  *
  */
 
-const { group_Navy_USN, group_DD_Navy_USN } = require('../../ship-classes');
+const {
+    group_Navy_USN,
+    group_DD_Navy_USN,
+
+    group_BB_Navy_RN,
+    group_CV_Navy_RN,
+
+    group_CL_Navy_RAN,
+} = require('../../ship-classes');
 const { 沖波改二 } = require('../../ship-ids');
 
 const group_Navy_USN_excludes_DD = group_Navy_USN.filter(
@@ -73,6 +81,26 @@ const SKレーダー = [
             evasion: 3,
         },
     },
+    {
+        equipment: 278,
+        ship: {
+            isClass: [...group_BB_Navy_RN, ...group_CV_Navy_RN],
+        },
+        bonus: {
+            aa: 1,
+            evasion: 2,
+        },
+    },
+    {
+        equipment: 278,
+        ship: {
+            isClass: [...group_CL_Navy_RAN],
+        },
+        bonus: {
+            aa: 1,
+            evasion: 1,
+        },
+    },
 ];
 
 // ============================================================================
@@ -88,6 +116,29 @@ const SK_SG_レーダー = [
             aa: 2,
             los: 2,
             evasion: 3,
+        },
+    },
+    {
+        equipment: 279,
+        ship: {
+            isClass: [...group_BB_Navy_RN, ...group_CV_Navy_RN],
+        },
+        bonus: {
+            fire: 1,
+            aa: 1,
+            los: 1,
+            evasion: 2,
+        },
+    },
+    {
+        equipment: 279,
+        ship: {
+            isClass: [...group_CL_Navy_RAN],
+        },
+        bonus: {
+            fire: 1,
+            aa: 1,
+            evasion: 1,
         },
     },
 ];

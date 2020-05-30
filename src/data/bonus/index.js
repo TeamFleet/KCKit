@@ -19,6 +19,8 @@ const bonusIsSet = require('../../utils/bonus-is-set');
 const dataBonuses = [
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
+    ...require('./小口径主砲/12.7cm単装高角砲改二'),
+    ...require('./小口径主砲/12.7cm連装高角砲改二'),
     ...require('./小口径主砲/12.7cm連装砲A型'),
     ...require('./小口径主砲/12.7cm連装砲A型改二'),
     ...require('./小口径主砲/12.7cm連装砲A型改三(戦時改修)+高射装置'),
@@ -49,6 +51,7 @@ const dataBonuses = [
     ...require('./大口径主砲/41cm連装砲改二'),
     ...require('./大口径主砲/41cm三連装砲改二'),
     ...require('./大口径主砲/16inch連装砲 (USN)'),
+    ...require('./大口径主砲/16inch三連装砲 Mk.6'),
     ...require('./大口径主砲/16inch Mk.I三連装砲'),
 
     ...require('./副砲/usn.5inch'),
