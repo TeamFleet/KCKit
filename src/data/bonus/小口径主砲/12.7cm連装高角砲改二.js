@@ -101,7 +101,7 @@ const 単体ボーナス = [
         },
     },
     {
-        equipment: 379,
+        equipment: 380,
         ship: {
             isType: [
                 21, // 練習巡洋艦
