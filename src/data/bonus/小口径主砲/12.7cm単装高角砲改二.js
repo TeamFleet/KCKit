@@ -94,11 +94,22 @@ const 単体ボーナス = [
     {
         equipment: 379,
         ship: {
-            isID: [五十鈴, 五十鈴改, 由良, 由良改, 鬼怒, 鬼怒改, 那珂, 那珂改],
+            isID: [五十鈴, 五十鈴改, 由良, 鬼怒, 鬼怒改, 那珂, 那珂改],
         },
         bonus: {
             fire: 2,
             aa: 2,
+            asw: 1,
+        },
+    },
+    {
+        equipment: 379,
+        ship: {
+            isID: [由良改],
+        },
+        bonus: {
+            fire: 2,
+            aa: 3,
             asw: 1,
         },
     },

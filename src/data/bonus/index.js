@@ -18,6 +18,7 @@ const bonusIsSet = require('../../utils/bonus-is-set');
  */
 const dataBonuses = [
     ...require('./小口径主砲/12cm単装砲改二'),
+    ...require('./小口径主砲/12cm単装高角砲E型'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
     ...require('./小口径主砲/12.7cm単装高角砲改二'),
     ...require('./小口径主砲/12.7cm連装高角砲改二'),
@@ -103,6 +104,7 @@ const dataBonuses = [
     ...require('./艦上機/流星改(一航戦)'),
     ...require('./艦上機/天山一二型(友永隊)'),
     ...require('./艦上機/天山一二型(村田隊)'),
+    ...require('./艦上機/天山一二型甲'),
     ...require('./艦上機/天山一二型甲改(空六号電探改装備機)'),
     ...require('./艦上機/Re.2001 G改'),
     ...require('./艦上機/彩雲'),

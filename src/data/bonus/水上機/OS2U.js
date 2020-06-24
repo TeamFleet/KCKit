@@ -24,7 +24,7 @@ module.exports = [
             ],
         },
         bonusImprove: {
-            6: {
+            5: {
                 los: 1,
             },
             10: {
