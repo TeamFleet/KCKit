@@ -7,7 +7,7 @@
  *
  */
 
-const { DD_Kamikaze, DD_Mutsuki } = require('../../ship-classes');
+const { DD_Kamikaze, DD_Mutsuki, DD_Matsu } = require('../../ship-classes');
 const {
     由良,
     由良改,
@@ -39,7 +39,7 @@ const 単体ボーナス = [
     {
         equipment: 382,
         ship: {
-            isClass: [DD_Kamikaze, DD_Mutsuki],
+            isClass: [DD_Kamikaze, DD_Mutsuki, DD_Matsu],
         },
         bonus: {
             aa: 2,
@@ -106,7 +106,7 @@ const 相互シナジーボーナス = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isClass: [DD_Kamikaze, DD_Mutsuki],
+            isClass: [DD_Kamikaze, DD_Mutsuki, DD_Matsu],
         },
         bonus: {
             fire: 1,
@@ -120,7 +120,7 @@ const 相互シナジーボーナス = [
             hasAARadar: true,
         },
         ship: {
-            isClass: [DD_Kamikaze, DD_Mutsuki],
+            isClass: [DD_Kamikaze, DD_Mutsuki, DD_Matsu],
         },
         bonus: {
             aa: 2,

@@ -5,10 +5,11 @@ module.exports = {
     ...require('./ca'),
     ...require('./cl'),
     ...require('./dd'),
+    ...require('./ss'),
 
     //
 
     Mizuho: [451, 348],
     Kamoi: [162, 499, 500],
-    CommandantTeste: [491, 372]
+    CommandantTeste: [491, 372],
 };

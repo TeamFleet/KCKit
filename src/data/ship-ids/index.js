@@ -3,4 +3,5 @@ module.exports = {
     ...require('./cv'),
     ...require('./cl'),
     ...require('./dd'),
+    ...require('./ss'),
 };

@@ -5058,10 +5058,10 @@ which@^2.0.1, which@^2.0.2:
   dependencies:
     isexe "^2.0.0"
 
-whocallsthefleet-database@20200626.0.0:
-  version "20200626.0.0"
-  resolved "https://registry.yarnpkg.com/whocallsthefleet-database/-/whocallsthefleet-database-20200626.0.0.tgz#ae491265ccedcc00e8028d404b2aea419e48173b"
-  integrity sha512-QWFgI67VDDeaoMFtC1SDH9Y/BobHTmIJWmTqGiog5aPyNFDB5V8KLhEcOETS78hZtfJ5eW6bjCWB1IMoeE3pKw==
+whocallsthefleet-database@20200627.1.0:
+  version "20200627.1.0"
+  resolved "https://registry.yarnpkg.com/whocallsthefleet-database/-/whocallsthefleet-database-20200627.1.0.tgz#2d4fb66d351cc4b40340f2c54d45ce87adbb3025"
+  integrity sha512-IvqS/V/ovHp3rCd4CBFdhItLZ6T5+HLbsJQX13EbciiDmgtJBVgNh/mqJYvofkzBCpdkI3yEPgCYlI+qNyFcAA==
 
 word-wrap@^1.2.3:
   version "1.2.3"

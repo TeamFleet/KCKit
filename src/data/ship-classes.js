@@ -10,11 +10,14 @@ const group_BB_Ise = [BB_Ise, BBV_Ise, BBVR_Ise];
 const BB_Fusou = 4;
 const BBV_Fusou = 11;
 const group_BB_Fusou = [BB_Fusou, BBV_Fusou];
+const BB_Bismarck = 7;
+const BB_VittorioVeneto = 70;
 const BB_Colorado = 122;
 const BB_Iowa = 82;
 const BB_QueenElizabeth = 85;
 const BB_Nelson = 115;
 const BB_Richelieu = 100;
+const BB_Gangut = 93;
 const group_BB_Navy_USN = [BB_Colorado, BB_Iowa];
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 
@@ -132,6 +135,7 @@ const DD_Kagerou = 21;
 const DD_Yuugumo = 22;
 const DD_Shimakaze = 24;
 const DD_Akizuki = 23;
+const DD_Matsu = 131;
 const DD_JohnCButler = 112;
 const DD_Fletcher = 117;
 const DD_J = 107;
@@ -149,6 +153,7 @@ const group_DD_Navy_IJN = [
     DD_Yuugumo,
     DD_Akizuki,
     DD_Shimakaze,
+    DD_Matsu,
 ];
 const group_DD_Navy_USN = [DD_JohnCButler, DD_Fletcher];
 const group_DD_Navy_RN = [DD_J];
@@ -166,11 +171,14 @@ module.exports = {
     BB_Yamato: 83,
     BB_Kongou: 9,
     BB_Kongou2: 119,
+    BB_Bismarck,
+    BB_VittorioVeneto,
     BB_Colorado,
     BB_Iowa,
     BB_QueenElizabeth,
     BB_Nelson,
     BB_Richelieu,
+    BB_Gangut,
     group_BB_Navy_USN,
     group_BB_Navy_RN,
 
@@ -253,6 +261,7 @@ module.exports = {
     DD_Yuugumo,
     DD_Akizuki,
     DD_Shimakaze,
+    DD_Matsu,
     DD_J,
     DD_JohnCButler,
     DD_Fletcher,

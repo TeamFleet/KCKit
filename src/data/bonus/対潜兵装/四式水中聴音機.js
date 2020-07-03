@@ -14,13 +14,13 @@ module.exports = [
         equipment: 149,
         ship: {
             isID: [
-                624 // 夕張改二丁
-            ]
+                624, // 夕張改二丁
+            ],
         },
         bonus: {
             asw: 3,
-            evasion: 5
-        }
+            evasion: 5,
+        },
     },
     {
         equipment: 149,
@@ -30,22 +30,22 @@ module.exports = [
                 623, // 夕張改二特
                 141, // 五十鈴改二
                 488, // 由良改二
-                160 // 那珂改二
-            ]
+                160, // 那珂改二
+            ],
         },
         bonus: {
             asw: 1,
-            evasion: 3
-        }
+            evasion: 3,
+        },
     },
     {
         equipment: 149,
         ship: {
-            isClass: [DD_Akizuki]
+            isClass: [DD_Akizuki],
         },
         bonus: {
             asw: 1,
-            evasion: 2
-        }
-    }
+            evasion: 2,
+        },
+    },
 ];

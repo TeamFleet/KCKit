@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "index.js",
-    "version": "1.43.0",
+    "version": "1.44.0",
     "description": "Javascript library for KanColle",
     "sideEffects": false,
     "author": {
@@ -34,7 +34,7 @@
         "lint-staged": "^10.2.11",
         "prettier": "^2.0.5",
         "react": "^16.13.1",
-        "whocallsthefleet-database": "20200626.0.0"
+        "whocallsthefleet-database": "20200627.1.0"
     },
     "jest": {
         "testEnvironment": "node"
