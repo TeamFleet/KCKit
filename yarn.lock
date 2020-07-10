@@ -1862,10 +1862,10 @@ eslint-visitor-keys@^1.2.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.3.0.tgz#30ebd1ef7c2fdff01c3a4f151044af25fab0523e"
   integrity sha512-6J72N8UNa462wa/KFODt/PJ3IU60SDpC3QXC1Hjc1BXXpfL2C9R5+AU7jhe0F6GREqVMh4Juu+NY7xn+6dipUQ==
 
-eslint@^7.3.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.3.1.tgz#76392bd7e44468d046149ba128d1566c59acbe19"
-  integrity sha512-cQC/xj9bhWUcyi/RuMbRtC3I0eW8MH0jhRELSvpKYkWep3C6YZ2OkvcvJVUeO6gcunABmzptbXBuDoXsjHmfTA==
+eslint@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.4.0.tgz#4e35a2697e6c1972f9d6ef2b690ad319f80f206f"
+  integrity sha512-gU+lxhlPHu45H3JkEGgYhWhkR9wLHHEXC9FbWFnTlEkbKyZKWgWRLgf61E8zWmBuI6g5xKBph9ltg3NtZMVF8g==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     ajv "^6.10.0"
@@ -5058,10 +5058,10 @@ which@^2.0.1, which@^2.0.2:
   dependencies:
     isexe "^2.0.0"
 
-whocallsthefleet-database@20200627.1.0:
-  version "20200627.1.0"
-  resolved "https://registry.yarnpkg.com/whocallsthefleet-database/-/whocallsthefleet-database-20200627.1.0.tgz#2d4fb66d351cc4b40340f2c54d45ce87adbb3025"
-  integrity sha512-IvqS/V/ovHp3rCd4CBFdhItLZ6T5+HLbsJQX13EbciiDmgtJBVgNh/mqJYvofkzBCpdkI3yEPgCYlI+qNyFcAA==
+whocallsthefleet-database@20200704.0.0:
+  version "20200704.0.0"
+  resolved "https://registry.yarnpkg.com/whocallsthefleet-database/-/whocallsthefleet-database-20200704.0.0.tgz#1b079ee3cc72b4346e231f37060840dd2a48de7b"
+  integrity sha512-kbBx7ACZlvMZGf30kztNIW4qJgHrmOOg2ZQAud8weLHcSuMFCT2gmyUd1ZQsIHF5G5XA/7LyBVNkJCluLyXMWA==
 
 word-wrap@^1.2.3:
   version "1.2.3"

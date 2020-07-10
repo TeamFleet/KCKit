@@ -7,6 +7,7 @@
  *
  */
 
+const { DD_Matsu } = require('../../ship-classes');
 const {
     天龍改二,
     龍田改二,
@@ -25,6 +26,16 @@ const {
 // ============================================================================
 
 const 単体ボーナス = [
+    {
+        equipment: 380,
+        ship: {
+            isClass: [DD_Matsu],
+        },
+        bonus: {
+            fire: 3,
+            aa: 4,
+        },
+    },
     {
         equipment: 380,
         ship: {
@@ -119,6 +130,20 @@ const 単体ボーナス = [
 // ============================================================================
 
 const 相互シナジーボーナス = [
+    {
+        list: [380, 'SurfaceRadar'],
+        equipments: {
+            hasID: [380],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isClass: [DD_Matsu],
+        },
+        bonus: {
+            fire: 4,
+            evasion: 3,
+        },
+    },
     {
         list: [380, 'SurfaceRadar'],
         equipments: {
