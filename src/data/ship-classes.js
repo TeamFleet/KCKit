@@ -14,11 +14,12 @@ const BB_Bismarck = 7;
 const BB_VittorioVeneto = 70;
 const BB_Colorado = 122;
 const BB_Iowa = 82;
+const BB_SouthDakota = 134;
 const BB_QueenElizabeth = 85;
 const BB_Nelson = 115;
 const BB_Richelieu = 100;
 const BB_Gangut = 93;
-const group_BB_Navy_USN = [BB_Colorado, BB_Iowa];
+const group_BB_Navy_USN = [BB_Colorado, BB_Iowa, BB_SouthDakota];
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 
 // ============================================================================
@@ -30,6 +31,7 @@ const CV_Kaga = 27;
 const CVB_Lexington = 105;
 const CV_Lexington = 87;
 const CV_Essex = 110;
+const CV_Yorktown = 135;
 const CV_ArkRoyal = 101;
 const CV_GrafZeppelin = 80;
 const CV_Aquila = 91;
@@ -40,6 +42,7 @@ const group_CV_Navy_USN = [
     CVB_Lexington,
     CV_Lexington,
     CV_Essex,
+    CV_Yorktown,
     CV_Casablanca,
 ];
 const group_CV_Navy_RN = [CV_ArkRoyal];
@@ -95,6 +98,7 @@ const CL_Gotland = 114;
 const CL_Abruzzi = 120;
 const CL_DeRuyter = 127;
 const CL_Perth = 125;
+const CL_StLouis = 136;
 // 練習巡洋艦
 const CT_Katori = 55;
 // GROUPS
@@ -110,7 +114,7 @@ const group_CL_Navy_IJN = [
 const group_CL_Navy_RM = [CL_Abruzzi];
 const group_CL_Navy_RNLN = [CL_DeRuyter];
 const group_CL_Navy_RAN = [CL_Perth];
-const group_CL_Navy_USN = [CL_Atlanta];
+const group_CL_Navy_USN = [CL_Atlanta, CL_StLouis];
 const group_CL_S_Navy_IJN = [
     CLT_Kuma,
     CL_Yuubari2,
@@ -175,6 +179,7 @@ module.exports = {
     BB_VittorioVeneto,
     BB_Colorado,
     BB_Iowa,
+    BB_SouthDakota,
     BB_QueenElizabeth,
     BB_Nelson,
     BB_Richelieu,
@@ -187,6 +192,7 @@ module.exports = {
     CV_Lexington,
     CVB_Lexington,
     CV_Essex,
+    CV_Yorktown,
     CV_ArkRoyal,
     CV_GrafZeppelin,
     CV_Aquila,
@@ -237,6 +243,7 @@ module.exports = {
     CL_Abruzzi,
     CL_DeRuyter,
     CL_Perth,
+    CL_StLouis,
     // 練習巡洋艦
     CT_Katori,
     // GROUPS

@@ -1,4 +1,10 @@
 const S = require('./ship-series');
+const {
+    'South Dakota': SouthDakota,
+    'South Dakota改': SouthDakota改,
+    Hornet,
+    Hornet改,
+} = require('./ship-ids');
 
 // ============================================================================
 
@@ -150,6 +156,7 @@ const DD_HatsuharuClassRemodel = [
     239, // 子日改
     240, // 若葉改
     241, // 初霜改
+    703, // 有明改
 ];
 const DD_HatsuharuClass2ndRemodel = [
     326, // 初春改二
@@ -249,6 +256,8 @@ const usn_BB = [
     1496, // Colorado改
     440,
     360, // Iowa
+    SouthDakota,
+    SouthDakota改,
 ];
 const usn_CV = [
     544,
@@ -259,6 +268,8 @@ const usn_CV = [
     438,
     545,
     550, // Saratoga
+    Hornet,
+    Hornet改,
 ];
 const usn_DD = [
     561,

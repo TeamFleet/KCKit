@@ -11,6 +11,7 @@
  */
 
 const {
+    BB_SouthDakota,
     BB_Kongou,
     BB_Kongou2,
     BB_Bismarck,
@@ -20,13 +21,17 @@ const {
     group_BB_Navy_USN,
 } = require('../../ship-classes');
 
+const group_BB_Navy_USN_exclude_SouthDakota = group_BB_Navy_USN.filter(
+    (id) => id !== BB_SouthDakota
+);
+
 // ============================================================================
 
 const MK6 = [
     {
         equipment: 381,
         ship: {
-            isClass: [...group_BB_Navy_USN],
+            isClass: [...group_BB_Navy_USN_exclude_SouthDakota],
         },
         bonusImprove: {
             0: {
@@ -35,6 +40,15 @@ const MK6 = [
             6: {
                 fire: 2,
             },
+        },
+    },
+    {
+        equipment: 381,
+        ship: {
+            isClass: [BB_SouthDakota],
+        },
+        bonus: {
+            fire: 2,
         },
     },
 ];
