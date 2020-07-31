@@ -9,7 +9,7 @@
 const {
     BB_NagatoClassRemodel,
     BB_NagatoClass2ndRemodel,
-    BB_NelsonClassRemodel
+    BB_NelsonClassRemodel,
 } = require('../../ships');
 const { Colorado } = require('../../ship-series');
 
@@ -21,20 +21,20 @@ module.exports = [
     {
         equipment: 330,
         ship: {
-            isID: [...BB_NagatoClassRemodel, ...Colorado]
+            isID: [...BB_NagatoClassRemodel, ...Colorado],
         },
         bonus: {
-            fire: 1
-        }
+            fire: 1,
+        },
     },
     {
         equipment: 330,
         ship: {
-            isID: [...BB_NagatoClass2ndRemodel, ...BB_NelsonClassRemodel]
+            isID: [...BB_NagatoClass2ndRemodel, ...BB_NelsonClassRemodel],
         },
         bonus: {
-            fire: 2
-        }
+            fire: 2,
+        },
     },
 
     // ========================================================================
@@ -44,30 +44,30 @@ module.exports = [
     {
         equipment: 331,
         ship: {
-            isID: [...BB_NagatoClassRemodel, 601] // Colorado
+            isID: [...BB_NagatoClassRemodel, 601], // Colorado
         },
         bonus: {
-            fire: 1
-        }
+            fire: 1,
+        },
     },
     {
         equipment: 331,
         ship: {
-            isID: [...BB_NagatoClass2ndRemodel, ...BB_NelsonClassRemodel]
-        },
-        bonus: {
-            fire: 2
-        }
-    },
-    {
-        equipment: 331,
-        ship: {
-            isID: [1496] // Colorado改
+            isID: [...BB_NagatoClass2ndRemodel, ...BB_NelsonClassRemodel],
         },
         bonus: {
             fire: 2,
-            evasion: 1
-        }
+        },
+    },
+    {
+        equipment: 331,
+        ship: {
+            isID: [1496], // Colorado改
+        },
+        bonus: {
+            fire: 2,
+            evasion: 1,
+        },
     },
 
     // ========================================================================
@@ -77,29 +77,29 @@ module.exports = [
     {
         equipment: 332,
         ship: {
-            isID: [...BB_NagatoClassRemodel, 601] // Colorado
+            isID: [...BB_NagatoClassRemodel, 601], // Colorado
         },
         bonus: {
-            fire: 1
-        }
+            fire: 1,
+        },
     },
     {
         equipment: 332,
         ship: {
-            isID: [...BB_NagatoClass2ndRemodel, ...BB_NelsonClassRemodel]
-        },
-        bonus: {
-            fire: 2
-        }
-    },
-    {
-        equipment: 332,
-        ship: {
-            isID: [1496] // Colorado改
+            isID: [...BB_NagatoClass2ndRemodel, ...BB_NelsonClassRemodel],
         },
         bonus: {
             fire: 2,
-            aa: 1
-        }
-    }
+        },
+    },
+    {
+        equipment: 332,
+        ship: {
+            isID: [1496], // Colorado改
+        },
+        bonus: {
+            fire: 2,
+            aa: 1,
+        },
+    },
 ];

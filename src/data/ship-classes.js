@@ -19,7 +19,12 @@ const BB_QueenElizabeth = 85;
 const BB_Nelson = 115;
 const BB_Richelieu = 100;
 const BB_Gangut = 93;
-const group_BB_Navy_USN = [BB_Colorado, BB_Iowa, BB_SouthDakota];
+const group_BC_Navy_USN = [BB_Iowa, BB_SouthDakota];
+const group_BB_exclude_BC_Navy_USN = [BB_Colorado];
+const group_BB_Navy_USN = [
+    ...group_BB_exclude_BC_Navy_USN,
+    ...group_BC_Navy_USN,
+];
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 
 // ============================================================================
@@ -184,6 +189,8 @@ module.exports = {
     BB_Nelson,
     BB_Richelieu,
     BB_Gangut,
+    group_BC_Navy_USN,
+    group_BB_exclude_BC_Navy_USN,
     group_BB_Navy_USN,
     group_BB_Navy_RN,
 

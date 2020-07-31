@@ -47,20 +47,6 @@ const MK6 = [
         ship: {
             isClass: [BB_SouthDakota],
         },
-        bonus: {
-            fire: 2,
-        },
-    },
-];
-
-// ============================================================================
-
-const MK6mod2 = [
-    {
-        equipment: 385,
-        ship: {
-            isClass: [...group_BB_Navy_USN],
-        },
         bonusImprove: {
             0: {
                 fire: 2,
@@ -68,12 +54,13 @@ const MK6mod2 = [
             6: {
                 fire: 3,
             },
-            10: {
-                fire: 3,
-                armor: 1,
-            },
         },
     },
+];
+
+// ============================================================================
+
+const MK6mod2 = [
     {
         equipment: 385,
         ship: {
@@ -88,6 +75,48 @@ const MK6mod2 = [
         },
         bonus: {
             fire: 1,
+        },
+    },
+    {
+        equipment: 385,
+        ship: {
+            isClass: [...group_BB_Navy_USN_exclude_SouthDakota],
+        },
+        bonusImprove: {
+            0: {
+                fire: 2,
+            },
+            2: {
+                fire: 3,
+            },
+            10: {
+                fire: 3,
+                armor: 1,
+            },
+        },
+    },
+    {
+        equipment: 385,
+        ship: {
+            isClass: [BB_SouthDakota],
+        },
+        bonusImprove: {
+            0: {
+                fire: 2,
+                armor: 1,
+            },
+            2: {
+                fire: 3,
+                armor: 1,
+            },
+            6: {
+                fire: 4,
+                armor: 1,
+            },
+            10: {
+                fire: 4,
+                armor: 2,
+            },
         },
     },
 ];

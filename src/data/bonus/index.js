@@ -34,16 +34,17 @@ const dataBonuses = [
     ...require('./小口径主砲/5inch単装砲 Mk.30改+GFCS Mk.37'),
     ...require('./小口径主砲/130mm B-13連装砲'),
 
+    ...require('./中口径主砲/5inch連装両用砲(集中配備)'),
     ...require('./中口径主砲/14cm連装砲'),
     ...require('./中口径主砲/14cm連装砲改'),
     ...require('./中口径主砲/Bofors 15cm連装速射砲'),
     ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
     ...require('./中口径主砲/152mm／55 三連装速射砲'),
     ...require('./中口径主砲/6inch連装速射砲'),
+    ...require('./中口径主砲/6inch三連装速射砲 Mk.16'),
     ...require('./中口径主砲/20.3cm(2号)連装砲'),
     ...require('./中口径主砲/20.3cm(3号)連装砲'),
     ...require('./中口径主砲/8inch三連装砲 Mk.9'),
-    ...require('./中口径主砲/5inch連装両用砲(集中配備)'),
 
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
     ...require('./大口径主砲/35.6cm連装砲改'),
