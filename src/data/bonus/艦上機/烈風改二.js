@@ -4,7 +4,11 @@
  * 336. **烈風改二**
  */
 
-const { CV_AkagiClass2ndRemodel } = require('../../ships');
+const {
+    CV_AkagiClass2ndRemodel,
+    CV_KagaClass2ndRemodel,
+} = require('../../ships');
+const { 赤城改, 加賀改 } = require('../../ship-ids');
 
 module.exports = [
     // ========================================================================
@@ -14,26 +18,23 @@ module.exports = [
     {
         equipment: 336,
         ship: {
-            isID: [
-                277, // 赤城改
-                278 // 加賀改
-            ]
+            isID: [赤城改, 加賀改],
         },
         bonus: {
             fire: 1,
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
     {
         equipment: 336,
         ship: {
-            isID: [...CV_AkagiClass2ndRemodel]
+            isID: [...CV_AkagiClass2ndRemodel, ...CV_KagaClass2ndRemodel],
         },
         bonus: {
             fire: 1,
             aa: 2,
-            evasion: 1
-        }
-    }
+            evasion: 1,
+        },
+    },
 ];

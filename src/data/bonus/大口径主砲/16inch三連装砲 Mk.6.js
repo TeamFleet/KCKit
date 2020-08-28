@@ -86,7 +86,7 @@ const MK6mod2 = [
             0: {
                 fire: 2,
             },
-            2: {
+            6: {
                 fire: 3,
             },
             10: {
@@ -102,10 +102,6 @@ const MK6mod2 = [
         },
         bonusImprove: {
             0: {
-                fire: 2,
-                armor: 1,
-            },
-            2: {
                 fire: 3,
                 armor: 1,
             },

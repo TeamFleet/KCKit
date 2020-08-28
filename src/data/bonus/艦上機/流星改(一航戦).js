@@ -6,6 +6,16 @@
  */
 
 const { CV_ShoukakuClass2ndRemodel } = require('../../ships');
+const {
+    赤城改,
+    赤城改二,
+    赤城改二戊,
+
+    加賀改,
+    加賀改二,
+    加賀改二戊,
+    加賀改二護,
+} = require('../../ship-ids');
 
 module.exports = [
     // ========================================================================
@@ -15,41 +25,33 @@ module.exports = [
     {
         equipment: 342,
         ship: {
-            isID: [
-                277, // 赤城改
-                278, // 加賀改
-                ...CV_ShoukakuClass2ndRemodel
-            ]
+            isID: [赤城改, 加賀改, ...CV_ShoukakuClass2ndRemodel],
         },
         bonus: {
-            fire: 1
-        }
+            fire: 1,
+        },
     },
     {
         equipment: 342,
         ship: {
-            isID: [
-                594 // 赤城改二
-            ]
+            isID: [赤城改二, 加賀改二, 加賀改二護],
         },
         bonus: {
             fire: 2,
             aa: 2,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
     {
         equipment: 342,
         ship: {
-            isID: [
-                599 // 赤城改二戊
-            ]
+            isID: [赤城改二戊, 加賀改二戊],
         },
         bonus: {
             fire: 3,
             aa: 2,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
 
     // ========================================================================
@@ -59,48 +61,41 @@ module.exports = [
     {
         equipment: 343,
         ship: {
-            isID: [...CV_ShoukakuClass2ndRemodel]
+            isID: [...CV_ShoukakuClass2ndRemodel],
         },
         bonus: {
-            fire: 1
-        }
+            fire: 1,
+        },
     },
     {
         equipment: 343,
         ship: {
-            isID: [
-                277, // 赤城改
-                278 // 加賀改
-            ]
+            isID: [赤城改, 加賀改],
         },
         bonus: {
-            fire: 2
-        }
+            fire: 2,
+        },
     },
     {
         equipment: 343,
         ship: {
-            isID: [
-                594 // 赤城改二
-            ]
+            isID: [赤城改二, 加賀改二, 加賀改二護],
         },
         bonus: {
             fire: 3,
             aa: 2,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
     {
         equipment: 343,
         ship: {
-            isID: [
-                599 // 赤城改二戊
-            ]
+            isID: [赤城改二戊, 加賀改二戊],
         },
         bonus: {
             fire: 5,
             aa: 3,
-            evasion: 3
-        }
-    }
+            evasion: 3,
+        },
+    },
 ];

@@ -7,7 +7,11 @@
  *
  */
 
-const { CV_Kaga, group_CV_Navy_USN } = require('../../ship-classes');
+const {
+    CV_Kaga,
+    CV_KagaRevised,
+    group_CV_Navy_USN,
+} = require('../../ship-classes');
 
 module.exports = [
     {
@@ -25,7 +29,7 @@ module.exports = [
     {
         equipment: 375,
         ship: {
-            isClass: [CV_Kaga],
+            isClass: [CV_Kaga, CV_KagaRevised],
         },
         bonus: {
             fire: 1,

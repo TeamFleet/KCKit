@@ -5,6 +5,16 @@
  * 339. **烈風改二戊型(一航戦/熟練)**
  */
 
+const {
+    赤城改,
+    赤城改二,
+    赤城改二戊,
+    加賀改,
+    加賀改二,
+    加賀改二戊,
+    加賀改二護,
+} = require('../../ship-ids');
+
 module.exports = [
     // ========================================================================
     // 烈風改二戊型
@@ -13,38 +23,35 @@ module.exports = [
     {
         equipment: 338,
         ship: {
-            isID: [
-                277, // 赤城改
-                278 // 加賀改
-            ]
+            isID: [赤城改, 加賀改],
         },
         bonus: {
             fire: 1,
             aa: 1,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
     {
         equipment: 338,
         ship: {
-            isID: [594] // 赤城改二
+            isID: [赤城改二, 加賀改二, 加賀改二護],
         },
         bonus: {
             fire: 1,
             aa: 2,
-            evasion: 3
-        }
+            evasion: 3,
+        },
     },
     {
         equipment: 338,
         ship: {
-            isID: [599] // 赤城改二戊
+            isID: [赤城改二戊, 加賀改二戊],
         },
         bonus: {
             fire: 4,
             aa: 3,
-            evasion: 4
-        }
+            evasion: 4,
+        },
     },
 
     // ========================================================================
@@ -54,37 +61,34 @@ module.exports = [
     {
         equipment: 339,
         ship: {
-            isID: [
-                277, // 赤城改
-                278 // 加賀改
-            ]
+            isID: [赤城改, 加賀改],
         },
         bonus: {
             fire: 1,
             aa: 2,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
     {
         equipment: 339,
         ship: {
-            isID: [594] // 赤城改二
+            isID: [赤城改二, 加賀改二, 加賀改二護],
         },
         bonus: {
             fire: 1,
             aa: 3,
-            evasion: 4
-        }
+            evasion: 4,
+        },
     },
     {
         equipment: 339,
         ship: {
-            isID: [599] // 赤城改二戊
+            isID: [赤城改二戊, 加賀改二戊],
         },
         bonus: {
             fire: 6,
             aa: 4,
-            evasion: 5
-        }
-    }
+            evasion: 5,
+        },
+    },
 ];
