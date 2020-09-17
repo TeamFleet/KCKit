@@ -8,11 +8,27 @@
  */
 
 const { group_CV_Navy_USN } = require('../../ship-classes');
-const { 加賀改二, 加賀改二戊, 加賀改二護 } = require('../../ship-ids');
+const {
+    赤城改二,
+    赤城改二戊,
+    加賀改二,
+    加賀改二戊,
+    加賀改二護,
+} = require('../../ship-ids');
 
 // ============================================================================
 
 const 単体ボーナス = [
+    {
+        equipment: 389,
+        ship: {
+            isID: [赤城改二, 赤城改二戊],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 2,
+        },
+    },
     {
         equipment: 389,
         ship: {
