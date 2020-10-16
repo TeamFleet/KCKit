@@ -4,6 +4,9 @@ const {
     'South Dakota改': SouthDakota改,
     Hornet,
     Hornet改,
+
+    秋雲改,
+    秋雲改二,
 } = require('./ship-ids');
 
 // ============================================================================
@@ -213,12 +216,16 @@ const DD_KagerouClassRemodel = [
     354, // 嵐改
     355, // 萩風改
     294, // 舞風改
-    301, // 秋雲改
+    秋雲改,
 ];
-const DD_KagerouClass2ndRemodel = [
+const DD_KagerouClass2ndRemodelExcludeAkigumo = [
     566, // 陽炎改二
     567, // 不知火改二
     568, // 黒潮改二
+];
+const DD_KagerouClass2ndRemodel = [
+    ...DD_KagerouClass2ndRemodelExcludeAkigumo,
+    秋雲改二,
 ];
 const DD_KagerouClassRemodelB = [
     557, // 磯風乙改
@@ -345,6 +352,7 @@ module.exports = {
     DD_AsashioClass2ndRemodel,
     DD_KagerouClassRemodel,
     DD_KagerouClassRemodelB,
+    DD_KagerouClass2ndRemodelExcludeAkigumo,
     DD_KagerouClass2ndRemodel,
     DD_KagerouClassRemodelAll,
     DD_YuugumoClass2ndRemodel,

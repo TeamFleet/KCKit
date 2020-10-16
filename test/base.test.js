@@ -506,7 +506,7 @@ describe('Base functions/utilities', () => {
                     expect(db.ships[156].getBonuses().length).toEqual(8);
                 });
                 it(`榛名改二 - N bonuses`, () => {
-                    expect(db.ships[151].getBonuses().length).toEqual(13);
+                    expect(db.ships[151].getBonuses().length).toEqual(14);
                 });
             });
             describe(`should Ship.prototype.getAACI() works`, () => {
@@ -696,7 +696,7 @@ describe('Base functions/utilities', () => {
                     expect(db.items[229].getBonuses().length).toEqual(12);
                 });
                 it(`12.7cm連装砲D型改二 - 6 bonuses`, () => {
-                    expect(db.items[267].getBonuses().length).toEqual(7);
+                    expect(db.items[267].getBonuses().length).toEqual(9);
                 });
                 it(`61cm三連装(酸素)魚雷後期型 - 7 bonuses`, () => {
                     expect(db.items[285].getBonuses().length).toEqual(7);

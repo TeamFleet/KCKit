@@ -146,6 +146,8 @@ const dataBonuses = [
     ...require('./その他/96式150cm探照灯'),
     ...require('./その他/熟練見張員'),
     ...require('./その他/後期型潜水艦搭載電探＆逆探'),
+
+    ...require('./specials'),
 ];
 
 // 检查所有套装加成

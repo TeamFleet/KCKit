@@ -4,14 +4,16 @@
  * @module
  */
 
-const { DD_KagerouClass2ndRemodel } = require('../../ships');
+const { DD_KagerouClass2ndRemodelExcludeAkigumo } = require('../../ships');
 
 const conditionSpecials = [
     145, // 時雨改二
     228, // 雪風改
     557, // 磯風丁改
 ];
-const condition1excludes = DD_KagerouClass2ndRemodel.concat(conditionSpecials);
+const condition1excludes = DD_KagerouClass2ndRemodelExcludeAkigumo.concat(
+    conditionSpecials
+);
 
 module.exports = [
     {
@@ -43,7 +45,7 @@ module.exports = [
     {
         equipment: 266,
         ship: {
-            isID: DD_KagerouClass2ndRemodel,
+            isID: DD_KagerouClass2ndRemodelExcludeAkigumo,
         },
         bonusCount: {
             1: {

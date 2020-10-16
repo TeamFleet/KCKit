@@ -20,7 +20,6 @@ const {
 
     group_CL_Navy_RAN,
 } = require('../../ship-classes');
-const { 沖波改二 } = require('../../ship-ids');
 
 const group_Navy_USN_excludes_DD = group_Navy_USN.filter(
     (classId) => !group_DD_Navy_USN.includes(classId)
@@ -50,19 +49,6 @@ const SGレーダー_初期型 = [
             fire: 2,
             evasion: 3,
             los: 4,
-        },
-    },
-    {
-        equipment: 315,
-        ship: {
-            isID: [沖波改二],
-        },
-        bonusCount: {
-            1: {
-                fire: 1,
-                aa: 2,
-                evasion: 3,
-            },
         },
     },
 ];

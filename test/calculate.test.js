@@ -2,6 +2,7 @@
 // const fs = require('fs')
 // const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames');
+const { 沖波改二 } = require('../src/data/ship-ids');
 
 let db;
 beforeAll(() =>
@@ -28,7 +29,7 @@ describe('Calculating functions/utilities', () => {
             expect(
                 calculate.tp({
                     shipType: {
-                        '1': 1,
+                        1: 1,
                     },
                 })
             ).toBe(5);
@@ -1346,6 +1347,45 @@ describe('Calculating functions/utilities', () => {
                         aa: 2,
                         evasion: 6,
                         asw: 2,
+                    });
+                });
+            });
+            describe('沖波改二', () => {
+                it('13号対空電探', () => {
+                    expect(calculate.bonus(沖波改二, [27])).toEqual({
+                        fire: 1,
+                        aa: 2,
+                        evasion: 3,
+                    });
+                });
+                it('12.7cm連装砲D型改三', () => {
+                    expect(calculate.bonus(沖波改二, [366])).toEqual({
+                        fire: 4,
+                        aa: 5,
+                        evasion: 1,
+                    });
+                });
+                it('12.7cm連装砲D型改三 | 13号対空電探', () => {
+                    expect(calculate.bonus(沖波改二, [27, 366])).toEqual({
+                        fire: 1 + 4 + 1,
+                        aa: 2 + 5 + 5,
+                        evasion: 3 + 1 + 2,
+                    });
+                });
+                it('12.7cm連装砲D型改三 | 33号対水上電探', () => {
+                    expect(calculate.bonus(沖波改二, [29, 366])).toEqual({
+                        fire: 4 + 2,
+                        torpedo: 4,
+                        aa: 5,
+                        evasion: 1 + 2,
+                    });
+                });
+                it('12.7cm連装砲D型改三 | GFCS Mk.37', () => {
+                    expect(calculate.bonus(沖波改二, [307, 366])).toEqual({
+                        fire: 4 + 1 + 2 + 1,
+                        torpedo: 4,
+                        aa: 5 + 2 + 5,
+                        evasion: 1 + 3 + 2 + 2,
                     });
                 });
             });

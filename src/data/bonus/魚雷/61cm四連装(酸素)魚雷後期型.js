@@ -10,7 +10,7 @@ const {
     DD_ShiratsuyuClass2ndRemodel,
     DD_AsashioClass2ndRemodel,
     DD_KagerouClass2ndRemodel,
-    DD_YuugumoClass2ndRemodel
+    DD_YuugumoClass2ndRemodel,
 } = require('../../ships');
 
 const DD2nd_Shiratsuyu_Asashio_Yuugumo = DD_ShiratsuyuClass2ndRemodel.concat(
@@ -23,43 +23,43 @@ module.exports = [
     {
         equipment: 286,
         ship: {
-            isID: DD2nd_Shiratsuyu_Asashio_Yuugumo
+            isID: DD2nd_Shiratsuyu_Asashio_Yuugumo,
         },
         bonusImprove: {
             0: {
                 torpedo: 2,
-                evasion: 1
+                evasion: 1,
             },
             10: {
                 fire: 1,
                 torpedo: 2,
-                evasion: 1
-            }
-        }
+                evasion: 1,
+            },
+        },
     },
 
     // @ 陽炎型 改二
     {
         equipment: 286,
         ship: {
-            isID: DD_KagerouClass2ndRemodel
+            isID: DD_KagerouClass2ndRemodel,
         },
         bonusImprove: {
             0: {
                 torpedo: 2,
-                evasion: 1
+                evasion: 1,
             },
             5: {
                 torpedo: 3,
-                evasion: 1
+                evasion: 1,
             },
             10: {
                 fire: 1,
                 torpedo: 3,
-                evasion: 1
-            }
-        }
-    }
+                evasion: 1,
+            },
+        },
+    },
 
     // ------------------------------------------------------------------------
 ];

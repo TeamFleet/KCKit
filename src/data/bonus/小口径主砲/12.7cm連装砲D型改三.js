@@ -8,10 +8,12 @@
  */
 
 const {
+    DD_KagerouClass2ndRemodelExcludeAkigumo,
     DD_KagerouClass2ndRemodel,
     DD_YuugumoClass2ndRemodel,
     DD_ShimakazeRemodel,
 } = require('../../ships');
+const { 秋雲改二 } = require('../../ship-ids');
 
 module.exports = [
     // @ 陽炎型
@@ -31,7 +33,7 @@ module.exports = [
     {
         equipment: 366,
         ship: {
-            isID: DD_KagerouClass2ndRemodel,
+            isID: DD_KagerouClass2ndRemodelExcludeAkigumo,
         },
         bonus: {
             fire: 2,
@@ -95,6 +97,7 @@ module.exports = [
         equipment: 366,
         ship: {
             isID: [
+                秋雲改二,
                 569, // 沖波改二
             ],
         },
@@ -115,7 +118,11 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isID: [...DD_YuugumoClass2ndRemodel, ...DD_ShimakazeRemodel],
+            isID: [
+                秋雲改二,
+                ...DD_YuugumoClass2ndRemodel,
+                ...DD_ShimakazeRemodel,
+            ],
         },
         bonus: {
             fire: 2,
@@ -132,12 +139,59 @@ module.exports = [
             hasAARadar: true,
         },
         ship: {
-            isID: [...DD_YuugumoClass2ndRemodel, ...DD_ShimakazeRemodel],
+            isID: [
+                秋雲改二,
+                ...DD_YuugumoClass2ndRemodel,
+                ...DD_ShimakazeRemodel,
+            ],
         },
         bonus: {
             fire: 1,
             aa: 5,
             evasion: 2,
+        },
+    },
+
+    // + 探照灯
+    // @ 秋雲改二
+    {
+        list: [366, 74],
+        equipments: [
+            {
+                isID: 366,
+            },
+            {
+                isID: 74,
+            },
+        ],
+        ship: {
+            isID: 秋雲改二,
+        },
+        bonus: {
+            fire: 3,
+            evasion: -3,
+        },
+    },
+
+    // + 熟練見張員
+    // @ 秋雲改二
+    {
+        list: [366, 129],
+        equipments: [
+            {
+                isID: 366,
+            },
+            {
+                isID: 129,
+            },
+        ],
+        ship: {
+            isID: 秋雲改二,
+        },
+        bonus: {
+            fire: 2,
+            aa: 2,
+            evasion: 3,
         },
     },
 ];
