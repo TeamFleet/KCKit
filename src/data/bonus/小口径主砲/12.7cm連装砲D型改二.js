@@ -124,7 +124,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isID: DD_YuugumoClass2ndRemodel,
+            isID: [秋雲改二, ...DD_YuugumoClass2ndRemodel],
         },
         bonus: {
             fire: 3,
