@@ -82,7 +82,8 @@
         },
         planesPerSlotLBAS: {
             recon: 4,
-            attacker: 18
+            attacker: 18,
+            large: 9
         }
     };
 
@@ -3305,6 +3306,12 @@
             if (!carry) {
                 if (formula.equipmentType.Recons.indexOf(equipment.type) > -1)
                     carry = KC.planesPerSlotLBAS.recon;
+                else if (
+                    formula.equipmentType.LandBasedLarge.indexOf(
+                        equipment.type
+                    ) > -1
+                )
+                    carry = KC.planesPerSlotLBAS.large;
                 else carry = KC.planesPerSlotLBAS.attacker;
             }
 

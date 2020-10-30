@@ -71,7 +71,8 @@ const types = {
     CarrierFighterNight: 60, // 夜战 / 舰载战斗机（夜间）
     TorpedoBomberNight: 61, // 夜攻 / 舰载鱼雷机（夜间）
     LandBasedAntiSubPatrol: 62, // 陆上哨戒机
-    LandBasedRecon: 63 // 陆上侦察机
+    LandBasedRecon: 63, // 陆上侦察机
+    LargeLandBasedAircraft: 65 // 大型陸上機
 };
 
 // Groups
@@ -138,6 +139,7 @@ types.Fighters = [
     types.DiveBomber,
     types.SeaplaneFighter,
     types.LandBasedAttacker,
+    types.LargeLandBasedAircraft,
     types.Interceptor,
     // types.CarrierRecon
     types.JetBomberFighter,
@@ -186,6 +188,7 @@ types.CarrierBased = [
 
 types.LandBased = [
     types.LandBasedAttacker,
+    types.LargeLandBasedAircraft,
     types.Interceptor,
     types.JetBomberFighter,
     types.JetBomberFighter2,
@@ -193,6 +196,8 @@ types.LandBased = [
     types.LandBasedAntiSubPatrol,
     types.LandBasedRecon
 ];
+
+types.LandBasedLarge = [types.LargeLandBasedAircraft];
 
 types.TorpedoBombers = [types.TorpedoBomber, types.TorpedoBomberNight];
 
