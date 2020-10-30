@@ -5,5 +5,8 @@ module.exports = {
 
     沖波改二: 569,
 
+    Grecale: 614,
+    Grecale改: 619,
+
     'Fletcher Mk.II': 629,
 };

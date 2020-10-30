@@ -173,7 +173,7 @@ const MK6GFCS = [
             },
             6: {
                 fire: 4,
-                armor: 2,
+                armor: 1,
                 evasion: 1,
             },
         },

@@ -71,7 +71,8 @@ const types = {
     CarrierFighterNight: 60, // 夜战 / 舰载战斗机（夜间）
     TorpedoBomberNight: 61, // 夜攻 / 舰载鱼雷机（夜间）
     LandBasedAntiSubPatrol: 62, // 陆上哨戒机
-    LandBasedRecon: 63 // 陆上侦察机
+    LandBasedRecon: 63, // 陆上侦察机
+    LargeLandBasedAircraft: 65, // 大型陸上機
 };
 
 // Groups
@@ -82,14 +83,14 @@ types.MainGuns = [
     types.MediumCaliber,
     types.MediumCaliberAA,
     types.LargeCaliber,
-    types.SuperCaliber
+    types.SuperCaliber,
 ];
 types.MainCalibers = types.MainGuns;
 
 types.SmallCalibers = [
     types.SmallCaliber,
     types.SmallCaliberHigh,
-    types.SmallCaliberAA
+    types.SmallCaliberAA,
 ];
 
 types.MediumCalibers = [types.MediumCaliber, types.MediumCaliberAA];
@@ -99,7 +100,7 @@ types.LargeCalibers = [types.LargeCaliber, types.SuperCaliber];
 types.SecondaryGuns = [
     types.SecondaryGun,
     types.SecondaryGunHigh,
-    types.SecondaryGunAA
+    types.SecondaryGunAA,
 ];
 
 types.HAMounts = [
@@ -107,13 +108,13 @@ types.HAMounts = [
     types.SmallCaliberAA,
     types.MediumCaliberAA,
     types.SecondaryGunHigh,
-    types.SecondaryGunAA
+    types.SecondaryGunAA,
 ];
 
 types.HAMountsAAFD = [
     types.SmallCaliberAA,
     types.MediumCaliberAA,
-    types.SecondaryGunAA
+    types.SecondaryGunAA,
 ];
 
 types.APShells = [types.APShell];
@@ -126,7 +127,7 @@ types.Seaplanes = [
     types.ReconSeaplane,
     types.ReconSeaplaneNight,
     types.SeaplaneBomber,
-    types.SeaplaneFighter
+    types.SeaplaneFighter,
 ];
 
 types.Fighters = [
@@ -138,11 +139,12 @@ types.Fighters = [
     types.DiveBomber,
     types.SeaplaneFighter,
     types.LandBasedAttacker,
+    types.LargeLandBasedAircraft,
     types.Interceptor,
     // types.CarrierRecon
     types.JetBomberFighter,
     types.JetBomberFighter2,
-    types.LandBasedFighter
+    types.LandBasedFighter,
 ];
 
 types.Interceptors = [types.Interceptor, types.LandBasedFighter];
@@ -153,7 +155,7 @@ types.Recons = [
     types.CarrierRecon,
     types.CarrierRecon2,
     types.LargeFlyingBoat,
-    types.LandBasedRecon
+    types.LandBasedRecon,
 ];
 
 types.SeaplaneRecons = [types.ReconSeaplane, types.ReconSeaplaneNight];
@@ -161,7 +163,7 @@ types.SeaplaneRecons = [types.ReconSeaplane, types.ReconSeaplaneNight];
 types.SeaplaneReconsAll = [
     types.ReconSeaplane,
     types.ReconSeaplaneNight,
-    types.LargeFlyingBoat
+    types.LargeFlyingBoat,
 ];
 
 types.SeaplaneBombers = [types.SeaplaneBomber, types.SeaplaneFighter];
@@ -181,18 +183,21 @@ types.CarrierBased = [
     types.CarrierRecon,
     types.CarrierRecon2,
     types.JetBomberFighter,
-    types.JetBomberFighter2
+    types.JetBomberFighter2,
 ];
 
 types.LandBased = [
     types.LandBasedAttacker,
+    types.LargeLandBasedAircraft,
     types.Interceptor,
     types.JetBomberFighter,
     types.JetBomberFighter2,
     types.LandBasedFighter,
     types.LandBasedAntiSubPatrol,
-    types.LandBasedRecon
+    types.LandBasedRecon,
 ];
+
+types.LandBasedLarge = [types.LargeLandBasedAircraft];
 
 types.TorpedoBombers = [types.TorpedoBomber, types.TorpedoBomberNight];
 
@@ -214,7 +219,7 @@ types.Aircrafts = [];
     .concat(types.Autogyros)
     .concat(types.AntiSubPatrols)
     .concat(types.LandBased)
-    .forEach(function(v) {
+    .forEach(function (v) {
         if (types.Aircrafts.indexOf(v) < 0) types.Aircrafts.push(v);
     });
 

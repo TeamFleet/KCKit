@@ -1,4 +1,4 @@
-const { 秋雲, 秋雲改, 秋雲改二 } = require('../ship-ids');
+const { 秋雲, 秋雲改, 秋雲改二, Grecale, Grecale改 } = require('../ship-ids');
 
 const Shikinami2ndRemodelAll = [627];
 
@@ -24,4 +24,8 @@ module.exports = {
         228, // 雪風改
     ],
     Akigumo: [秋雲, 秋雲改, 秋雲改二],
+
+    //
+
+    Grecale: [Grecale, Grecale改],
 };

@@ -19,6 +19,7 @@ const bonusIsSet = require('../../utils/bonus-is-set');
 const dataBonuses = [
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12cm単装高角砲E型'),
+    ...require('./小口径主砲/120mm／50 連装砲'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
     ...require('./小口径主砲/12.7cm単装高角砲改二'),
     ...require('./小口径主砲/12.7cm連装高角砲改二'),
@@ -89,6 +90,7 @@ const dataBonuses = [
     ...require('./艦上機/Re.2001 OR改'),
     ...require('./艦上機/Re.2005 改'),
     ...require('./艦上機/XF5U'),
+    ...require('./艦上機/九九式艦爆二二型'),
     ...require('./艦上機/九九式艦爆(江草隊)'),
     ...require('./艦上機/彗星'),
     ...require('./艦上機/彗星(六〇一空)'),
