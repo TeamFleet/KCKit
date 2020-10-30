@@ -75,7 +75,7 @@ const calculateNightPowerCVAssult = ({
         if (!equipments[index]) return;
 
         const equipment = equipments[index];
-        if (ship.id === 599) console.log(equipment._name);
+        // if (ship.id === 599) console.log(equipment._name);
         /** @type {Boolean} 是否为 _夜战_ 或 _夜攻_ */
         let isNightSpecific = false;
         /** @type {Boolean} 是否参与夜袭 */
