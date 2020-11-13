@@ -20,6 +20,7 @@ const dataBonuses = [
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12cm単装高角砲E型'),
     ...require('./小口径主砲/120mm／50 連装砲'),
+    ...require('./小口径主砲/12.7cm単装砲'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
     ...require('./小口径主砲/12.7cm単装高角砲改二'),
     ...require('./小口径主砲/12.7cm連装高角砲改二'),
@@ -34,6 +35,8 @@ const dataBonuses = [
     ...require('./小口径主砲/5inch単装砲 Mk.30改'),
     ...require('./小口径主砲/5inch単装砲 Mk.30改+GFCS Mk.37'),
     ...require('./小口径主砲/130mm B-13連装砲'),
+    ...require('./小口径主砲/現地改装10cm連装高角砲'),
+    ...require('./小口径主砲/現地改装12.7cm連装高角砲'),
 
     ...require('./中口径主砲/5inch連装両用砲(集中配備)'),
     ...require('./中口径主砲/14cm連装砲'),

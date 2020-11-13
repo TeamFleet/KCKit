@@ -20,6 +20,8 @@ const {
     那珂,
     那珂改,
     那珂改二,
+
+    雪風改二,
 } = require('../../ship-ids');
 
 // ============================================================================
@@ -44,6 +46,16 @@ const 単体ボーナス = [
         bonus: {
             aa: 2,
             evasion: 1,
+        },
+    },
+    {
+        equipment: 382,
+        ship: {
+            isID: [雪風改二],
+        },
+        bonus: {
+            aa: 3,
+            evasion: 2,
         },
     },
     {
@@ -124,6 +136,34 @@ const 相互シナジーボーナス = [
         },
         bonus: {
             aa: 2,
+            evasion: 2,
+        },
+    },
+    {
+        list: [382, 'SurfaceRadar'],
+        equipments: {
+            hasID: [382],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: [雪風改二],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 2,
+        },
+    },
+    {
+        list: [382, 'AARadar'],
+        equipments: {
+            hasID: [382],
+            hasAARadar: true,
+        },
+        ship: {
+            isID: [雪風改二],
+        },
+        bonus: {
+            aa: 3,
             evasion: 2,
         },
     },

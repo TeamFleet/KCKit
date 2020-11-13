@@ -46,6 +46,8 @@ const {
     夕張改二,
     夕張改二特,
     夕張改二丁,
+
+    雪風改二,
 } = require('../../ship-ids');
 
 // ============================================================================
@@ -79,6 +81,18 @@ const 単体ボーナス = [
         bonus: {
             fire: 3,
             aa: 4,
+        },
+    },
+    {
+        equipment: 379,
+        ship: {
+            isID: [雪風改二],
+        },
+        bonus: {
+            fire: 3,
+            aa: 3,
+            asw: 2,
+            evasion: 3,
         },
     },
     {
@@ -246,6 +260,20 @@ const 相互シナジーボーナス = [
         bonus: {
             fire: 4,
             evasion: 3,
+        },
+    },
+    {
+        list: [380, 'SurfaceRadar'],
+        equipments: {
+            hasID: [380],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: [雪風改二],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 2,
         },
     },
     {

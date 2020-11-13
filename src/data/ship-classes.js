@@ -142,10 +142,13 @@ const DD_Hatsuharu = 18;
 const DD_Shiratsuyu = 19;
 const DD_Asashio = 20;
 const DD_Kagerou = 21;
+const DD_KagerouROCN = 138;
+const DD_Kagerou2 = 139;
 const DD_Yuugumo = 22;
 const DD_Shimakaze = 24;
 const DD_Akizuki = 23;
 const DD_Matsu = 131;
+const DD_1934 = 25;
 const DD_Maestrale = 78;
 const DD_JohnCButler = 112;
 const DD_Fletcher = 117;
@@ -161,6 +164,7 @@ const group_DD_Navy_IJN = [
     DD_Shiratsuyu,
     DD_Asashio,
     DD_Kagerou,
+    DD_Kagerou2,
     DD_Yuugumo,
     DD_Akizuki,
     DD_Shimakaze,
@@ -169,6 +173,7 @@ const group_DD_Navy_IJN = [
 const group_DD_Navy_USN = [DD_JohnCButler, DD_Fletcher];
 const group_DD_Navy_RN = [DD_J];
 const group_DD_Navy_RM = [DD_Maestrale];
+const group_DD_Navy_KM = [DD_1934];
 
 module.exports = {
     // ========================================================================
@@ -276,9 +281,12 @@ module.exports = {
     DD_Shiratsuyu,
     DD_Asashio,
     DD_Kagerou,
+    DD_KagerouROCN,
+    DD_Kagerou2,
     DD_Yuugumo,
     DD_Akizuki,
     DD_Shimakaze,
+    DD_1934,
     DD_Matsu,
     DD_Maestrale,
     DD_J,
@@ -289,6 +297,7 @@ module.exports = {
     group_DD_Navy_USN,
     group_DD_Navy_RN,
     group_DD_Navy_RM,
+    group_DD_Navy_KM,
 
     // ========================================================================
     AV_Nisshin: 118,
@@ -305,7 +314,7 @@ module.exports = {
         ...group_CL_Navy_USN,
         ...group_DD_Navy_USN,
     ],
-    group_Navy_KM: [...group_CV_Navy_KM],
+    group_Navy_KM: [...group_CV_Navy_KM, ...group_DD_Navy_KM],
     group_Navy_RN: [
         ...group_BB_Navy_RN,
         ...group_CV_Navy_RN,

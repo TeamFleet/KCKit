@@ -5,6 +5,9 @@ const {
     Hornet,
     Hornet改,
 
+    丹陽,
+    雪風改二,
+
     秋雲改,
     秋雲改二,
 } = require('./ship-ids');
@@ -222,6 +225,8 @@ const DD_KagerouClass2ndRemodelExcludeAkigumo = [
     566, // 陽炎改二
     567, // 不知火改二
     568, // 黒潮改二
+    丹陽,
+    雪風改二,
 ];
 const DD_KagerouClass2ndRemodel = [
     ...DD_KagerouClass2ndRemodelExcludeAkigumo,
@@ -302,6 +307,7 @@ const vmf_DD = [
     147, // Верный
 ];
 const vmf = [...vmf_DD];
+const rocn_DD = [丹陽];
 
 /*************************************************************************/
 
@@ -387,4 +393,5 @@ module.exports = {
     usn_DD,
     vmf,
     vmf_DD,
+    rocn_DD,
 };

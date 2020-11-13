@@ -8,6 +8,7 @@
  */
 
 const {
+    DD_KagerouROCN,
     group_CAV_Navy_IJN,
     group_CA_Navy_IJN,
     group_CL_S_Navy_IJN,
@@ -41,7 +42,7 @@ module.exports = [
     {
         equipment: 129,
         ship: {
-            isClass: [...group_DD_Navy_IJN],
+            isClass: [...group_DD_Navy_IJN, DD_KagerouROCN],
         },
         bonus: {
             fire: 1,

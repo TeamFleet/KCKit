@@ -13,15 +13,18 @@ const {
     DD_YuugumoClass2ndRemodel,
     DD_ShimakazeRemodel,
 } = require('../../ships');
-const { 秋雲改二 } = require('../../ship-ids');
+const { DD_Kagerou, DD_KagerouROCN } = require('../../ship-classes');
+const { 丹陽, 秋雲改二 } = require('../../ship-ids');
 
 module.exports = [
     // @ 陽炎型
     {
         equipment: 267,
         ship: {
-            isClass: [21],
-            isNotID: DD_KagerouClass2ndRemodel,
+            isClass: [DD_Kagerou, DD_KagerouROCN],
+            isNotID: DD_KagerouClass2ndRemodel.filter(
+                (shipId) => shipId !== 丹陽
+            ),
         },
         bonus: {
             fire: 1,
@@ -46,7 +49,9 @@ module.exports = [
     {
         equipment: 267,
         ship: {
-            isID: DD_KagerouClass2ndRemodelExcludeAkigumo,
+            isID: DD_KagerouClass2ndRemodelExcludeAkigumo.filter(
+                (shipId) => shipId !== 丹陽
+            ),
         },
         bonusCount: {
             1: {

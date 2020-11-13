@@ -2,7 +2,7 @@
 // const fs = require('fs')
 // const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames');
-const { 沖波改二 } = require('../src/data/ship-ids');
+const { 丹陽, 雪風改二, 沖波改二 } = require('../src/data/ship-ids');
 
 let db;
 beforeAll(() =>
@@ -1386,6 +1386,30 @@ describe('Calculating functions/utilities', () => {
                         torpedo: 4,
                         aa: 5 + 2 + 5,
                         evasion: 1 + 3 + 2 + 2,
+                    });
+                });
+            });
+            describe('丹陽', () => {
+                it('12.7cm連装砲C型改二 | 12.7cm連装砲D型改二 | 12.7cm連装砲D型改三', () => {
+                    expect(calculate.bonus(丹陽, [266, 267, 366])).toEqual({
+                        fire: 3,
+                        evasion: 3,
+                    });
+                });
+            });
+            describe('雪風改二', () => {
+                it('12.7cm連装砲C型改二 | 12.7cm連装砲D型改二 | 12.7cm連装砲D型改三', () => {
+                    expect(calculate.bonus(雪風改二, [266, 267, 366])).toEqual({
+                        fire: 6,
+                        aa: 2,
+                        evasion: 2,
+                    });
+                });
+                it('5inch単装砲 Mk.30改+GFCS Mk.37', () => {
+                    expect(calculate.bonus(雪風改二, [308])).toEqual({
+                        fire: 2,
+                        aa: 1,
+                        evasion: 1,
                     });
                 });
             });
