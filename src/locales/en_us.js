@@ -3,13 +3,13 @@ module.exports = {
         5: 'Slow',
         10: 'Fast',
         15: 'Fast+',
-        20: 'Fastest'
+        20: 'Fastest',
     },
     range: {
         1: 'Short',
         2: 'Mid',
         3: 'Long',
-        4: 'Very Long'
+        4: 'Very Long',
     },
     navy: {
         ijn: 'Imperial Japanese Navy',
@@ -21,6 +21,7 @@ module.exports = {
         vmf: 'Soviet Navy',
         sm: 'Swedish Royal Navy',
         ran: 'Royal Australian Navy',
-        rnln: 'Royal Netherlands Navy'
-    }
+        rnln: 'Royal Netherlands Navy',
+        rocn: 'The Republic of China Navy',
+    },
 };
