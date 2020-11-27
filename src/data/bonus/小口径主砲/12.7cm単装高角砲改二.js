@@ -47,6 +47,7 @@ const {
     夕張改二特,
     夕張改二丁,
 
+    丹陽,
     雪風改二,
 } = require('../../ship-ids');
 
@@ -81,6 +82,16 @@ const 単体ボーナス = [
         bonus: {
             fire: 3,
             aa: 4,
+        },
+    },
+    {
+        equipment: 379,
+        ship: {
+            isID: [丹陽],
+        },
+        bonus: {
+            fire: 3,
+            aa: 3,
         },
     },
     {
@@ -269,10 +280,24 @@ const 相互シナジーボーナス = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isID: [雪風改二],
+            isID: [丹陽, 雪風改二],
         },
         bonus: {
             fire: 2,
+            evasion: 2,
+        },
+    },
+    {
+        list: [380, 'AARadar'],
+        equipments: {
+            hasID: [380],
+            hasAARadar: true,
+        },
+        ship: {
+            isID: [雪風改二],
+        },
+        bonus: {
+            aa: 3,
             evasion: 2,
         },
     },

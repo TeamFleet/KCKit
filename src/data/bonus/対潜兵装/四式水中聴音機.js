@@ -8,6 +8,7 @@
  */
 
 const { DD_Akizuki } = require('../../ship-classes');
+const { 雪風改二 } = require('../../ship-ids');
 
 module.exports = [
     {
@@ -31,6 +32,7 @@ module.exports = [
                 141, // 五十鈴改二
                 488, // 由良改二
                 160, // 那珂改二
+                雪風改二,
             ],
         },
         bonus: {

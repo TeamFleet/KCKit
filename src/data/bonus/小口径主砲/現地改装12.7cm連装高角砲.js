@@ -17,10 +17,17 @@ module.exports = [
         ship: {
             isID: [丹陽],
         },
-        bonus: {
-            fire: 5,
-            aa: 2,
-            evasion: 1,
+        bonusImprove: {
+            0: {
+                fire: 5,
+                aa: 2,
+                evasion: 1,
+            },
+            4: {
+                fire: 9,
+                aa: 2,
+                evasion: 2,
+            },
         },
     },
     {
@@ -32,6 +39,37 @@ module.exports = [
             fire: 3,
             aa: 1,
             evasion: 1,
+        },
+        // bonusImprove: {
+        //     0: {
+        //         fire: 3,
+        //         aa: 1,
+        //         evasion: 1,
+        //     },
+        //     },
+        //     4: {
+        //         fire: 9,
+        //         aa: 2,
+        //         evasion: 2,
+        //     },
+        // },
+    },
+
+    // ========================================================================
+
+    // + 对水上電探
+    {
+        list: [397, 'SurfaceRadar'],
+        equipments: {
+            hasID: [397],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: [丹陽, 雪風改二],
+        },
+        bonus: {
+            fire: 3,
+            evasion: 3,
         },
     },
 ];

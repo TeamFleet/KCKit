@@ -27,7 +27,7 @@ const check = (equipment, star = 0, rank = 0, conditions = {}) => {
     if (typeof equipment === 'undefined') return false;
 
     // 需满足所有条件
-    for (let key in conditions) {
+    for (const key in conditions) {
         if (typeof conditions[key] === 'undefined') continue;
 
         const keyLowerCase = key.toLowerCase();
@@ -36,7 +36,19 @@ const check = (equipment, star = 0, rank = 0, conditions = {}) => {
             return (parseInt(star || 0) || 0) >= parseInt(conditions[key]);
         }
 
-        if (checkCondition[keyLowerCase]) {
+        if (keyLowerCase === 'is') {
+            // checkCondition 中存在该条件，直接运行
+            if (
+                !checkCondition[keyLowerCase](
+                    equipment,
+                    star,
+                    rank,
+                    conditions[key]
+                )
+            ) {
+                return false;
+            }
+        } else if (checkCondition[keyLowerCase]) {
             // checkCondition 中存在该条件，直接运行
             if (!checkCondition[keyLowerCase](equipment, conditions[key]))
                 return false;
@@ -75,10 +87,24 @@ const check = (equipment, star = 0, rank = 0, conditions = {}) => {
 
 const checkCondition = {
     /**
+     * 满足一个特定条件
+     * @param {Equipment} equipment
+     * @param {number} star
+     * @param {number} rank
+     * @param {Object} condition 一个特定的条件，必须全部满足才算满足
+     */
+    is: function (equipment, star = 0, rank = 0, condition = {}) {
+        if (condition.id && equipment.id !== condition.id) return false;
+        if (condition.star && star < condition.star) return false;
+        // console.log(equipment.id, equipment._name, star, rank, condition);
+        return true;
+    },
+
+    /**
      * 是特定ID
      */
     isid: (equipment, id) =>
-        ArrayOrItem(id, id => {
+        ArrayOrItem(id, (id) => {
             if (isNaN(id)) return false;
             return parseInt(id) === equipment.id;
         }),
@@ -86,7 +112,7 @@ const checkCondition = {
      * 不是特定ID
      */
     isnotid: (equipment, id) =>
-        ArrayOrItemAll(id, id => {
+        ArrayOrItemAll(id, (id) => {
             if (isNaN(id)) return false;
             return parseInt(id) !== equipment.id;
         }),
@@ -97,7 +123,7 @@ const checkCondition = {
     isname: (equipment, name) =>
         ArrayOrItem(
             name,
-            name => equipment.isName(name)
+            (name) => equipment.isName(name)
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key] === name) return true
@@ -110,7 +136,7 @@ const checkCondition = {
     isnotname: (equipment, name) =>
         ArrayOrItemAll(
             name,
-            name => !equipment.isName(name)
+            (name) => !equipment.isName(name)
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key] === name) return false
@@ -124,7 +150,7 @@ const checkCondition = {
     isnameof: (equipment, name) =>
         ArrayOrItem(
             name,
-            name => equipment.hasName(name)
+            (name) => equipment.hasName(name)
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key].includes(name)) return true
@@ -137,7 +163,7 @@ const checkCondition = {
     isnotnameof: (equipment, name) =>
         ArrayOrItemAll(
             name,
-            name => !equipment.hasName(name)
+            (name) => !equipment.hasName(name)
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key].includes(name)) return false
@@ -150,7 +176,7 @@ const checkCondition = {
      * 如果判断条件为Object，也会进入该条件
      */
     istype: (equipment, type, conditions) =>
-        ArrayOrItem(type, type => {
+        ArrayOrItem(type, (type) => {
             if (isNaN(type)) return false;
             if (parseInt(type) !== equipment.type) return false;
             // 条件是Object
@@ -158,7 +184,7 @@ const checkCondition = {
                 // 包含属性
                 if (conditions.hasStat) {
                     let pass = true;
-                    for (let stat in conditions.hasStat) {
+                    for (const stat in conditions.hasStat) {
                         if (Array.isArray(conditions.hasStat[stat])) {
                             if (
                                 equipment.stat[stat] <
@@ -186,7 +212,7 @@ const checkCondition = {
      * 不是特定类型
      */
     isnottype: (equipment, type) =>
-        ArrayOrItemAll(type, type => {
+        ArrayOrItemAll(type, (type) => {
             if (isNaN(type)) return false;
             return parseInt(type) !== equipment.type;
         }),
@@ -194,7 +220,7 @@ const checkCondition = {
     /**
      * 是对空电探/雷达
      */
-    isaaradar: function(equipment, isTrue) {
+    isaaradar: function (equipment, isTrue) {
         // console.log(`[${equipment.id}]`, equipment._name)
         return (
             (this.istype(equipment, equipmentTypes.Radars) &&
@@ -206,7 +232,7 @@ const checkCondition = {
     /**
      * 是对水面电探/雷达
      */
-    issurfaceradar: function(equipment, isTrue) {
+    issurfaceradar: function (equipment, isTrue) {
         // console.log(`[${equipment.id}]`, equipment._name)
         // 目前已知条件：命中 >= 3 或 索敌 >= 5
         return (
@@ -218,7 +244,7 @@ const checkCondition = {
                 !isNaN(equipment.stat.hit) &&
                 equipment.stat.hit >= 3) === isTrue
         );
-    }
+    },
 };
 
 module.exports = check;

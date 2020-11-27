@@ -6,6 +6,11 @@
 
 const { DD_KagerouClass2ndRemodelExcludeAkigumo } = require('../../ships');
 const { 丹陽 } = require('../../ship-ids');
+const {
+    DD_Kagerou,
+    DD_KagerouROCN,
+    DD_Kagerou2,
+} = require('../../ship-classes');
 
 const conditionSpecials = [
     145, // 時雨改二
@@ -95,7 +100,9 @@ module.exports = [
         },
         ship: {
             isClass: [
-                21, // 陽炎型
+                DD_Kagerou,
+                DD_KagerouROCN,
+                DD_Kagerou2, // 陽炎型
             ],
         },
         bonus: {

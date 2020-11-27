@@ -17,10 +17,17 @@ module.exports = [
         ship: {
             isID: [丹陽],
         },
-        bonus: {
-            fire: 4,
-            aa: 4,
-            evasion: 2,
+        bonusImprove: {
+            0: {
+                fire: 4,
+                aa: 4,
+                evasion: 2,
+            },
+            4: {
+                fire: 7,
+                aa: 4,
+                evasion: 4,
+            },
         },
     },
     {
@@ -28,10 +35,48 @@ module.exports = [
         ship: {
             isID: [雪風改二],
         },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                aa: 2,
+                evasion: 2,
+            },
+            4: {
+                fire: 5,
+                aa: 2,
+                evasion: 3,
+            },
+        },
+    },
+
+    // ========================================================================
+
+    {
+        list: [398, 'SurfaceRadar'],
+        equipments: {
+            hasID: [398],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: [丹陽, 雪風改二],
+        },
         bonus: {
             fire: 3,
-            aa: 2,
-            evasion: 2,
+            evasion: 3,
+        },
+    },
+    {
+        list: [398, 'AARadar'],
+        equipments: {
+            hasID: [398],
+            hasAARadar: true,
+        },
+        ship: {
+            isID: [丹陽, 雪風改二],
+        },
+        bonus: {
+            aa: 3,
+            evasion: 3,
         },
     },
 ];

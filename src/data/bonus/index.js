@@ -17,6 +17,7 @@ const bonusIsSet = require('../../utils/bonus-is-set');
  * @member {Array} [list] 显示的内容
  */
 const dataBonuses = [
+    ...require('./小口径主砲/10cm連装高角砲+高射装置'),
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12cm単装高角砲E型'),
     ...require('./小口径主砲/120mm／50 連装砲'),

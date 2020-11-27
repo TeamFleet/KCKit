@@ -18,4 +18,50 @@ const DD_AARadar = [
     },
 ];
 
-module.exports = [...DD_AARadar];
+const SP_秋雲改二 = [
+    {
+        list: [366, 267, 74],
+        equipments: [
+            {
+                isID: 366, // 12.7cm連装砲D型改三
+            },
+            {
+                isID: 267, // 12.7cm連装砲D型改二
+            },
+            {
+                isID: 74, // 探照灯
+            },
+        ],
+        ship: {
+            isID: 秋雲改二,
+        },
+        bonus: {
+            fire: -3,
+            evasion: 3,
+        },
+    },
+    {
+        list: [366, 267, 129],
+        equipments: [
+            {
+                isID: 366, // 12.7cm連装砲D型改三
+            },
+            {
+                isID: 267, // 12.7cm連装砲D型改二
+            },
+            {
+                isID: 129, // 熟練見張員
+            },
+        ],
+        ship: {
+            isID: 秋雲改二,
+        },
+        bonus: {
+            fire: -2,
+            aa: -2,
+            evasion: -3,
+        },
+    },
+];
+
+module.exports = [...DD_AARadar, ...SP_秋雲改二];

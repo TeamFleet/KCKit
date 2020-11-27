@@ -2,7 +2,7 @@
 // const fs = require('fs')
 // const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames');
-const { 丹陽, 雪風改二, 沖波改二 } = require('../src/data/ship-ids');
+const { 丹陽, 雪風改二, 秋雲改二, 沖波改二 } = require('../src/data/ship-ids');
 
 let db;
 beforeAll(() =>
@@ -1389,11 +1389,49 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('秋雲改二', () => {
+                it('12.7cm連装砲D型改二 | 探照灯', () => {
+                    expect(calculate.bonus(秋雲改二, [267, 74])).toEqual({
+                        fire: 8,
+                        evasion: -2,
+                    });
+                });
+                it('12.7cm連装砲D型改三 | 探照灯', () => {
+                    expect(calculate.bonus(秋雲改二, [366, 74])).toEqual({
+                        fire: 9,
+                        aa: 5,
+                        evasion: -2,
+                    });
+                });
+                it('12.7cm連装砲D型改二 | 12.7cm連装砲D型改三', () => {
+                    expect(calculate.bonus(秋雲改二, [267, 366])).toEqual({
+                        fire: 7,
+                        aa: 5,
+                        evasion: 2,
+                    });
+                });
+                it('12.7cm連装砲D型改二 | 12.7cm連装砲D型改三 | 探照灯', () => {
+                    expect(calculate.bonus(秋雲改二, [267, 366, 74])).toEqual({
+                        fire: 12,
+                        aa: 5,
+                        evasion: -1,
+                    });
+                });
+            });
             describe('丹陽', () => {
                 it('12.7cm連装砲C型改二 | 12.7cm連装砲D型改二 | 12.7cm連装砲D型改三', () => {
                     expect(calculate.bonus(丹陽, [266, 267, 366])).toEqual({
                         fire: 3,
                         evasion: 3,
+                    });
+                });
+                it('現地改装12.7cm連装高角砲 | 現地改装12.7cm連装高角砲⭐4 | 22号対水上電探', () => {
+                    expect(
+                        calculate.bonus(丹陽, [397, 397, 28], [0, 4, 0])
+                    ).toEqual({
+                        fire: 17,
+                        aa: 4,
+                        evasion: 6,
                     });
                 });
             });
@@ -1410,6 +1448,18 @@ describe('Calculating functions/utilities', () => {
                         fire: 2,
                         aa: 1,
                         evasion: 1,
+                    });
+                });
+                it('10cm高角砲＋高射装置 | 22号対水上電探', () => {
+                    expect(calculate.bonus(雪風改二, [122, 28])).toEqual({});
+                });
+                it('10cm高角砲＋高射装置⭐4 | 22号対水上電探', () => {
+                    expect(
+                        calculate.bonus(雪風改二, [122, 28], [4, 0])
+                    ).toEqual({
+                        fire: 9,
+                        aa: 3,
+                        evasion: 5,
                     });
                 });
             });
