@@ -13,6 +13,7 @@ const {
     group_CL_Navy_USN,
     group_DD_Navy_USN,
 
+    group_CL_Navy_RN,
     group_DD_Navy_RN,
 
     group_CL_Navy_RAN,
@@ -43,7 +44,7 @@ module.exports = [
     {
         equipment: 378,
         ship: {
-            isClass: [...group_DD_Navy_RN],
+            isClass: [...group_CL_Navy_RN, ...group_DD_Navy_RN],
         },
         bonus: {
             asw: 2,

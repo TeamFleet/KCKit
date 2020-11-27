@@ -16,6 +16,7 @@ const {
 
     group_CL_Navy_RAN,
 
+    group_CL_Navy_RN,
     group_DD_Navy_RN,
 } = require('../../ship-classes');
 
@@ -50,7 +51,7 @@ const 後期型 = [
     {
         equipment: 376,
         ship: {
-            isClass: [...group_DD_Navy_RN],
+            isClass: [...group_CL_Navy_RN, ...group_DD_Navy_RN],
         },
         bonus: {
             fire: 1,

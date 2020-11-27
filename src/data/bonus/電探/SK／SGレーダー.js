@@ -17,6 +17,7 @@ const {
 
     group_BB_Navy_RN,
     group_CV_Navy_RN,
+    group_CL_Navy_RN,
 
     group_CL_Navy_RAN,
 } = require('../../ship-classes');
@@ -83,7 +84,11 @@ const SKレーダー = [
     {
         equipment: 278,
         ship: {
-            isClass: [...group_BB_Navy_RN, ...group_CV_Navy_RN],
+            isClass: [
+                ...group_BB_Navy_RN,
+                ...group_CV_Navy_RN,
+                ...group_CL_Navy_RN,
+            ],
         },
         bonus: {
             aa: 1,
@@ -120,7 +125,11 @@ const SK_SG_レーダー = [
     {
         equipment: 279,
         ship: {
-            isClass: [...group_BB_Navy_RN, ...group_CV_Navy_RN],
+            isClass: [
+                ...group_BB_Navy_RN,
+                ...group_CV_Navy_RN,
+                ...group_CL_Navy_RN,
+            ],
         },
         bonus: {
             fire: 1,

@@ -1,10 +1,11 @@
-const { 比叡改二丙 } = require('../ship-ids');
+const { 比叡改二丙, Washington, Washington改 } = require('../ship-ids');
 
 module.exports = {
     Colorado: [
         601, // Colorado
         1496, // Colorado改
     ],
+    Washington: [Washington, Washington改],
 
     Kongou: [
         78, // 金剛

@@ -15,11 +15,12 @@ const BB_VittorioVeneto = 70;
 const BB_Colorado = 122;
 const BB_Iowa = 82;
 const BB_SouthDakota = 134;
+const BB_NorthCarolina = 141;
 const BB_QueenElizabeth = 85;
 const BB_Nelson = 115;
 const BB_Richelieu = 100;
 const BB_Gangut = 93;
-const group_BC_Navy_USN = [BB_Iowa, BB_SouthDakota];
+const group_BC_Navy_USN = [BB_Iowa, BB_SouthDakota, BB_NorthCarolina];
 const group_BB_exclude_BC_Navy_USN = [BB_Colorado];
 const group_BB_Navy_USN = [
     ...group_BB_exclude_BC_Navy_USN,
@@ -105,6 +106,7 @@ const CL_Abruzzi = 120;
 const CL_DeRuyter = 127;
 const CL_Perth = 125;
 const CL_StLouis = 136;
+const CL_Town = 140;
 // 練習巡洋艦
 const CT_Katori = 55;
 // GROUPS
@@ -117,6 +119,7 @@ const group_CL_Navy_IJN = [
     CL_Agano,
     CL_Ooyodo,
 ];
+const group_CL_Navy_RN = [CL_Town];
 const group_CL_Navy_RM = [CL_Abruzzi];
 const group_CL_Navy_RNLN = [CL_DeRuyter];
 const group_CL_Navy_RAN = [CL_Perth];
@@ -267,6 +270,7 @@ module.exports = {
     group_CL_Navy_RNLN,
     group_CL_Navy_RAN,
     group_CL_Navy_USN,
+    group_CL_Navy_RN,
     group_CL_S_Navy_IJN,
 
     // ========================================================================

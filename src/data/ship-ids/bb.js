@@ -7,4 +7,7 @@ module.exports = {
 
     'South Dakota': 602,
     'South Dakota改': 697,
+
+    Washington: 654,
+    Washington改: 659,
 };

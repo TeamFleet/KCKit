@@ -2,6 +2,7 @@ const S = require('./ship-series');
 const {
     'South Dakota': SouthDakota,
     'South Dakota改': SouthDakota改,
+
     Hornet,
     Hornet改,
 
@@ -262,10 +263,12 @@ const rn_BB = [
     439,
     364, // Warspite
 ];
+const rn_CL = [...S.Sheffield];
 const rn = [
     ...rn_BB,
     515,
     393, // Ark Royal
+    ...rn_CL,
     519,
     394, // Jervis
     520, // Janus
@@ -279,6 +282,7 @@ const usn_BB = [
     360, // Iowa
     SouthDakota,
     SouthDakota改,
+    ...S.Washington,
 ];
 const usn_CV = [
     544,
