@@ -30,6 +30,7 @@ module.exports = [
 
     {
         list: [122, 'SurfaceRadar'],
+        listStar: [4, undefined],
         equipments: {
             has: {
                 id: 122,
@@ -47,6 +48,7 @@ module.exports = [
     },
     {
         list: [122, 'AARadar'],
+        listStar: [4, undefined],
         equipments: {
             has: {
                 id: 122,
