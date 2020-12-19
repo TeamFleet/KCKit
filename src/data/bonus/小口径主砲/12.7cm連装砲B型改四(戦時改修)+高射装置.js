@@ -11,7 +11,7 @@ const {
     DD_Ayanami,
     DD_Akatsuki,
     DD_Hatsuharu,
-    DD_Shiratsuyu
+    DD_Shiratsuyu,
 } = require('../../ship-classes');
 const { Shikinami2ndRemodelAll } = require('../../ship-series/dd');
 
@@ -19,7 +19,7 @@ const { Shikinami2ndRemodelAll } = require('../../ship-series/dd');
 const classesAyanamiAkatsukiShiratsuyu = [
     DD_Ayanami,
     DD_Akatsuki,
-    DD_Shiratsuyu
+    DD_Shiratsuyu,
 ];
 const classesAyanamiAkatsukiHatsuharu = [DD_Ayanami, DD_Akatsuki, DD_Hatsuharu];
 
@@ -31,90 +31,90 @@ module.exports = [
             isClass: classesAyanamiAkatsukiShiratsuyu,
             isNotID: [
                 ...Shikinami2ndRemodelAll,
-                ...DD_ShiratsuyuClass2ndRemodel
-            ]
+                ...DD_ShiratsuyuClass2ndRemodel,
+            ],
         },
         bonus: {
-            fire: 1
-        }
+            fire: 1,
+        },
     },
 
     {
         equipment: 296,
         ship: {
-            isID: Shikinami2ndRemodelAll
+            isID: Shikinami2ndRemodelAll,
         },
         bonus: {
             fire: 3,
-            torpedo: 1
-        }
+            torpedo: 1,
+        },
     },
 
     // 初春型
     {
         equipment: 296,
         ship: {
-            isClass: [DD_Hatsuharu]
+            isClass: [DD_Hatsuharu],
         },
         bonus: {
             fire: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
 
     {
         equipment: 296,
         ship: {
             isID: [
-                497 // 白露改二
-            ]
+                497, // 白露改二
+            ],
         },
         bonus: {
             fire: 2,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
 
     {
         equipment: 296,
         ship: {
             isID: [
-                145 // 時雨改二
-            ]
+                145, // 時雨改二
+            ],
         },
         bonus: {
             fire: 2,
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
 
     {
         equipment: 296,
         ship: {
             isID: [
-                498 // 村雨改二
-            ]
+                498, // 村雨改二
+            ],
         },
         bonus: {
             fire: 1,
             aa: 1,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
 
     {
         equipment: 296,
         ship: {
             isID: [
-                144 // 夕立改二
-            ]
+                144, // 夕立改二
+            ],
         },
         bonus: {
             fire: 2,
             torpedo: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
 
     {
@@ -122,13 +122,13 @@ module.exports = [
         ship: {
             isID: [
                 587, // 海風改二
-                469 // 江風改二
-            ]
+                469, // 江風改二
+            ],
         },
         bonus: {
             fire: 1,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
 
     // ------------------------------------------------------------------------
@@ -138,31 +138,31 @@ module.exports = [
         list: [296, 'SurfaceRadar'],
         equipments: {
             hasID: [296],
-            hasSurfaceRadar: true
+            hasSurfaceRadar: true,
         },
         ship: {
-            isClass: classesAyanamiAkatsukiHatsuharu
+            isClass: classesAyanamiAkatsukiHatsuharu,
         },
         bonus: {
             fire: 1,
             torpedo: 2,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
     {
         list: [296, 'SurfaceRadar'],
         equipments: {
             hasID: [296],
-            hasSurfaceRadar: true
+            hasSurfaceRadar: true,
         },
         ship: {
-            isClass: [DD_Shiratsuyu]
+            isClass: [DD_Shiratsuyu],
         },
         bonus: {
             fire: 1,
             torpedo: 3,
-            evasion: 2
-        }
+            evasion: 2,
+        },
     },
 
     // + 对空電探
@@ -170,27 +170,27 @@ module.exports = [
         list: [296, 'AARadar'],
         equipments: {
             hasID: [296],
-            hasAARadar: true
+            hasAARadar: true,
         },
         ship: {
-            isClass: classesAyanamiAkatsukiHatsuharu
+            isClass: classesAyanamiAkatsukiHatsuharu,
         },
         bonus: {
-            aa: 5
-        }
+            aa: 5,
+        },
     },
     {
         list: [296, 'AARadar'],
         equipments: {
             hasID: [296],
-            hasAARadar: true
+            hasAARadar: true,
         },
         ship: {
-            isClass: [DD_Shiratsuyu]
+            isClass: [DD_Shiratsuyu],
         },
         bonus: {
-            aa: 6
-        }
+            aa: 6,
+        },
     },
 
     // + 61cm三連装(酸素)魚雷後期型
@@ -198,19 +198,39 @@ module.exports = [
         list: [296, 285],
         equipments: [
             {
-                isID: 296
+                isID: 296,
             },
             {
-                isID: 285
-            }
+                isID: 285,
+            },
         ],
         ship: {
-            isClass: classesAyanamiAkatsukiHatsuharu
+            isClass: classesAyanamiAkatsukiHatsuharu,
         },
         bonus: {
             fire: 1,
-            torpedo: 3
-        }
+            torpedo: 3,
+        },
+    },
+
+    // + 61cm四連装(酸素)魚雷
+    {
+        list: [296, 15],
+        equipments: [
+            {
+                isID: 296,
+            },
+            {
+                isID: 15,
+            },
+        ],
+        ship: {
+            isClass: [DD_Shiratsuyu],
+        },
+        bonus: {
+            fire: 1,
+            torpedo: 3,
+        },
     },
 
     // + 61cm四連装(酸素)魚雷後期型
@@ -218,18 +238,18 @@ module.exports = [
         list: [296, 286],
         equipments: [
             {
-                isID: 296
+                isID: 296,
             },
             {
-                isID: 286
-            }
+                isID: 286,
+            },
         ],
         ship: {
-            isClass: [DD_Shiratsuyu]
+            isClass: [DD_Shiratsuyu],
         },
         bonus: {
             fire: 1,
-            torpedo: 3
-        }
-    }
+            torpedo: 3,
+        },
+    },
 ];

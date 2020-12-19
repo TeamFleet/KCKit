@@ -809,6 +809,45 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('16inch三連装砲 Mk.6...', () => {
+                it('Iowa改 || Mk.6 ➕Mk.6 mod.2 ➕Mk.6 GFCS || ALL MAX', () => {
+                    expect(
+                        calculate.bonus(360, [381, 385, 390], [10, 10, 10])
+                    ).toEqual({
+                        fire: 8,
+                        armor: 2,
+                    });
+                });
+                it('South Dakota改 || Mk.6 ➕Mk.6 mod.2 ➕Mk.6 GFCS || ALL MAX', () => {
+                    expect(
+                        calculate.bonus(697, [381, 385, 390], [10, 10, 10])
+                    ).toEqual({
+                        fire: 11,
+                        armor: 3,
+                        evasion: 1,
+                    });
+                });
+                it('Washington改 || Mk.6 ➕Mk.6 mod.2 ➕Mk.6 GFCS || ALL MAX', () => {
+                    expect(
+                        calculate.bonus(659, [381, 385, 390], [10, 10, 10])
+                    ).toEqual({
+                        fire: 10,
+                        armor: 3,
+                        evasion: 1,
+                    });
+                });
+            });
+        });
+
+        describe('中口径主砲...', () => {
+            describe('6inch Mk.XXIII三連装砲...', () => {
+                it('Sheffield改', () => {
+                    expect(calculate.bonus(705, [399, 399], [0, 10])).toEqual({
+                        fire: 3,
+                        evasion: 4,
+                    });
+                });
+            });
         });
 
         describe('魚雷...', () => {
@@ -1434,6 +1473,12 @@ describe('Calculating functions/utilities', () => {
                         evasion: 6,
                     });
                 });
+                it('対潜短魚雷(試作初期型) | RUR-4A Weapon Alpha改 | 試製15cm9連装対潜噴進砲', () => {
+                    expect(calculate.bonus(丹陽, [378, 377, 288], [])).toEqual({
+                        asw: 2,
+                        evasion: 3,
+                    });
+                });
             });
             describe('雪風改二', () => {
                 it('12.7cm連装砲C型改二 | 12.7cm連装砲D型改二 | 12.7cm連装砲D型改三', () => {
@@ -1460,6 +1505,40 @@ describe('Calculating functions/utilities', () => {
                         fire: 9,
                         aa: 3,
                         evasion: 5,
+                    });
+                });
+                it('対潜短魚雷(試作初期型) | RUR-4A Weapon Alpha改 | 試製15cm9連装対潜噴進砲 | 三式爆雷投射機 集中配備', () => {
+                    expect(
+                        calculate.bonus(雪風改二, [378, 377, 288], [])
+                    ).toEqual({
+                        asw: 4,
+                        evasion: 4,
+                    });
+                    expect(
+                        calculate.bonus(雪風改二, [378, 377, 287], [])
+                    ).toEqual({
+                        asw: 3,
+                        evasion: 4,
+                    });
+                });
+            });
+            describe('VMF', () => {
+                it('130mm B-13連装砲 | 533mm 三連装魚雷(53-39型)', () => {
+                    expect(calculate.bonus(395, [282])).toEqual({
+                        fire: 2,
+                        armor: 1,
+                    });
+                    expect(calculate.bonus(395, [400])).toEqual({
+                        fire: 1,
+                        torpedo: 5,
+                        armor: 1,
+                        evasion: 2,
+                    });
+                    expect(calculate.bonus(395, [282, 400])).toEqual({
+                        fire: 5,
+                        torpedo: 5,
+                        armor: 2,
+                        evasion: 2,
                     });
                 });
             });

@@ -14,6 +14,7 @@
  */
 
 const {
+    BB_Iowa,
     BB_SouthDakota,
     BB_Kongou,
     BB_Kongou2,
@@ -22,8 +23,12 @@ const {
     BB_Richelieu,
     BB_Gangut,
     group_BB_Navy_USN,
+    group_BC_Navy_USN,
+    group_BB_exclude_BC_Navy_USN,
 } = require('../../ship-classes');
 
+const group_BB_USN_Tier1 = [BB_Iowa, ...group_BB_exclude_BC_Navy_USN];
+const group_BB_USN_Tier2 = group_BC_Navy_USN.filter((id) => id !== BB_Iowa);
 const group_BB_Navy_USN_exclude_SouthDakota = group_BB_Navy_USN.filter(
     (id) => id !== BB_SouthDakota
 );
@@ -83,7 +88,7 @@ const MK6mod2 = [
     {
         equipment: 385,
         ship: {
-            isClass: [...group_BB_Navy_USN_exclude_SouthDakota],
+            isClass: [...group_BB_USN_Tier1],
         },
         bonusImprove: {
             0: {
@@ -101,7 +106,7 @@ const MK6mod2 = [
     {
         equipment: 385,
         ship: {
-            isClass: [BB_SouthDakota],
+            isClass: [...group_BB_USN_Tier2],
         },
         bonusImprove: {
             0: {
@@ -142,7 +147,7 @@ const MK6GFCS = [
     {
         equipment: 390,
         ship: {
-            isClass: [...group_BB_Navy_USN_exclude_SouthDakota],
+            isClass: [...group_BB_USN_Tier1],
         },
         bonusImprove: {
             0: {
@@ -160,7 +165,7 @@ const MK6GFCS = [
     {
         equipment: 390,
         ship: {
-            isClass: [BB_SouthDakota],
+            isClass: [...group_BB_USN_Tier2],
         },
         bonusImprove: {
             0: {

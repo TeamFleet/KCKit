@@ -14,13 +14,32 @@ module.exports = [
     {
         equipment: 282,
         ship: {
-            isID: [...vmf_DD, ...Yuubari]
+            isID: [...vmf_DD, ...Yuubari],
         },
         bonus: {
             fire: 2,
-            armor: 1
-        }
-    }
+            armor: 1,
+        },
+    },
 
     // ------------------------------------------------------------------------
+
+    // + 533mm 三連装魚雷(53-39型)
+    {
+        list: [282, 400],
+        equipments: [
+            {
+                isID: 282,
+            },
+            {
+                isID: 400,
+            },
+        ],
+        ship: {
+            isID: [...vmf_DD],
+        },
+        bonus: {
+            fire: 2,
+        },
+    },
 ];

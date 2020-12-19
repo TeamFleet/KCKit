@@ -10,6 +10,9 @@ module.exports = {
 
     沖波改二: 569,
 
+    竹: 642,
+    竹改: 706,
+
     Grecale: 614,
     Grecale改: 619,
 

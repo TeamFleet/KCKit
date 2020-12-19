@@ -7,7 +7,11 @@
  *
  */
 
-const { 'Fletcher Mk.II': FletcherMkII } = require('../../ship-ids');
+const {
+    'Fletcher Mk.II': FletcherMkII,
+    丹陽,
+    雪風改二,
+} = require('../../ship-ids');
 
 const {
     group_CL_Navy_USN,
@@ -55,6 +59,16 @@ module.exports = [
         equipment: 378,
         ship: {
             isClass: [...group_CL_Navy_RAN],
+        },
+        bonus: {
+            asw: 1,
+            evasion: 1,
+        },
+    },
+    {
+        equipment: 378,
+        ship: {
+            isID: [丹陽, 雪風改二],
         },
         bonus: {
             asw: 1,
