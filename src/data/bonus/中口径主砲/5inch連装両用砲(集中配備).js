@@ -17,6 +17,7 @@ const {
 
     CL_Tenryuu,
     CL_Kuma,
+    CL_KumaRevised,
     CLT_Kuma,
     CL_Nagara,
     CL_Sendai,
@@ -73,7 +74,7 @@ const bonuses = [
     },
     {
         ship: {
-            isClass: [CL_Kuma, CLT_Kuma, CL_Nagara, CL_Sendai],
+            isClass: [CL_Kuma, CL_KumaRevised, CLT_Kuma, CL_Nagara, CL_Sendai],
         },
         bonus: {
             fire: -3,

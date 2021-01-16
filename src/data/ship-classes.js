@@ -96,6 +96,7 @@ const CL_Atlanta = 128;
 // 軽巡洋艦
 const CL_Tenryuu = 47;
 const CL_Kuma = 48;
+const CL_KumaRevised = 142;
 const CL_Nagara = 49;
 const CL_Sendai = 50;
 const CL_Yuubari = 51;
@@ -113,6 +114,7 @@ const CT_Katori = 55;
 const group_CL_Navy_IJN = [
     CL_Tenryuu,
     CL_Kuma,
+    CL_KumaRevised,
     CL_Nagara,
     CL_Sendai,
     CL_Yuubari,
@@ -253,6 +255,7 @@ module.exports = {
     // 軽巡洋艦
     CL_Tenryuu,
     CL_Kuma,
+    CL_KumaRevised,
     CL_Nagara,
     CL_Sendai,
     CL_Yuubari,
