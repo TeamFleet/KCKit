@@ -583,6 +583,7 @@
          */
         getEquipmentTypes(slotIndex) {
             const disabled = this.additional_disable_item_types || [];
+            const shipClass = KC.db.ship_types[this.class];
             const shipType = KC.db.ship_types[this.type];
             const types = (shipType.equipable || []).concat(
                 this.additional_item_types || []
@@ -600,23 +601,22 @@
                     : undefined;
 
             // 如果当前舰种存在根据装备栏位的额外可装备类型
-            if (Array.isArray(shipType.additional_item_types_by_slot)) {
+            if (
+                Array.isArray(shipClass.additional_item_types_by_slot) ||
+                Array.isArray(shipType.additional_item_types_by_slot)
+            ) {
+                const addBySlot = [
+                    ...(shipClass.additional_item_types_by_slot || []),
+                    ...(shipType.additional_item_types_by_slot || [])
+                ];
                 // 如果指定了装备栏位，将该栏位对应的装备类型追加到类型表中
                 if (typeof trueSlotIndex === 'number') {
-                    if (
-                        Array.isArray(
-                            shipType.additional_item_types_by_slot[
-                                trueSlotIndex
-                            ]
-                        )
-                    )
-                        shipType.additional_item_types_by_slot[
-                            trueSlotIndex
-                        ].forEach(id => types.push(id));
+                    if (Array.isArray(addBySlot[trueSlotIndex]))
+                        addBySlot[trueSlotIndex].forEach(id => types.push(id));
                 }
                 // 如果 slotIndex 为 true，将所有栏位的额外可装备类型追加到类型表中
                 else if (slotIndex === true) {
-                    shipType.additional_item_types_by_slot.forEach(slotInfo => {
+                    addBySlot.forEach(slotInfo => {
                         slotInfo.forEach(id => types.push(id));
                     });
                 }
@@ -625,15 +625,17 @@
             // 如果当前舰种存在根据装备栏位的可装备类型排除个例
             if (
                 typeof trueSlotIndex === 'number' &&
-                Array.isArray(shipType.equipable_exclude_by_slot) &&
-                Array.isArray(shipType.equipable_exclude_by_slot[trueSlotIndex])
+                (Array.isArray(shipClass.equipable_exclude_by_slot) ||
+                    Array.isArray(shipType.equipable_exclude_by_slot))
             ) {
-                shipType.equipable_exclude_by_slot[trueSlotIndex].forEach(
-                    excludeId => {
-                        const index = types.indexOf(excludeId);
-                        if (index >= 0) types.splice(index, 1);
-                    }
-                );
+                const excludeBySlot = [
+                    ...(shipClass.equipable_exclude_by_slot || []),
+                    ...(shipType.equipable_exclude_by_slot || [])
+                ];
+                excludeBySlot[trueSlotIndex].forEach(excludeId => {
+                    const index = types.indexOf(excludeId);
+                    if (index >= 0) types.splice(index, 1);
+                });
             }
 
             return types
