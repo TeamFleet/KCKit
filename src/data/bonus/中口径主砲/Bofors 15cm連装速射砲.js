@@ -12,6 +12,7 @@
 
 const {
     CL_Agano,
+    CL_AganoRevised,
     CL_Gotland,
     CLV_Gotland,
     CL_DeRuyter,
@@ -22,7 +23,7 @@ const result = [];
     result.push({
         equipment,
         ship: {
-            isClass: [CL_Agano],
+            isClass: [CL_Agano, CL_AganoRevised],
         },
         bonus: {
             fire: 1,

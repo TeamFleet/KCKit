@@ -2,7 +2,14 @@
 // const fs = require('fs')
 // const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames');
-const { 丹陽, 雪風改二, 秋雲改二, 沖波改二 } = require('../src/data/ship-ids');
+const {
+    大淀,
+    大淀改,
+    丹陽,
+    雪風改二,
+    秋雲改二,
+    沖波改二,
+} = require('../src/data/ship-ids');
 
 let db;
 beforeAll(() =>
@@ -845,6 +852,22 @@ describe('Calculating functions/utilities', () => {
                     expect(calculate.bonus(705, [399, 399], [0, 10])).toEqual({
                         fire: 3,
                         evasion: 4,
+                    });
+                });
+            });
+            describe('15.5cm三連装砲系主砲...', () => {
+                it('大淀', () => {
+                    expect(calculate.bonus(大淀, [5, 235, 124])).toEqual({
+                        fire: 5,
+                        aa: 4,
+                        evasion: 5,
+                    });
+                });
+                it('大淀改', () => {
+                    expect(calculate.bonus(大淀改, [5, 235, 124])).toEqual({
+                        fire: 6,
+                        aa: 4,
+                        evasion: 6,
                     });
                 });
             });

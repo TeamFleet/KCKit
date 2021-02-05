@@ -22,6 +22,7 @@ const {
     CL_Nagara,
     CL_Sendai,
     CL_Agano,
+    CL_AganoRevised,
     CL_Yuubari,
     CL_Yuubari2,
     CL_Ooyodo,
@@ -55,7 +56,7 @@ const bonuses = [
     },
     {
         ship: {
-            isClass: [CL_Agano, CL_Ooyodo, CL_DeRuyter],
+            isClass: [CL_Agano, CL_AganoRevised, CL_Ooyodo, CL_DeRuyter],
         },
         bonus: {
             aa: -1,

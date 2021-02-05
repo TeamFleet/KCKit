@@ -101,6 +101,7 @@ const CL_Nagara = 49;
 const CL_Sendai = 50;
 const CL_Yuubari = 51;
 const CL_Agano = 52;
+const CL_AganoRevised = 143;
 const CL_Ooyodo = 53;
 const CL_Gotland = 114;
 const CL_Abruzzi = 120;
@@ -119,6 +120,7 @@ const group_CL_Navy_IJN = [
     CL_Sendai,
     CL_Yuubari,
     CL_Agano,
+    CL_AganoRevised,
     CL_Ooyodo,
 ];
 const group_CL_Navy_RN = [CL_Town];
@@ -260,6 +262,7 @@ module.exports = {
     CL_Sendai,
     CL_Yuubari,
     CL_Agano,
+    CL_AganoRevised,
     CL_Ooyodo,
     CL_Gotland,
     CL_Abruzzi,

@@ -62,7 +62,7 @@ module.exports = [
         bonusCount: {
             1: {
                 fire: 8,
-                torpedo: 6,
+                torpedo: 8,
                 evasion: -1,
             },
         },

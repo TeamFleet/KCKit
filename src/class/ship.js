@@ -111,8 +111,8 @@ class Ship extends ItemBase {
             ? getdb('ship_series')[this.series].ships
             : [
                   {
-                      id: this.id
-                  }
+                      id: this.id,
+                  },
               ];
     }
     get _series() {
@@ -132,7 +132,7 @@ class Ship extends ItemBase {
         const thePicId = parseInt(picId);
         const revision = this.illust_revision ? `?${this.illust_revision}` : '';
 
-        const getUrl = ship =>
+        const getUrl = (ship) =>
             `${
                 typeof ship === 'number' ? ship : ship.id
             }/${picId}${ext}${revision}`;
@@ -231,10 +231,11 @@ class Ship extends ItemBase {
      */
     getEquipmentTypes(slotIndex) {
         const disabled = this.additional_disable_item_types || [];
+        const shipClass = getdb('ship_classes')[this.class];
         const shipType = getdb('ship_types')[this.type];
         const types = [
             ...(shipType.equipable || []),
-            ...(this.additional_item_types || [])
+            ...(this.additional_item_types || []),
         ];
         /**
          * 忽略补强增设栏 (固定 index 4) 的 index
@@ -249,22 +250,23 @@ class Ship extends ItemBase {
                 : undefined;
 
         // 如果当前舰种存在根据装备栏位的额外可装备类型
-        if (Array.isArray(shipType.additional_item_types_by_slot)) {
+        if (
+            Array.isArray(shipClass.additional_item_types_by_slot) ||
+            Array.isArray(shipType.additional_item_types_by_slot)
+        ) {
+            const addBySlot = [
+                ...(shipClass.additional_item_types_by_slot || []),
+                ...(shipType.additional_item_types_by_slot || []),
+            ];
             // 如果指定了装备栏位，将该栏位对应的装备类型追加到类型表中
             if (typeof trueSlotIndex === 'number') {
-                if (
-                    Array.isArray(
-                        shipType.additional_item_types_by_slot[trueSlotIndex]
-                    )
-                )
-                    shipType.additional_item_types_by_slot[
-                        trueSlotIndex
-                    ].forEach(id => types.push(id));
+                if (Array.isArray(addBySlot[trueSlotIndex]))
+                    addBySlot[trueSlotIndex].forEach((id) => types.push(id));
             }
             // 如果 slotIndex 为 true，将所有栏位的额外可装备类型追加到类型表中
             else if (slotIndex === true) {
-                shipType.additional_item_types_by_slot.forEach(slotInfo => {
-                    slotInfo.forEach(id => types.push(id));
+                addBySlot.forEach((slotInfo) => {
+                    slotInfo.forEach((id) => types.push(id));
                 });
             }
         }
@@ -272,20 +274,23 @@ class Ship extends ItemBase {
         // 如果当前舰种存在根据装备栏位的可装备类型排除个例
         if (
             typeof trueSlotIndex === 'number' &&
-            Array.isArray(shipType.equipable_exclude_by_slot) &&
-            Array.isArray(shipType.equipable_exclude_by_slot[trueSlotIndex])
+            (Array.isArray(shipClass.equipable_exclude_by_slot) ||
+                Array.isArray(shipType.equipable_exclude_by_slot))
         ) {
-            shipType.equipable_exclude_by_slot[trueSlotIndex].forEach(
-                excludeId => {
+            const excludeBySlot = [
+                ...(shipClass.equipable_exclude_by_slot || []),
+                ...(shipType.equipable_exclude_by_slot || []),
+            ];
+            if (Array.isArray(excludeBySlot[trueSlotIndex]))
+                excludeBySlot[trueSlotIndex].forEach((excludeId) => {
                     const index = types.indexOf(excludeId);
                     if (index >= 0) types.splice(index, 1);
-                }
-            );
+                });
         }
 
         return types
-            .filter(type => !disabled.includes(type))
-            .sort(function(a, b) {
+            .filter((type) => !disabled.includes(type))
+            .sort(function (a, b) {
                 return a - b;
             });
     }
@@ -302,19 +307,21 @@ class Ship extends ItemBase {
      */
     canEquip(equipmentType, slotIndex) {
         if (Array.isArray(equipmentType)) {
-            return equipmentType.every(type => this.canEquip(type, slotIndex));
+            return equipmentType.every((type) =>
+                this.canEquip(type, slotIndex)
+            );
         }
 
         // 如果 equipmentType 为 String，将其转为对应的类型数字或类型集
         if (typeof equipmentType === 'string') {
             if (Array.isArray(equipmentTypes[equipmentType]))
-                return equipmentTypes[equipmentType].some(type =>
+                return equipmentTypes[equipmentType].some((type) =>
                     this.canEquip(type, slotIndex)
                 );
             if (typeof equipmentTypes[equipmentType] === 'number')
                 return this.canEquip(equipmentTypes[equipmentType], slotIndex);
             if (Array.isArray(equipmentTypes[equipmentType + 's']))
-                return equipmentTypes[equipmentType + 's'].some(type =>
+                return equipmentTypes[equipmentType + 's'].some((type) =>
                     this.canEquip(type, slotIndex)
                 );
         }
@@ -344,7 +351,7 @@ class Ship extends ItemBase {
      */
     canEquipThis(equipment, slotIndex) {
         if (Array.isArray(equipment)) {
-            return equipment.every(e => this.canEquipThis(e, slotIndex));
+            return equipment.every((e) => this.canEquipThis(e, slotIndex));
         }
 
         if (typeof equipment === 'string') {
@@ -742,7 +749,7 @@ class Ship extends ItemBase {
      */
     getBonuses() {
         if (!Array.isArray(this.__bonuses))
-            this.__bonuses = bonuses.filter(bonus =>
+            this.__bonuses = bonuses.filter((bonus) =>
                 checkShip(this, bonus.ship)
             );
         return this.__bonuses;
@@ -755,14 +762,14 @@ class Ship extends ItemBase {
     getAACI() {
         if (!Array.isArray(this.__aaci)) {
             this.__aaci = [];
-            checkAACI(this).forEach(aaci => {
+            checkAACI(this).forEach((aaci) => {
                 const { conditions, ...obj } = aaci;
                 if (Array.isArray(conditions)) {
-                    conditions.forEach(condition => {
+                    conditions.forEach((condition) => {
                         if (checkShip(this, condition.ship))
                             this.__aaci.push({
                                 ...obj,
-                                ...condition
+                                ...condition,
                             });
                     });
                 } else {
@@ -779,7 +786,7 @@ class Ship extends ItemBase {
      */
     getSpecialAttacks() {
         if (!Array.isArray(this.__specialAttack))
-            this.__specialAttack = specialAttacks.filter(special =>
+            this.__specialAttack = specialAttacks.filter((special) =>
                 checkShip(this, special.ship)
             );
         return this.__specialAttack;

@@ -353,6 +353,23 @@ describe('Base functions/utilities', () => {
                         )
                     ).toEqual(true);
                 });
+                it(`能代・改二 (All slots) | ✔ 中口径主砲 | ✔ 鱼雷`, () => {
+                    expect(
+                        db.ships[662].canEquip(
+                            ['MediumCaliber', 'Torpedo'],
+                            true
+                        )
+                    ).toEqual(true);
+                });
+                it(`能代・改二 (Slot #4) | ✔ 小口径主砲 | ✔ 中口径主砲 | ❌ 鱼雷`, () => {
+                    expect(
+                        db.ships[662].canEquip(
+                            ['MediumCaliber', 'SmallCaliber'],
+                            3
+                        )
+                    ).toEqual(true);
+                    expect(db.ships[662].canEquip('Torpedo', 3)).toEqual(false);
+                });
             });
 
             it(`should 大和・改 db.ships[136].getExSlotEquipmentTypes() be kckit.exslotEquipmentTypes`, function () {
@@ -702,7 +719,7 @@ describe('Base functions/utilities', () => {
                     expect(db.items[285].getBonuses().length).toEqual(7);
                 });
                 it(`33号対水上電探 - N bonuses`, () => {
-                    expect(db.items[29].getBonuses().length).toEqual(41);
+                    expect(db.items[29].getBonuses().length).toEqual(42);
                 });
                 it(`15m二重測距儀+21号電探改二 - 3 bonuses`, () => {
                     expect(db.items[142].getBonuses().length).toEqual(3);
