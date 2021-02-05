@@ -5,6 +5,8 @@ const dbnames = require('./samples/dbnames');
 const {
     大淀,
     大淀改,
+    能代改二,
+
     丹陽,
     雪風改二,
     秋雲改二,
@@ -1409,6 +1411,16 @@ describe('Calculating functions/utilities', () => {
                         aa: 2,
                         evasion: 6,
                         asw: 2,
+                    });
+                });
+            });
+            describe('能代改二', () => {
+                it('15.2cm', () => {
+                    expect(calculate.bonus(能代改二, [139, 407, 124])).toEqual({
+                        fire: 8,
+                        torpedo: 2,
+                        aa: 5,
+                        evasion: 6,
                     });
                 });
             });
