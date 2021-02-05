@@ -1474,6 +1474,42 @@ describe('Calculating functions/utilities', () => {
                         evasion: 1,
                     });
                 });
+                it('水上爆撃機 (T0) x4', () => {
+                    expect(
+                        calculate.bonus(能代改二, [194, 367, 368, 369])
+                    ).toEqual({
+                        fire: 1,
+                        asw: 1,
+                        evasion: 1,
+                    });
+                });
+                it('水上爆撃機 (T1) x4', () => {
+                    expect(
+                        calculate.bonus(能代改二, [26, 62, 208, 79])
+                    ).toEqual({
+                        fire: 3,
+                        asw: 1,
+                        evasion: 2,
+                    });
+                });
+                it('水上爆撃機 (T2) x4', () => {
+                    expect(
+                        calculate.bonus(能代改二, [237, 237, 322, 323])
+                    ).toEqual({
+                        fire: 4,
+                        asw: 1,
+                        evasion: 2,
+                    });
+                });
+                it('水上爆撃機 T0 + T1 + T1 + T2', () => {
+                    expect(
+                        calculate.bonus(能代改二, [367, 62, 208, 322])
+                    ).toEqual({
+                        fire: 6,
+                        asw: 1,
+                        evasion: 3,
+                    });
+                });
             });
             describe('沖波改二', () => {
                 it('13号対空電探', () => {
