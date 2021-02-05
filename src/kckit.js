@@ -583,7 +583,7 @@
          */
         getEquipmentTypes(slotIndex) {
             const disabled = this.additional_disable_item_types || [];
-            const shipClass = KC.db.ship_types[this.class];
+            const shipClass = KC.db.ship_classes[this.class];
             const shipType = KC.db.ship_types[this.type];
             const types = (shipType.equipable || []).concat(
                 this.additional_item_types || []
