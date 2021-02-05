@@ -66,6 +66,7 @@ const dataBonuses = [
     ...require('./大口径主砲/16inch三連装砲 Mk.6'),
     ...require('./大口径主砲/16inch Mk.I三連装砲'),
 
+    ...require('./副砲/8cm高角砲改+増設機銃'),
     ...require('./副砲/usn.5inch'),
 
     ...require('./魚雷/53cm連装魚雷'),
@@ -139,6 +140,7 @@ const dataBonuses = [
     ...require('./対潜兵装/対潜短魚雷'),
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
+    ...require('./対空機銃/25mm対空機銃'),
 
     ...require('./増設バルジ/新型高温高圧缶'),
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),

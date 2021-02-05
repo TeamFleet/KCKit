@@ -1415,12 +1415,39 @@ describe('Calculating functions/utilities', () => {
                 });
             });
             describe('能代改二', () => {
-                it('15.2cm', () => {
-                    expect(calculate.bonus(能代改二, [139, 407, 124])).toEqual({
-                        fire: 8,
-                        torpedo: 2,
+                it('15.2cm連装砲改 | 15.2cm連装砲改二 | AA+Surface Radar | 探照灯', () => {
+                    expect(
+                        calculate.bonus(能代改二, [139, 407, 124, 74])
+                    ).toEqual({
+                        fire: 12,
+                        torpedo: 4,
                         aa: 5,
                         evasion: 6,
+                    });
+                });
+                it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | AA+Surface Radar', () => {
+                    expect(
+                        calculate.bonus(能代改二, [220, 286, 149, 124])
+                    ).toEqual({
+                        fire: 1,
+                        torpedo: 5,
+                        aa: 1,
+                        evasion: 8,
+                        asw: 2,
+                    });
+                });
+                it('三式爆雷投射機 集中配備 | 試製15cm9連装対潜噴進砲', () => {
+                    expect(calculate.bonus(能代改二, [287, 288])).toEqual({
+                        asw: 7,
+                        evasion: 1,
+                    });
+                });
+                it('25mm対空機銃', () => {
+                    expect(
+                        calculate.bonus(能代改二, [49, 39, 40, 131])
+                    ).toEqual({
+                        aa: 8,
+                        evasion: 4,
                     });
                 });
             });

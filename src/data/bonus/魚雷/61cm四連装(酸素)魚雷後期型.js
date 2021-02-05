@@ -12,6 +12,7 @@ const {
     DD_KagerouClass2ndRemodel,
     DD_YuugumoClass2ndRemodel,
 } = require('../../ships');
+const { CL_AganoRevised } = require('../../ship-classes');
 const { 竹, 竹改 } = require('../../ship-ids');
 
 const DD2nd_Shiratsuyu_Asashio_Yuugumo = DD_ShiratsuyuClass2ndRemodel.concat(
@@ -20,6 +21,16 @@ const DD2nd_Shiratsuyu_Asashio_Yuugumo = DD_ShiratsuyuClass2ndRemodel.concat(
 );
 
 module.exports = [
+    {
+        equipment: 286,
+        ship: {
+            isClass: [CL_AganoRevised],
+        },
+        bonus: {
+            torpedo: 2,
+        },
+    },
+
     // @ 白露型 改二 / 朝潮型 改二 / 夕雲型 改二
     {
         equipment: 286,
@@ -84,4 +95,19 @@ module.exports = [
     },
 
     // ------------------------------------------------------------------------
+
+    {
+        list: [286, 'SurfaceRadar'],
+        equipments: {
+            hasID: [286],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isClass: [CL_AganoRevised],
+        },
+        bonus: {
+            torpedo: 3,
+            evasion: 2,
+        },
+    },
 ];

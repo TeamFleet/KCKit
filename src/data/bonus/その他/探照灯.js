@@ -18,6 +18,7 @@ const {
     Akigumo,
     Yukikaze,
 } = require('../../ship-series');
+const { 能代改二 } = require('../../ship-ids');
 
 module.exports = [
     {
@@ -50,6 +51,19 @@ module.exports = [
             1: {
                 fire: 4,
                 evasion: -1,
+            },
+        },
+    },
+
+    {
+        equipment: 74,
+        ship: {
+            isID: [能代改二],
+        },
+        bonusCount: {
+            1: {
+                fire: 4,
+                torpedo: 2,
             },
         },
     },

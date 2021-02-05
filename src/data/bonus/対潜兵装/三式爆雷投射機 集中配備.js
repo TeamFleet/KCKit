@@ -7,6 +7,7 @@
  *
  */
 
+const { CL_AganoRevised } = require('../../ship-classes');
 const {
     由良改二,
     那珂改二,
@@ -18,6 +19,15 @@ const {
 // ============================================================================
 
 module.exports = [
+    {
+        equipment: 287,
+        ship: {
+            isClass: [CL_AganoRevised],
+        },
+        bonus: {
+            asw: 3,
+        },
+    },
     {
         equipment: 287,
         ship: {
