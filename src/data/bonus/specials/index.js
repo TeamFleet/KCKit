@@ -64,4 +64,8 @@ const SP_秋雲改二 = [
     },
 ];
 
-module.exports = [...DD_AARadar, ...SP_秋雲改二];
+module.exports = [
+    ...DD_AARadar,
+    ...SP_秋雲改二,
+    ...require('./class-AganoRevised'),
+];

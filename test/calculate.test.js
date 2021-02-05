@@ -1450,6 +1450,30 @@ describe('Calculating functions/utilities', () => {
                         evasion: 4,
                     });
                 });
+                it('S9 Osprey x2 | 水上偵察機 x2', () => {
+                    expect(
+                        calculate.bonus(能代改二, [304, 304, 239, 238])
+                    ).toEqual({
+                        fire: 4,
+                        asw: 5,
+                        evasion: 3,
+                    });
+                });
+                it('S9 Osprey x3', () => {
+                    expect(calculate.bonus(能代改二, [304, 304, 304])).toEqual({
+                        fire: 5,
+                        asw: 6,
+                        evasion: 4,
+                    });
+                });
+                it('回転翼機 x4', () => {
+                    expect(
+                        calculate.bonus(能代改二, [69, 326, 327, 325])
+                    ).toEqual({
+                        asw: 4,
+                        evasion: 1,
+                    });
+                });
             });
             describe('沖波改二', () => {
                 it('13号対空電探', () => {
