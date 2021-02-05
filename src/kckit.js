@@ -632,10 +632,11 @@
                     ...(shipClass.equipable_exclude_by_slot || []),
                     ...(shipType.equipable_exclude_by_slot || [])
                 ];
-                excludeBySlot[trueSlotIndex].forEach(excludeId => {
-                    const index = types.indexOf(excludeId);
-                    if (index >= 0) types.splice(index, 1);
-                });
+                if (Array.isArray(excludeBySlot[trueSlotIndex]))
+                    excludeBySlot[trueSlotIndex].forEach(excludeId => {
+                        const index = types.indexOf(excludeId);
+                        if (index >= 0) types.splice(index, 1);
+                    });
             }
 
             return types
