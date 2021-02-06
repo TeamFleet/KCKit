@@ -21,6 +21,7 @@ module.exports = [
                 fire: 1,
             },
         },
+        passEquippableCheck: true,
     },
 
     {

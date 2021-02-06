@@ -727,6 +727,9 @@ describe('Base functions/utilities', () => {
                 it(`41cm三连装炮改二`, () => {
                     expect(db.items[290].getBonuses().length).toEqual(8);
                 });
+                it(`瑞雲`, () => {
+                    expect(db.items[26].getBonuses().length).toEqual(2);
+                });
             });
         });
 
