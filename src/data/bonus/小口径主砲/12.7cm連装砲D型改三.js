@@ -7,6 +7,7 @@
  *
  */
 
+require('../../../../typedef');
 const {
     DD_KagerouClass2ndRemodelExcludeAkigumo,
     DD_KagerouClass2ndRemodel,
@@ -16,6 +17,7 @@ const {
 const { DD_Kagerou, DD_KagerouROCN } = require('../../ship-classes');
 const { 丹陽, 秋雲改二 } = require('../../ship-ids');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     // @ 陽炎型
     {

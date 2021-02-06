@@ -1,5 +1,8 @@
+require('../../../../typedef');
+
 const { CL_AganoRevised } = require('../../ship-classes');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         list: ['Autogyro'],
@@ -12,6 +15,11 @@ module.exports = [
         bonus: {
             asw: 4,
             evasion: 1,
+        },
+        bonusCount: {
+            1: {
+                fire: 1,
+            },
         },
     },
 
@@ -43,6 +51,7 @@ module.exports = [
             asw: 1,
             evasion: 1,
         },
+        passEquippableCheck: true,
     },
     {
         list: ['SeaplaneBomber'],
@@ -66,6 +75,7 @@ module.exports = [
             fire: 2,
             evasion: 1,
         },
+        passEquippableCheck: true,
     },
     {
         list: ['SeaplaneBomber'],
@@ -85,5 +95,6 @@ module.exports = [
             fire: 3,
             evasion: 1,
         },
+        passEquippableCheck: true,
     },
 ];

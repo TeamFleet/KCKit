@@ -11,5 +11,5 @@ module.exports = {
     shipAndEquipments: require('./ship-and-equipments'),
 
     equipmentStarBonusType: require('./equipment-star-bonus-type'),
-    equipmentStarBonus: require('./equipment-star-bonus')
-}
+    equipmentStarBonus: require('./equipment-star-bonus'),
+};

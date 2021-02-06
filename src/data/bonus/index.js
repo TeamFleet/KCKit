@@ -1,3 +1,4 @@
+require('../../../typedef');
 const bonusIsSet = require('../../utils/bonus-is-set');
 
 /**
@@ -8,13 +9,7 @@ const bonusIsSet = require('../../utils/bonus-is-set');
 // https://wikiwiki.jp/kancolle/%E8%A3%85%E5%82%99#bonus
 
 /**
- * @member {Number} [equipment] 单一装备
- * @member {Object} [equipments] 条件：装备组合
- * @member {Object} ship 条件：匹配的舰娘
- * @member {Object} [bonus] 收益。数字表示可叠加，字符串表示仅单次
- * @member {Object} [bonusCount] 仅当为单一装备时可用：不同装备数量的收益
- * @member {Object} [bonusImprove] 仅当为单一装备时可用：不同改修星级的收益
- * @member {Array} [list] 显示的内容
+ * @type {Array<EquipmentBonus>}
  */
 const dataBonuses = [
     ...require('./小口径主砲/10cm連装高角砲+高射装置'),

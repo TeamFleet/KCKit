@@ -14,7 +14,7 @@ module.exports = class Equipment extends ItemBase {
         super(data);
 
         Object.defineProperty(this, 'rankupgradable', {
-            value: this.isRankUpgradable()
+            value: this.isRankUpgradable(),
         });
     }
 
@@ -58,7 +58,7 @@ module.exports = class Equipment extends ItemBase {
     }
 
     getCaliber() {
-        let name = this.getName(false, 'ja_jp'),
+        const name = this.getName(false, 'ja_jp'),
             caliber = parseFloat(name);
 
         return caliber;
@@ -103,7 +103,7 @@ module.exports = class Equipment extends ItemBase {
      */
     isType(type) {
         return checkEquipment(this, {
-            ['is' + type]: true
+            ['is' + type]: true,
         });
         // switch (type.toLowerCase()) {
         //     case 'aircraft':
@@ -204,15 +204,16 @@ module.exports = class Equipment extends ItemBase {
      */
     getBonuses() {
         if (!Array.isArray(this.__bonuses))
-            this.__bonuses = bonuses.filter(bonus => {
+            this.__bonuses = bonuses.filter((bonus) => {
                 if (bonus.equipment == this.id) return true;
                 if (
                     typeof bonus.equipments !== 'undefined' &&
-                    typeof bonus.ship === 'object'
+                    typeof bonus.ship === 'object' &&
+                    !bonus.passEquippableCheck
                 ) {
                     if (
                         Array.isArray(bonus.ship.isID) &&
-                        !bonus.ship.isID.every(shipId =>
+                        !bonus.ship.isID.every((shipId) =>
                             getShip(shipId).canEquipThis(this, true)
                         )
                     )
@@ -224,7 +225,7 @@ module.exports = class Equipment extends ItemBase {
                         return false;
                     if (
                         Array.isArray(bonus.ship.isType) &&
-                        !bonus.ship.isType.every(typeId =>
+                        !bonus.ship.isType.every((typeId) =>
                             getShipType(typeId).equipable.includes(this.type)
                         )
                     )
@@ -236,13 +237,18 @@ module.exports = class Equipment extends ItemBase {
                         )
                     )
                         return false;
+                    // if (typeof bonus.equipments === 'object')
+                    //     console.log(bonus.equipments);
                     if (
                         Array.isArray(bonus.ship.isClass) &&
-                        !bonus.ship.isClass.every(classId =>
-                            getShipType(
-                                getShipClass(classId).ship_type_id
-                            ).equipable.includes(this.type)
-                        )
+                        !bonus.ship.isClass.every((classId) => {
+                            const shipClass = getShipClass(classId);
+                            return [
+                                ...(shipClass.additional_item_types || []),
+                                ...getShipType(shipClass.ship_type_id)
+                                    .equipable,
+                            ].includes(this.type);
+                        })
                     )
                         return false;
                     if (
@@ -254,20 +260,25 @@ module.exports = class Equipment extends ItemBase {
                         return false;
                 }
                 if (Array.isArray(bonus.equipments)) {
-                    return bonus.equipments.some(condition =>
+                    return bonus.equipments.some((condition) =>
                         checkEquipment(this, 10, 7, condition)
                     );
                 }
                 if (typeof bonus.equipments === 'object') {
-                    return Object.keys(bonus.equipments)
-                        .filter(key => /^has/.test(key))
-                        .some(key =>
-                            checkEquipment(this, {
-                                [key.replace(/^has/, 'is')]: bonus.equipments[
-                                    key
-                                ]
-                            })
-                        );
+                    return (
+                        Object.keys(bonus.equipments)
+                            .filter((key) => /^has/.test(key))
+                            // .map((key) => {
+                            //     console.log(key);
+                            //     return key;
+                            // })
+                            .some((key) =>
+                                checkEquipment(this, {
+                                    [key.replace(/^has/, 'is')]: bonus
+                                        .equipments[key],
+                                })
+                            )
+                    );
                 }
                 return false;
             });

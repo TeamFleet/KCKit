@@ -235,6 +235,7 @@ class Ship extends ItemBase {
         const shipType = getdb('ship_types')[this.type];
         const types = [
             ...(shipType.equipable || []),
+            ...(shipClass.additional_item_types || []),
             ...(this.additional_item_types || []),
         ];
         /**
