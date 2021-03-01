@@ -8,6 +8,7 @@
  */
 
 const { DD_Matsu } = require('../../ship-classes');
+const { DD_Div7_2ndRemodel } = require('../../ships');
 const {
     天龍改二,
     龍田改二,
@@ -37,6 +38,17 @@ const 単体ボーナス = [
         bonus: {
             fire: 3,
             aa: 4,
+        },
+    },
+    {
+        equipment: 380,
+        ship: {
+            isID: [...DD_Div7_2ndRemodel],
+        },
+        bonus: {
+            fire: 3,
+            aa: 3,
+            evasion: 2,
         },
     },
     {
@@ -155,6 +167,20 @@ const 相互シナジーボーナス = [
         bonus: {
             fire: 4,
             evasion: 3,
+        },
+    },
+    {
+        list: [380, 'SurfaceRadar'],
+        equipments: {
+            hasID: [380],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: [...DD_Div7_2ndRemodel],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 1,
         },
     },
     {

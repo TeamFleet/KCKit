@@ -17,8 +17,23 @@ module.exports = [
         },
         bonus: {
             fire: 1,
-            aa: 1,
+            aa: 3,
             evasion: 2,
+        },
+    },
+
+    {
+        list: [220, 'AARadar'],
+        equipments: {
+            hasID: [220],
+            hasAARadar: true,
+        },
+        ship: {
+            isClass: [CL_AganoRevised],
+        },
+        bonus: {
+            aa: 3,
+            evasion: 3,
         },
     },
 ];

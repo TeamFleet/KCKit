@@ -6,6 +6,14 @@ const {
     Hornet,
     Hornet改,
 
+    鹿島,
+    鹿島改,
+
+    曙改,
+    曙改二,
+    潮改,
+    潮改二,
+
     丹陽,
     雪風改二,
 
@@ -132,6 +140,13 @@ const CL_YuubariClass2ndRemodel = [622, 623, 624];
 
 /*************************************************************************/
 
+const DD_Div7_Remodel = [
+    230, // 朧改
+    曙改,
+    232, // 漣改
+    潮改,
+];
+const DD_Div7_2ndRemodel = [曙改二, 潮改二];
 const DD_FubukiClass2ndRemodel = [
     426, // 吹雪改二
     420, // 叢雲改二
@@ -141,15 +156,12 @@ const DD_AyanamiClassRemodel = [
     208, // 敷波改
     390, // 天霧改
     391, // 狭霧改
-    230, // 朧改
-    231, // 曙改
-    232, // 漣改
-    233, // 潮改
+    ...DD_Div7_Remodel,
 ];
 const DD_AyanamiClass2ndRemodel = [
     195, // 綾波改二
     627, // 敷波改二
-    407, // 潮改二
+    ...DD_Div7_2ndRemodel,
 ];
 const DD_AyanamiClassRemodelAll = DD_AyanamiClassRemodel.concat(
     DD_AyanamiClass2ndRemodel
@@ -346,12 +358,14 @@ module.exports = {
     CL_YuubariClass2ndRemodel,
     Yahagi: [139, 307],
     Ooyodo: [183, 321],
-    Kashima: [465, 356],
+    Kashima: [鹿島, 鹿島改],
 
     DD_FubukiClass2ndRemodel,
     DD_AyanamiClassRemodel,
     DD_AyanamiClass2ndRemodel,
     DD_AyanamiClassRemodelAll,
+    DD_Div7_Remodel,
+    DD_Div7_2ndRemodel,
     DD_AkatsukiClassRemodel,
     DD_AkatsukiClass2ndRemodel,
     DD_AkatsukiClassRemodelAll,

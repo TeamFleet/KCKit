@@ -27,6 +27,7 @@ const group_BB_Navy_USN = [
     ...group_BC_Navy_USN,
 ];
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
+const group_BB_Navy_KM = [BB_Bismarck];
 
 // ============================================================================
 //
@@ -70,6 +71,7 @@ const CA_Takao = 42;
 const CA_Houston = 124;
 const CA_Mogami = 43;
 const CA_Tone = 44;
+const CA_AdmiralHipper = 57;
 const group_CA_Navy_IJN = [
     CA_Furutaka,
     CA_Aoba,
@@ -79,6 +81,7 @@ const group_CA_Navy_IJN = [
     CA_Tone,
 ];
 const group_CA_Navy_USN = [CA_Houston];
+const group_CA_Navy_KM = [CA_AdmiralHipper];
 
 // ============================================================================
 //
@@ -208,6 +211,7 @@ module.exports = {
     group_BB_exclude_BC_Navy_USN,
     group_BB_Navy_USN,
     group_BB_Navy_RN,
+    group_BB_Navy_KM,
 
     // ========================================================================
     CV_Kaga,
@@ -241,9 +245,11 @@ module.exports = {
     CA_Takao,
     CA_Mogami,
     CA_Tone,
+    CA_AdmiralHipper,
     CA_Houston,
     group_CA_Navy_IJN,
     group_CA_Navy_USN,
+    group_CA_Navy_KM,
 
     // ========================================================================
     // 重雷装巡洋艦
@@ -324,7 +330,12 @@ module.exports = {
         ...group_CL_Navy_USN,
         ...group_DD_Navy_USN,
     ],
-    group_Navy_KM: [...group_CV_Navy_KM, ...group_DD_Navy_KM],
+    group_Navy_KM: [
+        ...group_BB_Navy_KM,
+        ...group_CV_Navy_KM,
+        ...group_CA_Navy_KM,
+        ...group_DD_Navy_KM,
+    ],
     group_Navy_RN: [
         ...group_BB_Navy_RN,
         ...group_CV_Navy_RN,

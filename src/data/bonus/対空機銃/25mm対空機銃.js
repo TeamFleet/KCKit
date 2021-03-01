@@ -16,17 +16,34 @@
  *
  */
 
-const { CL_AganoRevised } = require('../../ship-classes');
+const { CL_AganoRevised, CT_Katori } = require('../../ship-classes');
 
 // ============================================================================
 
-module.exports = [49, 39, 40, 131].map((eid) => ({
-    equipment: eid,
-    ship: {
-        isClass: [CL_AganoRevised],
-    },
-    bonus: {
-        aa: 2,
-        evasion: 1,
-    },
-}));
+const list = [];
+
+[49, 39, 40, 131].forEach((eid) => {
+    list.push({
+        equipment: eid,
+        ship: {
+            isClass: [CL_AganoRevised],
+        },
+        bonus: {
+            aa: 2,
+            evasion: 1,
+        },
+    });
+    list.push({
+        equipment: eid,
+        ship: {
+            isClass: [CT_Katori],
+        },
+        bonus: {
+            fire: 1,
+            aa: 2,
+            evasion: 2,
+        },
+    });
+});
+
+module.exports = list;

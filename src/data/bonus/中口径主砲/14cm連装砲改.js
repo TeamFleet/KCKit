@@ -10,65 +10,65 @@ const {
     CL_Yuubari,
     CL_Yuubari2,
     CT_Katori,
-    AV_Nisshin
+    AV_Nisshin,
 } = require('../../ship-classes');
 
 module.exports = [
     {
         equipment: 310,
         ship: {
-            isClass: [CL_Yuubari]
+            isClass: [CL_Yuubari],
         },
         bonus: {
             fire: 2,
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
     {
         equipment: 310,
         ship: {
-            isClass: [CL_Yuubari2]
+            isClass: [CL_Yuubari2],
         },
         bonusImprove: {
             0: {
                 fire: 4,
                 aa: 1,
                 evasion: 2,
-                asw: 1
+                asw: 1,
             },
             8: {
                 fire: 5,
                 torpedo: 1,
                 aa: 1,
                 evasion: 2,
-                asw: 1
-            }
-        }
+                asw: 1,
+            },
+        },
     },
 
     {
         equipment: 310,
         ship: {
-            isClass: [CT_Katori]
+            isClass: [CT_Katori],
         },
         bonus: {
             fire: 2,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
 
     {
         equipment: 310,
         ship: {
-            isClass: [AV_Nisshin]
+            isClass: [AV_Nisshin],
         },
         bonus: {
             fire: 3,
             torpedo: 2,
             aa: 1,
-            evasion: 1
-        }
+            evasion: 1,
+        },
     },
 
     // ------------------------------------------------------------------------
@@ -78,15 +78,15 @@ module.exports = [
         list: [310, 'SurfaceRadar'],
         equipments: {
             hasID: [310],
-            hasSurfaceRadar: true
+            hasSurfaceRadar: true,
         },
         ship: {
-            isClass: [CL_Yuubari2]
+            isClass: [CL_Yuubari2],
         },
         bonus: {
             fire: 3,
             torpedo: 2,
-            evasion: 2
-        }
-    }
+            evasion: 2,
+        },
+    },
 ];

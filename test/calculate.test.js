@@ -6,6 +6,8 @@ const {
     大淀,
     大淀改,
     能代改二,
+    香取改,
+    鹿島改,
 
     丹陽,
     雪風改二,
@@ -1431,8 +1433,8 @@ describe('Calculating functions/utilities', () => {
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
-                        aa: 1,
-                        evasion: 8,
+                        aa: 6,
+                        evasion: 11,
                         asw: 2,
                     });
                 });
@@ -1508,6 +1510,27 @@ describe('Calculating functions/utilities', () => {
                         fire: 6,
                         asw: 1,
                         evasion: 3,
+                    });
+                });
+            });
+            describe('香取改・鹿島改', () => {
+                [香取改, 鹿島改].forEach((sid) => {
+                    it('九四式爆雷投射機 | 三式爆雷投射機 集中配備 | 九三式水中聴音機 | 四式水中聴音機', () => {
+                        expect(
+                            calculate.bonus(sid, [44, 287, 46, 149])
+                        ).toEqual({
+                            asw: 10,
+                            evasion: 10,
+                        });
+                    });
+                    it('25mm対空機銃', () => {
+                        expect(calculate.bonus(sid, [49, 39, 40, 131])).toEqual(
+                            {
+                                fire: 4,
+                                aa: 8,
+                                evasion: 8,
+                            }
+                        );
                     });
                 });
             });

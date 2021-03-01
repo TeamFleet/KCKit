@@ -77,11 +77,13 @@ const dataBonuses = [
     ...require('./魚雷/熟練聴音員+後期型艦首魚雷(6門)'),
     ...require('./魚雷/後期型53cm艦首魚雷(8門)'),
 
+    ...require('./水上機/紫雲'),
     ...require('./水上機/OS2U'),
     ...require('./水上機/S9 Osprey'),
-    ...require('./水上機/Laté 298B'),
     ...require('./水上機/Swordfish'),
     ...require('./水上機/Seafox'),
+    ...require('./水上機/Ar196改'),
+    ...require('./水上機/Laté 298B'),
     ...require('./水上機/瑞雲(六三四空)'),
     ...require('./水上機/瑞雲12型(六三四空)'),
     ...require('./水上機/瑞雲(六三四空／熟練)'),
@@ -127,6 +129,8 @@ const dataBonuses = [
     ...require('./電探/GFCS Mk.37'),
     ...require('./電探/SK／SGレーダー'),
 
+    ...require('./対潜兵装/_Sonars.IJN'),
+    ...require('./対潜兵装/_DepthChargeLauncher.IJN'),
     ...require('./対潜兵装/三式水中探信儀'),
     ...require('./対潜兵装/四式水中聴音機'),
     ...require('./対潜兵装/三式爆雷投射機 集中配備'),
