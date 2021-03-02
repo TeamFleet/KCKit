@@ -15,10 +15,17 @@ module.exports = [
         ship: {
             isClass: [CL_Ooyodo],
         },
-        bonus: {
-            fire: 2,
-            evasion: 2,
-            los: 2,
+        bonusImprove: {
+            0: {
+                fire: 1,
+                evasion: 2,
+                los: 2,
+            },
+            10: {
+                fire: 3,
+                evasion: 2,
+                los: 3,
+            },
         },
     },
 ];

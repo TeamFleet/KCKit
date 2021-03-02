@@ -37,8 +37,15 @@ module.exports = [
                 evasion: 2,
                 asw: 1,
             },
-            8: {
+            7: {
                 fire: 5,
+                torpedo: 1,
+                aa: 1,
+                evasion: 2,
+                asw: 1,
+            },
+            10: {
+                fire: 7,
                 torpedo: 1,
                 aa: 1,
                 evasion: 2,
@@ -52,9 +59,15 @@ module.exports = [
         ship: {
             isClass: [CT_Katori],
         },
-        bonus: {
-            fire: 2,
-            evasion: 1,
+        bonusImprove: {
+            0: {
+                fire: 2,
+                evasion: 1,
+            },
+            10: {
+                fire: 4,
+                evasion: 3,
+            },
         },
     },
 
@@ -63,11 +76,19 @@ module.exports = [
         ship: {
             isClass: [AV_Nisshin],
         },
-        bonus: {
-            fire: 3,
-            torpedo: 2,
-            aa: 1,
-            evasion: 1,
+        bonusImprove: {
+            0: {
+                fire: 3,
+                torpedo: 2,
+                aa: 1,
+                evasion: 1,
+            },
+            10: {
+                fire: 4,
+                torpedo: 3,
+                aa: 1,
+                evasion: 1,
+            },
         },
     },
 

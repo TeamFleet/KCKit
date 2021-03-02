@@ -15,9 +15,17 @@ module.exports = [
         ship: {
             isClass: [group_BB_Navy_KM, group_CA_Navy_KM],
         },
-        bonus: {
-            fire: 2,
-            evasion: 1,
+        bonusImprove: {
+            0: {
+                fire: 2,
+                evasion: 1,
+                los: 2,
+            },
+            10: {
+                fire: 3,
+                evasion: 2,
+                los: 2,
+            },
         },
     },
 ];

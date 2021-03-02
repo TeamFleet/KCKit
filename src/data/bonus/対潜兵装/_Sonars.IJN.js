@@ -28,9 +28,11 @@ const list = [];
         ship: {
             isClass: [CT_Katori],
         },
-        bonus: {
-            asw: 2,
-            evasion: 3,
+        bonusCount: {
+            1: {
+                asw: 2,
+                evasion: 3,
+            },
         },
     });
 });
