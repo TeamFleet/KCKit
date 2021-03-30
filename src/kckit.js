@@ -20,6 +20,7 @@
     const getShipClass = require('./get/ship-class');
     const getShipType = require('./get/ship-type');
     const equipmentTypes = require('./types/equipments');
+    const shipTypes = require('./types/ships');
 
     let KC = {
         lang: 'zh_cn',
@@ -450,6 +451,53 @@
         get _type() {
             return this.getType();
         }
+        /**
+         * 获取给定舰娘的详细/子舰种
+         * @returns {void|ShipSubType} 子舰种特征值
+         */
+        getSubType() {
+            if (typeof this.__SUBTYPE === 'string') return this.__SUBTYPE;
+
+            if (this.isType('carrier')) {
+                const isLightCarrier = this.canEquip(33);
+
+                if (
+                    typeof this.capabilities === 'object' &&
+                    !!this.capabilities
+                        .count_as_night_operation_aviation_personnel
+                )
+                    this.__SUBTYPE = 'NightCarrier';
+                else if (
+                    !isLightCarrier &&
+                    typeof this.stat.asw === 'number' &&
+                    this.stat.asw > 0
+                )
+                    this.__SUBTYPE = 'ModernizedCarrier';
+                else if (
+                    isLightCarrier &&
+                    typeof this.stat.asw === 'number' &&
+                    this.stat.asw > 0
+                )
+                    this.__SUBTYPE = 'EscortCarrier';
+                else if (
+                    typeof this.capabilities === 'object' &&
+                    !!this.capabilities.attack_surface_ship_prioritised
+                )
+                    this.__SUBTYPE = 'AssultCarrier';
+            } else if (this.isType('aviationcruiser')) {
+                if (this.canEquip(14))
+                    this.__SUBTYPE = 'SpecialRevisedAviationCruiser';
+            } else if (this.isType('lightcruiser')) {
+                if (this.canEquip(14))
+                    this.__SUBTYPE = 'HeavyRevisedLightCruiser';
+            }
+
+            return this.__SUBTYPE;
+        }
+        get _subType() {
+            return this.getSubType();
+        }
+
         /*	获取系列数据
             返回值
                 Object		系列
@@ -787,6 +835,61 @@
         }
         get _minLv() {
             return this.getMinLv();
+        }
+
+        /**
+         * 判断舰种大类
+         *
+         * @param {string} majorType - 舰种大类，目前支持：Battleship/BB, Carrier/CV, LightCruiser/CL, HeavyCruiser/CA, Submarine/SS, SeaplaneTender/AV, Destroyer/DD
+         * @return {number}
+         */
+        isType(majorType) {
+            switch (majorType.toLowerCase()) {
+                case 'battleship':
+                case 'battleships':
+                case 'bb':
+                    return shipTypes.Battleships.includes(this.type);
+
+                case 'carrier':
+                case 'carriers':
+                case 'cv':
+                    return shipTypes.Carriers.includes(this.type);
+
+                case 'aviationcruiser':
+                case 'aviationcruisers':
+                case 'cav':
+                    return shipTypes.AviationCruisers.includes(this.type);
+
+                case 'heavycruiser':
+                case 'heavycruisers':
+                case 'ca':
+                    return shipTypes.HeavyCruisers.includes(this.type);
+
+                case 'lightcruiser':
+                case 'lightcruisers':
+                case 'cl':
+                    return shipTypes.LightCruisers.includes(this.type);
+
+                case 'submarine':
+                case 'submarines':
+                case 'ss':
+                    return shipTypes.Submarines.includes(this.type);
+
+                case 'seaplanetender':
+                case 'seaplanetenders':
+                case 'seaplane tender':
+                case 'seaplane tenders':
+                case 'av':
+                    return shipTypes.SeaplaneTenders.includes(this.type);
+
+                case 'destroyer':
+                case 'destroyers':
+                case 'dd':
+                    return shipTypes.Destroyers.includes(this.type);
+
+                default:
+                    return false;
+            }
         }
 
         /**

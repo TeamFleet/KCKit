@@ -167,6 +167,7 @@ types.SeaplaneReconsAll = [
 ];
 
 types.SeaplaneBombers = [types.SeaplaneBomber, types.SeaplaneFighter];
+types.SeaplaneBombersNoFighters = [types.SeaplaneBomber];
 
 types.SeaplaneFighters = [types.SeaplaneFighter];
 
