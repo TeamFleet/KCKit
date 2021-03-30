@@ -48,6 +48,16 @@ const check = (equipment, star = 0, rank = 0, conditions = {}) => {
             ) {
                 return false;
             }
+        } else if (
+            keyLowerCase === 'isoneof' &&
+            Array.isArray(conditions[key])
+        ) {
+            if (
+                !conditions[key].some(condition =>
+                    check(equipment, star, rank, condition)
+                )
+            )
+                return false;
         } else if (checkCondition[keyLowerCase]) {
             // checkCondition 中存在该条件，直接运行
             if (!checkCondition[keyLowerCase](equipment, conditions[key]))

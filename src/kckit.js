@@ -319,7 +319,8 @@
                 if (bonus.equipment == this.id) return true;
                 if (
                     typeof bonus.equipments !== 'undefined' &&
-                    typeof bonus.ship === 'object'
+                    typeof bonus.ship === 'object' &&
+                    !bonus.passEquippableCheck
                 ) {
                     if (
                         Array.isArray(bonus.ship.isID) &&
@@ -633,9 +634,11 @@
             const disabled = this.additional_disable_item_types || [];
             const shipClass = KC.db.ship_classes[this.class];
             const shipType = KC.db.ship_types[this.type];
-            const types = (shipType.equipable || []).concat(
-                this.additional_item_types || []
-            );
+            const types = [
+                ...(shipType.equipable || []),
+                ...(shipClass.additional_item_types || []),
+                ...(this.additional_item_types || [])
+            ];
             /**
              * 忽略补强增设栏 (固定 index 4) 的 index
              * - 如果 index 为 4，忽略
