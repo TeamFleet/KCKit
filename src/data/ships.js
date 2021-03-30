@@ -6,6 +6,13 @@ const {
     Hornet,
     Hornet改,
 
+    最上改二,
+    最上改二特,
+
+    能代改二,
+    矢矧改二,
+    矢矧改二乙,
+
     鹿島,
     鹿島改,
 
@@ -121,6 +128,10 @@ const CVE = [
 
 /*************************************************************************/
 
+const CAV_MogamiClassSuperRemodel = [最上改二, 最上改二特];
+
+/*************************************************************************/
+
 const CL_KumaClassRemodel = [
     216, // 多摩改
     217, // 木曽改
@@ -136,6 +147,7 @@ const CL_NagaraClass2ndRemodel = [
     488, // 由良改二
     487, // 鬼怒改二
 ];
+const CL_AganoClass2ndRemodel = [能代改二, 矢矧改二, 矢矧改二乙];
 const CL_YuubariClass2ndRemodel = [622, 623, 624];
 
 /*************************************************************************/
@@ -351,12 +363,15 @@ module.exports = {
     CVE,
     CVE_TaiyouClassRemodelAll,
 
+    CAV_MogamiClassSuperRemodel,
+
     CL_KumaClassRemodel,
     CL_KumaClass2ndRemodel,
     CL_KumaClassRemodelAll,
     CL_NagaraClass2ndRemodel,
+    CL_AganoClass2ndRemodel,
     CL_YuubariClass2ndRemodel,
-    Yahagi: [139, 307],
+    Yahagi: [139, 307, 矢矧改二, 矢矧改二乙],
     Ooyodo: [183, 321],
     Kashima: [鹿島, 鹿島改],
 

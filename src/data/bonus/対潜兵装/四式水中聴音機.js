@@ -7,14 +7,14 @@
  *
  */
 
-const { DD_Akizuki, CL_AganoRevised } = require('../../ship-classes');
-const { 雪風改二 } = require('../../ship-ids');
+const { DD_Akizuki } = require('../../ship-classes');
+const { 能代改二, 雪風改二 } = require('../../ship-ids');
 
 module.exports = [
     {
         equipment: 149,
         ship: {
-            isClass: [CL_AganoRevised],
+            isID: [能代改二],
         },
         bonus: {
             asw: 2,

@@ -18,7 +18,7 @@ const {
     Akigumo,
     Yukikaze,
 } = require('../../ship-series');
-const { 能代改二 } = require('../../ship-ids');
+const { CL_AganoClass2ndRemodel } = require('../../ships');
 
 module.exports = [
     {
@@ -58,7 +58,7 @@ module.exports = [
     {
         equipment: 74,
         ship: {
-            isID: [能代改二],
+            isID: [...CL_AganoClass2ndRemodel],
         },
         bonusCount: {
             1: {

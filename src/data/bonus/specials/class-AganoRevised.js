@@ -1,6 +1,12 @@
 require('../../../../typedef');
 
 const { CL_AganoRevised } = require('../../ship-classes');
+const { 能代改二, 矢矧改二, 矢矧改二乙 } = require('../../ship-ids');
+
+const {
+    SeaplaneBombers_IJN_Low,
+    SeaplaneBombers_IJN_High,
+} = require('../../equipments');
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
@@ -10,24 +16,35 @@ module.exports = [
             hasAutogyro: true,
         },
         ship: {
-            isClass: [CL_AganoRevised],
+            isID: [能代改二],
         },
         bonus: {
             asw: 4,
             evasion: 1,
         },
-        bonusCount: {
-            1: {
-                fire: 1,
-            },
+        passEquippableCheck: true,
+    },
+    {
+        list: ['Autogyro'],
+        equipments: {
+            hasAutogyro: true,
+        },
+        ship: {
+            isID: [矢矧改二, 矢矧改二乙],
+        },
+        bonus: {
+            asw: 3,
+            evasion: 1,
         },
         passEquippableCheck: true,
     },
 
+    // ========================================================================
+
     {
         list: ['ReconSeaplane'],
         equipments: {
-            hasReconSeaplane: true,
+            hasSeaplaneRecons: true,
         },
         ship: {
             isClass: [CL_AganoRevised],
@@ -39,6 +56,29 @@ module.exports = [
         },
     },
 
+    // ========================================================================
+
+    ...[...SeaplaneBombers_IJN_Low].map((eid) => ({
+        equipment: eid,
+        ship: {
+            isID: [矢矧改二, 矢矧改二乙],
+        },
+        bonus: {
+            aa: 1,
+            evasion: 1,
+        },
+    })),
+    ...[...SeaplaneBombers_IJN_High].map((eid) => ({
+        equipment: eid,
+        ship: {
+            isID: [矢矧改二, 矢矧改二乙],
+        },
+        bonus: {
+            fire: 3,
+            aa: 1,
+            evasion: 2,
+        },
+    })),
     {
         list: ['SeaplaneBomber'],
         equipments: {
@@ -57,20 +97,12 @@ module.exports = [
     {
         list: ['SeaplaneBomber'],
         equipments: {
-            hasOneOf: [
-                26, // 瑞雲
-                207, // 瑞雲(六三一空)
-                79, // 瑞雲(六三四空)
-                80, // 瑞雲12型
-                81, // 瑞雲12型(六三四空)
-                62, // 試製晴嵐
-                208, // 晴嵐(六三一空)
-            ].map((eid) => ({
+            hasOneOf: [...SeaplaneBombers_IJN_Low].map((eid) => ({
                 isID: eid,
             })),
         },
         ship: {
-            isClass: [CL_AganoRevised],
+            isID: [能代改二],
         },
         bonus: {
             fire: 2,
@@ -81,16 +113,27 @@ module.exports = [
     {
         list: ['SeaplaneBomber'],
         equipments: {
-            hasOneOf: [
-                237, // 瑞雲(六三四空／熟練)
-                322, // 瑞雲改二(六三四空)
-                323, // 瑞雲改二(六三四空／熟練)
-            ].map((eid) => ({
+            hasOneOf: [...SeaplaneBombers_IJN_Low].map((eid) => ({
                 isID: eid,
             })),
         },
         ship: {
-            isClass: [CL_AganoRevised],
+            isID: [矢矧改二, 矢矧改二乙],
+        },
+        bonus: {
+            fire: 2,
+        },
+        passEquippableCheck: true,
+    },
+    {
+        list: ['SeaplaneBomber'],
+        equipments: {
+            hasOneOf: [...SeaplaneBombers_IJN_High].map((eid) => ({
+                isID: eid,
+            })),
+        },
+        ship: {
+            isID: [能代改二],
         },
         bonus: {
             fire: 3,
@@ -98,4 +141,21 @@ module.exports = [
         },
         passEquippableCheck: true,
     },
+    // {
+    //     list: ['SeaplaneBomber'],
+    //     equipments: {
+    //         hasOneOf: [...SeaplaneBombers_IJN_High].map((eid) => ({
+    //             isID: eid,
+    //         })),
+    //     },
+    //     ship: {
+    //         isID: [矢矧改二, 矢矧改二乙],
+    //     },
+    //     bonus: {
+    //         fire: 3,
+    //         aa: 1,
+    //         evasion: 2,
+    //     },
+    //     passEquippableCheck: true,
+    // },
 ];

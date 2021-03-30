@@ -35,9 +35,15 @@ const 単体ボーナス = [
         ship: {
             isClass: [DD_Matsu],
         },
-        bonus: {
-            fire: 3,
-            aa: 4,
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 4,
+            },
+            2: {
+                fire: 4,
+                aa: 6,
+            },
         },
     },
     {
@@ -45,10 +51,17 @@ const 単体ボーナス = [
         ship: {
             isID: [...DD_Div7_2ndRemodel],
         },
-        bonus: {
-            fire: 3,
-            aa: 3,
-            evasion: 2,
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 3,
+                evasion: 2,
+            },
+            2: {
+                fire: 5,
+                aa: 5,
+                evasion: 2,
+            },
         },
     },
     {
@@ -235,21 +248,21 @@ const 相互シナジーボーナス = [
             evasion: 1,
         },
     },
-    // {
-    //     list: [380, 'AARadar'],
-    //     equipments: {
-    //         hasID: [380],
-    //         hasAARadar: true,
-    //     },
-    //     ship: {
-    //         isID: [...DD_Div7_2ndRemodel],
-    //     },
-    //     bonus: {
-    //         fire: 1,
-    //         aa: 2,
-    //         evasion: 1,
-    //     },
-    // },
+    {
+        list: [380, 'AAGun'],
+        equipments: {
+            hasID: [380],
+            hasAAGuns: true,
+        },
+        ship: {
+            isID: [...DD_Div7_2ndRemodel],
+        },
+        bonus: {
+            fire: 1,
+            aa: 2,
+            evasion: 1,
+        },
+    },
 ];
 
 // ============================================================================

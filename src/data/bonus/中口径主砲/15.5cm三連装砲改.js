@@ -10,6 +10,7 @@
 const {
     CAV_Mogami,
     CAV_MogamiRevised,
+    CAV_MogamiSuper,
     CA_Mogami,
     CL_Ooyodo,
 } = require('../../ship-classes');
@@ -40,7 +41,12 @@ module.exports = [
     {
         equipment: 235,
         ship: {
-            isClass: [CAV_Mogami, CAV_MogamiRevised, CA_Mogami],
+            isClass: [
+                CAV_Mogami,
+                CAV_MogamiRevised,
+                CAV_MogamiSuper,
+                CA_Mogami,
+            ],
         },
         bonus: {
             fire: 1,

@@ -61,6 +61,7 @@ const dataBonuses = [
     ...require('./大口径主砲/16inch三連装砲 Mk.6'),
     ...require('./大口径主砲/16inch Mk.I三連装砲'),
 
+    ...require('./副砲/8cm高角砲'),
     ...require('./副砲/8cm高角砲改+増設機銃'),
     ...require('./副砲/usn.5inch'),
 
@@ -89,6 +90,7 @@ const dataBonuses = [
     ...require('./水上機/瑞雲(六三四空／熟練)'),
     ...require('./水上機/瑞雲改二(六三四空)'),
     ...require('./水上機/瑞雲改二(六三四空／熟練)'),
+    ...require('./水上機/強風改'),
 
     ...require('./艦上機/九六式艦戦'),
     ...require('./艦上機/烈風改'),
@@ -126,6 +128,7 @@ const dataBonuses = [
     ...require('./艦上機/試製景雲(艦偵型)'),
 
     ...require('./電探/13号対空電探改'),
+    ...require('./電探/21号対空電探'),
     ...require('./電探/GFCS Mk.37'),
     ...require('./電探/SK／SGレーダー'),
 

@@ -606,6 +606,36 @@ describe('Base functions/utilities', () => {
                 // Richelieu ❌ 46cm三連装砲改 + Laté 298B
                 expect(db.ships[492].canEquipThis([276, 194])).toEqual(false);
             });
+            it(`should Ship.prototype.getSubType() works`, () => {
+                // 加賀改二
+                expect(db.ships[698].getSubType()).toEqual(undefined);
+                // 加賀改二戊
+                expect(db.ships[610].getSubType()).toEqual('NightCarrier');
+                // 加賀改二護
+                expect(db.ships[646].getSubType()).toEqual('ModernizedCarrier');
+                // 加賀改二
+                expect(db.ships[698].getSubType()).toEqual(undefined);
+                // 瑞鳳改二
+                expect(db.ships[555]._subType).toEqual(undefined);
+                // 瑞鳳改二乙
+                expect(db.ships[560]._subType).toEqual('EscortCarrier');
+                // 鈴谷改二
+                expect(db.ships[503]._subType).toEqual(undefined);
+                // 鈴谷航改二
+                expect(db.ships[508]._subType).toEqual('AssultCarrier');
+                // 最上改二
+                expect(db.ships[501]._subType).toEqual(undefined);
+                // 最上改二特
+                expect(db.ships[506]._subType).toEqual(
+                    'SpecialRevisedAviationCruiser'
+                );
+                // 矢矧改二
+                expect(db.ships[663]._subType).toEqual(undefined);
+                // 矢矧改二特
+                expect(db.ships[668]._subType).toEqual(
+                    'HeavyRevisedLightCruiser'
+                );
+            });
         });
 
         describe('Equipment...', function () {
@@ -728,7 +758,7 @@ describe('Base functions/utilities', () => {
                     expect(db.items[290].getBonuses().length).toEqual(8);
                 });
                 it(`瑞雲`, () => {
-                    expect(db.items[26].getBonuses().length).toEqual(2);
+                    expect(db.items[26].getBonuses().length).toEqual(7);
                 });
             });
         });

@@ -16,6 +16,7 @@ module.exports = {
         21: 6,
 
         // CAV
+        36: 4,
         5: 4,
 
         // BBV
@@ -35,13 +36,13 @@ module.exports = {
         29: 15,
 
         // AS
-        17: 7
+        17: 7,
     },
 
     equipmentType: {
         [equipmentTypes.CombatRation]: 1,
         [equipmentTypes.SupplyContainer]: 5,
         [equipmentTypes.LandingCraft]: 8,
-        [equipmentTypes.AmphibiousCraft]: 2
-    }
+        [equipmentTypes.AmphibiousCraft]: 2,
+    },
 };

@@ -10,6 +10,7 @@
 const {
     CAV_Mogami,
     CAV_MogamiRevised,
+    CAV_MogamiSuper,
     CAV_Tone,
     CA_Furutaka,
     CA_Aoba,
@@ -27,6 +28,7 @@ module.exports = [
                 CA_Mogami,
                 CAV_Mogami,
                 CAV_MogamiRevised,
+                CAV_MogamiSuper,
                 CA_Tone,
                 CAV_Tone,
             ],
@@ -102,6 +104,7 @@ module.exports = [
                 CA_Mogami,
                 CAV_Mogami,
                 CAV_MogamiRevised,
+                CAV_MogamiSuper,
                 CA_Tone,
                 CAV_Tone,
             ],

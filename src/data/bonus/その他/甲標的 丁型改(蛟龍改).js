@@ -7,55 +7,64 @@
  *
  */
 
+require('../../../../typedef');
+const {
+    CAV_MogamiClassSuperRemodel,
+    CL_AganoClass2ndRemodel,
+} = require('../../ships');
+
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 364,
         ship: {
             isID: [
-                623 // 夕張改二特
-            ]
+                623, // 夕張改二特
+            ],
         },
         bonus: {
             fire: 1,
             torpedo: 4,
-            evasion: -2
-        }
+            evasion: -2,
+        },
     },
     {
         equipment: 364,
         ship: {
             isID: [
-                119 // 北上改二
-            ]
+                119, // 北上改二
+            ],
         },
         bonus: {
             torpedo: 2,
-            evasion: -2
-        }
+            evasion: -2,
+        },
     },
     {
         equipment: 364,
         ship: {
             isID: [
                 118, // 大井改二
-                586 // 日進甲
-            ]
+                586, // 日進甲
+                ...CAV_MogamiClassSuperRemodel,
+                ...CL_AganoClass2ndRemodel,
+            ],
         },
         bonus: {
             torpedo: 1,
-            evasion: -2
-        }
+            evasion: -2,
+        },
     },
     {
         equipment: 364,
         ship: {
             canEquip: [12],
-            isType: [13, 14]
+            isType: [13, 14],
         },
         bonus: {
             fire: -1,
-            evasion: -7
-        }
+            evasion: -7,
+        },
     },
     {
         equipment: 364,
@@ -71,12 +80,12 @@ module.exports = [
                 105, // 千代田改
                 107, // 千代田甲
                 451, // 瑞穂
-                348 // 瑞穂改
-            ]
+                348, // 瑞穂改
+            ],
         },
         bonus: {
             fire: -1,
-            evasion: -7
-        }
-    }
+            evasion: -7,
+        },
+    },
 ];

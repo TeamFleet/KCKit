@@ -1,4 +1,10 @@
 /**
+ * @typedef {"NightCarrier"|"ModernizedCarrier"|"EscortCarrier"|"AssultCarrier"|"RevisedAviationCruiser"|'SpecialAviationCruiser'} ShipSubType
+ */
+
+// ============================================================================
+
+/**
  * 装备属性加成数据
  * @typedef {Object} EquipmentBonus *
  *
@@ -13,6 +19,10 @@
  *
  * @property {EquipmentsCheckCondition|Array<EquipmentsCheckCondition>} [equipments] 当为“套装”时的条件
  * @property {Array<string|number>} [list] 当为“套装”时的 UI 表现方式
+ *      - `number` - 装备ID
+ *      - `/[0-9]+_/` - 装备ID + 系列
+ *      - `TYPE[ID1,ID2,ID3,...]` - 显示为 TYPE，装备ID 选一
+ *      -  不满足上述条件的 `string` - 类型特征值
  *
  */
 /**

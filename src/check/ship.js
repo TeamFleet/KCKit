@@ -29,7 +29,7 @@ module.exports = (ship, conditions = {}) => {
     if (typeof ship === 'undefined') return false;
 
     // 需满足所有条件
-    for (let key in conditions) {
+    for (const key in conditions) {
         if (typeof conditions[key] === 'undefined') continue;
         if (!checkCondition[key.toLowerCase()](ship, conditions[key]))
             return false;
@@ -41,12 +41,12 @@ module.exports = (ship, conditions = {}) => {
 const checkCondition = {
     // isID
     isid: (ship, id) =>
-        ArrayOrItem(id, id => {
+        ArrayOrItem(id, (id) => {
             if (isNaN(id)) return false;
             return parseInt(id) === ship.id;
         }),
     isnotid: (ship, id) =>
-        ArrayOrItemAll(id, id => {
+        ArrayOrItemAll(id, (id) => {
             if (isNaN(id)) return false;
             return parseInt(id) !== ship.id;
         }),
@@ -55,7 +55,7 @@ const checkCondition = {
     isname: (ship, name) =>
         ArrayOrItem(
             name,
-            name => ship.isName(name)
+            (name) => ship.isName(name)
             // for (let key in ship.name) {
             //     if (key === 'suffix') continue
             //     if (ship.name[key].toLowerCase() === name) return true
@@ -65,7 +65,7 @@ const checkCondition = {
     isnotname: (ship, name) =>
         ArrayOrItemAll(
             name,
-            name => !ship.isName(name)
+            (name) => !ship.isName(name)
             // for (let key in ship.name) {
             //     if (key === 'suffix') continue
             //     if (ship.name[key].toLowerCase() === name) return false
@@ -75,42 +75,42 @@ const checkCondition = {
 
     // isType
     istype: (ship, type) =>
-        ArrayOrItem(type, type => {
+        ArrayOrItem(type, (type) => {
             if (isNaN(type)) return false;
             return parseInt(type) === ship.type;
         }),
     isnottype: (ship, type) =>
-        ArrayOrItemAll(type, type => {
+        ArrayOrItemAll(type, (type) => {
             if (isNaN(type)) return false;
             return parseInt(type) !== ship.type;
         }),
-    isbattleship: function(ship, isTrue) {
+    isbattleship: function (ship, isTrue) {
         return this.istype(ship, [8, 6, 20, 7, 18]) === isTrue;
     },
-    isbb: function(ship, isTrue) {
+    isbb: function (ship, isTrue) {
         return this.isbattleship(ship, isTrue);
     },
-    iscarrier: function(ship, isTrue) {
+    iscarrier: function (ship, isTrue) {
         return this.istype(ship, [11, 10, 9, 30, 32]) === isTrue;
     },
-    iscv: function(ship, isTrue) {
+    iscv: function (ship, isTrue) {
         return this.iscarrier(ship, isTrue);
     },
-    issubmarine: function(ship, isTrue) {
+    issubmarine: function (ship, isTrue) {
         return this.istype(ship, [14, 13]) === isTrue;
     },
-    isss: function(ship, isTrue) {
+    isss: function (ship, isTrue) {
         return this.issubmarine(ship, isTrue);
     },
 
     // isClass
     isclass: (ship, Class) =>
-        ArrayOrItem(Class, Class => {
+        ArrayOrItem(Class, (Class) => {
             if (isNaN(Class)) return false;
             return parseInt(Class) === ship.class;
         }),
     isnotclass: (ship, classes) =>
-        ArrayOrItemAll(classes, shipClass => {
+        ArrayOrItemAll(classes, (shipClass) => {
             if (isNaN(shipClass)) return false;
             // console.log(ship._name, ship.class, shipClass)
             return parseInt(shipClass) !== ship.class;
@@ -132,10 +132,10 @@ const checkCondition = {
             else return false;
         } else return !isNaN(num) && parseInt(num) === ship.slot.length;
     },
-    hasslotmin: function(ship, min) {
+    hasslotmin: function (ship, min) {
         return this.hasslot(ship, [min, undefined]);
     },
-    hasslotmax: function(ship, max) {
+    hasslotmax: function (ship, max) {
         return this.hasslot(ship, [undefined, max]);
     },
 
@@ -146,16 +146,16 @@ const checkCondition = {
     },
 
     canequip: (ship, equipType) =>
-        ArrayOrItem(equipType, equipType => {
+        ArrayOrItem(equipType, (equipType) => {
             if (isNaN(equipType)) return false;
             return ship.canEquip(equipType);
         }),
     cannotequip: (ship, equipType) =>
-        ArrayOrItemAll(equipType, equipType => {
+        ArrayOrItemAll(equipType, (equipType) => {
             if (isNaN(equipType)) return false;
             return !ship.canEquip(equipType);
         }),
     canequipthis: (ship, equipment) => {
         return ship.canEquipThis(equipment);
-    }
+    },
 };

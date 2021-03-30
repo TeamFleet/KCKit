@@ -14,28 +14,34 @@ const {
     CA_Mogami,
     CAV_Mogami,
     CAV_MogamiRevised,
-    CA_Houston
+    CAV_MogamiSuper,
+    CA_Houston,
 } = require('../../ship-classes');
 
 const result = [];
-[356, 357].forEach(equipment => {
+[356, 357].forEach((equipment) => {
     result.push({
         equipment,
         ship: {
-            isClass: [CA_Mogami, CAV_Mogami, CAV_MogamiRevised]
+            isClass: [
+                CA_Mogami,
+                CAV_Mogami,
+                CAV_MogamiRevised,
+                CAV_MogamiSuper,
+            ],
         },
         bonus: {
-            fire: 1
-        }
+            fire: 1,
+        },
     });
     result.push({
         equipment,
         ship: {
-            isClass: [CA_Houston]
+            isClass: [CA_Houston],
         },
         bonus: {
-            fire: 2
-        }
+            fire: 2,
+        },
     });
 });
 module.exports = result;

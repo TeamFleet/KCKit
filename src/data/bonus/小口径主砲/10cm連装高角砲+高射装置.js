@@ -7,11 +7,25 @@
  *
  */
 
+require('../../../../typedef');
 const { 雪風改二 } = require('../../ship-ids');
+const { DD_Akizuki } = require('../../ship-classes');
 
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
+    {
+        equipment: 122,
+        ship: {
+            isClass: [DD_Akizuki],
+        },
+        bonus: {
+            fire: 1,
+            aa: 2,
+            evasion: 1,
+        },
+    },
     {
         equipment: 122,
         ship: {

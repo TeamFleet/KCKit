@@ -1,3 +1,5 @@
+require('../../typedef');
+
 const ItemBase = require('./base.js');
 const vars = require('../variables');
 const bonuses = require('../data/bonus');
@@ -80,6 +82,51 @@ class Ship extends ItemBase {
     }
     get _type() {
         return this.getType();
+    }
+
+    /**
+     * 获取给定舰娘的详细/子舰种
+     * @returns {void|ShipSubType} 子舰种特征值
+     */
+    getSubType() {
+        if (typeof this.__SUBTYPE === 'string') return this.__SUBTYPE;
+
+        if (this.isType('carrier')) {
+            const isLightCarrier = this.canEquip(33);
+
+            if (
+                typeof this.capabilities === 'object' &&
+                !!this.capabilities.count_as_night_operation_aviation_personnel
+            )
+                this.__SUBTYPE = 'NightCarrier';
+            else if (
+                !isLightCarrier &&
+                typeof this.stat.asw === 'number' &&
+                this.stat.asw > 0
+            )
+                this.__SUBTYPE = 'ModernizedCarrier';
+            else if (
+                isLightCarrier &&
+                typeof this.stat.asw === 'number' &&
+                this.stat.asw > 0
+            )
+                this.__SUBTYPE = 'EscortCarrier';
+            else if (
+                typeof this.capabilities === 'object' &&
+                !!this.capabilities.attack_surface_ship_prioritised
+            )
+                this.__SUBTYPE = 'AssultCarrier';
+        } else if (this.isType('aviationcruiser')) {
+            if (this.canEquip(14))
+                this.__SUBTYPE = 'SpecialRevisedAviationCruiser';
+        } else if (this.isType('lightcruiser')) {
+            if (this.canEquip(14)) this.__SUBTYPE = 'HeavyRevisedLightCruiser';
+        }
+
+        return this.__SUBTYPE;
+    }
+    get _subType() {
+        return this.getSubType();
     }
 
     /**
@@ -570,6 +617,11 @@ class Ship extends ItemBase {
             case 'carriers':
             case 'cv':
                 return shipTypes.Carriers.includes(this.type);
+
+            case 'aviationcruiser':
+            case 'aviationcruisers':
+            case 'cav':
+                return shipTypes.AviationCruisers.includes(this.type);
 
             case 'heavycruiser':
             case 'heavycruisers':

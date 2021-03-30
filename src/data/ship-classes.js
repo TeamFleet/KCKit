@@ -62,8 +62,14 @@ const group_CV_Navy_RN = [CV_ArkRoyal];
 // ============================================================================
 const CAV_Mogami = 45;
 const CAV_MogamiRevised = 90;
+const CAV_MogamiSuper = 144;
 const CAV_Tone = 46;
-const group_CAV_Navy_IJN = [CAV_Mogami, CAV_MogamiRevised, CAV_Tone];
+const group_CAV_Navy_IJN = [
+    CAV_Mogami,
+    CAV_MogamiRevised,
+    CAV_MogamiSuper,
+    CAV_Tone,
+];
 const CA_Furutaka = 39;
 const CA_Aoba = 40;
 const CA_Myoukou = 41;
@@ -237,6 +243,7 @@ module.exports = {
     // ========================================================================
     CAV_Mogami,
     CAV_MogamiRevised,
+    CAV_MogamiSuper,
     CAV_Tone,
     group_CAV_Navy_IJN,
     CA_Furutaka,
