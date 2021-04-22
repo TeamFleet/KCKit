@@ -9,6 +9,7 @@
  *
  */
 
+require('../../../../typedef');
 const {
     翔鶴改二,
     翔鶴改二甲,
@@ -20,6 +21,8 @@ const {
 
     龍鳳,
     龍鳳改,
+    龍鳳改二,
+    龍鳳改二戊,
 
     祥鳳,
     祥鳳改,
@@ -54,16 +57,22 @@ const {
     Junyou,
 } = require('../../ship-series');
 
+/** @type {Array<EquipmentBonus>} */
 const 天山一二型甲改_空六号電探改装備機 = [
     {
         equipment: 373,
         ship: {
             isID: [...Shoukaku],
         },
-        bonus: {
-            fire: 2,
-            torpedo: 2,
-            evasion: 2,
+        bonusCount: {
+            1: {
+                fire: 2,
+                torpedo: 2,
+                evasion: 2,
+            },
+            2: {
+                fire: 2,
+            },
         },
     },
     {
@@ -71,10 +80,15 @@ const 天山一二型甲改_空六号電探改装備機 = [
         ship: {
             isID: [...Zuikaku],
         },
-        bonus: {
-            fire: 1,
-            torpedo: 2,
-            evasion: 3,
+        bonusCount: {
+            1: {
+                fire: 1,
+                torpedo: 2,
+                evasion: 3,
+            },
+            2: {
+                fire: 1,
+            },
         },
     },
     {
@@ -82,10 +96,15 @@ const 天山一二型甲改_空六号電探改装備機 = [
         ship: {
             isID: [...Taihou, 鈴谷航改二, 熊野航改二],
         },
-        bonus: {
-            fire: 1,
-            torpedo: 2,
-            evasion: 2,
+        bonusCount: {
+            1: {
+                fire: 1,
+                torpedo: 2,
+                evasion: 2,
+            },
+            2: {
+                fire: 1,
+            },
         },
     },
     {
@@ -103,22 +122,52 @@ const 天山一二型甲改_空六号電探改装備機 = [
         ship: {
             isID: [龍鳳, 祥鳳改, 瑞鳳改],
         },
-        bonus: {
-            fire: 1,
-            torpedo: 1,
-            asw: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+                torpedo: 1,
+                asw: 1,
+            },
+            2: {
+                fire: 1,
+                asw: 1,
+            },
         },
     },
     {
         equipment: 373,
         ship: {
-            isID: [龍鳳改, 瑞鳳改二, 瑞鳳改二乙],
+            isID: [龍鳳改, 龍鳳改二, 瑞鳳改二, 瑞鳳改二乙],
         },
-        bonus: {
-            fire: 1,
-            torpedo: 1,
-            asw: 2,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+                torpedo: 1,
+                asw: 2,
+                evasion: 1,
+            },
+            2: {
+                fire: 1,
+                asw: 2,
+            },
+        },
+    },
+    {
+        equipment: 373,
+        ship: {
+            isID: [龍鳳改二戊],
+        },
+        bonusCount: {
+            1: {
+                fire: 1,
+                torpedo: 3,
+                asw: 2,
+                evasion: 4,
+            },
+            2: {
+                fire: 1,
+                asw: 2,
+            },
         },
     },
     {
@@ -145,14 +194,20 @@ const 天山一二型甲改_空六号電探改装備機 = [
         ship: {
             isID: [...Hiyou, ...Junyou, 千歳航改二, 千代田航改二],
         },
-        bonus: {
-            fire: 1,
-            torpedo: 1,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+                torpedo: 1,
+                evasion: 1,
+            },
+            2: {
+                fire: 1,
+            },
         },
     },
 ];
 
+/** @type {Array<EquipmentBonus>} */
 const 天山一二型甲改_熟練_空六号電探改装備機 = [
     {
         equipment: 374,
@@ -197,6 +252,18 @@ const 天山一二型甲改_熟練_空六号電探改装備機 = [
             torpedo: 1,
             asw: 3,
             evasion: 2,
+        },
+    },
+    {
+        equipment: 374,
+        ship: {
+            isID: [龍鳳改二, 龍鳳改二戊],
+        },
+        bonus: {
+            fire: 3,
+            torpedo: 2,
+            asw: 3,
+            evasion: 3,
         },
     },
     {

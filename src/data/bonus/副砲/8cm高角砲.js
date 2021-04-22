@@ -13,12 +13,12 @@ const {
     CL_AganoClass2ndRemodel,
 } = require('../../ships');
 
-const AARadarsHighTier = [
-    30, // 21号対空電探
-    32, // 42号対空電探
-    // 89, // 21号対空電探改
-    410, // 21号対空電探改二
-];
+// const AARadarsHighTier = [
+//     30, // 21号対空電探
+//     32, // 42号対空電探
+//     89, // 21号対空電探改
+//     410, // 21号対空電探改二
+// ];
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
@@ -46,12 +46,10 @@ module.exports = [
     },
 
     {
-        list: [66, `AARadar[${AARadarsHighTier.join(',')}]`],
+        list: [66, `AARadar`],
         equipments: {
             hasID: [66],
-            hasOneOf: AARadarsHighTier.map((eid) => ({
-                isID: eid,
-            })),
+            hasAARadar: true,
         },
         ship: {
             isID: [...CAV_MogamiClassSuperRemodel, ...CL_AganoClass2ndRemodel],
@@ -60,6 +58,6 @@ module.exports = [
             aa: 1,
             evasion: 2,
         },
-        passEquippableCheck: true,
+        // passEquippableCheck: true,
     },
 ];

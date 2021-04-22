@@ -14,6 +14,8 @@ const {
     加賀改二戊,
 
     龍鳳改,
+    龍鳳改二,
+    龍鳳改二戊,
 
     祥鳳改,
 
@@ -45,11 +47,21 @@ const 九七式艦攻改_試製三号戊型_空六号電探改装備機 = [
     {
         equipment: 344,
         ship: {
-            isID: [龍鳳改],
+            isID: [龍鳳改, 龍鳳改二],
         },
         bonus: {
             fire: 4,
             asw: 1,
+        },
+    },
+    {
+        equipment: 344,
+        ship: {
+            isID: [龍鳳改二戊],
+        },
+        bonus: {
+            fire: 5,
+            asw: 2,
         },
     },
     {
@@ -89,12 +101,23 @@ const 九七式艦攻改_熟練_試製三号戊型_空六号電探改装備機 =
     {
         equipment: 345,
         ship: {
-            isID: [龍鳳改],
+            isID: [龍鳳改, 龍鳳改二],
         },
         bonus: {
             fire: 5,
             evasion: 2,
             asw: 1,
+        },
+    },
+    {
+        equipment: 345,
+        ship: {
+            isID: [龍鳳改二戊],
+        },
+        bonus: {
+            fire: 5,
+            evasion: 3,
+            asw: 2,
         },
     },
     {

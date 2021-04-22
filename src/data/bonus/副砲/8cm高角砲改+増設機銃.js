@@ -13,14 +13,14 @@ const {
     CL_AganoClass2ndRemodel,
 } = require('../../ships');
 
-const AARadarsHighTier = [
-    106, // 13号対空電探改
-    30, // 21号対空電探
-    32, // 42号対空電探
-    89, // 21号対空電探改
-    410, // 21号対空電探改二
-    124, // FuMO25 レーダー
-];
+// const AARadarsHighTier = [
+//     106, // 13号対空電探改
+//     30, // 21号対空電探
+//     32, // 42号対空電探
+//     89, // 21号対空電探改
+//     410, // 21号対空電探改二
+//     124, // FuMO25 レーダー
+// ];
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
@@ -59,29 +59,16 @@ module.exports = [
             isID: [...CAV_MogamiClassSuperRemodel, ...CL_AganoClass2ndRemodel],
         },
         bonus: {
-            aa: 3,
-            evasion: 3,
+            aa: 4,
+            evasion: 5,
         },
     },
     {
-        list: [220, `AARadar[${AARadarsHighTier.join(',')}]`],
-        equipments: {
-            hasID: [220],
-            hasOneOf: AARadarsHighTier.map((eid) => ({
-                isID: eid,
-            })),
-        },
-        ship: {
-            isID: [...CAV_MogamiClassSuperRemodel, ...CL_AganoClass2ndRemodel],
-        },
-        bonus: {
-            aa: 1,
-            evasion: 2,
-        },
-        passEquippableCheck: true,
-    },
-    {
-        list: [66, 220, `AARadar[${AARadarsHighTier.join(',')}]`],
+        list: [
+            66, // 8cm高角砲
+            220,
+            `AARadar`,
+        ],
         equipments: [
             {
                 isID: 66,
@@ -90,9 +77,7 @@ module.exports = [
                 isID: 220,
             },
             {
-                isOneOf: AARadarsHighTier.map((eid) => ({
-                    isID: eid,
-                })),
+                isAARadar: true,
             },
         ],
         ship: {
@@ -102,6 +87,47 @@ module.exports = [
             aa: -1,
             evasion: -2,
         },
-        passEquippableCheck: true,
+        // passEquippableCheck: true,
     },
+    // {
+    //     list: [220, `AARadar[${AARadarsHighTier.join(',')}]`],
+    //     equipments: {
+    //         hasID: [220],
+    //         hasOneOf: AARadarsHighTier.map((eid) => ({
+    //             isID: eid,
+    //         })),
+    //     },
+    //     ship: {
+    //         isID: [...CAV_MogamiClassSuperRemodel, ...CL_AganoClass2ndRemodel],
+    //     },
+    //     bonus: {
+    //         aa: 1,
+    //         evasion: 2,
+    //     },
+    //     passEquippableCheck: true,
+    // },
+    // {
+    //     list: [66, 220, `AARadar[${AARadarsHighTier.join(',')}]`],
+    //     equipments: [
+    //         {
+    //             isID: 66,
+    //         },
+    //         {
+    //             isID: 220,
+    //         },
+    //         {
+    //             isOneOf: AARadarsHighTier.map((eid) => ({
+    //                 isID: eid,
+    //             })),
+    //         },
+    //     ],
+    //     ship: {
+    //         isID: [...CAV_MogamiClassSuperRemodel, ...CL_AganoClass2ndRemodel],
+    //     },
+    //     bonus: {
+    //         aa: -1,
+    //         evasion: -2,
+    //     },
+    //     passEquippableCheck: true,
+    // },
 ];

@@ -7,10 +7,10 @@
  *
  */
 
+require('../../../../typedef');
 const {
     CAV_Mogami,
     CAV_MogamiRevised,
-    CAV_MogamiSuper,
     CAV_Tone,
     CA_Furutaka,
     CA_Aoba,
@@ -19,8 +19,35 @@ const {
     CA_Mogami,
     CA_Tone,
 } = require('../../ship-classes');
+const { CAV_MogamiClassSuperRemodel } = require('../../ships');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
+    {
+        equipment: 50,
+        ship: {
+            isID: [...CAV_MogamiClassSuperRemodel],
+        },
+        bonusCount: {
+            1: {
+                fire: 3,
+                evasion: 1,
+            },
+            2: {
+                fire: 8,
+                evasion: 2,
+            },
+            3: {
+                fire: 12,
+                evasion: 3,
+            },
+            4: {
+                fire: 16,
+                evasion: 3,
+            },
+        },
+    },
+
     {
         equipment: 50,
         ship: {
@@ -28,7 +55,6 @@ module.exports = [
                 CA_Mogami,
                 CAV_Mogami,
                 CAV_MogamiRevised,
-                CAV_MogamiSuper,
                 CA_Tone,
                 CAV_Tone,
             ],
@@ -98,13 +124,71 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
+            isID: [...CAV_MogamiClassSuperRemodel],
+        },
+        bonus: {
+            fire: 4,
+            torpedo: 2,
+            evasion: 3,
+        },
+    },
+    {
+        list: [
+            50,
+            30, // 21号対空電探
+        ],
+        equipments: [
+            {
+                isID: 50,
+            },
+            {
+                isID: 30,
+            },
+        ],
+        ship: {
+            isID: [...CAV_MogamiClassSuperRemodel],
+        },
+        bonus: {
+            fire: 1,
+            aa: 3,
+            evasion: 2,
+        },
+    },
+    {
+        list: [
+            50,
+            410, // 21号対空電探改二
+        ],
+        equipments: [
+            {
+                isID: 50,
+            },
+            {
+                isID: 410,
+            },
+        ],
+        ship: {
+            isID: [...CAV_MogamiClassSuperRemodel],
+        },
+        bonus: {
+            fire: 3,
+            aa: 3,
+            evasion: 2,
+        },
+    },
+    {
+        list: [50, 'SurfaceRadar'],
+        equipments: {
+            hasID: [50],
+            hasSurfaceRadar: true,
+        },
+        ship: {
             isClass: [
                 CA_Myoukou,
                 CA_Takao,
                 CA_Mogami,
                 CAV_Mogami,
                 CAV_MogamiRevised,
-                CAV_MogamiSuper,
                 CA_Tone,
                 CAV_Tone,
             ],

@@ -13,6 +13,7 @@ const {
     group_CAV_Navy_IJN,
     group_CA_Navy_IJN,
 } = require('../../ship-classes');
+const { CAV_MogamiClassSuperRemodel } = require('../../ships');
 
 module.exports = [
     {
@@ -22,6 +23,7 @@ module.exports = [
                 416, // 古鷹改二
                 417, // 加古改二
                 295, // 衣笠改
+                ...CAV_MogamiClassSuperRemodel,
             ],
         },
         bonus: {
@@ -65,6 +67,7 @@ module.exports = [
                 264, // 青葉改
                 295, // 衣笠改
                 142, // 衣笠改二
+                ...CAV_MogamiClassSuperRemodel,
             ],
         },
         bonus: {

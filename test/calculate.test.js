@@ -1481,9 +1481,9 @@ describe('Calculating functions/utilities', () => {
                         calculate.bonus(能代改二, [66, 286, 149, 124])
                     ).toEqual({
                         torpedo: 5,
-                        aa: 2,
+                        aa: 3,
                         asw: 2,
-                        evasion: 7,
+                        evasion: 9,
                     });
                 });
                 it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37', () => {
@@ -1491,9 +1491,9 @@ describe('Calculating functions/utilities', () => {
                         calculate.bonus(能代改二, [66, 286, 149, 307])
                     ).toEqual({
                         torpedo: 5,
-                        aa: 2,
+                        aa: 3,
                         asw: 2,
-                        evasion: 7,
+                        evasion: 9,
                     });
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機', () => {
@@ -1522,9 +1522,9 @@ describe('Calculating functions/utilities', () => {
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
-                        aa: 8,
+                        aa: 9,
                         asw: 2,
-                        evasion: 12,
+                        evasion: 14,
                     });
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 8cm高角砲改', () => {
@@ -1544,9 +1544,9 @@ describe('Calculating functions/utilities', () => {
                     ).toEqual({
                         fire: 1,
                         torpedo: 2,
-                        aa: 10,
+                        aa: 11,
                         asw: 2,
-                        evasion: 11,
+                        evasion: 13,
                     });
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 21号対空電探 | 8cm高角砲改', () => {
@@ -1566,9 +1566,9 @@ describe('Calculating functions/utilities', () => {
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
-                        aa: 10,
+                        aa: 11,
                         asw: 2,
-                        evasion: 13,
+                        evasion: 15,
                     });
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37 | 8cm高角砲改', () => {
@@ -1577,9 +1577,9 @@ describe('Calculating functions/utilities', () => {
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
-                        aa: 10,
+                        aa: 11,
                         asw: 2,
-                        evasion: 13,
+                        evasion: 15,
                     });
                 });
                 it('三式爆雷投射機 集中配備 | 試製15cm9連装対潜噴進砲', () => {
@@ -1722,18 +1722,18 @@ describe('Calculating functions/utilities', () => {
                         expect(
                             calculate.bonus(ship, [66, 286, 149, 124])
                         ).toEqual({
-                            aa: 2,
+                            aa: 3,
                             torpedo: 5,
-                            evasion: 3,
+                            evasion: 5,
                         });
                     });
                     it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37', () => {
                         expect(
                             calculate.bonus(ship, [66, 286, 149, 307])
                         ).toEqual({
-                            aa: 2,
+                            aa: 3,
                             torpedo: 5,
-                            evasion: 3,
+                            evasion: 5,
                         });
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機', () => {
@@ -1760,8 +1760,8 @@ describe('Calculating functions/utilities', () => {
                         ).toEqual({
                             fire: 1,
                             torpedo: 5,
-                            aa: 8,
-                            evasion: 8,
+                            aa: 9,
+                            evasion: 10,
                         });
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 8cm高角砲改', () => {
@@ -1780,8 +1780,8 @@ describe('Calculating functions/utilities', () => {
                         ).toEqual({
                             fire: 2,
                             torpedo: 2,
-                            aa: 14,
-                            evasion: 11,
+                            aa: 15,
+                            evasion: 13,
                             armor: 2,
                         });
                     });
@@ -1801,8 +1801,8 @@ describe('Calculating functions/utilities', () => {
                         ).toEqual({
                             fire: 1,
                             torpedo: 5,
-                            aa: 10,
-                            evasion: 9,
+                            aa: 11,
+                            evasion: 11,
                         });
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37 | 8cm高角砲改', () => {
@@ -1811,8 +1811,8 @@ describe('Calculating functions/utilities', () => {
                         ).toEqual({
                             fire: 1,
                             torpedo: 5,
-                            aa: 10,
-                            evasion: 9,
+                            aa: 11,
+                            evasion: 11,
                         });
                     });
                     it('三式爆雷投射機 集中配備 | 試製15cm9連装対潜噴進砲', () => {
@@ -2073,7 +2073,65 @@ describe('Calculating functions/utilities', () => {
             });
             describe('最上改二 & 最上改二特', () => {
                 [最上改二, 最上改二特].forEach((ship) => {
+                    describe('20.3cm(3号)連装砲', () => {
+                        it('20.3cm(3号)連装砲', () => {
+                            expect(calculate.bonus(ship, [50])).toEqual({
+                                fire: 3,
+                                evasion: 1,
+                            });
+                        });
+                        it('20.3cm(3号)連装砲 | 20.3cm(3号)連装砲', () => {
+                            expect(calculate.bonus(ship, [50, 50])).toEqual({
+                                fire: 8,
+                                evasion: 2,
+                            });
+                        });
+                        it('20.3cm(3号)連装砲 | 32号対水上電探', () => {
+                            expect(calculate.bonus(ship, [50, 31])).toEqual({
+                                fire: 7,
+                                torpedo: 2,
+                                evasion: 4,
+                            });
+                        });
+                        it('20.3cm(3号)連装砲 | 21号対空電探', () => {
+                            expect(calculate.bonus(ship, [50, 30])).toEqual({
+                                fire: 4,
+                                aa: 6,
+                                evasion: 5,
+                                los: 2,
+                            });
+                        });
+                        it('20.3cm(3号)連装砲 | 21号対空電探改二', () => {
+                            expect(calculate.bonus(ship, [50, 410])).toEqual({
+                                fire: 11,
+                                torpedo: 2,
+                                aa: 8,
+                                evasion: 10,
+                                los: 2,
+                                armor: 1,
+                            });
+                        });
+                        it('20.3cm(3号)連装砲 | 32号対水上電探 | 21号対空電探改二', () => {
+                            expect(
+                                calculate.bonus(ship, [50, 31, 410])
+                            ).toEqual({
+                                fire: 11,
+                                torpedo: 2,
+                                aa: 8,
+                                evasion: 10,
+                                los: 2,
+                                armor: 1,
+                            });
+                        });
+                    });
                     describe('8cm高角砲', () => {
+                        it('8cm高角砲改 | 8cm高角砲改', () => {
+                            expect(calculate.bonus(ship, [66, 66])).toEqual({
+                                fire: 2,
+                                aa: 4,
+                                evasion: 4,
+                            });
+                        });
                         it('8cm高角砲改 | 8cm高角砲改 | 61cm四連装(酸素)魚雷後期型', () => {
                             expect(
                                 calculate.bonus(ship, [66, 66, 286])
@@ -2107,8 +2165,8 @@ describe('Calculating functions/utilities', () => {
                                 calculate.bonus(ship, [66, 66, 124])
                             ).toEqual({
                                 fire: 2,
-                                aa: 4,
-                                evasion: 4,
+                                aa: 5,
+                                evasion: 6,
                             });
                         });
                         it('8cm高角砲改 | 8cm高角砲改 | GFCS Mk.37', () => {
@@ -2116,8 +2174,15 @@ describe('Calculating functions/utilities', () => {
                                 calculate.bonus(ship, [66, 66, 307])
                             ).toEqual({
                                 fire: 2,
-                                aa: 4,
-                                evasion: 4,
+                                aa: 5,
+                                evasion: 6,
+                            });
+                        });
+                        it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃', () => {
+                            expect(calculate.bonus(ship, [220, 220])).toEqual({
+                                fire: 4,
+                                aa: 10,
+                                evasion: 8,
                             });
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 零式水中聴音機', () => {
@@ -2171,8 +2236,8 @@ describe('Calculating functions/utilities', () => {
                                 calculate.bonus(ship, [220, 220, 307])
                             ).toEqual({
                                 fire: 4,
-                                aa: 13,
-                                evasion: 11,
+                                aa: 14,
+                                evasion: 13,
                             });
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | 8cm高角砲改', () => {
@@ -2195,8 +2260,8 @@ describe('Calculating functions/utilities', () => {
                                 calculate.bonus(ship, [220, 220, 66, 106, 66])
                             ).toEqual({
                                 fire: 6,
-                                aa: 17,
-                                evasion: 15,
+                                aa: 18,
+                                evasion: 17,
                             });
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | 21号対空電探 | 8cm高角砲改', () => {
@@ -2209,7 +2274,7 @@ describe('Calculating functions/utilities', () => {
                                 los: 2,
                             });
                         });
-                        it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | 21号対空電探 | 8cm高角砲改', () => {
+                        it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | 42号対空電探 | 8cm高角砲改', () => {
                             expect(
                                 calculate.bonus(ship, [220, 220, 66, 32, 66])
                             ).toEqual({
@@ -2223,8 +2288,8 @@ describe('Calculating functions/utilities', () => {
                                 calculate.bonus(ship, [220, 220, 66, 124, 66])
                             ).toEqual({
                                 fire: 6,
-                                aa: 17,
-                                evasion: 15,
+                                aa: 18,
+                                evasion: 17,
                             });
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | GFCS Mk.37 | 8cm高角砲改', () => {
@@ -2232,8 +2297,8 @@ describe('Calculating functions/utilities', () => {
                                 calculate.bonus(ship, [220, 220, 66, 307, 66])
                             ).toEqual({
                                 fire: 6,
-                                aa: 17,
-                                evasion: 15,
+                                aa: 18,
+                                evasion: 17,
                             });
                         });
                     });

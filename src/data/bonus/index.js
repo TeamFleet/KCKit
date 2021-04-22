@@ -129,6 +129,7 @@ const dataBonuses = [
 
     ...require('./電探/13号対空電探改'),
     ...require('./電探/21号対空電探'),
+    ...require('./電探/21号対空電探改二'),
     ...require('./電探/GFCS Mk.37'),
     ...require('./電探/SK／SGレーダー'),
 
