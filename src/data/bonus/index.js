@@ -99,6 +99,7 @@ const dataBonuses = [
     ...require('./艦上機/Re.2001 OR改'),
     ...require('./艦上機/Re.2005 改'),
     ...require('./艦上機/XF5U'),
+    ...require('./艦上機/零式艦戦(爆戦)'),
     ...require('./艦上機/九九式艦爆二二型'),
     ...require('./艦上機/九九式艦爆(江草隊)'),
     ...require('./艦上機/彗星'),

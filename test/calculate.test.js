@@ -1363,6 +1363,13 @@ describe('Calculating functions/utilities', () => {
                     evasion: 5,
                 });
             });
+            it('龍鳳改二 || 零式艦戦62型(爆戦) | 零式艦戦63型(爆戦)', () => {
+                expect(calculate.bonus(888, [60, 219])).toEqual({
+                    fire: 2,
+                    aa: 2,
+                    evasion: 2,
+                });
+            });
         });
 
         describe('Sets...', () => {
