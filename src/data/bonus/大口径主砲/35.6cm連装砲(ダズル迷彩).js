@@ -6,6 +6,8 @@
 
 // https://wikiwiki.jp/kancolle/35.6cm%E9%80%A3%E8%A3%85%E7%A0%B2%28%E3%83%80%E3%82%BA%E3%83%AB%E8%BF%B7%E5%BD%A9%29
 
+const { 榛名改二 } = require('../../ship-ids');
+
 module.exports = [
     // 金剛改二丙 ※補正なし
     // 比叡改二丙 ※補正なし
@@ -37,7 +39,7 @@ module.exports = [
     {
         equipment: 104,
         ship: {
-            isID: [151],
+            isID: [榛名改二],
         },
         bonus: {
             fire: 2,

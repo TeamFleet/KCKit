@@ -523,7 +523,7 @@ describe('Base functions/utilities', () => {
                     expect(db.ships[156].getBonuses().length).toEqual(8);
                 });
                 it(`榛名改二 - N bonuses`, () => {
-                    expect(db.ships[151].getBonuses().length).toEqual(14);
+                    expect(db.ships[151].getBonuses().length).toEqual(15);
                 });
             });
             describe(`should Ship.prototype.getAACI() works`, () => {
@@ -605,6 +605,8 @@ describe('Base functions/utilities', () => {
                 expect(db.ships[492].canEquipThis(194)).toEqual(false);
                 // Richelieu ❌ 46cm三連装砲改 + Laté 298B
                 expect(db.ships[492].canEquipThis([276, 194])).toEqual(false);
+                // 秋月改 ✅ 42号対空電探改二
+                expect(db.ships[492].canEquipThis([330, 411])).toEqual(true);
             });
             it(`should Ship.prototype.getSubType() works`, () => {
                 // 加賀改二

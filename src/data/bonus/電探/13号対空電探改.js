@@ -23,7 +23,14 @@ const {
     Asashimo,
     Suzutsuki,
 } = require('../../ships');
-const { 矢矧, 矢矧改, 矢矧改二, 矢矧改二乙 } = require('../../ship-ids');
+const {
+    長門改二,
+    榛名改二,
+    矢矧,
+    矢矧改,
+    矢矧改二,
+    矢矧改二乙,
+} = require('../../ship-ids');
 
 module.exports = [
     {
@@ -76,8 +83,8 @@ module.exports = [
         equipment: 106,
         ship: {
             isID: [
-                151, // 榛名改二
-                541, // 長門改二
+                榛名改二,
+                長門改二,
                 407, // 潮改二
                 145, // 時雨改二
                 419, // 初霜改二

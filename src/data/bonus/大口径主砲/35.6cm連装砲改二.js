@@ -21,7 +21,7 @@ const {
     BB_KongouClass2ndRemodel,
     BB_KongouClassRemodelAll,
 } = require('../../ships');
-const { 比叡改二丙 } = require('../../ship-ids');
+const { 金剛改二丙, 比叡改二丙 } = require('../../ship-ids');
 
 module.exports = [
     // @ 金剛型(未改造) & 扶桑型 & 伊勢型
@@ -75,10 +75,7 @@ module.exports = [
     {
         equipment: 329,
         ship: {
-            isID: [
-                591, // 金剛改二丙
-                比叡改二丙,
-            ],
+            isID: [金剛改二丙, 比叡改二丙],
         },
         bonus: {
             fire: 4,

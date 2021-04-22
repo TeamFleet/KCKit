@@ -1345,6 +1345,16 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('42号対空電探改二', () => {
+                // it('吹雪改二 || 42号対空電探改二', () => {
+                //     expect(calculate.bonus(426, [411])).toEqual({});
+                // });
+                it('秋月改 || 42号対空電探改二', () => {
+                    expect(calculate.bonus(330, [411])).toEqual({
+                        evasion: -9,
+                    });
+                });
+            });
         });
 
         describe('Sets...', () => {

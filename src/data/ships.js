@@ -1,5 +1,15 @@
 const S = require('./ship-series');
 const {
+    扶桑改二,
+    山城改二,
+
+    長門改二,
+    陸奥改二,
+
+    金剛改二丙,
+    比叡改二丙,
+    榛名改二,
+
     'South Dakota': SouthDakota,
     'South Dakota改': SouthDakota改,
 
@@ -34,10 +44,7 @@ const BB_NagatoClassRemodel = [
     275, // 長門改
     276, // 陸奥改
 ];
-const BB_NagatoClass2ndRemodel = [
-    541, // 長門改二
-    573, // 陸奥改二
-];
+const BB_NagatoClass2ndRemodel = [長門改二, 陸奥改二];
 const BB_NagatoClassRemodelAll = [
     ...BB_NagatoClassRemodel,
     ...BB_NagatoClass2ndRemodel,
@@ -50,10 +57,10 @@ const BB_KongouClassRemodel = [
 ];
 const BB_KongouClass2ndRemodel = [
     149, // 金剛改二
-    591, // 金剛改二丙
+    金剛改二丙,
     150, // 比叡改二
-    592, // 比叡改二丙
-    151, // 榛名改二
+    比叡改二丙,
+    榛名改二,
     152, // 霧島改二
 ];
 const BB_KongouClassRemodelAll = [
@@ -69,10 +76,7 @@ const BB_IseClass2ndRemodel = [
     554, // 日向改二
 ];
 const BB_IseClassRemodelAll = BB_IseClassRemodel.concat(BB_IseClass2ndRemodel);
-const BB_FusouClass2ndRemodel = [
-    411, // 扶桑改二
-    412, // 山城改二
-];
+const BB_FusouClass2ndRemodel = [扶桑改二, 山城改二];
 const BB_IseClassRemodel_PLUS_FusouClass2ndRemodel = BB_IseClassRemodel.concat(
     BB_FusouClass2ndRemodel
 );

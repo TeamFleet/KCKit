@@ -6,6 +6,8 @@
 
 // https://wikiwiki.jp/kancolle/%E4%B8%89%E5%BC%8F%E5%BC%BE%E6%94%B9
 
+const { 長門改二, 陸奥改二, 榛名改二 } = require('../../ship-ids');
+
 module.exports = [
     {
         equipment: 317,
@@ -64,9 +66,7 @@ module.exports = [
     {
         equipment: 317,
         ship: {
-            isID: [
-                151, // 榛名改二
-            ],
+            isID: [榛名改二],
         },
         bonusCount: {
             1: {
@@ -95,9 +95,7 @@ module.exports = [
     {
         equipment: 317,
         ship: {
-            isID: [
-                541, // 長門改二
-            ],
+            isID: [長門改二],
         },
         bonusCount: {
             1: {
@@ -110,9 +108,7 @@ module.exports = [
     {
         equipment: 317,
         ship: {
-            isID: [
-                573, // 陸奥改二
-            ],
+            isID: [陸奥改二],
         },
         bonusCount: {
             1: {

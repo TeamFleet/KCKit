@@ -6,6 +6,8 @@
 
 // https://wikiwiki.jp/kancolle/%E4%B8%89%E5%BC%8F%E5%BC%BE
 
+const { 榛名改二 } = require('../../ship-ids');
+
 module.exports = [
     {
         equipment: 35,
@@ -41,9 +43,7 @@ module.exports = [
     {
         equipment: 35,
         ship: {
-            isID: [
-                151, // 榛名改二
-            ],
+            isID: [榛名改二],
         },
         bonusCount: {
             1: {

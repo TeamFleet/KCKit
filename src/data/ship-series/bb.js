@@ -1,4 +1,11 @@
-const { 比叡改二丙, Washington, Washington改 } = require('../ship-ids');
+const {
+    扶桑改二,
+    山城改二,
+    比叡改二丙,
+    榛名改二,
+    Washington,
+    Washington改,
+} = require('../ship-ids');
 
 module.exports = {
     Colorado: [
@@ -22,7 +29,7 @@ module.exports = {
     Haruna: [
         79, // 榛名
         211, // 榛名改
-        151, // 榛名改二
+        榛名改二, // 榛名改二
     ],
     Kirishima: [
         85, // 霧島
@@ -44,11 +51,11 @@ module.exports = {
     Fusou: [
         26, // 扶桑
         286, // 扶桑改
-        411, // 扶桑改二
+        扶桑改二,
     ],
     Yamashiro: [
         27, // 山城
         287, // 山城改
-        412, // 山城改二
+        山城改二,
     ],
 };
