@@ -137,7 +137,7 @@ const 天山一二型甲改_空六号電探改装備機 = [
     {
         equipment: 373,
         ship: {
-            isID: [龍鳳改, 龍鳳改二, 瑞鳳改二, 瑞鳳改二乙],
+            isID: [龍鳳改, 瑞鳳改二, 瑞鳳改二乙],
         },
         bonusCount: {
             1: {
@@ -166,6 +166,24 @@ const 天山一二型甲改_空六号電探改装備機 = [
             },
             2: {
                 fire: 1,
+                asw: 2,
+            },
+        },
+    },
+    {
+        equipment: 373,
+        ship: {
+            isID: [龍鳳改二],
+        },
+        bonusCount: {
+            1: {
+                fire: 2,
+                torpedo: 2,
+                asw: 2,
+                evasion: 2,
+            },
+            2: {
+                fire: 2,
                 asw: 2,
             },
         },
