@@ -1355,6 +1355,14 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            it('神州丸改 || 装甲艇(AB艇) | 武装大発', () => {
+                expect(calculate.bonus(626, [408, 409])).toEqual({
+                    fire: 4,
+                    aa: 2,
+                    los: 2,
+                    evasion: 5,
+                });
+            });
         });
 
         describe('Sets...', () => {
