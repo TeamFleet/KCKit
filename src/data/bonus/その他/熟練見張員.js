@@ -5,7 +5,12 @@
  * 129. 熟練見張員
  *      https://wikiwiki.jp/kancolle/%E7%86%9F%E7%B7%B4%E8%A6%8B%E5%BC%B5%E5%93%A1
  *
+ * 412. 水雷戦隊 熟練見張員
+ *      https://wikiwiki.jp/kancolle/%E6%B0%B4%E9%9B%B7%E6%88%A6%E9%9A%8A%20%E7%86%9F%E7%B7%B4%E8%A6%8B%E5%BC%B5%E5%93%A1
+ *
  */
+
+require('../../../../typedef');
 
 const {
     DD_KagerouROCN,
@@ -15,7 +20,10 @@ const {
     group_DD_Navy_IJN,
 } = require('../../ship-classes');
 
-module.exports = [
+// ============================================================================
+
+/** @type {Array<EquipmentBonus>} */
+const 熟練見張員 = [
     {
         equipment: 129,
         ship: {
@@ -53,3 +61,66 @@ module.exports = [
         },
     },
 ];
+
+// ============================================================================
+
+/** @type {Array<EquipmentBonus>} */
+const 水雷戦隊熟練見張員 = [
+    {
+        equipment: 412,
+        ship: {
+            isClass: [...group_CAV_Navy_IJN, ...group_CA_Navy_IJN],
+        },
+        bonus: {
+            fire: 1,
+            los: 1,
+            evasion: 1,
+        },
+    },
+    {
+        equipment: 412,
+        ship: {
+            isClass: [...group_CAV_Navy_IJN, ...group_CA_Navy_IJN],
+        },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                torpedo: 3,
+                los: 3,
+                evasion: 2,
+            },
+            4: {
+                fire: 4,
+                torpedo: 3,
+                los: 3,
+                evasion: 2,
+            },
+        },
+    },
+    {
+        equipment: 412,
+        ship: {
+            isClass: [...group_DD_Navy_IJN, DD_KagerouROCN],
+        },
+        bonusImprove: {
+            0: {
+                fire: 2,
+                torpedo: 4,
+                asw: 2,
+                los: 1,
+                evasion: 3,
+            },
+            4: {
+                fire: 3,
+                torpedo: 4,
+                asw: 2,
+                los: 1,
+                evasion: 3,
+            },
+        },
+    },
+];
+
+// ============================================================================
+
+module.exports = [...熟練見張員, ...水雷戦隊熟練見張員];

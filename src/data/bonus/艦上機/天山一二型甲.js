@@ -7,6 +7,8 @@
  *
  */
 
+require('../../../../typedef');
+
 const {
     龍鳳,
     龍鳳改,
@@ -38,6 +40,7 @@ const {
     Junyou,
 } = require('../../ship-series');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 372,
@@ -79,7 +82,18 @@ module.exports = [
     {
         equipment: 372,
         ship: {
-            isID: [瑞鳳改二, 瑞鳳改二乙, 龍鳳改, 龍鳳改二, 龍鳳改二戊],
+            isID: [龍鳳改二, 龍鳳改二戊],
+        },
+        bonus: {
+            fire: 2,
+            torpedo: 2,
+            asw: 1,
+        },
+    },
+    {
+        equipment: 372,
+        ship: {
+            isID: [瑞鳳改二, 瑞鳳改二乙, 龍鳳改],
         },
         bonus: {
             fire: 1,

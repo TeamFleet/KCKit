@@ -41,7 +41,7 @@ const SP_秋雲改二 = [
         },
     },
     {
-        list: [366, 267, 129],
+        list: [366, 267, 'SurfaceShipPersonnel'],
         equipments: [
             {
                 isID: 366, // 12.7cm連装砲D型改三
@@ -50,7 +50,7 @@ const SP_秋雲改二 = [
                 isID: 267, // 12.7cm連装砲D型改二
             },
             {
-                isID: 129, // 熟練見張員
+                isSurfaceShipPersonnel: true,
             },
         ],
         ship: {

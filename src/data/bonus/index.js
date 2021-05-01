@@ -79,6 +79,7 @@ const dataBonuses = [
     ...require('./魚雷/後期型53cm艦首魚雷(8門)'),
 
     ...require('./水上機/紫雲'),
+    ...require('./水上機/SOC Seagull'),
     ...require('./水上機/OS2U'),
     ...require('./水上機/S9 Osprey'),
     ...require('./水上機/Swordfish'),

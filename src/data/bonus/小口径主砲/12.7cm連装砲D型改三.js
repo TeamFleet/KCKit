@@ -8,6 +8,7 @@
  */
 
 require('../../../../typedef');
+
 const {
     DD_KagerouClass2ndRemodelExcludeAkigumo,
     DD_KagerouClass2ndRemodel,
@@ -183,13 +184,13 @@ module.exports = [
     // + 熟練見張員
     // @ 秋雲改二
     {
-        list: [366, 129],
+        list: [366, 'SurfaceShipPersonnel'],
         equipments: [
             {
                 isID: 366,
             },
             {
-                isID: 129,
+                isSurfaceShipPersonnel: true,
             },
         ],
         ship: {

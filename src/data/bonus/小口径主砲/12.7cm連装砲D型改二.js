@@ -7,6 +7,8 @@
  *
  */
 
+require('../../../../typedef');
+
 const {
     DD_KagerouClass2ndRemodelExcludeAkigumo,
     DD_KagerouClass2ndRemodel,
@@ -16,6 +18,7 @@ const {
 const { DD_Kagerou, DD_KagerouROCN } = require('../../ship-classes');
 const { 丹陽, 秋雲改二 } = require('../../ship-ids');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     // @ 陽炎型
     {
@@ -133,7 +136,7 @@ module.exports = [
         },
         bonus: {
             fire: 3,
-            torpedo: 4,
+            torpedo: 6,
             evasion: 3,
         },
     },
@@ -162,13 +165,13 @@ module.exports = [
     // + 熟練見張員
     // @ 秋雲改二
     {
-        list: [267, 129],
+        list: [267, 'SurfaceShipPersonnel'],
         equipments: [
             {
                 isID: 267,
             },
             {
-                isID: 129,
+                isSurfaceShipPersonnel: true,
             },
         ],
         ship: {

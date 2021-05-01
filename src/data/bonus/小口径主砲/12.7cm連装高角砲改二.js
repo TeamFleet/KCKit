@@ -7,11 +7,15 @@
  *
  */
 
+require('../../../../typedef');
+
 const { DD_Matsu } = require('../../ship-classes');
 const { DD_Div7_2ndRemodel } = require('../../ships');
 const {
     天龍改二,
     龍田改二,
+    球磨改二,
+    球磨改二丁,
     北上改二,
     大井改二,
     五十鈴改二,
@@ -29,6 +33,7 @@ const {
 
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
 const 単体ボーナス = [
     {
         equipment: 380,
@@ -43,6 +48,10 @@ const 単体ボーナス = [
             2: {
                 fire: 4,
                 aa: 6,
+            },
+            3: {
+                fire: 5,
+                aa: 8,
             },
         },
     },
@@ -60,6 +69,11 @@ const 単体ボーナス = [
             2: {
                 fire: 5,
                 aa: 5,
+                evasion: 2,
+            },
+            3: {
+                fire: 7,
+                aa: 7,
                 evasion: 2,
             },
         },
@@ -88,11 +102,42 @@ const 単体ボーナス = [
     {
         equipment: 380,
         ship: {
+            isID: [球磨改二, 球磨改二丁],
+        },
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 2,
+            },
+            2: {
+                fire: 6,
+                aa: 2,
+            },
+            3: {
+                fire: 9,
+                aa: 2,
+            },
+        },
+    },
+    {
+        equipment: 380,
+        ship: {
             isID: [五十鈴改二, 鬼怒改二, 那珂改二],
         },
         bonus: {
             fire: 2,
             aa: 3,
+            asw: 2,
+        },
+    },
+    {
+        equipment: 380,
+        ship: {
+            isID: [由良改二],
+        },
+        bonus: {
+            fire: 2,
+            aa: 4,
             asw: 2,
         },
     },
@@ -167,6 +212,7 @@ const 単体ボーナス = [
 
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
 const 相互シナジーボーナス = [
     {
         list: [380, 'SurfaceRadar'],
@@ -222,6 +268,20 @@ const 相互シナジーボーナス = [
         bonus: {
             fire: 3,
             evasion: 3,
+        },
+    },
+    {
+        list: [380, 'SurfaceRadar'],
+        equipments: {
+            hasID: [380],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: [球磨改二, 球磨改二丁],
+        },
+        bonus: {
+            fire: 3,
+            evasion: 4,
         },
     },
     {

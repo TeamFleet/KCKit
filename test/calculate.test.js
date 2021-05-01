@@ -131,7 +131,7 @@ describe('Calculating functions/utilities', () => {
             it('長波改二 || 12.7cm連装砲D型改二 ➕12.7cm連装砲D型改二 ➕22号対水上電探改四', () => {
                 expect(calculate.bonus(543, [267, 267, 88])).toEqual({
                     fire: 9,
-                    torpedo: 4,
+                    torpedo: 6,
                     evasion: 5,
                 });
             });
@@ -1342,6 +1342,35 @@ describe('Calculating functions/utilities', () => {
                         asw: 4,
                         los: 2,
                         evasion: 4,
+                    });
+                });
+                it('秋雲改二 || 12.7cm連装砲D型改二 | 12.7cm連装砲D型改三 | 42号対空電探改二 | 熟練見張員', () => {
+                    // Base
+                    expect(calculate.bonus(648, [366, 267, 411])).toEqual({
+                        fire: 14,
+                        torpedo: 10,
+                        aa: 12,
+                        evasion: 3,
+                    });
+                    expect(
+                        calculate.bonus(648, [366, 267, 411, null, 129])
+                    ).toEqual({
+                        fire: 17,
+                        torpedo: 12,
+                        aa: 14,
+                        asw: 2,
+                        evasion: 8,
+                        los: 1,
+                    });
+                    expect(
+                        calculate.bonus(648, [366, 267, 411, null, 412])
+                    ).toEqual({
+                        fire: 18,
+                        torpedo: 14,
+                        aa: 14,
+                        asw: 2,
+                        evasion: 9,
+                        los: 1,
                     });
                 });
             });
