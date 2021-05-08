@@ -80,10 +80,10 @@ const 水雷戦隊熟練見張員 = [
     {
         equipment: 412,
         ship: {
-            isClass: [...group_CAV_Navy_IJN, ...group_CA_Navy_IJN],
+            isClass: [...group_CL_S_Navy_IJN],
         },
         bonusImprove: {
-            0: {
+            1: {
                 fire: 3,
                 torpedo: 3,
                 los: 3,
@@ -95,6 +95,12 @@ const 水雷戦隊熟練見張員 = [
                 los: 3,
                 evasion: 2,
             },
+            8: {
+                fire: 4,
+                torpedo: 4,
+                los: 3,
+                evasion: 2,
+            },
         },
     },
     {
@@ -103,7 +109,7 @@ const 水雷戦隊熟練見張員 = [
             isClass: [...group_DD_Navy_IJN, DD_KagerouROCN],
         },
         bonusImprove: {
-            0: {
+            1: {
                 fire: 2,
                 torpedo: 4,
                 asw: 2,
@@ -113,6 +119,13 @@ const 水雷戦隊熟練見張員 = [
             4: {
                 fire: 3,
                 torpedo: 4,
+                asw: 2,
+                los: 1,
+                evasion: 3,
+            },
+            8: {
+                fire: 3,
+                torpedo: 5,
                 asw: 2,
                 los: 1,
                 evasion: 3,

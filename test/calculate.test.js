@@ -1363,7 +1363,11 @@ describe('Calculating functions/utilities', () => {
                         los: 1,
                     });
                     expect(
-                        calculate.bonus(648, [366, 267, 411, null, 412])
+                        calculate.bonus(
+                            648,
+                            [366, 267, 411, null, 412],
+                            [0, 0, 0, null, 1]
+                        )
                     ).toEqual({
                         fire: 18,
                         torpedo: 14,
