@@ -278,7 +278,7 @@ class Ship extends ItemBase {
      */
     getEquipmentTypes(slotIndex) {
         const disabled = this.additional_disable_item_types || [];
-        const shipClass = getdb('ship_classes')[this.class];
+        const shipClass = getdb('ship_classes')[this.class] || {};
         const shipType = getdb('ship_types')[this.type];
         const types = [
             ...(shipType.equipable || []),

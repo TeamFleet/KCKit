@@ -2,8 +2,8 @@
  * @module
  * 装备额外属性收益
  *
- * 171. OS2U
- *      https://wikiwiki.jp/kancolle/OS2U
+ * 414. SOC Seagull
+ *      https://wikiwiki.jp/kancolle/SOC%20Seagull
  *
  */
 
@@ -18,48 +18,43 @@ const {
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
-        equipment: 171,
+        equipment: 414,
         ship: {
             isClass: [...group_BB_Navy_USN],
         },
         bonusImprove: {
             0: {
-                fire: 1,
                 los: 1,
             },
-            3: {
+            8: {
+                los: 1,
+                evasion: 1,
+            },
+        },
+    },
+    {
+        equipment: 414,
+        ship: {
+            isClass: [...group_CA_Navy_USN, ...group_CL_Navy_USN],
+        },
+        bonusImprove: {
+            0: {
                 fire: 1,
                 los: 2,
             },
-            5: {
+            4: {
                 fire: 1,
-                los: 2,
-                evasion: 1,
+                los: 3,
             },
             8: {
                 fire: 1,
                 los: 3,
-                evasion: 1,
+                evasion: 2,
             },
             10: {
                 fire: 2,
                 los: 3,
                 evasion: 2,
-            },
-        },
-    },
-    {
-        equipment: 171,
-        ship: {
-            isClass: [...group_CA_Navy_USN, ...group_CL_Navy_USN],
-        },
-        bonusImprove: {
-            5: {
-                los: 1,
-            },
-            10: {
-                fire: 1,
-                los: 1,
             },
         },
     },

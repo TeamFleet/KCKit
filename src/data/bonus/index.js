@@ -80,6 +80,7 @@ const dataBonuses = [
 
     ...require('./水上機/紫雲'),
     ...require('./水上機/SOC Seagull'),
+    ...require('./水上機/SO3C Seamew改'),
     ...require('./水上機/OS2U'),
     ...require('./水上機/S9 Osprey'),
     ...require('./水上機/Swordfish'),

@@ -242,7 +242,7 @@ module.exports = class Equipment extends ItemBase {
                     if (
                         Array.isArray(bonus.ship.isClass) &&
                         !bonus.ship.isClass.every((classId) => {
-                            const shipClass = getShipClass(classId);
+                            const shipClass = getShipClass(classId) || {};
                             return [
                                 ...(shipClass.additional_item_types || []),
                                 ...getShipType(shipClass.ship_type_id)

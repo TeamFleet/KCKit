@@ -79,7 +79,7 @@ const 単体ボーナス = [
         },
     },
     {
-        equipment: 379,
+        equipment: 380,
         ship: {
             isID: [丹陽, 雪風改二],
         },

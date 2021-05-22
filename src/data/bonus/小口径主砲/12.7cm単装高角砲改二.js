@@ -274,9 +274,9 @@ const 相互シナジーボーナス = [
         },
     },
     {
-        list: [380, 'SurfaceRadar'],
+        list: [379, 'SurfaceRadar'],
         equipments: {
-            hasID: [380],
+            hasID: [379],
             hasSurfaceRadar: true,
         },
         ship: {
@@ -288,9 +288,9 @@ const 相互シナジーボーナス = [
         },
     },
     {
-        list: [380, 'AARadar'],
+        list: [379, 'AARadar'],
         equipments: {
-            hasID: [380],
+            hasID: [379],
             hasAARadar: true,
         },
         ship: {

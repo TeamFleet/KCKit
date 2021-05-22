@@ -122,6 +122,7 @@ const CL_Gotland = 114;
 const CL_Abruzzi = 120;
 const CL_DeRuyter = 127;
 const CL_Perth = 125;
+const CL_Brooklyn = 147;
 const CL_StLouis = 136;
 const CL_Town = 140;
 // 練習巡洋艦
@@ -142,7 +143,7 @@ const group_CL_Navy_RN = [CL_Town];
 const group_CL_Navy_RM = [CL_Abruzzi];
 const group_CL_Navy_RNLN = [CL_DeRuyter];
 const group_CL_Navy_RAN = [CL_Perth];
-const group_CL_Navy_USN = [CL_Atlanta, CL_StLouis];
+const group_CL_Navy_USN = [CL_Atlanta, CL_Brooklyn, CL_StLouis];
 const group_CL_S_Navy_IJN = [
     CLT_Kuma,
     CL_Yuubari2,
@@ -293,6 +294,7 @@ module.exports = {
     CL_Abruzzi,
     CL_DeRuyter,
     CL_Perth,
+    CL_Brooklyn,
     CL_StLouis,
     // 練習巡洋艦
     CT_Katori,
