@@ -120,7 +120,7 @@ const 水雷戦隊熟練見張員 = [
     },
 
     {
-        list: ['SurfaceShipPersonnel'],
+        list: [412],
         equipments: {
             hasID: [412],
         },
@@ -133,7 +133,7 @@ const 水雷戦隊熟練見張員 = [
         },
     },
     {
-        list: ['SurfaceShipPersonnel'],
+        list: [412],
         equipments: {
             hasID: [412],
         },
@@ -146,7 +146,7 @@ const 水雷戦隊熟練見張員 = [
         },
     },
     {
-        list: ['SurfaceShipPersonnel'],
+        list: [412],
         equipments: {
             hasID: [412],
         },
