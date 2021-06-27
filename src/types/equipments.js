@@ -187,14 +187,18 @@ types.CarrierBased = [
     types.JetBomberFighter2,
 ];
 
-types.LandBased = [
+types.LandBasedBombers = [
     types.LandBasedAttacker,
+    types.LandBasedAntiSubPatrol,
     types.LargeLandBasedAircraft,
+];
+
+types.LandBased = [
+    ...types.LandBasedBombers,
     types.Interceptor,
     types.JetBomberFighter,
     types.JetBomberFighter2,
     types.LandBasedFighter,
-    types.LandBasedAntiSubPatrol,
     types.LandBasedRecon,
 ];
 
