@@ -16,7 +16,11 @@ const {
     DD_ShimakazeRemodel,
 } = require('../../ships');
 const { DD_Kagerou, DD_KagerouROCN } = require('../../ship-classes');
-const { 丹陽, 秋雲改二 } = require('../../ship-ids');
+const { 丹陽, 秋雲改二, 高波改二 } = require('../../ship-ids');
+
+const DD_YuugumoClass2ndRemodel_exclude_HighTier = DD_YuugumoClass2ndRemodel.filter(
+    (shipId) => shipId !== 高波改二
+);
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
@@ -76,10 +80,21 @@ module.exports = [
     {
         equipment: 267,
         ship: {
-            isID: [秋雲改二, ...DD_YuugumoClass2ndRemodel],
+            isID: [秋雲改二, ...DD_YuugumoClass2ndRemodel_exclude_HighTier],
         },
         bonus: {
             fire: 3,
+            evasion: 1,
+        },
+    },
+
+    {
+        equipment: 267,
+        ship: {
+            isID: [高波改二],
+        },
+        bonus: {
+            fire: 4,
             evasion: 1,
         },
     },
