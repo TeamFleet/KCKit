@@ -198,6 +198,11 @@ types.LandBased = [
     types.LandBasedRecon
 ];
 
+types.LandBasedBombers = [
+    types.LandBasedAttacker,
+    types.LandBasedAntiSubPatrol,
+    types.LargeLandBasedAircraft
+];
 types.LandBasedLarge = [types.LargeLandBasedAircraft];
 
 types.TorpedoBombers = [types.TorpedoBomber, types.TorpedoBomberNight];

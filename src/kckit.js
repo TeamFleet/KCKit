@@ -1253,7 +1253,12 @@
             night: 1
         },
         Interceptors: {
-            fighter: 0.2
+            // 局戦, 陸戦
+            fighter: ['multiplication', 0.2]
+        },
+        LandBasedBombers: {
+            // 陸上攻撃機, 大型陸上機
+            fighter: 0.5
         },
 
         _10: {

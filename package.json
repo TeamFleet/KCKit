@@ -28,7 +28,7 @@
         "gulp-rename": "^1.4.0",
         "gulp-uglify": "^3.0.1",
         "husky": "^2.3.0",
-        "kckit": "^1.66.0",
+        "kckit": "^1.67.1",
         "lint-staged": "^8.1.7",
         "prettier": "^1.17.1",
         "webpack": "^4.17.1",
