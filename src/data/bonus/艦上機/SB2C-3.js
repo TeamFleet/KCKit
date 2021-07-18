@@ -81,7 +81,7 @@ module.exports = [
         equipment: 420,
         ship: {
             isType: [9],
-            isClass: [CV_Casablanca],
+            isNotClass: [CV_Casablanca],
         },
         bonus: {
             fire: -2,
