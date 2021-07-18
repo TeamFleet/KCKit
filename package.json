@@ -28,14 +28,14 @@
     },
     "devDependencies": {
         "babel-eslint": "10.1.0",
-        "eslint": "^7.29.0",
+        "eslint": "^7.31.0",
         "eslint-config-koot": "^3.1.1",
-        "husky": "^6.0.0",
-        "jest": "27.0.5",
-        "lint-staged": "^11.0.0",
+        "husky": "^7.0.1",
+        "jest": "27.0.6",
+        "lint-staged": "^11.0.1",
         "prettier": "^2.3.2",
         "react": "^17.0.2",
-        "whocallsthefleet-database": "20210628.0.0"
+        "whocallsthefleet-database": "20210719.0.0"
     },
     "jest": {
         "testEnvironment": "node"
