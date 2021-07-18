@@ -16,6 +16,12 @@ const {
     Hornet,
     Hornet改,
 
+    龍鳳改二,
+
+    'Gambier Bay': GambierBay,
+    'Gambier Bay改': GambierBay改,
+    'Gambier Bay Mk.II': GambierBayMkII,
+
     最上改二,
     最上改二特,
 
@@ -127,9 +133,11 @@ const CVE_TaiyouClassRemodelAll = [
 const CVE = [
     526, // 大鹰
     534, // 神鷹
-    544, // Gambier Bay
-    396, // Gambier Bay改
+    GambierBay,
+    GambierBay改,
+    GambierBayMkII,
     560, // 瑞鳳改二乙
+    龍鳳改二,
     ...CVE_TaiyouClassRemodelAll,
 ];
 
@@ -283,9 +291,8 @@ const DD_YuugumoClass2ndRemodel = [
 const DD_ShimakazeRemodel = [
     229, // 島風改
 ];
-const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel = DD_YuugumoClass2ndRemodel.concat(
-    DD_ShimakazeRemodel
-);
+const DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel =
+    DD_YuugumoClass2ndRemodel.concat(DD_ShimakazeRemodel);
 
 /*************************************************************************/
 
@@ -317,8 +324,9 @@ const usn_BB = [
     ...S.Washington,
 ];
 const usn_CV = [
-    544,
-    396, // Gambier Bay
+    GambierBay,
+    GambierBay改,
+    GambierBayMkII,
     549,
     397, // Interpid
     433,

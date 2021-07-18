@@ -62,6 +62,10 @@ const 軽空母 = {
 
     鈴谷航改二: 508,
     熊野航改二: 509,
+
+    'Gambier Bay': 544,
+    'Gambier Bay改': 396,
+    'Gambier Bay Mk.II': 707,
 };
 
 module.exports = {
