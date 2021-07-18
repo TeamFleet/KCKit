@@ -2416,7 +2416,8 @@
                 (_equipmentType.isInterceptor(equipment)
                     ? equipment.stat.evasion * 1.5
                     : 0) +
-                star * formula.getStarMultiplier(equipment.type, 'fighter');
+                formula.getStarBonus(equipment, 'fighter', star);
+            // star * formula.getStarMultiplier(equipment.type, 'fighter');
             const baseValue = equipmentStatAA * Math.sqrt(carry);
             const {
                 min: bonusMin,
@@ -2450,7 +2451,8 @@
                     (_equipmentType.isInterceptor(equipment)
                         ? equipment.stat.hit * 2
                         : 0) +
-                    star * formula.getStarMultiplier(equipment.type, 'fighter'),
+                    formula.getStarBonus(equipment, 'fighter', star),
+                // star * formula.getStarMultiplier(equipment.type, 'fighter'),
                 base = statAA * Math.sqrt(carry),
                 rankBonus = formula.getFighterPowerRankMultiper(
                     equipment,
