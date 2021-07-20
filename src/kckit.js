@@ -1228,17 +1228,17 @@
             los: 1.2
         },
         SeaplaneFighters: {
-            fighter: 0.2
+            fighter: ['multiplication', 0.2]
         },
         SeaplaneBomber: {
             // fighter: 0.2
             los: 1.15
         },
         CarrierFighters: {
-            fighter: 0.2
+            fighter: ['multiplication', 0.2]
         },
         DiveBombers: {
-            fighter: 0.25,
+            fighter: ['multiplication', 0.25],
             night: 1
         },
         // TorpedoBombers: {
