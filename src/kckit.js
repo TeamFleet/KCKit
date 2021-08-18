@@ -1238,7 +1238,7 @@
             fighter: ['multiplication', 0.2]
         },
         DiveBombers: {
-            fighter: ['multiplication', 0.25],
+            // fighter: ['multiplication', 0.25], // 仅爆战有此效果，代码在下方特定装备区
             night: 1
         },
         // TorpedoBombers: {
@@ -1295,6 +1295,16 @@
         _234: {
             shelling: ['multiplication', 0.3],
             night: ['multiplication', 0.3]
+        },
+
+        _60 /* 零式艦戦62型(爆戦) */: {
+            fighter: ['multiplication', 0.25]
+        },
+        _154 /* 零戦62型(爆戦/岩井隊) */: {
+            fighter: ['multiplication', 0.25]
+        },
+        _219 /* 零式艦戦63型(爆戦) */: {
+            fighter: ['multiplication', 0.25]
         }
     };
     // 获取改修加成对象
