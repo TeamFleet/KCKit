@@ -12,6 +12,7 @@ const BBV_Fusou = 11;
 const group_BB_Fusou = [BB_Fusou, BBV_Fusou];
 const BB_Bismarck = 7;
 const BB_VittorioVeneto = 70;
+const BB_ConteDiCavour = 148;
 const BB_Colorado = 122;
 const BB_Iowa = 82;
 const BB_SouthDakota = 134;
@@ -28,6 +29,7 @@ const group_BB_Navy_USN = [
 ];
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 const group_BB_Navy_KM = [BB_Bismarck];
+const group_BB_Navy_RM = [BB_VittorioVeneto, BB_ConteDiCavour];
 
 // ============================================================================
 //
@@ -214,6 +216,7 @@ module.exports = {
     BB_Kongou2: 119,
     BB_Bismarck,
     BB_VittorioVeneto,
+    BB_ConteDiCavour,
     BB_Colorado,
     BB_Iowa,
     BB_SouthDakota,
@@ -226,6 +229,7 @@ module.exports = {
     group_BB_Navy_USN,
     group_BB_Navy_RN,
     group_BB_Navy_KM,
+    group_BB_Navy_RM,
 
     // ========================================================================
     CV_Kaga,
@@ -365,6 +369,7 @@ module.exports = {
         ...group_DD_Navy_RN,
     ],
     group_Navy_RM: [
+        ...group_BB_Navy_RM,
         ...group_CV_Navy_RM,
         ...group_CL_Navy_RM,
         ...group_DD_Navy_RM,
