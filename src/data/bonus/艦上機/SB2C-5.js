@@ -14,7 +14,7 @@ const {
     CV_Essex,
     CV_Yorktown,
     CV_Casablanca,
-    CV_ArkRoyal,
+    group_CV_Navy_RN,
 } = require('../../ship-classes');
 
 // ============================================================================
@@ -52,7 +52,7 @@ module.exports = [
     {
         equipment: 421,
         ship: {
-            isClass: [CV_ArkRoyal],
+            isClass: [...group_CV_Navy_RN],
         },
         bonusImprove: {
             0: {

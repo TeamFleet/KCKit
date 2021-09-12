@@ -10,7 +10,7 @@
 require('../../../../typedef');
 
 const { Carriers } = require('../../../types/ships');
-const { CV_ArkRoyal, group_CV_Navy_USN } = require('../../ship-classes');
+const { group_CV_Navy_RN, group_CV_Navy_USN } = require('../../ship-classes');
 
 // ============================================================================
 
@@ -19,7 +19,7 @@ const 戦闘偵察_熟練 = [
     {
         equipment: 423,
         ship: {
-            isClass: [CV_ArkRoyal],
+            isClass: [...group_CV_Navy_RN],
         },
         bonusImprove: {
             0: {
@@ -96,7 +96,7 @@ const 戦闘偵察_熟練 = [
         equipment: 423,
         ship: {
             isType: Carriers,
-            isNotClass: [...group_CV_Navy_USN, CV_ArkRoyal],
+            isNotClass: [...group_CV_Navy_USN, ...group_CV_Navy_RN],
         },
         bonusImprove: {
             2: {

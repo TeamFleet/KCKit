@@ -39,6 +39,7 @@ const group_BB_Navy_RM = [BB_VittorioVeneto, BB_ConteDiCavour];
 const CV_Kaga = 27;
 const CV_KagaRevised = 137;
 const CVB_Lexington = 105;
+const CVB_Illustrious = 149;
 const CV_Lexington = 87;
 const CV_Essex = 110;
 const CV_Yorktown = 135;
@@ -55,9 +56,10 @@ const group_CV_Navy_USN = [
     CV_Yorktown,
     CV_Casablanca,
 ];
-const group_CV_Navy_RN = [CV_ArkRoyal];
+const group_CV_Navy_RN = [CVB_Illustrious, CV_ArkRoyal];
 
 const CVL_Houshou = 33;
+const CVL_Ryuujou = 34;
 const CVL_Ryuuhou = 35;
 const CVL_RyuuhouRevised = 145;
 const CVL_Shouhou = 36;
@@ -236,6 +238,7 @@ module.exports = {
     CV_KagaRevised,
     CV_Lexington,
     CVB_Lexington,
+    CVB_Illustrious,
     CV_Essex,
     CV_Yorktown,
     CV_ArkRoyal,
@@ -253,6 +256,7 @@ module.exports = {
     CV_Casablanca,
 
     CVL_Houshou,
+    CVL_Ryuujou,
     CVL_Ryuuhou,
     CVL_RyuuhouRevised,
     CVL_Shouhou,

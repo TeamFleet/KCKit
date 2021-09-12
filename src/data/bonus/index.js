@@ -51,6 +51,8 @@ const dataBonuses = [
     ...require('./中口径主砲/20.3cm(3号)連装砲'),
     ...require('./中口径主砲/8inch三連装砲 Mk.9'),
 
+    ...require('./大口径主砲/305mm／46'),
+    ...require('./大口径主砲/320mm／44'),
     ...require('./大口径主砲/35.6cm連装砲(ダズル迷彩)'),
     ...require('./大口径主砲/35.6cm連装砲改'),
     ...require('./大口径主砲/35.6cm連装砲改二'),
@@ -103,6 +105,7 @@ const dataBonuses = [
     ...require('./艦上機/Re.2005 改'),
     ...require('./艦上機/FR-1 Fireball'),
     ...require('./艦上機/XF5U'),
+    ...require('./艦上機/Corsair'),
     ...require('./艦上機/零式艦戦(爆戦)'),
     ...require('./艦上機/九九式艦爆二二型'),
     ...require('./艦上機/九九式艦爆(江草隊)'),

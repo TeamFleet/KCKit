@@ -12,7 +12,7 @@
 
 require('../../../../typedef');
 
-const { CV_ArkRoyal } = require('../../ship-classes');
+const { group_CV_Navy_RN } = require('../../ship-classes');
 
 // ============================================================================
 
@@ -21,7 +21,7 @@ const MkII = [
     {
         equipment: 424,
         ship: {
-            isClass: [CV_ArkRoyal],
+            isClass: [...group_CV_Navy_RN],
         },
         bonusImprove: {
             2: {
@@ -43,13 +43,21 @@ const MkIII = [
     {
         equipment: 425,
         ship: {
-            isClass: [CV_ArkRoyal],
+            isClass: [...group_CV_Navy_RN],
         },
-        bonus: {
-            fire: 3,
-            torpedo: 1,
-            asw: 4,
-            evasion: 1,
+        bonusImprove: {
+            2: {
+                fire: 2,
+                torpedo: 1,
+                asw: 3,
+                evasion: 1,
+            },
+            6: {
+                fire: 3,
+                torpedo: 1,
+                asw: 4,
+                evasion: 1,
+            },
         },
     },
 ];

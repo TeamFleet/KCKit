@@ -10,12 +10,13 @@ const {
     CV_AkagiClassRemodelAll,
     CV_KagaClassRemodelAll,
 } = require('../../ships');
+const { CVL_Ryuujou } = require('../../ship-classes');
 
 module.exports = [
     {
         equipment: 144,
         ship: {
-            isID: [157], // 龍驤改二
+            isClass: [CVL_Ryuujou],
         },
         bonusCount: {
             1: {

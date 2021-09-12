@@ -10,7 +10,7 @@
 require('../../../../typedef');
 const {
     CV_Casablanca,
-    CV_ArkRoyal,
+    group_CV_Navy_RN,
     group_CV_Navy_USN,
 } = require('../../ship-classes');
 
@@ -32,7 +32,7 @@ module.exports = [
     {
         equipment: 277,
         ship: {
-            isClass: [...group_CV_Navy_USN, CV_ArkRoyal].filter(
+            isClass: [...group_CV_Navy_USN, ...group_CV_Navy_RN].filter(
                 (cid) => cid !== CV_Casablanca
             ),
         },
