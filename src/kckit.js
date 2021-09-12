@@ -2908,9 +2908,9 @@
             if (count.main >= 3) addCI('炮CI', baseDamage * 2, 1);
             if (count.main === 2 && count.secondary >= 1)
                 addCI('炮CI', baseDamage * 1.75, 1);
-            if (count.torpedo >= 2) addCI('雷CI', baseDamage * 1.5, 2);
+            if (count.torpedo >= 2) addCI('鱼CI', baseDamage * 1.5, 2);
             if (count.main >= 1 && count.torpedo === 1)
-                addCI('炮雷CI', baseDamage * 1.3, 2);
+                addCI('炮鱼CI', baseDamage * 1.3, 2);
 
             // 潜艇专用
             if (formula.shipType.Submarines.indexOf(ship.type) > -1) {
@@ -2918,9 +2918,9 @@
                     count.torpedoLateModel >= 1 &&
                     count.submarineEquipment >= 1
                 )
-                    addCI('[舰首]雷CI', baseDamage * 1.75, 2);
+                    addCI('[舰首]鱼CI', baseDamage * 1.75, 2);
                 if (count.torpedoLateModel >= 2)
-                    addCI('[舰首]雷CI', baseDamage * 1.6, 2);
+                    addCI('[舰首]鱼CI', baseDamage * 1.6, 2);
             }
 
             // 驱逐舰专用
@@ -2941,10 +2941,10 @@
                     count.radarSurface >= 1 &&
                     count.main >= 1
                 ) {
-                    // 覆盖 炮雷CI
-                    // delete result.ciAvailable['炮雷CI'];
+                    // 覆盖 炮鱼CI
+                    // delete result.ciAvailable['炮鱼CI'];
                     addCI(
-                        '炮雷电CI',
+                        '炮鱼电CI',
                         baseDamage * 1.3 * extraMultiplier,
                         '1/2'
                     );
@@ -2957,7 +2957,7 @@
                     count.surfaceShipPersonnel >= 1
                 ) {
                     addCI(
-                        '雷电见CI',
+                        '鱼电见CI',
                         baseDamage * 1.2 * extraMultiplier,
                         '1/2'
                     );
@@ -2966,19 +2966,19 @@
                 // 水雷戦隊 熟練見張員
                 if (equipmentCount[412] >= 1) {
                     if (count.torpedo >= 2) {
-                        delete result.ciAvailable['雷CI'];
+                        delete result.ciAvailable['鱼CI'];
                         addCI(
-                            // '[水雷]雷CI',
-                            '雷CI',
-                            baseDamage * 1.5 * extraMultiplier,
+                            '[水雷]鱼CI',
+                            // '雷CI',
+                            baseDamage * 1.5 /* * extraMultiplier*/,
                             '1/2'
                         );
                     }
                     if (count.torpedo >= 1) {
                         if (count.supplyContainer >= 1) {
                             addCI(
-                                '雷桶CI',
-                                baseDamage * 1.3 * extraMultiplier,
+                                '鱼桶CI',
+                                baseDamage * 1.3 /* * extraMultiplier*/,
                                 '1/2'
                             );
                         }
