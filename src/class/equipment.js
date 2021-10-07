@@ -274,8 +274,8 @@ module.exports = class Equipment extends ItemBase {
                             // })
                             .some((key) =>
                                 checkEquipment(this, {
-                                    [key.replace(/^has/, 'is')]: bonus
-                                        .equipments[key],
+                                    [key.replace(/^has/, 'is')]:
+                                        bonus.equipments[key],
                                 })
                             )
                     );

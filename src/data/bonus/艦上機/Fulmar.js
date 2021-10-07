@@ -82,7 +82,7 @@ const 戦闘偵察_熟練 = [
             },
         ],
         ship: {
-            isType: Carriers,
+            isType: Carriers.filter((tid) => tid !== 32),
         },
         bonus,
     });
