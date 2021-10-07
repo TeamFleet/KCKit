@@ -1119,6 +1119,44 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('Fulmar(戦闘偵察/熟練)', () => {
+                it('Victorious || Fulmar(戦闘偵察/熟練) + Fulmar(戦闘偵察/熟練)', () => {
+                    expect(calculate.bonus(713, [423, 423])).toEqual({
+                        fire: 8,
+                        aa: 8,
+                        los: 8,
+                        evasion: 8,
+                    });
+                });
+                it('Victorious || Fulmar(戦闘偵察/熟練)⭐1 + Fulmar(戦闘偵察/熟練)⭐MAX + Fulmar(戦闘偵察/熟練)⭐7', () => {
+                    expect(
+                        calculate.bonus(713, [423, 423, 423], [3, 10, 7])
+                    ).toEqual({
+                        fire: 14,
+                        aa: 12,
+                        los: 15,
+                        evasion: 12,
+                    });
+                });
+                it('Saratoga || Fulmar(戦闘偵察/熟練)⭐1 + Fulmar(戦闘偵察/熟練)⭐5 + Fulmar(戦闘偵察/熟練)⭐3', () => {
+                    expect(
+                        calculate.bonus(545, [423, 423, 423], [1, 5, 3])
+                    ).toEqual({
+                        fire: 4,
+                        aa: 3,
+                        los: 4,
+                        evasion: 3,
+                    });
+                });
+                it('Aquila || Fulmar(戦闘偵察/熟練)⭐1 + Fulmar(戦闘偵察/熟練)⭐5 + Fulmar(戦闘偵察/熟練)⭐3', () => {
+                    expect(
+                        calculate.bonus(365, [423, 423, 423], [1, 5, 3])
+                    ).toEqual({
+                        fire: 1,
+                        los: 1,
+                    });
+                });
+            });
         });
 
         describe('電探...', () => {

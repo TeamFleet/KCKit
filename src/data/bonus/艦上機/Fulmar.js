@@ -21,37 +21,11 @@ const 戦闘偵察_熟練 = [
         ship: {
             isClass: [...group_CV_Navy_RN],
         },
-        bonusImprove: {
-            0: {
-                fire: 4,
-                aa: 4,
-                los: 4,
-                evasion: 4,
-            },
-            2: {
-                fire: 4,
-                aa: 4,
-                los: 5,
-                evasion: 4,
-            },
-            4: {
-                fire: 5,
-                aa: 4,
-                los: 5,
-                evasion: 4,
-            },
-            6: {
-                fire: 5,
-                aa: 4,
-                los: 6,
-                evasion: 4,
-            },
-            10: {
-                fire: 6,
-                aa: 4,
-                los: 7,
-                evasion: 4,
-            },
+        bonus: {
+            fire: 4,
+            aa: 4,
+            los: 4,
+            evasion: 4,
         },
     },
     {
@@ -59,64 +33,60 @@ const 戦闘偵察_熟練 = [
         ship: {
             isClass: [...group_CV_Navy_USN],
         },
-        bonusImprove: {
-            0: {
-                fire: 1,
-                aa: 1,
-                los: 1,
-                evasion: 1,
-            },
-            2: {
-                fire: 1,
-                aa: 1,
-                los: 2,
-                evasion: 1,
-            },
-            4: {
-                fire: 2,
-                aa: 1,
-                los: 2,
-                evasion: 1,
-            },
-            6: {
-                fire: 2,
-                aa: 1,
-                los: 3,
-                evasion: 1,
-            },
-            10: {
-                fire: 3,
-                aa: 1,
-                los: 4,
-                evasion: 1,
-            },
-        },
-    },
-    {
-        equipment: 423,
-        ship: {
-            isType: Carriers,
-            isNotClass: [...group_CV_Navy_USN, ...group_CV_Navy_RN],
-        },
-        bonusImprove: {
-            2: {
-                los: 1,
-            },
-            4: {
-                fire: 1,
-                los: 1,
-            },
-            6: {
-                fire: 1,
-                los: 2,
-            },
-            10: {
-                fire: 2,
-                los: 3,
-            },
+        bonus: {
+            fire: 1,
+            aa: 1,
+            los: 1,
+            evasion: 1,
         },
     },
 ];
+[
+    [
+        2,
+        {
+            los: 1,
+        },
+    ],
+    [
+        4,
+        {
+            fire: 1,
+        },
+    ],
+    [
+        6,
+        {
+            los: 1,
+        },
+    ],
+    [
+        10,
+        {
+            fire: 1,
+            los: 1,
+        },
+    ],
+].forEach(([star, bonus]) => {
+    戦闘偵察_熟練.push({
+        list: [
+            {
+                id: 423,
+                star,
+            },
+        ],
+        equipments: [
+            {
+                isID: 423,
+                improvement: star,
+            },
+        ],
+        ship: {
+            isType: Carriers,
+        },
+        bonus,
+    });
+});
 
 // ============================================================================
 
