@@ -14,6 +14,8 @@ const {
     香取改,
     鹿島改,
 
+    山風,
+    山風改二,
     丹陽,
     雪風改二,
     秋雲改二,
@@ -1136,6 +1138,42 @@ describe('Calculating functions/utilities', () => {
                         asw: 6,
                     });
                 });
+                it('睦月改二 || 三式水中探信儀改 + 三式水中探信儀改 + 三式水中探信儀改', () => {
+                    expect(calculate.bonus(434, [438, 438, 438])).toEqual({
+                        evasion: 1,
+                        asw: 1,
+                    });
+                });
+                it('山風 || 三式水中探信儀改 + 三式水中探信儀改 + 三式水中探信儀改', () => {
+                    expect(calculate.bonus(山風, [438, 438, 438])).toEqual({
+                        fire: 2,
+                        evasion: 6,
+                        asw: 8,
+                    });
+                });
+                it('山風改二 || 三式水中探信儀改 + 三式水中探信儀改', () => {
+                    expect(calculate.bonus(山風改二, [438, 438])).toEqual({
+                        fire: 2,
+                        evasion: 6,
+                        asw: 8,
+                    });
+                });
+                it('山風改二 || 三式水中探信儀改 + 三式水中探信儀改 + 三式水中探信儀改', () => {
+                    expect(calculate.bonus(山風改二, [438, 438, 438])).toEqual({
+                        fire: 2,
+                        evasion: 6,
+                        asw: 8,
+                    });
+                });
+                it('山風改二 || 三式水中探信儀改 + 三式水中探信儀改⭐MAX + 三式水中探信儀改⭐5', () => {
+                    expect(
+                        calculate.bonus(山風改二, [438, 438, 438], [0, 10, 6])
+                    ).toEqual({
+                        fire: 2,
+                        evasion: 8,
+                        asw: 10,
+                    });
+                });
             });
         });
 
@@ -1981,8 +2019,8 @@ describe('Calculating functions/utilities', () => {
                         expect(
                             calculate.bonus(sid, [44, 287, 46, 149])
                         ).toEqual({
-                            asw: 10,
-                            evasion: 10,
+                            asw: 5,
+                            evasion: 5,
                         });
                     });
                     it('25mm対空機銃', () => {

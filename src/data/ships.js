@@ -37,9 +37,11 @@ const {
     潮改,
     潮改二,
 
+    山風改二,
+    山風改二丁,
+
     丹陽,
     雪風改二,
-
     秋雲改,
     秋雲改二,
 
@@ -220,12 +222,17 @@ const DD_HatsuharuClass2ndRemodel = [
 const DD_HatsuharuClassRemodelAll = DD_HatsuharuClassRemodel.concat(
     DD_HatsuharuClass2ndRemodel
 );
+const DD_ShiratsuyuClassRevised = [
+    587, // 海風改二
+    山風改二,
+    山風改二丁,
+];
 const DD_ShiratsuyuClass2ndRemodel = [
     497, // 白露改二
     145, // 時雨改二
     498, // 村雨改二
     144, // 夕立改二
-    587, // 海風改二
+    ...DD_ShiratsuyuClassRevised,
     469, // 江風改二
 ];
 const DD_AsashioClass2ndRemodel = [
@@ -404,6 +411,7 @@ module.exports = {
     DD_HatsuharuClass2ndRemodel,
     DD_HatsuharuClassRemodelAll,
     DD_ShiratsuyuClass2ndRemodel,
+    DD_ShiratsuyuClassRevised,
     DD_AsashioClass2ndRemodel,
     DD_KagerouClassRemodel,
     DD_KagerouClassRemodelB,
@@ -413,22 +421,22 @@ module.exports = {
     DD_YuugumoClass2ndRemodel,
     DD_YuugumoClass2ndRemodel_PLUS_ShimakazeRemodel,
     DD_ShimakazeRemodel,
-    Kamikaze: [471, 476],
-    Harukaze: [473, 363],
+    Kamikaze: S.Kamikaze,
+    Harukaze: S.Harukaze,
     Ushio: [16, 233, 407],
     Hibiki: [35, 235, 147],
     Ikazuchi: [36, 236],
     Hatsushimo: [41, 241, 419],
-    Shigure: [43, 243, 145],
-    Yamakaze: [457, 369],
+    Shigure: S.Shigure,
+    Yamakaze: S.Yamakaze,
     Yamagumo: [414, 328],
     Kasumi: [49, 253, 464, 470],
     Yukikaze: S.Yukikaze,
     Isokaze: [167, 320, 557],
     Hamakaze: [170, 312, 558],
-    Maikaze: [122, 294],
+    Maikaze: S.Maikaze,
     Kishinami: [527, 686],
-    Asashimo: [425, 344, 578],
+    Asashimo: S.Asashimo,
     Suzutsuki: [532, 537],
 
     //

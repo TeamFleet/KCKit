@@ -1,6 +1,17 @@
 /**
  * @module
  * 装备额外属性收益
+ *
+ * 229. 12.7cm単装高角砲(後期型)
+ *      https://wikiwiki.jp/kancolle/12.7cm%E5%8D%98%E8%A3%85%E9%AB%98%E8%A7%92%E7%A0%B2%28%E5%BE%8C%E6%9C%9F%E5%9E%8B%29
+ *
+ */
+
+require('../../../../typedef');
+
+/**
+ * @module
+ * 装备额外属性收益
  * 229. **12.7cm単装高角砲(後期型)**
  */
 
@@ -24,6 +35,7 @@ const {
     夕張改二丁,
 } = require('../../ship-ids');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     // @ 海防艦
     {
@@ -154,7 +166,7 @@ module.exports = [
         list: [
             {
                 id: 229,
-                star: 10,
+                star: 7,
             },
             'SurfaceRadar',
         ],
@@ -182,7 +194,7 @@ module.exports = [
         list: [
             {
                 id: 229,
-                star: 10,
+                star: 7,
             },
             'SurfaceRadar',
         ],
@@ -210,7 +222,7 @@ module.exports = [
         list: [
             {
                 id: 229,
-                star: 10,
+                star: 7,
             },
             'SurfaceRadar',
         ],

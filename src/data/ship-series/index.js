@@ -1,4 +1,15 @@
-const { あきつ丸, あきつ丸改, 神州丸, 神州丸改 } = require('../ship-ids');
+const {
+    石垣,
+    石垣改,
+
+    御蔵,
+    御蔵改,
+
+    あきつ丸,
+    あきつ丸改,
+    神州丸,
+    神州丸改,
+} = require('../ship-ids');
 
 /** @type {Object} 舰娘系列 */
 module.exports = {
@@ -8,6 +19,12 @@ module.exports = {
     ...require('./cl'),
     ...require('./dd'),
     ...require('./ss'),
+
+    //
+
+    Ishigaki: [石垣, 石垣改],
+
+    Mikura: [御蔵, 御蔵改],
 
     //
 

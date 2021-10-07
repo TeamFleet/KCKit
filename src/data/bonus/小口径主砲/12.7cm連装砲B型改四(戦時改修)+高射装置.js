@@ -12,8 +12,10 @@ const {
     DD_Akatsuki,
     DD_Hatsuharu,
     DD_Shiratsuyu,
+    DD_ShiratsuyuRevised,
 } = require('../../ship-classes');
 const { Shikinami2ndRemodelAll } = require('../../ship-series/dd');
+const { 山風改二, 山風改二丁 } = require('../../ship-ids');
 
 // const classesAyanamiAkatsuki = [DD_Ayanami, DD_Akatsuki]
 const classesAyanamiAkatsukiShiratsuyu = [
@@ -122,6 +124,8 @@ module.exports = [
         ship: {
             isID: [
                 587, // 海風改二
+                山風改二,
+                山風改二丁,
                 469, // 江風改二
             ],
         },
@@ -156,7 +160,7 @@ module.exports = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isClass: [DD_Shiratsuyu],
+            isClass: [DD_Shiratsuyu, DD_ShiratsuyuRevised],
         },
         bonus: {
             fire: 1,
@@ -186,7 +190,7 @@ module.exports = [
             hasAARadar: true,
         },
         ship: {
-            isClass: [DD_Shiratsuyu],
+            isClass: [DD_Shiratsuyu, DD_ShiratsuyuRevised],
         },
         bonus: {
             aa: 6,
@@ -225,7 +229,7 @@ module.exports = [
             },
         ],
         ship: {
-            isClass: [DD_Shiratsuyu],
+            isClass: [DD_Shiratsuyu, DD_ShiratsuyuRevised],
         },
         bonus: {
             fire: 1,
@@ -245,7 +249,7 @@ module.exports = [
             },
         ],
         ship: {
-            isClass: [DD_Shiratsuyu],
+            isClass: [DD_Shiratsuyu, DD_ShiratsuyuRevised],
         },
         bonus: {
             fire: 1,

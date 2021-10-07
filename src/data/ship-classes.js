@@ -168,6 +168,7 @@ const DD_Ayanami = 16;
 const DD_Akatsuki = 17;
 const DD_Hatsuharu = 18;
 const DD_Shiratsuyu = 19;
+const DD_ShiratsuyuRevised = 150;
 const DD_Asashio = 20;
 const DD_Kagerou = 21;
 const DD_KagerouROCN = 138;
@@ -190,6 +191,7 @@ const group_DD_Navy_IJN = [
     DD_Akatsuki,
     DD_Hatsuharu,
     DD_Shiratsuyu,
+    DD_ShiratsuyuRevised,
     DD_Asashio,
     DD_Kagerou,
     DD_Kagerou2,
@@ -326,6 +328,7 @@ module.exports = {
     DD_Akatsuki,
     DD_Hatsuharu,
     DD_Shiratsuyu,
+    DD_ShiratsuyuRevised,
     DD_Asashio,
     DD_Kagerou,
     DD_KagerouROCN,

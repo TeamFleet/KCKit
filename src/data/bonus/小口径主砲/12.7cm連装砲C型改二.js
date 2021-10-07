@@ -7,6 +7,8 @@
 const { DD_KagerouClass2ndRemodelExcludeAkigumo } = require('../../ships');
 const { 丹陽 } = require('../../ship-ids');
 const {
+    DD_Shiratsuyu,
+    DD_ShiratsuyuRevised,
     DD_Kagerou,
     DD_KagerouROCN,
     DD_Kagerou2,
@@ -18,16 +20,16 @@ const conditionSpecials = [
     丹陽,
     557, // 磯風丁改
 ];
-const condition1excludes = DD_KagerouClass2ndRemodelExcludeAkigumo.concat(
-    conditionSpecials
-);
+const condition1excludes =
+    DD_KagerouClass2ndRemodelExcludeAkigumo.concat(conditionSpecials);
 
 module.exports = [
     {
         equipment: 266,
         ship: {
             isClass: [
-                19, // 白露型
+                DD_Shiratsuyu,
+                DD_ShiratsuyuRevised,
                 20, // 朝潮型
                 21, // 陽炎型
             ],
@@ -80,7 +82,8 @@ module.exports = [
         },
         ship: {
             isClass: [
-                19, // 白露型
+                DD_Shiratsuyu,
+                DD_ShiratsuyuRevised,
                 20, // 朝潮型
             ],
         },

@@ -31,11 +31,11 @@
         "eslint": "^7.32.0",
         "eslint-config-koot": "^3.1.1",
         "husky": "^7.0.2",
-        "jest": "27.1.1",
-        "lint-staged": "^11.1.2",
-        "prettier": "^2.4.0",
+        "jest": "27.2.4",
+        "lint-staged": "^11.2.0",
+        "prettier": "^2.4.1",
         "react": "^17.0.2",
-        "whocallsthefleet-database": "20210913.0.0"
+        "whocallsthefleet-database": "20211007.0.0"
     },
     "jest": {
         "testEnvironment": "node"

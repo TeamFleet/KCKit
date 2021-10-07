@@ -16,15 +16,21 @@
  *
  */
 
+require('../../../../typedef');
+
 const { CT_Katori } = require('../../ship-classes');
 
 // ============================================================================
 
-const list = [];
-
-[44, 45, 287, 288].forEach((eid) => {
-    list.push({
-        equipment: eid,
+/** @type {Array<EquipmentBonus>} */
+module.exports = [
+    {
+        list: ['DepthCharge'],
+        equipments: {
+            hasOneOf: [44, 45, 287, 288].map((eid) => ({
+                isID: eid,
+            })),
+        },
         ship: {
             isClass: [CT_Katori],
         },
@@ -32,7 +38,6 @@ const list = [];
             asw: 3,
             evasion: 2,
         },
-    });
-});
-
-module.exports = list;
+        passEquippableCheck: true,
+    },
+];
