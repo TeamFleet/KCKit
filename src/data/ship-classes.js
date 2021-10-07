@@ -97,8 +97,10 @@ const group_CA_Navy_IJN = [
     CA_Takao,
     CA_Tone,
 ];
+const CA_Zara = 81;
 const group_CA_Navy_USN = [CA_Houston];
 const group_CA_Navy_KM = [CA_AdmiralHipper];
+const group_CA_Navy_RM = [CA_Zara];
 
 // ============================================================================
 //
@@ -279,9 +281,11 @@ module.exports = {
     CA_Tone,
     CA_AdmiralHipper,
     CA_Houston,
+    CA_Zara,
     group_CA_Navy_IJN,
     group_CA_Navy_USN,
     group_CA_Navy_KM,
+    group_CA_Navy_RM,
 
     // ========================================================================
     // 重雷装巡洋艦
@@ -316,6 +320,7 @@ module.exports = {
     group_CL_Navy_RAN,
     group_CL_Navy_USN,
     group_CL_Navy_RN,
+    group_CL_Navy_RM,
     group_CL_S_Navy_IJN,
 
     // ========================================================================
@@ -378,6 +383,7 @@ module.exports = {
     group_Navy_RM: [
         ...group_BB_Navy_RM,
         ...group_CV_Navy_RM,
+        ...group_CA_Navy_RM,
         ...group_CL_Navy_RM,
         ...group_DD_Navy_RM,
     ],

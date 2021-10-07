@@ -66,6 +66,7 @@ const dataBonuses = [
     ...require('./副砲/8cm高角砲'),
     ...require('./副砲/8cm高角砲改+増設機銃'),
     ...require('./副砲/usn.5inch'),
+    ...require('./副砲/65mm／64'),
 
     ...require('./魚雷/53cm連装魚雷'),
     ...require('./魚雷/53cm艦首(酸素)魚雷'),
@@ -97,6 +98,7 @@ const dataBonuses = [
     ...require('./水上機/強風改'),
 
     ...require('./艦上機/九六式艦戦'),
+    ...require('./艦上機/紫電改四'),
     ...require('./艦上機/烈風改'),
     ...require('./艦上機/烈風改二'),
     ...require('./艦上機/烈風改二戊型'),
@@ -165,6 +167,7 @@ const dataBonuses = [
     ...require('./増設バルジ/新型高温高圧缶'),
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
     ...require('./増設バルジ/艦本新設計 増設バルジ(大型艦)'),
+    ...require('./増設バルジ/プリエーゼ式水中防御隔壁'),
 
     ...require('./その他/一式徹甲弾改'),
     ...require('./その他/三式弾'),

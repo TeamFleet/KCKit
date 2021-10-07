@@ -17,4 +17,6 @@ module.exports = {
 
     Washington: 654,
     Washington改: 659,
+
+    'Conte di Cavour nuovo': 879,
 };

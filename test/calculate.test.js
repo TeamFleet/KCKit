@@ -3,6 +3,8 @@
 // const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames');
 const {
+    鈴谷航改二,
+
     最上改二,
     最上改二特,
 
@@ -884,6 +886,23 @@ describe('Calculating functions/utilities', () => {
             });
         });
 
+        describe('副炮...', () => {
+            describe('65mm/64 単装速射砲改...', () => {
+                it('Conte di Cavour nuovo', () => {
+                    expect(calculate.bonus(879, [430, 430])).toEqual({
+                        aa: 6,
+                        evasion: 4,
+                    });
+                });
+                it('Zara due', () => {
+                    expect(calculate.bonus(496, [430, 430])).toEqual({
+                        aa: 4,
+                        evasion: 2,
+                    });
+                });
+            });
+        });
+
         describe('魚雷...', () => {
             describe('533mm 三連装魚雷...', () => {
                 it('Верный || 533mm 三連装魚雷', () => {
@@ -1083,6 +1102,20 @@ describe('Calculating functions/utilities', () => {
                         fire: 9,
                         torpedo: 5,
                         evasion: 5,
+                    });
+                });
+            });
+            describe('紫電改四', () => {
+                it('鈴谷航改二 || 紫電改四 + 紫電改四', () => {
+                    expect(calculate.bonus(鈴谷航改二, [271, 271])).toEqual({});
+                });
+                it('鈴谷航改二 || 紫電改四⭐3 + 紫電改四⭐MAX + 紫電改四⭐7', () => {
+                    expect(
+                        calculate.bonus(鈴谷航改二, [271, 271, 271], [3, 10, 7])
+                    ).toEqual({
+                        fire: 3,
+                        aa: 4,
+                        evasion: 2,
                     });
                 });
             });
@@ -1423,6 +1456,52 @@ describe('Calculating functions/utilities', () => {
                 it('秋月改 || 42号対空電探改二', () => {
                     expect(calculate.bonus(330, [411])).toEqual({
                         evasion: -9,
+                    });
+                });
+            });
+            describe('プリエーゼ式水中防御隔壁', () => {
+                it('Conte di Cavour nuovo', () => {
+                    expect(calculate.bonus(879, [136, 136])).toEqual({
+                        armor: 3,
+                        evasion: 2,
+                    });
+                });
+                it('Conte di Cavour nuovo', () => {
+                    expect(
+                        calculate.bonus(879, [136, 136, 136], [0, 10, 6])
+                    ).toEqual({
+                        armor: 3,
+                        evasion: 2,
+                    });
+                });
+                it('Conte di Cavour nuovo', () => {
+                    expect(
+                        calculate.bonus(879, [136, 136, 136], [0, 8, 2])
+                    ).toEqual({
+                        armor: 3,
+                        evasion: 2,
+                    });
+                });
+                it('Conte di Cavour', () => {
+                    expect(calculate.bonus(877, [136, 136])).toEqual({
+                        armor: 2,
+                        evasion: 1,
+                    });
+                });
+                it('Conte di Cavour', () => {
+                    expect(
+                        calculate.bonus(877, [136, 136, 136], [0, 10, 6])
+                    ).toEqual({
+                        armor: 5,
+                        evasion: 1,
+                    });
+                });
+                it('Conte di Cavour', () => {
+                    expect(
+                        calculate.bonus(877, [136, 136, 136], [0, 8, 2])
+                    ).toEqual({
+                        armor: 4,
+                        evasion: 1,
                     });
                 });
             });
