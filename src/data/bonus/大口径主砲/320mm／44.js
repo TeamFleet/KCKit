@@ -27,9 +27,15 @@ const 連装砲 = [
         ship: {
             isClass: [BB_ConteDiCavour],
         },
-        bonus: {
-            fire: 3,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 3,
+                evasion: 1,
+            },
+            2: {
+                fire: 5,
+                evasion: 2,
+            },
         },
     },
     {
@@ -37,9 +43,15 @@ const 連装砲 = [
         ship: {
             isClass: [BB_VittorioVeneto],
         },
-        bonus: {
-            fire: 1,
-            evasion: 2,
+        bonusCount: {
+            1: {
+                fire: 1,
+                evasion: 2,
+            },
+            2: {
+                fire: 3,
+                evasion: 3,
+            },
         },
     },
     {
@@ -47,9 +59,15 @@ const 連装砲 = [
         ship: {
             isClass: [BB_Gangut],
         },
-        bonus: {
-            fire: 2,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+                evasion: 1,
+            },
+            2: {
+                fire: 3,
+                evasion: 1,
+            },
         },
     },
 ];

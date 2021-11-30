@@ -207,6 +207,14 @@ const group_DD_Navy_RN = [DD_J];
 const group_DD_Navy_RM = [DD_Maestrale];
 const group_DD_Navy_KM = [DD_1934];
 
+// ============================================================================
+//
+// DD
+//
+// ============================================================================
+const SS_Gato = 151;
+const group_SS_Navy_USN = [SS_Gato];
+
 module.exports = {
     // ========================================================================
     BB_Ise,
@@ -362,12 +370,17 @@ module.exports = {
     AV_Kamoi: 99,
 
     // ========================================================================
+    SS_Gato,
+    group_SS_Navy_USN,
+
+    // ========================================================================
     group_Navy_USN: [
         ...group_BB_Navy_USN,
         ...group_CV_Navy_USN,
         ...group_CA_Navy_USN,
         ...group_CL_Navy_USN,
         ...group_DD_Navy_USN,
+        ...group_SS_Navy_USN,
     ],
     group_Navy_KM: [
         ...group_BB_Navy_KM,
@@ -378,6 +391,7 @@ module.exports = {
     group_Navy_RN: [
         ...group_BB_Navy_RN,
         ...group_CV_Navy_RN,
+        ...group_CL_Navy_RN,
         ...group_DD_Navy_RN,
     ],
     group_Navy_RM: [

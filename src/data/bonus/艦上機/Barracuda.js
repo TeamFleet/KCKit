@@ -24,6 +24,10 @@ const MkII = [
             isClass: [...group_CV_Navy_RN],
         },
         bonusImprove: {
+            0: {
+                fire: 2,
+                aa: 3,
+            },
             2: {
                 fire: 3,
                 aa: 3,

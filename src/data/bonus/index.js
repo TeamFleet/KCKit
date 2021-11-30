@@ -80,6 +80,8 @@ const dataBonuses = [
     ...require('./魚雷/後期型艦首魚雷(6門)'),
     ...require('./魚雷/熟練聴音員+後期型艦首魚雷(6門)'),
     ...require('./魚雷/後期型53cm艦首魚雷(8門)'),
+    ...require('./魚雷/潜水艦後部魚雷発射管4門'),
+    ...require('./魚雷/21inch艦首魚雷発射管6門'),
 
     ...require('./水上機/紫雲'),
     ...require('./水上機/SOC Seagull'),
@@ -160,6 +162,7 @@ const dataBonuses = [
     ...require('./対潜兵装/試製15cm9連装対潜噴進砲'),
     ...require('./対潜兵装/RUR-4A'),
     ...require('./対潜兵装/対潜短魚雷'),
+    ...require('./対潜兵装/Hedgehog'),
 
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
     ...require('./対空機銃/25mm対空機銃'),
