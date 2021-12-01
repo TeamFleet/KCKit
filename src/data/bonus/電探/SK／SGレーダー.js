@@ -14,6 +14,7 @@
 const {
     group_Navy_USN,
     group_DD_Navy_USN,
+    group_SS_Navy_USN,
 
     group_BB_Navy_RN,
     group_CV_Navy_RN,
@@ -24,7 +25,9 @@ const {
 const { 丹陽, 雪風改二 } = require('../../ship-ids');
 
 const group_Navy_USN_excludes_DD = group_Navy_USN.filter(
-    (classId) => !group_DD_Navy_USN.includes(classId)
+    (classId) =>
+        !group_DD_Navy_USN.includes(classId) &&
+        !group_SS_Navy_USN.includes(classId)
 );
 
 // ============================================================================
