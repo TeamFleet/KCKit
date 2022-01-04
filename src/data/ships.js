@@ -2,14 +2,11 @@ const S = require('./ship-series');
 const {
     扶桑改二,
     山城改二,
-
     長門改二,
     陸奥改二,
-
     金剛改二丙,
     比叡改二丙,
     榛名改二,
-
     'South Dakota': SouthDakota,
     'South Dakota改': SouthDakota改,
 
@@ -17,7 +14,15 @@ const {
     Hornet改,
 
     龍鳳改二,
-
+    大鷹,
+    大鷹改,
+    大鷹改二,
+    雲鷹,
+    雲鷹改,
+    雲鷹改二,
+    神鷹,
+    神鷹改,
+    神鷹改二,
     'Gambier Bay': GambierBay,
     'Gambier Bay改': GambierBay改,
     'Gambier Bay Mk.II': GambierBayMkII,
@@ -36,17 +41,14 @@ const {
     曙改二,
     潮改,
     潮改二,
-
     山風改二,
     山風改二丁,
-
     親潮改,
     親潮改二,
     丹陽,
     雪風改二,
     秋雲改,
     秋雲改二,
-
     沖波改二,
     高波改二,
 } = require('./ship-ids');
@@ -129,14 +131,17 @@ const CV_ShoukakuClass2ndRemodel = [
     467, // 瑞鶴改二甲
 ];
 const CVE_TaiyouClassRemodelAll = [
-    380, // 大鹰改
-    529, // 大鹰改二
-    381, // 神鷹改
-    536, // 神鷹改二
+    大鷹改,
+    大鷹改二,
+    雲鷹改,
+    雲鷹改二,
+    神鷹改,
+    神鷹改二,
 ];
 const CVE = [
-    526, // 大鹰
-    534, // 神鷹
+    大鷹,
+    雲鷹,
+    神鷹,
     GambierBay,
     GambierBay改,
     GambierBayMkII,
