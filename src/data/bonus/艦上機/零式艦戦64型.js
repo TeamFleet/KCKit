@@ -2,7 +2,7 @@
  * @module
  * 装备额外属性收益
  *
- *  447. 零式艦戦64型(複座KMX搭載機)
+ * 447. 零式艦戦64型(複座KMX搭載機)
  *      https://wikiwiki.jp/kancolle/%E9%9B%B6%E5%BC%8F%E8%89%A6%E6%88%A664%E5%9E%8B%28%E8%A4%87%E5%BA%A7KMX%E6%90%AD%E8%BC%89%E6%A9%9F%29
  *
  */

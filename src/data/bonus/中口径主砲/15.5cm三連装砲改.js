@@ -7,6 +7,8 @@
  *
  */
 
+require('../../../../typedef');
+
 const {
     CAV_Mogami,
     CAV_MogamiRevised,
@@ -16,6 +18,7 @@ const {
 } = require('../../ship-classes');
 const { 大淀, 大淀改 } = require('../../ship-ids');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 235,
@@ -23,7 +26,7 @@ module.exports = [
             isID: [大淀改],
         },
         bonus: {
-            fire: 2,
+            fire: 3,
             aa: 1,
             evasion: 1,
         },
@@ -34,7 +37,7 @@ module.exports = [
             isID: [大淀],
         },
         bonus: {
-            fire: 1,
+            fire: 2,
             aa: 1,
         },
     },
@@ -49,7 +52,7 @@ module.exports = [
             ],
         },
         bonus: {
-            fire: 1,
+            fire: 2,
             aa: 1,
         },
     },

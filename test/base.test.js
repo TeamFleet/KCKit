@@ -240,7 +240,7 @@ describe('Base functions/utilities', () => {
             });
             it(`should Ship.prototype._extraIllust works`, () => {
                 expect(db.ships[77]._extraIllust).toBe(undefined);
-                expect(db.ships[321]._extraIllust.length).toBe(7);
+                expect(db.ships[321]._extraIllust.length).toBe(8);
             });
             it(`should 大淀・改 db.ships[321]._equipmentTypes be an Array of 26`, function () {
                 expect(db.ships[321]._equipmentTypes.length).toBe(27);
@@ -520,10 +520,10 @@ describe('Base functions/utilities', () => {
             });
             describe(`should Ship.prototype.getBonuses() works`, () => {
                 it(`大鳳改 - N bonuses`, () => {
-                    expect(db.ships[156].getBonuses().length).toEqual(12);
+                    expect(db.ships[156].getBonuses().length).toEqual(14);
                 });
                 it(`榛名改二 - N bonuses`, () => {
-                    expect(db.ships[151].getBonuses().length).toEqual(15);
+                    expect(db.ships[151].getBonuses().length).toEqual(17);
                 });
             });
             describe(`should Ship.prototype.getAACI() works`, () => {
@@ -735,13 +735,13 @@ describe('Base functions/utilities', () => {
                     expect(db.items[267].getBonuses().length).toEqual(12);
                 });
                 it(`61cm三連装(酸素)魚雷後期型 - 7 bonuses`, () => {
-                    expect(db.items[285].getBonuses().length).toEqual(7);
+                    expect(db.items[285].getBonuses().length).toEqual(14);
                 });
                 it(`33号対水上電探 - N bonuses`, () => {
                     expect(db.items[29].getBonuses().length).toEqual(47);
                 });
                 it(`15m二重測距儀+21号電探改二 - 3 bonuses`, () => {
-                    expect(db.items[142].getBonuses().length).toEqual(3);
+                    expect(db.items[142].getBonuses().length).toEqual(4);
                 });
                 it(`41cm三连装炮改二`, () => {
                     expect(db.items[290].getBonuses().length).toEqual(8);

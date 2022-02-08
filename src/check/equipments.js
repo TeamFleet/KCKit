@@ -32,17 +32,21 @@ const check = (equipments, stars, ranks, conditions = {}) => {
         // 存在多个条件相同的可能性，表示该条件的装备存在多个
         // 当满足一个条件后从队列中移除该装备，以确保完全匹配
         const restEquipments = [...equipments];
+        const restStars = [...stars];
+        const restRanks = [...ranks];
         return conditions.every((condition) =>
             restEquipments.some((equipment, index) => {
                 if (
                     checkEquipment(
                         equipment,
-                        stars[index],
-                        ranks[index],
+                        restStars[index],
+                        restRanks[index],
                         condition
                     )
                 ) {
                     restEquipments.splice(index, 1);
+                    restStars.splice(index, 1);
+                    restRanks.splice(index, 1);
                     return true;
                 }
                 return false;

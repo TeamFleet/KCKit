@@ -7,6 +7,8 @@
  *
  */
 
+require('../../../../typedef');
+
 const {
     CAV_Mogami,
     CAV_MogamiRevised,
@@ -15,7 +17,17 @@ const {
     CL_Ooyodo,
 } = require('../../ship-classes');
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
+    {
+        equipment: 5,
+        ship: {
+            isClass: [CL_Ooyodo],
+        },
+        bonus: {
+            fire: 2,
+        },
+    },
     {
         equipment: 5,
         ship: {
@@ -24,7 +36,6 @@ module.exports = [
                 CAV_MogamiRevised,
                 CAV_MogamiSuper,
                 CA_Mogami,
-                CL_Ooyodo,
             ],
         },
         bonus: {

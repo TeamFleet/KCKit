@@ -197,6 +197,26 @@ module.exports = [
         },
     },
 
+    // + 61cm三連装(酸素)魚雷
+    {
+        list: [296, 125],
+        equipments: [
+            {
+                isID: 296,
+            },
+            {
+                isID: 125,
+            },
+        ],
+        ship: {
+            isClass: classesAyanamiAkatsukiHatsuharu,
+        },
+        bonus: {
+            fire: 1,
+            torpedo: 3,
+        },
+    },
+
     // + 61cm三連装(酸素)魚雷後期型
     {
         list: [296, 285],

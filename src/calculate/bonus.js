@@ -30,12 +30,8 @@ const calculateBonus = (
             equipmentRanks
         );
 
-    ({
-        ship,
-        equipments,
-        equipmentStars,
-        equipmentRanks,
-    } = getShipAndEquipments(ship, equipments, equipmentStars, equipmentRanks));
+    ({ ship, equipments, equipmentStars, equipmentRanks } =
+        getShipAndEquipments(ship, equipments, equipmentStars, equipmentRanks));
 
     const result = {};
     const conditions = bonus.filter((bonus) => checkShip(ship, bonus.ship));
