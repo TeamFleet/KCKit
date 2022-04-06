@@ -66,7 +66,8 @@ const SP_秋雲改二 = [
 
 module.exports = [
     ...DD_AARadar,
-    ...SP_秋雲改二,
-    ...require('./class-AganoRevised'),
     ...require('./ships-MogamiSuper'),
+    ...require('./class-AganoRevised'),
+    ...require('./class-Tokugata'),
+    ...SP_秋雲改二,
 ];

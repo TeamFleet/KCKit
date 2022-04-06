@@ -2275,8 +2275,8 @@ describe('Calculating functions/utilities', () => {
                         ).toEqual({
                             fire: 2,
                             torpedo: 2,
-                            aa: 15,
-                            evasion: 13,
+                            aa: ship === 矢矧改二 ? 14 : 15,
+                            evasion: ship === 矢矧改二 ? 12 : 13,
                             armor: 2,
                         });
                     });

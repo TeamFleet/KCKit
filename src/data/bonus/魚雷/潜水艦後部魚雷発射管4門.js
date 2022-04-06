@@ -17,33 +17,48 @@ const { group_SS_Navy_USN } = require('../../ship-classes');
 // ============================================================================
 
 /** @type {Array<EquipmentBonus>} */
-const 初期型 = [
-    {
-        equipment: 442,
-        ship: {
-            isClass: [...group_SS_Navy_USN],
-        },
-        bonus: {
-            torpedo: 2,
-        },
-    },
-];
+// const 初期型 = [
+//     {
+//         equipment: 442,
+//         ship: {
+//             isClass: [...group_SS_Navy_USN],
+//         },
+//         bonus: {
+//             torpedo: 2,
+//         },
+//     },
+// ];
 
 // ============================================================================
 
 /** @type {Array<EquipmentBonus>} */
-const 後期型 = [
-    {
-        equipment: 443,
-        ship: {
-            isClass: [...group_SS_Navy_USN],
-        },
-        bonus: {
-            torpedo: 2,
-        },
-    },
-];
+// const 後期型 = [
+//     {
+//         equipment: 443,
+//         ship: {
+//             isClass: [...group_SS_Navy_USN],
+//         },
+//         bonus: {
+//             torpedo: 2,
+//         },
+//     },
+// ];
 
 // ============================================================================
 
-module.exports = [...初期型, ...後期型];
+module.exports = [
+    // ...初期型,
+    // ...後期型,
+    {
+        list: ['SubmarineTorpedo'],
+        equipments: {
+            hasOneOf: [442, 443].map((eid) => ({
+                isID: eid,
+            })),
+        },
+        ship: {
+            isClass: [...group_SS_Navy_USN],
+        },
+        bonus: { torpedo: 2 },
+    },
+];

@@ -37,6 +37,7 @@ const {
     鹿島,
     鹿島改,
 
+    浦波改二,
     天霧改,
     天霧改二,
     天霧改二丁,
@@ -189,6 +190,7 @@ const DD_Div7_2ndRemodel = [曙改二, 潮改二];
 const DD_FubukiClass2ndRemodel = [
     426, // 吹雪改二
     420, // 叢雲改二
+    浦波改二,
 ];
 const DD_AyanamiClassRemodel = [
     207, // 綾波改
