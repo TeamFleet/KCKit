@@ -73,6 +73,7 @@ const types = {
     LandBasedAntiSubPatrol: 62, // 陆上哨戒机
     LandBasedRecon: 63, // 陆上侦察机
     LargeLandBasedAircraft: 65, // 大型陸上機
+    NewLandBasedAttacker: 66, // 新型襲撃機
 };
 
 // Groups
@@ -139,6 +140,7 @@ types.Fighters = [
     types.DiveBomber,
     types.SeaplaneFighter,
     types.LandBasedAttacker,
+    types.NewLandBasedAttacker,
     types.LargeLandBasedAircraft,
     types.Interceptor,
     // types.CarrierRecon
@@ -189,6 +191,7 @@ types.CarrierBased = [
 
 types.LandBasedBombers = [
     types.LandBasedAttacker,
+    types.NewLandBasedAttacker,
     types.LandBasedAntiSubPatrol,
     types.LargeLandBasedAircraft,
 ];
