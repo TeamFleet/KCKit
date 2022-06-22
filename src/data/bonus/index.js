@@ -63,9 +63,12 @@ const dataBonuses = [
     ...require('./大口径主砲/16inch連装砲 (USN)'),
     ...require('./大口径主砲/16inch三連装砲 Mk.6'),
     ...require('./大口径主砲/16inch Mk.I三連装砲'),
+    ...require('./大口径主砲/51cm'),
 
     ...require('./副砲/8cm高角砲'),
     ...require('./副砲/8cm高角砲改+増設機銃'),
+    ...require('./副砲/10cm連装高角砲群'),
+    ...require('./副砲/15.5cm三連装副砲'),
     ...require('./副砲/usn.5inch'),
     ...require('./副砲/65mm／64'),
 

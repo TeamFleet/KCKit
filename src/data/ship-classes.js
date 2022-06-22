@@ -10,6 +10,10 @@ const group_BB_Ise = [BB_Ise, BBV_Ise, BBVR_Ise];
 const BB_Fusou = 4;
 const BBV_Fusou = 11;
 const group_BB_Fusou = [BB_Fusou, BBV_Fusou];
+const BB_Yamato = 83;
+const BC_Yamato = 153;
+const BBV_Yamato = 154;
+const group_BB_Yamato = [BB_Yamato, BC_Yamato, BBV_Yamato];
 const BB_Bismarck = 7;
 const BB_VittorioVeneto = 70;
 const BB_ConteDiCavour = 148;
@@ -233,7 +237,10 @@ module.exports = {
     BBV_Fusou,
     group_BB_Fusou,
     BB_Nagato: 10,
-    BB_Yamato: 83,
+    BB_Yamato,
+    BC_Yamato,
+    BBV_Yamato,
+    group_BB_Yamato,
     BB_Kongou: 9,
     BB_Kongou2: 119,
     BB_Bismarck,

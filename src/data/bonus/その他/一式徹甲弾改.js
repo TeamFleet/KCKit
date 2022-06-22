@@ -11,18 +11,14 @@ const {
     group_BB_Ise,
     group_BB_Fusou,
     BB_Nagato,
-    BB_Yamato,
+    group_BB_Yamato,
     BB_Kongou,
     BB_Kongou2,
 } = require('../../ship-classes');
+const { BB_YamatoClass2ndRemodel } = require('../../ships');
 const { 長門改二, 陸奥改二, 比叡改二丙 } = require('../../ship-ids');
 
-const tier2IDs = [
-    長門改二,
-    陸奥改二,
-    136, // 大和改
-    546, // 武蔵改二
-];
+const tier2IDs = [長門改二, 陸奥改二, ...BB_YamatoClass2ndRemodel];
 const tier3IDs = [
     591, // 金剛改二丙
     比叡改二丙,
@@ -54,7 +50,7 @@ module.exports = [
                 ...group_BB_Ise,
                 ...group_BB_Fusou,
                 BB_Nagato,
-                BB_Yamato,
+                ...group_BB_Yamato,
                 BB_Kongou,
                 BB_Kongou2,
             ],

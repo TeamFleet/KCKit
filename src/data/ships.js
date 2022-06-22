@@ -1,5 +1,8 @@
 const S = require('./ship-series');
 const {
+    大和改二,
+    大和改二重,
+    武蔵改二,
     扶桑改二,
     山城改二,
     長門改二,
@@ -100,6 +103,7 @@ const BB_FusouClass2ndRemodel = [扶桑改二, 山城改二];
 const BB_IseClassRemodel_PLUS_FusouClass2ndRemodel = BB_IseClassRemodel.concat(
     BB_FusouClass2ndRemodel
 );
+const BB_YamatoClass2ndRemodel = [大和改二, 大和改二重, 武蔵改二];
 const BB_NelsonClassRemodel = [
     576, // Nelson改
 ];
@@ -391,6 +395,7 @@ module.exports = {
     BB_IseClassRemodelAll,
     BB_FusouClass2ndRemodel,
     BB_IseClassRemodel_PLUS_FusouClass2ndRemodel,
+    BB_YamatoClass2ndRemodel,
     BB_NelsonClassRemodel,
 
     CV_AkagiClassRemodel,

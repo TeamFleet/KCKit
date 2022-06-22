@@ -7,7 +7,7 @@
 // https://wikiwiki.jp/kancolle/96%E5%BC%8F150cm%E6%8E%A2%E7%85%A7%E7%81%AF
 
 const { Hiei, Kirishima } = require('../../ship-series');
-const { BB_Yamato } = require('../../ship-classes');
+const { group_BB_Yamato } = require('../../ship-classes');
 const { 比叡改二丙 } = require('../../ship-ids');
 
 module.exports = [
@@ -39,7 +39,7 @@ module.exports = [
     {
         equipment: 140,
         ship: {
-            isClass: [BB_Yamato],
+            isClass: [...group_BB_Yamato],
         },
         bonusCount: {
             1: {
