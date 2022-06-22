@@ -5,12 +5,25 @@
  */
 
 const { group_DD_Tokugata } = require('../../ship-classes');
+const { 磯波改二 } = require('../../ship-ids');
 
 module.exports = [
     {
         equipment: 295,
         ship: {
+            isID: [磯波改二],
+        },
+        bonus: {
+            fire: 3,
+            aa: 2,
+            asw: 1,
+        },
+    },
+    {
+        equipment: 295,
+        ship: {
             isClass: group_DD_Tokugata,
+            isNotID: [磯波改二],
         },
         bonus: {
             fire: 2,

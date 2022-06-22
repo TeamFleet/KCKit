@@ -1840,6 +1840,40 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('後期型潜水艦搭載電探＆逆探', () => {
+                it('呂500 || 後期型潜水艦搭載電探＆逆探', () => {
+                    expect(calculate.bonus(436, [384])).toEqual({});
+                    expect(calculate.bonus(436, [213])).toEqual({});
+                    expect(calculate.bonus(436, [384, 213])).toEqual({
+                        torpedo: 3,
+                        evasion: 2,
+                    });
+                    expect(
+                        calculate.bonus(436, [
+                            214,
+                            213,
+                            undefined,
+                            undefined,
+                            384,
+                        ])
+                    ).toEqual({
+                        torpedo: 3,
+                        evasion: 2,
+                    });
+                    expect(
+                        calculate.bonus(436, [
+                            383,
+                            213,
+                            undefined,
+                            undefined,
+                            384,
+                        ])
+                    ).toEqual({
+                        torpedo: 3,
+                        evasion: 2,
+                    });
+                });
+            });
         });
 
         describe('Sets...', () => {

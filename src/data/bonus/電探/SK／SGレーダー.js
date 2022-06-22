@@ -8,18 +8,24 @@
  *      https://wikiwiki.jp/kancolle/SK%E3%83%AC%E3%83%BC%E3%83%80%E3%83%BC
  * 279. SK+SG レーダー
  *      https://wikiwiki.jp/kancolle/SK%EF%BC%8BSG%E3%83%AC%E3%83%BC%E3%83%80%E3%83%BC
+ * 456. SG レーダー(後期型)
+ *      https://wikiwiki.jp/kancolle/SG%20%E3%83%AC%E3%83%BC%E3%83%80%E3%83%BC%28%E5%BE%8C%E6%9C%9F%E5%9E%8B%29
  *
  */
+
+require('../../../../typedef');
 
 const {
     group_Navy_USN,
     group_DD_Navy_USN,
     group_SS_Navy_USN,
 
+    group_Navy_RN,
     group_BB_Navy_RN,
     group_CV_Navy_RN,
     group_CL_Navy_RN,
 
+    group_Navy_RAN,
     group_CL_Navy_RAN,
 } = require('../../ship-classes');
 const { 丹陽, 雪風改二 } = require('../../ship-ids');
@@ -32,6 +38,7 @@ const group_Navy_USN_excludes_DD = group_Navy_USN.filter(
 
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
 const SGレーダー_初期型 = [
     {
         equipment: 315,
@@ -72,6 +79,63 @@ const SGレーダー_初期型 = [
 
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
+const SGレーダー_後期型 = [
+    {
+        equipment: 456,
+        ship: {
+            isClass: group_DD_Navy_USN,
+        },
+        bonus: {
+            fire: 4,
+            evasion: 4,
+            los: 4,
+            range: '1',
+            hit: 3,
+        },
+    },
+    {
+        equipment: 456,
+        ship: {
+            isClass: [...group_Navy_USN_excludes_DD],
+        },
+        bonus: {
+            fire: 3,
+            evasion: 4,
+            los: 4,
+            hit: 3,
+        },
+    },
+    {
+        equipment: 456,
+        ship: {
+            isClass: [...group_Navy_RN, ...group_Navy_RAN],
+        },
+        bonus: {
+            aa: 2,
+            evasion: 2,
+            los: 2,
+            hit: 2,
+        },
+    },
+    {
+        equipment: 456,
+        ship: {
+            isID: [丹陽, 雪風改二],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 2,
+            los: 3,
+            range: '1',
+            hit: 2,
+        },
+    },
+];
+
+// ============================================================================
+
+/** @type {Array<EquipmentBonus>} */
 const SKレーダー = [
     {
         equipment: 278,
@@ -112,6 +176,7 @@ const SKレーダー = [
 
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
 const SK_SG_レーダー = [
     {
         equipment: 279,
@@ -154,4 +219,9 @@ const SK_SG_レーダー = [
     },
 ];
 
-module.exports = [...SGレーダー_初期型, ...SKレーダー, ...SK_SG_レーダー];
+module.exports = [
+    ...SGレーダー_初期型,
+    ...SGレーダー_後期型,
+    ...SKレーダー,
+    ...SK_SG_レーダー,
+];

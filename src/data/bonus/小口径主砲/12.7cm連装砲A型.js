@@ -1,13 +1,12 @@
 /**
  * 装备额外属性收益 - 12.7cm連装砲A型
- * 
+ *
  * @module
  */
 
-const { DD_Fubuki, DD_Ayanami, DD_Akatsuki } = require('../../ship-classes')
+const { DD_Fubuki, DD_Ayanami, DD_Akatsuki } = require('../../ship-classes');
 
 module.exports = [
-
     {
         equipment: 297,
         ship: {
@@ -15,7 +14,7 @@ module.exports = [
         },
         bonus: {
             evasion: 1,
-        }
+        },
     },
 
     {
@@ -25,7 +24,6 @@ module.exports = [
         },
         bonus: {
             evasion: 2,
-        }
+        },
     },
-
-]
+];

@@ -7,9 +7,13 @@
  *
  */
 
+require('../../../../typedef');
+
 const { I47, I58, I400, I401 } = require('../../ship-series');
+
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 384,
@@ -27,6 +31,30 @@ module.exports = [
         },
         bonus: {
             evasion: 3,
+        },
+    },
+
+    {
+        list: [384, 'SubmarineTorpedo'],
+        equipments: {
+            hasID: [384],
+            hasOneOf: [
+                213, // 後期型艦首魚雷(6門)
+                214, // 熟練聴音員+後期型艦首魚雷(6門)
+                383, // 後期型53cm艦首魚雷(8門)
+            ].map((eid) => ({
+                isID: eid,
+            })),
+        },
+        ship: {
+            isType: [
+                13, // SS
+                14, // SSV
+            ],
+        },
+        bonus: {
+            torpedo: 3,
+            evasion: 2,
         },
     },
 ];
