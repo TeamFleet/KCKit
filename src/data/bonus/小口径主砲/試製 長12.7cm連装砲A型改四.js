@@ -54,7 +54,7 @@ module.exports = [
         equipment: 455,
         ship: {
             isClass: [DD_Fubuki],
-            isNotID: [浦波, 浦波改, 浦波改二],
+            isNotID: [磯波改二, 浦波, 浦波改, 浦波改二],
         },
         bonus: {
             fire: 3,
