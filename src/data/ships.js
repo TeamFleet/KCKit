@@ -53,8 +53,11 @@ const {
     山風改二丁,
     親潮改,
     親潮改二,
+    早潮改,
+    早潮改二,
     丹陽,
     雪風改二,
+    磯風乙改,
     秋雲改,
     秋雲改二,
     沖波改二,
@@ -270,6 +273,7 @@ const DD_KagerouClassRemodel = [
     226, // 不知火改
     227, // 黒潮改
     親潮改,
+    早潮改,
     300, // 初風改
     228, // 雪風改
     316, // 天津風改
@@ -277,7 +281,7 @@ const DD_KagerouClassRemodel = [
     317, // 浦風改
     556, // 浦風丁改
     320, // 磯風改
-    557, // 磯風乙改
+    磯風乙改, // 磯風乙改
     312, // 浜風改
     558, // 浜風乙改
     313, // 谷風改
@@ -293,6 +297,7 @@ const DD_KagerouClass2ndRemodelExcludeAkigumo = [
     567, // 不知火改二
     568, // 黒潮改二
     親潮改二,
+    早潮改二,
     丹陽,
     雪風改二,
 ];
@@ -301,7 +306,7 @@ const DD_KagerouClass2ndRemodel = [
     秋雲改二,
 ];
 const DD_KagerouClassRemodelB = [
-    557, // 磯風乙改
+    磯風乙改, // 磯風乙改
     558, // 浜風乙改
 ];
 const DD_KagerouClassRemodelAll = DD_KagerouClassRemodel.concat(
@@ -454,7 +459,7 @@ module.exports = {
     Yamagumo: [414, 328],
     Kasumi: [49, 253, 464, 470],
     Yukikaze: S.Yukikaze,
-    Isokaze: [167, 320, 557],
+    Isokaze: [167, 320, 磯風乙改],
     Hamakaze: [170, 312, 558],
     Maikaze: S.Maikaze,
     Kishinami: [527, 686],

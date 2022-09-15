@@ -1874,6 +1874,36 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('12.7cm連装砲C型改三', () => {
+                it('時雨改二 || 12.7cm連装砲C型改三', () => {
+                    expect(calculate.bonus(145, [470])).toEqual({
+                        fire: 2,
+                        hit: 2,
+                        evasion: 2,
+                    });
+                });
+                it('時雨改二 || 12.7cm連装砲C型改三⭐+7', () => {
+                    expect(calculate.bonus(145, [470], [7])).toEqual({
+                        fire: 2,
+                        hit: 3,
+                        evasion: 2,
+                    });
+                });
+                it('時雨改二 || 12.7cm連装砲C型改三⭐+7 | 12.7cm連装砲C型改三', () => {
+                    expect(calculate.bonus(145, [470, 470], [7])).toEqual({
+                        fire: 2 + 3,
+                        hit: 2 + 1,
+                        evasion: 2 + 2,
+                    });
+                });
+                it('時雨改二 || 12.7cm連装砲C型改三⭐+7 | 12.7cm連装砲C型改三 | 12.7cm連装砲C型改三', () => {
+                    expect(calculate.bonus(145, [470, 470, 470], [7])).toEqual({
+                        fire: 2 + 3 + 1,
+                        hit: 2 + 1,
+                        evasion: 2 + 2 + 2,
+                    });
+                });
+            });
         });
 
         describe('Sets...', () => {

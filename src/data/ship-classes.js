@@ -46,19 +46,23 @@ const CVB_Lexington = 105;
 const CVB_Illustrious = 149;
 const CV_Lexington = 87;
 const CV_Essex = 110;
+const CV_Ranger = 157;
 const CV_Yorktown = 135;
 const CV_ArkRoyal = 101;
 const CV_GrafZeppelin = 80;
 const CV_Aquila = 91;
 const CV_Casablanca = 106;
+const CV_Independence = 156;
 const group_CV_Navy_KM = [CV_GrafZeppelin];
 const group_CV_Navy_RM = [CV_Aquila];
 const group_CV_Navy_USN = [
     CVB_Lexington,
     CV_Lexington,
     CV_Essex,
+    CV_Ranger,
     CV_Yorktown,
     CV_Casablanca,
+    CV_Independence,
 ];
 const group_CV_Navy_RN = [CVB_Illustrious, CV_ArkRoyal];
 
@@ -267,6 +271,7 @@ module.exports = {
     CVB_Lexington,
     CVB_Illustrious,
     CV_Essex,
+    CV_Ranger,
     CV_Yorktown,
     CV_ArkRoyal,
     CV_GrafZeppelin,
@@ -281,6 +286,7 @@ module.exports = {
     CV_Taiyou_SP: 96,
     CV_Taiyou: 97,
     CV_Casablanca,
+    CV_Independence,
 
     CVL_Houshou,
     CVL_Ryuujou,

@@ -5,7 +5,7 @@
  */
 
 const { DD_KagerouClass2ndRemodelExcludeAkigumo } = require('../../ships');
-const { 丹陽 } = require('../../ship-ids');
+const { 丹陽, 磯風乙改 } = require('../../ship-ids');
 const {
     DD_Shiratsuyu,
     DD_ShiratsuyuRevised,
@@ -18,7 +18,7 @@ const conditionSpecials = [
     145, // 時雨改二
     228, // 雪風改
     丹陽,
-    557, // 磯風丁改
+    磯風乙改,
 ];
 const condition1excludes =
     DD_KagerouClass2ndRemodelExcludeAkigumo.concat(conditionSpecials);
