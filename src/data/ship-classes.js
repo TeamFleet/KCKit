@@ -34,6 +34,7 @@ const group_BB_Navy_USN = [
 const group_BB_Navy_RN = [BB_QueenElizabeth, BB_Nelson];
 const group_BB_Navy_KM = [BB_Bismarck];
 const group_BB_Navy_RM = [BB_VittorioVeneto, BB_ConteDiCavour];
+const group_BB_Navy_MN = [BB_Richelieu];
 
 // ============================================================================
 //
@@ -230,6 +231,8 @@ const group_SS_Navy_USN = [SS_Gato];
 // ============================================================================
 const Aux_LHA_特種船丙型 = 56;
 const Aux_AO_特2TL型 = 152;
+const Aux_AV_CTeste = 86;
+const group_Aux_Navy_MN = [Aux_AV_CTeste];
 
 module.exports = {
     // ========================================================================
@@ -263,6 +266,7 @@ module.exports = {
     group_BB_Navy_RN,
     group_BB_Navy_KM,
     group_BB_Navy_RM,
+    group_BB_Navy_MN,
 
     // ========================================================================
     CV_Kaga,
@@ -397,6 +401,8 @@ module.exports = {
     // ========================================================================
     Aux_LHA_特種船丙型,
     Aux_AO_特2TL型,
+    Aux_AV_CTeste,
+    group_Aux_Navy_MN,
 
     // ========================================================================
     group_Navy_USN: [
@@ -428,4 +434,5 @@ module.exports = {
     ],
     group_Navy_RNLN: [...group_CL_Navy_RNLN],
     group_Navy_RAN: [...group_CL_Navy_RAN],
+    group_Navy_MN: [...group_BB_Navy_MN, ...group_Aux_Navy_MN], // 法国
 };

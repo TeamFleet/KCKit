@@ -3027,6 +3027,29 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('MN', () => {
+                it('Jean Bart 改 || 38cm四連装砲改 deux | 15.2cm三連装砲', () => {
+                    expect(calculate.bonus(724, [468, 247])).toEqual({
+                        fire: 3 + 2 + 2,
+                        hit: 1 + 2 + 2,
+                        evasion: 2,
+                    });
+                });
+                it('Jean Bart 改 || 38cm四連装砲改 deux | 15.2cm三連装砲 | 15.2cm三連装砲', () => {
+                    expect(calculate.bonus(724, [468, 247, 247])).toEqual({
+                        fire: 3 + 2 + 2 + 2 + 2,
+                        hit: 1 + 2 + 2 + 2 + 2,
+                        evasion: 2 + 2,
+                    });
+                });
+                it('Jean Bart 改 || 38cm四連装砲 | 38cm四連装砲改 deux | 15.2cm三連装砲 | 15.2cm三連装砲', () => {
+                    expect(calculate.bonus(724, [245, 468, 247, 247])).toEqual({
+                        fire: 2 + 3 + 2 + 2 + 2 + 2,
+                        hit: 1 + 1 + 2 + 2 + 2 + 2,
+                        evasion: 2 + 2,
+                    });
+                });
+            });
         });
 
         it('pass stat', () => {
