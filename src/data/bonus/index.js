@@ -174,6 +174,7 @@ const dataBonuses = [
     ...require('./対潜兵装/RUR-4A'),
     ...require('./対潜兵装/対潜短魚雷'),
     ...require('./対潜兵装/Hedgehog'),
+    ...require('./対潜兵装/零式水中聴音機'),
 
     ...require('./対空機銃/2cm 四連装FlaK 38'),
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),

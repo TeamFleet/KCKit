@@ -1481,6 +1481,25 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            it('大和改二重 || 零式水中聴音機', () => {
+                expect(calculate.bonus(916, [132])).toEqual({
+                    evasion: 1,
+                });
+            });
+            it('大和改二重 || 零式水中聴音機⭐MAX', () => {
+                expect(calculate.bonus(916, [132], [10])).toEqual({
+                    evasion: 1 + 2,
+                    asw: 3,
+                    hit: 1,
+                });
+            });
+            it('大和改二重 || 零式水中聴音機⭐MAX | 零式水中聴音機', () => {
+                expect(calculate.bonus(916, [132, 132], [10])).toEqual({
+                    evasion: 1 + 2,
+                    asw: 3,
+                    hit: 1,
+                });
+            });
         });
 
         describe('その他...', () => {
