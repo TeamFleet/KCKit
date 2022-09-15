@@ -13,7 +13,9 @@ const {
     CV_Lexington,
     CV_Essex,
     CV_Yorktown,
+    CV_Ranger,
     CV_Casablanca,
+    CV_Independence,
     group_CV_Navy_RN,
 } = require('../../ship-classes');
 
@@ -38,7 +40,7 @@ module.exports = [
     {
         equipment: 420,
         ship: {
-            isClass: [CVB_Lexington, CV_Lexington, CV_Yorktown],
+            isClass: [CVB_Lexington, CV_Lexington, CV_Yorktown, CV_Ranger],
         },
         bonusImprove: {
             0: {
@@ -63,7 +65,7 @@ module.exports = [
     {
         equipment: 420,
         ship: {
-            isClass: [CV_Casablanca],
+            isClass: [CV_Casablanca, CV_Independence],
         },
         bonusImprove: {
             0: {
@@ -81,7 +83,7 @@ module.exports = [
         equipment: 420,
         ship: {
             isType: [9],
-            isNotClass: [CV_Casablanca],
+            isNotClass: [CV_Casablanca, CV_Independence],
         },
         bonus: {
             fire: -2,

@@ -91,6 +91,8 @@ const 軽空母 = {
     'Gambier Bay': 544,
     'Gambier Bay改': 396,
     'Gambier Bay Mk.II': 707,
+    Langley: 925,
+    Langley改: 930,
 };
 
 module.exports = {

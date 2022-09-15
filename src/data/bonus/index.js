@@ -117,6 +117,7 @@ const dataBonuses = [
     ...require('./艦上機/Fulmar'),
     ...require('./艦上機/Re.2001 OR改'),
     ...require('./艦上機/Re.2005 改'),
+    ...require('./艦上機/F4U'),
     ...require('./艦上機/FR-1 Fireball'),
     ...require('./艦上機/XF5U'),
     ...require('./艦上機/Corsair'),
