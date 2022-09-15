@@ -89,7 +89,7 @@ const 単体ボーナス = [
     {
         equipment: 470,
         ship: {
-            isID: [雪風改二],
+            isID: [丹陽, 雪風改二],
         },
         bonusCount: {
             1: {
@@ -113,7 +113,7 @@ const 単体ボーナス = [
         equipment: 470,
         ship: {
             isID: DD_KagerouClass2ndRemodel.filter(
-                (shipId) => ![雪風改二, 秋雲改二].includes(shipId)
+                (shipId) => ![丹陽, 雪風改二, 秋雲改二].includes(shipId)
             ),
         },
         bonusCount: {
@@ -134,7 +134,7 @@ const 単体ボーナス = [
     {
         equipment: 470,
         ship: {
-            isID: [雪風, 雪風改, 丹陽, 磯風乙改],
+            isID: [雪風, 雪風改, 磯風乙改],
         },
         bonus: {
             fire: 2,
