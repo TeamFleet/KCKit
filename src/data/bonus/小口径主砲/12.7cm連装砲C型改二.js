@@ -1,11 +1,16 @@
 /**
- * 装备额外属性收益 - 12.7cm連装砲C型改二
- *
  * @module
+ * 装备额外属性收益
+ *
+ * 266. 12.7cm連装砲C型改二
+ *      https://wikiwiki.jp/kancolle/12.7cm%E9%80%A3%E8%A3%85%E7%A0%B2C%E5%9E%8B%E6%94%B9%E4%BA%8C
+ *
  */
 
+require('../../../../typedef');
+
 const { DD_KagerouClass2ndRemodelExcludeAkigumo } = require('../../ships');
-const { 丹陽, 磯風乙改 } = require('../../ship-ids');
+const { 丹陽, 雪風改二, 磯風乙改 } = require('../../ship-ids');
 const {
     DD_Shiratsuyu,
     DD_ShiratsuyuRevised,
@@ -55,7 +60,7 @@ module.exports = [
         equipment: 266,
         ship: {
             isID: DD_KagerouClass2ndRemodelExcludeAkigumo.filter(
-                (shipId) => shipId !== 丹陽
+                (shipId) => ![丹陽, 雪風改二].includes(shipId)
             ),
         },
         bonusCount: {
@@ -67,6 +72,28 @@ module.exports = [
             },
             3: {
                 fire: 6,
+            },
+        },
+    },
+
+    // @ 陽炎型 改二
+    {
+        equipment: 266,
+        ship: {
+            isID: [雪風改二],
+        },
+        bonusCount: {
+            1: {
+                fire: 2,
+                evasion: 1,
+            },
+            2: {
+                fire: 5,
+                evasion: 2,
+            },
+            3: {
+                fire: 6,
+                evasion: 3,
             },
         },
     },

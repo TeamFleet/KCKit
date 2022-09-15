@@ -112,7 +112,7 @@ const SGレーダー_後期型 = [
             isClass: [...group_Navy_RN, ...group_Navy_RAN],
         },
         bonus: {
-            aa: 2,
+            fire: 2,
             evasion: 2,
             los: 2,
             hit: 2,

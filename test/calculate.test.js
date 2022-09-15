@@ -2591,9 +2591,9 @@ describe('Calculating functions/utilities', () => {
             describe('雪風改二', () => {
                 it('12.7cm連装砲C型改二 | 12.7cm連装砲D型改二 | 12.7cm連装砲D型改三', () => {
                     expect(calculate.bonus(雪風改二, [266, 267, 366])).toEqual({
-                        fire: 6,
+                        fire: 2 + 2 + 2,
                         aa: 2,
-                        evasion: 2,
+                        evasion: 1 + 1 + 1,
                     });
                 });
                 it('5inch単装砲 Mk.30改+GFCS Mk.37', () => {

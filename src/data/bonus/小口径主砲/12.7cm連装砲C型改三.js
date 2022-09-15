@@ -154,10 +154,11 @@ const 単体ボーナス = [
     {
         equipment: 470,
         ship: {
-            isClass: [DD_Kagerou, DD_KagerouROCN],
+            isClass: [DD_Kagerou],
             isNotID: [
                 雪風,
                 雪風改,
+                丹陽,
                 雪風改二,
                 磯風乙改,
                 ...DD_KagerouClass2ndRemodel.filter(
