@@ -8,6 +8,7 @@
  */
 
 const { Mizuho, Kamoi, CommandantTeste } = require('../../ship-series');
+const { Richelieu改, 'Jean Bart改': JeanBart改 } = require('../../ship-ids');
 
 module.exports = [
     {
@@ -34,9 +35,7 @@ module.exports = [
     {
         equipment: 194,
         ship: {
-            isID: [
-                392, // Richelieu改
-            ],
+            isID: [Richelieu改, JeanBart改],
         },
         bonus: {
             fire: 1,

@@ -22,5 +22,10 @@ module.exports = {
     Washington: 654,
     Washington改: 659,
 
+    Richelieu: 492,
+    Richelieu改: 392,
+    'Jean Bart': 935,
+    'Jean Bart改': 724,
+
     'Conte di Cavour nuovo': 879,
 };
