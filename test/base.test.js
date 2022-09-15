@@ -520,7 +520,7 @@ describe('Base functions/utilities', () => {
             });
             describe(`should Ship.prototype.getBonuses() works`, () => {
                 it(`大鳳改 - N bonuses`, () => {
-                    expect(db.ships[156].getBonuses().length).toEqual(22);
+                    expect(db.ships[156].getBonuses().length).toEqual(23);
                 });
                 it(`榛名改二 - N bonuses`, () => {
                     expect(db.ships[151].getBonuses().length).toEqual(25);
