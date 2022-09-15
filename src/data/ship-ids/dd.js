@@ -68,4 +68,5 @@ module.exports = {
     Grecale改: 619,
 
     'Fletcher Mk.II': 629,
+    'Samuel B.Roberts Mk.II': 920,
 };
