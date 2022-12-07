@@ -34,6 +34,7 @@ module.exports = [
         bonus: {
             asw: 3,
             evasion: 1,
+            hit: 1,
         },
     },
     {

@@ -15,7 +15,11 @@
 
 require('../../../../typedef');
 
-const { CV_ArkRoyal, CVL_Houshou } = require('../../ship-classes');
+const {
+    CV_ArkRoyal,
+    CVL_Houshou,
+    CVL_HoushouRevised,
+} = require('../../ship-classes');
 
 // ============================================================================
 
@@ -34,7 +38,7 @@ const _ = [
     {
         equipment: 242,
         ship: {
-            isClass: [CVL_Houshou],
+            isClass: [CVL_Houshou, CVL_HoushouRevised],
         },
         bonus: {
             fire: 1,
@@ -59,7 +63,7 @@ const MkII_熟練 = [
     {
         equipment: 243,
         ship: {
-            isClass: [CVL_Houshou],
+            isClass: [CVL_Houshou, CVL_HoushouRevised],
         },
         bonus: {
             fire: 2,
@@ -84,7 +88,7 @@ const MkIII_熟練 = [
     {
         equipment: 244,
         ship: {
-            isClass: [CVL_Houshou],
+            isClass: [CVL_Houshou, CVL_HoushouRevised],
         },
         bonus: {
             fire: 3,

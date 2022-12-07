@@ -16,6 +16,9 @@ const {
     Hornet,
     Hornet改,
 
+    鳳翔改二,
+    鳳翔改二戦,
+    龍鳳改二戊,
     龍鳳改二,
     大鷹,
     大鷹改,
@@ -29,6 +32,8 @@ const {
     'Gambier Bay': GambierBay,
     'Gambier Bay改': GambierBay改,
     'Gambier Bay Mk.II': GambierBayMkII,
+    Langley,
+    Langley改,
 
     最上改二,
     最上改二特,
@@ -154,11 +159,16 @@ const CVE = [
     大鷹,
     雲鷹,
     神鷹,
+    鳳翔改二,
+    鳳翔改二戦,
+    560, // 瑞鳳改二乙
+    龍鳳改二戊,
+    龍鳳改二,
     GambierBay,
     GambierBay改,
     GambierBayMkII,
-    560, // 瑞鳳改二乙
-    龍鳳改二,
+    Langley,
+    Langley改,
     ...CVE_TaiyouClassRemodelAll,
 ];
 

@@ -11,6 +11,8 @@ require('../../../../typedef');
 
 const {
     鳳翔改,
+    鳳翔改二,
+    鳳翔改二戦,
     龍鳳改二,
     大鷹改二,
     雲鷹改二,
@@ -21,6 +23,18 @@ const {
 
 /** @type {Array<EquipmentBonus>} */
 const 複座KMX搭載機 = [
+    {
+        equipment: 447,
+        ship: {
+            isID: [鳳翔改二, 鳳翔改二戦],
+        },
+        bonus: {
+            fire: 2,
+            asw: 3,
+            aa: 1,
+            evasion: 2,
+        },
+    },
     {
         equipment: 447,
         ship: {

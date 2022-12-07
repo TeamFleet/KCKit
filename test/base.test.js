@@ -523,7 +523,7 @@ describe('Base functions/utilities', () => {
                     expect(db.ships[156].getBonuses().length).toEqual(23);
                 });
                 it(`榛名改二 - N bonuses`, () => {
-                    expect(db.ships[151].getBonuses().length).toEqual(25);
+                    expect(db.ships[151].getBonuses().length).toEqual(27);
                 });
             });
             describe(`should Ship.prototype.getAACI() works`, () => {

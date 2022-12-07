@@ -19,6 +19,8 @@ const {
     飛龍改二,
 
     鳳翔改,
+    鳳翔改二,
+    鳳翔改二戦,
     龍鳳改二戊,
     龍鳳改二,
     鈴谷航改二,
@@ -27,6 +29,17 @@ const {
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
+    {
+        equipment: 437,
+        ship: {
+            isID: [鳳翔改二, 鳳翔改二戦],
+        },
+        bonus: {
+            fire: 4,
+            aa: 4,
+            evasion: 4,
+        },
+    },
     {
         equipment: 437,
         ship: {

@@ -19,9 +19,11 @@ module.exports = [
         ship: {
             isID: [...I201, ...I203],
         },
-        bonus: {
-            torpedo: 3,
-            evasion: 6,
+        bonusCount: {
+            1: {
+                torpedo: 3,
+                evasion: 6,
+            },
         },
     },
     {
@@ -29,9 +31,11 @@ module.exports = [
         ship: {
             isID: [...I13, ...I14, ...I47],
         },
-        bonus: {
-            torpedo: 3,
-            evasion: 4,
+        bonusCount: {
+            1: {
+                torpedo: 3,
+                evasion: 4,
+            },
         },
     },
     {
@@ -39,9 +43,11 @@ module.exports = [
         ship: {
             isID: [...I400, ...I401],
         },
-        bonus: {
-            torpedo: 3,
-            evasion: 3,
+        bonusCount: {
+            1: {
+                torpedo: 3,
+                evasion: 3,
+            },
         },
     },
 ];

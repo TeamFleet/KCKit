@@ -68,6 +68,7 @@ const group_CV_Navy_USN = [
 const group_CV_Navy_RN = [CVB_Illustrious, CV_ArkRoyal];
 
 const CVL_Houshou = 33;
+const CVL_HoushouRevised = 158;
 const CVL_Ryuujou = 34;
 const CVL_Ryuuhou = 35;
 const CVL_RyuuhouRevised = 145;
@@ -293,6 +294,7 @@ module.exports = {
     CV_Independence,
 
     CVL_Houshou,
+    CVL_HoushouRevised,
     CVL_Ryuujou,
     CVL_Ryuuhou,
     CVL_RyuuhouRevised,

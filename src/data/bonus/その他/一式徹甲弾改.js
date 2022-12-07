@@ -7,6 +7,8 @@
  *
  */
 
+require('../../../../typedef');
+
 const {
     group_BB_Ise,
     group_BB_Fusou,
@@ -24,14 +26,17 @@ const tier3IDs = [
     比叡改二丙,
 ];
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 365,
         ship: {
             isID: tier3IDs,
         },
-        bonus: {
-            fire: 3,
+        bonusCount: {
+            1: {
+                fire: 3,
+            },
         },
     },
     {
@@ -39,8 +44,10 @@ module.exports = [
         ship: {
             isID: tier2IDs,
         },
-        bonus: {
-            fire: 2,
+        bonusCount: {
+            1: {
+                fire: 2,
+            },
         },
     },
     {
@@ -56,8 +63,10 @@ module.exports = [
             ],
             isNotID: [...tier2IDs, ...tier3IDs],
         },
-        bonus: {
-            fire: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+            },
         },
     },
 ];
