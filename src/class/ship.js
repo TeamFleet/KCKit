@@ -107,6 +107,12 @@ class Ship extends ItemBase {
                 this.__SUBTYPE = 'ModernizedCarrier';
             else if (
                 isLightCarrier &&
+                this.canEquip('LandingCraft') &&
+                this.canEquip('AmphibiousCraft')
+            )
+                this.__SUBTYPE = 'LightBattleCarrier';
+            else if (
+                isLightCarrier &&
                 typeof this.stat.asw === 'number' &&
                 this.stat.asw > 0 &&
                 this.canEquip('LandingCraft')
