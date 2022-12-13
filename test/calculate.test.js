@@ -1427,6 +1427,16 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            describe('13号対空電探改二...', () => {
+                it('朧改 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 | 12.7cm連装砲B型改四(戦時改修)＋高射装置 | 13号対空電探改二', () => {
+                    expect(calculate.bonus(230, [295, 296, 450])).toEqual({
+                        fire: 7,
+                        torpedo: 3,
+                        aa: 13,
+                        evasion: 4,
+                    });
+                });
+            });
         });
 
         describe('対潜兵装...', () => {
