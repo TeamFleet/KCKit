@@ -12,6 +12,8 @@
 
 require('../../../../typedef');
 
+const transformBonusToImprove = require('../../../utils/transform-bonus-to-improve');
+
 const { CAV_MogamiClassSuperRemodel } = require('../../ships');
 const {
     三隈改,
@@ -53,6 +55,7 @@ const 強風改二 = [
             fire: 1,
             aa: 5,
             evasion: 3,
+            hit: 1,
         },
     },
     {
@@ -66,27 +69,13 @@ const 強風改二 = [
             evasion: 2,
         },
     },
-    {
-        list: [
-            {
-                id: 485,
-                star: 3,
-            },
-        ],
-        equipments: [
-            {
-                isID: 485,
-                improvement: 3,
-            },
-        ],
-        ship: {
-            canEquip: [51],
-        },
-        bonus: {
-            fire: 1,
-        },
-    },
 ];
+transformBonusToImprove(強風改二, {
+    3: { fire: 1 },
+    5: { fire: 1, aa: 1 },
+    7: { fire: 1, aa: 1, evasion: 1 },
+    10: { fire: 1, aa: 1, evasion: 1, hit: 1 },
+});
 
 // ============================================================================
 

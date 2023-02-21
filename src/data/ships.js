@@ -54,6 +54,7 @@ const {
     曙改二,
     潮改,
     潮改二,
+    初霜改二,
     山風改二,
     山風改二丁,
     親潮改,
@@ -63,6 +64,7 @@ const {
     丹陽,
     雪風改二,
     磯風乙改,
+    浜風乙改,
     秋雲改,
     秋雲改二,
     沖波改二,
@@ -250,7 +252,7 @@ const DD_HatsuharuClassRemodel = [
 ];
 const DD_HatsuharuClass2ndRemodel = [
     326, // 初春改二
-    419, // 初霜改二
+    初霜改二,
 ];
 const DD_HatsuharuClassRemodelAll = DD_HatsuharuClassRemodel.concat(
     DD_HatsuharuClass2ndRemodel
@@ -293,7 +295,7 @@ const DD_KagerouClassRemodel = [
     320, // 磯風改
     磯風乙改, // 磯風乙改
     312, // 浜風改
-    558, // 浜風乙改
+    浜風乙改,
     313, // 谷風改
     559, // 谷風丁改
     329, // 野分改
@@ -315,10 +317,7 @@ const DD_KagerouClass2ndRemodel = [
     ...DD_KagerouClass2ndRemodelExcludeAkigumo,
     秋雲改二,
 ];
-const DD_KagerouClassRemodelB = [
-    磯風乙改, // 磯風乙改
-    558, // 浜風乙改
-];
+const DD_KagerouClassRemodelB = [磯風乙改, 浜風乙改];
 const DD_KagerouClassRemodelAll = DD_KagerouClassRemodel.concat(
     DD_KagerouClass2ndRemodel
 );

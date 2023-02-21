@@ -106,6 +106,7 @@ const dataBonuses = [
     ...require('./水上機/瑞雲(六三四空／熟練)'),
     ...require('./水上機/瑞雲改二(六三四空)'),
     ...require('./水上機/瑞雲改二(六三四空／熟練)'),
+    ...require('./水上機/試製 夜間瑞雲'),
     ...require('./水上機/強風改'),
 
     ...require('./艦上機/九六式艦戦'),
@@ -171,6 +172,7 @@ const dataBonuses = [
     ...require('./対潜兵装/四式水中聴音機'),
     ...require('./対潜兵装/三式爆雷投射機 集中配備'),
     ...require('./対潜兵装/試製15cm9連装対潜噴進砲'),
+    ...require('./対潜兵装/二式爆雷改二'),
     ...require('./対潜兵装/RUR-4A'),
     ...require('./対潜兵装/対潜短魚雷'),
     ...require('./対潜兵装/Hedgehog'),
@@ -197,6 +199,7 @@ const dataBonuses = [
     ...require('./その他/オ号観測機改二'),
     ...require('./その他/S-51J'),
     ...require('./その他/S-51J改'),
+    ...require('./その他/一式戦 隼II型改'),
     ...require('./その他/探照灯'),
     ...require('./その他/96式150cm探照灯'),
     ...require('./その他/熟練見張員'),

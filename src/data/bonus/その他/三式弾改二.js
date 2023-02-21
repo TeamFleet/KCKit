@@ -45,7 +45,7 @@ module.exports = [
             1: {
                 fire: 4,
                 aa: 4,
-                evasion: 2,
+                evasion: 1,
             },
         },
     },

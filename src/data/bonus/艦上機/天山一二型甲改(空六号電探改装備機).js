@@ -233,10 +233,15 @@ const 天山一二型甲改_熟練_空六号電探改装備機 = [
         ship: {
             isID: [翔鶴改二, 翔鶴改二甲],
         },
-        bonus: {
-            fire: 3,
-            torpedo: 3,
-            evasion: 3,
+        bonusCount: {
+            1: {
+                fire: 3,
+                torpedo: 3,
+                evasion: 3,
+            },
+            2: {
+                fire: 3,
+            },
         },
     },
     {
@@ -244,10 +249,13 @@ const 天山一二型甲改_熟練_空六号電探改装備機 = [
         ship: {
             isID: [瑞鶴改二, 瑞鶴改二甲],
         },
-        bonus: {
-            fire: 2,
-            torpedo: 3,
-            evasion: 4,
+        bonusCount: {
+            1: {
+                fire: 2,
+                torpedo: 3,
+                evasion: 4,
+            },
+            2: { fire: 2 },
         },
     },
     {
@@ -255,10 +263,13 @@ const 天山一二型甲改_熟練_空六号電探改装備機 = [
         ship: {
             isID: [大鳳改],
         },
-        bonus: {
-            fire: 2,
-            torpedo: 3,
-            evasion: 2,
+        bonusCount: {
+            1: {
+                fire: 2,
+                torpedo: 3,
+                evasion: 2,
+            },
+            2: { fire: 2 },
         },
     },
     {
@@ -276,13 +287,40 @@ const 天山一二型甲改_熟練_空六号電探改装備機 = [
     {
         equipment: 374,
         ship: {
-            isID: [龍鳳改二, 龍鳳改二戊],
+            isID: [龍鳳改二],
         },
         bonus: {
             fire: 3,
             torpedo: 2,
             asw: 3,
             evasion: 3,
+        },
+    },
+    {
+        equipment: 374,
+        ship: {
+            isID: [龍鳳改二戊],
+        },
+        bonus: {
+            fire: 2,
+            torpedo: 3,
+            asw: 3,
+            evasion: 3,
+        },
+    },
+    {
+        equipment: 374,
+        ship: {
+            isID: [龍鳳改, 瑞鳳改二, 瑞鳳改二乙],
+        },
+        bonusCount: {
+            1: {
+                fire: 1,
+                torpedo: 1,
+                asw: 3,
+                evasion: 2,
+            },
+            2: { fire: 1, asw: 3 },
         },
     },
     {
