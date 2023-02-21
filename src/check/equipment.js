@@ -251,8 +251,8 @@ const checkCondition = {
                 //     (equipment.stat.fire || 0) > 0
                 //     || (equipment.stat.aa || 0) < 2
                 // )
-                !isNaN(equipment.stat.hit) &&
-                equipment.stat.hit >= 3) === isTrue
+                !isNaN(equipment.stat.los) &&
+                equipment.stat.los >= 5) === isTrue
         );
     }
 };

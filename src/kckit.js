@@ -1522,7 +1522,7 @@
                 count.radar += 1;
                 if (equipment.stat.aa) count.radarAA += 1;
                 // else
-                if (equipment.stat.hit && equipment.stat.hit >= 3)
+                if (equipment.stat.los && equipment.stat.los >= 5)
                     count.radarSurface += 1;
             }
             // 潜艇装备

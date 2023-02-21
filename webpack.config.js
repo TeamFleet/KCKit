@@ -1,13 +1,14 @@
 const path = require('path');
+
 const config = {
-    mode: "development",
+    mode: 'development',
     target: 'web',
     entry: './src/kckit.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'kckit.js'
     },
-    module:{
+    module: {
         rules: [
             {
                 test: /\.js$/,
@@ -15,18 +16,18 @@ const config = {
             }
         ]
     }
-}
+};
 
 module.exports = [
     config,
     Object.assign({}, config, {
-        mode: "production",
+        mode: 'production',
         output: Object.assign({}, config.output, {
             filename: 'kckit.min.js'
         }),
         optimization: {
             minimize: true,
-            noEmitOnErrors: true,
-        },
+            noEmitOnErrors: true
+        }
     })
-]
+];
