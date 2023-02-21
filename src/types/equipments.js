@@ -75,6 +75,7 @@ const types = {
     LandBasedRecon: 63, // 陆上侦察机
     LargeLandBasedAircraft: 65, // 大型陸上機
     NewLandBasedAttacker: 66, // 新型襲撃機
+    SeaplaneBomberNight: 68, // 水上轰炸机（夜间）
 };
 
 // Groups
@@ -132,11 +133,13 @@ types.Seaplanes = [
     types.ReconSeaplane,
     types.ReconSeaplaneNight,
     types.SeaplaneBomber,
+    types.SeaplaneBomberNight,
     types.SeaplaneFighter,
 ];
 
 types.Fighters = [
     types.SeaplaneBomber,
+    types.SeaplaneBomberNight,
     types.CarrierFighter,
     types.CarrierFighterNight,
     types.TorpedoBomber,
@@ -172,8 +175,15 @@ types.SeaplaneReconsAll = [
     types.LargeFlyingBoat,
 ];
 
-types.SeaplaneBombers = [types.SeaplaneBomber, types.SeaplaneFighter];
-types.SeaplaneBombersNoFighters = [types.SeaplaneBomber];
+types.SeaplaneBombers = [
+    types.SeaplaneBomber,
+    types.SeaplaneBomberNight,
+    types.SeaplaneFighter,
+];
+types.SeaplaneBombersNoFighters = [
+    types.SeaplaneBomber,
+    types.SeaplaneBomberNight,
+];
 
 types.SeaplaneFighters = [types.SeaplaneFighter];
 
