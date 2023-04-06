@@ -16,7 +16,7 @@ const { あきつ丸, あきつ丸改, 山汐丸, 山汐丸改 } = require('../.
 /** @type {Array<EquipmentBonus>} */
 const 熟練_20戦隊 = [
     {
-        equipment: 489,
+        equipment: 491,
         ship: {
             isID: [あきつ丸, あきつ丸改],
         },
@@ -29,7 +29,7 @@ const 熟練_20戦隊 = [
         },
     },
     {
-        equipment: 489,
+        equipment: 491,
         ship: {
             isID: [山汐丸, 山汐丸改],
         },
