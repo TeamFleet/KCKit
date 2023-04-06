@@ -94,18 +94,6 @@ const 二式爆雷改二_Tier2 = [
             evasion: 1,
         },
     },
-];
-transformBonusToImprove(二式爆雷改二_Tier2, {
-    5: { asw: 1 },
-    7: { asw: 1, evasion: 1 },
-    9: { asw: 2, evasion: 1, hit: 1 },
-});
-
-// ============================================================================
-
-module.exports = [
-    ...二式爆雷改二_時雨改二,
-    ...二式爆雷改二_Tier2,
     {
         equipment: 488,
         ship: {
@@ -130,3 +118,12 @@ module.exports = [
         },
     },
 ];
+transformBonusToImprove(二式爆雷改二_Tier2, {
+    5: { asw: 1 },
+    7: { asw: 1, evasion: 1 },
+    9: { asw: 2, evasion: 1, hit: 1 },
+});
+
+// ============================================================================
+
+module.exports = [...二式爆雷改二_時雨改二, ...二式爆雷改二_Tier2];

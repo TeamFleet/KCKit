@@ -13,7 +13,8 @@
 const {
     BB_Colorado,
 
-    CA_Houston,
+    CA_Northampton,
+    CA_NewOrleans,
 
     CL_Tenryuu,
     CL_Kuma,
@@ -47,7 +48,7 @@ const bonuses = [
     },
     {
         ship: {
-            isClass: [BB_Colorado, CA_Houston],
+            isClass: [BB_Colorado, CA_Northampton, CA_NewOrleans],
         },
         bonus: {
             aa: 1,

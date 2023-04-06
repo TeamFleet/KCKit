@@ -95,7 +95,8 @@ const CA_Furutaka = 39;
 const CA_Aoba = 40;
 const CA_Myoukou = 41;
 const CA_Takao = 42;
-const CA_Houston = 124;
+const CA_Northampton = 124;
+const CA_NewOrleans = 160;
 const CA_Mogami = 43;
 const CA_Tone = 44;
 const CA_AdmiralHipper = 57;
@@ -108,7 +109,7 @@ const group_CA_Navy_IJN = [
     CA_Tone,
 ];
 const CA_Zara = 81;
-const group_CA_Navy_USN = [CA_Houston];
+const group_CA_Navy_USN = [CA_Northampton, CA_NewOrleans];
 const group_CA_Navy_KM = [CA_AdmiralHipper];
 const group_CA_Navy_RM = [CA_Zara];
 
@@ -315,7 +316,8 @@ module.exports = {
     CA_Mogami,
     CA_Tone,
     CA_AdmiralHipper,
-    CA_Houston,
+    CA_Northampton,
+    CA_NewOrleans,
     CA_Zara,
     group_CA_Navy_IJN,
     group_CA_Navy_USN,

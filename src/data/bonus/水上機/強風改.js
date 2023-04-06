@@ -69,6 +69,20 @@ const 強風改二 = [
             evasion: 2,
         },
     },
+    // {
+    //     equipment: 485,
+    //     ship: {
+    //         isNotID: [
+    //             三隈改,
+    //             鈴谷改,
+    //             鈴谷改二,
+    //             ...CAV_MogamiClassSuperRemodel,
+    //             熊野改,
+    //             熊野改二,
+    //         ],
+    //     },
+    //     bonus: {},
+    // },
 ];
 transformBonusToImprove(強風改二, {
     3: { fire: 1 },

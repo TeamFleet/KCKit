@@ -28,6 +28,10 @@ const {
     雲鷹改二,
     神鷹改,
     神鷹改二,
+
+    伊勢改二,
+    日向改二,
+    山汐丸改,
 } = require('../../ship-ids');
 
 // ============================================================================
@@ -78,6 +82,25 @@ const 複座KMX搭載機 = [
             asw: 2,
             evasion: 1,
         },
+    },
+    {
+        equipment: 447,
+        ship: {
+            canEquip: [20],
+            isNotID: [
+                鳳翔改,
+                鳳翔改二,
+                鳳翔改二戦,
+                龍鳳改二戊,
+                龍鳳改二,
+                雲鷹改二,
+                大鷹改,
+                大鷹改二,
+                神鷹改,
+                神鷹改二,
+            ],
+        },
+        bonus: {},
     },
 ];
 transformBonusToImprove(複座KMX搭載機, {
@@ -132,6 +155,14 @@ const 制空戦闘機仕様 = [
             hit: 1,
         },
     },
+    {
+        equipment: 486,
+        ship: {
+            canEquip: [18],
+            isNotID: [鳳翔改二, 鳳翔改二戦, 龍鳳改二戊, 龍鳳改二],
+        },
+        bonus: {},
+    },
 ];
 transformBonusToImprove(制空戦闘機仕様, {
     6: { evasion: 1, hit: 1 },
@@ -166,6 +197,50 @@ const 熟練爆戦 = [
                 aa: 4,
                 evasion: 3,
                 hit: 6,
+            },
+        },
+    },
+    {
+        equipment: 487,
+        ship: {
+            isID: [龍鳳改二戊, 龍鳳改二],
+        },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                aa: 1,
+                evasion: 1,
+                hit: 2,
+            },
+            6: {
+                fire: 4,
+                aa: 1,
+                evasion: 2,
+                hit: 2,
+            },
+            10: {
+                fire: 5,
+                aa: 2,
+                evasion: 2,
+                hit: 4,
+            },
+        },
+    },
+    {
+        equipment: 487,
+        ship: {
+            isID: [伊勢改二, 日向改二, 山汐丸改],
+        },
+        bonusImprove: {
+            6: {
+                fire: 1,
+                evasion: 1,
+            },
+            10: {
+                fire: 2,
+                aa: 1,
+                evasion: 1,
+                hit: 2,
             },
         },
     },
