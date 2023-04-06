@@ -137,25 +137,6 @@ types.Seaplanes = [
     types.SeaplaneFighter,
 ];
 
-types.Fighters = [
-    types.SeaplaneBomber,
-    types.SeaplaneBomberNight,
-    types.CarrierFighter,
-    types.CarrierFighterNight,
-    types.TorpedoBomber,
-    types.TorpedoBomberNight,
-    types.DiveBomber,
-    types.SeaplaneFighter,
-    types.LandBasedAttacker,
-    types.NewLandBasedAttacker,
-    types.LargeLandBasedAircraft,
-    types.Interceptor,
-    // types.CarrierRecon
-    types.JetBomberFighter,
-    types.JetBomberFighter2,
-    types.LandBasedFighter,
-];
-
 types.Interceptors = [types.Interceptor, types.LandBasedFighter];
 
 types.Recons = [
@@ -232,6 +213,26 @@ types.Jets = [types.JetBomberFighter, types.JetBomberFighter2];
 types.Autogyros = [types.Autogyro];
 
 types.AntiSubPatrols = [types.AntiSubPatrol, types.LandBasedAntiSubPatrol];
+
+types.Fighters = [
+    types.SeaplaneBomber,
+    types.SeaplaneBomberNight,
+    types.CarrierFighter,
+    types.CarrierFighterNight,
+    types.TorpedoBomber,
+    types.TorpedoBomberNight,
+    types.DiveBomber,
+    types.SeaplaneFighter,
+    types.LandBasedAttacker,
+    types.NewLandBasedAttacker,
+    types.LargeLandBasedAircraft,
+    types.Interceptor,
+    // types.CarrierRecon
+    types.JetBomberFighter,
+    types.JetBomberFighter2,
+    types.LandBasedFighter,
+    ...types.AntiSubPatrols,
+];
 
 types.Aircrafts = [];
 []
