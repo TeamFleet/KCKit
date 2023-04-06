@@ -3212,7 +3212,8 @@
             if (typeof count['' + id] !== 'undefined') count['' + id]++;
         });
 
-        if (!count['33']) return theResult();
+        if (!count['33'] && rule !== 'low-5' && rule !== 'low-6')
+            return theResult();
 
         switch (rule) {
             // x - +10
@@ -3310,7 +3311,7 @@
                 // 	y = 0.5
                 multiper = 0.5 * count['34'] + 0.5 * count['87'];
                 break;
-            case 'low-4':
+            case 'low-4': {
                 // 低速特殊B群
                 // 	基础		5
                 // 	最大 		15
@@ -3335,6 +3336,41 @@
                 )
                     multiper += 0.5;
                 break;
+            }
+            case 'low-5':
+            case 'low-6': {
+                // 低速D群
+                // 	基础		5
+                // 	最大 		15
+                // 低速E群
+                // 	基础		5
+                // 	最大 		20
+                // ---
+                //  1Y = 高速
+                // ---
+                // 	1x + 0y		+5
+                // 	2x + 0y		+5
+                // 	3x + 0y		+5
+                // 	4x + 0y		+5
+                // 	0x + 1y		+10
+                // 	1x + 1y		+10
+                // 	2x + 1y		+15
+                // 	0x + 2y		+15
+                if (count[33]) {
+                    if (count['34'] && !count['87']) multiper = 0.5;
+                    else if (count['87'] >= 2) {
+                        multiper = 1.5;
+                    } else if (count['87']) {
+                        multiper = count['34'] >= 2 ? 1.5 : 1;
+                    }
+                } else {
+                    if (count['87']) {
+                        multiper = 0.5;
+                    }
+                }
+                if (rule === 'low-5' && multiper > 1) multiper = 1;
+                break;
+            }
             default: {
             }
         }
@@ -3620,6 +3656,7 @@
     // Production steps of ECMA-262, Edition 5, 15.4.4.14
     // Reference: http://es5.github.io/#x15.4.4.14
     if (!Array.prototype.indexOf) {
+        // eslint-disable-next-line no-extend-native
         Array.prototype.indexOf = function(searchElement, fromIndex) {
             var k;
 
