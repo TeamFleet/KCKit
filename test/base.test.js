@@ -657,11 +657,11 @@ describe('Base functions/utilities', () => {
             it(`should [244] Swordfish Mk.III(熟練) rankupgradable be true`, function () {
                 expect(db.items[244].rankupgradable).toBe(true);
             });
-            it(`should [70] 三式指揮連絡機(対潜) isRankUpgradable() be false`, function () {
-                expect(db.items[70].isRankUpgradable()).toBe(false);
+            it(`should [70] 三式指揮連絡機(対潜) isRankUpgradable() be true`, function () {
+                expect(db.items[70].isRankUpgradable()).toBe(true);
             });
-            it(`should [69] カ号観測機 rankupgradable be false`, function () {
-                expect(db.items[69].rankupgradable).toBe(false);
+            it(`should [69] カ号観測機 rankupgradable be true`, function () {
+                expect(db.items[69].rankupgradable).toBe(true);
             });
             it(`should [147] 120mm連装砲 is MainGun`, function () {
                 expect(db.items[147].isType('MainGun')).toBe(true);

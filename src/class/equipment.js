@@ -19,7 +19,7 @@ module.exports = class Equipment extends ItemBase {
     }
 
     getName(small_brackets, theLocale = vars.locale) {
-        var result = ItemBase.prototype.getName.call(this, theLocale),
+        const result = ItemBase.prototype.getName.call(this, theLocale),
             small_brackets_tag =
                 small_brackets && !small_brackets === true
                     ? small_brackets
@@ -88,11 +88,7 @@ module.exports = class Equipment extends ItemBase {
      * @returns {boolean}
      */
     isRankUpgradable() {
-        return (
-            equipmentTypes.Aircrafts.includes(this.type) &&
-            this.type !== equipmentTypes.Autogyro &&
-            this.type !== equipmentTypes.AntiSubPatrol
-        );
+        return equipmentTypes.Aircrafts.includes(this.type);
     }
 
     /**
@@ -205,6 +201,7 @@ module.exports = class Equipment extends ItemBase {
     getBonuses() {
         if (!Array.isArray(this.__bonuses))
             this.__bonuses = bonuses.filter((bonus) => {
+                // eslint-disable-next-line eqeqeq
                 if (bonus.equipment == this.id) return true;
                 if (
                     typeof bonus.equipments !== 'undefined' &&
