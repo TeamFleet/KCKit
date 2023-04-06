@@ -13,6 +13,11 @@ module.exports = (
     // equipmentStars = [],
     // equipmentRanks = []
 ) => {
+    // 5  低速
+    // 10 高速
+    // 15 高速+
+    // 20 最速
+
     ({ ship, equipments } = getShipAndEquipments(ship, equipments));
     if (!ship) return false;
 
@@ -26,19 +31,19 @@ module.exports = (
 
     const count = {
         33: 0, // 改良型艦本式タービン
-        34: 0, // 強化型艦本式缶
-        87: 0 // 新型高温高圧缶
+        34: 0, // [X] 強化型艦本式缶
+        87: 0, // [Y] 新型高温高圧缶
     };
 
     let increase = 0;
 
-    equipments.forEach(equipment => {
+    equipments.forEach((equipment) => {
         if (!equipment) return;
         // let id = equipment.id
         if (typeof count[equipment.id] !== 'undefined') count[equipment.id]++;
     });
 
-    if (!count[33]) return getResult();
+    if (!count[33] && rule !== 'low-5' && rule !== 'low-6') return getResult();
 
     const { 34: countX, 87: countY } = count;
 
@@ -163,6 +168,40 @@ module.exports = (
             increase = 0.5;
             if (countX >= 3 || countY >= 2 || (countX >= 2 && countY >= 1))
                 increase += 0.5;
+            break;
+        }
+        case 'low-5':
+        case 'low-6': {
+            // 低速D群
+            // 	基础		5
+            // 	最大 		15
+            // 低速E群
+            // 	基础		5
+            // 	最大 		20
+            // ---
+            //  1Y = 高速
+            // ---
+            // 	1x + 0y		+5
+            // 	2x + 0y		+5
+            // 	3x + 0y		+5
+            // 	4x + 0y		+5
+            // 	0x + 1y		+10
+            // 	1x + 1y		+10
+            // 	2x + 1y		+15
+            // 	0x + 2y		+15
+            if (count[33]) {
+                if (countX && !countY) increase = 0.5;
+                else if (countY >= 2) {
+                    increase = 1.5;
+                } else if (countY) {
+                    increase = countX >= 2 ? 1.5 : 1;
+                }
+            } else {
+                if (countY) {
+                    increase = 0.5;
+                }
+            }
+            if (rule === 'low-5' && increase > 1) increase = 1;
             break;
         }
         default: {
