@@ -1368,6 +1368,8 @@
 
         equipment = _equipment(equipment);
 
+        if (equipment.type === _equipmentType.Autogyro) return [0, 0];
+
         const rankInternal = [];
         const typeValue = {};
         // const {
@@ -1398,11 +1400,16 @@
             case _equipmentType.Interceptor:
             case _equipmentType.SeaplaneFighter:
             case _equipmentType.LandBasedFighter:
+            case _equipmentType.AntiSubPatrol:
+            case _equipmentType.LandBasedAntiSubPatrol:
                 typeBonus = typeValue.CarrierFighter[rank];
                 break;
             case _equipmentType.SeaplaneBomber:
+            case _equipmentType.SeaplaneBomberNight:
                 typeBonus = typeValue.SeaplaneBomber[rank];
                 break;
+            default: {
+            }
         }
 
         return {
