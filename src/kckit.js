@@ -247,11 +247,7 @@
          * @returns {boolean}
          */
         isRankUpgradable() {
-            return (
-                formula.equipmentType.Aircrafts.includes(this.type) &&
-                this.type !== formula.equipmentType.Autogyro &&
-                this.type !== formula.equipmentType.AntiSubPatrol
-            );
+            return formula.equipmentType.Aircrafts.includes(this.type);
         }
 
         /**
