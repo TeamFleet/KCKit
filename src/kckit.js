@@ -1042,11 +1042,12 @@
             return dataBonuses.filter(bonus => checkShip(this, bonus.ship));
         }
 
+        /** 获取该舰娘所有可放入补强增设栏位的装备ID */
         getAdditionalExslotEquipIds() {
             if (!this.__additionalExslotEquipIds)
                 this.__additionalExslotEquipIds = [
                     ...new Set([
-                        ...this.additional_exslot_item_ids,
+                        ...(this.additional_exslot_item_ids || []),
                         ...(this.class
                             ? KC.db.ship_classes[this.class]
                                   .additional_exslot_item_ids || []
