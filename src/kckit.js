@@ -25,7 +25,7 @@
     let KC = {
         lang: 'zh_cn',
         joint: '・',
-        maxShipLv: 175,
+        maxShipLv: 180,
         maxHqLv: 120,
         db: {},
         path: {
@@ -1040,6 +1040,27 @@
          */
         getBonuses() {
             return dataBonuses.filter(bonus => checkShip(this, bonus.ship));
+        }
+
+        getAdditionalExslotEquipIds() {
+            if (!this.__additionalExslotEquipIds)
+                this.__additionalExslotEquipIds = [
+                    ...new Set([
+                        ...this.additional_exslot_item_ids,
+                        ...(this.class
+                            ? KC.db.ship_classes[this.class]
+                                  .additional_exslot_item_ids || []
+                            : []),
+                        ...(this.type
+                            ? KC.db.ship_types[this.type]
+                                  .additional_exslot_item_ids || []
+                            : [])
+                    ])
+                ];
+            return this.__additionalExslotEquipIds;
+        }
+        get _additionalExslotEquipIds() {
+            return this.getAdditionalExslotEquipIds();
         }
     }
     Ship.lvlMax = KC.maxShipLv;
