@@ -5,7 +5,7 @@ const vars = {
     locale: 'ja_jp',
     joint: '・',
 
-    maxShipLv: 175,
+    maxShipLv: 180,
     maxHqLv: 120,
 
     rank: {
