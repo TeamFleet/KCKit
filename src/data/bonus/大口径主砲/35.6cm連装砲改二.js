@@ -1,10 +1,13 @@
 /**
  * @module
  * 装备额外属性收益
- * 329. **35.6cm連装砲改二**
+ *
+ * 329. 35.6cm連装砲改二
+ *      https://wikiwiki.jp/kancolle/35.6cm%E9%80%A3%E8%A3%85%E7%A0%B2%E6%94%B9%E4%BA%8C
+ *
  */
 
-// https://wikiwiki.jp/kancolle/35.6cm%E9%80%A3%E8%A3%85%E7%A0%B2%E6%94%B9%E4%BA%8C
+require('../../../../typedef');
 
 const {
     Kongou,
@@ -21,8 +24,11 @@ const {
     BB_KongouClass2ndRemodel,
     BB_KongouClassRemodelAll,
 } = require('../../ships');
-const { 金剛改二丙, 比叡改二丙 } = require('../../ship-ids');
+const { 金剛改二丙, 比叡改二丙, 榛名改二乙 } = require('../../ship-ids');
 
+// ============================================================================
+
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     // @ 金剛型(未改造) & 扶桑型 & 伊勢型
     {
@@ -61,7 +67,7 @@ module.exports = [
         equipment: 329,
         ship: {
             isID: BB_KongouClass2ndRemodel.filter(
-                (id) => id !== 591 && id !== 比叡改二丙
+                (id) => id !== 591 && id !== 比叡改二丙 && id !== 榛名改二乙
             ),
         },
         bonus: {
@@ -81,6 +87,18 @@ module.exports = [
             fire: 4,
             torpedo: 2,
             aa: 1,
+            evasion: 1,
+        },
+    },
+    {
+        equipment: 329,
+        ship: {
+            isID: [榛名改二乙],
+        },
+        bonus: {
+            fire: 3,
+            torpedo: 1,
+            aa: 3,
             evasion: 1,
         },
     },

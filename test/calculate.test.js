@@ -3,6 +3,8 @@
 // const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames');
 const {
+    榛名改二乙,
+
     鈴谷航改二,
 
     最上改二,
@@ -512,9 +514,9 @@ describe('Calculating functions/utilities', () => {
             });
             it('金剛改二丙 || 16inch Mk.I三連装砲 ➕35.6cm連装砲改二 ➕ 35.6cm三連装砲改(ダズル迷彩仕様)➕53cm連装魚雷', () => {
                 expect(calculate.bonus(591, [298, 329, 289, 174])).toEqual({
-                    fire: 4,
+                    fire: 6,
                     torpedo: 8,
-                    aa: 1,
+                    aa: 2,
                     evasion: 4,
                 });
             });
@@ -3126,6 +3128,57 @@ describe('Calculating functions/utilities', () => {
                         fire: 2 + 3 + 2 + 2 + 2 + 2,
                         hit: 1 + 1 + 2 + 2 + 2 + 2,
                         evasion: 2 + 2,
+                    });
+                });
+            });
+            describe('榛名改二乙', () => {
+                it('35.6cm連装砲改四', () => {
+                    expect(calculate.bonus(榛名改二乙, [503])).toEqual({
+                        fire: 4,
+                        aa: 4,
+                        hit: 2,
+                    });
+                });
+                it('35.6cm連装砲改四 | 33号', () => {
+                    expect(calculate.bonus(榛名改二乙, [503, 29])).toEqual({
+                        fire: 4 + 2,
+                        aa: 4,
+                        evasion: 1,
+                        hit: 2 + 2,
+                    });
+                });
+                it('35.6cm連装砲改四 | 33号 | 22改四', () => {
+                    expect(calculate.bonus(榛名改二乙, [503, 29, 88])).toEqual({
+                        fire: 4 + 2 + 2,
+                        aa: 4,
+                        evasion: 1 + 2,
+                        hit: 2 + 2 + 2,
+                    });
+                });
+                it('35.6cm連装砲改四 | 33号 | 22改四 | 53cm連装魚雷', () => {
+                    expect(
+                        calculate.bonus(榛名改二乙, [503, 29, 88, 174])
+                    ).toEqual({
+                        fire: 4 + 2 + 2,
+                        torpedo: 9,
+                        aa: 4,
+                        evasion: 1 + 2 + 2,
+                        hit: 2 + 2 + 2,
+                    });
+                });
+                it('35.6cm連装砲改四 | 33号 | 22改四 | 53cm連装魚雷+MAX', () => {
+                    expect(
+                        calculate.bonus(
+                            榛名改二乙,
+                            [503, 29, 88, 174],
+                            [0, 0, 0, 10]
+                        )
+                    ).toEqual({
+                        fire: 4 + 2 + 2 + 1,
+                        torpedo: 10,
+                        aa: 4,
+                        evasion: 1 + 2 + 2,
+                        hit: 2 + 2 + 2 + 1,
                     });
                 });
             });

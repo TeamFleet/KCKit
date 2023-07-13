@@ -244,7 +244,7 @@ const checkCondition = {
      */
     issurfaceradar: function (equipment, isTrue) {
         // console.log(`[${equipment.id}]`, equipment._name)
-        // 目前已知条件：命中 >= 3 或 索敌 >= 5
+        // 目前已知条件：索敌 >= 5
         return (
             (this.istype(equipment, equipmentTypes.Radars) &&
                 // && (
@@ -253,6 +253,23 @@ const checkCondition = {
                 // )
                 !isNaN(equipment.stat.los) &&
                 equipment.stat.los >= 5) === isTrue
+        );
+    },
+
+    /**
+     * 是对超级水面电探/雷达
+     */
+    issupersurfaceradar: function (equipment, isTrue) {
+        // console.log(`[${equipment.id}]`, equipment._name)
+        // 目前已知条件：命中 >= 8
+        return (
+            (this.istype(equipment, equipmentTypes.Radars) &&
+                // && (
+                //     (equipment.stat.fire || 0) > 0
+                //     || (equipment.stat.aa || 0) < 2
+                // )
+                !isNaN(equipment.stat.hit) &&
+                equipment.stat.hit >= 8) === isTrue
         );
     },
 };

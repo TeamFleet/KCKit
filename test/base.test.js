@@ -523,7 +523,7 @@ describe('Base functions/utilities', () => {
                     expect(db.ships[156].getBonuses().length).toEqual(25);
                 });
                 it(`榛名改二 - N bonuses`, () => {
-                    expect(db.ships[151].getBonuses().length).toEqual(27);
+                    expect(db.ships[151].getBonuses().length).toEqual(37);
                 });
             });
             describe(`should Ship.prototype.getAACI() works`, () => {
@@ -738,10 +738,10 @@ describe('Base functions/utilities', () => {
                     expect(db.items[285].getBonuses().length).toEqual(15);
                 });
                 it(`33号対水上電探 - N bonuses`, () => {
-                    expect(db.items[29].getBonuses().length).toEqual(50);
+                    expect(db.items[29].getBonuses().length).toEqual(53);
                 });
-                it(`15m二重測距儀+21号電探改二 - 10 bonuses`, () => {
-                    expect(db.items[142].getBonuses().length).toEqual(10);
+                it(`15m二重測距儀+21号電探改二 - 12 bonuses`, () => {
+                    expect(db.items[142].getBonuses().length).toEqual(15);
                 });
                 it(`41cm三连装炮改二`, () => {
                     expect(db.items[290].getBonuses().length).toEqual(8);
