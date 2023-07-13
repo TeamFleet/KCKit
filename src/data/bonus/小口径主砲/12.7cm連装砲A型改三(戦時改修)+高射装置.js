@@ -1,13 +1,41 @@
 /**
- * 装备额外属性收益 - 12.7cm連装砲A型改三(戦時改修)+高射装置
- *
  * @module
+ * 装备额外属性收益
+ *
+ * 295. 12.7cm連装砲A型改三(戦時改修)+高射装置
+ *      https://wikiwiki.jp/kancolle/12.7cm%E9%80%A3%E8%A3%85%E7%A0%B2A%E5%9E%8B%E6%94%B9%E4%B8%89%28%E6%88%A6%E6%99%82%E6%94%B9%E4%BF%AE%29%EF%BC%8B%E9%AB%98%E5%B0%84%E8%A3%85%E7%BD%AE
+ *
  */
 
-const { group_DD_Tokugata } = require('../../ship-classes');
-const { 磯波改二 } = require('../../ship-ids');
+require('../../../../typedef');
 
+const { group_DD_Tokugata } = require('../../ship-classes');
+const { 深雪改二, 磯波改二 } = require('../../ship-ids');
+
+// ============================================================================
+
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
+    {
+        equipment: 295,
+        ship: {
+            isID: [深雪改二],
+        },
+        bonusCount: {
+            1: {
+                fire: 4,
+                aa: 2,
+            },
+            2: {
+                fire: 10,
+                aa: 4,
+            },
+            3: {
+                fire: 17,
+                aa: 6,
+            },
+        },
+    },
     {
         equipment: 295,
         ship: {
@@ -15,7 +43,7 @@ module.exports = [
         },
         bonus: {
             fire: 3,
-            aa: 2,
+            aa: 3,
             asw: 1,
         },
     },
@@ -23,7 +51,7 @@ module.exports = [
         equipment: 295,
         ship: {
             isClass: group_DD_Tokugata,
-            isNotID: [磯波改二],
+            isNotID: [深雪改二, 磯波改二],
         },
         bonus: {
             fire: 2,

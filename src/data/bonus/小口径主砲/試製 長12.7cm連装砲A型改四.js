@@ -10,7 +10,13 @@
 require('../../../../typedef');
 
 const { DD_Fubuki, group_DD_Tokugata } = require('../../ship-classes');
-const { 磯波改二, 浦波, 浦波改, 浦波改二 } = require('../../ship-ids');
+const {
+    深雪改二,
+    磯波改二,
+    浦波,
+    浦波改,
+    浦波改二,
+} = require('../../ship-ids');
 
 // ============================================================================
 
@@ -27,6 +33,16 @@ module.exports = [
             aa: 1,
             asw: 1,
             evasion: 1,
+        },
+    },
+    {
+        equipment: 455,
+        ship: {
+            isID: [深雪改二],
+        },
+        bonus: {
+            fire: 5,
+            aa: 1,
         },
     },
     {
@@ -54,7 +70,7 @@ module.exports = [
         equipment: 455,
         ship: {
             isClass: [DD_Fubuki],
-            isNotID: [磯波改二, 浦波, 浦波改, 浦波改二],
+            isNotID: [深雪改二, 磯波改二, 浦波, 浦波改, 浦波改二],
         },
         bonus: {
             fire: 3,
