@@ -1,4 +1,4 @@
-const { 秋雲改二, 沖波改二 } = require('../../ship-ids');
+const { 時雨改三, 秋雲改二, 沖波改二 } = require('../../ship-ids');
 
 const DD_AARadar = [
     // + 对空電探
@@ -8,7 +8,7 @@ const DD_AARadar = [
             hasAARadar: true,
         },
         ship: {
-            isID: [秋雲改二, 沖波改二],
+            isID: [時雨改三, 秋雲改二, 沖波改二],
         },
         bonus: {
             fire: 1,

@@ -172,7 +172,7 @@ const dataBonuses = [
     ...require('./対潜兵装/四式水中聴音機'),
     ...require('./対潜兵装/三式爆雷投射機 集中配備'),
     ...require('./対潜兵装/試製15cm9連装対潜噴進砲'),
-    ...require('./対潜兵装/二式爆雷改二'),
+    ...require('./対潜兵装/二式爆雷'),
     ...require('./対潜兵装/RUR-4A'),
     ...require('./対潜兵装/対潜短魚雷'),
     ...require('./対潜兵装/Hedgehog'),

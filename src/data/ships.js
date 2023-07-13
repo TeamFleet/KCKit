@@ -10,6 +10,8 @@ const {
     金剛改二丙,
     比叡改二丙,
     榛名改二,
+    榛名改二乙,
+    榛名改二丙,
     'South Dakota': SouthDakota,
     'South Dakota改': SouthDakota改,
 
@@ -45,6 +47,7 @@ const {
     鹿島,
     鹿島改,
 
+    深雪改二,
     磯波改二,
     浦波改二,
     天霧改,
@@ -63,6 +66,8 @@ const {
     早潮改二,
     丹陽,
     雪風改二,
+    天津風改,
+    天津風改二,
     磯風乙改,
     浜風乙改,
     秋雲改,
@@ -94,6 +99,8 @@ const BB_KongouClass2ndRemodel = [
     150, // 比叡改二
     比叡改二丙,
     榛名改二,
+    榛名改二乙,
+    榛名改二丙,
     152, // 霧島改二
 ];
 const BB_KongouClassRemodelAll = [
@@ -209,6 +216,7 @@ const DD_Div7_Remodel = [
 const DD_Div7_2ndRemodel = [曙改二, 潮改二];
 const DD_FubukiClass2ndRemodel = [
     426, // 吹雪改二
+    深雪改二,
     420, // 叢雲改二
     磯波改二,
     浦波改二,
@@ -288,7 +296,7 @@ const DD_KagerouClassRemodel = [
     早潮改,
     300, // 初風改
     228, // 雪風改
-    316, // 天津風改
+    天津風改,
     322, // 時津風改
     317, // 浦風改
     556, // 浦風丁改
@@ -312,6 +320,7 @@ const DD_KagerouClass2ndRemodelExcludeAkigumo = [
     早潮改二,
     丹陽,
     雪風改二,
+    天津風改二,
 ];
 const DD_KagerouClass2ndRemodel = [
     ...DD_KagerouClass2ndRemodelExcludeAkigumo,

@@ -3,6 +3,8 @@ const {
     山城改二,
     比叡改二丙,
     榛名改二,
+    榛名改二乙,
+    榛名改二丙,
     Washington,
     Washington改,
 } = require('../ship-ids');
@@ -29,7 +31,9 @@ module.exports = {
     Haruna: [
         79, // 榛名
         211, // 榛名改
-        榛名改二, // 榛名改二
+        榛名改二,
+        榛名改二乙,
+        榛名改二丙,
     ],
     Kirishima: [
         85, // 霧島

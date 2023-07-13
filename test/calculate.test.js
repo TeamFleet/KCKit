@@ -20,6 +20,8 @@ const {
     天霧改二丁,
     山風,
     山風改二,
+    時雨改二,
+    時雨改三,
     丹陽,
     雪風改二,
     秋雲改二,
@@ -1933,6 +1935,13 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            it('神鷹改二 || 二式爆雷', () => {
+                expect(
+                    calculate.bonus(536, [227, 227, 227], [0, 8, 10])
+                ).toEqual({
+                    asw: 3,
+                });
+            });
         });
 
         describe('Sets...', () => {
@@ -2523,6 +2532,29 @@ describe('Calculating functions/utilities', () => {
                                 evasion: 8,
                             }
                         );
+                    });
+                });
+            });
+            describe('時雨改三', () => {
+                it('13号対空電探', () => {
+                    expect(calculate.bonus(時雨改三, [27])).toEqual({
+                        fire: 1,
+                        aa: 2,
+                        evasion: 3,
+                    });
+                });
+                it('二式爆雷改二', () => {
+                    expect(calculate.bonus(時雨改二, [488], [8])).toEqual({
+                        asw: 7,
+                        hit: 3,
+                        evasion: 7,
+                    });
+                });
+                it('二式爆雷改二', () => {
+                    expect(calculate.bonus(時雨改三, [488], [8])).toEqual({
+                        asw: 7,
+                        hit: 3,
+                        evasion: 7,
                     });
                 });
             });
