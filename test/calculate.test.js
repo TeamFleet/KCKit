@@ -1004,7 +1004,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(calculate.bonus(天霧改二, [285, 285])).toEqual({
-                            torpedo: 4,
+                            torpedo: 6,
                             evasion: 2,
                         });
                     });
@@ -1012,7 +1012,7 @@ describe('Calculating functions/utilities', () => {
                         expect(
                             calculate.bonus(天霧改二, [285, 285, 285])
                         ).toEqual({
-                            torpedo: 4,
+                            torpedo: 8,
                             evasion: 2,
                         });
                     });
@@ -1020,7 +1020,7 @@ describe('Calculating functions/utilities', () => {
                         expect(
                             calculate.bonus(天霧改二, [285, 285, 285], [9])
                         ).toEqual({
-                            torpedo: 4,
+                            torpedo: 8,
                             evasion: 2,
                         });
                     });
@@ -1036,7 +1036,7 @@ describe('Calculating functions/utilities', () => {
                             calculate.bonus(天霧改二, [285, 285], [10])
                         ).toEqual({
                             fire: 1,
-                            torpedo: 5,
+                            torpedo: 7,
                             evasion: 2,
                         });
                     });
@@ -1054,7 +1054,7 @@ describe('Calculating functions/utilities', () => {
                             calculate.bonus(天霧改二, [285, 285, 285], [10, 10])
                         ).toEqual({
                             fire: 2,
-                            torpedo: 7,
+                            torpedo: 9,
                             evasion: 2,
                         });
                     });
@@ -1082,7 +1082,7 @@ describe('Calculating functions/utilities', () => {
                     it('61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(calculate.bonus(天霧改二丁, [285, 285])).toEqual(
                             {
-                                torpedo: 4,
+                                torpedo: 5,
                                 evasion: 2,
                             }
                         );
@@ -1091,7 +1091,7 @@ describe('Calculating functions/utilities', () => {
                         expect(
                             calculate.bonus(天霧改二丁, [285, 285, 285])
                         ).toEqual({
-                            torpedo: 4,
+                            torpedo: 6,
                             evasion: 2,
                         });
                     });
@@ -1099,7 +1099,7 @@ describe('Calculating functions/utilities', () => {
                         expect(
                             calculate.bonus(天霧改二丁, [285, 285, 285], [9])
                         ).toEqual({
-                            torpedo: 4,
+                            torpedo: 6,
                             evasion: 2,
                         });
                     });
@@ -1117,8 +1117,8 @@ describe('Calculating functions/utilities', () => {
                             calculate.bonus(天霧改二丁, [285, 285], [10])
                         ).toEqual({
                             fire: 1,
-                            torpedo: 5,
-                            evasion: 2,
+                            torpedo: 3 + 3,
+                            evasion: 1 + 1,
                         });
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
@@ -1138,9 +1138,9 @@ describe('Calculating functions/utilities', () => {
                                 [10, 10]
                             )
                         ).toEqual({
-                            fire: 2,
-                            torpedo: 6,
-                            evasion: 2,
+                            fire: 1 + 1,
+                            torpedo: 3 + 3 + 1,
+                            evasion: 1 + 1,
                         });
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX', () => {

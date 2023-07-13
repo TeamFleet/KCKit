@@ -735,7 +735,7 @@ describe('Base functions/utilities', () => {
                     expect(db.items[267].getBonuses().length).toEqual(13);
                 });
                 it(`61cm三連装(酸素)魚雷後期型 - 7 bonuses`, () => {
-                    expect(db.items[285].getBonuses().length).toEqual(17);
+                    expect(db.items[285].getBonuses().length).toEqual(15);
                 });
                 it(`33号対水上電探 - N bonuses`, () => {
                     expect(db.items[29].getBonuses().length).toEqual(50);

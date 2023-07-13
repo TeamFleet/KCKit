@@ -8,6 +8,9 @@
 
 const { DD_Ayanami, DD_Akatsuki, DD_Hatsuharu } = require('../../ship-classes');
 const { Shikinami2ndRemodelAll } = require('../../ship-series/dd');
+const { 時雨改二, 時雨改三 } = require('../../ship-ids');
+
+// ============================================================================
 
 module.exports = [
     // 綾波型改 / 暁型改 / 初春型改
@@ -50,9 +53,7 @@ module.exports = [
     {
         equipment: 63,
         ship: {
-            isID: [
-                145, // 時雨改二
-            ],
+            isID: [時雨改二, 時雨改三],
         },
         bonus: {
             fire: 1,
@@ -67,6 +68,20 @@ module.exports = [
             ],
         },
         bonus: {
+            evasion: 2,
+        },
+    },
+
+    {
+        equipment: 63,
+        ship: {
+            isID: [
+                245, // 夕立改
+            ],
+        },
+        bonus: {
+            fire: 1,
+            aa: 1,
             evasion: 2,
         },
     },

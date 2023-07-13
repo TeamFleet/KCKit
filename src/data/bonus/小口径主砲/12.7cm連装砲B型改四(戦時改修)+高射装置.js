@@ -15,29 +15,42 @@ const {
     DD_ShiratsuyuRevised,
 } = require('../../ship-classes');
 const { Shikinami2ndRemodelAll } = require('../../ship-series/dd');
-const { 山風改二, 山風改二丁 } = require('../../ship-ids');
+const {
+    天霧改二,
+    天霧改二丁,
+    時雨改二,
+    時雨改三,
+    山風改二,
+    山風改二丁,
+} = require('../../ship-ids');
 
 // const classesAyanamiAkatsuki = [DD_Ayanami, DD_Akatsuki]
-const classesAyanamiAkatsukiShiratsuyu = [
-    DD_Ayanami,
-    DD_Akatsuki,
-    DD_Shiratsuyu,
-];
+const classesAyanamiAkatsuki = [DD_Ayanami, DD_Akatsuki];
 const classesAyanamiAkatsukiHatsuharu = [DD_Ayanami, DD_Akatsuki, DD_Hatsuharu];
 
 module.exports = [
-    // 綾波型 / 暁型 / 白露型
+    // 綾波型 / 暁型
     {
         equipment: 296,
         ship: {
-            isClass: classesAyanamiAkatsukiShiratsuyu,
-            isNotID: [
-                ...Shikinami2ndRemodelAll,
-                ...DD_ShiratsuyuClass2ndRemodel,
-            ],
+            isClass: classesAyanamiAkatsuki,
+            isNotID: [天霧改二, 天霧改二丁, ...Shikinami2ndRemodelAll],
         },
         bonus: {
             fire: 1,
+        },
+    },
+
+    // 白露型 / 初春型
+    {
+        equipment: 296,
+        ship: {
+            isClass: [DD_Shiratsuyu, DD_Hatsuharu],
+            isNotID: [...DD_ShiratsuyuClass2ndRemodel],
+        },
+        bonus: {
+            fire: 1,
+            evasion: 1,
         },
     },
 
@@ -52,15 +65,13 @@ module.exports = [
         },
     },
 
-    // 初春型
     {
         equipment: 296,
         ship: {
-            isClass: [DD_Hatsuharu],
+            isID: [天霧改二, 天霧改二丁],
         },
         bonus: {
-            fire: 1,
-            evasion: 1,
+            fire: 4,
         },
     },
 
@@ -80,9 +91,7 @@ module.exports = [
     {
         equipment: 296,
         ship: {
-            isID: [
-                145, // 時雨改二
-            ],
+            isID: [時雨改二, 時雨改三],
         },
         bonus: {
             fire: 2,
@@ -123,6 +132,7 @@ module.exports = [
         equipment: 296,
         ship: {
             isID: [
+                242, // 白露改
                 587, // 海風改二
                 山風改二,
                 山風改二丁,

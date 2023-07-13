@@ -60,6 +60,7 @@ const {
     初霜改二,
     山風改二,
     山風改二丁,
+    時雨改三,
     親潮改,
     親潮改二,
     早潮改,
@@ -269,6 +270,7 @@ const DD_ShiratsuyuClassRevised = [
     587, // 海風改二
     山風改二,
     山風改二丁,
+    時雨改三,
 ];
 const DD_ShiratsuyuClass2ndRemodel = [
     497, // 白露改二

@@ -33,7 +33,7 @@ module.exports = [
     {
         equipment: 285,
         ship: {
-            isID: [...group_all],
+            isID: [...group_all_exclude_amgiri2],
         },
         bonusCount: {
             1: {
@@ -42,6 +42,48 @@ module.exports = [
             },
             2: {
                 torpedo: 4,
+                evasion: 2,
+            },
+        },
+    },
+
+    {
+        equipment: 285,
+        ship: {
+            isID: [天霧改二],
+        },
+        bonusCount: {
+            1: {
+                torpedo: 2,
+                evasion: 1,
+            },
+            2: {
+                torpedo: 6,
+                evasion: 2,
+            },
+            3: {
+                torpedo: 8,
+                evasion: 2,
+            },
+        },
+    },
+
+    {
+        equipment: 285,
+        ship: {
+            isID: [天霧改二丁],
+        },
+        bonusCount: {
+            1: {
+                torpedo: 2,
+                evasion: 1,
+            },
+            2: {
+                torpedo: 5,
+                evasion: 2,
+            },
+            3: {
+                torpedo: 6,
                 evasion: 2,
             },
         },
@@ -82,7 +124,7 @@ module.exports = [
             },
         ],
         ship: {
-            isID: [...group_all_exclude_amgiri2],
+            isID: [...group_all],
         },
         equipments: [
             {
@@ -114,7 +156,7 @@ module.exports = [
             },
         ],
         ship: {
-            isID: [...group_all_exclude_amgiri2],
+            isID: [...group_all],
         },
         equipments: [
             {
@@ -136,138 +178,4 @@ module.exports = [
     },
 
     // ========================================================================
-
-    {
-        list: [
-            {
-                id: 285,
-                star: 10,
-            },
-            {
-                id: 285,
-                star: 10,
-            },
-        ],
-        ship: {
-            isID: [天霧改二],
-        },
-        equipments: [
-            {
-                isID: 285,
-                improvement: 10,
-            },
-            {
-                isID: 285,
-                improvement: 10,
-            },
-        ],
-        bonus: {
-            fire: 1,
-            torpedo: 2,
-        },
-    },
-    {
-        list: [
-            {
-                id: 285,
-                star: 10,
-            },
-            {
-                id: 285,
-                star: 10,
-            },
-            {
-                id: 285,
-                star: 10,
-            },
-        ],
-        ship: {
-            isID: [天霧改二],
-        },
-        equipments: [
-            {
-                isID: 285,
-                improvement: 10,
-            },
-            {
-                isID: 285,
-                improvement: 10,
-            },
-            {
-                isID: 285,
-                improvement: 10,
-            },
-        ],
-        bonus: {
-            torpedo: 5,
-        },
-    },
-
-    // ========================================================================
-
-    {
-        list: [
-            {
-                id: 285,
-                star: 10,
-            },
-            {
-                id: 285,
-                star: 10,
-            },
-        ],
-        ship: {
-            isID: [天霧改二丁],
-        },
-        equipments: [
-            {
-                isID: 285,
-                improvement: 10,
-            },
-            {
-                isID: 285,
-                improvement: 10,
-            },
-        ],
-        bonus: {
-            fire: 1,
-            torpedo: 1,
-        },
-    },
-    {
-        list: [
-            {
-                id: 285,
-                star: 10,
-            },
-            {
-                id: 285,
-                star: 10,
-            },
-            {
-                id: 285,
-                star: 10,
-            },
-        ],
-        ship: {
-            isID: [天霧改二丁],
-        },
-        equipments: [
-            {
-                isID: 285,
-                improvement: 10,
-            },
-            {
-                isID: 285,
-                improvement: 10,
-            },
-            {
-                isID: 285,
-                improvement: 10,
-            },
-        ],
-        bonus: {
-            torpedo: 4,
-        },
-    },
 ];
