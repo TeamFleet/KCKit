@@ -12,6 +12,7 @@ require('../../../../typedef');
 const { DD_KagerouClass2ndRemodel } = require('../../ships');
 const {
     DD_Shiratsuyu,
+    DD_ShiratsuyuRevised,
     DD_Asashio,
     DD_Kagerou,
     DD_KagerouROCN,
@@ -21,6 +22,7 @@ const {
     時雨,
     時雨改,
     時雨改二,
+    時雨改三,
     雪風,
     雪風改,
     丹陽,
@@ -38,6 +40,7 @@ const 改修ボーナス = [
         ship: {
             isID: [
                 時雨改二,
+                時雨改三,
                 ...DD_KagerouClass2ndRemodel.filter(
                     (shipId) => shipId !== 秋雲改二
                 ),
@@ -66,29 +69,6 @@ const 単体ボーナス = [
     {
         equipment: 470,
         ship: {
-            isID: [時雨改二],
-        },
-        bonusCount: {
-            1: {
-                fire: 2,
-                evasion: 2,
-                hit: 2,
-            },
-            2: {
-                fire: 5,
-                evasion: 4,
-                hit: 2,
-            },
-            3: {
-                fire: 6,
-                evasion: 6,
-                hit: 2,
-            },
-        },
-    },
-    {
-        equipment: 470,
-        ship: {
             isID: [丹陽, 雪風改二],
         },
         bonusCount: {
@@ -104,6 +84,48 @@ const 単体ボーナス = [
             },
             3: {
                 fire: 9,
+                evasion: 6,
+                hit: 2,
+            },
+        },
+    },
+    {
+        equipment: 470,
+        ship: {
+            isID: [時雨改三],
+        },
+        bonusCount: {
+            1: { fire: 5, evasion: 4, hit: 5 },
+            2: {
+                fire: 11,
+                evasion: 8,
+                hit: 8,
+            },
+            3: {
+                fire: 15,
+                evasion: 12,
+                hit: 11,
+            },
+        },
+    },
+    {
+        equipment: 470,
+        ship: {
+            isID: [時雨改二],
+        },
+        bonusCount: {
+            1: {
+                fire: 2,
+                evasion: 2,
+                hit: 2,
+            },
+            2: {
+                fire: 5,
+                evasion: 4,
+                hit: 2,
+            },
+            3: {
+                fire: 6,
                 evasion: 6,
                 hit: 2,
             },
@@ -173,8 +195,8 @@ const 単体ボーナス = [
     {
         equipment: 470,
         ship: {
-            isClass: [DD_Shiratsuyu, DD_Asashio],
-            isNotID: [時雨, 時雨改, 時雨改二],
+            isClass: [DD_Shiratsuyu, DD_ShiratsuyuRevised, DD_Asashio],
+            isNotID: [時雨, 時雨改, 時雨改二, 時雨改三],
         },
         bonus: {
             fire: 1,
@@ -209,7 +231,7 @@ const 相互シナジーボーナス = [
             hasSurfaceRadar: true,
         },
         ship: {
-            isClass: [DD_Shiratsuyu, DD_Asashio],
+            isClass: [DD_Shiratsuyu, DD_ShiratsuyuRevised, DD_Asashio],
         },
         bonus: {
             fire: 1,

@@ -16,11 +16,18 @@ const {
     DD_ShimakazeRemodel,
 } = require('../../ships');
 const { DD_Kagerou, DD_KagerouROCN } = require('../../ship-classes');
-const { 丹陽, 秋雲改二, 高波改二, 沖波改二 } = require('../../ship-ids');
+const {
+    丹陽,
+    秋雲改二,
+    高波改二,
+    沖波改二,
+    時雨改三,
+} = require('../../ship-ids');
 
-const DD_YuugumoClass2ndRemodel_exclude_HighTier = DD_YuugumoClass2ndRemodel.filter(
-    (shipId) => ![高波改二, 沖波改二].includes(shipId)
-);
+const DD_YuugumoClass2ndRemodel_exclude_HighTier =
+    DD_YuugumoClass2ndRemodel.filter(
+        (shipId) => ![高波改二, 沖波改二].includes(shipId)
+    );
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
@@ -72,10 +79,38 @@ module.exports = [
         ship: {
             isID: DD_ShimakazeRemodel,
         },
-        bonus: {
-            fire: 2,
-            aa: 3,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 3,
+                evasion: 1,
+                hit: 1,
+            },
+            2: {
+                fire: 7,
+                aa: 5,
+                evasion: 1,
+                hit: 1,
+            },
+        },
+    },
+
+    {
+        equipment: 366,
+        ship: {
+            isID: [時雨改三],
+        },
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 3,
+                hit: 1,
+            },
+            2: {
+                fire: 7,
+                aa: 5,
+                hit: 1,
+            },
         },
     },
 
@@ -98,10 +133,19 @@ module.exports = [
         ship: {
             isID: DD_YuugumoClass2ndRemodel_exclude_HighTier,
         },
-        bonus: {
-            fire: 3,
-            aa: 3,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 4,
+                aa: 3,
+                evasion: 1,
+                hit: 1,
+            },
+            2: {
+                fire: 9,
+                aa: 5,
+                evasion: 2,
+                hit: 1,
+            },
         },
     },
 
@@ -110,10 +154,19 @@ module.exports = [
         ship: {
             isID: [高波改二],
         },
-        bonus: {
-            fire: 4,
-            aa: 3,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 5,
+                aa: 3,
+                evasion: 1,
+                hit: 1,
+            },
+            2: {
+                fire: 11,
+                aa: 5,
+                evasion: 2,
+                hit: 1,
+            },
         },
     },
 
@@ -122,10 +175,19 @@ module.exports = [
         ship: {
             isID: [秋雲改二, 沖波改二],
         },
-        bonus: {
-            fire: 4,
-            aa: 5,
-            evasion: 1,
+        bonusCount: {
+            1: {
+                fire: 5,
+                aa: 5,
+                evasion: 1,
+                hit: 1,
+            },
+            2: {
+                fire: 10,
+                aa: 7,
+                evasion: 2,
+                hit: 1,
+            },
         },
     },
 
@@ -141,6 +203,7 @@ module.exports = [
         ship: {
             isID: [
                 秋雲改二,
+                時雨改三,
                 ...DD_YuugumoClass2ndRemodel,
                 ...DD_ShimakazeRemodel,
             ],
@@ -149,10 +212,11 @@ module.exports = [
             fire: 2,
             torpedo: 4,
             evasion: 2,
+            hit: 2,
         },
     },
 
-    // + 对水上電探
+    // + 対空電探
     {
         list: [366, 'AARadar'],
         equipments: {
@@ -162,6 +226,7 @@ module.exports = [
         ship: {
             isID: [
                 秋雲改二,
+                時雨改三,
                 ...DD_YuugumoClass2ndRemodel,
                 ...DD_ShimakazeRemodel,
             ],
@@ -169,7 +234,8 @@ module.exports = [
         bonus: {
             fire: 1,
             aa: 5,
-            evasion: 2,
+            evasion: 3,
+            hit: 1,
         },
     },
 

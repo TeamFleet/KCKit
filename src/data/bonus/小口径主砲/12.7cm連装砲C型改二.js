@@ -10,7 +10,13 @@
 require('../../../../typedef');
 
 const { DD_KagerouClass2ndRemodelExcludeAkigumo } = require('../../ships');
-const { 丹陽, 雪風改二, 磯風乙改 } = require('../../ship-ids');
+const {
+    時雨改二,
+    時雨改三,
+    丹陽,
+    雪風改二,
+    磯風乙改,
+} = require('../../ship-ids');
 const {
     DD_Shiratsuyu,
     DD_ShiratsuyuRevised,
@@ -20,13 +26,16 @@ const {
 } = require('../../ship-classes');
 
 const conditionSpecials = [
-    145, // 時雨改二
+    時雨改二,
     228, // 雪風改
     丹陽,
     磯風乙改,
 ];
-const condition1excludes =
-    DD_KagerouClass2ndRemodelExcludeAkigumo.concat(conditionSpecials);
+const conditionSpecials2 = [時雨改三];
+const condition1excludes = DD_KagerouClass2ndRemodelExcludeAkigumo.concat(
+    conditionSpecials,
+    conditionSpecials2
+);
 
 module.exports = [
     {
@@ -52,6 +61,17 @@ module.exports = [
         bonus: {
             fire: 1,
             evasion: 1,
+        },
+    },
+    {
+        equipment: 266,
+        ship: {
+            isID: conditionSpecials2,
+        },
+        bonus: {
+            fire: 2,
+            evasion: 2,
+            hit: 1,
         },
     },
 

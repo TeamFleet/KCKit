@@ -731,8 +731,8 @@ describe('Base functions/utilities', () => {
                 it(`12.7cm単装高角砲(後期型) - 7 bonuses`, () => {
                     expect(db.items[229].getBonuses().length).toEqual(12);
                 });
-                it(`12.7cm連装砲D型改二 - 6 bonuses`, () => {
-                    expect(db.items[267].getBonuses().length).toEqual(12);
+                it(`12.7cm連装砲D型改二 - 13 bonuses`, () => {
+                    expect(db.items[267].getBonuses().length).toEqual(13);
                 });
                 it(`61cm三連装(酸素)魚雷後期型 - 7 bonuses`, () => {
                     expect(db.items[285].getBonuses().length).toEqual(17);
