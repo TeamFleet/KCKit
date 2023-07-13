@@ -74,7 +74,7 @@ const 相互シナジーボーナス = [
         list: [389, eid],
         equipments: [
             {
-                isID: 382,
+                isID: 389,
             },
             {
                 isID: eid,
@@ -95,7 +95,7 @@ const 相互シナジーボーナス = [
         list: [389, eid],
         equipments: [
             {
-                isID: 382,
+                isID: 389,
             },
             {
                 isID: eid,

@@ -17,6 +17,8 @@ const {
     長門改二,
     陸奥改二,
     榛名改二,
+    榛名改二乙,
+    榛名改二丙,
 } = require('../../ship-ids');
 const {
     AviationCruisers,
@@ -26,12 +28,36 @@ const {
     Destroyers,
 } = require('../../../types/ships');
 
+// ============================================================================
+
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 411,
         ship: {
-            isID: [扶桑改二, 山城改二, 榛名改二],
+            isID: [榛名改二乙],
+        },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                aa: 4,
+            },
+            1: {
+                fire: 4,
+                aa: 6,
+                evasion: 3,
+            },
+            4: {
+                fire: 5,
+                aa: 7,
+                evasion: 3,
+            },
+        },
+    },
+    {
+        equipment: 411,
+        ship: {
+            isID: [扶桑改二, 山城改二, 榛名改二, 榛名改二丙],
         },
         bonusImprove: {
             0: {

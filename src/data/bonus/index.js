@@ -186,6 +186,7 @@ const dataBonuses = [
     ...require('./対空機銃/2cm 四連装FlaK 38'),
     ...require('./対空機銃/20連装7inch UP Rocket Launchers'),
     ...require('./対空機銃/25mm対空機銃'),
+    ...require('./対空機銃/25mm対空機銃増備'),
 
     ...require('./増設バルジ/新型高温高圧缶'),
     ...require('./増設バルジ/北方迷彩(＋北方装備)'),
@@ -214,6 +215,7 @@ const dataBonuses = [
     ...require('./その他/武装大発'),
     ...require('./その他/後期型潜水艦搭載電探＆逆探'),
     ...require('./その他/後期型電探＆逆探＋シュノーケル装備'),
+    ...require('./その他/発煙装置'),
 
     ...require('./specials'),
 ];

@@ -51,6 +51,8 @@ module.exports = {
         1, // 驱逐舰
         19, // 防空驱逐舰
     ],
+    // 海防舰
+    Escorts: [31],
     // 潜艇
     Submarines: [
         13, // 潜艇

@@ -4,6 +4,9 @@ module.exports = {
     春風: 473,
     春風改: 363,
 
+    吹雪: 9,
+    吹雪改: 201,
+    吹雪改二: 426,
     深雪: 11,
     深雪改: 204,
     深雪改二: 959,
@@ -28,7 +31,11 @@ module.exports = {
     響: 35,
     響改: 235,
     Верный: 147,
+    電: 37,
+    電改: 237,
 
+    初霜: 41,
+    初霜改: 241,
     初霜改二: 419,
 
     白露: 42,
@@ -78,6 +85,8 @@ module.exports = {
     秋雲改二: 648,
 
     高波改二: 649,
+    浜波: 484,
+    浜波改: 680,
     沖波改二: 569,
     朝霜: 425,
     朝霜改: 344,
@@ -95,6 +104,10 @@ module.exports = {
     Grecale: 614,
     Grecale改: 619,
 
-    'Fletcher Mk.II': 629,
+    'Samuel B.Roberts': 561,
+    'Samuel B.Roberts改': 681,
     'Samuel B.Roberts Mk.II': 920,
+    'Fletcher Mk.II': 629,
+    Johnston: 562,
+    Johnston改: 689,
 };
