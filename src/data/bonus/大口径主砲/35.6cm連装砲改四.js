@@ -89,7 +89,7 @@ const 相互シナジーボーナス = [
     },
 
     {
-        list: [503, 'SurfaceRadar'],
+        list: [503, 'SuperSurfaceRadar'],
         equipments: {
             hasID: [503],
             hasSuperSurfaceRadar: true,
@@ -104,7 +104,7 @@ const 相互シナジーボーナス = [
         },
     },
     {
-        list: [503, 'SurfaceRadar'],
+        list: [503, 'SuperSurfaceRadar'],
         equipments: {
             hasID: [503],
             hasSuperSurfaceRadar: true,
