@@ -1,13 +1,30 @@
 /**
  * @module
  * 装备额外属性收益
- * 317. **三式弾改**
+ *
+ * 317. 三式弾改
+ *      https://wikiwiki.jp/kancolle/%E4%B8%89%E5%BC%8F%E5%BC%BE%E6%94%B9
+ *
  */
 
-// https://wikiwiki.jp/kancolle/%E4%B8%89%E5%BC%8F%E5%BC%BE%E6%94%B9
+require('../../../../typedef');
 
-const { 長門改二, 陸奥改二, 榛名改二 } = require('../../ship-ids');
+const {
+    長門改二,
+    陸奥改二,
+    金剛改二,
+    金剛改二丙,
+    比叡改二,
+    比叡改二丙,
+    榛名改二,
+    榛名改二乙,
+    榛名改二丙,
+    霧島改二,
+} = require('../../ship-ids');
 
+// ============================================================================
+
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 317,
@@ -34,11 +51,7 @@ module.exports = [
     {
         equipment: 317,
         ship: {
-            isID: [
-                149, // 金剛改二
-                591, // 金剛改二丙
-                592, // 比叡改二丙
-            ],
+            isID: [金剛改二, 金剛改二丙, 比叡改二丙],
         },
         bonusCount: {
             1: {
@@ -51,9 +64,7 @@ module.exports = [
     {
         equipment: 317,
         ship: {
-            isID: [
-                150, // 比叡改二
-            ],
+            isID: [比叡改二],
         },
         bonusCount: {
             1: {
@@ -76,13 +87,37 @@ module.exports = [
             },
         },
     },
+    {
+        equipment: 317,
+        ship: {
+            isID: [榛名改二乙],
+        },
+        bonusCount: {
+            1: {
+                fire: 2,
+                aa: 4,
+                evasion: 2,
+            },
+        },
+    },
+    {
+        equipment: 317,
+        ship: {
+            isID: [榛名改二丙],
+        },
+        bonusCount: {
+            1: {
+                fire: 3,
+                aa: 3,
+                evasion: 1,
+            },
+        },
+    },
 
     {
         equipment: 317,
         ship: {
-            isID: [
-                152, // 霧島改二
-            ],
+            isID: [霧島改二],
         },
         bonusCount: {
             1: {

@@ -18,12 +18,20 @@ const {
     BB_Kongou2,
 } = require('../../ship-classes');
 const { BB_YamatoClass2ndRemodel } = require('../../ships');
-const { 長門改二, 陸奥改二, 比叡改二丙 } = require('../../ship-ids');
+const {
+    長門改二,
+    陸奥改二,
+    比叡改二丙,
+    榛名改二乙,
+    榛名改二丙,
+} = require('../../ship-ids');
 
 const tier2IDs = [長門改二, 陸奥改二, ...BB_YamatoClass2ndRemodel];
 const tier3IDs = [
     591, // 金剛改二丙
     比叡改二丙,
+    榛名改二乙,
+    榛名改二丙,
 ];
 
 /** @type {Array<EquipmentBonus>} */

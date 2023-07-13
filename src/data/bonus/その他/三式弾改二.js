@@ -23,6 +23,8 @@ const {
     榛名,
     榛名改,
     榛名改二,
+    榛名改二乙,
+    榛名改二丙,
     霧島,
     霧島改,
     霧島改二,
@@ -31,7 +33,7 @@ const {
     BB_YamatoClass2ndRemodel,
     BB_IseClass2ndRemodel,
     BB_FusouClass2ndRemodel,
-    BB_KongouClass2ndRemodel,
+    // BB_KongouClass2ndRemodel,
 } = require('../../ships');
 
 /** @type {Array<EquipmentBonus>} */
@@ -43,9 +45,10 @@ module.exports = [
         },
         bonusCount: {
             1: {
-                fire: 4,
-                aa: 4,
+                fire: 5,
+                aa: 6,
                 evasion: 1,
+                hit: 1,
             },
         },
     },
@@ -57,8 +60,37 @@ module.exports = [
         },
         bonusCount: {
             1: {
+                fire: 4,
+                aa: 5,
+                evasion: 2,
+                hit: 1,
+            },
+        },
+    },
+
+    {
+        equipment: 483,
+        ship: {
+            isID: [榛名改二乙],
+        },
+        bonusCount: {
+            1: {
+                fire: 4,
+                aa: 8,
+                evasion: 3,
+                hit: 1,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isID: [榛名改二丙],
+        },
+        bonusCount: {
+            1: {
                 fire: 3,
-                aa: 3,
+                aa: 5,
                 evasion: 2,
             },
         },
@@ -178,20 +210,20 @@ module.exports = [
         list: [
             {
                 id: 483,
-                star: 8,
+                star: 2,
             },
         ],
         equipments: [
             {
                 isID: 483,
-                improvement: 8,
+                improvement: 2,
             },
         ],
         ship: {
-            isID: [...BB_YamatoClass2ndRemodel, ...BB_KongouClass2ndRemodel],
+            canEquip: [10],
         },
         bonus: {
-            hit: 1,
+            aa: 1,
         },
     },
 ];
