@@ -750,7 +750,8 @@ class Ship extends ItemBase {
 
     getExSlotOtherEquipments() {
         return vars.exSlotOtherEquipments.concat(
-            this.additional_exslot_item_ids || []
+            // this.additional_exslot_item_ids || []
+            this.getAdditionalExslotEquipIds()
         );
     }
 

@@ -379,7 +379,7 @@ describe('Base functions/utilities', () => {
             });
             it(`should 大和・改 db.ships[136].getExSlotOtherEquipments() be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[136].getExSlotOtherEquipments()).toEqual(
-                    kckit.exSlotOtherEquipments.concat([71, 275])
+                    kckit.exSlotOtherEquipments.concat([71, 275, 483, 35, 317])
                 );
             });
             it(`should 熊野・改二 db.ships[504].getExSlotOtherEquipments() not be kckit.exslotEquipmentTypes`, function () {
