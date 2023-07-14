@@ -1,7 +1,7 @@
 {
     "name": "kckit",
     "main": "index.js",
-    "version": "1.85.2",
+    "version": "1.85.3",
     "description": "Javascript library for KanColle",
     "sideEffects": false,
     "author": {
