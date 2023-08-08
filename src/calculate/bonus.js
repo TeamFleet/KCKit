@@ -53,6 +53,7 @@ const calculateBonus = (
                     (equipment) =>
                         equipment &&
                         equipment.id &&
+                        // eslint-disable-next-line eqeqeq
                         equipment.id == bonus.equipment
                 )
         )
@@ -61,40 +62,53 @@ const calculateBonus = (
 
             // 根据改修星级
             // 目前的数据结构下，改修星级条件与其他条件不能共存
-            // TODO: 改修星级条件与数量条件可并存
             if (typeof bonus.bonusImprove === 'object') {
                 // 从大到小排序可能的改修星级
-                const starsDesc = Object.keys(bonus.bonusImprove).sort(
-                    (a, b) => parseInt(b) - parseInt(a)
-                );
+                const starsDesc = Object.keys(bonus.bonusImprove)
+                    .filter((key) => !isNaN(key))
+                    .sort((a, b) => parseInt(b) - parseInt(a));
                 // 每个装备的收益单独计算
-                equipments.forEach((equipment, index) => {
-                    if (
-                        equipment &&
-                        equipment.id &&
-                        equipment.id == bonus.equipment
-                    ) {
-                        starsDesc.some((star) => {
-                            if (equipmentStars[index] >= star) {
-                                for (const stat in bonus.bonusImprove[star]) {
+                equipments
+                    .map((equipment, index) => ({
+                        equipment,
+                        star: equipmentStars[index] || 0,
+                        rank: equipmentRanks[index] || 0,
+                    }))
+                    .filter(
+                        ({ equipment }) =>
+                            equipment &&
+                            equipment.id &&
+                            // eslint-disable-next-line eqeqeq
+                            equipment.id == bonus.equipment
+                    )
+                    .sort((a, b) => {
+                        if (a.star === b.star) return b.rank - a.rank;
+                        return b.star - a.star;
+                    })
+                    .slice(0, bonus.bonusImprove.maxCount || equipments.length)
+                    .forEach(({ equipment, star, rank }) => {
+                        starsDesc.some((checkStar) => {
+                            if (star >= checkStar) {
+                                for (const stat in bonus.bonusImprove[
+                                    checkStar
+                                ]) {
                                     if (typeof thisBonus[stat] === 'undefined')
                                         thisBonus[stat] =
-                                            bonus.bonusImprove[star][stat];
+                                            bonus.bonusImprove[checkStar][stat];
                                     else if (
                                         typeof thisBonus[stat] === 'number'
                                     )
                                         thisBonus[stat] +=
-                                            bonus.bonusImprove[star][stat];
+                                            bonus.bonusImprove[checkStar][stat];
                                     else
                                         thisBonus[stat] =
-                                            bonus.bonusImprove[star][stat];
+                                            bonus.bonusImprove[checkStar][stat];
                                 }
                                 return true;
                             }
                             return false;
                         });
-                    }
-                });
+                    });
             } else {
                 let thisCount = 0;
 
@@ -103,6 +117,7 @@ const calculateBonus = (
                     if (
                         equipment &&
                         equipment.id &&
+                        // eslint-disable-next-line eqeqeq
                         equipment.id == bonus.equipment
                     ) {
                         thisCount++;

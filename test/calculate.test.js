@@ -173,6 +173,15 @@ describe('Calculating functions/utilities', () => {
                     evasion: 2,
                 });
             });
+            it('不知火改二 || 61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+2) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
+                expect(
+                    calculate.bonus(567, [286, 286, 286], [10, 2, 5])
+                ).toEqual({
+                    fire: 1,
+                    torpedo: 6,
+                    evasion: 2,
+                });
+            });
             it('不知火改二 || 12.7cm連装砲D型改二 ➕61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
                 expect(
                     calculate.bonus(567, [267, 286, 286], [0, 10, 5])

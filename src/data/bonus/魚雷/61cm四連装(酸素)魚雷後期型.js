@@ -1,10 +1,13 @@
 /**
  * @module
  * 装备额外属性收益
- * 286. **61cm四連装(酸素)魚雷後期型**
+ *
+ * 286. 61cm四連装(酸素)魚雷後期型
+ *      https://wikiwiki.jp/kancolle/61cm%E5%9B%9B%E9%80%A3%E8%A3%85%28%E9%85%B8%E7%B4%A0%29%E9%AD%9A%E9%9B%B7%E5%BE%8C%E6%9C%9F%E5%9E%8B
+ *
  */
 
-// https://wikiwiki.jp/kancolle/61cm%E5%9B%9B%E9%80%A3%E8%A3%85%28%E9%85%B8%E7%B4%A0%29%E9%AD%9A%E9%9B%B7%E5%BE%8C%E6%9C%9F%E5%9E%8B
+require('../../../../typedef');
 
 const {
     DD_ShiratsuyuClass2ndRemodel,
@@ -20,6 +23,7 @@ const DD2nd_Shiratsuyu_Asashio_Yuugumo = DD_ShiratsuyuClass2ndRemodel.concat(
     DD_YuugumoClass2ndRemodel
 );
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 286,
@@ -47,6 +51,7 @@ module.exports = [
                 torpedo: 2,
                 evasion: 1,
             },
+            maxCount: 2,
         },
     },
 
@@ -70,6 +75,7 @@ module.exports = [
                 torpedo: 3,
                 evasion: 1,
             },
+            maxCount: 2,
         },
     },
 
@@ -91,6 +97,7 @@ module.exports = [
                 torpedo: 11,
                 evasion: 2,
             },
+            maxCount: 1,
         },
     },
 
