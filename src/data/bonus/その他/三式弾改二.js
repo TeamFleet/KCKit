@@ -10,8 +10,16 @@
 require('../../../../typedef');
 
 const {
+    伊勢,
+    伊勢改,
+    日向,
+    日向改,
     長門改二,
     陸奥改二,
+    大和,
+    大和改,
+    武蔵,
+    武蔵改,
     金剛,
     金剛改,
     金剛改二,
@@ -35,6 +43,12 @@ const {
     BB_FusouClass2ndRemodel,
     // BB_KongouClass2ndRemodel,
 } = require('../../ships');
+const { BB_Kongou, BB_Kongou2 } = require('../../ship-classes');
+const {
+    Battleships,
+    HeavyCruisers,
+    AviationCruisers,
+} = require('../../../types/ships');
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
@@ -103,8 +117,9 @@ module.exports = [
         },
         bonusCount: {
             1: {
-                fire: 3,
-                aa: 3,
+                fire: 4,
+                aa: 5,
+                hit: 1,
             },
         },
     },
@@ -129,9 +144,10 @@ module.exports = [
         },
         bonusCount: {
             1: {
-                fire: 2,
-                aa: 3,
+                fire: 3,
+                aa: 5,
                 evasion: 2,
+                hit: 1,
             },
         },
     },
@@ -143,8 +159,9 @@ module.exports = [
         },
         bonusCount: {
             1: {
-                fire: 1,
-                aa: 1,
+                fire: 2,
+                aa: 3,
+                hit: 1,
             },
         },
     },
@@ -197,9 +214,24 @@ module.exports = [
         },
         bonusCount: {
             1: {
+                fire: 2,
+                aa: 4,
+                evasion: 3,
+                hit: 1,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isID: [伊勢, 伊勢改, 日向, 日向改],
+        },
+        bonusCount: {
+            1: {
                 fire: 1,
                 aa: 2,
-                evasion: 1,
+                evasion: 2,
+                hit: 1,
             },
         },
     },
@@ -207,23 +239,164 @@ module.exports = [
     // ========================================================================
 
     {
-        list: [
-            {
-                id: 483,
-                star: 2,
-            },
-        ],
-        equipments: [
-            {
-                isID: 483,
-                improvement: 2,
-            },
-        ],
+        equipment: 483,
         ship: {
-            canEquip: [10],
+            isType: [...Battleships],
         },
-        bonus: {
-            aa: 1,
+        bonusImprove: {
+            maxCount: 1,
+            2: {
+                aa: 1,
+            },
+            4: {
+                fire: 1,
+                aa: 1,
+            },
+            7: {
+                fire: 1,
+                aa: 1,
+                evasion: 1,
+            },
+            8: {
+                fire: 1,
+                aa: 2,
+                evasion: 1,
+            },
+            9: {
+                fire: 2,
+                aa: 2,
+                evasion: 1,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isType: [...HeavyCruisers, ...AviationCruisers],
+        },
+        bonusImprove: {
+            maxCount: 1,
+            2: {
+                aa: 1,
+            },
+            4: {
+                fire: 1,
+                aa: 1,
+            },
+            6: {
+                fire: 1,
+                aa: 1,
+                evasion: 1,
+            },
+            8: {
+                fire: 1,
+                aa: 1,
+                evasion: 1,
+                hit: 1,
+            },
+            10: {
+                fire: 2,
+                aa: 1,
+                evasion: 1,
+                hit: 1,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isClass: [BB_Kongou, BB_Kongou2],
+        },
+        bonusImprove: {
+            maxCount: 1,
+            6: {
+                hit: 1,
+            },
+            10: {
+                hit: 2,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isID: [...BB_IseClass2ndRemodel],
+        },
+        bonusImprove: {
+            maxCount: 1,
+            1: {
+                hit: 1,
+            },
+            3: {
+                hit: 2,
+            },
+            5: {
+                evasion: 1,
+                hit: 2,
+            },
+            6: {
+                evasion: 1,
+                hit: 3,
+            },
+            10: {
+                evasion: 2,
+                hit: 3,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isID: [伊勢, 伊勢改, 日向, 日向改],
+        },
+        bonusImprove: {
+            maxCount: 1,
+            5: {
+                evasion: 1,
+            },
+            6: {
+                evasion: 1,
+                hit: 1,
+            },
+            10: {
+                evasion: 2,
+                hit: 1,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isID: [...BB_YamatoClass2ndRemodel],
+        },
+        bonusImprove: {
+            maxCount: 1,
+            5: {
+                hit: 1,
+            },
+            6: {
+                hit: 2,
+            },
+            10: {
+                evasion: 1,
+                hit: 2,
+            },
+        },
+    },
+    {
+        equipment: 483,
+        ship: {
+            isID: [大和, 大和改, 武蔵, 武蔵改],
+        },
+        bonusImprove: {
+            maxCount: 1,
+            6: {
+                hit: 1,
+            },
+            10: {
+                evasion: 1,
+                hit: 1,
+            },
         },
     },
 ];

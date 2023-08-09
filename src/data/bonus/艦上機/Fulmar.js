@@ -40,53 +40,31 @@ const 戦闘偵察_熟練 = [
             evasion: 1,
         },
     },
-];
-[
-    [
-        2,
-        {
-            los: 1,
-        },
-    ],
-    [
-        4,
-        {
-            fire: 1,
-        },
-    ],
-    [
-        6,
-        {
-            los: 1,
-        },
-    ],
-    [
-        10,
-        {
-            fire: 1,
-            los: 1,
-        },
-    ],
-].forEach(([star, bonus]) => {
-    戦闘偵察_熟練.push({
-        list: [
-            {
-                id: 423,
-                star,
-            },
-        ],
-        equipments: [
-            {
-                isID: 423,
-                improvement: star,
-            },
-        ],
+    {
+        equipment: 423,
         ship: {
             isType: Carriers.filter((tid) => tid !== 32),
         },
-        bonus,
-    });
-});
+        bonusImprove: {
+            maxCount: 1,
+            2: {
+                los: 1,
+            },
+            4: {
+                fire: 1,
+                los: 1,
+            },
+            6: {
+                fire: 1,
+                los: 2,
+            },
+            10: {
+                fire: 2,
+                los: 3,
+            },
+        },
+    },
+];
 
 // ============================================================================
 

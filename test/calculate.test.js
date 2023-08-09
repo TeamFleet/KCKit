@@ -3,6 +3,10 @@
 // const camelCase = require('camelcase')
 const dbnames = require('./samples/dbnames');
 const {
+    日向改,
+    日向改二,
+
+    榛名改,
     榛名改二乙,
 
     鈴谷航改二,
@@ -1971,6 +1975,58 @@ describe('Calculating functions/utilities', () => {
                 ).toEqual({
                     torpedo: 2,
                     evasion: 3,
+                });
+            });
+            it('時雨改三 || 水雷戦隊 熟練見張員 + 水雷戦隊 熟練見張員(+8) + 水雷戦隊 熟練見張員(+4)', () => {
+                expect(
+                    calculate.bonus(時雨改三, [412, 412, 412], [0, 8, 4])
+                ).toEqual({
+                    fire: 3,
+                    torpedo: 5,
+                    asw: 2,
+                    los: 2,
+                    evasion: 6,
+                });
+            });
+            describe('三式弾改二', () => {
+                it('日向改 || 三式弾改二 + 三式弾改二(+1) + 三式弾改二(+1)', () => {
+                    expect(
+                        calculate.bonus(日向改, [483, 483, 483], [0, 1, 1])
+                    ).toEqual({
+                        fire: 1,
+                        aa: 2,
+                        evasion: 2,
+                        hit: 1,
+                    });
+                });
+                it('日向改二 || 三式弾改二 + 三式弾改二(+10) + 三式弾改二(+1)', () => {
+                    expect(
+                        calculate.bonus(日向改二, [483, 483, 483], [0, 10, 1])
+                    ).toEqual({
+                        fire: 4,
+                        aa: 6,
+                        evasion: 6,
+                        hit: 4,
+                    });
+                });
+                it('榛名改 || 三式弾改二 + 三式弾改二(+2) + 三式弾改二(+5)', () => {
+                    expect(
+                        calculate.bonus(榛名改, [483, 483, 483], [0, 2, 5])
+                    ).toEqual({
+                        fire: 3,
+                        aa: 4,
+                        hit: 1,
+                    });
+                });
+                it('榛名改二乙 || 三式弾改二 + 三式弾改二(+8) + 三式弾改二(+5)', () => {
+                    expect(
+                        calculate.bonus(榛名改二乙, [483, 483, 483], [0, 8, 5])
+                    ).toEqual({
+                        fire: 5,
+                        aa: 10,
+                        evasion: 4,
+                        hit: 2,
+                    });
                 });
             });
         });

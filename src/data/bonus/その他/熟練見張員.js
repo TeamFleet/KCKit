@@ -71,8 +71,17 @@ const 水雷戦隊熟練見張員 = [
         ship: {
             isClass: [...group_CAV_Navy_IJN, ...group_CA_Navy_IJN],
         },
-        bonus: {
-            fire: 1,
+        bonusCount: {
+            1: {
+                fire: 1,
+                los: 1,
+                evasion: 1,
+            },
+            2: {
+                fire: 1,
+                los: 2,
+                evasion: 1,
+            },
         },
     },
     {
@@ -80,18 +89,18 @@ const 水雷戦隊熟練見張員 = [
         ship: {
             isClass: [...group_CL_S_Navy_IJN],
         },
-        bonusImprove: {
+        bonusCount: {
             1: {
                 fire: 3,
                 torpedo: 3,
+                los: 3,
+                evasion: 2,
             },
-            4: {
-                fire: 4,
+            2: {
+                fire: 3,
                 torpedo: 3,
-            },
-            8: {
-                fire: 4,
-                torpedo: 4,
+                los: 6,
+                evasion: 4,
             },
         },
     },
@@ -100,62 +109,41 @@ const 水雷戦隊熟練見張員 = [
         ship: {
             isClass: [...group_DD_Navy_IJN, DD_KagerouROCN],
         },
-        bonusImprove: {
+        bonusCount: {
             1: {
                 fire: 2,
                 torpedo: 4,
                 asw: 2,
+                los: 1,
+                evasion: 3,
             },
-            4: {
-                fire: 3,
+            2: {
+                fire: 2,
                 torpedo: 4,
                 asw: 2,
+                los: 2,
+                evasion: 6,
+            },
+        },
+    },
+    {
+        equipment: 412,
+        ship: {
+            isClass: [
+                ...group_CL_S_Navy_IJN,
+                ...group_DD_Navy_IJN,
+                DD_KagerouROCN,
+            ],
+        },
+        bonusImprove: {
+            maxCount: 1,
+            4: {
+                fire: 1,
             },
             8: {
-                fire: 3,
-                torpedo: 5,
-                asw: 2,
+                fire: 1,
+                torpedo: 1,
             },
-        },
-    },
-
-    {
-        list: [412],
-        equipments: {
-            hasID: [412],
-        },
-        ship: {
-            isClass: [...group_CAV_Navy_IJN, ...group_CA_Navy_IJN],
-        },
-        bonus: {
-            los: 1,
-            evasion: 1,
-        },
-    },
-    {
-        list: [412],
-        equipments: {
-            hasID: [412],
-        },
-        ship: {
-            isClass: [...group_CL_S_Navy_IJN],
-        },
-        bonus: {
-            los: 3,
-            evasion: 2,
-        },
-    },
-    {
-        list: [412],
-        equipments: {
-            hasID: [412],
-        },
-        ship: {
-            isClass: [...group_DD_Navy_IJN, DD_KagerouROCN],
-        },
-        bonus: {
-            los: 1,
-            evasion: 3,
         },
     },
 ];

@@ -239,47 +239,9 @@ const 三式水中探信儀改 = [
             },
         },
     },
-];
-// Special improvement bonuses
-[
-    [
-        4,
-        {
-            asw: 1,
-        },
-    ],
-    [
-        6,
-        {
-            evasion: 1,
-        },
-    ],
-    [
-        8,
-        {
-            asw: 1,
-        },
-    ],
-    [
-        10,
-        {
-            evasion: 1,
-        },
-    ],
-].forEach(([star, bonus]) => {
-    三式水中探信儀改.push({
-        list: [
-            {
-                id: 438,
-                star,
-            },
-        ],
-        equipments: [
-            {
-                isID: 438,
-                improvement: star,
-            },
-        ],
+
+    {
+        equipment: 438,
         ship: {
             isID: [
                 神風改,
@@ -291,9 +253,26 @@ const 三式水中探信儀改 = [
                 朝霜改二,
             ],
         },
-        bonus,
-    });
-});
+        bonusImprove: {
+            maxCount: 1,
+            4: {
+                asw: 1,
+            },
+            6: {
+                asw: 1,
+                evasion: 1,
+            },
+            8: {
+                asw: 2,
+                evasion: 1,
+            },
+            10: {
+                asw: 2,
+                evasion: 2,
+            },
+        },
+    },
+];
 
 // ============================================================================
 
