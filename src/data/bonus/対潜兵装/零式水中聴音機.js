@@ -23,68 +23,6 @@ const {
 // ============================================================================
 
 /** @type {Array<EquipmentBonus>} */
-const 改修ボーナス = [];
-[
-    [
-        3,
-        {
-            evasion: 1,
-        },
-    ],
-    [
-        5,
-        {
-            asw: 1,
-        },
-    ],
-    [
-        7,
-        {
-            evasion: 1,
-        },
-    ],
-    [
-        8,
-        {
-            asw: 1,
-        },
-    ],
-    [
-        9,
-        {
-            hit: 1,
-        },
-    ],
-    [
-        10,
-        {
-            asw: 1,
-        },
-    ],
-].forEach(([star, bonus]) => {
-    改修ボーナス.push({
-        list: [
-            {
-                id: 132,
-                star,
-            },
-        ],
-        equipments: [
-            {
-                isID: 132,
-                improvement: star,
-            },
-        ],
-        ship: {
-            canEquip: [28],
-        },
-        bonus,
-    });
-});
-
-// ============================================================================
-
-/** @type {Array<EquipmentBonus>} */
 module.exports = [
     {
         equipment: 132,
@@ -110,5 +48,38 @@ module.exports = [
         },
     },
 
-    ...改修ボーナス,
+    {
+        equipment: 132,
+        ship: {
+            canEquip: [28],
+        },
+        bonusImprove: {
+            3: {
+                evasion: 1,
+            },
+            5: {
+                asw: 1,
+                evasion: 1,
+            },
+            7: {
+                asw: 1,
+                evasion: 2,
+            },
+            8: {
+                asw: 2,
+                evasion: 2,
+            },
+            9: {
+                asw: 2,
+                evasion: 2,
+                hit: 1,
+            },
+            10: {
+                asw: 3,
+                evasion: 2,
+                hit: 1,
+            },
+            maxCount: 1,
+        },
+    },
 ];

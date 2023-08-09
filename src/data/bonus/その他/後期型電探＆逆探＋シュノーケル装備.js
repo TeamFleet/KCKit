@@ -34,6 +34,7 @@ module.exports = [
                 evasion: 8,
                 hit: 1,
             },
+            maxCount: 1,
         },
     },
     {
@@ -51,6 +52,7 @@ module.exports = [
                 evasion: 6,
                 hit: 1,
             },
+            maxCount: 1,
         },
     },
     {
@@ -68,6 +70,7 @@ module.exports = [
                 evasion: 5,
                 hit: 1,
             },
+            maxCount: 1,
         },
     },
 ];

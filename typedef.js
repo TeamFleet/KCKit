@@ -13,7 +13,8 @@
  *
  * @property {EquipmentBonusValues} [bonus] 满足条件时的加成值
  * @property {Object.<number, EquipmentBonusValues>} [bonusCount] 当为“单体”时不同装备数量的收益
- * @property {Object.<number|'maxCount', EquipmentBonusValues|number>} [bonusImprove] 当为“单体”时不同改修星级的收益
+ * @property {Object.<number, EquipmentBonusValues>} [bonusImprove] 当为“单体”时不同改修星级的收益
+ * @property {number} [bonusImprove.maxCount] 当为“单体”时不同改修星级的收益
  *
  * @property {number} [equipment] 当为“单体”时的装备 ID
  *

@@ -520,10 +520,10 @@ describe('Base functions/utilities', () => {
             });
             describe(`should Ship.prototype.getBonuses() works`, () => {
                 it(`大鳳改 - N bonuses`, () => {
-                    expect(db.ships[156].getBonuses().length).toEqual(25);
+                    expect(db.ships[156].getBonuses().length).toEqual(20);
                 });
                 it(`榛名改二 - N bonuses`, () => {
-                    expect(db.ships[151].getBonuses().length).toEqual(40);
+                    expect(db.ships[151].getBonuses().length).toEqual(35);
                 });
             });
             describe(`should Ship.prototype.getAACI() works`, () => {

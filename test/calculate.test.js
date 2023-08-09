@@ -1523,6 +1523,15 @@ describe('Calculating functions/utilities', () => {
                     hit: 1,
                 });
             });
+            it('大和改二重 || 零式水中聴音機⭐MAX | 零式水中聴音機 | 零式水中聴音機+5', () => {
+                expect(
+                    calculate.bonus(916, [132, 132, 132], [10, 0, 5])
+                ).toEqual({
+                    evasion: 1 + 2,
+                    asw: 3,
+                    hit: 1,
+                });
+            });
         });
 
         describe('その他...', () => {
@@ -1954,6 +1963,14 @@ describe('Calculating functions/utilities', () => {
                     calculate.bonus(536, [227, 227, 227], [0, 8, 10])
                 ).toEqual({
                     asw: 3,
+                });
+            });
+            it('榛名改二乙 || 新型高温高圧缶 + 新型高温高圧缶(+8) + 新型高温高圧缶(+6)', () => {
+                expect(
+                    calculate.bonus(榛名改二乙, [87, 87, 87], [0, 8, 6])
+                ).toEqual({
+                    torpedo: 2,
+                    evasion: 3,
                 });
             });
         });

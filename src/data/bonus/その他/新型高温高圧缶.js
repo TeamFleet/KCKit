@@ -49,6 +49,7 @@ module.exports = [
                 torpedo: 2,
                 evasion: 3,
             },
+            maxCount: 1,
         },
     },
 
@@ -81,7 +82,7 @@ module.exports = [
             10: {
                 fire: 2,
                 torpedo: 2,
-                aa: 2,
+                aa: 1,
                 evasion: 2,
                 hit: 2,
             },

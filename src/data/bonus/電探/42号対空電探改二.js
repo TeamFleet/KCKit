@@ -52,6 +52,7 @@ module.exports = [
                 aa: 7,
                 evasion: 3,
             },
+            maxCount: 1,
         },
     },
     {
@@ -72,6 +73,7 @@ module.exports = [
                 fire: 5,
                 aa: 6,
             },
+            maxCount: 1,
         },
     },
     {
@@ -92,6 +94,7 @@ module.exports = [
                 fire: 4,
                 aa: 4,
             },
+            maxCount: 1,
         },
     },
 
