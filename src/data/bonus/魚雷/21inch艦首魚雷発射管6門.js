@@ -12,7 +12,10 @@
 
 require('../../../../typedef');
 
-const { group_SS_Navy_USN } = require('../../ship-classes');
+const {
+    SS_Gato,
+    // group_SS_Navy_USN,
+} = require('../../ship-classes');
 
 // ============================================================================
 
@@ -57,7 +60,7 @@ module.exports = [
             })),
         },
         ship: {
-            isClass: [...group_SS_Navy_USN],
+            isClass: [SS_Gato],
         },
         bonus: { torpedo: 2 },
     },

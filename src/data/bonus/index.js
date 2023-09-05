@@ -15,6 +15,7 @@ const dataBonuses = [
     ...require('./小口径主砲/10cm連装高角砲+高射装置'),
     ...require('./小口径主砲/12cm単装砲改二'),
     ...require('./小口径主砲/12cm単装高角砲E型'),
+    ...require('./小口径主砲/12cm単装高角砲E型改'),
     ...require('./小口径主砲/120mm／50 連装砲'),
     ...require('./小口径主砲/12.7cm単装砲'),
     ...require('./小口径主砲/12.7cm単装高角砲(後期型)'),
@@ -92,6 +93,7 @@ const dataBonuses = [
     ...require('./魚雷/熟練聴音員+後期型艦首魚雷'),
     ...require('./魚雷/後期型53cm艦首魚雷(8門)'),
     ...require('./魚雷/潜水艦後部魚雷発射管4門'),
+    ...require('./魚雷/21inch艦首魚雷発射管4門'),
     ...require('./魚雷/21inch艦首魚雷発射管6門'),
 
     ...require('./水上機/紫雲'),
@@ -101,6 +103,7 @@ const dataBonuses = [
     ...require('./水上機/S9 Osprey'),
     ...require('./水上機/Swordfish'),
     ...require('./水上機/Seafox'),
+    ...require('./水上機/Walrus'),
     ...require('./水上機/Ar196改'),
     ...require('./水上機/Loire 130M'),
     ...require('./水上機/Laté 298B'),

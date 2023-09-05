@@ -13,6 +13,7 @@
 require('../../../../typedef');
 
 const {
+    BB_Nevada,
     group_BB_Navy_USN,
     group_BB_Navy_RN,
 
@@ -27,6 +28,10 @@ const {
 const { Radars_USN } = require('../../equipments');
 const { Battleships } = require('../../../types/ships');
 
+const group_BB_Navy_USN_exclude_Nevada = group_BB_Navy_USN.filter(
+    (id) => id !== BB_Nevada
+);
+
 // ============================================================================
 
 /** @type {Array<EquipmentBonus>} */
@@ -34,7 +39,26 @@ const 連装砲 = [
     {
         equipment: 507,
         ship: {
-            isClass: [...group_BB_Navy_USN],
+            isClass: [BB_Nevada],
+        },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                evasion: 2,
+                hit: 2,
+            },
+            6: {
+                fire: 4,
+                armor: 1,
+                evasion: 2,
+                hit: 2,
+            },
+        },
+    },
+    {
+        equipment: 507,
+        ship: {
+            isClass: [...group_BB_Navy_USN_exclude_Nevada],
         },
         bonusImprove: {
             3: {
@@ -134,7 +158,26 @@ const 三連装砲 = [
     {
         equipment: 508,
         ship: {
-            isClass: [...group_BB_Navy_USN],
+            isClass: [BB_Nevada],
+        },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                evasion: 2,
+                hit: 2,
+            },
+            6: {
+                fire: 4,
+                armor: 1,
+                evasion: 2,
+                hit: 2,
+            },
+        },
+    },
+    {
+        equipment: 508,
+        ship: {
+            isClass: [...group_BB_Navy_USN_exclude_Nevada],
         },
         bonusImprove: {
             2: {
@@ -220,7 +263,26 @@ module.exports = [
             },
         ],
         ship: {
-            isClass: [...group_BB_Navy_USN],
+            isClass: [BB_Nevada],
+        },
+        bonus: {
+            fire: 2,
+            evasion: 2,
+            hit: 2,
+        },
+    },
+    {
+        list: [507, 508],
+        equipments: [
+            {
+                isID: 507,
+            },
+            {
+                isID: 508,
+            },
+        ],
+        ship: {
+            isClass: [...group_BB_Navy_USN_exclude_Nevada],
         },
         bonus: {
             fire: 1,

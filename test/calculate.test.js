@@ -41,7 +41,7 @@ beforeAll(() =>
         resolve();
     }).then(() => {
         require('../src/register.js')({ db });
-    })
+    }),
 );
 
 const calculate = require('../src/calculate');
@@ -54,14 +54,14 @@ describe('Calculating functions/utilities', () => {
                     shipType: {
                         1: 1,
                     },
-                })
+                }),
             ).toBe(5);
             expect(
                 calculate.tp({
                     shipType: {
                         1: 1,
                     },
-                })
+                }),
             ).toBe(5);
         });
         it('case 2', () => {
@@ -73,7 +73,7 @@ describe('Calculating functions/utilities', () => {
                     equipmentType: {
                         LandingCraft: 3,
                     },
-                })
+                }),
             ).toBe(34);
         });
         it('case 3', () => {
@@ -87,7 +87,7 @@ describe('Calculating functions/utilities', () => {
                         LandingCraft: 3,
                         48: 1,
                     },
-                })
+                }),
             ).toBe(47);
         });
     });
@@ -179,7 +179,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('不知火改二 || 61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+2) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
                 expect(
-                    calculate.bonus(567, [286, 286, 286], [10, 2, 5])
+                    calculate.bonus(567, [286, 286, 286], [10, 2, 5]),
                 ).toEqual({
                     fire: 1,
                     torpedo: 6,
@@ -188,7 +188,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('不知火改二 || 12.7cm連装砲D型改二 ➕61cm四連装(酸素)魚雷後期型(MAX) ➕61cm四連装(酸素)魚雷後期型(⭐+5)', () => {
                 expect(
-                    calculate.bonus(567, [267, 286, 286], [0, 10, 5])
+                    calculate.bonus(567, [267, 286, 286], [0, 10, 5]),
                 ).toEqual({
                     fire: 3,
                     torpedo: 6,
@@ -213,7 +213,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 7,
                         aa: 6,
                         evasion: 2,
-                    }
+                    },
                 );
             });
             it('由良改二 || 12.7cm単装高角砲(後期型)⭐5 ➕FuMO25 レーダー', () => {
@@ -280,7 +280,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(420, [294, 125, 285], [0, 0, 10])
+                    calculate.bonus(420, [294, 125, 285], [0, 0, 10]),
                 ).toEqual({
                     fire: 4,
                     torpedo: 10,
@@ -289,7 +289,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(420, [294, 285, 285], [0, 0, 10])
+                    calculate.bonus(420, [294, 285, 285], [0, 0, 10]),
                 ).toEqual({
                     fire: 4,
                     torpedo: 11,
@@ -298,7 +298,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕61cm三連装(酸素)魚雷後期型⭐MAX ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(420, [294, 285, 285], [0, 10, 10])
+                    calculate.bonus(420, [294, 285, 285], [0, 10, 10]),
                 ).toEqual({
                     fire: 5,
                     torpedo: 11,
@@ -307,7 +307,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('叢雲改二 || 12.7cm連装砲A型改二 ➕33号対水上電探 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(420, [294, 29, 285], [0, 0, 10])
+                    calculate.bonus(420, [294, 29, 285], [0, 0, 10]),
                 ).toEqual({
                     fire: 6,
                     torpedo: 8,
@@ -316,7 +316,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('初春改二 || 12.7cm連装砲A型改三(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(420, [295, 106, 285], [0, 0, 10])
+                    calculate.bonus(420, [295, 106, 285], [0, 0, 10]),
                 ).toEqual({
                     fire: 4,
                     torpedo: 7,
@@ -326,7 +326,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕13号対空電探改 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(144, [296, 106, 286], [0, 0, 10])
+                    calculate.bonus(144, [296, 106, 286], [0, 0, 10]),
                 ).toEqual({
                     fire: 4,
                     torpedo: 6,
@@ -336,7 +336,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('夕立改二 || 12.7cm連装砲B型改四(戦時改修)+高射装置 ➕12.7cm連装砲B型改二 ➕61cm四連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(144, [296, 63, 286], [0, 0, 10])
+                    calculate.bonus(144, [296, 63, 286], [0, 0, 10]),
                 ).toEqual({
                     fire: 5,
                     torpedo: 7,
@@ -555,6 +555,30 @@ describe('Calculating functions/utilities', () => {
                         fire: 2,
                         armor: 1,
                     });
+                });
+            });
+            it('時雨改三 || 12cm単装高角砲E型改+MAX', () => {
+                expect(calculate.bonus(時雨改三, [509], [10])).toEqual({
+                    fire: 1,
+                    aa: 3,
+                    evasion: 2,
+                    hit: 1,
+                });
+            });
+            it('時雨改三 || 12cm単装高角砲E型改+MAX | SG レーダー(後期型)', () => {
+                expect(calculate.bonus(時雨改三, [509, 456], [10])).toEqual({
+                    fire: 1 + 2 + 2 + 1,
+                    aa: 3 + 2 + 7 + 2,
+                    evasion: 2 + 3 + 6 + 3,
+                    hit: 1,
+                });
+            });
+            it('時雨改三 || 12cm単装高角砲E型改+MAX | 電探装備マスト(13号改＋22号電探改四)', () => {
+                expect(calculate.bonus(時雨改三, [509, 506], [10])).toEqual({
+                    fire: 1 + 2 + 2 + 2 + 1,
+                    aa: 3 + 2 + 7 + 2 + 2,
+                    evasion: 2 + 3 + 6 + 4 + 3,
+                    hit: 1 + 3,
                 });
             });
         });
@@ -851,7 +875,7 @@ describe('Calculating functions/utilities', () => {
             describe('16inch三連装砲 Mk.6...', () => {
                 it('Iowa改 || Mk.6 ➕Mk.6 mod.2 ➕Mk.6 GFCS || ALL MAX', () => {
                     expect(
-                        calculate.bonus(360, [381, 385, 390], [10, 10, 10])
+                        calculate.bonus(360, [381, 385, 390], [10, 10, 10]),
                     ).toEqual({
                         fire: 8,
                         armor: 2,
@@ -859,7 +883,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('South Dakota改 || Mk.6 ➕Mk.6 mod.2 ➕Mk.6 GFCS || ALL MAX', () => {
                     expect(
-                        calculate.bonus(697, [381, 385, 390], [10, 10, 10])
+                        calculate.bonus(697, [381, 385, 390], [10, 10, 10]),
                     ).toEqual({
                         fire: 11,
                         armor: 3,
@@ -868,7 +892,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Washington改 || Mk.6 ➕Mk.6 mod.2 ➕Mk.6 GFCS || ALL MAX', () => {
                     expect(
-                        calculate.bonus(659, [381, 385, 390], [10, 10, 10])
+                        calculate.bonus(659, [381, 385, 390], [10, 10, 10]),
                     ).toEqual({
                         fire: 10,
                         armor: 3,
@@ -962,7 +986,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐+9 | 61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(326, [285, 285, 285], [9])
+                            calculate.bonus(326, [285, 285, 285], [9]),
                         ).toEqual({
                             torpedo: 4,
                             evasion: 2,
@@ -984,7 +1008,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                         expect(
-                            calculate.bonus(326, [285, 285], [10, 10])
+                            calculate.bonus(326, [285, 285], [10, 10]),
                         ).toEqual({
                             fire: 2,
                             torpedo: 5,
@@ -993,7 +1017,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(326, [285, 285, 285], [10, 10])
+                            calculate.bonus(326, [285, 285, 285], [10, 10]),
                         ).toEqual({
                             fire: 2,
                             torpedo: 5,
@@ -1002,7 +1026,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                         expect(
-                            calculate.bonus(326, [285, 285, 285], [10, 10, 10])
+                            calculate.bonus(326, [285, 285, 285], [10, 10, 10]),
                         ).toEqual({
                             fire: 2,
                             torpedo: 8,
@@ -1025,7 +1049,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(天霧改二, [285, 285, 285])
+                            calculate.bonus(天霧改二, [285, 285, 285]),
                         ).toEqual({
                             torpedo: 8,
                             evasion: 2,
@@ -1033,7 +1057,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐+9 | 61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(天霧改二, [285, 285, 285], [9])
+                            calculate.bonus(天霧改二, [285, 285, 285], [9]),
                         ).toEqual({
                             torpedo: 8,
                             evasion: 2,
@@ -1048,7 +1072,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(天霧改二, [285, 285], [10])
+                            calculate.bonus(天霧改二, [285, 285], [10]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 7,
@@ -1057,7 +1081,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                         expect(
-                            calculate.bonus(天霧改二, [285, 285], [10, 10])
+                            calculate.bonus(天霧改二, [285, 285], [10, 10]),
                         ).toEqual({
                             fire: 2,
                             torpedo: 7,
@@ -1066,7 +1090,11 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(天霧改二, [285, 285, 285], [10, 10])
+                            calculate.bonus(
+                                天霧改二,
+                                [285, 285, 285],
+                                [10, 10],
+                            ),
                         ).toEqual({
                             fire: 2,
                             torpedo: 9,
@@ -1078,8 +1106,8 @@ describe('Calculating functions/utilities', () => {
                             calculate.bonus(
                                 天霧改二,
                                 [285, 285, 285],
-                                [10, 10, 10]
-                            )
+                                [10, 10, 10],
+                            ),
                         ).toEqual({
                             fire: 2,
                             torpedo: 12,
@@ -1099,12 +1127,12 @@ describe('Calculating functions/utilities', () => {
                             {
                                 torpedo: 5,
                                 evasion: 2,
-                            }
+                            },
                         );
                     });
                     it('61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(天霧改二丁, [285, 285, 285])
+                            calculate.bonus(天霧改二丁, [285, 285, 285]),
                         ).toEqual({
                             torpedo: 6,
                             evasion: 2,
@@ -1112,7 +1140,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐+9 | 61cm三連装(酸素)魚雷後期型 | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(天霧改二丁, [285, 285, 285], [9])
+                            calculate.bonus(天霧改二丁, [285, 285, 285], [9]),
                         ).toEqual({
                             torpedo: 6,
                             evasion: 2,
@@ -1120,7 +1148,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                         expect(
-                            calculate.bonus(天霧改二丁, [285], [10])
+                            calculate.bonus(天霧改二丁, [285], [10]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 3,
@@ -1129,7 +1157,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型', () => {
                         expect(
-                            calculate.bonus(天霧改二丁, [285, 285], [10])
+                            calculate.bonus(天霧改二丁, [285, 285], [10]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 3 + 3,
@@ -1138,7 +1166,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('61cm三連装(酸素)魚雷後期型⭐MAX | 61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                         expect(
-                            calculate.bonus(天霧改二丁, [285, 285], [10, 10])
+                            calculate.bonus(天霧改二丁, [285, 285], [10, 10]),
                         ).toEqual({
                             fire: 2,
                             torpedo: 6,
@@ -1150,8 +1178,8 @@ describe('Calculating functions/utilities', () => {
                             calculate.bonus(
                                 天霧改二丁,
                                 [285, 285, 285],
-                                [10, 10]
-                            )
+                                [10, 10],
+                            ),
                         ).toEqual({
                             fire: 1 + 1,
                             torpedo: 3 + 3 + 1,
@@ -1163,14 +1191,35 @@ describe('Calculating functions/utilities', () => {
                             calculate.bonus(
                                 天霧改二丁,
                                 [285, 285, 285],
-                                [10, 10, 10]
-                            )
+                                [10, 10, 10],
+                            ),
                         ).toEqual({
                             fire: 2,
                             torpedo: 10,
                             evasion: 2,
                         });
                     });
+                });
+            });
+            it('伊203 || 後期型電探＆逆探＋シュノーケル装備+4', () => {
+                expect(calculate.bonus(882, [458], [4])).toEqual({
+                    torpedo: 3,
+                    evasion: 7,
+                    hit: 1,
+                });
+            });
+            it('伊203改 || 熟練聴音員+後期型艦首魚雷(4門) | 後期型電探＆逆探＋シュノーケル装備+4', () => {
+                expect(calculate.bonus(887, [461, 458], [0, 4])).toEqual({
+                    torpedo: 3 + 1 + 2,
+                    evasion: 3 + 7,
+                    hit: 1,
+                });
+            });
+            it('伊203改 || 熟練聴音員+後期型艦首魚雷(4門)+MAX | 後期型電探＆逆探＋シュノーケル装備+4', () => {
+                expect(calculate.bonus(887, [461, 458], [10, 4])).toEqual({
+                    torpedo: 7 + 3 + 7,
+                    evasion: 4 + 7,
+                    hit: 2 + 1 + 5,
                 });
             });
         });
@@ -1194,7 +1243,7 @@ describe('Calculating functions/utilities', () => {
             describe('二式艦上偵察機', () => {
                 it('Saratoga・Mk.II Mod.2 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
                     expect(
-                        calculate.bonus(550, [61, 61, 61, 61], [0, 1, 2, 10])
+                        calculate.bonus(550, [61, 61, 61, 61], [0, 1, 2, 10]),
                     ).toEqual({
                         fire: 2,
                         los: 4,
@@ -1202,7 +1251,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('蒼龍改二 || 二式艦上偵察機 ➕二式艦上偵察機⭐1 ➕二式艦上偵察機⭐2 ➕二式艦上偵察機⭐MAX', () => {
                     expect(
-                        calculate.bonus(197, [61, 61, 61, 61], [0, 1, 2, 10])
+                        calculate.bonus(197, [61, 61, 61, 61], [0, 1, 2, 10]),
                     ).toEqual({
                         fire: 12,
                         los: 14,
@@ -1213,14 +1262,14 @@ describe('Calculating functions/utilities', () => {
             describe('江草隊', () => {
                 it('蒼龍改二 || 九九式艦爆(江草隊) ➕九九式艦爆(江草隊) ➕彗星(江草隊) ➕彗星(江草隊)', () => {
                     expect(
-                        calculate.bonus(197, [99, 99, 100, 100], [0, 0, 0, 0])
+                        calculate.bonus(197, [99, 99, 100, 100], [0, 0, 0, 0]),
                     ).toEqual({
                         fire: 10,
                     });
                 });
                 it('飛龍改二 || 九九式艦爆(江草隊) ➕九九式艦爆(江草隊) ➕彗星(江草隊) ➕彗星(江草隊)', () => {
                     expect(
-                        calculate.bonus(196, [99, 99, 100, 100], [0, 0, 0, 0])
+                        calculate.bonus(196, [99, 99, 100, 100], [0, 0, 0, 0]),
                     ).toEqual({
                         fire: 4,
                     });
@@ -1229,14 +1278,14 @@ describe('Calculating functions/utilities', () => {
             describe('友永隊', () => {
                 it('蒼龍改二 || 九七式艦攻(友永隊) ➕九七式艦攻(友永隊) ➕天山一二型(友永隊) ➕天山一二型(友永隊)', () => {
                     expect(
-                        calculate.bonus(197, [93, 93, 94, 94], [0, 0, 0, 0])
+                        calculate.bonus(197, [93, 93, 94, 94], [0, 0, 0, 0]),
                     ).toEqual({
                         fire: 4,
                     });
                 });
                 it('飛龍改二 || 九七式艦攻(友永隊) ➕九七式艦攻(友永隊) ➕天山一二型(友永隊) ➕天山一二型(友永隊)', () => {
                     expect(
-                        calculate.bonus(196, [93, 93, 94, 94], [0, 0, 0, 0])
+                        calculate.bonus(196, [93, 93, 94, 94], [0, 0, 0, 0]),
                     ).toEqual({
                         fire: 10,
                     });
@@ -1245,49 +1294,77 @@ describe('Calculating functions/utilities', () => {
             describe('村田隊', () => {
                 it('龍驤改二 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
-                        calculate.bonus(157, [143, 143, 144, 144], [0, 0, 0, 0])
+                        calculate.bonus(
+                            157,
+                            [143, 143, 144, 144],
+                            [0, 0, 0, 0],
+                        ),
                     ).toEqual({
                         fire: 2,
                     });
                 });
                 it('赤城改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
-                        calculate.bonus(277, [143, 143, 144, 144], [0, 0, 0, 0])
+                        calculate.bonus(
+                            277,
+                            [143, 143, 144, 144],
+                            [0, 0, 0, 0],
+                        ),
                     ).toEqual({
                         fire: 6,
                     });
                 });
                 it('加賀改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
-                        calculate.bonus(278, [143, 143, 144, 144], [0, 0, 0, 0])
+                        calculate.bonus(
+                            278,
+                            [143, 143, 144, 144],
+                            [0, 0, 0, 0],
+                        ),
                     ).toEqual({
                         fire: 4,
                     });
                 });
                 it('翔鶴改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
-                        calculate.bonus(288, [143, 143, 144, 144], [0, 0, 0, 0])
+                        calculate.bonus(
+                            288,
+                            [143, 143, 144, 144],
+                            [0, 0, 0, 0],
+                        ),
                     ).toEqual({
                         fire: 4,
                     });
                 });
                 it('翔鶴改二甲 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
-                        calculate.bonus(466, [143, 143, 144, 144], [0, 0, 0, 0])
+                        calculate.bonus(
+                            466,
+                            [143, 143, 144, 144],
+                            [0, 0, 0, 0],
+                        ),
                     ).toEqual({
                         fire: 6,
                     });
                 });
                 it('瑞鶴改 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
-                        calculate.bonus(112, [143, 143, 144, 144], [0, 0, 0, 0])
+                        calculate.bonus(
+                            112,
+                            [143, 143, 144, 144],
+                            [0, 0, 0, 0],
+                        ),
                     ).toEqual({
                         fire: 2,
                     });
                 });
                 it('瑞鶴改二甲 || 九七式艦攻(村田隊) ➕九七式艦攻(村田隊) ➕天山一二型(村田隊) ➕天山一二型(村田隊)', () => {
                     expect(
-                        calculate.bonus(467, [143, 143, 144, 144], [0, 0, 0, 0])
+                        calculate.bonus(
+                            467,
+                            [143, 143, 144, 144],
+                            [0, 0, 0, 0],
+                        ),
                     ).toEqual({
                         fire: 3,
                     });
@@ -1340,7 +1417,7 @@ describe('Calculating functions/utilities', () => {
             describe('天山一二型', () => {
                 it('翔鶴 || 天山一二型(村田隊) ➕天山一二型甲改(空六号電探改装備機) ➕天山一二型甲改(熟練/空六号電探改装備機)', () => {
                     expect(
-                        calculate.bonus(110, [144, 373, 374], [0, 0, 0, 0])
+                        calculate.bonus(110, [144, 373, 374], [0, 0, 0, 0]),
                     ).toEqual({
                         fire: 4,
                         torpedo: 2,
@@ -1349,7 +1426,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('翔鶴改二甲 || 天山一二型(村田隊) ➕天山一二型甲改(空六号電探改装備機) ➕天山一二型甲改(熟練/空六号電探改装備機)', () => {
                     expect(
-                        calculate.bonus(466, [144, 373, 374], [0, 0, 0, 0])
+                        calculate.bonus(466, [144, 373, 374], [0, 0, 0, 0]),
                     ).toEqual({
                         fire: 9,
                         torpedo: 5,
@@ -1363,7 +1440,11 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('鈴谷航改二 || 紫電改四⭐3 + 紫電改四⭐MAX + 紫電改四⭐7', () => {
                     expect(
-                        calculate.bonus(鈴谷航改二, [271, 271, 271], [3, 10, 7])
+                        calculate.bonus(
+                            鈴谷航改二,
+                            [271, 271, 271],
+                            [3, 10, 7],
+                        ),
                     ).toEqual({
                         fire: 3,
                         aa: 4,
@@ -1382,7 +1463,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Victorious || Fulmar(戦闘偵察/熟練)⭐1 + Fulmar(戦闘偵察/熟練)⭐MAX + Fulmar(戦闘偵察/熟練)⭐7', () => {
                     expect(
-                        calculate.bonus(713, [423, 423, 423], [3, 10, 7])
+                        calculate.bonus(713, [423, 423, 423], [3, 10, 7]),
                     ).toEqual({
                         fire: 14,
                         aa: 12,
@@ -1392,7 +1473,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Saratoga || Fulmar(戦闘偵察/熟練)⭐1 + Fulmar(戦闘偵察/熟練)⭐5 + Fulmar(戦闘偵察/熟練)⭐3', () => {
                     expect(
-                        calculate.bonus(545, [423, 423, 423], [1, 5, 3])
+                        calculate.bonus(545, [423, 423, 423], [1, 5, 3]),
                     ).toEqual({
                         fire: 4,
                         aa: 3,
@@ -1402,7 +1483,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Aquila || Fulmar(戦闘偵察/熟練)⭐1 + Fulmar(戦闘偵察/熟練)⭐5 + Fulmar(戦闘偵察/熟練)⭐3', () => {
                     expect(
-                        calculate.bonus(365, [423, 423, 423], [1, 5, 3])
+                        calculate.bonus(365, [423, 423, 423], [1, 5, 3]),
                     ).toEqual({
                         fire: 1,
                         los: 1,
@@ -1500,7 +1581,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('山風改二 || 三式水中探信儀改 + 三式水中探信儀改⭐MAX + 三式水中探信儀改⭐5', () => {
                     expect(
-                        calculate.bonus(山風改二, [438, 438, 438], [0, 10, 6])
+                        calculate.bonus(山風改二, [438, 438, 438], [0, 10, 6]),
                     ).toEqual({
                         fire: 2,
                         evasion: 8,
@@ -1529,7 +1610,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('大和改二重 || 零式水中聴音機⭐MAX | 零式水中聴音機 | 零式水中聴音機+5', () => {
                 expect(
-                    calculate.bonus(916, [132, 132, 132], [10, 0, 5])
+                    calculate.bonus(916, [132, 132, 132], [10, 0, 5]),
                 ).toEqual({
                     evasion: 1 + 2,
                     asw: 3,
@@ -1753,7 +1834,7 @@ describe('Calculating functions/utilities', () => {
                         hit: 1 + 2 + 1,
                     });
                     expect(
-                        calculate.bonus(648, [366, 267, 411, null, 129])
+                        calculate.bonus(648, [366, 267, 411, null, 129]),
                     ).toEqual({
                         fire: 18,
                         torpedo: 12,
@@ -1767,8 +1848,8 @@ describe('Calculating functions/utilities', () => {
                         calculate.bonus(
                             648,
                             [366, 267, 411, null, 412],
-                            [0, 0, 0, null, 1]
-                        )
+                            [0, 0, 0, null, 1],
+                        ),
                     ).toEqual({
                         fire: 19,
                         torpedo: 14,
@@ -1799,7 +1880,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Conte di Cavour nuovo', () => {
                     expect(
-                        calculate.bonus(879, [136, 136, 136], [0, 10, 6])
+                        calculate.bonus(879, [136, 136, 136], [0, 10, 6]),
                     ).toEqual({
                         armor: 3,
                         evasion: 2,
@@ -1807,7 +1888,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Conte di Cavour nuovo', () => {
                     expect(
-                        calculate.bonus(879, [136, 136, 136], [0, 8, 2])
+                        calculate.bonus(879, [136, 136, 136], [0, 8, 2]),
                     ).toEqual({
                         armor: 3,
                         evasion: 2,
@@ -1821,7 +1902,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Conte di Cavour', () => {
                     expect(
-                        calculate.bonus(877, [136, 136, 136], [0, 10, 6])
+                        calculate.bonus(877, [136, 136, 136], [0, 10, 6]),
                     ).toEqual({
                         armor: 5,
                         evasion: 1,
@@ -1829,7 +1910,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('Conte di Cavour', () => {
                     expect(
-                        calculate.bonus(877, [136, 136, 136], [0, 8, 2])
+                        calculate.bonus(877, [136, 136, 136], [0, 8, 2]),
                     ).toEqual({
                         armor: 4,
                         evasion: 1,
@@ -1864,7 +1945,7 @@ describe('Calculating functions/utilities', () => {
                         evasion: 2,
                     });
                     expect(
-                        calculate.bonus(330, [124, 84, 84], [0, 4, 10])
+                        calculate.bonus(330, [124, 84, 84], [0, 4, 10]),
                     ).toEqual({
                         fire: 1,
                         aa: 5,
@@ -1883,14 +1964,14 @@ describe('Calculating functions/utilities', () => {
                         evasion: 3,
                     });
                     expect(
-                        calculate.bonus(879, [124, 84, 84], [0, 4, 10])
+                        calculate.bonus(879, [124, 84, 84], [0, 4, 10]),
                     ).toEqual({
                         fire: 2,
                         aa: 7,
                         evasion: 5,
                     });
                     expect(
-                        calculate.bonus(879, [124, 84, 84, 84], [0, 4, 10, 10])
+                        calculate.bonus(879, [124, 84, 84, 84], [0, 4, 10, 10]),
                     ).toEqual({
                         fire: 3,
                         aa: 11,
@@ -1913,7 +1994,7 @@ describe('Calculating functions/utilities', () => {
                             undefined,
                             undefined,
                             384,
-                        ])
+                        ]),
                     ).toEqual({
                         torpedo: 3,
                         evasion: 2,
@@ -1925,7 +2006,7 @@ describe('Calculating functions/utilities', () => {
                             undefined,
                             undefined,
                             384,
-                        ])
+                        ]),
                     ).toEqual({
                         torpedo: 3,
                         evasion: 2,
@@ -1964,14 +2045,14 @@ describe('Calculating functions/utilities', () => {
             });
             it('神鷹改二 || 二式爆雷', () => {
                 expect(
-                    calculate.bonus(536, [227, 227, 227], [0, 8, 10])
+                    calculate.bonus(536, [227, 227, 227], [0, 8, 10]),
                 ).toEqual({
                     asw: 3,
                 });
             });
             it('榛名改二乙 || 新型高温高圧缶 + 新型高温高圧缶(+8) + 新型高温高圧缶(+6)', () => {
                 expect(
-                    calculate.bonus(榛名改二乙, [87, 87, 87], [0, 8, 6])
+                    calculate.bonus(榛名改二乙, [87, 87, 87], [0, 8, 6]),
                 ).toEqual({
                     torpedo: 2,
                     evasion: 3,
@@ -1979,7 +2060,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('時雨改三 || 水雷戦隊 熟練見張員 + 水雷戦隊 熟練見張員(+8) + 水雷戦隊 熟練見張員(+4)', () => {
                 expect(
-                    calculate.bonus(時雨改三, [412, 412, 412], [0, 8, 4])
+                    calculate.bonus(時雨改三, [412, 412, 412], [0, 8, 4]),
                 ).toEqual({
                     fire: 3,
                     torpedo: 5,
@@ -1991,7 +2072,7 @@ describe('Calculating functions/utilities', () => {
             describe('三式弾改二', () => {
                 it('日向改 || 三式弾改二 + 三式弾改二(+1) + 三式弾改二(+1)', () => {
                     expect(
-                        calculate.bonus(日向改, [483, 483, 483], [0, 1, 1])
+                        calculate.bonus(日向改, [483, 483, 483], [0, 1, 1]),
                     ).toEqual({
                         fire: 1,
                         aa: 2,
@@ -2001,7 +2082,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('日向改二 || 三式弾改二 + 三式弾改二(+10) + 三式弾改二(+1)', () => {
                     expect(
-                        calculate.bonus(日向改二, [483, 483, 483], [0, 10, 1])
+                        calculate.bonus(日向改二, [483, 483, 483], [0, 10, 1]),
                     ).toEqual({
                         fire: 4,
                         aa: 6,
@@ -2011,7 +2092,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('榛名改 || 三式弾改二 + 三式弾改二(+2) + 三式弾改二(+5)', () => {
                     expect(
-                        calculate.bonus(榛名改, [483, 483, 483], [0, 2, 5])
+                        calculate.bonus(榛名改, [483, 483, 483], [0, 2, 5]),
                     ).toEqual({
                         fire: 3,
                         aa: 4,
@@ -2020,7 +2101,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('榛名改二乙 || 三式弾改二 + 三式弾改二(+8) + 三式弾改二(+5)', () => {
                     expect(
-                        calculate.bonus(榛名改二乙, [483, 483, 483], [0, 8, 5])
+                        calculate.bonus(榛名改二乙, [483, 483, 483], [0, 8, 5]),
                     ).toEqual({
                         fire: 5,
                         aa: 10,
@@ -2042,7 +2123,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('吹雪改二 || 12.7cm連装砲A型改三(戦時改修)＋高射装置 ➕61cm三連装(酸素)魚雷 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                 expect(
-                    calculate.bonus(426, [295, 125, 285], [0, 0, 10])
+                    calculate.bonus(426, [295, 125, 285], [0, 0, 10]),
                 ).toEqual({
                     fire: 5,
                     torpedo: 9,
@@ -2052,7 +2133,7 @@ describe('Calculating functions/utilities', () => {
             });
             it('金剛改二丙 || 三式弾 ➕三式弾 ➕三式弾改 ➕三式弾改', () => {
                 expect(
-                    calculate.bonus(591, [35, 35, 317, 317], [0, 0, 0])
+                    calculate.bonus(591, [35, 35, 317, 317], [0, 0, 0]),
                 ).toEqual({
                     fire: 4,
                     aa: 4,
@@ -2071,7 +2152,7 @@ describe('Calculating functions/utilities', () => {
                         fire: 6,
                         aa: 7,
                         evasion: 3,
-                    }
+                    },
                 );
             });
         });
@@ -2080,7 +2161,7 @@ describe('Calculating functions/utilities', () => {
             describe('敷波改二', () => {
                 it('12.7cm連装砲B型改二 ➕12.7cm連装砲B型改四(戦時改修)+高射装置 ➕61cm三連装(酸素)魚雷後期型⭐MAX', () => {
                     expect(
-                        calculate.bonus(627, [63, 296, 285], [0, 0, 10])
+                        calculate.bonus(627, [63, 296, 285], [0, 0, 10]),
                     ).toEqual({
                         fire: 6,
                         torpedo: 7,
@@ -2111,7 +2192,7 @@ describe('Calculating functions/utilities', () => {
             describe('夕張改二丁', () => {
                 it('14cm連装砲改 ➕14cm連装砲改⭐+8 ➕33号対水上電探', () => {
                     expect(
-                        calculate.bonus(624, [310, 310, 29], [0, 8, 0])
+                        calculate.bonus(624, [310, 310, 29], [0, 8, 0]),
                     ).toEqual({
                         fire: 12,
                         torpedo: 3,
@@ -2124,7 +2205,7 @@ describe('Calculating functions/utilities', () => {
             describe('能代改二', () => {
                 it('15.2cm連装砲改 | 15.2cm連装砲改二 | AA+Surface Radar | 探照灯', () => {
                     expect(
-                        calculate.bonus(能代改二, [139, 407, 124, 74])
+                        calculate.bonus(能代改二, [139, 407, 124, 74]),
                     ).toEqual({
                         fire: 12,
                         torpedo: 4,
@@ -2142,7 +2223,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 21号対空電探', () => {
                     expect(
-                        calculate.bonus(能代改二, [66, 286, 149, 30])
+                        calculate.bonus(能代改二, [66, 286, 149, 30]),
                     ).toEqual({
                         torpedo: 2,
                         aa: 3,
@@ -2152,7 +2233,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 42号対空電探', () => {
                     expect(
-                        calculate.bonus(能代改二, [66, 286, 149, 32])
+                        calculate.bonus(能代改二, [66, 286, 149, 32]),
                     ).toEqual({
                         torpedo: 5,
                         aa: 3,
@@ -2162,7 +2243,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | FuMO25 レーダー', () => {
                     expect(
-                        calculate.bonus(能代改二, [66, 286, 149, 124])
+                        calculate.bonus(能代改二, [66, 286, 149, 124]),
                     ).toEqual({
                         torpedo: 5,
                         aa: 3,
@@ -2172,7 +2253,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37', () => {
                     expect(
-                        calculate.bonus(能代改二, [66, 286, 149, 307])
+                        calculate.bonus(能代改二, [66, 286, 149, 307]),
                     ).toEqual({
                         torpedo: 5,
                         aa: 3,
@@ -2191,7 +2272,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | FuMO25 レーダー', () => {
                     expect(
-                        calculate.bonus(能代改二, [220, 286, 149, 124])
+                        calculate.bonus(能代改二, [220, 286, 149, 124]),
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
@@ -2202,7 +2283,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37', () => {
                     expect(
-                        calculate.bonus(能代改二, [220, 286, 149, 307])
+                        calculate.bonus(能代改二, [220, 286, 149, 307]),
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
@@ -2213,7 +2294,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 8cm高角砲改', () => {
                     expect(
-                        calculate.bonus(能代改二, [220, 286, 149, 66])
+                        calculate.bonus(能代改二, [220, 286, 149, 66]),
                     ).toEqual({
                         fire: 1,
                         torpedo: 2,
@@ -2224,7 +2305,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 13号対空電探改 | 8cm高角砲改', () => {
                     expect(
-                        calculate.bonus(能代改二, [220, 286, 149, 106, 66])
+                        calculate.bonus(能代改二, [220, 286, 149, 106, 66]),
                     ).toEqual({
                         fire: 1,
                         torpedo: 2,
@@ -2235,7 +2316,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 21号対空電探 | 8cm高角砲改', () => {
                     expect(
-                        calculate.bonus(能代改二, [220, 286, 149, 30, 66])
+                        calculate.bonus(能代改二, [220, 286, 149, 30, 66]),
                     ).toEqual({
                         fire: 1,
                         torpedo: 2,
@@ -2246,7 +2327,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | FuMO25 レーダー | 8cm高角砲改', () => {
                     expect(
-                        calculate.bonus(能代改二, [220, 286, 149, 124, 66])
+                        calculate.bonus(能代改二, [220, 286, 149, 124, 66]),
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
@@ -2257,7 +2338,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37 | 8cm高角砲改', () => {
                     expect(
-                        calculate.bonus(能代改二, [220, 286, 149, 307, 66])
+                        calculate.bonus(能代改二, [220, 286, 149, 307, 66]),
                     ).toEqual({
                         fire: 1,
                         torpedo: 5,
@@ -2274,7 +2355,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('25mm対空機銃', () => {
                     expect(
-                        calculate.bonus(能代改二, [49, 39, 40, 131])
+                        calculate.bonus(能代改二, [49, 39, 40, 131]),
                     ).toEqual({
                         aa: 8,
                         evasion: 4,
@@ -2282,7 +2363,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('S9 Osprey x2 | 水上偵察機 x2', () => {
                     expect(
-                        calculate.bonus(能代改二, [304, 304, 239, 238])
+                        calculate.bonus(能代改二, [304, 304, 239, 238]),
                     ).toEqual({
                         fire: 4,
                         asw: 5,
@@ -2291,7 +2372,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('S9 Osprey x2 | 水上偵察機 | 夜偵', () => {
                     expect(
-                        calculate.bonus(能代改二, [304, 304, 239, 102])
+                        calculate.bonus(能代改二, [304, 304, 239, 102]),
                     ).toEqual({
                         fire: 4,
                         asw: 5,
@@ -2307,7 +2388,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('回転翼機 x4', () => {
                     expect(
-                        calculate.bonus(能代改二, [69, 326, 327, 325])
+                        calculate.bonus(能代改二, [69, 326, 327, 325]),
                     ).toEqual({
                         asw: 4,
                         evasion: 1,
@@ -2315,7 +2396,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('水上爆撃機 (T0) x4', () => {
                     expect(
-                        calculate.bonus(能代改二, [194, 367, 368, 369])
+                        calculate.bonus(能代改二, [194, 367, 368, 369]),
                     ).toEqual({
                         fire: 1,
                         asw: 1,
@@ -2324,7 +2405,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('水上爆撃機 (T1) x4', () => {
                     expect(
-                        calculate.bonus(能代改二, [26, 62, 208, 79])
+                        calculate.bonus(能代改二, [26, 62, 208, 79]),
                     ).toEqual({
                         fire: 3,
                         asw: 1,
@@ -2333,7 +2414,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('水上爆撃機 (T2) x4', () => {
                     expect(
-                        calculate.bonus(能代改二, [237, 237, 322, 323])
+                        calculate.bonus(能代改二, [237, 237, 322, 323]),
                     ).toEqual({
                         fire: 4,
                         asw: 1,
@@ -2342,7 +2423,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('水上爆撃機 T0 + T1 + T1 + T2', () => {
                     expect(
-                        calculate.bonus(能代改二, [367, 62, 208, 322])
+                        calculate.bonus(能代改二, [367, 62, 208, 322]),
                     ).toEqual({
                         fire: 6,
                         asw: 1,
@@ -2369,7 +2450,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('15.2cm連装砲改 | 15.2cm連装砲改二 | FuMO25 レーダー | 探照灯', () => {
                         expect(
-                            calculate.bonus(ship, [139, 407, 124, 74])
+                            calculate.bonus(ship, [139, 407, 124, 74]),
                         ).toEqual({
                             fire: 12,
                             torpedo: 4,
@@ -2386,7 +2467,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 21号対空電探', () => {
                         expect(
-                            calculate.bonus(ship, [66, 286, 149, 30])
+                            calculate.bonus(ship, [66, 286, 149, 30]),
                         ).toEqual({
                             aa: 3,
                             torpedo: 2,
@@ -2395,7 +2476,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 42号対空電探', () => {
                         expect(
-                            calculate.bonus(ship, [66, 286, 149, 32])
+                            calculate.bonus(ship, [66, 286, 149, 32]),
                         ).toEqual({
                             aa: 3,
                             torpedo: 5,
@@ -2404,7 +2485,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | FuMO25 レーダー', () => {
                         expect(
-                            calculate.bonus(ship, [66, 286, 149, 124])
+                            calculate.bonus(ship, [66, 286, 149, 124]),
                         ).toEqual({
                             aa: 3,
                             torpedo: 5,
@@ -2413,7 +2494,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37', () => {
                         expect(
-                            calculate.bonus(ship, [66, 286, 149, 307])
+                            calculate.bonus(ship, [66, 286, 149, 307]),
                         ).toEqual({
                             aa: 3,
                             torpedo: 5,
@@ -2430,7 +2511,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | FuMO25 レーダー', () => {
                         expect(
-                            calculate.bonus(ship, [220, 286, 149, 124])
+                            calculate.bonus(ship, [220, 286, 149, 124]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 5,
@@ -2440,7 +2521,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37', () => {
                         expect(
-                            calculate.bonus(ship, [220, 286, 149, 307])
+                            calculate.bonus(ship, [220, 286, 149, 307]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 5,
@@ -2450,7 +2531,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 8cm高角砲改', () => {
                         expect(
-                            calculate.bonus(ship, [220, 286, 149, 66])
+                            calculate.bonus(ship, [220, 286, 149, 66]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 2,
@@ -2460,7 +2541,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 13号対空電探改 | 8cm高角砲改', () => {
                         expect(
-                            calculate.bonus(ship, [220, 286, 149, 106, 66])
+                            calculate.bonus(ship, [220, 286, 149, 106, 66]),
                         ).toEqual({
                             fire: 2,
                             torpedo: 2,
@@ -2471,7 +2552,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | 21号対空電探 | 8cm高角砲改', () => {
                         expect(
-                            calculate.bonus(ship, [220, 286, 149, 30, 66])
+                            calculate.bonus(ship, [220, 286, 149, 30, 66]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 2,
@@ -2481,7 +2562,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | FuMO25 レーダー | 8cm高角砲改', () => {
                         expect(
-                            calculate.bonus(ship, [220, 286, 149, 124, 66])
+                            calculate.bonus(ship, [220, 286, 149, 124, 66]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 5,
@@ -2491,7 +2572,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 四式水中聴音機 | GFCS Mk.37 | 8cm高角砲改', () => {
                         expect(
-                            calculate.bonus(ship, [220, 286, 149, 307, 66])
+                            calculate.bonus(ship, [220, 286, 149, 307, 66]),
                         ).toEqual({
                             fire: 1,
                             torpedo: 5,
@@ -2504,7 +2585,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('25mm対空機銃', () => {
                         expect(
-                            calculate.bonus(ship, [49, 39, 40, 131])
+                            calculate.bonus(ship, [49, 39, 40, 131]),
                         ).toEqual({
                             aa: 8,
                             evasion: 4,
@@ -2512,7 +2593,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('S9 Osprey x2 | 零式水上観測機 | 零式水上観測機', () => {
                         expect(
-                            calculate.bonus(ship, [304, 304, 59, 59])
+                            calculate.bonus(ship, [304, 304, 59, 59]),
                         ).toEqual({
                             fire: 4,
                             asw: 5,
@@ -2521,7 +2602,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('S9 Osprey x2 | 零式水上観測機 | 零式水上観測機', () => {
                         expect(
-                            calculate.bonus(ship, [304, 304, 59, 59])
+                            calculate.bonus(ship, [304, 304, 59, 59]),
                         ).toEqual({
                             fire: 4,
                             asw: 5,
@@ -2530,7 +2611,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('S9 Osprey x2 | 水上偵察機 | 夜偵', () => {
                         expect(
-                            calculate.bonus(ship, [304, 304, 239, 102])
+                            calculate.bonus(ship, [304, 304, 239, 102]),
                         ).toEqual({
                             fire: 4,
                             asw: 5,
@@ -2546,7 +2627,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('回転翼機 x4', () => {
                         expect(
-                            calculate.bonus(ship, [69, 326, 327, 325])
+                            calculate.bonus(ship, [69, 326, 327, 325]),
                         ).toEqual({
                             asw: 3,
                             evasion: 1,
@@ -2554,7 +2635,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('水上爆撃機 (T0) x4', () => {
                         expect(
-                            calculate.bonus(ship, [194, 367, 368, 369])
+                            calculate.bonus(ship, [194, 367, 368, 369]),
                         ).toEqual({
                             fire: 1,
                             asw: 1,
@@ -2563,7 +2644,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('水上爆撃機 (T1) x4', () => {
                         expect(
-                            calculate.bonus(ship, [26, 62, 208, 79])
+                            calculate.bonus(ship, [26, 62, 208, 79]),
                         ).toEqual({
                             fire: 3,
                             aa: 4,
@@ -2581,7 +2662,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('水上爆撃機 (T2) x4', () => {
                         expect(
-                            calculate.bonus(ship, [237, 237, 322, 323])
+                            calculate.bonus(ship, [237, 237, 322, 323]),
                         ).toEqual({
                             fire: 13,
                             aa: 4,
@@ -2591,7 +2672,7 @@ describe('Calculating functions/utilities', () => {
                     });
                     it('水上爆撃機 T0 + T1 + T1 + T2', () => {
                         expect(
-                            calculate.bonus(ship, [367, 62, 208, 322])
+                            calculate.bonus(ship, [367, 62, 208, 322]),
                         ).toEqual({
                             fire: 6,
                             aa: 3,
@@ -2605,7 +2686,7 @@ describe('Calculating functions/utilities', () => {
                 [香取改, 鹿島改].forEach((sid) => {
                     it('九四式爆雷投射機 | 三式爆雷投射機 集中配備 | 九三式水中聴音機 | 四式水中聴音機', () => {
                         expect(
-                            calculate.bonus(sid, [44, 287, 46, 149])
+                            calculate.bonus(sid, [44, 287, 46, 149]),
                         ).toEqual({
                             asw: 5,
                             evasion: 5,
@@ -2617,7 +2698,7 @@ describe('Calculating functions/utilities', () => {
                                 fire: 4,
                                 aa: 8,
                                 evasion: 8,
-                            }
+                            },
                         );
                     });
                 });
@@ -2737,7 +2818,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('現地改装12.7cm連装高角砲 | 現地改装12.7cm連装高角砲⭐4 | 22号対水上電探', () => {
                     expect(
-                        calculate.bonus(丹陽, [397, 397, 28], [0, 4, 0])
+                        calculate.bonus(丹陽, [397, 397, 28], [0, 4, 0]),
                     ).toEqual({
                         fire: 17,
                         aa: 4,
@@ -2771,7 +2852,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('10cm高角砲＋高射装置⭐4 | 22号対水上電探', () => {
                     expect(
-                        calculate.bonus(雪風改二, [122, 28], [4, 0])
+                        calculate.bonus(雪風改二, [122, 28], [4, 0]),
                     ).toEqual({
                         fire: 9,
                         aa: 3,
@@ -2780,13 +2861,13 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('対潜短魚雷(試作初期型) | RUR-4A Weapon Alpha改 | 試製15cm9連装対潜噴進砲 | 三式爆雷投射機 集中配備', () => {
                     expect(
-                        calculate.bonus(雪風改二, [378, 377, 288], [])
+                        calculate.bonus(雪風改二, [378, 377, 288], []),
                     ).toEqual({
                         asw: 4,
                         evasion: 4,
                     });
                     expect(
-                        calculate.bonus(雪風改二, [378, 377, 287], [])
+                        calculate.bonus(雪風改二, [378, 377, 287], []),
                     ).toEqual({
                         asw: 3,
                         evasion: 4,
@@ -2835,7 +2916,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('20.3cm(3号)連装砲 | 32号対水上電探 | 21号対空電探改二', () => {
                             expect(
-                                calculate.bonus(ship, [50, 31, 410])
+                                calculate.bonus(ship, [50, 31, 410]),
                             ).toEqual({
                                 fire: 11,
                                 torpedo: 2,
@@ -2856,7 +2937,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改 | 8cm高角砲改 | 61cm四連装(酸素)魚雷後期型', () => {
                             expect(
-                                calculate.bonus(ship, [66, 66, 286])
+                                calculate.bonus(ship, [66, 66, 286]),
                             ).toEqual({
                                 fire: 2,
                                 aa: 4,
@@ -2870,7 +2951,7 @@ describe('Calculating functions/utilities', () => {
                                     aa: 8,
                                     evasion: 8,
                                     los: 2,
-                                }
+                                },
                             );
                         });
                         it('8cm高角砲改 | 8cm高角砲改 | 42号対空電探', () => {
@@ -2879,12 +2960,12 @@ describe('Calculating functions/utilities', () => {
                                     fire: 2,
                                     aa: 5,
                                     evasion: 6,
-                                }
+                                },
                             );
                         });
                         it('8cm高角砲改 | 8cm高角砲改 | FuMO25 レーダー', () => {
                             expect(
-                                calculate.bonus(ship, [66, 66, 124])
+                                calculate.bonus(ship, [66, 66, 124]),
                             ).toEqual({
                                 fire: 2,
                                 aa: 5,
@@ -2893,7 +2974,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改 | 8cm高角砲改 | GFCS Mk.37', () => {
                             expect(
-                                calculate.bonus(ship, [66, 66, 307])
+                                calculate.bonus(ship, [66, 66, 307]),
                             ).toEqual({
                                 fire: 2,
                                 aa: 5,
@@ -2909,7 +2990,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 61cm四連装(酸素)魚雷後期型 | 零式水中聴音機', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 286, 132])
+                                calculate.bonus(ship, [220, 220, 286, 132]),
                             ).toEqual({
                                 fire: 4,
                                 aa: 10,
@@ -2918,7 +2999,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 13号対空電探改', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 106])
+                                calculate.bonus(ship, [220, 220, 106]),
                             ).toEqual({
                                 fire: 4,
                                 aa: 14,
@@ -2927,7 +3008,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 21号対空電探', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 30])
+                                calculate.bonus(ship, [220, 220, 30]),
                             ).toEqual({
                                 fire: 4,
                                 aa: 17,
@@ -2937,7 +3018,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 42号対空電探', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 32])
+                                calculate.bonus(ship, [220, 220, 32]),
                             ).toEqual({
                                 fire: 4,
                                 aa: 14,
@@ -2946,7 +3027,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | FuMO25 レーダー', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 124])
+                                calculate.bonus(ship, [220, 220, 124]),
                             ).toEqual({
                                 fire: 4,
                                 aa: 14,
@@ -2955,7 +3036,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | GFCS Mk.37', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 307])
+                                calculate.bonus(ship, [220, 220, 307]),
                             ).toEqual({
                                 fire: 4,
                                 aa: 14,
@@ -2970,7 +3051,7 @@ describe('Calculating functions/utilities', () => {
                                     66,
                                     undefined,
                                     66,
-                                ])
+                                ]),
                             ).toEqual({
                                 fire: 6,
                                 aa: 14,
@@ -2979,7 +3060,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | 13号対空電探改 | 8cm高角砲改', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 66, 106, 66])
+                                calculate.bonus(ship, [220, 220, 66, 106, 66]),
                             ).toEqual({
                                 fire: 6,
                                 aa: 18,
@@ -2988,7 +3069,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | 21号対空電探 | 8cm高角砲改', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 66, 30, 66])
+                                calculate.bonus(ship, [220, 220, 66, 30, 66]),
                             ).toEqual({
                                 fire: 6,
                                 aa: 21,
@@ -2998,7 +3079,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | 42号対空電探 | 8cm高角砲改', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 66, 32, 66])
+                                calculate.bonus(ship, [220, 220, 66, 32, 66]),
                             ).toEqual({
                                 fire: 6,
                                 aa: 18,
@@ -3007,7 +3088,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | FuMO25 レーダー | 8cm高角砲改', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 66, 124, 66])
+                                calculate.bonus(ship, [220, 220, 66, 124, 66]),
                             ).toEqual({
                                 fire: 6,
                                 aa: 18,
@@ -3016,7 +3097,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('8cm高角砲改+増設機銃 | 8cm高角砲改+増設機銃 | 8cm高角砲改 | GFCS Mk.37 | 8cm高角砲改', () => {
                             expect(
-                                calculate.bonus(ship, [220, 220, 66, 307, 66])
+                                calculate.bonus(ship, [220, 220, 66, 307, 66]),
                             ).toEqual({
                                 fire: 6,
                                 aa: 18,
@@ -3032,7 +3113,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('紫雲 x4', () => {
                             expect(
-                                calculate.bonus(ship, [118, 118, 118, 118])
+                                calculate.bonus(ship, [118, 118, 118, 118]),
                             ).toEqual({
                                 fire: 2,
                             });
@@ -3046,7 +3127,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('零式水上観測機 x4', () => {
                             expect(
-                                calculate.bonus(ship, [59, 59, 59, 59])
+                                calculate.bonus(ship, [59, 59, 59, 59]),
                             ).toEqual({
                                 fire: 2,
                                 aa: 1,
@@ -3062,7 +3143,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('紫雲 | 紫雲 | 零式水上観測機 | 零式水上観測機', () => {
                             expect(
-                                calculate.bonus(ship, [118, 118, 59, 59])
+                                calculate.bonus(ship, [118, 118, 59, 59]),
                             ).toEqual({
                                 fire: 2,
                                 aa: 1,
@@ -3079,7 +3160,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('水上爆撃機 (T0) x4', () => {
                             expect(
-                                calculate.bonus(ship, [194, 367, 368, 369])
+                                calculate.bonus(ship, [194, 367, 368, 369]),
                             ).toEqual({
                                 fire: 1,
                                 evasion: 1,
@@ -3094,7 +3175,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('水上爆撃機 (T1) x4', () => {
                             expect(
-                                calculate.bonus(ship, [26, 62, 208, 79])
+                                calculate.bonus(ship, [26, 62, 208, 79]),
                             ).toEqual({
                                 fire: 3,
                                 aa: 4,
@@ -3110,7 +3191,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('水上爆撃機 (T2) x4', () => {
                             expect(
-                                calculate.bonus(ship, [237, 237, 322, 323])
+                                calculate.bonus(ship, [237, 237, 322, 323]),
                             ).toEqual({
                                 fire: 13,
                                 aa: 4,
@@ -3119,7 +3200,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('水上爆撃機 T0 + T1 + T1 + T2', () => {
                             expect(
-                                calculate.bonus(ship, [367, 62, 208, 322])
+                                calculate.bonus(ship, [367, 62, 208, 322]),
                             ).toEqual({
                                 fire: 6,
                                 aa: 3,
@@ -3160,7 +3241,7 @@ describe('Calculating functions/utilities', () => {
                         });
                         it('二式水戦改 | 二式水戦改(熟練) | 強風改 | 強風改', () => {
                             expect(
-                                calculate.bonus(ship, [165, 216, 217, 217])
+                                calculate.bonus(ship, [165, 216, 217, 217]),
                             ).toEqual({
                                 fire: 2,
                                 aa: 12,
@@ -3239,7 +3320,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('35.6cm連装砲改四 | 33号 | 22改四 | 53cm連装魚雷', () => {
                     expect(
-                        calculate.bonus(榛名改二乙, [503, 29, 88, 174])
+                        calculate.bonus(榛名改二乙, [503, 29, 88, 174]),
                     ).toEqual({
                         fire: 4 + 2 + 2,
                         torpedo: 9,
@@ -3253,8 +3334,8 @@ describe('Calculating functions/utilities', () => {
                         calculate.bonus(
                             榛名改二乙,
                             [503, 29, 88, 174],
-                            [0, 0, 0, 10]
-                        )
+                            [0, 0, 0, 10],
+                        ),
                     ).toEqual({
                         fire: 4 + 2 + 2 + 1,
                         torpedo: 10,
@@ -3282,7 +3363,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(5);
                 expect(
                     calculate.ship.speed(136, [
@@ -3291,7 +3372,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(136, [
@@ -3300,13 +3381,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(136, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(136, [34, 34, 34, undefined, 33]),
                 ).toBe(10);
                 expect(calculate.ship.speed(136, [34, 34, 34, 34, 33])).toBe(
-                    10
+                    10,
                 );
                 expect(
                     calculate.ship.speed(136, [
@@ -3315,7 +3396,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(136, [
@@ -3324,13 +3405,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(136, [34, 34, undefined, 87, 33])
+                    calculate.ship.speed(136, [34, 34, undefined, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(136, [34, 34, 34, 87, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
                     calculate.ship.speed(136, [
@@ -3339,19 +3420,19 @@ describe('Calculating functions/utilities', () => {
                         87,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(136, [34, undefined, 87, 87, 33])
+                    calculate.ship.speed(136, [34, undefined, 87, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(136, [34, 34, 87, 87, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
-                    calculate.ship.speed(136, [undefined, 87, 87, 87, 33])
+                    calculate.ship.speed(136, [undefined, 87, 87, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(136, [34, 87, 87, 87, 33])).toBe(
-                    20
+                    20,
                 );
             });
             it('type: low-2', () => {
@@ -3363,7 +3444,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(5);
                 expect(
                     calculate.ship.speed(411, [
@@ -3372,7 +3453,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(411, [
@@ -3381,13 +3462,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(411, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(411, [34, 34, 34, undefined, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(411, [34, 34, 34, 34, 33])).toBe(
-                    15
+                    15,
                 );
                 expect(
                     calculate.ship.speed(411, [
@@ -3396,7 +3477,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(411, [
@@ -3405,13 +3486,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(411, [34, 34, undefined, 87, 33])
+                    calculate.ship.speed(411, [34, 34, undefined, 87, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(411, [34, 34, 34, 87, 33])).toBe(
-                    15
+                    15,
                 );
                 expect(
                     calculate.ship.speed(411, [
@@ -3420,19 +3501,19 @@ describe('Calculating functions/utilities', () => {
                         87,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(411, [34, undefined, 87, 87, 33])
+                    calculate.ship.speed(411, [34, undefined, 87, 87, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(411, [34, 34, 87, 87, 33])).toBe(
-                    15
+                    15,
                 );
                 expect(
-                    calculate.ship.speed(411, [undefined, 87, 87, 87, 33])
+                    calculate.ship.speed(411, [undefined, 87, 87, 87, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(411, [34, 87, 87, 87, 33])).toBe(
-                    15
+                    15,
                 );
             });
             it('type: low-3', () => {
@@ -3444,7 +3525,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(5);
                 expect(
                     calculate.ship.speed(187, [
@@ -3453,7 +3534,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(187, [
@@ -3462,13 +3543,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(187, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(187, [34, 34, 34, undefined, 33]),
                 ).toBe(10);
                 expect(calculate.ship.speed(187, [34, 34, 34, 34, 33])).toBe(
-                    10
+                    10,
                 );
                 expect(
                     calculate.ship.speed(187, [
@@ -3477,7 +3558,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(187, [
@@ -3486,13 +3567,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(187, [34, 34, undefined, 87, 33])
+                    calculate.ship.speed(187, [34, 34, undefined, 87, 33]),
                 ).toBe(10);
                 expect(calculate.ship.speed(187, [34, 34, 34, 87, 33])).toBe(
-                    10
+                    10,
                 );
                 expect(
                     calculate.ship.speed(187, [
@@ -3501,19 +3582,19 @@ describe('Calculating functions/utilities', () => {
                         87,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(187, [34, undefined, 87, 87, 33])
+                    calculate.ship.speed(187, [34, undefined, 87, 87, 33]),
                 ).toBe(10);
                 expect(calculate.ship.speed(187, [34, 34, 87, 87, 33])).toBe(
-                    10
+                    10,
                 );
                 expect(
-                    calculate.ship.speed(187, [undefined, 87, 87, 87, 33])
+                    calculate.ship.speed(187, [undefined, 87, 87, 87, 33]),
                 ).toBe(10);
                 expect(calculate.ship.speed(187, [34, 87, 87, 87, 33])).toBe(
-                    10
+                    10,
                 );
             });
             it('type: low-4', () => {
@@ -3525,7 +3606,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 // Samuel B.Roberts 改
                 expect(
@@ -3535,7 +3616,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(681, [
@@ -3544,7 +3625,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(681, [
@@ -3553,7 +3634,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(681, [
@@ -3562,7 +3643,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(681, [
@@ -3571,13 +3652,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
-                    calculate.ship.speed(681, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(681, [34, 34, 34, undefined, 33]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(681, [34, 34, 87, undefined, 33])
+                    calculate.ship.speed(681, [34, 34, 87, undefined, 33]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(681, [
@@ -3586,7 +3667,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
             });
             it('type: high-1', () => {
@@ -3598,7 +3679,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(466, [
@@ -3607,7 +3688,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(466, [
@@ -3616,13 +3697,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(466, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(466, [34, 34, 34, undefined, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(466, [34, 34, 34, 34, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
                     calculate.ship.speed(466, [
@@ -3631,7 +3712,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
                     calculate.ship.speed(466, [
@@ -3640,13 +3721,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(466, [34, 34, undefined, 87, 33])
+                    calculate.ship.speed(466, [34, 34, undefined, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(466, [34, 34, 34, 87, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
                     calculate.ship.speed(466, [
@@ -3655,19 +3736,19 @@ describe('Calculating functions/utilities', () => {
                         87,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(466, [34, undefined, 87, 87, 33])
+                    calculate.ship.speed(466, [34, undefined, 87, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(466, [34, 34, 87, 87, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
-                    calculate.ship.speed(466, [undefined, 87, 87, 87, 33])
+                    calculate.ship.speed(466, [undefined, 87, 87, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(466, [34, 87, 87, 87, 33])).toBe(
-                    20
+                    20,
                 );
             });
             it('type: high-2', () => {
@@ -3679,7 +3760,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(197, [
@@ -3688,7 +3769,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(197, [
@@ -3697,13 +3778,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(197, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(197, [34, 34, 34, undefined, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(197, [34, 34, 34, 34, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
                     calculate.ship.speed(197, [
@@ -3712,7 +3793,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(197, [
@@ -3721,13 +3802,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(197, [34, 34, undefined, 87, 33])
+                    calculate.ship.speed(197, [34, 34, undefined, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(197, [34, 34, 34, 87, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
                     calculate.ship.speed(197, [
@@ -3736,19 +3817,19 @@ describe('Calculating functions/utilities', () => {
                         87,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(197, [34, undefined, 87, 87, 33])
+                    calculate.ship.speed(197, [34, undefined, 87, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(197, [34, 34, 87, 87, 33])).toBe(
-                    20
+                    20,
                 );
                 expect(
-                    calculate.ship.speed(197, [undefined, 87, 87, 87, 33])
+                    calculate.ship.speed(197, [undefined, 87, 87, 87, 33]),
                 ).toBe(20);
                 expect(calculate.ship.speed(197, [34, 87, 87, 87, 33])).toBe(
-                    20
+                    20,
                 );
             });
             it('type: high-3', () => {
@@ -3760,7 +3841,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(330, [
@@ -3769,7 +3850,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(330, [
@@ -3778,10 +3859,10 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(330, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(330, [34, 34, 34, undefined, 33]),
                 ).toBe(20);
                 expect(
                     calculate.ship.speed(330, [
@@ -3790,7 +3871,7 @@ describe('Calculating functions/utilities', () => {
                         87,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(330, [
@@ -3799,10 +3880,10 @@ describe('Calculating functions/utilities', () => {
                         87,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(330, [34, 34, 87, undefined, 33])
+                    calculate.ship.speed(330, [34, 34, 87, undefined, 33]),
                 ).toBe(20);
                 expect(
                     calculate.ship.speed(330, [
@@ -3811,13 +3892,13 @@ describe('Calculating functions/utilities', () => {
                         87,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(330, [34, 87, 87, undefined, 33])
+                    calculate.ship.speed(330, [34, 87, 87, undefined, 33]),
                 ).toBe(20);
                 expect(
-                    calculate.ship.speed(330, [87, 87, 87, undefined, 33])
+                    calculate.ship.speed(330, [87, 87, 87, undefined, 33]),
                 ).toBe(20);
             });
             it('type: high-4', () => {
@@ -3829,7 +3910,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(10);
                 expect(
                     calculate.ship.speed(278, [
@@ -3838,7 +3919,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(278, [
@@ -3847,13 +3928,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         undefined,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(278, [34, 34, 34, undefined, 33])
+                    calculate.ship.speed(278, [34, 34, 34, undefined, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(278, [34, 34, 34, 34, 33])).toBe(
-                    15
+                    15,
                 );
                 expect(
                     calculate.ship.speed(278, [
@@ -3862,7 +3943,7 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
                     calculate.ship.speed(278, [
@@ -3871,13 +3952,13 @@ describe('Calculating functions/utilities', () => {
                         undefined,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(278, [34, 34, undefined, 87, 33])
+                    calculate.ship.speed(278, [34, 34, undefined, 87, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(278, [34, 34, 34, 87, 33])).toBe(
-                    15
+                    15,
                 );
                 expect(
                     calculate.ship.speed(278, [
@@ -3886,19 +3967,19 @@ describe('Calculating functions/utilities', () => {
                         87,
                         87,
                         33,
-                    ])
+                    ]),
                 ).toBe(15);
                 expect(
-                    calculate.ship.speed(278, [34, undefined, 87, 87, 33])
+                    calculate.ship.speed(278, [34, undefined, 87, 87, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(278, [34, 34, 87, 87, 33])).toBe(
-                    15
+                    15,
                 );
                 expect(
-                    calculate.ship.speed(278, [undefined, 87, 87, 87, 33])
+                    calculate.ship.speed(278, [undefined, 87, 87, 87, 33]),
                 ).toBe(15);
                 expect(calculate.ship.speed(278, [34, 87, 87, 87, 33])).toBe(
-                    15
+                    15,
                 );
             });
         });
@@ -3912,37 +3993,37 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ カ号観測機', () => {
                     expect(calculate.ship.levelOASW(534, [262, 69])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ 三式指揮連絡機(対潜)', () => {
                     expect(calculate.ship.levelOASW(534, [262, 70])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('カ号観測機', () => {
                     expect(calculate.ship.levelOASW(534, [262, 69])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('三式指揮連絡機(対潜)', () => {
                     expect(calculate.ship.levelOASW(534, [262, 70])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Re.2001 G改', () => {
                     expect(calculate.ship.levelOASW(534, [262, 262, 188])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish', () => {
                     expect(calculate.ship.levelOASW(534, [262, 262, 242])).toBe(
-                        124
+                        124,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish Mk.III(熟練)', () => {
                     expect(calculate.ship.levelOASW(534, [262, 262, 244])).toBe(
-                        1
+                        1,
                     );
                 });
                 it('Swordfish Mk.III(熟練)', () => {
@@ -3950,12 +4031,12 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(534, [262, 277])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(534, [262, 262, 277])).toBe(
-                        137
+                        137,
                     );
                 });
             });
@@ -3965,7 +4046,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(381, [262, 262, 277])).toBe(
-                        60
+                        60,
                     );
                 });
                 it('FM-2', () => {
@@ -3990,7 +4071,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(536, [262, 262, 277])).toBe(
-                        85
+                        85,
                     );
                 });
                 it('FM-2', () => {
@@ -4021,37 +4102,37 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Re.2001 G改', () => {
                     expect(calculate.ship.levelOASW(544, [262, 262, 188])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish', () => {
                     expect(calculate.ship.levelOASW(544, [262, 262, 242])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ Swordfish Mk.III(熟練)', () => {
                     expect(calculate.ship.levelOASW(544, [262, 262, 244])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
                     expect(calculate.ship.levelOASW(544, [132, 132, 244])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(544, [262, 277])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('HF/DF+Type144/147 ASDIC ＋ HF/DF+Type144/147 ASDIC ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(544, [262, 262, 277])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(544, [132, 132, 277])).toBe(
-                        false
+                        false,
                     );
                 });
             });
@@ -4064,32 +4145,32 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('零式水中聴音機 ＋ カ号観測機', () => {
                     expect(calculate.ship.levelOASW(555, [132, 69])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 三式指揮連絡機(対潜)', () => {
                     expect(calculate.ship.levelOASW(555, [132, 70])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('カ号観測機', () => {
                     expect(calculate.ship.levelOASW(555, [132, 69])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('三式指揮連絡機(対潜)', () => {
                     expect(calculate.ship.levelOASW(555, [132, 70])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Re.2001 G改', () => {
                     expect(calculate.ship.levelOASW(555, [132, 132, 188])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish', () => {
                     expect(calculate.ship.levelOASW(555, [132, 132, 242])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('Swordfish Mk.III(熟練)', () => {
@@ -4097,22 +4178,22 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
                     expect(calculate.ship.levelOASW(555, [132, 132, 244])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(555, [132, 277])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(555, [132, 132, 277])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
                     expect(
-                        calculate.ship.levelOASW(555, [132, 132, 132, 244])
+                        calculate.ship.levelOASW(555, [132, 132, 132, 244]),
                     ).toBe(false);
                 });
             });
@@ -4137,12 +4218,12 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Re.2001 G改', () => {
                     expect(calculate.ship.levelOASW(560, [132, 132, 188])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish', () => {
                     expect(calculate.ship.levelOASW(560, [132, 132, 242])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('Swordfish Mk.III(熟練)', () => {
@@ -4150,17 +4231,17 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ Swordfish Mk.III(熟練)', () => {
                     expect(calculate.ship.levelOASW(560, [132, 132, 244])).toBe(
-                        80
+                        80,
                     );
                 });
                 it('零式水中聴音機 ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(560, [132, 277])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('零式水中聴音機 ＋ 零式水中聴音機 ＋ FM-2', () => {
                     expect(calculate.ship.levelOASW(560, [132, 132, 277])).toBe(
-                        false
+                        false,
                     );
                 });
                 it('九七式艦攻改(熟練) 試製三号戊型(空六号電探改装備機)', () => {
@@ -4204,7 +4285,7 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('朝潮 改二 + 四式水中聴音機 x3', () => {
                     expect(calculate.ship.levelOASW(463, [149, 149, 149])).toBe(
-                        114
+                        114,
                     );
                 });
                 it('朝潮 改二丁', () => {
@@ -4236,12 +4317,12 @@ describe('Calculating functions/utilities', () => {
                 });
                 it('大鷹 改 + 天山一二型(村田隊) x4', () => {
                     expect(
-                        calculate.ship.levelOASW(526, [144, 144, 144, 144])
+                        calculate.ship.levelOASW(526, [144, 144, 144, 144]),
                     ).toBe(false);
                 });
                 it('大鷹 改 + 彗星(江草隊) x4', () => {
                     expect(
-                        calculate.ship.levelOASW(526, [100, 100, 100, 100])
+                        calculate.ship.levelOASW(526, [100, 100, 100, 100]),
                     ).toBe(false);
                 });
                 it('大鷹 改 + 天山(九三一空)', () => {

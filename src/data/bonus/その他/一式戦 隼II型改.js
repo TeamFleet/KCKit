@@ -17,6 +17,8 @@ const {
 
     あきつ丸,
     あきつ丸改,
+    熊野丸,
+    熊野丸改,
     山汐丸,
     山汐丸改,
 } = require('../../ship-ids');
@@ -28,7 +30,7 @@ const _20戦隊 = [
     {
         equipment: 489,
         ship: {
-            isID: [あきつ丸, あきつ丸改],
+            isID: [あきつ丸, あきつ丸改, 山汐丸, 熊野丸],
         },
         bonusImprove: {
             0: {
@@ -64,7 +66,7 @@ const _20戦隊 = [
     {
         equipment: 489,
         ship: {
-            isID: [山汐丸, 山汐丸改],
+            isID: [山汐丸改, 熊野丸改],
         },
         bonusImprove: {
             0: {

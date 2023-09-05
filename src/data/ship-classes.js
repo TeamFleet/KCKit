@@ -18,6 +18,7 @@ const BB_Bismarck = 7;
 const BB_VittorioVeneto = 70;
 const BB_ConteDiCavour = 148;
 const BB_Colorado = 122;
+const BB_Nevada = 163;
 const BB_Iowa = 82;
 const BB_SouthDakota = 134;
 const BB_NorthCarolina = 141;
@@ -26,7 +27,7 @@ const BB_Nelson = 115;
 const BB_Richelieu = 100;
 const BB_Gangut = 93;
 const group_BC_Navy_USN = [BB_Iowa, BB_SouthDakota, BB_NorthCarolina];
-const group_BB_exclude_BC_Navy_USN = [BB_Colorado];
+const group_BB_exclude_BC_Navy_USN = [BB_Colorado, BB_Nevada];
 const group_BB_Navy_USN = [
     ...group_BB_exclude_BC_Navy_USN,
     ...group_BC_Navy_USN,
@@ -224,7 +225,8 @@ const group_DD_Navy_KM = [DD_1934];
 //
 // ============================================================================
 const SS_Gato = 151;
-const group_SS_Navy_USN = [SS_Gato];
+const SS_Salmon = 164;
+const group_SS_Navy_USN = [SS_Gato, SS_Salmon];
 
 // ============================================================================
 //
@@ -256,6 +258,7 @@ module.exports = {
     BB_VittorioVeneto,
     BB_ConteDiCavour,
     BB_Colorado,
+    BB_Nevada,
     BB_Iowa,
     BB_SouthDakota,
     BB_QueenElizabeth,
@@ -400,6 +403,7 @@ module.exports = {
 
     // ========================================================================
     SS_Gato,
+    SS_Salmon,
     group_SS_Navy_USN,
 
     // ========================================================================

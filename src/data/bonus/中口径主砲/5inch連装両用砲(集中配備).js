@@ -11,7 +11,7 @@
  */
 
 const {
-    BB_Colorado,
+    group_BB_exclude_BC_Navy_USN,
 
     CA_Northampton,
     CA_NewOrleans,
@@ -48,7 +48,11 @@ const bonuses = [
     },
     {
         ship: {
-            isClass: [BB_Colorado, CA_Northampton, CA_NewOrleans],
+            isClass: [
+                ...group_BB_exclude_BC_Navy_USN,
+                CA_Northampton,
+                CA_NewOrleans,
+            ],
         },
         bonus: {
             aa: 1,

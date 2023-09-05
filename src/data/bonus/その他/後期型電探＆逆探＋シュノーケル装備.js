@@ -9,11 +9,25 @@
 
 require('../../../../typedef');
 const { I201, I203, I13, I14, I47, I400, I401 } = require('../../ship-series');
+const { Submarines } = require('../../../types/ships');
 
 // ============================================================================
 
 /** @type {Array<EquipmentBonus>} */
 module.exports = [
+    {
+        equipment: 458,
+        ship: {
+            isType: [...Submarines],
+        },
+        bonusImprove: {
+            4: {
+                torpedo: 1,
+                hit: 1,
+            },
+            maxCount: 1,
+        },
+    },
     {
         equipment: 458,
         ship: {
@@ -25,9 +39,8 @@ module.exports = [
                 evasion: 6,
             },
             4: {
-                torpedo: 3,
+                torpedo: 2,
                 evasion: 7,
-                hit: 1,
             },
             8: {
                 torpedo: 5,
@@ -48,9 +61,8 @@ module.exports = [
                 evasion: 4,
             },
             4: {
-                torpedo: 4,
+                torpedo: 3,
                 evasion: 6,
-                hit: 1,
             },
             maxCount: 1,
         },
@@ -66,11 +78,13 @@ module.exports = [
                 evasion: 3,
             },
             4: {
-                torpedo: 4,
+                torpedo: 3,
                 evasion: 5,
-                hit: 1,
             },
             maxCount: 1,
         },
     },
+
+    // 相互シナジーボーナス
+    // + 熟練聴音員+後期型艦首魚雷(4門) ->
 ];

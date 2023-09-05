@@ -46,28 +46,28 @@ describe('Base functions/utilities', () => {
         describe('Data type...', function () {
             it(`should db.ships[200] be instanceof Ship`, function () {
                 expect(true).toBe(
-                    db.ships[200] instanceof require('../src/class/ship.js')
+                    db.ships[200] instanceof require('../src/class/ship.js'),
                 );
             });
             it(`should db.items[1] be instanceof Equipment`, function () {
                 expect(
-                    db.items[1] instanceof require('../src/class/equipment')
+                    db.items[1] instanceof require('../src/class/equipment'),
                 ).toBe(true);
             });
             it(`should db.itemTypes[1] be instanceof BaseClass`, function () {
                 expect(
-                    db.itemTypes[1] instanceof require('../src/class/base')
+                    db.itemTypes[1] instanceof require('../src/class/base'),
                 ).toBe(true);
             });
             it(`should db.entities[1] be instanceof Entity`, function () {
                 expect(true).toBe(
-                    db.entities[1] instanceof require('../src/class/entity.js')
+                    db.entities[1] instanceof require('../src/class/entity.js'),
                 );
             });
             it(`should db.exillustTypes[1] be instanceof ExillustType`, function () {
                 expect(
                     db.exillustTypes[1] instanceof
-                        require('../src/class/exillust-type.js')
+                        require('../src/class/exillust-type.js'),
                 ).toBe(true);
             });
         });
@@ -88,7 +88,7 @@ describe('Base functions/utilities', () => {
             });
             it(`should 隼鷹・改二 db.ships[408].getType("en_us") be Light Aircraft Carrier`, function () {
                 expect('Light Aircraft Carrier').toBe(
-                    db.ships[408].getType('en_us')
+                    db.ships[408].getType('en_us'),
                 );
             });
             it(`should 亲潮・改 db.ships[362].getClass("en_us") be Kagerou`, function () {
@@ -105,7 +105,7 @@ describe('Base functions/utilities', () => {
             });
             it(`should 赤城・改 db.ships[277].getPic("0-1", ".webp") be 277/0-1.webp`, function () {
                 expect('277/0-1.webp').toBe(
-                    db.ships[277].getPic('0-1', '.webp')
+                    db.ships[277].getPic('0-1', '.webp'),
                 );
             });
             it(`should 赤城・改 db.ships[277].getPic("8") be 83/8.png`, function () {
@@ -170,17 +170,17 @@ describe('Base functions/utilities', () => {
             });
             it(`should Ship.prototype.isType(majorType) works`, () => {
                 /* 鈴谷・航改二 */ expect(db.ships[508].isType('carrier')).toBe(
-                    true
+                    true,
                 );
                 /* 鈴谷・航改二 */ expect(db.ships[508].isType('bb')).toBe(
-                    false
+                    false,
                 );
                 /* Bismarck・drei */ expect(db.ships[178].isType('bb')).toBe(
-                    true
+                    true,
                 );
                 /* 秋津洲・改 */ expect(db.ships[450].isType('av')).toBe(true);
                 /* Prinz Eugen・改 */ expect(db.ships[177].isType('ca')).toBe(
-                    true
+                    true,
                 );
                 /* Ташкент・改 */ expect(db.ships[395].isType('dd')).toBe(true);
             });
@@ -229,7 +229,7 @@ describe('Base functions/utilities', () => {
             it(`should 金剛・改二 db.ships[149].hasExtraIllust() be typeof Ship`, function () {
                 expect(
                     db.ships[149].hasExtraIllust() instanceof
-                        require('../src/class/ship.js')
+                        require('../src/class/ship.js'),
                 ).toBe(true);
             });
             it(`should 金剛・改二 db.ships[149].hasExtraIllust() be Ship 149`, function () {
@@ -243,7 +243,7 @@ describe('Base functions/utilities', () => {
                 expect(db.ships[321]._extraIllust.length).toBe(8);
             });
             it(`should 大淀・改 db.ships[321]._equipmentTypes be an Array of 28`, function () {
-                expect(db.ships[321]._equipmentTypes.length).toBe(28);
+                expect(db.ships[321]._equipmentTypes.length).toBe(29);
             });
             it(`should 大淀・改 db.ships[321].canEquip(1) be true`, function () {
                 expect(db.ships[321].canEquip(1)).toBe(true);
@@ -274,12 +274,12 @@ describe('Base functions/utilities', () => {
             });
             it(`should 大淀・改 db.ships[321].canEquip(['Sonar','DiveBombers']) be false`, function () {
                 expect(db.ships[321].canEquip(['Sonar', 'DiveBombers'])).toBe(
-                    false
+                    false,
                 );
             });
             it(`should 大淀・改 db.ships[321].canEquip(['Sonars','DiveBombers']) be false`, function () {
                 expect(db.ships[321].canEquip(['Sonars', 'DiveBombers'])).toBe(
-                    false
+                    false,
                 );
             });
             it(`should Warspite・改 db.ships[364].canEquip('SuperCaliber') be false`, function () {
@@ -296,7 +296,7 @@ describe('Base functions/utilities', () => {
             });
             it(`should 大和・改 db.ships[136].canEquip(['Sonars','SuperCaliber']) be true`, function () {
                 expect(db.ships[136].canEquip(['Sonars', 'SuperCaliber'])).toBe(
-                    true
+                    true,
                 );
             });
             it(`should 路易吉·托雷利・改 db.ships[605].canEquip(['MidgetSubmarine']) be false`, function () {
@@ -305,68 +305,68 @@ describe('Base functions/utilities', () => {
             describe(`should Ship.prototype.canEquip() works`, () => {
                 it(`伊勢・改二 | ✔ 大口径主砲`, () => {
                     expect(db.ships[553].canEquip('LargeCaliber')).toEqual(
-                        true
+                        true,
                     );
                 });
                 it(`伊勢・改二 (Slot #1) | ✔ 大口径主砲`, () => {
                     expect(db.ships[553].canEquip('LargeCaliber', 0)).toEqual(
-                        true
+                        true,
                     );
                 });
                 it(`伊勢・改二 (Slot #2) | ✔ 中口径主砲 | ✔ 大口径主砲`, () => {
                     expect(
                         db.ships[553].canEquip(
                             ['MediumCaliber', 'LargeCaliber'],
-                            1
-                        )
+                            1,
+                        ),
                     ).toEqual(true);
                 });
                 it(`伊勢・改二 (Slot #3) | ❌ 中口径主砲 | ❌ 大口径主砲`, () => {
                     expect(
                         db.ships[553].canEquip(
                             ['MediumCaliber', 'LargeCaliber'],
-                            2
-                        )
+                            2,
+                        ),
                     ).toEqual(false);
                 });
                 it(`伊勢・改二 (Slot #4) | ❌ 中口径主砲 | ❌ 大口径主砲`, () => {
                     expect(
                         db.ships[553].canEquip(
                             ['MediumCaliber', 'LargeCaliber'],
-                            3
-                        )
+                            3,
+                        ),
                     ).toEqual(false);
                 });
                 it(`伊勢・改二 (Slot #5) | ❌ 中口径主砲 | ❌ 大口径主砲`, () => {
                     expect(
                         db.ships[553].canEquip(
                             ['MediumCaliber', 'LargeCaliber'],
-                            5
-                        )
+                            5,
+                        ),
                     ).toEqual(false);
                 });
                 it(`伊勢・改二 (All slots) | ✔ 中口径主砲 | ✔ 大口径主砲`, () => {
                     expect(
                         db.ships[553].canEquip(
                             ['MediumCaliber', 'LargeCaliber'],
-                            true
-                        )
+                            true,
+                        ),
                     ).toEqual(true);
                 });
                 it(`能代・改二 (All slots) | ✔ 中口径主砲 | ✔ 鱼雷`, () => {
                     expect(
                         db.ships[662].canEquip(
                             ['MediumCaliber', 'Torpedo'],
-                            true
-                        )
+                            true,
+                        ),
                     ).toEqual(true);
                 });
                 it(`能代・改二 (Slot #4) | ✔ 小口径主砲 | ✔ 中口径主砲 | ❌ 鱼雷`, () => {
                     expect(
                         db.ships[662].canEquip(
                             ['MediumCaliber', 'SmallCaliber'],
-                            3
-                        )
+                            3,
+                        ),
                     ).toEqual(true);
                     expect(db.ships[662].canEquip('Torpedo', 3)).toEqual(false);
                 });
@@ -374,28 +374,28 @@ describe('Base functions/utilities', () => {
 
             it(`should 大和・改 db.ships[136].getExSlotEquipmentTypes() be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[136].getExSlotEquipmentTypes()).toEqual(
-                    kckit.exSlotEquipmentTypes
+                    kckit.exSlotEquipmentTypes,
                 );
             });
             it(`should 大和・改 db.ships[136].getExSlotOtherEquipments() be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[136].getExSlotOtherEquipments()).toEqual(
-                    kckit.exSlotOtherEquipments.concat([71, 275, 483, 35, 317])
+                    kckit.exSlotOtherEquipments.concat([71, 275, 483, 35, 317]),
                 );
             });
             it(`should 熊野・改二 db.ships[504].getExSlotOtherEquipments() not be kckit.exslotEquipmentTypes`, function () {
                 expect(db.ships[504].getExSlotOtherEquipments()).not.toEqual(
-                    kckit.exSlotOtherEquipments
+                    kckit.exSlotOtherEquipments,
                 );
             });
             describe(`should Ship.prototype.getEquipmentTypes() works`, () => {
                 it(`まるゆ・改 | ✔ 特殊潜航艇`, () => {
                     expect(
-                        db.ships[402].getEquipmentTypes().includes(14)
+                        db.ships[402].getEquipmentTypes().includes(14),
                     ).toEqual(true);
                 });
                 it(`Luigi Torelli・改 | ❌ 特殊潜航艇`, () => {
                     expect(
-                        db.ships[605].getEquipmentTypes().includes(14)
+                        db.ships[605].getEquipmentTypes().includes(14),
                     ).toEqual(false);
                 });
                 it(`UIT-25 | ❌ 特殊潜航艇 | ✔ 対空機銃`, () => {
@@ -404,118 +404,118 @@ describe('Base functions/utilities', () => {
                 });
                 it(`伊勢・改二 | ✔ 大口径主砲`, () => {
                     expect(
-                        db.ships[553].getEquipmentTypes().includes(5)
+                        db.ships[553].getEquipmentTypes().includes(5),
                     ).toEqual(true);
                 });
                 it(`伊勢・改二 (Slot #1) | ✔ 大口径主砲`, () => {
                     expect(
-                        db.ships[553].getEquipmentTypes(0).includes(5)
+                        db.ships[553].getEquipmentTypes(0).includes(5),
                     ).toEqual(true);
                 });
                 it(`伊勢・改二 (Slot #3) | ❌ 大口径主砲`, () => {
                     expect(
-                        db.ships[553].getEquipmentTypes(2).includes(5)
+                        db.ships[553].getEquipmentTypes(2).includes(5),
                     ).toEqual(false);
                 });
                 it(`伊勢・改二 (All slots) | ✔ 大口径主砲`, () => {
                     expect(
-                        db.ships[553].getEquipmentTypes(true).includes(5)
+                        db.ships[553].getEquipmentTypes(true).includes(5),
                     ).toEqual(true);
                 });
                 it(`夕張改二 | ✔ 中口径主砲`, () => {
                     expect(
-                        db.ships[622].getEquipmentTypes().includes(4)
+                        db.ships[622].getEquipmentTypes().includes(4),
                     ).toEqual(true);
                     expect(
-                        db.ships[622].getEquipmentTypes().includes(64)
+                        db.ships[622].getEquipmentTypes().includes(64),
                     ).toEqual(true);
                 });
                 it(`夕張改二 (Slot #4 & #5) | ❌ 中口径主砲`, () => {
                     expect(
-                        db.ships[622].getEquipmentTypes(3).includes(4)
+                        db.ships[622].getEquipmentTypes(3).includes(4),
                     ).toEqual(false);
                     expect(
-                        db.ships[622].getEquipmentTypes(3).includes(64)
+                        db.ships[622].getEquipmentTypes(3).includes(64),
                     ).toEqual(false);
                     expect(
-                        db.ships[622].getEquipmentTypes(5).includes(4)
+                        db.ships[622].getEquipmentTypes(5).includes(4),
                     ).toEqual(false);
                     expect(
-                        db.ships[622].getEquipmentTypes(5).includes(64)
+                        db.ships[622].getEquipmentTypes(5).includes(64),
                     ).toEqual(false);
                 });
                 it(`夕張改二 (Slot #4) | ✔ 機関部強化`, () => {
                     expect(
-                        db.ships[622].getEquipmentTypes(3).includes(32)
+                        db.ships[622].getEquipmentTypes(3).includes(32),
                     ).toEqual(true);
                 });
                 it(`夕張改二 (Slot #5) | ❌ 機関部強化`, () => {
                     expect(
-                        db.ships[622].getEquipmentTypes(5).includes(32)
+                        db.ships[622].getEquipmentTypes(5).includes(32),
                     ).toEqual(false);
                 });
                 it(`タカオ | ❌ 対空機銃`, () => {
                     expect(
-                        db.ships[9182].getEquipmentTypes().includes(29)
+                        db.ships[9182].getEquipmentTypes().includes(29),
                     ).toEqual(false);
                 });
             });
             it(`should Ship.prototype.getCapability() works`, () => {
                 expect(typeof db.ships[1].getCapability()).toEqual('object');
                 expect(
-                    db.ships[487].getCapability('count_as_landing_craft')
+                    db.ships[487].getCapability('count_as_landing_craft'),
                 ).toEqual(1);
                 expect(
                     db.ships[487].getCapability(
-                        'count_as_night_operation_aviation_personnel'
-                    )
+                        'count_as_night_operation_aviation_personnel',
+                    ),
                 ).toEqual(false);
                 /* 武蔵・改二 */ expect(
-                    db.ships[546].getCapability('anti_air_rocket_barrage')
+                    db.ships[546].getCapability('anti_air_rocket_barrage'),
                 ).toEqual(false);
                 /* 扶桑・改二 */ expect(
-                    db.ships[411].getCapability('anti_air_rocket_barrage')
+                    db.ships[411].getCapability('anti_air_rocket_barrage'),
                 ).toEqual(true);
                 /* 伊勢・改 */ expect(
-                    db.ships[82].getCapability('anti_air_rocket_barrage')
+                    db.ships[82].getCapability('anti_air_rocket_barrage'),
                 ).toEqual('high');
             });
             it(`should Ship.prototype.getStatExtraMax() works`, () => {
                 /* 長門 */ expect(db.ships[80].getStatExtraMax('hp')).toEqual(
-                    2
+                    2,
                 );
                 /* 長門・改二 */ expect(
-                    db.ships[541].getStatExtraMax('hp', 99)
+                    db.ships[541].getStatExtraMax('hp', 99),
                 ).toEqual(2);
                 /* 長門・改二 */ expect(
-                    db.ships[541].getStatExtraMax('hp', 100)
+                    db.ships[541].getStatExtraMax('hp', 100),
                 ).toEqual(0);
                 /* 長門・改二 */ expect(
-                    db.ships[541].getStatExtraMax('asw')
+                    db.ships[541].getStatExtraMax('asw'),
                 ).toEqual(false);
                 /* 長門・改二 */ expect(
-                    db.ships[541].getStatExtraMax('aa')
+                    db.ships[541].getStatExtraMax('aa'),
                 ).toEqual(false);
                 /* U-511改 */ expect(
-                    db.ships[334].getStatExtraMax('hp', 99)
+                    db.ships[334].getStatExtraMax('hp', 99),
                 ).toEqual(2);
                 /* U-511改 */ expect(
-                    db.ships[334].getStatExtraMax('hp', 100)
+                    db.ships[334].getStatExtraMax('hp', 100),
                 ).toEqual(1);
                 /* 阿武隈・改二 */ expect(
-                    db.ships[200].getStatExtraMax('asw')
+                    db.ships[200].getStatExtraMax('asw'),
                 ).toEqual(9);
                 /* 大淀・改 (基础对潜0，但为CL，可提升) */ expect(
-                    db.ships[321].getStatExtraMax('asw')
+                    db.ships[321].getStatExtraMax('asw'),
                 ).toEqual(9);
                 /* 龍鳳・改 (CVL，无基础对潜，不可提升) */ expect(
-                    db.ships[318].getStatExtraMax('asw')
+                    db.ships[318].getStatExtraMax('asw'),
                 ).toEqual(false);
                 /* 春日丸 (CVL，无基础对潜，不可提升) */ expect(
-                    db.ships[521].getStatExtraMax('asw')
+                    db.ships[521].getStatExtraMax('asw'),
                 ).toEqual(false);
                 /* 大鹰・改二 (CVL，但有基础对潜，可提升) */ expect(
-                    db.ships[529].getStatExtraMax('asw')
+                    db.ships[529].getStatExtraMax('asw'),
                 ).toEqual(9);
             });
             describe(`should Ship.prototype.getBonuses() works`, () => {
@@ -529,10 +529,10 @@ describe('Base functions/utilities', () => {
             describe(`should Ship.prototype.getAACI() works`, () => {
                 it(`should be Array`, () => {
                     expect(Array.isArray(db.ships[182].getAACI())).toEqual(
-                        true
+                        true,
                     );
                     expect(Array.isArray(db.ships[400].getAACI())).toEqual(
-                        true
+                        true,
                     );
                 });
                 it(`伊8・改 - no bonuses`, () => {
@@ -557,10 +557,10 @@ describe('Base functions/utilities', () => {
             describe(`should Ship.prototype.getSpecialAttacks() works`, () => {
                 it(`should be Array`, () => {
                     expect(
-                        Array.isArray(db.ships[182].getSpecialAttacks())
+                        Array.isArray(db.ships[182].getSpecialAttacks()),
                     ).toEqual(true);
                     expect(
-                        Array.isArray(db.ships[576].getSpecialAttacks())
+                        Array.isArray(db.ships[576].getSpecialAttacks()),
                     ).toEqual(true);
                 });
                 it(`伊8改 - no special attacks`, () => {
@@ -582,7 +582,7 @@ describe('Base functions/utilities', () => {
                 expect(db.ships[392].canEquipThis([276, 194])).toEqual(true);
                 // Richelieu改 ❌ 46cm三連装砲改 + Laté 298B + 51cm連装砲
                 expect(db.ships[392].canEquipThis([276, 194, 281])).toEqual(
-                    false
+                    false,
                 );
                 // Richelieu ✅ 46cm三連装砲改
                 expect(db.ships[492].canEquipThis(276)).toEqual(true);
@@ -614,13 +614,13 @@ describe('Base functions/utilities', () => {
                 expect(db.ships[501]._subType).toEqual(undefined);
                 // 最上改二特
                 expect(db.ships[506]._subType).toEqual(
-                    'SpecialRevisedAviationCruiser'
+                    'SpecialRevisedAviationCruiser',
                 );
                 // 矢矧改二
                 expect(db.ships[663]._subType).toEqual(undefined);
                 // 矢矧改二特
                 expect(db.ships[668]._subType).toEqual(
-                    'HeavyRevisedLightCruiser'
+                    'HeavyRevisedLightCruiser',
                 );
                 // Gambier Bay Mk.II
                 expect(db.ships[707]._subType).toEqual('SpecialRevisedCarrier');
@@ -738,7 +738,7 @@ describe('Base functions/utilities', () => {
                     expect(db.items[285].getBonuses().length).toEqual(15);
                 });
                 it(`33号対水上電探 - N bonuses`, () => {
-                    expect(db.items[29].getBonuses().length).toEqual(53);
+                    expect(db.items[29].getBonuses().length).toEqual(60);
                 });
                 it(`15m二重測距儀+21号電探改二 - 12 bonuses`, () => {
                     expect(db.items[142].getBonuses().length).toEqual(15);
@@ -774,7 +774,7 @@ describe('Base functions/utilities', () => {
             });
             it(`should db.exillustTypes[1].getTime("en_us") be Early January`, function () {
                 expect(db.exillustTypes[1].getTime('en_us')).toBe(
-                    'Early January'
+                    'Early January',
                 );
             });
         });
@@ -821,51 +821,51 @@ describe('Getting functions/utilities', () => {
         it('Normal condition', () => {
             expect(
                 get.shipAndEquipments(131, [87, undefined, undefined, 33, 87])
-                    .ship.id
+                    .ship.id,
             ).toBe(131);
             expect(
                 get.shipAndEquipments(131, [87, undefined, undefined, 33, 87])
-                    .equipments.length
+                    .equipments.length,
             ).toBe(5);
             expect(
                 get.shipAndEquipments(131, [87, undefined, undefined, 33, 87])
-                    .equipments[3].id
+                    .equipments[3].id,
             ).toBe(33);
             expect(
                 get.shipAndEquipments(
                     131,
                     [87, undefined, undefined, 33, 87],
-                    [11]
-                ).equipmentStars[0]
+                    [11],
+                ).equipmentStars[0],
             ).toBe(10);
             expect(
                 get.shipAndEquipments(
                     131,
                     [87, undefined, undefined, 33, 87],
-                    [0, 1]
-                ).equipmentStars[1]
+                    [0, 1],
+                ).equipmentStars[1],
             ).toBe(undefined);
             expect(
                 get.shipAndEquipments(
                     131,
                     [87, undefined, undefined, 33, 87],
                     [],
-                    [11]
-                ).equipmentRanks[0]
+                    [11],
+                ).equipmentRanks[0],
             ).toBe(7);
             expect(
                 get.shipAndEquipments(
                     131,
                     [87, undefined, undefined, 33, 87],
                     [],
-                    [0, 1]
-                ).equipmentRanks[1]
+                    [0, 1],
+                ).equipmentRanks[1],
             ).toBe(undefined);
         });
         it('If ship has less slots, the missing slot should be empty', () => {
             expect(
                 get.shipAndEquipments(383, [87, undefined, undefined, 33, 87])
-                    .equipments[3]
+                    .equipments[3],
             ).toBe(undefined);
         });
     });
