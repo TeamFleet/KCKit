@@ -52,6 +52,7 @@ const _4門 = [
                 evasion: 4,
                 hit: 2,
             },
+            maxCount: 1,
         },
     },
     {
@@ -81,6 +82,7 @@ const _4門 = [
                 evasion: 3,
                 hit: 1,
             },
+            maxCount: 1,
         },
     },
     {
@@ -110,6 +112,7 @@ const _4門 = [
                 evasion: 4,
                 hit: 1,
             },
+            maxCount: 1,
         },
     },
 
