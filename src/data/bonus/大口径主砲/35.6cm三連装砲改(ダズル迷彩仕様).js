@@ -63,6 +63,7 @@ module.exports = [
             isID: [金剛改二, 金剛改二丙],
         },
         bonusImprove: {
+            maxCount: 2,
             4: {
                 aa: 1,
             },
@@ -89,6 +90,7 @@ module.exports = [
             isID: [榛名改二, 榛名改二乙, 榛名改二丙],
         },
         bonusImprove: {
+            maxCount: 2,
             1: {
                 evasion: 1,
             },
@@ -130,6 +132,7 @@ module.exports = [
             isID: [比叡改二, 比叡改二丙, 霧島改二],
         },
         bonusImprove: {
+            maxCount: 2,
             7: {
                 aa: 1,
             },

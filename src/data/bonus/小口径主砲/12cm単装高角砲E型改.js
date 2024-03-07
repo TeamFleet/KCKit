@@ -55,7 +55,7 @@ const 単体ボーナス = [
             2: { aa: 2, asw: 1, evasion: 4 },
             10: {
                 aa: 3,
-                asw: 2,
+                asw: 1,
                 evasion: 2,
             },
         },

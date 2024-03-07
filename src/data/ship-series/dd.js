@@ -61,6 +61,9 @@ const {
     朝霜改,
     朝霜改二,
 
+    照月,
+    照月改,
+
     Grecale,
     Grecale改,
 
@@ -111,6 +114,8 @@ module.exports = {
 
     Hamanami: [浜波, 浜波改],
     Asashimo: [朝霜, 朝霜改, 朝霜改二],
+
+    Teruzuki: [照月, 照月改],
 
     Grecale: [Grecale, Grecale改],
 

@@ -14,14 +14,20 @@
  */
 
 const {
-    BB_Iowa,
-    BB_SouthDakota,
     BB_Kongou,
     BB_Kongou2,
     BB_Bismarck,
     BB_Richelieu,
     BB_Gangut,
     BB_VittorioVeneto,
+    BB_ConteDiCavour,
+
+    BB_Colorado,
+    BB_Nevada,
+    BB_Iowa,
+    BB_NorthCarolina,
+    BB_SouthDakota,
+
     group_BB_Navy_USN,
     group_BC_Navy_USN,
     group_BB_exclude_BC_Navy_USN,
@@ -30,7 +36,7 @@ const {
 const group_BB_USN_Tier1 = [BB_Iowa, ...group_BB_exclude_BC_Navy_USN];
 const group_BB_USN_Tier2 = group_BC_Navy_USN.filter((id) => id !== BB_Iowa);
 const group_BB_Navy_USN_exclude_SouthDakota = group_BB_Navy_USN.filter(
-    (id) => id !== BB_SouthDakota
+    (id) => id !== BB_SouthDakota,
 );
 
 // ============================================================================
@@ -136,8 +142,10 @@ const MK6GFCS = [
                 BB_Kongou2,
                 BB_Bismarck,
                 BB_VittorioVeneto,
+                BB_ConteDiCavour,
                 BB_Richelieu,
                 BB_Gangut,
+                BB_Nevada,
             ],
         },
         bonus: {
@@ -147,7 +155,7 @@ const MK6GFCS = [
     {
         equipment: 390,
         ship: {
-            isClass: [...group_BB_USN_Tier1],
+            isClass: [BB_Colorado, BB_Iowa],
         },
         bonusImprove: {
             0: {
@@ -165,7 +173,7 @@ const MK6GFCS = [
     {
         equipment: 390,
         ship: {
-            isClass: [...group_BB_USN_Tier2],
+            isClass: [BB_NorthCarolina, BB_SouthDakota],
         },
         bonusImprove: {
             0: {

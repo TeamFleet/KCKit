@@ -64,6 +64,7 @@ const {
     時雨改三,
     親潮改,
     親潮改二,
+    霰改二,
     早潮改,
     早潮改二,
     丹陽,
@@ -74,6 +75,7 @@ const {
     浜風乙改,
     秋雲改,
     秋雲改二,
+    長波改二,
     沖波改二,
     高波改二,
 
@@ -294,7 +296,7 @@ const DD_AsashioClass2ndRemodel = [
     199, // 大潮改二
     489, // 満潮改二
     490, // 荒潮改二
-    198, // 霰改二
+    霰改二,
     464, // 霞改二
     470, // 霞改二乙
 ];
@@ -344,7 +346,7 @@ const DD_YuugumoClass2ndRemodel = [
     542, // 夕雲改二
     563, // 巻雲改二
     564, // 風雲改二
-    543, // 長波改二
+    長波改二,
     高波改二,
     沖波改二,
     578, // 朝霜改二
@@ -449,8 +451,8 @@ module.exports = {
     CL_NagaraClass2ndRemodel,
     CL_AganoClass2ndRemodel,
     CL_YuubariClass2ndRemodel,
-    Yahagi: [139, 307, 矢矧改二, 矢矧改二乙],
-    Ooyodo: [183, 321],
+    Yahagi: S.Yahagi,
+    Ooyodo: S.Ooyodo,
     Kashima: [鹿島, 鹿島改],
 
     DD_FubukiClass2ndRemodel,
