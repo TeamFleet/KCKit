@@ -11,7 +11,7 @@ const calculateBonus = (
     equipments = [],
     equipmentStars = [],
     equipmentRanks = [],
-    stat
+    stat,
 ) => {
     if (typeof equipmentStars === 'string')
         return calculateBonus(
@@ -19,7 +19,7 @@ const calculateBonus = (
             equipments,
             undefined,
             undefined,
-            equipmentStars
+            equipmentStars,
         );
     if (typeof equipmentRanks === 'string')
         return calculateBonus(
@@ -27,7 +27,7 @@ const calculateBonus = (
             equipments,
             equipmentStars,
             undefined,
-            equipmentRanks
+            equipmentRanks,
         );
 
     ({ ship, equipments, equipmentStars, equipmentRanks } =
@@ -54,8 +54,8 @@ const calculateBonus = (
                         equipment &&
                         equipment.id &&
                         // eslint-disable-next-line eqeqeq
-                        equipment.id == bonus.equipment
-                )
+                        equipment.id == bonus.equipment,
+                ),
         )
         .forEach((bonus) => {
             let thisBonus = {};
@@ -79,7 +79,7 @@ const calculateBonus = (
                             equipment &&
                             equipment.id &&
                             // eslint-disable-next-line eqeqeq
-                            equipment.id == bonus.equipment
+                            equipment.id == bonus.equipment,
                     )
                     .sort((a, b) => {
                         if (a.star === b.star) return b.rank - a.rank;
@@ -157,8 +157,8 @@ const calculateBonus = (
                     equipments,
                     equipmentStars,
                     equipmentRanks,
-                    bonus.equipments
-                )
+                    bonus.equipments,
+                ),
         )
         .forEach((bonus) => {
             addResult(bonus.bonus);

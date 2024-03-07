@@ -43,7 +43,7 @@ const check = (equipment, star = 0, rank = 0, conditions = {}) => {
                     equipment,
                     star,
                     rank,
-                    conditions[key]
+                    conditions[key],
                 )
             ) {
                 return false;
@@ -54,7 +54,7 @@ const check = (equipment, star = 0, rank = 0, conditions = {}) => {
         ) {
             if (
                 !conditions[key].some((condition) =>
-                    check(equipment, star, rank, condition)
+                    check(equipment, star, rank, condition),
                 )
             )
                 return false;
@@ -133,7 +133,7 @@ const checkCondition = {
     isname: (equipment, name) =>
         ArrayOrItem(
             name,
-            (name) => equipment.isName(name)
+            (name) => equipment.isName(name),
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key] === name) return true
@@ -146,7 +146,7 @@ const checkCondition = {
     isnotname: (equipment, name) =>
         ArrayOrItemAll(
             name,
-            (name) => !equipment.isName(name)
+            (name) => !equipment.isName(name),
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key] === name) return false
@@ -160,7 +160,7 @@ const checkCondition = {
     isnameof: (equipment, name) =>
         ArrayOrItem(
             name,
-            (name) => equipment.hasName(name)
+            (name) => equipment.hasName(name),
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key].includes(name)) return true
@@ -173,7 +173,7 @@ const checkCondition = {
     isnotnameof: (equipment, name) =>
         ArrayOrItemAll(
             name,
-            (name) => !equipment.hasName(name)
+            (name) => !equipment.hasName(name),
             // for (let key in equipment.name) {
             //     if (key === 'suffix') continue
             //     if (equipment.name[key].includes(name)) return false

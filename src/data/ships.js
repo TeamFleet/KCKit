@@ -78,6 +78,8 @@ const {
     長波改二,
     沖波改二,
     高波改二,
+    清霜改二,
+    清霜改二丁,
 
     三隈改二特,
 } = require('./ship-ids');
@@ -162,6 +164,7 @@ const CV_ShoukakuClass2ndRemodel = [
     462, // 瑞鶴改二
     467, // 瑞鶴改二甲
 ];
+const CVL_Houshou2ndRemodel = [鳳翔改二, 鳳翔改二戦];
 const CVE_TaiyouClassRemodelAll = [
     大鷹改,
     大鷹改二,
@@ -350,6 +353,8 @@ const DD_YuugumoClass2ndRemodel = [
     高波改二,
     沖波改二,
     578, // 朝霜改二
+    清霜改二,
+    清霜改二丁,
 ];
 const DD_ShimakazeRemodel = [
     229, // 島風改
@@ -440,6 +445,7 @@ module.exports = {
     CV_KagaClass2ndRemodel,
     CV_KagaClassRemodelAll,
     CV_ShoukakuClass2ndRemodel,
+    CVL_Houshou2ndRemodel,
     CVE,
     CVE_TaiyouClassRemodelAll,
 

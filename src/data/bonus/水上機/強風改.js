@@ -14,9 +14,12 @@ require('../../../../typedef');
 
 const transformBonusToImprove = require('../../../utils/transform-bonus-to-improve');
 
-const { CAV_MogamiClassSuperRemodel } = require('../../ships');
 const {
+    最上改二,
+    最上改二特,
     三隈改,
+    三隈改二,
+    三隈改二特,
 
     鈴谷改,
     鈴谷改二,
@@ -32,12 +35,23 @@ const 強風改 = [
     {
         equipment: 217,
         ship: {
-            isID: [...CAV_MogamiClassSuperRemodel],
+            isID: [最上改二, 最上改二特],
         },
         bonus: {
             fire: 1,
             aa: 5,
             evasion: 3,
+        },
+    },
+    {
+        equipment: 217,
+        ship: {
+            isID: [三隈改二, 三隈改二特],
+        },
+        bonus: {
+            fire: 1,
+            aa: 4,
+            evasion: 2,
         },
     },
 ];
@@ -49,11 +63,23 @@ const 強風改二 = [
     {
         equipment: 485,
         ship: {
-            isID: [...CAV_MogamiClassSuperRemodel],
+            isID: [最上改二, 最上改二特],
         },
         bonus: {
             fire: 1,
             aa: 5,
+            evasion: 3,
+            hit: 1,
+        },
+    },
+    {
+        equipment: 485,
+        ship: {
+            isID: [三隈改二, 三隈改二特],
+        },
+        bonus: {
+            fire: 1,
+            aa: 4,
             evasion: 3,
             hit: 1,
         },
@@ -69,20 +95,6 @@ const 強風改二 = [
             evasion: 2,
         },
     },
-    // {
-    //     equipment: 485,
-    //     ship: {
-    //         isNotID: [
-    //             三隈改,
-    //             鈴谷改,
-    //             鈴谷改二,
-    //             ...CAV_MogamiClassSuperRemodel,
-    //             熊野改,
-    //             熊野改二,
-    //         ],
-    //     },
-    //     bonus: {},
-    // },
 ];
 transformBonusToImprove(強風改二, {
     3: { fire: 1 },

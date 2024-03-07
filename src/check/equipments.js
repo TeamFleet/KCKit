@@ -41,7 +41,7 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                         equipment,
                         restStars[index],
                         restRanks[index],
-                        condition
+                        condition,
                     )
                 ) {
                     restEquipments.splice(index, 1);
@@ -50,7 +50,7 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                     return true;
                 }
                 return false;
-            })
+            }),
         );
     }
 
@@ -63,7 +63,7 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                 !equipments.every((equipment, index) =>
                     checkEquipment(equipment, stars[index], ranks[index], {
                         [key.replace(/^has/, 'is')]: conditions[key],
-                    })
+                    }),
                 )
             )
                 return false;
@@ -73,7 +73,7 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                 !equipments.some((equipment, index) =>
                     checkEquipment(equipment, stars[index], ranks[index], {
                         [key.replace(/^has/, 'is')]: conditions[key],
-                    })
+                    }),
                 )
             )
                 return false;
@@ -85,9 +85,9 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                             equipment,
                             stars[index],
                             ranks[index],
-                            thisCondition
-                        )
-                    )
+                            thisCondition,
+                        ),
+                    ),
                 )
             )
                 return false;
@@ -108,9 +108,9 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                                 ranks[index],
                                 {
                                     [key.replace(/^has/, 'is')]: value,
-                                }
-                            )
-                        )
+                                },
+                            ),
+                        ),
                     )
                 )
                     return false;
@@ -119,7 +119,7 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                     !equipments.some((equipment, index) =>
                         checkEquipment(equipment, stars[index], ranks[index], {
                             [key.replace(/^has/, 'is')]: conditions[key],
-                        })
+                        }),
                     )
                 )
                     return false;
@@ -139,7 +139,7 @@ const check = (equipments, stars, ranks, conditions = {}) => {
             const filtered = equipments.filter((equipment, index) =>
                 checkEquipment(equipment, stars[index], ranks[index], {
                     [key.replace(/^has/, 'is')]: thisCondition,
-                })
+                }),
             );
             // console.log(thisCondition, equipments, filtered.length, count);
             if (filtered.length < count) return false;
@@ -159,8 +159,8 @@ const check = (equipments, stars, ranks, conditions = {}) => {
                     equipment,
                     stars[index],
                     ranks[index],
-                    thisCondition
-                )
+                    thisCondition,
+                ),
             );
             if (filtered.length < conditions[key]) return false;
         } else if (
@@ -171,7 +171,7 @@ const check = (equipments, stars, ranks, conditions = {}) => {
             const filtered = equipments.filter((equipment, index) =>
                 checkEquipment(equipment, stars[index], ranks[index], {
                     [key.replace(/^has/, 'is')]: true,
-                })
+                }),
             );
             if (
                 filtered.length < conditions[key][0] ||

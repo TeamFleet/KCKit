@@ -29,6 +29,7 @@ const dataBonuses = [
     ...require('./小口径主砲/12.7cm連装砲B型改四(戦時改修)+高射装置'),
     ...require('./小口径主砲/12.7cm連装砲C型改二'),
     ...require('./小口径主砲/12.7cm連装砲C型改三'),
+    ...require('./小口径主砲/12.7cm連装砲D型-extra'),
     ...require('./小口径主砲/12.7cm連装砲D型改二'),
     ...require('./小口径主砲/12.7cm連装砲D型改三'),
     ...require('./小口径主砲/5inch単装砲 Mk.30改'),
@@ -51,6 +52,7 @@ const dataBonuses = [
     ...require('./中口径主砲/15.5cm三連装砲改'),
     ...require('./中口径主砲/20.3cm(2号)連装砲'),
     ...require('./中口径主砲/20.3cm(3号)連装砲'),
+    ...require('./中口径主砲/試製20.3cm(4号)連装砲'),
     ...require('./中口径主砲/8inch三連装砲 Mk.9'),
 
     ...require('./大口径主砲/305mm／46'),
@@ -168,6 +170,7 @@ const dataBonuses = [
     ...require('./電探/電探装備マスト'),
     ...require('./電探/21号対空電探'),
     ...require('./電探/21号対空電探改二'),
+    ...require('./電探/22号対水上電探'),
     ...require('./電探/42号対空電探改二'),
     ...require('./電探/GFCS Mk.37'),
     ...require('./電探/SK／SGレーダー'),
@@ -217,6 +220,7 @@ const dataBonuses = [
     ...require('./その他/武装大発'),
     ...require('./その他/後期型潜水艦搭載電探＆逆探'),
     ...require('./その他/後期型電探＆逆探＋シュノーケル装備'),
+    ...require('./その他/SJレーダー＋潜水艦司令塔装備'),
     ...require('./その他/発煙装置'),
     ...require('./その他/司令部'),
 

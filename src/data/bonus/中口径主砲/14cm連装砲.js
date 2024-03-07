@@ -22,6 +22,13 @@ const {
     AV_Nisshin,
     Aux_AV_CTeste,
 } = require('../../ship-classes');
+const {
+    三隈改二特,
+
+    夕張改二,
+    夕張改二特,
+    夕張改二丁,
+} = require('../../ship-ids');
 
 // ============================================================================
 
@@ -136,7 +143,145 @@ const 連装砲改二 = [
     {
         equipment: 518,
         ship: {
+            isID: [夕張改二],
+        },
+        bonusImprove: {
+            0: {
+                fire: 6,
+                aa: 3,
+                asw: 2,
+                evasion: 3,
+            },
+            7: {
+                fire: 7,
+                torpedo: 1,
+                aa: 3,
+                asw: 2,
+                evasion: 3,
+            },
+            10: {
+                fire: 9,
+                torpedo: 1,
+                aa: 3,
+                asw: 2,
+                evasion: 3,
+            },
+        },
+    },
+    {
+        equipment: 518,
+        ship: {
+            isID: [夕張改二特],
+        },
+        bonusImprove: {
+            0: {
+                fire: 6,
+                aa: 2,
+                asw: 2,
+                evasion: 3,
+            },
+            7: {
+                fire: 7,
+                torpedo: 1,
+                aa: 2,
+                asw: 2,
+                evasion: 3,
+            },
+            10: {
+                fire: 9,
+                torpedo: 1,
+                aa: 2,
+                asw: 2,
+                evasion: 3,
+            },
+        },
+    },
+    {
+        equipment: 518,
+        ship: {
+            isID: [夕張改二丁],
+        },
+        bonusImprove: {
+            0: {
+                fire: 6,
+                aa: 3,
+                asw: 4,
+                evasion: 3,
+            },
+            7: {
+                fire: 7,
+                torpedo: 1,
+                aa: 3,
+                asw: 4,
+                evasion: 3,
+            },
+            10: {
+                fire: 9,
+                torpedo: 1,
+                aa: 3,
+                asw: 4,
+                evasion: 3,
+            },
+        },
+    },
+
+    {
+        equipment: 518,
+        ship: {
+            isClass: [CT_Katori],
+        },
+        bonusImprove: {
+            0: {
+                fire: 3,
+                aa: 1,
+                asw: 1,
+                evasion: 2,
+            },
+            10: {
+                fire: 5,
+                aa: 1,
+                asw: 1,
+                evasion: 4,
+            },
+        },
+    },
+
+    {
+        equipment: 518,
+        ship: {
+            isClass: [AV_Nisshin],
+        },
+        bonusImprove: {
+            0: {
+                fire: 4,
+                torpedo: 3,
+                aa: 1,
+                evasion: 2,
+            },
+            10: {
+                fire: 5,
+                torpedo: 4,
+                aa: 1,
+                evasion: 2,
+            },
+        },
+    },
+
+    {
+        equipment: 518,
+        ship: {
             isClass: [Aux_AV_CTeste],
+        },
+        bonus: {
+            fire: 1,
+            torpedo: 1,
+            evasion: 1,
+        },
+    },
+    {
+        equipment: 518,
+        ship: {
+            isID: [三隈改二特],
         },
         bonus: {
             fire: 1,

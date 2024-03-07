@@ -17,16 +17,20 @@ const {
 } = require('../../ships');
 const { DD_Kagerou, DD_KagerouROCN } = require('../../ship-classes');
 const {
+    時雨改三,
+
     丹陽,
     秋雲改二,
     高波改二,
     沖波改二,
-    時雨改三,
+    清霜改二,
+    清霜改二丁,
 } = require('../../ship-ids');
 
 const DD_YuugumoClass2ndRemodel_exclude_HighTier =
     DD_YuugumoClass2ndRemodel.filter(
-        (shipId) => ![高波改二, 沖波改二].includes(shipId)
+        (shipId) =>
+            ![高波改二, 沖波改二, 清霜改二, 清霜改二丁].includes(shipId),
     );
 
 /** @type {Array<EquipmentBonus>} */
@@ -37,7 +41,7 @@ module.exports = [
         ship: {
             isClass: [DD_Kagerou, DD_KagerouROCN],
             isNotID: DD_KagerouClass2ndRemodel.filter(
-                (shipId) => shipId !== 丹陽
+                (shipId) => shipId !== 丹陽,
             ),
         },
         bonus: {
@@ -51,7 +55,7 @@ module.exports = [
         equipment: 366,
         ship: {
             isID: DD_KagerouClass2ndRemodelExcludeAkigumo.filter(
-                (shipId) => shipId !== 丹陽
+                (shipId) => shipId !== 丹陽,
             ),
         },
         bonus: {
@@ -152,7 +156,7 @@ module.exports = [
     {
         equipment: 366,
         ship: {
-            isID: [高波改二],
+            isID: [高波改二, 清霜改二, 清霜改二丁],
         },
         bonusCount: {
             1: {
@@ -206,11 +210,27 @@ module.exports = [
                 時雨改三,
                 ...DD_YuugumoClass2ndRemodel,
                 ...DD_ShimakazeRemodel,
-            ],
+            ].filter((sid) => sid !== 清霜改二丁),
         },
         bonus: {
             fire: 2,
             torpedo: 4,
+            evasion: 2,
+            hit: 2,
+        },
+    },
+    {
+        list: [366, 'SurfaceRadar'],
+        equipments: {
+            hasID: [366],
+            hasSurfaceRadar: true,
+        },
+        ship: {
+            isID: [清霜改二丁],
+        },
+        bonus: {
+            fire: 3,
+            torpedo: 3,
             evasion: 2,
             hit: 2,
         },
@@ -236,49 +256,6 @@ module.exports = [
             aa: 5,
             evasion: 3,
             hit: 1,
-        },
-    },
-
-    // + 探照灯
-    // @ 秋雲改二
-    {
-        list: [366, 74],
-        equipments: [
-            {
-                isID: 366,
-            },
-            {
-                isID: 74,
-            },
-        ],
-        ship: {
-            isID: 秋雲改二,
-        },
-        bonus: {
-            fire: 3,
-            evasion: -3,
-        },
-    },
-
-    // + 熟練見張員
-    // @ 秋雲改二
-    {
-        list: [366, 'SurfaceShipPersonnel'],
-        equipments: [
-            {
-                isID: 366,
-            },
-            {
-                isSurfaceShipPersonnel: true,
-            },
-        ],
-        ship: {
-            isID: 秋雲改二,
-        },
-        bonus: {
-            fire: 2,
-            aa: 2,
-            evasion: 3,
         },
     },
 ];

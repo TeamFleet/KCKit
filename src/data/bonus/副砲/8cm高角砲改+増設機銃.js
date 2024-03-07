@@ -9,6 +9,7 @@
 
 require('../../../../typedef');
 const {
+    CVL_Houshou2ndRemodel,
     CAV_MogamiClassSuperRemodel,
     CL_AganoClass2ndRemodel,
 } = require('../../ships');
@@ -44,6 +45,23 @@ module.exports = [
             fire: 1,
             aa: 5,
             evasion: 3,
+        },
+    },
+    {
+        equipment: 220,
+        ship: {
+            isID: [...CVL_Houshou2ndRemodel],
+        },
+        bonusImprove: {
+            0: {
+                aa: 2,
+                evasion: 2,
+            },
+            10: {
+                fire: 1,
+                aa: 3,
+                evasion: 3,
+            },
         },
     },
 
@@ -88,6 +106,20 @@ module.exports = [
             evasion: -2,
         },
         // passEquippableCheck: true,
+    },
+    {
+        list: [220, 'AARadar'],
+        equipments: {
+            hasID: [220],
+            hasAARadar: true,
+        },
+        ship: {
+            isID: [...CVL_Houshou2ndRemodel],
+        },
+        bonus: {
+            aa: 3,
+            evasion: 3,
+        },
     },
     // {
     //     list: [220, `AARadar[${AARadarsHighTier.join(',')}]`],

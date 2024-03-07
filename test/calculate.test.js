@@ -32,6 +32,7 @@ const {
     雪風改二,
     秋雲改二,
     沖波改二,
+    清霜改二丁,
 } = require('../src/data/ship-ids');
 
 let db;
@@ -579,6 +580,77 @@ describe('Calculating functions/utilities', () => {
                     aa: 3 + 2 + 7 + 2 + 2,
                     evasion: 2 + 3 + 6 + 4 + 3,
                     hit: 1 + 3,
+                });
+            });
+            it('時雨改三 || 12.7cm連装砲D型改二+MAX', () => {
+                expect(calculate.bonus(時雨改三, [267], [10])).toEqual({
+                    fire: 2,
+                });
+            });
+            it('時雨改三 || 12.7cm連装砲D型改二+MAX | 12.7cm連装砲D型改三+4', () => {
+                expect(calculate.bonus(時雨改三, [267, 366], [10, 4])).toEqual({
+                    fire: 5,
+                    aa: 3,
+                    hit: 1,
+                });
+            });
+            it('時雨改三 || 12.7cm連装砲D型改二+MAX | 12.7cm連装砲D型改三+4 | 探照灯+MAX', () => {
+                expect(
+                    calculate.bonus(時雨改三, [267, 366, 74], [10, 4, 10]),
+                ).toEqual({
+                    fire: 8,
+                    aa: 3,
+                    hit: 1,
+                    evasion: -3,
+                });
+            });
+            it('時雨改三 || 12.7cm連装砲D型改二+MAX | 12.7cm連装砲D型改三+4 | 探照灯+MAX | 水雷戦隊 熟練見張員+8', () => {
+                expect(
+                    calculate.bonus(
+                        時雨改三,
+                        [267, 366, 74, null, 412],
+                        [10, 4, 10, null, 8],
+                    ),
+                ).toEqual({
+                    fire: 13,
+                    torpedo: 5,
+                    aa: 5,
+                    asw: 2,
+                    hit: 1,
+                    los: 1,
+                    evasion: 3,
+                });
+            });
+            it('清霜改二丁 || 12.7cm連装砲D型改三+4', () => {
+                expect(calculate.bonus(清霜改二丁, [366], [4])).toEqual({
+                    fire: 5,
+                    aa: 3,
+                    hit: 1,
+                    evasion: 1,
+                });
+            });
+            it('清霜改二丁 || 12.7cm連装砲D型改三+4 | 逆探(E27)＋22号対水上電探改四(後期調整型)', () => {
+                expect(calculate.bonus(清霜改二丁, [366, 517], [4, 0])).toEqual(
+                    {
+                        fire: 13,
+                        torpedo: 3,
+                        aa: 3,
+                        hit: 8,
+                        evasion: 7,
+                        los: 3,
+                    },
+                );
+            });
+            it('清霜改二丁 || 12.7cm連装砲D型改三+4 | 逆探(E27)＋22号対水上電探改四(後期調整型)+MAX', () => {
+                expect(
+                    calculate.bonus(清霜改二丁, [366, 517], [4, 10]),
+                ).toEqual({
+                    fire: 14,
+                    torpedo: 3,
+                    aa: 3,
+                    hit: 10,
+                    evasion: 8,
+                    los: 3,
                 });
             });
         });
@@ -2209,20 +2281,19 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
-            // TODO:
-            // describe('夕張改二丁', () => {
-            //     it('14cm連装砲改 ➕14cm連装砲改二⭐+8 ➕33号対水上電探', () => {
-            //         expect(
-            //             calculate.bonus(624, [310, 518, 29], [0, 8, 0]),
-            //         ).toEqual({
-            //             fire: 12,
-            //             torpedo: 3,
-            //             aa: 2,
-            //             evasion: 6,
-            //             asw: 2,
-            //         });
-            //     });
-            // });
+            describe('夕張改二丁', () => {
+                it('14cm連装砲改 ➕14cm連装砲改二⭐+8 ➕33号対水上電探', () => {
+                    expect(
+                        calculate.bonus(624, [310, 518, 29], [0, 8, 0]),
+                    ).toEqual({
+                        fire: 4 + 7 + 3,
+                        torpedo: 1 + 2,
+                        aa: 1 + 3,
+                        asw: 1 + 4,
+                        evasion: 2 + 3 + 2,
+                    });
+                });
+            });
             describe('能代改二', () => {
                 it('15.2cm連装砲改 | 15.2cm連装砲改二 | AA+Surface Radar | 探照灯', () => {
                     expect(

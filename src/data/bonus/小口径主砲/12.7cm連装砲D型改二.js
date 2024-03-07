@@ -16,10 +16,20 @@ const {
     DD_ShimakazeRemodel,
 } = require('../../ships');
 const { DD_Kagerou, DD_KagerouROCN } = require('../../ship-classes');
-const { 時雨改三, 丹陽, 秋雲改二, 高波改二 } = require('../../ship-ids');
+const {
+    時雨改三,
+    丹陽,
+    秋雲改二,
+    高波改二,
+    清霜改二,
+    清霜改二丁,
+} = require('../../ship-ids');
 
+const DD_YuugumoClass2ndRemodel_HighTier = [高波改二, 清霜改二, 清霜改二丁];
 const DD_YuugumoClass2ndRemodel_exclude_HighTier =
-    DD_YuugumoClass2ndRemodel.filter((shipId) => shipId !== 高波改二);
+    DD_YuugumoClass2ndRemodel.filter(
+        (shipId) => !DD_YuugumoClass2ndRemodel_HighTier.includes(shipId),
+    );
 
 // ============================================================================
 
@@ -31,7 +41,7 @@ module.exports = [
         ship: {
             isClass: [DD_Kagerou, DD_KagerouROCN],
             isNotID: DD_KagerouClass2ndRemodel.filter(
-                (shipId) => shipId !== 丹陽
+                (shipId) => shipId !== 丹陽,
             ),
         },
         bonus: {
@@ -58,7 +68,7 @@ module.exports = [
         equipment: 267,
         ship: {
             isID: DD_KagerouClass2ndRemodelExcludeAkigumo.filter(
-                (shipId) => shipId !== 丹陽
+                (shipId) => shipId !== 丹陽,
             ),
         },
         bonusCount: {
@@ -92,7 +102,7 @@ module.exports = [
     {
         equipment: 267,
         ship: {
-            isID: [高波改二],
+            isID: DD_YuugumoClass2ndRemodel_HighTier,
         },
         bonus: {
             fire: 4,
@@ -163,49 +173,6 @@ module.exports = [
         bonus: {
             fire: 3,
             torpedo: 6,
-            evasion: 3,
-        },
-    },
-
-    // + 探照灯
-    // @ 秋雲改二
-    {
-        list: [267, 74],
-        equipments: [
-            {
-                isID: 267,
-            },
-            {
-                isID: 74,
-            },
-        ],
-        ship: {
-            isID: 秋雲改二,
-        },
-        bonus: {
-            fire: 3,
-            evasion: -3,
-        },
-    },
-
-    // + 熟練見張員
-    // @ 秋雲改二
-    {
-        list: [267, 'SurfaceShipPersonnel'],
-        equipments: [
-            {
-                isID: 267,
-            },
-            {
-                isSurfaceShipPersonnel: true,
-            },
-        ],
-        ship: {
-            isID: 秋雲改二,
-        },
-        bonus: {
-            fire: 2,
-            aa: 2,
             evasion: 3,
         },
     },
