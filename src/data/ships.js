@@ -39,6 +39,7 @@ const {
 
     最上改二,
     最上改二特,
+    三隈改二,
 
     能代改二,
     矢矧改二,
@@ -75,6 +76,8 @@ const {
     秋雲改二,
     沖波改二,
     高波改二,
+
+    三隈改二特,
 } = require('./ship-ids');
 
 // ============================================================================
@@ -119,7 +122,7 @@ const BB_IseClass2ndRemodel = [
 const BB_IseClassRemodelAll = BB_IseClassRemodel.concat(BB_IseClass2ndRemodel);
 const BB_FusouClass2ndRemodel = [扶桑改二, 山城改二];
 const BB_IseClassRemodel_PLUS_FusouClass2ndRemodel = BB_IseClassRemodel.concat(
-    BB_FusouClass2ndRemodel
+    BB_FusouClass2ndRemodel,
 );
 const BB_YamatoClass2ndRemodel = [大和改二, 大和改二重, 武蔵改二];
 const BB_NelsonClassRemodel = [
@@ -184,7 +187,12 @@ const CVE = [
 
 /*************************************************************************/
 
-const CAV_MogamiClassSuperRemodel = [最上改二, 最上改二特];
+const CAV_MogamiClassSuperRemodel = [
+    最上改二,
+    最上改二特,
+    三隈改二,
+    三隈改二特,
+];
 
 /*************************************************************************/
 
@@ -197,7 +205,7 @@ const CL_KumaClass2ndRemodel = [
     146, // 木曽改二
 ];
 const CL_KumaClassRemodelAll = CL_KumaClassRemodel.concat(
-    CL_KumaClass2ndRemodel
+    CL_KumaClass2ndRemodel,
 );
 const CL_NagaraClass2ndRemodel = [
     488, // 由良改二
@@ -237,7 +245,7 @@ const DD_AyanamiClass2ndRemodel = [
     ...DD_Div7_2ndRemodel,
 ];
 const DD_AyanamiClassRemodelAll = DD_AyanamiClassRemodel.concat(
-    DD_AyanamiClass2ndRemodel
+    DD_AyanamiClass2ndRemodel,
 );
 const DD_AkatsukiClassRemodel = [
     234, // 暁改
@@ -250,7 +258,7 @@ const DD_AkatsukiClass2ndRemodel = [
     147, // Верный
 ];
 const DD_AkatsukiClassRemodelAll = DD_AkatsukiClassRemodel.concat(
-    DD_AkatsukiClass2ndRemodel
+    DD_AkatsukiClass2ndRemodel,
 );
 const DD_HatsuharuClassRemodel = [
     238, // 初春改
@@ -264,7 +272,7 @@ const DD_HatsuharuClass2ndRemodel = [
     初霜改二,
 ];
 const DD_HatsuharuClassRemodelAll = DD_HatsuharuClassRemodel.concat(
-    DD_HatsuharuClass2ndRemodel
+    DD_HatsuharuClass2ndRemodel,
 );
 const DD_ShiratsuyuClassRevised = [
     587, // 海風改二
@@ -330,7 +338,7 @@ const DD_KagerouClass2ndRemodel = [
 ];
 const DD_KagerouClassRemodelB = [磯風乙改, 浜風乙改];
 const DD_KagerouClassRemodelAll = DD_KagerouClassRemodel.concat(
-    DD_KagerouClass2ndRemodel
+    DD_KagerouClass2ndRemodel,
 );
 const DD_YuugumoClass2ndRemodel = [
     542, // 夕雲改二
