@@ -35,7 +35,7 @@
         "lint-staged": "^14.0.1",
         "prettier": "^3.0.3",
         "react": "^18.2.0",
-        "whocallsthefleet-database": "20230906.0.0"
+        "whocallsthefleet-database": "^0.0.20240307"
     },
     "jest": {
         "testEnvironment": "node"
