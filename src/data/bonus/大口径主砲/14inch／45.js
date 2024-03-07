@@ -29,7 +29,7 @@ const { Radars_USN } = require('../../equipments');
 const { Battleships } = require('../../../types/ships');
 
 const group_BB_Navy_USN_exclude_Nevada = group_BB_Navy_USN.filter(
-    (id) => id !== BB_Nevada
+    (id) => id !== BB_Nevada,
 );
 
 // ============================================================================
@@ -47,11 +47,22 @@ const 連装砲 = [
                 evasion: 2,
                 hit: 2,
             },
+            3: {
+                fire: 4,
+                evasion: 2,
+                hit: 2,
+            },
             6: {
                 fire: 4,
                 armor: 1,
                 evasion: 2,
                 hit: 2,
+            },
+            9: {
+                fire: 4,
+                armor: 1,
+                evasion: 2,
+                hit: 3,
             },
         },
     },
@@ -61,8 +72,19 @@ const 連装砲 = [
             isClass: [...group_BB_Navy_USN_exclude_Nevada],
         },
         bonusImprove: {
+            0: {
+                fire: 2,
+                evasion: 1,
+                hit: 1,
+            },
             3: {
                 fire: 3,
+                evasion: 1,
+                hit: 1,
+            },
+            6: {
+                fire: 3,
+                armor: 1,
                 evasion: 1,
                 hit: 1,
             },
@@ -89,8 +111,18 @@ const 連装砲 = [
             ],
         },
         bonusImprove: {
+            0: {
+                evasion: 1,
+                hit: 1,
+            },
             3: {
                 fire: 1,
+                evasion: 1,
+                hit: 1,
+            },
+            6: {
+                fire: 1,
+                armor: 1,
                 evasion: 1,
                 hit: 1,
             },
@@ -121,6 +153,10 @@ const 連装砲 = [
         bonusImprove: {
             3: {
                 fire: 1,
+            },
+            6: {
+                fire: 1,
+                armor: 1,
             },
             9: {
                 fire: 1,
@@ -166,11 +202,22 @@ const 三連装砲 = [
                 evasion: 2,
                 hit: 2,
             },
+            3: {
+                fire: 3,
+                evasion: 2,
+                hit: 2,
+            },
             6: {
                 fire: 4,
                 armor: 1,
                 evasion: 2,
                 hit: 2,
+            },
+            9: {
+                fire: 4,
+                armor: 1,
+                evasion: 2,
+                hit: 3,
             },
         },
     },
@@ -180,8 +227,13 @@ const 三連装砲 = [
             isClass: [...group_BB_Navy_USN_exclude_Nevada],
         },
         bonusImprove: {
-            2: {
+            0: {
                 fire: 2,
+                evasion: 1,
+                hit: 1,
+            },
+            3: {
+                fire: 3,
                 evasion: 1,
                 hit: 1,
             },
@@ -190,6 +242,12 @@ const 三連装砲 = [
                 armor: 1,
                 evasion: 1,
                 hit: 1,
+            },
+            9: {
+                fire: 3,
+                armor: 1,
+                evasion: 1,
+                hit: 2,
             },
         },
     },
@@ -208,7 +266,12 @@ const 三連装砲 = [
             ],
         },
         bonusImprove: {
-            2: {
+            0: {
+                evasion: 1,
+                hit: 1,
+            },
+            3: {
+                fire: 1,
                 evasion: 1,
                 hit: 1,
             },
@@ -217,6 +280,12 @@ const 三連装砲 = [
                 armor: 1,
                 evasion: 1,
                 hit: 1,
+            },
+            9: {
+                fire: 1,
+                armor: 1,
+                evasion: 1,
+                hit: 2,
             },
         },
     },
@@ -237,10 +306,38 @@ const 三連装砲 = [
             ],
         },
         bonusImprove: {
+            3: {
+                fire: 1,
+            },
             6: {
                 fire: 1,
                 armor: 1,
             },
+            9: {
+                fire: 1,
+                armor: 1,
+                hit: 1,
+            },
+        },
+    },
+
+    {
+        list: [508, 'SurfaceRadar'],
+        equipments: [
+            {
+                isID: 508,
+            },
+            {
+                isOneOf: Radars_USN.map((eid) => ({ isID: [eid] })),
+            },
+        ],
+        ship: {
+            isClass: [...group_BB_Navy_USN],
+        },
+        bonus: {
+            fire: 1,
+            evasion: 1,
+            hit: 2,
         },
     },
 ];

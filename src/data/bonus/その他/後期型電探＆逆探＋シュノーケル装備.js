@@ -21,11 +21,11 @@ module.exports = [
             isType: [...Submarines],
         },
         bonusImprove: {
+            maxCount: 1,
             4: {
                 torpedo: 1,
                 hit: 1,
             },
-            maxCount: 1,
         },
     },
     {
@@ -34,6 +34,7 @@ module.exports = [
             isID: [...I201, ...I203],
         },
         bonusImprove: {
+            maxCount: 1,
             0: {
                 torpedo: 3,
                 evasion: 6,
@@ -47,7 +48,6 @@ module.exports = [
                 evasion: 8,
                 hit: 1,
             },
-            maxCount: 1,
         },
     },
     {
@@ -56,6 +56,7 @@ module.exports = [
             isID: [...I13, ...I14, ...I47],
         },
         bonusImprove: {
+            maxCount: 1,
             0: {
                 torpedo: 3,
                 evasion: 4,
@@ -64,7 +65,6 @@ module.exports = [
                 torpedo: 3,
                 evasion: 6,
             },
-            maxCount: 1,
         },
     },
     {
@@ -73,6 +73,7 @@ module.exports = [
             isID: [...I400, ...I401],
         },
         bonusImprove: {
+            maxCount: 1,
             0: {
                 torpedo: 3,
                 evasion: 3,
@@ -81,7 +82,6 @@ module.exports = [
                 torpedo: 3,
                 evasion: 5,
             },
-            maxCount: 1,
         },
     },
 

@@ -39,7 +39,6 @@ const dataBonuses = [
 
     ...require('./中口径主砲/5inch連装両用砲(集中配備)'),
     ...require('./中口径主砲/14cm連装砲'),
-    ...require('./中口径主砲/14cm連装砲改'),
     ...require('./中口径主砲/Bofors 15cm連装速射砲'),
     ...require('./中口径主砲/Bofors 15.2cm連装砲 Model 1930'),
     ...require('./中口径主砲/152mm／55 三連装速射砲'),
@@ -219,6 +218,7 @@ const dataBonuses = [
     ...require('./その他/後期型潜水艦搭載電探＆逆探'),
     ...require('./その他/後期型電探＆逆探＋シュノーケル装備'),
     ...require('./その他/発煙装置'),
+    ...require('./その他/司令部'),
 
     ...require('./specials'),
 ];

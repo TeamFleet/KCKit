@@ -890,6 +890,13 @@ describe('Calculating functions/utilities', () => {
                         evasion: 1,
                     });
                 });
+                it('Washington改 || Mk.6 GFCS || ALL MAX', () => {
+                    expect(calculate.bonus(659, [390], [10])).toEqual({
+                        fire: 4,
+                        armor: 1,
+                        evasion: 1,
+                    });
+                });
                 it('Washington改 || Mk.6 ➕Mk.6 mod.2 ➕Mk.6 GFCS || ALL MAX', () => {
                     expect(
                         calculate.bonus(659, [381, 385, 390], [10, 10, 10]),
@@ -2202,6 +2209,20 @@ describe('Calculating functions/utilities', () => {
                     });
                 });
             });
+            // TODO:
+            // describe('夕張改二丁', () => {
+            //     it('14cm連装砲改 ➕14cm連装砲改二⭐+8 ➕33号対水上電探', () => {
+            //         expect(
+            //             calculate.bonus(624, [310, 518, 29], [0, 8, 0]),
+            //         ).toEqual({
+            //             fire: 12,
+            //             torpedo: 3,
+            //             aa: 2,
+            //             evasion: 6,
+            //             asw: 2,
+            //         });
+            //     });
+            // });
             describe('能代改二', () => {
                 it('15.2cm連装砲改 | 15.2cm連装砲改二 | AA+Surface Radar | 探照灯', () => {
                     expect(

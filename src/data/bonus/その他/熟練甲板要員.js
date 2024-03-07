@@ -20,6 +20,7 @@ const 熟練甲板要員_航空整備員 = [
             isType: Carriers,
         },
         bonusImprove: {
+            maxCount: 1,
             1: {
                 fire: 1,
             },

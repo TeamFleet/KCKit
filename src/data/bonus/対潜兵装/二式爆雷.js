@@ -14,7 +14,7 @@ require('../../../../typedef');
 
 const transformBonusToImprove = require('../../../utils/transform-bonus-to-improve');
 
-const { group_DD_Navy_IJN } = require('../../ship-classes');
+const { group_DD_Navy_IJN, DE_Mikura } = require('../../ship-classes');
 const {
     扶桑改二,
     山城改二,
@@ -166,9 +166,22 @@ transformBonusToImprove(二式爆雷改二_Tier2, {
 
 // ============================================================================
 
+/** @type {Array<EquipmentBonus>} */
 module.exports = [
     ...二式爆雷,
+
     ...二式爆雷改二_時雨改二,
     ...二式爆雷改二_時雨改,
     ...二式爆雷改二_Tier2,
+    {
+        equipment: 488,
+        ship: {
+            isType: [31], // 海防艦
+            isNotClass: [DE_Mikura],
+        },
+        bonus: {
+            asw: 1,
+            evasion: 1,
+        },
+    },
 ];
